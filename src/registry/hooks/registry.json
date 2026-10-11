@@ -1,0 +1,97 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "use-active-anchor",
+      "type": "registry:hook",
+      "title": "Use Active Anchor",
+      "description": "Tracks the active anchor as the document scrolls.",
+      "files": [{ "path": "use-active-anchor.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "use-clock",
+      "type": "registry:hook",
+      "title": "Use Clock",
+      "description": "Provides a Motion value driven animation clock.",
+      "dependencies": ["motion"],
+      "files": [{ "path": "use-clock.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "use-coerce-to-motion-value",
+      "type": "registry:hook",
+      "title": "Use Coerce To Motion Value",
+      "description": "Coerces a static value into a reactive Motion value.",
+      "dependencies": ["motion"],
+      "files": [
+        { "path": "use-coerce-to-motion-value.ts", "type": "registry:hook" }
+      ]
+    },
+    {
+      "name": "use-copy-to-clipboard",
+      "type": "registry:hook",
+      "title": "Use Copy To Clipboard",
+      "description": "Copies text to the clipboard and reports its state.",
+      "files": [{ "path": "use-copy-to-clipboard.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "use-event-listener",
+      "type": "registry:hook",
+      "title": "Use Event Listener",
+      "description": "Attaches a stable event listener to an event target.",
+      "files": [{ "path": "use-event-listener.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "use-interval",
+      "type": "registry:hook",
+      "title": "Use Interval",
+      "description": "Runs a callback repeatedly at a configurable interval.",
+      "files": [{ "path": "use-interval.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "use-media-query",
+      "type": "registry:hook",
+      "title": "Use Media Query",
+      "description": "Subscribes to a responsive CSS media query.",
+      "files": [{ "path": "use-media-query.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "use-mouse-position",
+      "type": "registry:hook",
+      "title": "Use Mouse Position",
+      "description": "Exposes the pointer position as Motion values.",
+      "dependencies": ["motion"],
+      "files": [{ "path": "use-mouse-position.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "use-normalize-motion-value",
+      "type": "registry:hook",
+      "title": "Use Normalize Motion Value",
+      "description": "Normalizes a Motion value into a bounded range.",
+      "dependencies": ["motion"],
+      "files": [
+        { "path": "use-normalize-motion-value.ts", "type": "registry:hook" }
+      ]
+    },
+    {
+      "name": "use-resize-observer",
+      "type": "registry:hook",
+      "title": "Use Resize Observer",
+      "description": "Observes and reports an element's dimensions.",
+      "files": [{ "path": "use-resize-observer.ts", "type": "registry:hook" }]
+    },
+    {
+      "name": "use-scroll-accelerated-clock",
+      "type": "registry:hook",
+      "title": "Use Scroll Accelerated Clock",
+      "description": "Accelerates an animation clock in response to scrolling.",
+      "dependencies": ["motion"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/scroll.json",
+        "https://design.time2code.dev/r/use-clock.json"
+      ],
+      "files": [
+        { "path": "use-scroll-accelerated-clock.ts", "type": "registry:hook" }
+      ]
+    }
+  ]
+}

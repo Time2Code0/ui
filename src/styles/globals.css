@@ -1,0 +1,120 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./animations.css";
+@import "./hitbox.css";
+@import "./typeset.css";
+@import "./shiki.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-transparent: transparent;
+
+  --color-background: oklch(0.99 0.003 295);
+  --color-background-muted: oklch(0.98 0.003 295);
+
+  --color-accent: oklch(0.94 0.003 295);
+
+  --color-foreground: oklch(0.22 0.014 295);
+  --color-foreground-muted: oklch(0.54 0.014 295);
+
+  --color-primary: oklch(0.58 0.163 295);
+  --color-secondary: oklch(0.58 0.14 272);
+
+  --color-destructive: oklch(0.58 0.22 25);
+  --color-destructive-foreground: oklch(0.48 0.18 25);
+  --color-destructive-background: oklch(0.96 0.018 25);
+  --color-destructive-subtel: oklch(0.91 0.042 25);
+
+  --color-info: oklch(0.58 0.16 250);
+  --color-info-foreground: oklch(0.48 0.13 250);
+  --color-info-background: oklch(0.96 0.018 250);
+  --color-info-subtel: oklch(0.91 0.04 250);
+
+  --color-success: oklch(0.58 0.16 145);
+  --color-success-foreground: oklch(0.48 0.13 145);
+  --color-success-background: oklch(0.96 0.028 145);
+  --color-success-subtel: oklch(0.91 0.06 145);
+
+  --color-warning: oklch(0.58 0.12 75);
+  --color-warning-foreground: oklch(0.48 0.09 75);
+  --color-warning-background: oklch(0.96 0.03 75);
+  --color-warning-subtel: oklch(0.91 0.065 75);
+
+  --nell-logo-orange: oklch(0.676 0.217 38.802);
+  --nell-logo-brown: oklch(0.65 0.151 60.26);
+  --nell-logo-beige: oklch(0.793 0.088 71.597);
+
+  --nell-decoration-green: oklch(0.55 0.15 145);
+  --nell-decoration-cyan: oklch(0.55 0.12 195);
+  --nell-decoration-orange: oklch(0.65 0.18 40);
+}
+
+.dark {
+  --color-background: oklch(0.18 0.008 295);
+  --color-background-muted: oklch(0.21 0.008 295);
+
+  --color-accent: oklch(0.25 0.008 295);
+
+  --color-foreground: oklch(0.96 0.004 295);
+  --color-foreground-muted: oklch(0.64 0.004 295);
+
+  --color-primary: oklch(0.72 0.163 295);
+  --color-secondary: oklch(0.72 0.14 272);
+
+  --color-destructive: oklch(0.58 0.22 25);
+  --color-destructive-foreground: oklch(0.7 0.19 25);
+  --color-destructive-background: oklch(0.23 0.045 25);
+  --color-destructive-subtel: oklch(0.32 0.085 25);
+
+  --color-info: oklch(0.58 0.16 250);
+  --color-info-foreground: oklch(0.78 0.115 250);
+  --color-info-background: oklch(0.23 0.04 250);
+  --color-info-subtel: oklch(0.32 0.075 250);
+
+  --color-success: oklch(0.58 0.16 145);
+  --color-success-foreground: oklch(0.78 0.115 145);
+  --color-success-background: oklch(0.23 0.04 145);
+  --color-success-subtel: oklch(0.32 0.075 145);
+
+  --color-warning: oklch(0.58 0.12 75);
+  --color-warning-foreground: oklch(0.78 0.105 75);
+  --color-warning-background: oklch(0.23 0.035 75);
+  --color-warning-subtel: oklch(0.32 0.06 75);
+}
+
+@theme inline {
+  --font-sans:
+    var(--font-geist-sans), "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+
+  --font-mono:
+    var(--font-geist-mono), "ui-monospace", "SFMono-Regular", "Menlo", "Monaco",
+    "Consolas", "Liberation Mono", "Courier New", "monospace";
+
+  --font-redaction:
+    var(--font-redaction), var(--font-geist-mono), "ui-monospace",
+    "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono",
+    "Courier New", "monospace";
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    @apply border-foreground/10;
+  }
+
+  html {
+    @apply scrollbar-thin scrollbar-thumb-accent scrollbar-track-background;
+  }
+}
+
+.typeset-docs {
+  --typeset-font-body: var(--font-sans);
+  --typeset-font-heading: var(--font-sans);
+  --typeset-font-mono: var(--font-mono);
+  --typeset-size: 16px;
+  --typeset-leading: 1.75;
+  --typeset-flow: 1.25em;
+}

@@ -1,0 +1,645 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "An accessible accordion primitive.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": ["https://design.time2code.dev/r/icon.json"],
+      "files": [{ "path": "accordion.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Alert and framed alert components for contextual feedback.",
+      "cssVars": {
+        "theme": {
+          "animate-ribbon": "ribbon 1s linear infinite"
+        }
+      },
+      "css": {
+        "@keyframes ribbon": {
+          "from": { "background-position": "0 0" },
+          "to": {
+            "background-position": "calc(var(--ribbon-stripe-size) * 2 * sqrt(2)) 0"
+          }
+        }
+      },
+      "dependencies": ["class-variance-authority", "cn"],
+      "files": [{ "path": "alert.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "An accessible modal alert dialog primitive.",
+      "cssVars": {
+        "theme": {
+          "animate-shake": "shake 0.1s 2"
+        }
+      },
+      "css": {
+        "@keyframes shake": {
+          "25%": { "transform": "translate(-1%, 0)" },
+          "75%": { "transform": "translate(1%, 0)" }
+        }
+      },
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "alert-dialog.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "autocomplete",
+      "type": "registry:ui",
+      "title": "Autocomplete",
+      "description": "An accessible text autocomplete primitive.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/icon.json",
+        "https://design.time2code.dev/r/input.json",
+        "https://design.time2code.dev/r/scroll-area.json"
+      ],
+      "files": [{ "path": "autocomplete.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "An accessible avatar with image and fallback.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "avatar.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "A compact status and label primitive.",
+      "dependencies": ["@base-ui/react", "class-variance-authority", "cn"],
+      "files": [{ "path": "badge.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "blur-image",
+      "type": "registry:ui",
+      "title": "Blur Image",
+      "description": "A Next.js image with a blur-up loading transition.",
+      "dependencies": ["cn"],
+      "files": [{ "path": "blur-image.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "An accessible breadcrumb navigation primitive.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": ["https://design.time2code.dev/r/icon.json"],
+      "files": [{ "path": "breadcrumb.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "An accessible button with size and visual variants.",
+      "dependencies": ["@base-ui/react", "class-variance-authority", "cn"],
+      "registryDependencies": ["https://design.time2code.dev/r/loading.json"],
+      "files": [{ "path": "button.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "A configurable date selection calendar.",
+      "dependencies": ["@daypicker/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": ["https://design.time2code.dev/r/icon.json"],
+      "files": [{ "path": "calendar.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "An accessible carousel with navigation controls.",
+      "dependencies": [
+        "@hugeicons/core-free-icons",
+        "cn",
+        "embla-carousel-react"
+      ],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/button.json",
+        "https://design.time2code.dev/r/icon.json"
+      ],
+      "files": [{ "path": "carousel.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "A composable content card primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "card.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "An accessible checkbox primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "checkbox.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "checkbox-group",
+      "type": "registry:ui",
+      "title": "Checkbox Group",
+      "description": "An accessible checkbox group primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "checkbox-group.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "An accessible collapsible content primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "collapsible.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "An accessible searchable selection primitive.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/icon.json",
+        "https://design.time2code.dev/r/input.json",
+        "https://design.time2code.dev/r/scroll-area.json"
+      ],
+      "files": [{ "path": "combobox.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "A command menu and command dialog primitive.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/autocomplete.json",
+        "https://design.time2code.dev/r/icon.json"
+      ],
+      "files": [{ "path": "command.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "An accessible contextual menu primitive.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": ["https://design.time2code.dev/r/icon.json"],
+      "files": [{ "path": "context-menu.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "An accessible modal dialog primitive.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/button.json",
+        "https://design.time2code.dev/r/icon.json",
+        "https://design.time2code.dev/r/scroll-area.json"
+      ],
+      "files": [{ "path": "dialog.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "An accessible edge-aligned drawer primitive.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/button.json",
+        "https://design.time2code.dev/r/icon.json",
+        "https://design.time2code.dev/r/scroll-area.json"
+      ],
+      "files": [{ "path": "drawer.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "dropzone",
+      "type": "registry:ui",
+      "title": "Dropzone",
+      "description": "A composable drag-and-drop file input.",
+      "dependencies": ["@hugeicons/core-free-icons", "cn", "react-dropzone"],
+      "registryDependencies": ["https://design.time2code.dev/r/icon.json"],
+      "files": [{ "path": "dropzone.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "A composable empty-state primitive.",
+      "dependencies": ["class-variance-authority", "cn"],
+      "files": [{ "path": "empty.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Accessible form field layout and validation primitives.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "field.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "fieldset",
+      "type": "registry:ui",
+      "title": "Fieldset",
+      "description": "Accessible fieldset layout primitives.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "registryDependencies": ["https://design.time2code.dev/r/separator.json"],
+      "files": [{ "path": "fieldset.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "form-baseui",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "An accessible Base UI form primitive.",
+      "dependencies": ["@base-ui/react"],
+      "files": [{ "path": "form-baseui.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "grid",
+      "type": "registry:ui",
+      "title": "Grid",
+      "description": "A responsive composable grid layout.",
+      "dependencies": ["cn"],
+      "files": [{ "path": "grid.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "group",
+      "type": "registry:ui",
+      "title": "Group",
+      "description": "A grouped control layout with separators.",
+      "dependencies": ["@base-ui/react", "class-variance-authority", "cn"],
+      "registryDependencies": ["https://design.time2code.dev/r/separator.json"],
+      "files": [{ "path": "group.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "icon",
+      "type": "registry:ui",
+      "title": "Icon",
+      "description": "A typed Huge Icons rendering wrapper.",
+      "dependencies": ["@hugeicons/react"],
+      "files": [{ "path": "icon.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "An accessible text input primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "input.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "A composable input with inline add-ons.",
+      "dependencies": ["class-variance-authority", "cn"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/input.json",
+        "https://design.time2code.dev/r/textarea.json"
+      ],
+      "files": [{ "path": "input-group.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Keyboard Key",
+      "description": "Keyboard key and shortcut group primitives.",
+      "dependencies": ["cn"],
+      "files": [{ "path": "kbd.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "An accessible form label primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "label.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "link",
+      "type": "registry:ui",
+      "title": "Link",
+      "description": "A Next.js link with external-link behavior.",
+      "files": [{ "path": "link.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "loading",
+      "type": "registry:ui",
+      "title": "Loading",
+      "description": "Loading indicator and spinner primitives.",
+      "dependencies": ["cn"],
+      "files": [{ "path": "loading.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "menu",
+      "type": "registry:ui",
+      "title": "Menu",
+      "description": "An accessible dropdown menu primitive.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": ["https://design.time2code.dev/r/icon.json"],
+      "files": [{ "path": "menu.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "meter",
+      "type": "registry:ui",
+      "title": "Meter",
+      "description": "An accessible value meter primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "meter.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "number-field",
+      "type": "registry:ui",
+      "title": "Number Field",
+      "description": "An accessible numeric input with step controls.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/icon.json",
+        "https://design.time2code.dev/r/label.json"
+      ],
+      "files": [{ "path": "number-field.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "otp-field",
+      "type": "registry:ui",
+      "title": "OTP Field",
+      "description": "An accessible one-time password input.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "registryDependencies": ["https://design.time2code.dev/r/separator.json"],
+      "files": [{ "path": "otp-field.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Accessible pagination navigation primitives.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/button.json",
+        "https://design.time2code.dev/r/icon.json"
+      ],
+      "files": [{ "path": "pagination.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "An accessible anchored popover primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "popover.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "portal",
+      "type": "registry:ui",
+      "title": "Portal",
+      "description": "A client-safe React DOM portal.",
+      "files": [{ "path": "portal.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "preview-card",
+      "type": "registry:ui",
+      "title": "Preview Card",
+      "description": "An accessible hover preview card primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "preview-card.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "An accessible progress indicator primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "progress.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "An accessible radio group primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "radio-group.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "Resizable panel and handle primitives.",
+      "dependencies": [
+        "@hugeicons/core-free-icons",
+        "cn",
+        "react-resizable-panels@^2.1.9"
+      ],
+      "registryDependencies": ["https://design.time2code.dev/r/icon.json"],
+      "files": [{ "path": "resizable.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "An accessible custom scroll area primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "scroll-area.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "section-container",
+      "type": "registry:ui",
+      "title": "Section Container",
+      "description": "A responsive section width and spacing container.",
+      "dependencies": ["cn"],
+      "files": [{ "path": "section-container.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "An accessible select menu primitive.",
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/core-free-icons",
+        "class-variance-authority",
+        "cn"
+      ],
+      "registryDependencies": ["https://design.time2code.dev/r/icon.json"],
+      "files": [{ "path": "select.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "An accessible visual separator primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "separator.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "An accessible edge-aligned dialog sheet.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/button.json",
+        "https://design.time2code.dev/r/icon.json",
+        "https://design.time2code.dev/r/scroll-area.json"
+      ],
+      "files": [{ "path": "sheet.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "A responsive application sidebar system.",
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/core-free-icons",
+        "class-variance-authority",
+        "cn"
+      ],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/button.json",
+        "https://design.time2code.dev/r/icon.json",
+        "https://design.time2code.dev/r/separator.json",
+        "https://design.time2code.dev/r/sheet.json",
+        "https://design.time2code.dev/r/skeleton.json",
+        "https://design.time2code.dev/r/tooltip.json",
+        "https://design.time2code.dev/r/use-media-query.json"
+      ],
+      "files": [{ "path": "sidebar.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "A loading placeholder primitive.",
+      "dependencies": ["cn"],
+      "files": [{ "path": "skeleton.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "An accessible single or multi-value slider.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "slider.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "An accessible toggle switch primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "switch.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Composable responsive table primitives.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "table.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "An accessible tabbed interface primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "tabs.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "An accessible multiline text input.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "textarea.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "A toast notification system with status variants.",
+      "cssVars": {
+        "theme": {
+          "animate-toast-error-even": "toast-error-even 0.28s cubic-bezier(0.5, 1, 0.89, 1)",
+          "animate-toast-error-odd": "toast-error-odd 0.28s cubic-bezier(0.5, 1, 0.89, 1)",
+          "animate-toast-success-even": "toast-success-even 0.32s cubic-bezier(0.5, 1, 0.89, 1)",
+          "animate-toast-success-odd": "toast-success-odd 0.32s cubic-bezier(0.5, 1, 0.89, 1)"
+        }
+      },
+      "css": {
+        "@keyframes toast-error-even": {
+          "0%, 100%": { "translate": "0 0" },
+          "25%, 75%": { "translate": "-3px 0" },
+          "50%": { "translate": "3px 0" }
+        },
+        "@keyframes toast-error-odd": {
+          "0%, 100%": { "translate": "0 0" },
+          "25%, 75%": { "translate": "-3px 0" },
+          "50%": { "translate": "3px 0" }
+        },
+        "@keyframes toast-success-even": {
+          "0%, 100%": { "scale": "1" },
+          "30%": { "scale": "1.025" },
+          "60%": { "scale": "0.99" }
+        },
+        "@keyframes toast-success-odd": {
+          "0%, 100%": { "scale": "1" },
+          "30%": { "scale": "1.025" },
+          "60%": { "scale": "0.99" }
+        }
+      },
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/button.json",
+        "https://design.time2code.dev/r/icon.json"
+      ],
+      "files": [{ "path": "toast.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "An accessible two-state toggle button.",
+      "dependencies": ["@base-ui/react", "class-variance-authority", "cn"],
+      "files": [{ "path": "toggle.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "An accessible group of toggle buttons.",
+      "dependencies": ["@base-ui/react", "class-variance-authority", "cn"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/separator.json",
+        "https://design.time2code.dev/r/toggle.json"
+      ],
+      "files": [{ "path": "toggle-group.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "An accessible tooltip primitive.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "tooltip.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "typography",
+      "type": "registry:ui",
+      "title": "Typography",
+      "description": "Reusable text style primitives.",
+      "dependencies": ["class-variance-authority", "cn"],
+      "files": [{ "path": "typography.tsx", "type": "registry:ui" }]
+    }
+  ]
+}

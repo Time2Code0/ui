@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "p-input-1",
+      "type": "registry:block",
+      "title": "Password Visibility Input",
+      "description": "A password input group with a tooltip-enabled visibility toggle.",
+      "categories": ["input", "password"],
+      "dependencies": ["@hugeicons/core-free-icons"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/button.json",
+        "https://design.time2code.dev/r/icon.json",
+        "https://design.time2code.dev/r/input-group.json",
+        "https://design.time2code.dev/r/tooltip.json"
+      ],
+      "files": [{ "path": "p-input-1.tsx", "type": "registry:block" }]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "time2code",
+  "homepage": "https://design.time2code.dev",
+  "include": [
+    "src/registry/ui/registry.json",
+    "src/registry/marketing/registry.json",
+    "src/registry/hooks/registry.json",
+    "src/registry/particles/registry.json",
+    "src/registry/blocks/registry.json"
+  ]
+}

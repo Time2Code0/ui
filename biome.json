@@ -1,0 +1,39 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": [
+    "ultracite/biome/core",
+    "ultracite/biome/react",
+    "ultracite/biome/next"
+  ],
+  "overrides": [
+    {
+      "includes": ["**"],
+      "assist": {
+        "actions": {
+          "source": {
+            "organizeImports": {
+              "level": "on",
+              "options": {
+                "groups": [
+                  { "type": true, "source": ["**"] },
+                  { "type": true, "source": ["./**", "../**"] },
+                  ":BLANK_LINE:",
+                  ":NODE:",
+                  ":BLANK_LINE:",
+                  ["react", "react-dom"],
+                  ["next", "next/**"],
+                  ":BLANK_LINE:",
+                  [":PACKAGE:"],
+                  ":BLANK_LINE:",
+                  "@/**",
+                  ":BLANK_LINE:",
+                  ["./**", "../**"]
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

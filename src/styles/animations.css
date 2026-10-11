@@ -1,0 +1,114 @@
+@theme inline {
+  --animate-marquee: marquee var(--duration) linear infinite;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  --animate-retro-grid: retro-grid var(--duration) linear infinite;
+  --animate-pill-gradient-background: pill-gradient-background 8s linear
+    infinite;
+  --animate-gradient-text: gradient-text 8s linear infinite;
+  --animate-border-beam: border-beam var(--duration) linear infinite;
+  --animate-border-shiny: border-shiny var(--duration) linear infinite;
+  --animate-border-full: border-full var(--duration) linear infinite;
+  --animate-shiny-text: shiny-text var(--duration) infinite;
+  --animate-magic-button-border-turn: magic-button-border-turn var(--duration)
+    linear infinite;
+  --animate-magic-button-border-turn-with-translate: magic-button-border-turn-with-translate
+    var(--duration) linear infinite;
+  --animate-shake: shake 0.1s 2;
+  --animate-ribbon: ribbon 1s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes retro-grid {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(50%);
+    }
+  }
+  @keyframes pill-gradient-background {
+    100% {
+      background-position: 300% 0;
+    }
+  }
+  @keyframes gradient-text {
+    100% {
+      background-position: 300% 0;
+    }
+  }
+  @keyframes border-beam {
+    100% {
+      offset-distance: 100%;
+    }
+  }
+  @keyframes border-shiny {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+  @keyframes border-full {
+    100% {
+      background-position: 300% 0;
+    }
+  }
+  @keyframes shiny-text {
+    from {
+      background-position: calc(-100% - var(--shimmer-width)) 0;
+    }
+    to {
+      background-position: calc(100% + var(--shimmer-width)) 0;
+    }
+  }
+  @keyframes magic-button-border-turn {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes magic-button-border-turn-with-translate {
+    0% {
+      transform: translate(-50%, -50%) rotate(0);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  @keyframes shake {
+    25% {
+      transform: translate(-1%, 0);
+    }
+    75% {
+      transform: translate(1%, 0);
+    }
+  }
+  @keyframes ribbon {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: calc(var(--ribbon-stripe-size) * 2 * sqrt(2)) 0;
+    }
+  }
+}
