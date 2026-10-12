@@ -128,7 +128,7 @@ export function Cmdk({
       if (item.isComponent) {
         const componentName = item.url.split("/").pop();
 
-        const registryItem = `@coss/${componentName}`;
+        const registryItem = `https://design.time2code.dev/r/${componentName}`;
         let cmd: string;
         switch (packageManager) {
           case "pnpm":
