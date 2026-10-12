@@ -46,7 +46,7 @@
   --color-background: oklch(0.191 0 0);
   --color-background-muted: oklch(0.218 0 0);
 
-  --color-accent: oklch(0.244 0 0);
+  --color-accent: oklch(0.248 0 0);
 
   --color-foreground: oklch(0.96 0.004 295);
   --color-foreground-muted: oklch(0.64 0.004 295);
@@ -88,6 +88,11 @@
     var(--font-redaction), var(--font-geist-mono), "ui-monospace",
     "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono",
     "Courier New", "monospace";
+}
+
+@utility full-width {
+  width: 100cqi;
+  margin-inline: calc(50% - 50cqi);
 }
 
 @layer base {

@@ -44,5 +44,11 @@ export async function ComponentSource({
     return md`\`\`\`${lang}\n${code}\n\`\`\``;
   }
 
-  return <DynamicCodeBlock code={code} codeblock={{ title }} lang={lang} />;
+  return (
+    <DynamicCodeBlock
+      code={code}
+      codeblock={{ className: "my-4", title }}
+      lang={lang}
+    />
+  );
 }

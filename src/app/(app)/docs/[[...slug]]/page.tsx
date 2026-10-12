@@ -164,7 +164,7 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
 
         <article
           className={cn(
-            "typeset typeset-docs flex-1 py-6 sm:py-8",
+            "typeset typeset-docs @container flex-1 py-6 sm:py-8",
             "[&>*:not(.full-width)]:mx-auto [&>*:not(.full-width)]:max-w-167 [&>*:not(.full-width)]:px-4 sm:[&>*:not(.full-width)]:px-6"
           )}
         >

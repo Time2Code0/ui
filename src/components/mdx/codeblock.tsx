@@ -2,7 +2,11 @@
 
 import { useCallback, useRef } from "react";
 
-import { Copy01Icon, Tick01Icon } from "@hugeicons/core-free-icons";
+import {
+  ComputerTerminal01Icon,
+  Copy01Icon,
+  Tick01Icon,
+} from "@hugeicons/core-free-icons";
 import { cn } from "cn";
 import { AnimatePresence, motion } from "motion/react";
 
@@ -80,6 +84,7 @@ export function CodeBlock({
       dir="ltr"
       tabIndex={-1}
       {...props}
+      data-slot="codeblock"
     >
       {title ? (
         <div className="flex h-9.5 items-center gap-2 border-b px-4 text-foreground-muted">
@@ -176,26 +181,37 @@ export function CodeBlockTabs({
   ...props
 }: React.ComponentProps<typeof Tabs>) {
   return (
-    <Tabs className={cn("full-width", className)} {...props}>
+    <Tabs
+      className={cn(
+        "not-typeset full-width my-4 gap-0 border-y bg-background-muted",
+        className
+      )}
+      {...props}
+    >
       {props.children}
     </Tabs>
   );
 }
 
 export function CodeBlockTabsList({
+  children,
   className,
   ...props
 }: React.ComponentProps<typeof TabsList>) {
   return (
-    <TabsList
-      {...props}
-      className={cn(
-        "flex flex-row overflow-x-auto px-2 text-fd-muted-foreground",
-        className
-      )}
-    >
-      {props.children}
-    </TabsList>
+    <div className="flex h-10 items-center gap-2 border-b px-4 text-foreground-muted [&_svg]:size-3.5">
+      <Icon icon={ComputerTerminal01Icon} />
+
+      <TabsList
+        className={cn(
+          "min-w-0 gap-0.5 overflow-x-auto bg-transparent p-0 *:data-[slot=tab-indicator]:rounded-md *:data-[slot=tab-indicator]:bg-accent",
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </TabsList>
+    </div>
   );
 }
 
@@ -206,18 +222,28 @@ export function CodeBlockTabsTrigger({
 }: React.ComponentProps<typeof TabsTab>) {
   return (
     <TabsTab
-      {...props}
       className={cn(
-        "group relative inline-flex items-center gap-2 text-nowrap px-2 py-1.5 font-medium text-sm transition-colors [&_svg]:size-3.5",
+        "h-7 grow-0 rounded-md px-2 font-mono font-normal text-[0.8125rem] hover:text-foreground",
         className
       )}
+      {...props}
     >
-      <div className="absolute inset-x-2 bottom-0 h-px group-data-active:bg-fd-primary" />
       {children}
     </TabsTab>
   );
 }
 
-export function CodeBlockTab(props: React.ComponentProps<typeof TabsPanel>) {
-  return <TabsPanel {...props} />;
+export function CodeBlockTab({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPanel>) {
+  return (
+    <TabsPanel
+      className={cn(
+        "**:data-[slot=codeblock]:my-0 **:data-[slot=codeblock]:border-y-0",
+        className
+      )}
+      {...props}
+    />
+  );
 }

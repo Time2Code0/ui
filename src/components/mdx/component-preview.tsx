@@ -21,17 +21,32 @@ export async function ComponentPreview({ name }: { name: string }) {
   }
 
   return (
-    <Tabs>
-      <TabsList>
-        <TabsTab value="preview">Preview</TabsTab>
-        <TabsTab value="code">Code</TabsTab>
-      </TabsList>
+    <Tabs className="not-typeset full-width my-4 gap-0 border-y bg-background-muted">
+      <div className="flex h-10 items-center gap-2 border-b px-4 text-foreground-muted [&_svg]:size-3.5">
+        <TabsList className="min-w-0 gap-0.5 overflow-x-auto bg-transparent p-0 *:data-[slot=tab-indicator]:rounded-md *:data-[slot=tab-indicator]:bg-accent">
+          <TabsTab
+            className="h-7 grow-0 rounded-md px-2 font-mono font-normal text-[0.8125rem] hover:text-foreground"
+            value="preview"
+          >
+            Preview
+          </TabsTab>
+          <TabsTab
+            className="h-7 grow-0 rounded-md px-2 font-mono font-normal text-[0.8125rem] hover:text-foreground"
+            value="code"
+          >
+            Code
+          </TabsTab>
+        </TabsList>
+      </div>
       <TabsPanel value="preview">
-        <div data-slot="preview">
+        <div
+          className="flex min-h-72 items-center justify-center bg-[oklch(0.159_0_0)] px-4 py-12 sm:px-6"
+          data-slot="preview"
+        >
           <Component />
         </div>
       </TabsPanel>
-      <TabsPanel value="code">
+      <TabsPanel className="**:data-[slot=codeblock]:border-y-0" value="code">
         <ComponentSource name={name} />
       </TabsPanel>
     </Tabs>
