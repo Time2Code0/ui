@@ -172,9 +172,14 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
         </article>
 
         {lastModified ? (
-          <p className="text-foreground-muted text-sm">
-            Last updated on {lastModified.toLocaleDateString()}
-          </p>
+          <div className="mx-auto w-full max-w-167 px-4 pb-6 sm:px-6 sm:pb-8">
+            <p className="text-foreground-muted text-sm">
+              Last updated on{" "}
+              <time dateTime={lastModified.toISOString()}>
+                {lastModified.toLocaleDateString()}
+              </time>
+            </p>
+          </div>
         ) : null}
 
         <div
