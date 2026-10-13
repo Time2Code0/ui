@@ -77,7 +77,9 @@ export function MobileNav({
                               onOpenChange={setOpen}
                             >
                               {item.name}
-                              <Badge variant="info">New</Badge>
+                              {"status" in item && item.status === "new" && (
+                                <Badge variant="info">New</Badge>
+                              )}
                             </MobileLink>
                           );
                         }

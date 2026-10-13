@@ -45,7 +45,9 @@ export function DocsSidebar({ tree }: { tree: typeof source.pageTree }) {
                           render={<Link href={subItem.url} />}
                         >
                           {subItem.name}
-                          <Badge variant="info">New</Badge>
+                          {"status" in subItem && subItem.status === "new" && (
+                            <Badge variant="info">New</Badge>
+                          )}
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                     );

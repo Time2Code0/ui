@@ -76,7 +76,7 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   return (
     <div className="flex size-full items-stretch">
       <div className="flex min-w-0 flex-1 flex-col">
-        <div className="mx-auto max-w-167 px-4 pt-12 sm:px-6">
+        <div className="mx-auto w-full max-w-167 px-4 pt-12 sm:px-6">
           <h1 className="font-semibold text-3xl xl:text-4xl">
             {page.data.title}
           </h1>
