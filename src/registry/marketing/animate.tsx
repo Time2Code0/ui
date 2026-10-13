@@ -18,8 +18,8 @@ export function From({
   children,
   animate = true,
   direction = "bottom",
-  duration = 300,
-  delay = 300,
+  duration = 0.3,
+  delay = 0.3,
   custom = 0,
 }: FromProps) {
   const variants = {
@@ -57,8 +57,8 @@ type FadeInProps = AnimationPropsBase;
 export function FadeIn({
   children,
   animate = true,
-  duration = 300,
-  delay = 300,
+  duration = 0.3,
+  delay = 0.3,
   custom = 0,
 }: FadeInProps) {
   return (
@@ -83,8 +83,8 @@ type ZoomInProps = AnimationPropsBase;
 export function ZoomIn({
   children,
   animate = true,
-  duration = 300,
-  delay = 300,
+  duration = 0.3,
+  delay = 0.3,
   custom = 0,
 }: ZoomInProps) {
   return (
