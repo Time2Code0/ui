@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 
 import { cn } from "cn";
 import { motion } from "motion/react";
@@ -102,35 +102,62 @@ export function MagicTextRevealCard({
   );
 }
 
-const SparklesInternal = () => {
+interface Sparkle {
+  animateLeft: string;
+  animateTop: string;
+  duration: number;
+  left: string;
+  opacity: number;
+  top: string;
+}
+
+function createSparkles(): Sparkle[] {
   const randomMove = () => Math.random() * 4 - 2;
-  const randomOpacity = () => Math.random();
-  const random = () => Math.random();
+
+  return Array.from({ length: 140 }, () => ({
+    animateLeft: `calc(${Math.random() * 100}% + ${randomMove()}px)`,
+    animateTop: `calc(${Math.random() * 100}% + ${randomMove()}px)`,
+    duration: Math.random() * 10 + 20,
+    left: `${Math.random() * 100}%`,
+    opacity: Math.random(),
+    top: `${Math.random() * 100}%`,
+  }));
+}
+
+const SparklesInternal = () => {
+  // Random positions are generated after mount so the server render and
+  // hydration agree.
+  const [sparkles, setSparkles] = useState<Sparkle[]>([]);
+
+  useEffect(() => {
+    setSparkles(createSparkles());
+  }, []);
 
   return (
     <div className="absolute inset-0">
-      {Array.from({ length: 140 }, (_, index) => index).map((key) => (
+      {sparkles.map((sparkle, index) => (
         <motion.span
           animate={{
-            left: `calc(${random() * 100}% + ${randomMove()}px)`,
-            opacity: randomOpacity(),
+            left: sparkle.animateLeft,
+            opacity: sparkle.opacity,
             scale: [1, 1.2, 0],
-            top: `calc(${random() * 100}% + ${randomMove()}px)`,
+            top: sparkle.animateTop,
           }}
           className="inline-block"
-          key={key}
+          // biome-ignore lint/suspicious/noArrayIndexKey: static decorative list
+          key={index}
           style={{
             backgroundColor: "var(--color-foreground)",
             borderRadius: "50%",
             height: "2px",
-            left: `${random() * 100}%`,
+            left: sparkle.left,
             position: "absolute",
-            top: `${random() * 100}%`,
+            top: sparkle.top,
             width: "2px",
             zIndex: 1,
           }}
           transition={{
-            duration: random() * 10 + 20,
+            duration: sparkle.duration,
             ease: "linear",
             repeat: Number.POSITIVE_INFINITY,
           }}
