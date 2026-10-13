@@ -31,6 +31,7 @@ export const siteConfig = {
     github: "https://github.com/time2code0/design-system",
   },
   title: "Design System",
+  url: "https://design.time2code.dev",
 };
 
 export type SiteConfig = typeof siteConfig;

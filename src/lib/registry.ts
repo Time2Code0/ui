@@ -15,6 +15,10 @@ type RegistryItemWithComponent = RegistryItem & {
 const cache = new Map<RegistryName, RegistryItemWithComponent>();
 
 export async function getRegistryItem(registryName: string) {
+  if (!Object.hasOwn(Index, registryName)) {
+    return null;
+  }
+
   const name = registryName as RegistryName;
 
   const cached = cache.get(name);

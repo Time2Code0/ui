@@ -26,7 +26,7 @@ export async function ComponentSource({
 
   if (name) {
     const item = await getRegistryItem(name);
-    code = item.files?.[0]?.content;
+    code = item?.files?.[0]?.content;
   }
 
   if (src) {
