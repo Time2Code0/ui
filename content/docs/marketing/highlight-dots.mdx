@@ -1,0 +1,76 @@
+---
+title: Highlight Dots
+description: A dotted background that lights up around the cursor.
+---
+
+<ComponentPreview name="p-highlight-dots-1" />
+
+A dotted background that lights up in the `primary` color around the cursor.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/highlight-dots
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/pattern https://design.time2code.dev/r/use-mouse-position
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="highlight-dots" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { HighlightDots } from "@/components/marketing/highlight-dots"
+```
+
+```tsx
+<section className="relative h-96">
+  <HighlightDots containerClassName="flex items-center justify-center">
+    <h2>Highlight Dots</h2>
+  </HighlightDots>
+</section>
+```
+
+`HighlightDots` fills its nearest positioned ancestor with the [Dot pattern](/docs/marketing/pattern), so the parent needs `relative` positioning and a size. The highlight fades in while the cursor is inside and follows it through [useMousePosition](/docs/hooks/use-mouse-position).
+
+Use `containerClassName` to lay out the content within the full area, and `className` to style the wrapper around the children.
+
+## API Reference
+
+Accepts every `div` prop.
+
+| Prop                 | Type     | Default | Description                               |
+| -------------------- | -------- | ------- | ----------------------------------------- |
+| `containerClassName` | `string` |         | Class names for the full-size root        |
+| `className`          | `string` |         | Class names for the wrapper of `children` |

@@ -1,0 +1,156 @@
+---
+title: Alert
+description: A callout for displaying important information.
+---
+
+<ComponentPreview name="p-alert-1" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/alert
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i class-variance-authority cn
+```
+
+### Add the following to your CSS file: [step]
+
+```css
+@theme inline {
+  --animate-ribbon: ribbon 1s linear infinite;
+}
+
+@keyframes ribbon {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: calc(var(--ribbon-stripe-size) * 2 * sqrt(2)) 0;
+  }
+}
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="alert" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+```
+
+```tsx
+<Alert>
+  <AlertTitle>Heads up!</AlertTitle>
+  <AlertDescription>
+    You can add components and dependencies to your app using the cli.
+  </AlertDescription>
+</Alert>
+```
+
+## API Reference
+
+This is a custom component, not a Base UI wrapper.
+
+### Alert
+
+Root container for the alert.
+
+| Prop      | Type                                                        | Default     | Description                                      |
+| --------- | ----------------------------------------------------------- | ----------- | ------------------------------------------------ |
+| `variant` | `"default" \| "error" \| "info" \| "success" \| "warning"` | `"default"` | Controls the alert styling and color scheme      |
+
+### AlertTitle
+
+Title text for the alert. Renders as a styled `div`.
+
+### AlertDescription
+
+Description text for the alert. Renders as a styled `div` with muted foreground color.
+
+### AlertAction
+
+Container for action buttons. Automatically positions to the right on larger screens.
+
+### AlertFrame
+
+Framed container that wraps an `Alert` and adds a footer below it. Shows an animated striped ribbon on hover.
+
+The frame doesn't pass its variant down, so give the inner `Alert` the same `variant` to keep both colors in sync.
+
+```tsx
+<AlertFrame variant="info">
+  <Alert variant="info">...</Alert>
+  <AlertFrameFooter>...</AlertFrameFooter>
+</AlertFrame>
+```
+
+| Prop      | Type                                                         | Default     | Description                     |
+| --------- | ------------------------------------------------------------ | ----------- | ------------------------------- |
+| `variant` | `"default" \| "info" \| "success" \| "warning" \| "error"` | `"default"` | Controls the frame color        |
+
+### AlertFrameFooter
+
+Footer row inside `AlertFrame`. Lays out an optional leading icon, an `AlertFrameDescription` and an `AlertFrameAction`.
+
+### AlertFrameDescription
+
+Muted text inside `AlertFrameFooter`. Tinted to match the frame variant.
+
+### AlertFrameAction
+
+Container for action buttons, aligned to the end of the footer.
+
+## Examples
+
+### With Icon
+
+<ComponentPreview name="p-alert-2" />
+
+### With Icon and Action Buttons
+
+<ComponentPreview name="p-alert-3" />
+
+### Info Alert
+
+<ComponentPreview name="p-alert-4" />
+
+### Success Alert
+
+<ComponentPreview name="p-alert-5" />
+
+### Warning Alert
+
+<ComponentPreview name="p-alert-6" />
+
+### Error Alert
+
+<ComponentPreview name="p-alert-7" />
+
+### Alert Frame
+
+<ComponentPreview name="p-alert-8" />

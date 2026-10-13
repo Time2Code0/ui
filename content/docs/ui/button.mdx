@@ -1,0 +1,177 @@
+---
+title: Button
+description: A button or a component that looks like a button.
+---
+
+<ComponentPreview name="p-button-1" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/button
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i @base-ui/react class-variance-authority cn
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/loading
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="button" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Button } from "@/components/ui/button"
+```
+
+```tsx
+<Button>Button</Button>
+```
+
+## Link
+
+Links should stay links. To make one look like a button, apply `buttonVariants()` to the link directly instead of rendering it through `Button`. It accepts the same `variant`, `shape` and `size` options.
+
+```tsx
+import { buttonVariants } from "@/components/ui/button"
+import { Link } from "@/components/ui/link"
+
+export function LinkAsButton() {
+  return (
+    <Link className={buttonVariants({ variant: "outline" })} href="/login">
+      Login
+    </Link>
+  )
+}
+```
+
+## API Reference
+
+### Button
+
+A button component with variant, shape, size, and loading states. Styled wrapper for `Button` from Base UI.
+
+| Prop      | Type                                                                                                                    | Default     | Description                                                       |
+| --------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------- |
+| `variant` | `"default" \| "destructive" \| "ghost" \| "link" \| "animated-link" \| "outline" \| "secondary" \| "unstyled"` | `"default"` | Controls the button styling                                       |
+| `size`    | `"default" \| "icon" \| "icon-lg" \| "icon-sm" \| "icon-xl" \| "icon-xs" \| "lg" \| "sm" \| "xl" \| "xs"`           | `"default"` | Controls the button size                                          |
+| `shape`   | `"default" \| "full" \| "none"`                                                                                         | `"default"` | Controls the border radius                                        |
+| `loading` | `boolean`                                                                                                               | `false`     | Shows a spinner and disables the button while loading             |
+| `render`  | `React.ReactElement`                                                                                                    | -           | Render as a different element (e.g., Link)                        |
+
+When `loading` is `true`, the component:
+
+- Renders a spinner (`data-slot="button-loading-indicator"`)
+- Adds `data-loading` on the button root
+- Disables the button while keeping it focusable (`focusableWhenDisabled`)
+- Preserves button width by hiding content visually instead of unmounting it
+
+## Examples
+
+### Default
+
+<ComponentPreview name="p-button-1" />
+
+### Outline
+
+<ComponentPreview name="p-button-2" />
+
+### Secondary
+
+<ComponentPreview name="p-button-3" />
+
+### Destructive
+
+<ComponentPreview name="p-button-4" />
+
+### Ghost
+
+<ComponentPreview name="p-button-6" />
+
+### Link
+
+<ComponentPreview name="p-button-7" />
+
+### Animated Link
+
+<ComponentPreview name="p-button-43" />
+
+### Shapes
+
+<ComponentPreview name="p-button-42" />
+
+### Extra-small Size
+
+<ComponentPreview name="p-button-8" />
+
+### Small Size
+
+<ComponentPreview name="p-button-9" />
+
+### Large Size
+
+<ComponentPreview name="p-button-10" />
+
+### Extra-large Size
+
+<ComponentPreview name="p-button-11" />
+
+### Disabled
+
+<ComponentPreview name="p-button-12" />
+
+### Icon
+
+<ComponentPreview name="p-button-13" />
+
+### Icon Small Size
+
+<ComponentPreview name="p-button-14" />
+
+### Icon Large Size
+
+<ComponentPreview name="p-button-15" />
+
+### With Icon
+
+<ComponentPreview name="p-button-16" />
+
+### With Link
+
+<ComponentPreview name="p-button-17" />
+
+### Loading (Built-in Prop)
+
+<ComponentPreview name="p-button-41" />
+
+### Loading (Custom Composition)
+
+<ComponentPreview name="p-button-18" />

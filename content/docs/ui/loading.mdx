@@ -1,0 +1,98 @@
+---
+title: Loading
+description: Spinners and indicators that can be used to show a loading state.
+---
+
+<ComponentPreview name="p-loading-1" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/loading
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="loading" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Spinner,
+  SpinnerCircle,
+  SpinnerCircleFilled,
+  SpinnerEllipsis,
+} from "@/components/ui/loading"
+```
+
+```tsx
+<Spinner />
+```
+
+## API Reference
+
+All indicators render with `role="status"`, `aria-label="Loading"` and `data-slot="spinner"`, and inherit their color from `currentColor`. Size them with `size-*` utilities.
+
+### Spinner
+
+Eight-bar spinner that rotates in discrete steps. Accepts all `svg` props. Used internally by `Button` for its `loading` state.
+
+### SpinnerCircle
+
+Circular arc spinner. Accepts all `svg` props.
+
+### SpinnerCircleFilled
+
+Circular arc spinner rendered on top of a faded track. Accepts all `svg` props.
+
+### SpinnerEllipsis
+
+Three pulsing dots. Accepts all `div` props; dots are sized with `size-2`.
+
+## Examples
+
+### Circle
+
+<ComponentPreview name="p-loading-2" />
+
+### Circle with Track
+
+<ComponentPreview name="p-loading-3" />
+
+### Ellipsis
+
+<ComponentPreview name="p-loading-4" />
+
+### Input Group
+
+<ComponentPreview name="p-input-12" />
+
+### Button
+
+<ComponentPreview name="p-button-18" />

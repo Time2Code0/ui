@@ -1,0 +1,111 @@
+---
+title: Animate
+description: Fade, zoom and slide-in entrance animations.
+---
+
+<ComponentPreview name="p-animate-1" />
+
+Small wrappers for entrance animations: fade in, zoom in, or slide in from one side. Built on Motion.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/animate
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="animate" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { FadeIn, From, ZoomIn } from "@/components/marketing/animate"
+```
+
+```tsx
+<FadeIn>
+  <Card />
+</FadeIn>
+```
+
+Each component wraps its children in a `motion.div` and plays the animation on mount.
+
+### Staggering
+
+`custom` multiplies the `delay`, so passing the item index staggers a list.
+
+```tsx
+{features.map((feature, index) => (
+  <FadeIn custom={index} key={feature.title}>
+    <Feature {...feature} />
+  </FadeIn>
+))}
+```
+
+### Triggering later
+
+Set `animate` to `false` to hold the initial state, then flip it to `true` to play the animation, for example once the element scrolls into view.
+
+```tsx
+const ref = useRef(null)
+const inView = useInView(ref, { once: true })
+
+<div ref={ref}>
+  <From animate={inView} direction="left">
+    <Card />
+  </From>
+</div>
+```
+
+## API Reference
+
+All three components share these props.
+
+| Prop       | Type      | Default | Description                                         |
+| ---------- | --------- | ------- | --------------------------------------------------- |
+| `animate`  | `boolean` | `true`  | Plays the animation. `false` keeps the hidden state |
+| `duration` | `number`  | `0.3`   | Duration in seconds                                 |
+| `delay`    | `number`  | `0.3`   | Delay in seconds, multiplied by `custom`            |
+| `custom`   | `number`  | `0`     | Multiplier for `delay`, usually the item index      |
+
+### FadeIn
+
+Animates opacity from 0 to 1.
+
+### ZoomIn
+
+Scales from 0 to 1.
+
+### From
+
+Slides in from 200px away.
+
+| Prop        | Type                                     | Default    | Description                |
+| ----------- | ---------------------------------------- | ---------- | -------------------------- |
+| `direction` | `"top" \| "bottom" \| "left" \| "right"` | `"bottom"` | Side the content enters from |

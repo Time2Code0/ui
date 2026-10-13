@@ -1,0 +1,161 @@
+---
+title: Scroll
+description: Composable primitives for scroll-driven animations.
+---
+
+<ComponentPreview name="p-scroll-1" />
+
+Composable building blocks for scroll-driven animations. A provider tracks the scroll position, progress and velocity of the window or a container, and the other parts narrow, smooth or read those values.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/scroll
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="scroll" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ScrollContainer, useScroll } from "@/components/marketing/scroll"
+```
+
+```tsx
+function ProgressBar() {
+  const { progress } = useScroll()
+
+  return <motion.div className="h-1 origin-left bg-primary" style={{ scaleX: progress.y }} />
+}
+
+export function Article() {
+  return (
+    <ScrollContainer className="h-96">
+      <ProgressBar />
+      ...
+    </ScrollContainer>
+  )
+}
+```
+
+All values are Motion values, so they can be passed straight to `motion` components or transformed with `useTransform` without re-rendering.
+
+## Providers
+
+### WindowScrollProvider
+
+Tracks the scroll of the page. Wrap the part of your app that reacts to page scroll.
+
+```tsx
+<WindowScrollProvider>
+  <Page />
+</WindowScrollProvider>
+```
+
+### ScrollContainer
+
+Renders a scrollable `motion.div` and tracks its scroll. Accepts every prop of `motion.div`; give it a fixed height so it can scroll.
+
+## Narrowing and smoothing
+
+### ScrollTarget
+
+Renders a `div` and remaps `progress` to the time this element spends in view. `zero` and `one` set where progress starts and ends, as an intersection of a point on the target with a point on the container.
+
+```tsx
+<ScrollTarget
+  one={{ container: "start", target: "end" }}
+  zero={{ container: "end", target: "start" }}
+>
+  <Section />
+</ScrollTarget>
+```
+
+With these values, progress is `0` when the top of the section reaches the bottom of the viewport and `1` when its bottom leaves the top.
+
+| Prop   | Type                                              | Default                                  | Description                      |
+| ------ | ------------------------------------------------- | ---------------------------------------- | -------------------------------- |
+| `zero` | `{ container: Edge \| number; target: Edge \| number }` | `{ container: "start", target: "start" }` | Intersection where progress is `0` |
+| `one`  | `{ container: Edge \| number; target: Edge \| number }` | `{ container: "end", target: "end" }`     | Intersection where progress is `1` |
+| `axis` | `"x" \| "y"`                                      | `"y"`                                    | Scroll axis                      |
+
+`Edge` is `"start"`, `"center"` or `"end"`. Numbers are fractions from `0` to `1`.
+
+### ScrollRange
+
+Remaps the parent's `progress` so that the range from `zero` to `one` becomes `0` to `1`. Use it to split a long scroll into steps.
+
+```tsx
+<ScrollRange one={0.5} zero={0}>
+  <FirstHalf />
+</ScrollRange>
+<ScrollRange one={1} zero={0.5}>
+  <SecondHalf />
+</ScrollRange>
+```
+
+### ScrollSmoothing
+
+Wraps `position`, `progress` or `velocity` of the parent in springs. Only the values you pass options for are smoothed.
+
+```tsx
+<ScrollSmoothing progress={{ damping: 20, stiffness: 100 }}>
+  <ProgressBar />
+</ScrollSmoothing>
+```
+
+## Hooks
+
+### useScroll
+
+Returns the values of the nearest provider. Throws outside of one.
+
+| Property    | Type                                      | Description                               |
+| ----------- | ----------------------------------------- | ----------------------------------------- |
+| `position`  | `{ x: MotionValue; y: MotionValue }`      | Scroll offset in pixels                   |
+| `progress`  | `{ x: MotionValue; y: MotionValue }`      | Scroll progress from `0` to `1`           |
+| `velocity`  | `{ x: MotionValue; y: MotionValue }`      | Scroll velocity                           |
+| `container` | `RefObject<HTMLElement \| null>`          | The scrolling element                     |
+
+### useScrollDirection
+
+Returns `"up"`, `"down"` or `"static"` based on the vertical scroll velocity.
+
+### useScrollAtStart and useScrollAtEnd
+
+Return whether the container is scrolled to its start or end. Useful for showing scroll shadows or hiding a "scroll for more" hint.
+
+```tsx
+const atEnd = useScrollAtEnd({ axis: "y" })
+```
+
+## Related
+
+- [useScrollAcceleratedClock](/docs/hooks/use-scroll-accelerated-clock) speeds up an animation clock with the scroll velocity.

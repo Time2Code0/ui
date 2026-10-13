@@ -1,0 +1,65 @@
+---
+title: Text Scroll Reveal
+description: Text that lights up word by word while scrolling.
+---
+
+<ComponentPreview name="p-text-scroll-reveal-1" />
+
+A paragraph that stays in place while the page scrolls and lights up word by word. Use it for statements and manifestos that should be read one step at a time.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/text-scroll-reveal
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="text-scroll-reveal" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { TextScrollReveal } from "@/components/marketing/text-scroll-reveal"
+```
+
+```tsx
+<TextScrollReveal
+  className="h-[200vh] text-4xl"
+  text="Scroll down and watch each word light up as you read along."
+/>
+```
+
+The text is sticky inside the component, so the component's height decides how long the reveal takes: a taller component means more scrolling per word. Give it a height well above the viewport, such as `h-[200vh]`. Progress follows the scroll of the page.
+
+## API Reference
+
+| Prop        | Type     | Description                                |
+| ----------- | -------- | ------------------------------------------ |
+| `text`      | `string` | Text to reveal, split into words by spaces |
+| `className` | `string` | Class names for the root element           |

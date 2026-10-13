@@ -1,0 +1,86 @@
+---
+title: Pill
+description: A label with a gradient border.
+---
+
+<ComponentPreview name="p-pill-1" />
+
+A rounded label with a gradient border in the `primary` and `secondary` colors. Typically used above a hero headline to announce something new.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/pill
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Add the following to your CSS file: [step]
+
+```css
+@theme inline {
+  --animate-pill-gradient-background: pill-gradient-background 8s linear infinite;
+}
+
+@keyframes pill-gradient-background {
+  100% {
+    background-position: 300% 0;
+  }
+}
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="pill" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Pill } from "@/components/marketing/pill"
+```
+
+```tsx
+<Pill>Introducing our new design system</Pill>
+```
+
+Set `animate` to let the gradient flow around the border. `className` styles the inner label and `containerClassName` the outer element that draws the border.
+
+To make the whole pill a link, wrap it:
+
+```tsx
+<a href="/changelog">
+  <Pill>See what's new →</Pill>
+</a>
+```
+
+## API Reference
+
+| Prop                 | Type              | Default | Description                         |
+| -------------------- | ----------------- | ------- | ----------------------------------- |
+| `children`           | `React.ReactNode` |         | Content of the pill                 |
+| `animate`            | `boolean`         | `false` | Animates the gradient border        |
+| `className`          | `string`          |         | Class names for the inner label     |
+| `containerClassName` | `string`          |         | Class names for the outer element   |

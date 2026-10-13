@@ -1,0 +1,73 @@
+---
+title: useActiveAnchor
+description: Returns the id of the section currently at the top of the viewport.
+---
+
+Watches a list of elements by id and returns the one currently at the top of the viewport. Use it to highlight the active entry in a table of contents or a scroll-spy navigation.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-active-anchor
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="use-active-anchor" title="hooks/use-active-anchor.ts" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { useActiveAnchor } from "@/hooks/use-active-anchor"
+
+const headings = ["introduction", "installation", "usage"]
+
+function TableOfContents() {
+  const active = useActiveAnchor(headings)
+
+  return (
+    <nav>
+      {headings.map((id) => (
+        <a data-active={active === id} href={`#${id}`} key={id}>
+          {id}
+        </a>
+      ))}
+    </nav>
+  )
+}
+```
+
+An element becomes active once it enters the top 20% of the viewport. The last active id stays active until another element takes its place. Before any element has been reached, the first id in the list is returned.
+
+Keep the array stable by defining it outside the component or memoizing it. A new array on every render recreates the observer each time.
+
+## API Reference
+
+```tsx
+function useActiveAnchor(watch: string[]): string | undefined
+```
+
+| Parameter | Type       | Description                     |
+| --------- | ---------- | ------------------------------- |
+| `watch`   | `string[]` | Ids of the elements to observe  |
+
+Returns the id of the active element, or `undefined` until the observer reports for the first time.

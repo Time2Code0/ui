@@ -1,0 +1,89 @@
+---
+title: useScrollAcceleratedClock
+description: An animation clock that speeds up and reverses with the scroll.
+---
+
+<ComponentPreview name="p-use-scroll-accelerated-clock-1" />
+
+A [useClock](/docs/hooks/use-clock) whose speed follows the scroll. Scrolling down speeds the clock up, and scrolling up runs it backwards. Once scrolling stops it settles back to normal speed in the last scroll direction.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-scroll-accelerated-clock
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i motion
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/scroll https://design.time2code.dev/r/use-clock
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="use-scroll-accelerated-clock" title="hooks/use-scroll-accelerated-clock.ts" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+The hook reads the scroll velocity from the [Scroll](/docs/marketing/scroll) context, so it must be rendered inside a `WindowScrollProvider` or a `ScrollContainer`.
+
+```tsx
+import { motion, useTransform } from "motion/react"
+
+import { useScrollAcceleratedClock } from "@/hooks/use-scroll-accelerated-clock"
+import { WindowScrollProvider } from "@/components/marketing/scroll"
+
+function Spinner() {
+  const clock = useScrollAcceleratedClock()
+  const rotate = useTransform(clock.value, (value) => value * 0.09)
+
+  return <motion.div style={{ rotate }} />
+}
+
+export function Page() {
+  return (
+    <WindowScrollProvider>
+      <Spinner />
+    </WindowScrollProvider>
+  )
+}
+```
+
+The [Ticker](/docs/marketing/ticker) component is a typical consumer: pass `clock.value` to it to make a marquee react to scrolling.
+
+## API Reference
+
+```tsx
+function useScrollAcceleratedClock(acceleration?: number): Clock
+```
+
+| Parameter      | Type     | Default | Description                                      |
+| -------------- | -------- | ------- | ------------------------------------------------ |
+| `acceleration` | `number` | `5`     | How strongly the scroll velocity affects the rate |
+
+Returns the same `{ value, setRate }` object as [useClock](/docs/hooks/use-clock). The rate is overwritten on every scroll velocity change, so calling `setRate` yourself only lasts until the next scroll.

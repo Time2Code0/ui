@@ -1,0 +1,90 @@
+---
+title: Link
+description: A Next.js link that opens external URLs in a new tab automatically.
+
+links:
+  doc: https://nextjs.org/docs/app/api-reference/components/link
+---
+
+<ComponentPreview name="p-link-1" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/link
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="link" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Link } from "@/components/ui/link"
+```
+
+```tsx
+<Link href="/docs">Docs</Link>
+```
+
+`Link` is a drop-in replacement for `next/link`. It inspects the `href` and adds `target="_blank"` and `rel="noopener noreferrer"` when the link:
+
+- points to another site (an `http` URL that isn't `localhost` or `127.0.0.1`), or
+- uses the `mailto:` or `tel:` protocol.
+
+Relative links render exactly like `next/link`. Passing `target` or `rel` yourself overrides the automatic values.
+
+```tsx
+<Link href="https://github.com" target="_self">
+  Open in this tab
+</Link>
+```
+
+### As a button
+
+To style a link like a button, apply `buttonVariants()` to it instead of wrapping it in a `Button`.
+
+```tsx
+import { buttonVariants } from "@/components/ui/button"
+import { Link } from "@/components/ui/link"
+
+<Link className={buttonVariants({ variant: "outline" })} href="/login">
+  Login
+</Link>
+```
+
+## API Reference
+
+### Link
+
+Accepts every prop of [`next/link`](https://nextjs.org/docs/app/api-reference/components/link) plus the standard anchor attributes.
+
+| Prop   | Type          | Default | Description                                                                 |
+| ------ | ------------- | ------- | --------------------------------------------------------------------------- |
+| `href` | `string \| Url` |         | Destination. For URL objects only the `pathname` is used                    |
+
+## Examples
+
+### Button Link
+
+<ComponentPreview name="p-button-17" />

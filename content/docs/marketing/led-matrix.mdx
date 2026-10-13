@@ -1,0 +1,91 @@
+---
+title: LED Matrix
+description: An animated WebGL dot matrix background.
+---
+
+<ComponentPreview name="p-led-matrix-1" />
+
+An animated grid of glowing dots rendered with WebGL. The dots light up from the center outwards and then flicker. A good backdrop for hero sections and feature cards.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/led-matrix
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i @react-three/fiber cn three
+```
+
+### Install the following dev dependencies: [step]
+
+```npm
+npm i -D @types/three
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="led-matrix" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { LedMatrix } from "@/components/marketing/led-matrix"
+```
+
+```tsx
+<div className="relative h-96">
+  <LedMatrix colors={[[59, 130, 246]]} />
+  <div className="absolute inset-0">Content</div>
+</div>
+```
+
+The matrix fills its parent, so give the parent a size. It draws on a [React Three Fiber](https://r3f.docs.pmnd.rs) canvas with a custom shader.
+
+### Colors
+
+`colors` takes up to three RGB colors with values from `0` to `255`. Each dot picks one of them at random. `opacities` holds ten opacity levels the dots flicker between.
+
+```tsx
+<LedMatrix
+  colors={[
+    [59, 130, 246],
+    [139, 92, 246],
+  ]}
+  opacities={[0.1, 0.1, 0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 1]}
+/>
+```
+
+By default a gradient fades the bottom of the matrix into the background. Set `showGradient` to `false` to remove it.
+
+## API Reference
+
+| Prop                 | Type         | Default                                       | Description                               |
+| -------------------- | ------------ | --------------------------------------------- | ----------------------------------------- |
+| `colors`             | `number[][]` | `[[0, 255, 255]]`                             | Up to three RGB colors                    |
+| `opacities`          | `number[]`   | `[0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1]` | Ten opacity levels                   |
+| `dotSize`            | `number`     | `3`                                           | Size of a dot in pixels                   |
+| `animationSpeed`     | `number`     | `0.4`                                         | Speed of the intro animation              |
+| `showGradient`       | `boolean`    | `true`                                        | Fades the bottom into the background      |
+| `containerClassName` | `string`     |                                               | Class names for the root element          |

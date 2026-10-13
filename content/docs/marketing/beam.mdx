@@ -1,0 +1,104 @@
+---
+title: Beam
+description: An animated beam of light connecting two elements.
+---
+
+<ComponentPreview name="p-beam-1" />
+
+Draws an animated beam of light along a curved path between two elements. Combine several beams to visualize integrations or data flowing into a hub.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/beam
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="beam" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Beam } from "@/components/marketing/beam"
+```
+
+```tsx
+const containerRef = useRef<HTMLDivElement>(null)
+const fromRef = useRef<HTMLDivElement>(null)
+const toRef = useRef<HTMLDivElement>(null)
+
+return (
+  <div className="relative" ref={containerRef}>
+    <div ref={fromRef} />
+    <div ref={toRef} />
+    <Beam containerRef={containerRef} fromRef={fromRef} toRef={toRef} />
+  </div>
+)
+```
+
+The beam is an absolutely positioned SVG that covers the container, so the container needs `relative` positioning. The path runs from the center of `fromRef` to the center of `toRef` and is recalculated whenever the container resizes. Give the connected elements a `z-index` to draw them above the beam.
+
+### Shaping the path
+
+`curvature` bends the path up (negative) or down (positive). The offset props move the start and end points away from the element centers, which helps when several beams meet at the same element.
+
+```tsx
+<Beam
+  containerRef={containerRef}
+  curvature={-75}
+  endYOffset={-10}
+  fromRef={fromRef}
+  toRef={toRef}
+/>
+```
+
+Set `reverse` to send the light from `toRef` to `fromRef`.
+
+## API Reference
+
+Accepts every `svg` prop.
+
+| Prop                 | Type                               | Default                    | Description                                       |
+| -------------------- | ---------------------------------- | -------------------------- | ------------------------------------------------- |
+| `containerRef`       | `RefObject<HTMLElement \| null>`   |                            | Element the beam is positioned in                 |
+| `fromRef`            | `RefObject<HTMLElement \| null>`   |                            | Start element                                     |
+| `toRef`              | `RefObject<HTMLElement \| null>`   |                            | End element                                       |
+| `curvature`          | `number`                           | `0`                        | Bend of the path in pixels                        |
+| `reverse`            | `boolean`                          | `false`                    | Runs the light in the opposite direction          |
+| `duration`           | `number`                           | random between 4 and 7     | Seconds for one pass                              |
+| `delay`              | `number`                           | `0`                        | Delay before the first pass in seconds            |
+| `pathColor`          | `string`                           | `"var(--color-foreground)"` | Color of the static path                         |
+| `pathWidth`          | `number`                           | `2`                        | Stroke width                                      |
+| `pathOpacity`        | `number`                           | `0.1`                      | Opacity of the static path                        |
+| `gradientStartColor` | `string`                           | `"var(--color-primary)"`   | Leading color of the beam                         |
+| `gradientStopColor`  | `string`                           | `"var(--color-secondary)"` | Trailing color of the beam                        |
+| `startXOffset`       | `number`                           | `0`                        | Horizontal offset of the start point              |
+| `startYOffset`       | `number`                           | `0`                        | Vertical offset of the start point                |
+| `endXOffset`         | `number`                           | `0`                        | Horizontal offset of the end point                |
+| `endYOffset`         | `number`                           | `0`                        | Vertical offset of the end point                  |

@@ -1,0 +1,129 @@
+---
+title: Confetti
+description: Confetti bursts on a canvas, fired on mount or on demand.
+---
+
+<ComponentPreview name="p-confetti-1" />
+
+A canvas for [canvas-confetti](https://github.com/catdad/canvas-confetti) bursts. Fire it on mount, from a ref, or from any child component.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/confetti
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i canvas-confetti
+```
+
+### Install the following dev dependencies: [step]
+
+```npm
+npm i -D @types/canvas-confetti
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="confetti" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Confetti, type ConfettiApi } from "@/components/marketing/confetti"
+```
+
+```tsx
+const ref = useRef<ConfettiApi>(null)
+
+return (
+  <div className="relative">
+    <Confetti
+      className="pointer-events-none absolute inset-0 size-full"
+      manualStart
+      ref={ref}
+    />
+    <Button onClick={() => ref.current?.fire()}>Celebrate</Button>
+  </div>
+)
+```
+
+`Confetti` renders a `canvas` and fires once on mount. Set `manualStart` to only fire when you call `fire()`. Size and position the canvas with `className`; the particles are clipped to it.
+
+### Firing from children
+
+Children of `Confetti` can fire it through `useConfetti`, without passing a ref around.
+
+```tsx
+import { useConfetti } from "@/components/marketing/confetti"
+
+function SubmitButton() {
+  const { fire } = useConfetti()
+
+  return <Button onClick={() => fire({ spread: 90 })}>Submit</Button>
+}
+
+<Confetti manualStart ref={undefined}>
+  <SubmitButton />
+</Confetti>
+```
+
+### Options
+
+`options` sets the defaults for every burst, and the object passed to `fire()` overrides them for a single burst. See the [canvas-confetti options](https://github.com/catdad/canvas-confetti#options) for everything available. Define `options` outside the component or memoize it: a new object on every render fires the confetti again.
+
+### Custom shapes
+
+`shapeFromText` and `shapeFromPath` create custom particle shapes.
+
+```tsx
+import { shapeFromText } from "@/components/marketing/confetti"
+
+const star = shapeFromText({ text: "⭐", scalar: 2 })
+
+fire({ shapes: [star], scalar: 2 })
+```
+
+## API Reference
+
+### Confetti
+
+Accepts every `canvas` prop.
+
+| Prop            | Type                              | Default            | Description                                    |
+| --------------- | --------------------------------- | ------------------ | ---------------------------------------------- |
+| `ref`           | `React.Ref<ConfettiApi>`          |                    | Receives the `fire` function. Required, but may be `undefined` |
+| `manualStart`   | `boolean`                         | `false`            | Disables the burst on mount                    |
+| `options`       | `ConfettiOptions`                 |                    | Default options for every burst                |
+| `globalOptions` | `GlobalConfettiOptions`           | `{ resize: true }` | Options for the confetti instance              |
+
+### useConfetti
+
+Returns `{ fire }` from the nearest `Confetti`. Throws when used outside of one.
+
+### ConfettiApi
+
+| Property | Type                                   | Description                 |
+| -------- | -------------------------------------- | --------------------------- |
+| `fire`   | `(options?: ConfettiOptions) => void`  | Fires a burst of confetti   |

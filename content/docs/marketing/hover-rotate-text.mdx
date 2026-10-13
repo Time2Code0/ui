@@ -1,0 +1,77 @@
+---
+title: Hover Rotate Text
+description: Text that rolls over to a copy of itself on hover.
+---
+
+<ComponentPreview name="p-hover-rotate-text-1" />
+
+Text that rolls up and is replaced by a copy of itself on hover, one character or word at a time. A good fit for navigation links and buttons.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/hover-rotate-text
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="hover-rotate-text" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { HoverRotateText } from "@/components/marketing/hover-rotate-text"
+```
+
+```tsx
+<a href="/pricing">
+  <HoverRotateText text="Pricing" />
+</a>
+```
+
+The effect is pure CSS and triggers when the cursor is over the component.
+
+### Splitting
+
+`splitBy` decides how the text is divided:
+
+- `char`: each character moves on its own.
+- `word`: each word moves on its own.
+- `none`: the whole text moves at once.
+
+Each part starts `delay` milliseconds after the previous one, which creates the wave.
+
+## API Reference
+
+Accepts every `div` prop except `children`.
+
+| Prop      | Type                          | Default  | Description                              |
+| --------- | ----------------------------- | -------- | ---------------------------------------- |
+| `text`    | `string`                      |          | Text to display                          |
+| `splitBy` | `"char" \| "word" \| "none"`  | `"char"` | How the text is split into moving parts  |
+| `delay`   | `number`                      | `20`     | Delay between parts in milliseconds      |

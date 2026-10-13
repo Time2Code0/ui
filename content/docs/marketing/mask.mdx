@@ -1,0 +1,113 @@
+---
+title: Mask
+description: Fade content in and out with gradient masks.
+---
+
+<ComponentPreview name="p-mask-1" />
+
+Fades parts of an element out with a CSS mask. `masks` contains helpers that build common gradient masks, and `Mask` applies them.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/mask
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="mask" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Mask, masks } from "@/components/marketing/mask"
+```
+
+```tsx
+<Mask image={masks.linear({ direction: "to-right", opacities: [0, 1, 1, 0] })}>
+  <Marquee>...</Marquee>
+</Mask>
+```
+
+`Mask` is a `motion.div` that sets `mask-image` and `mask-size`. The file is a client module, so call the `masks` helpers from a client component. Opaque parts of the mask keep the content visible and transparent parts hide it. Both `image` and `size` accept Motion values, so masks can be animated.
+
+## Mask helpers
+
+Each helper returns a CSS gradient string. `opacities` lists the opacity at each gradient stop, from `0` (hidden) to `1` (visible). Without `positions` the stops are spread evenly.
+
+### masks.linear
+
+```tsx
+masks.linear({ direction: "to-bottom", opacities: [1, 1, 0] })
+```
+
+| Option      | Type                                                   | Default      | Description                                  |
+| ----------- | ------------------------------------------------------ | ------------ | -------------------------------------------- |
+| `direction` | `"to-top" \| "to-right" \| "to-bottom" \| "to-left"` | `"to-right"` | Direction of the gradient                    |
+| `opacities` | `number[]`                                             | `[1, 0]`     | Opacity at each stop                         |
+| `positions` | `(number \| string)[]`                                 |              | Stop positions from `0` to `1`, or CSS lengths |
+| `rotate`    | `number`                                               | `0`          | Extra rotation in degrees                    |
+
+### masks.customLinear
+
+Builds a linear mask from a function that maps a position between `0` and `1` to an opacity, which allows smooth curves.
+
+```tsx
+masks.customLinear({ opacityFn: (position) => Math.sin(position * Math.PI), stops: 20 })
+```
+
+| Option      | Type                             | Default      | Description                    |
+| ----------- | -------------------------------- | ------------ | ------------------------------ |
+| `opacityFn` | `(position: number) => number`   |              | Opacity for a position         |
+| `stops`     | `number`                         | `10`         | Number of gradient stops       |
+| `direction` | `Direction`                      | `"to-right"` | Direction of the gradient      |
+| `rotate`    | `number`                         | `0`          | Extra rotation in degrees      |
+
+### masks.circle and masks.ellipse
+
+Radial masks that fade from the center outwards. `circle` stays round, `ellipse` stretches with the element.
+
+```tsx
+masks.circle({ opacities: [1, 1, 0] })
+```
+
+| Option      | Type       | Default  | Description                       |
+| ----------- | ---------- | -------- | --------------------------------- |
+| `opacities` | `number[]` | `[1, 0]` | Opacity at each stop              |
+| `positions` | `number[]` |          | Stop positions from `0` to `1`    |
+
+## API Reference
+
+### Mask
+
+Accepts every prop of `motion.div`.
+
+| Prop    | Type                            | Description                    |
+| ------- | ------------------------------- | ------------------------------ |
+| `image` | `string \| MotionValue<string>` | Value for `mask-image`         |
+| `size`  | `string \| MotionValue<string>` | Value for `mask-size`          |

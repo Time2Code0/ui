@@ -7,6 +7,8 @@ export async function ComponentPreview({ name }: { name: string }) {
   const item = await getRegistryItem(name);
 
   const { component: Component } = item;
+  const metaClassName =
+    typeof item.meta?.className === "string" ? item.meta.className : undefined;
 
   if (!Component) {
     return (
@@ -40,10 +42,16 @@ export async function ComponentPreview({ name }: { name: string }) {
       </div>
       <TabsPanel value="preview">
         <div
-          className="flex min-h-72 items-center justify-center bg-[oklch(0.159_0_0)] px-4 py-12 sm:px-6"
+          className="flex min-h-72 items-center justify-center bg-white px-4 py-12 sm:px-6 dark:bg-[oklch(0.159_0_0)]"
           data-slot="preview"
         >
-          <Component />
+          {metaClassName ? (
+            <div className={metaClassName}>
+              <Component />
+            </div>
+          ) : (
+            <Component />
+          )}
         </div>
       </TabsPanel>
       <TabsPanel className="**:data-[slot=codeblock]:border-y-0" value="code">

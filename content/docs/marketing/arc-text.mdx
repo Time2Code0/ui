@@ -1,0 +1,79 @@
+---
+title: Arc Text
+description: Text laid out along a circular arc.
+---
+
+<ComponentPreview name="p-arc-text-1" />
+
+Lays out a string along the top of a circle, one character per segment. Useful for badges, stamps and rotating decorations.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/arc-text
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="arc-text" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ArcText } from "@/components/marketing/arc-text"
+```
+
+```tsx
+<ArcText className="relative" radius={80} text="ArcText ✦ ArcText ✦ ArcText" />
+```
+
+The component is a square of `radius * 2`. The characters are positioned absolutely inside it, so give it `relative` positioning. `charWidth` controls the arc length each character takes up: increase it to spread the text further around the circle.
+
+The root is a `motion.div`, so you can animate it directly, for example to spin the text:
+
+```tsx
+<ArcText
+  animate={{ rotate: 360 }}
+  className="relative"
+  radius={80}
+  text="✦ Spinning text ✦ Spinning text "
+  transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+/>
+```
+
+The characters are hidden from assistive technology. Add an `aria-label` with the text if it carries meaning.
+
+## API Reference
+
+Accepts every prop of `motion.div`.
+
+| Prop        | Type     | Default | Description                               |
+| ----------- | -------- | ------- | ----------------------------------------- |
+| `text`      | `string` |         | Text to lay out                           |
+| `radius`    | `number` |         | Radius of the circle in pixels            |
+| `charWidth` | `number` | `13`    | Arc length per character in pixels        |

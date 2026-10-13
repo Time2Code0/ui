@@ -1,0 +1,85 @@
+---
+title: Retro Grid
+description: An animated grid in perspective.
+---
+
+<ComponentPreview name="p-retro-grid-1" />
+
+An endlessly scrolling grid in perspective, receding towards the horizon. A synthwave-style backdrop for hero sections.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/retro-grid
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Add the following to your CSS file: [step]
+
+```css
+@theme inline {
+  --animate-retro-grid: retro-grid var(--duration) linear infinite;
+}
+
+@keyframes retro-grid {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(50%);
+  }
+}
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="retro-grid" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { RetroGrid } from "@/components/marketing/retro-grid"
+```
+
+```tsx
+<section className="relative h-96 overflow-hidden">
+  <RetroGrid />
+  <h1 className="relative">Retro Grid</h1>
+</section>
+```
+
+The grid fills its nearest positioned ancestor. By default the lines use the foreground color at low opacity. Set `gradient` to color them with a gradient from `colorLeft` to `colorRight`.
+
+## API Reference
+
+| Prop         | Type              | Default                     | Description                            |
+| ------------ | ----------------- | --------------------------- | -------------------------------------- |
+| `gradient`   | `boolean`         | `false`                     | Colors the lines with a gradient       |
+| `colorLeft`  | `string`          | `"var(--color-primary)"`    | Gradient color on the left             |
+| `colorRight` | `string`          | `"var(--color-secondary)"`  | Gradient color on the right            |
+| `duration`   | `number`          | `30`                        | Seconds for one scroll cycle           |
+| `children`   | `React.ReactNode` |                             | Content rendered behind the grid       |

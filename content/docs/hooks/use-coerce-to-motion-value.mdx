@@ -1,0 +1,79 @@
+---
+title: useCoerceToMotionValue
+description: Accepts a plain value or a Motion value and always returns a Motion value.
+---
+
+<ComponentPreview name="p-use-coerce-to-motion-value-1" />
+
+Accepts either a plain value or a Motion value and always returns a Motion value. Use it in components that should accept both static and animated props.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-coerce-to-motion-value
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="use-coerce-to-motion-value" title="hooks/use-coerce-to-motion-value.ts" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import type { MotionValue } from "motion/react"
+import { motion, useTransform } from "motion/react"
+
+import { useCoerceToMotionValue } from "@/hooks/use-coerce-to-motion-value"
+
+function ProgressBar({ value }: { value: number | MotionValue<number> }) {
+  const progress = useCoerceToMotionValue(value)
+  const scaleX = useTransform(progress, [0, 100], [0, 1])
+
+  return <motion.div className="origin-left" style={{ scaleX }} />
+}
+
+<ProgressBar value={60} />
+<ProgressBar value={animatedValue} />
+```
+
+A Motion value is returned as is. A plain value is wrapped in a new Motion value that is kept in sync when the prop changes.
+
+## API Reference
+
+```tsx
+function useCoerceToMotionValue<T>(value: T | MotionValue<T>): MotionValue<T>
+```
+
+| Parameter | Type                  | Description                    |
+| --------- | --------------------- | ------------------------------ |
+| `value`   | `T \| MotionValue<T>` | A plain value or Motion value  |
+
+## Related
+
+- [useNormalizeMotionValue](/docs/hooks/use-normalize-motion-value) does the opposite and reads a Motion value as React state.
+- [Orbit](/docs/marketing/orbit) uses this hook for its animatable props.

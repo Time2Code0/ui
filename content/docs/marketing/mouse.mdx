@@ -1,0 +1,157 @@
+---
+title: Mouse
+description: Composable primitives for cursor tracking and custom cursors.
+---
+
+<ComponentPreview name="p-mouse-1" />
+
+Composable building blocks for mouse-driven effects: track the cursor, smooth its movement, react to hovered targets and render custom cursors.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/mouse
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-mouse-position
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="mouse" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  MouseContainer,
+  MouseFollower,
+  MouseSmoothing,
+  MouseTarget,
+  useMouse,
+} from "@/components/marketing/mouse"
+```
+
+```tsx
+function Cursor() {
+  const { activeTarget } = useMouse()
+
+  return (
+    <MouseFollower className="absolute">
+      {activeTarget ? <span>{String(activeTarget.data)}</span> : <span className="size-4 rounded-full bg-foreground" />}
+    </MouseFollower>
+  )
+}
+
+export function Gallery() {
+  return (
+    <MouseContainer className="relative">
+      <MouseTarget data="View project">...</MouseTarget>
+      <MouseSmoothing position={{ damping: 30, stiffness: 300 }}>
+        <Cursor />
+      </MouseSmoothing>
+    </MouseContainer>
+  )
+}
+```
+
+A provider tracks the cursor and shares it through context. Everything else reads from the nearest provider, so the parts can be nested and combined freely.
+
+## MouseProvider
+
+Tracks the cursor across the whole page in viewport coordinates. Wrap your app, or the part of it that uses mouse effects.
+
+| Prop       | Type     | Default | Description                       |
+| ---------- | -------- | ------- | --------------------------------- |
+| `defaultX` | `number` | `-1000` | Position before the first move    |
+| `defaultY` | `number` | `-1000` | Position before the first move    |
+
+## MouseContainer
+
+Like `MouseProvider`, but renders a `motion.div` and tracks the cursor relative to it. Accepts every prop of `motion.div`.
+
+| Prop                   | Type      | Default | Description                                     |
+| ---------------------- | --------- | ------- | ----------------------------------------------- |
+| `defaultX`             | `number`  | `-1000` | Position before the first move                  |
+| `defaultY`             | `number`  | `-1000` | Position before the first move                  |
+| `resetPositionOnLeave` | `boolean` | `false` | Moves the position back to the defaults on leave |
+
+## MouseFollower
+
+An element that follows the cursor. It's `fixed` by default, which matches the viewport coordinates of `MouseProvider`. Inside a `MouseContainer`, give the container `relative` positioning and the follower the `absolute` class so both use the same coordinates.
+
+Children can be a function that receives the mouse API.
+
+```tsx
+<MouseFollower alignX="start" alignY="end">
+  {({ activeTarget }) => activeTarget && <Tooltip />}
+</MouseFollower>
+```
+
+| Prop     | Type                                       | Default    | Description                                     |
+| -------- | ------------------------------------------ | ---------- | ----------------------------------------------- |
+| `alignX` | `"start" \| "center" \| "end" \| string`   | `"center"` | Horizontal alignment to the cursor, or a CSS length |
+| `alignY` | `"start" \| "center" \| "end" \| string`   | `"center"` | Vertical alignment to the cursor, or a CSS length   |
+
+## MouseTarget
+
+A `motion.div` that registers itself as a target while hovered. Targets form a stack, so nested targets work: the innermost hovered target becomes the `activeTarget`.
+
+| Prop       | Type      | Default    | Description                                |
+| ---------- | --------- | ---------- | ------------------------------------------ |
+| `data`     | `unknown` | `{}`       | Data exposed through `activeTarget.data`   |
+| `targetId` | `string`  | `useId()`  | Identifier of the target                   |
+
+## MouseSmoothing
+
+Wraps the position or velocity of the parent provider in springs. Components below it receive the smoothed values.
+
+| Prop       | Type            | Description                                    |
+| ---------- | --------------- | ---------------------------------------------- |
+| `position` | `SpringOptions` | Spring for the position. Unsmoothed if omitted |
+| `velocity` | `SpringOptions` | Spring for the velocity. Unsmoothed if omitted |
+
+## useMouse
+
+Returns the API of the nearest provider. Throws when used outside of one.
+
+| Property       | Type                                   | Description                          |
+| -------------- | -------------------------------------- | ------------------------------------ |
+| `position`     | `{ x: MotionValue<number>; y: MotionValue<number> }` | Cursor position        |
+| `velocity`     | `{ x: MotionValue<number>; y: MotionValue<number> }` | Cursor velocity        |
+| `activeTarget` | `{ id: string; data: unknown } \| undefined` | Innermost hovered target       |
+| `targets`      | `{ id: string; data: unknown }[]`      | All hovered targets                  |
+| `pushTarget`   | `(target) => void`                     | Registers a target manually          |
+| `popTarget`    | `(targetId: string) => void`           | Removes a target manually            |
+
+## Credits
+
+- Based on frostin-ui by [Austin Malerba](https://x.com/austin_malerba).

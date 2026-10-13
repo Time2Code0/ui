@@ -1,0 +1,110 @@
+---
+title: useEventListener
+description: Attaches a typed event listener to the window, the document or an element.
+---
+
+<ComponentPreview name="p-use-event-listener-1" />
+
+Adds an event listener to the window, the document, an element or a `MediaQueryList`, and removes it on unmount. The handler can change on every render without re-adding the listener.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-event-listener
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="use-event-listener" title="hooks/use-event-listener.ts" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { useEventListener } from "@/hooks/use-event-listener"
+
+// Listens on window when no target is passed
+useEventListener("keydown", (event) => {
+  if (event.key === "Escape") close()
+})
+```
+
+The event type is inferred from the event name and the target, so `event` above is a `KeyboardEvent`.
+
+### Element target
+
+Pass a ref to listen on an element.
+
+```tsx
+const ref = useRef<HTMLButtonElement>(null)
+
+useEventListener("click", () => console.log("clicked"), ref)
+
+return <button ref={ref}>Click me</button>
+```
+
+### Document and media query targets
+
+The ref can also hold a `Document` or a `MediaQueryList`. Fill it in an effect, since neither exists during server rendering.
+
+```tsx
+const mediaQueryRef = useRef<MediaQueryList>(null)
+
+useEffect(() => {
+  mediaQueryRef.current = window.matchMedia("(prefers-color-scheme: dark)")
+}, [])
+
+useEventListener("change", (event) => setDark(event.matches), mediaQueryRef, undefined, [])
+```
+
+### Options
+
+The fourth argument is passed to `addEventListener`. Define it outside the component or memoize it: a new object on every render re-adds the listener each time.
+
+```tsx
+const options = { passive: true }
+
+function Component() {
+  useEventListener("scroll", onScroll, undefined, options)
+}
+```
+
+The ref's `current` value is read when the effect runs. If the target element mounts later, pass a value that changes with it in `deps` to re-attach the listener.
+
+## API Reference
+
+```tsx
+function useEventListener(
+  eventName: string,
+  handler: (event: Event) => void,
+  element?: React.RefObject<EventTarget>,
+  options?: boolean | AddEventListenerOptions,
+  deps?: React.DependencyList
+): void
+```
+
+| Parameter   | Type                                    | Default  | Description                                         |
+| ----------- | --------------------------------------- | -------- | --------------------------------------------------- |
+| `eventName` | `string`                                |          | Name of the event, typed per target                 |
+| `handler`   | `(event) => void`                       |          | Called with the event. Always the latest version    |
+| `element`   | `RefObject<Element \| Document \| MediaQueryList>` | `window` | Target to listen on                     |
+| `options`   | `boolean \| AddEventListenerOptions`    |          | Passed to `addEventListener`                        |
+| `deps`      | `React.DependencyList`                  |          | Extra values that re-attach the listener on change  |

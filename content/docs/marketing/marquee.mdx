@@ -1,0 +1,115 @@
+---
+title: Marquee
+description: An infinitely scrolling row or column of content.
+---
+
+<ComponentPreview name="p-marquee-1" />
+
+Scrolls its children in an endless loop, horizontally or vertically. Use it for logo walls, testimonials and tickers.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/marquee
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Add the following to your CSS file: [step]
+
+```css
+@theme inline {
+  --animate-marquee: marquee var(--duration) linear infinite;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="marquee" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Marquee } from "@/components/marketing/marquee"
+```
+
+```tsx
+<Marquee pauseOnHover>
+  {logos.map((logo) => (
+    <Logo key={logo.name} {...logo} />
+  ))}
+</Marquee>
+```
+
+The children are rendered `repeat` times side by side and shifted with a CSS animation, so the loop has no visible seam. Increase `repeat` when the content is narrower than the container.
+
+### Speed and spacing
+
+The duration of one loop and the gap between items are CSS variables. Override them with Tailwind classes:
+
+```tsx
+<Marquee className="[--duration:40s] [--gap:2rem]">...</Marquee>
+```
+
+### Fading the edges
+
+Combine the marquee with a [Mask](/docs/marketing/mask) to fade the items in and out at the edges.
+
+## API Reference
+
+| Prop           | Type              | Default | Description                              |
+| -------------- | ----------------- | ------- | ---------------------------------------- |
+| `children`     | `React.ReactNode` |         | Items to scroll                          |
+| `vertical`     | `boolean`         | `false` | Scrolls vertically                       |
+| `reverse`      | `boolean`         | `false` | Reverses the direction                   |
+| `pauseOnHover` | `boolean`         | `false` | Pauses while hovered                     |
+| `repeat`       | `number`          | `2`     | How many copies of the children to render |
+| `className`    | `string`          |         | Class names for the root element         |
+
+## Examples
+
+### Vertical
+
+<ComponentPreview name="p-marquee-2" />

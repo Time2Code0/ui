@@ -1,0 +1,78 @@
+---
+title: Hero Image
+description: A framed image for hero sections that fades in once loaded.
+---
+
+<ComponentPreview name="p-hero-image-1" />
+
+Presents a product screenshot or illustration in a soft, layered frame. The image fades in from a blurred state once it has loaded.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/hero-image
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/blur-image
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="hero-image" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { HeroImage } from "@/components/marketing/hero-image"
+```
+
+```tsx
+<HeroImage alt="Product screenshot" height={630} src="/screenshot.png" width={1200} />
+```
+
+`HeroImage` passes all image props to [`next/image`](https://nextjs.org/docs/app/api-reference/components/image) through the `BlurImage` component, so the usual requirements apply: provide `width` and `height` or use `fill`, and configure remote hosts in `next.config`.
+
+`className` styles the frame. Children render inside the frame, behind the image, which is handy for glows or decorative elements.
+
+```tsx
+<HeroImage alt="Dashboard" height={630} src="/dashboard.png" width={1200}>
+  <div className="absolute -inset-10 -z-10 rounded-full bg-primary/20 blur-3xl" />
+</HeroImage>
+```
+
+## API Reference
+
+Accepts every prop of `next/image`.
+
+| Prop        | Type              | Default | Description                       |
+| ----------- | ----------------- | ------- | --------------------------------- |
+| `className` | `string`          |         | Class names for the frame         |
+| `children`  | `React.ReactNode` |         | Extra content inside the frame    |

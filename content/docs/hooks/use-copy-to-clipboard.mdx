@@ -1,0 +1,131 @@
+---
+title: useCopyToClipboard
+description: Copy text to clipboard with a temporary "copied" state.
+---
+
+A React hook that wraps the Clipboard API with a built-in delay to reset the copied state. Useful for copy buttons that show brief confirmation feedback.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-copy-to-clipboard
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="use-copy-to-clipboard" title="hooks/use-copy-to-clipboard.ts" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+
+function CopyButton({ text }: { text: string }) {
+  const { copied, copyToClipboard } = useCopyToClipboard();
+
+  return (
+    <button onClick={() => copyToClipboard(text)} type="button">
+      {copied ? "Copied!" : "Copy"}
+    </button>
+  );
+}
+```
+
+### Custom delay
+
+The `copied` state resets after 1500ms by default. Pass a different delay in milliseconds:
+
+```tsx
+const { copied, copyToClipboard } = useCopyToClipboard(3000);
+```
+
+### Handling errors
+
+Failures (for example a denied clipboard permission) are caught and exposed through `error`, so you can render feedback without a `try`/`catch`:
+
+```tsx
+const { copied, copyToClipboard, error } = useCopyToClipboard();
+
+return (
+  <>
+    <button onClick={() => copyToClipboard(value)} type="button">
+      {copied ? "Copied!" : "Copy"}
+    </button>
+    {error ? <p role="alert">Could not copy to clipboard.</p> : null}
+  </>
+);
+```
+
+### With icon swap
+
+A common pattern — swap the icon briefly to confirm the copy:
+
+```tsx
+import { CheckIcon, CopyIcon } from "@hugeicons/core-free-icons";
+
+import { Button } from "@/components/ui/button";
+import { Icon } from "@/components/ui/icon";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+
+function CopyButton({ value }: { value: string }) {
+  const { copied, copyToClipboard } = useCopyToClipboard();
+
+  return (
+    <Button
+      aria-label="Copy to clipboard"
+      onClick={() => copyToClipboard(value)}
+      size="icon"
+      variant="outline"
+    >
+      <Icon icon={copied ? CheckIcon : CopyIcon} />
+    </Button>
+  );
+}
+```
+
+## Examples
+
+<ComponentPreview name="p-input-group-8" />
+
+## API
+
+```tsx
+function useCopyToClipboard(delay?: number): {
+  copied: boolean;
+  copyToClipboard: (text: string) => Promise<void>;
+  error: Error | null;
+};
+```
+
+### Parameters
+
+| Parameter | Type     | Default | Description                                      |
+|-----------|----------|---------|--------------------------------------------------|
+| `delay`   | `number` | `1500`  | Milliseconds before `copied` resets to `false`.  |
+
+### Return value
+
+| Property          | Type                              | Description                                                                       |
+|-------------------|-----------------------------------|-----------------------------------------------------------------------------------|
+| `copied`          | `boolean`                         | `true` for `delay` ms after a successful copy, then resets.                       |
+| `copyToClipboard` | `(text: string) => Promise<void>` | Writes the text to the clipboard. Failures are caught and stored in `error`.      |
+| `error`           | `Error \| null`                   | The error from the last failed copy, or `null` after a successful one.            |

@@ -1,0 +1,85 @@
+---
+title: Spotlight Card
+description: Cards with a glow that follows the cursor.
+---
+
+<ComponentPreview name="p-spotlight-card-1" />
+
+Cards with a glow that follows the cursor across their borders. A shared container keeps the glow continuous, so neighboring cards light up together.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/spotlight-card
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i @base-ui/react cn
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-mouse-position https://design.time2code.dev/r/use-normalize-motion-value
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="spotlight-card" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { SpotlightCard, SpotlightContainer } from "@/components/marketing/spotlight-card"
+```
+
+```tsx
+<SpotlightContainer className="grid grid-cols-3 gap-4">
+  <SpotlightCard className="p-px">
+    <div className="rounded-xl p-5">Accessible</div>
+  </SpotlightCard>
+  <SpotlightCard className="p-px">
+    <div className="rounded-xl p-5">Composable</div>
+  </SpotlightCard>
+</SpotlightContainer>
+```
+
+Each card has a radial glow centered on the cursor and an almost opaque inner surface on top, so only the padding of the card shows the glow. Use `p-px` for a glowing border, or more padding for a wider glow.
+
+`SpotlightContainer` finds the cards inside it when it mounts and updates their glow as the mouse moves. Cards added later won't receive the glow.
+
+## API Reference
+
+### SpotlightContainer
+
+Accepts every `div` prop and a `render` prop.
+
+### SpotlightCard
+
+Accepts every `div` prop and a `render` prop.
+
+| Prop       | Type      | Default | Description                                                  |
+| ---------- | --------- | ------- | ------------------------------------------------------------ |
+| `maskSize` | `number`  | `200`   | Radius of the glow in pixels                                 |
+| `gradient` | `boolean` | `true`  | Uses the `primary` and `secondary` colors. Otherwise uses the foreground color |

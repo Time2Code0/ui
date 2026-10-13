@@ -1,0 +1,73 @@
+---
+title: Particles
+description: A twinkling particle background.
+---
+
+<ComponentPreview name="p-particles-1" />
+
+A field of slowly drifting, twinkling particles powered by [tsParticles](https://particles.js.org). Clicking adds more particles.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/particles
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i @tsparticles/engine@^3.9.1 @tsparticles/react@^3.0.0 @tsparticles/slim@^3.9.1 cn
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="particles" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Particles } from "@/components/marketing/particles"
+```
+
+```tsx
+<div className="relative h-96 bg-black">
+  <Particles className="absolute inset-0" id="hero-particles" />
+</div>
+```
+
+The particles fill the element, so size it with `className`. It fades in once the engine has loaded. The default color is white, so use it on dark backgrounds or set `particleColor`.
+
+Give every instance on a page a unique `id`.
+
+## API Reference
+
+Accepts every `div` prop.
+
+| Prop              | Type     | Default         | Description                                   |
+| ----------------- | -------- | --------------- | --------------------------------------------- |
+| `id`              | `string` | `"tsparticles"` | Id of the particles container                 |
+| `particleColor`   | `string` | `"#fff"`        | Color of the particles                        |
+| `particleDensity` | `number` | `120`           | Number of particles per 400×400 pixel area    |
+| `minSize`         | `number` | `1`             | Minimum particle size                         |
+| `maxSize`         | `number` | `3`             | Maximum particle size                         |
+| `speed`           | `number` | `4`             | Speed of the twinkle animation                |
+| `background`      | `string` | `"transparent"` | Background color of the canvas                |

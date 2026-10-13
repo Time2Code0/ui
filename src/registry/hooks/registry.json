@@ -66,7 +66,7 @@
       "name": "use-normalize-motion-value",
       "type": "registry:hook",
       "title": "Use Normalize Motion Value",
-      "description": "Normalizes a Motion value into a bounded range.",
+      "description": "Reads a Motion value as regular React state.",
       "dependencies": ["motion"],
       "files": [
         { "path": "use-normalize-motion-value.ts", "type": "registry:hook" }

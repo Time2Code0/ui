@@ -1,0 +1,97 @@
+---
+title: Orbit
+description: Move elements along the outline of a shape.
+---
+
+<ComponentPreview name="p-orbit-1" />
+
+Places satellites on the outline of an element and moves them along it. The path follows the element's border radius, so it works for circles, pills and rounded rectangles.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/orbit
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-coerce-to-motion-value
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="orbit" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Orbit, Satellite } from "@/components/marketing/orbit"
+```
+
+```tsx
+<Orbit className="size-56 rounded-full border">
+  <Satellite position={0}>
+    <Avatar />
+  </Satellite>
+  <Satellite position={180}>
+    <Avatar />
+  </Satellite>
+</Orbit>
+```
+
+`position` is an angle in degrees, measured as a share of the outline's length: `0` is the start of the outline, `180` halfway around, `360` back at the start. Each satellite is centered on its point.
+
+### Animating
+
+`position` also accepts a Motion value. Drive it with [useClock](/docs/hooks/use-clock) for continuous movement, or with scroll progress to move satellites while scrolling.
+
+```tsx
+const clock = useClock()
+const angle = useTransform(clock.value, (value) => (value / 12_000) * 360)
+
+<Satellite position={angle}>...</Satellite>
+```
+
+## API Reference
+
+### Orbit
+
+The element whose outline the satellites follow. Accepts every prop of `motion.div`.
+
+### Satellite
+
+Accepts every prop of `motion.div`.
+
+| Prop       | Type                            | Default | Description                         |
+| ---------- | ------------------------------- | ------- | ----------------------------------- |
+| `position` | `number \| MotionValue<number>` | `0`     | Position along the outline in degrees |
+
+### useOrbit
+
+Returns the ref of the outline path of the nearest `Orbit`, for building custom satellites.

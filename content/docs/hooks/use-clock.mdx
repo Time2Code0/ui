@@ -1,0 +1,94 @@
+---
+title: useClock
+description: A Motion value that advances on every animation frame.
+---
+
+<ComponentPreview name="p-use-clock-1" />
+
+A hook that returns a Motion value which counts up on every animation frame. Use it as a time source for continuous animations like tickers, marquees or spinning elements, without re-rendering the component.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-clock
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="use-clock" title="hooks/use-clock.ts" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { motion, useTransform } from "motion/react"
+
+import { useClock } from "@/hooks/use-clock"
+
+function Spinner() {
+  const clock = useClock()
+  const rotate = useTransform(clock.value, (value) => value * 0.09)
+
+  return <motion.div style={{ rotate }} />
+}
+```
+
+At a rate of `1` the value grows by the elapsed milliseconds, so it advances by `1000` per second.
+
+### Changing the rate
+
+`setRate` changes the speed from the next frame on. `0` pauses the clock and negative values run it backwards. The rate is kept in a ref, so calling it doesn't re-render.
+
+```tsx
+const clock = useClock()
+
+clock.setRate(0) // pause
+clock.setRate(2) // double speed
+clock.setRate(-1) // reverse
+```
+
+## API Reference
+
+```tsx
+function useClock(defaultValue?: number, rate?: number): Clock
+```
+
+| Parameter      | Type     | Default | Description                     |
+| -------------- | -------- | ------- | ------------------------------- |
+| `defaultValue` | `number` | `0`     | Starting value of the clock     |
+| `rate`         | `number` | `1`     | Initial speed multiplier        |
+
+### Return value
+
+| Property  | Type                     | Description                     |
+| --------- | ------------------------ | ------------------------------- |
+| `value`   | `MotionValue<number>`    | The current clock value         |
+| `setRate` | `(rate: number) => void` | Changes the speed of the clock  |
+
+## Related
+
+- [useScrollAcceleratedClock](/docs/hooks/use-scroll-accelerated-clock) builds on this hook to speed the clock up while scrolling.

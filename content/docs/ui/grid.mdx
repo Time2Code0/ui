@@ -1,0 +1,165 @@
+---
+title: Grid
+description: A responsive layout grid with visible guides between its cells.
+---
+
+<ComponentPreview name="p-grid-1" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/grid
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="grid" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Grid } from "@/components/ui/grid"
+```
+
+```tsx
+<Grid.System>
+  <Grid columns={3} rows={2}>
+    <Grid.Cell>1</Grid.Cell>
+    <Grid.Cell>2</Grid.Cell>
+    <Grid.Cell>3</Grid.Cell>
+    <Grid.Cell>4</Grid.Cell>
+    <Grid.Cell>5</Grid.Cell>
+    <Grid.Cell>6</Grid.Cell>
+  </Grid>
+</Grid.System>
+```
+
+`Grid.System` draws the outer border and sets the guide color and width. Each `Grid` inside it renders one guide per cell, so the number of `columns` and `rows` decides how many guides you see, not how many cells you pass.
+
+<Alert variant="info">
+  <AlertTitle>Cells must be direct children</AlertTitle>
+  <AlertDescription>
+    `Grid` reads the `column`, `row` and `solid` props of its children to work out which guides to hide. Wrapping a `Grid.Cell` in another component or fragment hides it from that lookup.
+  </AlertDescription>
+</Alert>
+
+### Sizing
+
+By default every cell is square: the grid height is derived from the container width, the number of columns and the number of rows. Set `fitContent` to let rows grow with their content instead.
+
+### Responsive values
+
+`columns`, `rows` and the `column` and `row` props of `Grid.Cell` and `Grid.Cross` accept an object keyed by breakpoint. A value applies from its breakpoint upwards until a larger breakpoint overrides it.
+
+```tsx
+<Grid columns={{ xs: 1, md: 2, lg: 3 }} rows={{ xs: 6, md: 3, lg: 2 }}>
+  ...
+</Grid>
+```
+
+Available breakpoints are `xs`, `sm`, `md`, `lg`, `xl` and `2xl`.
+
+## API Reference
+
+### Grid.System
+
+Outer container for one or more grids. Sets the shared guide styles.
+
+| Prop         | Type      | Default | Description                                     |
+| ------------ | --------- | ------- | ----------------------------------------------- |
+| `guideWidth` | `number`  | `1`     | Width of the guides in pixels                   |
+| `debug`      | `boolean` | `false` | Highlights the guides to make the layout visible |
+
+### Grid
+
+The grid itself. Renders the cells and the guides between them.
+
+| Prop         | Type                            | Default | Description                                                    |
+| ------------ | ------------------------------- | ------- | -------------------------------------------------------------- |
+| `columns`    | `number \| Responsive<number>`  |         | Number of columns                                              |
+| `rows`       | `number \| Responsive<number>`  |         | Number of rows                                                 |
+| `fitContent` | `boolean`                       | `false` | Sizes rows by their content instead of keeping cells square    |
+| `hideGuides` | `"row" \| "column"`             |         | Hides the horizontal (`row`) or vertical (`column`) guides     |
+
+### Grid.Cell
+
+A cell placed on the grid. Without `column` and `row` it takes the next free slot.
+
+| Prop     | Type                                       | Default | Description                                                                    |
+| -------- | ------------------------------------------ | ------- | ------------------------------------------------------------------------------ |
+| `column` | `string \| Responsive<string \| number>`   |         | CSS `grid-column` value, e.g. `"1/3"`                                          |
+| `row`    | `string \| Responsive<string \| number>`   |         | CSS `grid-row` value, e.g. `"2/4"`                                             |
+| `solid`  | `boolean`                                  | `false` | Removes the guides inside the area the cell spans. Requires `column` and `row` |
+
+### Grid.Cross
+
+A small cross marker drawn on a guide intersection. Lines are numbered like CSS grid lines, so a 4×4 grid has intersections from `1` to `5`.
+
+| Prop     | Type                           | Default | Description                     |
+| -------- | ------------------------------ | ------- | ------------------------------- |
+| `column` | `number \| Responsive<number>` |         | Grid line on the horizontal axis |
+| `row`    | `number \| Responsive<number>` |         | Grid line on the vertical axis   |
+| `size`   | `number`                       | `16`    | Size of the cross in pixels     |
+
+### Grid.Divider
+
+A horizontal spacer between two grids inside the same `Grid.System`.
+
+## Examples
+
+### Responsive
+
+<ComponentPreview name="p-grid-2" />
+
+### Solid Cells
+
+Solid cells hide the guides inside the area they span.
+
+<ComponentPreview name="p-grid-3" />
+
+### Responsive Solid Cells
+
+<ComponentPreview name="p-grid-4" />
+
+### Overlapping Cells
+
+Cells that aren't `solid` keep the guides underneath them, so they can overlap other cells.
+
+<ComponentPreview name="p-grid-5" />
+
+### Crosses
+
+<ComponentPreview name="p-grid-6" />
+
+### Hidden Guides
+
+<ComponentPreview name="p-grid-7" />
+
+### Divider
+
+<ComponentPreview name="p-grid-8" />

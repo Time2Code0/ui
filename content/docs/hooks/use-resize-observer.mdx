@@ -1,0 +1,76 @@
+---
+title: useResizeObserver
+description: Reports the size of an element whenever it changes.
+---
+
+<ComponentPreview name="p-use-resize-observer-1" />
+
+Observes an element with a `ResizeObserver` and returns the latest entry, re-rendering whenever its size changes.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-resize-observer
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="use-resize-observer" title="hooks/use-resize-observer.ts" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { useResizeObserver } from "@/hooks/use-resize-observer"
+
+function Size() {
+  const ref = useRef<HTMLDivElement>(null)
+  const entry = useResizeObserver(ref)
+
+  return (
+    <div ref={ref}>
+      {entry?.contentRect.width} × {entry?.contentRect.height}
+    </div>
+  )
+}
+```
+
+The entry is `undefined` until the first measurement. Besides `contentRect` it includes `borderBoxSize` and `contentBoxSize` if you need the size including padding and border.
+
+The element is read once when the hook mounts. If the ref is attached to an element that renders conditionally, render the hook inside that element's component so the element exists on mount.
+
+## API Reference
+
+```tsx
+function useResizeObserver(
+  elementRef: React.RefObject<Element | null> | null
+): ResizeObserverEntry | undefined
+```
+
+| Parameter    | Type                                      | Description         |
+| ------------ | ----------------------------------------- | ------------------- |
+| `elementRef` | `React.RefObject<Element \| null> \| null` | Element to observe  |
+
+Returns the latest [`ResizeObserverEntry`](https://developer.mozilla.org/docs/Web/API/ResizeObserverEntry), or `undefined` before the first measurement.
+
+## Related
+
+- [Animated Size Container](/docs/marketing/animated-size-container) uses this hook to animate between content sizes.

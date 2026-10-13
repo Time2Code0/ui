@@ -1,0 +1,66 @@
+---
+title: Counter
+description: A number that animates to its target value.
+---
+
+<ComponentPreview name="p-counter-1" />
+
+A number that springs from one value to the next. Use it for stats and metrics that should count up when they appear or change.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/counter
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="counter" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Counter } from "@/components/marketing/counter"
+```
+
+```tsx
+<Counter to={2500} />
+```
+
+The counter animates from `from` to `to` on mount, and from its current value whenever `to` changes. Numbers are rounded and formatted with `Intl.NumberFormat("en-US")`, so `2500` renders as `2,500`.
+
+The text is written straight into the DOM on every frame, so the animation doesn't re-render the component. As a consequence the span is empty until the animation starts, and it stays empty if `from` and `to` are equal.
+
+## API Reference
+
+Accepts every `span` prop.
+
+| Prop   | Type     | Default | Description              |
+| ------ | -------- | ------- | ------------------------ |
+| `to`   | `number` |         | Target value             |
+| `from` | `number` | `0`     | Starting value on mount  |

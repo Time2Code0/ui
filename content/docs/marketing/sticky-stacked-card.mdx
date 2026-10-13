@@ -1,0 +1,79 @@
+---
+title: Sticky Stacked Card
+description: Cards that stack on top of each other while scrolling.
+---
+
+<ComponentPreview name="p-sticky-stacked-card-1" />
+
+[Cards](/docs/ui/card) that stick to the top of the viewport while scrolling and stack on top of each other. Cards further down the stack shrink slightly, which creates depth.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/sticky-stacked-card
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/card
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="sticky-stacked-card" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Root, StackedCard } from "@/components/marketing/sticky-stacked-card"
+```
+
+```tsx
+<Root>
+  <StackedCard index={1}>Install</StackedCard>
+  <StackedCard index={2}>Customize</StackedCard>
+  <StackedCard index={3}>Ship</StackedCard>
+</Root>
+```
+
+Number the cards from `1` in the order they appear. Each card sticks a little lower than the previous one, and all but the last scale down as the page scrolls past the stack. The effect follows the scroll of the page, so the stack needs enough content below it to scroll through.
+
+## API Reference
+
+### Root
+
+Wraps the cards and tracks their scroll progress. Accepts every `div` prop.
+
+### StackedCard
+
+| Prop        | Type              | Description                          |
+| ----------- | ----------------- | ------------------------------------ |
+| `index`     | `number`          | Position in the stack, starting at `1` |
+| `className` | `string`          | Class names for the card             |
+| `children`  | `React.ReactNode` | Card content                         |

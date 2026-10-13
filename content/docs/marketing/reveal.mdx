@@ -1,0 +1,135 @@
+---
+title: Reveal
+description: Entrance animations that reveal text and content.
+---
+
+<ComponentPreview name="p-reveal-1" />
+
+Entrance animations for revealing content: letter by letter, sliding out of a clipped container, uncovered by a sliding box, or simply fading in.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/reveal
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="reveal" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Box, FadeIn, From, Text } from "@/components/marketing/reveal"
+```
+
+```tsx
+<Text className="text-4xl" text="Reveal" />
+
+<From from="bottom">
+  <p>Slides in from below.</p>
+</From>
+
+<Box from="left">
+  <p>Uncovered by a sliding box.</p>
+</Box>
+
+<FadeIn>
+  <p>Fades in.</p>
+</FadeIn>
+```
+
+All four are Motion components and play on mount.
+
+### Staggering and delaying
+
+`delay` is multiplied by Motion's `custom` value, which defaults to `1`. Pass the item index as `custom` to stagger a list.
+
+```tsx
+{items.map((item, index) => (
+  <FadeIn custom={index} delay={0.1} key={item.id}>
+    {item.label}
+  </FadeIn>
+))}
+```
+
+### Triggering later
+
+Set `animate` to `false` to keep the hidden state, then switch it to `true`, for example once the element scrolls into view. You can also pass any Motion `animate` value instead of a boolean.
+
+## API Reference
+
+### Text
+
+Animates each character of `text` up into place with a spring. Accepts every prop of `motion.span`.
+
+| Prop       | Type      | Default | Description                         |
+| ---------- | --------- | ------- | ----------------------------------- |
+| `text`     | `string`  |         | Text to reveal                      |
+| `duration` | `number`  | `0.05`  | Delay between characters in seconds |
+| `delay`    | `number`  | `0`     | Delay before the first character    |
+| `animate`  | `boolean` | `true`  | Plays the animation                 |
+
+### From
+
+Slides its content in from a side while clipping it to its container. Accepts every prop of `motion.div`.
+
+| Prop                 | Type                                                                                              | Default  | Description                      |
+| -------------------- | ------------------------------------------------------------------------------------------------- | -------- | -------------------------------- |
+| `from`               | `"left" \| "top" \| "right" \| "bottom" \| "top-left" \| "top-right" \| "bottom-left" \| "bottom-right"` | `"left"` | Side the content enters from     |
+| `duration`           | `number`                                                                                          | `0.5`    | Duration in seconds              |
+| `delay`              | `number`                                                                                          | `0`      | Delay in seconds                 |
+| `animate`            | `boolean`                                                                                         | `true`   | Plays the animation              |
+| `containerClassName` | `string`                                                                                          |          | Class names for the clipping container |
+
+### Box
+
+Covers its children with a `primary` colored box that slides away. Accepts every prop of `motion.div`; `className` styles the box.
+
+| Prop                 | Type                                      | Default  | Description                             |
+| -------------------- | ----------------------------------------- | -------- | --------------------------------------- |
+| `from`               | `"left" \| "top" \| "right" \| "bottom"`  | `"left"` | Side the box slides away from           |
+| `duration`           | `number`                                  | `0.5`    | Duration in seconds                     |
+| `delay`              | `number`                                  | `0`      | Delay in seconds                        |
+| `animate`            | `boolean`                                 | `true`   | Plays the animation                     |
+| `containerClassName` | `string`                                  |          | Class names for the container           |
+
+### FadeIn
+
+Fades its content in. Accepts every prop of `motion.div`.
+
+| Prop       | Type      | Default | Description           |
+| ---------- | --------- | ------- | --------------------- |
+| `duration` | `number`  | `0.5`   | Duration in seconds   |
+| `delay`    | `number`  | `0`     | Delay in seconds      |
+| `animate`  | `boolean` | `true`  | Plays the animation   |
+
+## Related
+
+- [Scroll Reveal](/docs/marketing/scroll-reveal) plays reveals when content scrolls into view.
+- [Animate](/docs/marketing/animate) has similar fade, zoom and slide-in wrappers.

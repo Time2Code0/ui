@@ -1,0 +1,69 @@
+---
+title: Magic Text
+description: Gradient text that sparkles on hover.
+---
+
+<ComponentPreview name="p-magic-text-1" />
+
+[Gradient Text](/docs/marketing/gradient-text) with an animated gradient that sparkles with little stars while hovered. Use it to emphasize a single word in a headline.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/magic-text
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i motion
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/gradient-text
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="magic-text" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { MagicText } from "@/components/marketing/magic-text"
+```
+
+```tsx
+<h1>
+  Turn ideas into <MagicText>magic</MagicText>
+</h1>
+```
+
+`MagicText` renders inline. While the cursor is over it, three stars keep appearing at random positions around the text, scale in, spin and disappear. They use the `primary` color.
+
+## API Reference
+
+| Prop       | Type              | Description        |
+| ---------- | ----------------- | ------------------ |
+| `children` | `React.ReactNode` | Text to highlight  |

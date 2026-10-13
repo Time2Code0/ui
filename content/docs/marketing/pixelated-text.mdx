@@ -1,0 +1,65 @@
+---
+title: Pixelated Text
+description: Text filled with a grid of dots.
+---
+
+<ComponentPreview name="p-pixelated-text-1" />
+
+Fills text with a grid of dots, like a low-resolution LED display. Use it for large display type.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/pixelated-text
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="pixelated-text" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { PixelatedText } from "@/components/marketing/pixelated-text"
+```
+
+```tsx
+<h1 className="font-black text-7xl">
+  <PixelatedText>PIXEL</PixelatedText>
+</h1>
+```
+
+The dots use the foreground color and are clipped to the shape of the text, so heavy font weights give the best result. `pixelSize` sets the spacing between dots.
+
+## API Reference
+
+Accepts every `span` prop.
+
+| Prop        | Type     | Default | Description                    |
+| ----------- | -------- | ------- | ------------------------------ |
+| `pixelSize` | `number` | `5`     | Distance between dots in pixels |

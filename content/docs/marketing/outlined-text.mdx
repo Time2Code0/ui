@@ -1,0 +1,71 @@
+---
+title: Outlined Text
+description: Text drawn as an outline.
+---
+
+<ComponentPreview name="p-outlined-text-1" />
+
+Renders text as an outline in the foreground color. Works best at large, bold sizes.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/outlined-text
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="outlined-text" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { OutlinedText } from "@/components/marketing/outlined-text"
+```
+
+```tsx
+<h1 className="font-bold text-6xl">
+  <OutlinedText>Outlined</OutlinedText>
+</h1>
+```
+
+Change the stroke color with an arbitrary `-webkit-text-stroke-color` class:
+
+```tsx
+<OutlinedText className="[-webkit-text-stroke-color:var(--color-primary)]" strokeWidth={2}>
+  Outlined
+</OutlinedText>
+```
+
+## API Reference
+
+Accepts every `span` prop.
+
+| Prop          | Type     | Default | Description                  |
+| ------------- | -------- | ------- | ---------------------------- |
+| `strokeWidth` | `number` | `1`     | Width of the outline in pixels |

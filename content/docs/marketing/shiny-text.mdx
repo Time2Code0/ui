@@ -1,0 +1,82 @@
+---
+title: Shiny Text
+description: Text with a sweeping shimmer.
+---
+
+<ComponentPreview name="p-shiny-text-1" />
+
+Muted text with a band of light that sweeps across it. Use it for announcement banners and subtle calls to action.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/shiny-text
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Add the following to your CSS file: [step]
+
+```css
+@theme inline {
+  --animate-shiny-text: shiny-text var(--duration) infinite;
+}
+
+@keyframes shiny-text {
+  from {
+    background-position: calc(-100% - var(--shimmer-width)) 0;
+  }
+  to {
+    background-position: calc(100% + var(--shimmer-width)) 0;
+  }
+}
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="shiny-text" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ShinyText } from "@/components/marketing/shiny-text"
+```
+
+```tsx
+<ShinyText>✨ Introducing our new design system</ShinyText>
+```
+
+By default the shimmer repeats continuously. Set `onlyOnHover` to play it once each time the text is hovered.
+
+## API Reference
+
+Accepts every `span` prop.
+
+| Prop           | Type      | Default | Description                         |
+| -------------- | --------- | ------- | ----------------------------------- |
+| `shimmerWidth` | `number`  | `100`   | Width of the light band in pixels   |
+| `duration`     | `number`  | `5`     | Seconds per sweep                   |
+| `onlyOnHover`  | `boolean` | `false` | Only plays the shimmer on hover     |

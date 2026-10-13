@@ -1,0 +1,73 @@
+---
+title: Image Comparison
+description: Compare two images with a draggable divider.
+---
+
+<ComponentPreview name="p-image-comparison-1" />
+
+Compares two images of the same size with a draggable divider. Use it for before and after shots, redesigns or light and dark themes.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/image-comparison
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i @hugeicons/core-free-icons cn
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/icon
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="image-comparison" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ImageComparison } from "@/components/marketing/image-comparison"
+```
+
+```tsx
+<ImageComparison
+  after="/after.png"
+  before="/before.png"
+  className="aspect-video overflow-hidden rounded-xl"
+/>
+```
+
+The `before` image fills the component and the `after` image is laid on top of it. The divider is driven by an invisible range input that covers the whole component, so it works with pointer, touch and keyboard. Both images use `object-cover`, so set the size and aspect ratio with `className`.
+
+## API Reference
+
+| Prop        | Type     | Default | Description                         |
+| ----------- | -------- | ------- | ----------------------------------- |
+| `before`    | `string` |         | URL of the image on the left        |
+| `after`     | `string` |         | URL of the image on the right       |
+| `className` | `string` |         | Class names for the root element    |

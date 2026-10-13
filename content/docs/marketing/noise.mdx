@@ -1,0 +1,69 @@
+---
+title: Noise
+description: A film grain texture overlay.
+---
+
+<ComponentPreview name="p-noise-1" />
+
+An SVG film grain overlay. Lay it over gradients, images or videos to add texture.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/noise
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="noise" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Noise } from "@/components/marketing/noise"
+```
+
+```tsx
+<div className="relative bg-linear-to-br from-primary to-secondary">
+  <Noise blendMode="overlay" opacity={0.6} />
+</div>
+```
+
+`Noise` is absolutely positioned and fills its nearest positioned ancestor, inheriting its border radius. It ignores pointer events. A larger `grainSize` gives coarser grain. Set `animate` to make the grain shimmer, and `invert` to swap light and dark grain.
+
+## API Reference
+
+Accepts every `svg` prop.
+
+| Prop        | Type                          | Default        | Description                    |
+| ----------- | ----------------------------- | -------------- | ------------------------------ |
+| `grainSize` | `number`                      | `1.2`          | Size of the grain              |
+| `opacity`   | `number`                      | `1`            | Opacity of the overlay         |
+| `blendMode` | `"soft-light" \| "overlay"`   | `"soft-light"` | Blend mode with the content below |
+| `animate`   | `boolean`                     | `false`        | Animates the grain             |
+| `invert`    | `boolean`                     | `false`        | Inverts the grain              |

@@ -1,0 +1,85 @@
+---
+title: Form
+description: A form wrapper component that simplifies validation and submission.
+
+links:
+  doc: https://base-ui.com/react/components/form#api-reference
+---
+
+<ComponentPreview name="p-form-1" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/form-baseui
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i @base-ui/react
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="form-baseui" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Field,
+  FieldError,
+  FieldLabel,
+} from "@/components/ui/field"
+import { Form } from "@/components/ui/form-baseui"
+import { Input } from "@/components/ui/input"
+```
+
+```tsx
+<Form
+  className="flex w-full flex-col gap-4"
+  onSubmit={(e) => {
+    /* handle submit */
+  }}
+>
+  <Field>
+    <FieldLabel>Email</FieldLabel>
+    <Input name="email" type="email" required />
+    <FieldError>Please enter a valid email.</FieldError>
+  </Field>
+</Form>
+```
+
+## API Reference
+
+### Form
+
+Thin wrapper around Base UI `Form` with no default layout. Pass **`className`** for spacing and structure (for example `flex w-full flex-col gap-4` for a vertical field stack).
+
+**Dialog, sheet, drawer:** Place **`DialogHeader`** (or sheet/drawer header) **outside** the form. Wrap **`DialogPanel`** and **`DialogFooter`** only in **`<Form className="contents">`** (or **`<form className="contents">`**). The **`contents`** display value keeps panel and footer participating correctly in the popup flex layout without nesting the header inside the `<form>`.
+
+## Examples
+
+### Using with Zod
+
+<ComponentPreview name="p-form-2" />

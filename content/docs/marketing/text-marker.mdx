@@ -1,0 +1,70 @@
+---
+title: Text Marker
+description: Highlight words with an animated marker.
+---
+
+<ComponentPreview name="p-text-marker-1" />
+
+Highlights words as if marked with a highlighter pen, with a sweep animation in the `primary` color.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/text-marker
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="text-marker" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { TextMarker } from "@/components/marketing/text-marker"
+```
+
+```tsx
+<h2>
+  Components that are <TextMarker>easy to use</TextMarker>
+</h2>
+```
+
+The marker sweeps in on mount. Set `animate` to `false` to hold it back and switch it to `true` later, for example with [Scroll Reveal](/docs/marketing/scroll-reveal). `transition` changes the timing of the sweep.
+
+```tsx
+<TextMarker transition={{ delay: 0.5, duration: 1 }}>easy to use</TextMarker>
+```
+
+## API Reference
+
+Accepts every `span` prop.
+
+| Prop         | Type         | Default             | Description                 |
+| ------------ | ------------ | ------------------- | --------------------------- |
+| `animate`    | `boolean`    | `true`              | Plays the sweep             |
+| `transition` | `Transition` | `{ duration: 0.5 }` | Motion transition of the sweep |

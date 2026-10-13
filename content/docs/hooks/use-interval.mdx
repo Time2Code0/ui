@@ -1,0 +1,74 @@
+---
+title: useInterval
+description: Runs a callback repeatedly with a pausable delay.
+---
+
+<ComponentPreview name="p-use-interval-1" />
+
+A declarative `setInterval`. The callback always sees the latest props and state, and the interval only restarts when the delay changes.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-interval
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="use-interval" title="hooks/use-interval.ts" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { useInterval } from "@/hooks/use-interval"
+
+function Counter() {
+  const [count, setCount] = useState(0)
+
+  useInterval(() => setCount(count + 1), 1000)
+
+  return <span>{count}</span>
+}
+```
+
+The latest callback is stored in a ref, so reading `count` directly works without restarting the interval on every render.
+
+### Pausing
+
+Pass `null` as the delay to stop the interval. Passing a number again starts a fresh interval.
+
+```tsx
+const [running, setRunning] = useState(true)
+
+useInterval(tick, running ? 1000 : null)
+```
+
+## API Reference
+
+```tsx
+function useInterval(callback: () => void, delay: number | null): void
+```
+
+| Parameter  | Type             | Description                                          |
+| ---------- | ---------------- | ---------------------------------------------------- |
+| `callback` | `() => void`     | Called on every tick                                 |
+| `delay`    | `number \| null` | Time between ticks in milliseconds. `null` pauses it |

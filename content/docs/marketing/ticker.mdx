@@ -1,0 +1,92 @@
+---
+title: Ticker
+description: Endlessly loop content, driven by an animation clock.
+---
+
+<ComponentPreview name="p-ticker-1" />
+
+Loops its content endlessly in one direction, driven by an animation clock. Unlike [Marquee](/docs/marketing/marquee), the speed is controlled from JavaScript, so it can pause, reverse or react to scrolling.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/ticker
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-clock
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="ticker" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { useClock } from "@/hooks/use-clock"
+import { Ticker } from "@/components/marketing/ticker"
+```
+
+```tsx
+const clock = useClock()
+
+return (
+  <Ticker className="h-10 w-72" clock={clock}>
+    <div className="flex size-full items-center justify-around">...</div>
+  </Ticker>
+)
+```
+
+The ticker clips its content and moves a copy in from the opposite side, so the content should fill the ticker exactly. Give the ticker an explicit size.
+
+### Controlling the speed
+
+The ticker only reads the clock, so you control it through the clock:
+
+```tsx
+const clock = useClock()
+
+<Ticker clock={clock} onMouseEnter={() => clock.setRate(0)} onMouseLeave={() => clock.setRate(1)}>
+  ...
+</Ticker>
+```
+
+Pass a [useScrollAcceleratedClock](/docs/hooks/use-scroll-accelerated-clock) to speed the ticker up and reverse it while scrolling. Several tickers can share one clock to stay in sync.
+
+## API Reference
+
+Accepts every `div` prop.
+
+| Prop        | Type                           | Default        | Description                                       |
+| ----------- | ------------------------------ | -------------- | ------------------------------------------------- |
+| `clock`     | `Clock`                        |                | Clock from `useClock` or `useScrollAcceleratedClock` |
+| `duration`  | `number`                       | `12000`        | Clock time for one full loop                      |
+| `direction` | `"horizontal" \| "vertical"`   | `"horizontal"` | Direction of movement                             |

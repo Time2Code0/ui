@@ -1,0 +1,82 @@
+---
+title: Globe
+description: An interactive, auto-rotating WebGL globe with markers.
+---
+
+<ComponentPreview name="p-globe-1" />
+
+An interactive WebGL globe powered by [cobe](https://github.com/shuding/cobe). It rotates on its own, can be dragged, and shows markers at any coordinates.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/globe
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i @react-spring/web cobe@^0.6.5 cn motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="globe" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { DEFAULT_COBE_OPTIONS, Globe } from "@/components/marketing/globe"
+```
+
+```tsx
+const config = {
+  ...DEFAULT_COBE_OPTIONS,
+  markers: [
+    { location: [52.52, 13.405], size: 0.06 }, // Berlin
+    { location: [40.7128, -74.006], size: 0.1 }, // New York
+  ],
+}
+
+export function Hero() {
+  return (
+    <div className="relative aspect-square w-full max-w-md">
+      <Globe config={config} />
+    </div>
+  )
+}
+```
+
+The globe fills its parent as an absolutely positioned square of up to 600px, so the parent needs `relative` positioning and a size. It only renders while it's in view. If the browser can't create a WebGL context, the globe is hidden.
+
+Define `config` outside the component or memoize it. A new object on every render recreates the globe. `DEFAULT_COBE_OPTIONS` is exported from a client module, so build the config in a client component.
+
+### Configuration
+
+`config` is passed to cobe. Start from `DEFAULT_COBE_OPTIONS` and override what you need, for example `baseColor`, `glowColor`, `markerColor`, `dark` or `theta`. Colors are RGB arrays with values from `0` to `1`. See the [cobe options](https://github.com/shuding/cobe#options) for the full list. `width`, `height` and `onRender` are set by the component.
+
+## API Reference
+
+| Prop        | Type          | Default                | Description            |
+| ----------- | ------------- | ---------------------- | ---------------------- |
+| `config`    | `COBEOptions` | `DEFAULT_COBE_OPTIONS` | Options passed to cobe |
+| `className` | `string`      |                        | Class names for the wrapper |

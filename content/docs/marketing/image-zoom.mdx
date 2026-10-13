@@ -1,0 +1,82 @@
+---
+title: Image Zoom
+description: Zoom an image to fill the viewport with a smooth transition.
+---
+
+<ComponentPreview name="p-image-zoom-1" />
+
+Click an image to zoom it smoothly from its position on the page to fill the viewport. Click again, press Escape or scroll to return.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/image-zoom
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i @radix-ui/react-use-controllable-state cn motion
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/portal https://design.time2code.dev/r/use-event-listener
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="image-zoom" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ImageZoom } from "@/components/marketing/image-zoom"
+```
+
+```tsx
+<ImageZoom className="overflow-hidden rounded-xl">
+  <img alt="Screenshot" height={630} src="/screenshot.png" width={1200} />
+</ImageZoom>
+```
+
+`ImageZoom` wraps its children in a button that opens the zoomed view. The zoomed copy is rendered in a [Portal](/docs/ui/portal) above a dimmed backdrop and scaled to fit the viewport, keeping `gutter` pixels of space around it. Any content works as children, including `next/image`.
+
+The zoomed view closes on click, on scroll, and with the Escape, Arrow Up and Arrow Down keys.
+
+### Controlling the state
+
+`onOpenChange` is called whenever the image opens or closes.
+
+```tsx
+<ImageZoom onOpenChange={(open) => console.log(open)}>...</ImageZoom>
+```
+
+## API Reference
+
+Accepts every `button` prop.
+
+| Prop           | Type                      | Default | Description                                     |
+| -------------- | ------------------------- | ------- | ----------------------------------------------- |
+| `gutter`       | `number`                  | `24`    | Space between the zoomed image and the viewport edge in pixels |
+| `onOpenChange` | `(open: boolean) => void` |         | Called when the zoomed view opens or closes     |

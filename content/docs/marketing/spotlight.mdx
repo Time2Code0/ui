@@ -1,0 +1,75 @@
+---
+title: Spotlight
+description: A soft beam of light for dark hero sections.
+---
+
+<ComponentPreview name="p-spotlight-1" />
+
+A soft beam of light shining down from a top corner. Made for dark hero sections.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/spotlight
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="spotlight" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Spotlight } from "@/components/marketing/spotlight"
+```
+
+```tsx
+<section className="relative isolate overflow-hidden">
+  <Spotlight />
+  <Spotlight orientation="right" />
+  <h1>Spotlight</h1>
+</section>
+```
+
+The spotlight is positioned behind the content of its nearest positioned ancestor (`-z-10`), so give that ancestor `isolate` to keep the light above its own background. It fades in on mount.
+
+`color` takes the red, green and blue channels as a comma separated string:
+
+```tsx
+<Spotlight color="120, 160, 255" />
+```
+
+## API Reference
+
+Accepts every prop of `motion.span`, applied to the light.
+
+| Prop                 | Type                  | Default           | Description                          |
+| -------------------- | --------------------- | ----------------- | ------------------------------------ |
+| `orientation`        | `"left" \| "right"`   | `"left"`          | Corner the light comes from          |
+| `color`              | `string`              | `"209, 205, 125"` | RGB channels of the light            |
+| `containerClassName` | `string`              |                   | Class names for the wrapper          |

@@ -1,0 +1,91 @@
+---
+title: Tilt Card
+description: A card that tilts in 3D towards the cursor.
+---
+
+<ComponentPreview name="p-tilt-card-1" />
+
+A card that tilts in 3D towards the cursor, with items floating at different depths inside it.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/tilt-card
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="tilt-card" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Body, Container, Item } from "@/components/marketing/tilt-card"
+```
+
+```tsx
+<Container>
+  <Body className="rounded-xl border p-6">
+    <Item translateZ={50}>Title</Item>
+    <Item translateZ={100}>
+      <img alt="" src="/preview.png" />
+    </Item>
+  </Body>
+</Container>
+```
+
+`Container` adds the perspective and tilts towards the cursor. `Body` keeps the 3D space for its children. Each `Item` moves to its own transform while the cursor is over the card and returns when it leaves, so a larger `translateZ` makes an item float further above the card.
+
+## API Reference
+
+### Container
+
+| Prop                 | Type     | Description                              |
+| -------------------- | -------- | ---------------------------------------- |
+| `className`          | `string` | Class names for the tilting element      |
+| `containerClassName` | `string` | Class names for the outer element. Has `py-20` by default |
+
+### Body
+
+| Prop        | Type     | Description                     |
+| ----------- | -------- | ------------------------------- |
+| `className` | `string` | Class names for the card body   |
+
+### Item
+
+Accepts every `div` prop.
+
+| Prop         | Type               | Default | Description                         |
+| ------------ | ------------------ | ------- | ----------------------------------- |
+| `as`         | `React.ElementType` | `"div"` | Element to render                  |
+| `translateX` | `number \| string` | `0`     | Horizontal offset on hover in pixels |
+| `translateY` | `number \| string` | `0`     | Vertical offset on hover in pixels   |
+| `translateZ` | `number \| string` | `0`     | Depth on hover in pixels             |
+| `rotateX`    | `number \| string` | `0`     | Rotation on hover in degrees         |
+| `rotateY`    | `number \| string` | `0`     | Rotation on hover in degrees         |
+| `rotateZ`    | `number \| string` | `0`     | Rotation on hover in degrees         |

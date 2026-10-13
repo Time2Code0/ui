@@ -1,0 +1,112 @@
+---
+title: Pattern
+description: Square, hexagon, dot and line background patterns.
+---
+
+<ComponentPreview name="p-pattern-1" />
+
+Four background patterns drawn with SVG and CSS: squares, hexagons, dots and diagonal lines.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/pattern
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="pattern" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Dot, Hex, Line, Square } from "@/components/marketing/pattern"
+```
+
+```tsx
+<section className="relative">
+  <Square />
+  <div className="relative">Content</div>
+</section>
+```
+
+Every pattern is absolutely positioned and fills its nearest positioned ancestor. Patterns ignore pointer events, so place content after them in a positioned element.
+
+The colors come from the foreground color at low opacity. Change them with `fill-*` and `stroke-*` classes, and fade the pattern out with a [Mask](/docs/marketing/mask).
+
+```tsx
+<Dot className="fill-primary/40" />
+```
+
+## API Reference
+
+### Square
+
+A grid of lines. `squares` highlights individual cells by their column and row.
+
+| Prop              | Type                 | Default | Description                         |
+| ----------------- | -------------------- | ------- | ----------------------------------- |
+| `width`           | `number`             | `40`    | Cell width in pixels                |
+| `height`          | `number`             | `40`    | Cell height in pixels               |
+| `x`               | `number`             | `-1`    | Horizontal offset of the pattern    |
+| `y`               | `number`             | `-1`    | Vertical offset of the pattern      |
+| `squares`         | `[number, number][]` | `[]`    | Cells to fill, as `[column, row]`   |
+| `strokeDasharray` | `string`             | `"0"`   | Dash pattern of the lines           |
+
+### Hex
+
+A honeycomb of hexagon outlines.
+
+| Prop     | Type     | Default | Description                       |
+| -------- | -------- | ------- | --------------------------------- |
+| `width`  | `number` | `50`    | Width of a pattern tile           |
+| `height` | `number` | `43.4`  | Height of a pattern tile          |
+| `x`      | `number` | `-1`    | Horizontal offset of the pattern  |
+| `y`      | `number` | `-1`    | Vertical offset of the pattern    |
+
+### Dot
+
+A grid of dots.
+
+| Prop           | Type     | Default | Description                       |
+| -------------- | -------- | ------- | --------------------------------- |
+| `width`        | `number` | `16`    | Horizontal spacing in pixels      |
+| `height`       | `number` | `16`    | Vertical spacing in pixels        |
+| `x`            | `number` | `0`     | Horizontal offset of the pattern  |
+| `y`            | `number` | `0`     | Vertical offset of the pattern    |
+| `circleX`      | `number` | `1`     | Horizontal position of the dot    |
+| `circleY`      | `number` | `1`     | Vertical position of the dot      |
+| `circleRadius` | `number` | `1`     | Radius of the dot                 |
+
+### Line
+
+Diagonal stripes. Accepts every `div` prop.
+
+| Prop     | Type     | Default | Description              |
+| -------- | -------- | ------- | ------------------------ |
+| `radius` | `number` | `315`   | Angle of the stripes in degrees |

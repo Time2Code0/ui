@@ -1,0 +1,83 @@
+---
+title: Progressive Blur
+description: A blur that gradually increases in strength across an element.
+---
+
+<ComponentPreview name="p-progressive-blur-1" />
+
+Blurs the content behind it with a gradually increasing strength, like the edges of iOS navigation bars. Use it to fade content into a header, a footer or the edge of an image.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/progressive-blur
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/mask
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="progressive-blur" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ProgressiveBlur } from "@/components/marketing/progressive-blur"
+```
+
+```tsx
+<ProgressiveBlur blurEnd={12} direction="to-bottom">
+  <img alt="" src="/screenshot.png" />
+</ProgressiveBlur>
+```
+
+The blur covers the whole element and is drawn on top of its children. It's built from several layers of `backdrop-filter`, each limited to a band of the element with a [Mask](/docs/marketing/mask). More `layers` give a smoother transition at a higher rendering cost.
+
+To blur only part of an element, render `ProgressiveBlur` without children as an overlay and position it yourself:
+
+```tsx
+<div className="relative">
+  <Content />
+  <ProgressiveBlur className="absolute inset-x-0 bottom-0 h-24" />
+</div>
+```
+
+## API Reference
+
+Accepts every prop of `motion.div`.
+
+| Prop        | Type                                                   | Default       | Description                            |
+| ----------- | ------------------------------------------------------ | ------------- | -------------------------------------- |
+| `direction` | `"to-top" \| "to-right" \| "to-bottom" \| "to-left"`   | `"to-bottom"` | Direction in which the blur increases  |
+| `blurStart` | `number`                                               | `0`           | Blur at the start in pixels            |
+| `blurEnd`   | `number`                                               | `12`          | Blur at the end in pixels              |
+| `layers`    | `number`                                               | `5`           | Number of blur layers, at least 2      |

@@ -1,0 +1,87 @@
+---
+title: Scroll Reveal
+description: Play animations when content scrolls into view.
+---
+
+<ComponentPreview name="p-scroll-reveal-1" />
+
+Tells its child whether it has scrolled into view, so you can play any animation when content appears.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/scroll-reveal
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="scroll-reveal" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { ScrollReveal } from "@/components/marketing/scroll-reveal"
+```
+
+```tsx
+<ScrollReveal>
+  {({ isInView, ref }) => (
+    <motion.div
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+      ref={ref}
+    >
+      Content
+    </motion.div>
+  )}
+</ScrollReveal>
+```
+
+`ScrollReveal` renders nothing itself. It calls its child function with a `ref` to attach to the element you want to observe and `isInView`, which turns `true` once that element enters the viewport.
+
+It pairs well with the [Reveal](/docs/marketing/reveal) components, which take a boolean `animate` prop:
+
+```tsx
+<ScrollReveal>
+  {({ isInView, ref }) => (
+    <div ref={ref}>
+      <Text animate={isInView} text="Revealed on scroll" />
+    </div>
+  )}
+</ScrollReveal>
+```
+
+### Options
+
+`options` is passed to Motion's [`useInView`](https://motion.dev/docs/react-use-in-view). The default `{ once: true }` keeps `isInView` true after the first time. Pass `{ once: false }` to replay the animation every time, or `amount` and `margin` to change when the element counts as visible.
+
+## API Reference
+
+| Prop       | Type                                    | Default          | Description                            |
+| ---------- | --------------------------------------- | ---------------- | -------------------------------------- |
+| `children` | `({ ref, isInView }) => React.ReactNode` |                 | Render function                        |
+| `options`  | `UseInViewOptions`                      | `{ once: true }` | Options for Motion's `useInView`       |

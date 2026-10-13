@@ -1,0 +1,94 @@
+---
+title: useMousePosition
+description: Tracks the cursor position as Motion values.
+---
+
+<ComponentPreview name="p-use-mouse-position-1" />
+
+Tracks the cursor position as two Motion values. Because the position lives in Motion values, cursor-following effects update without re-rendering the component.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-mouse-position
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="use-mouse-position" title="hooks/use-mouse-position.ts" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { motion } from "motion/react"
+
+import { useMousePosition } from "@/hooks/use-mouse-position"
+
+function Cursor() {
+  const { x, y } = useMousePosition({})
+
+  return <motion.div className="fixed top-0 left-0" style={{ x, y }} />
+}
+```
+
+Without a `ref` the hook listens on the whole document and reports viewport coordinates (`clientX` and `clientY`).
+
+### Relative to an element
+
+Pass a `ref` to only listen inside that element. The values are then relative to its top-left corner.
+
+```tsx
+const ref = useRef<HTMLDivElement>(null)
+const { x, y } = useMousePosition({ ref })
+
+return (
+  <div className="relative" ref={ref}>
+    <motion.div className="absolute top-0 left-0" style={{ x, y }} />
+  </div>
+)
+```
+
+The values keep their last position when the cursor leaves. Until the first move they hold the defaults, which place anything bound to them off screen.
+
+To read the position as regular React state, combine it with [useNormalizeMotionValue](/docs/hooks/use-normalize-motion-value).
+
+## API Reference
+
+```tsx
+function useMousePosition(options: {
+  defaultX?: number
+  defaultY?: number
+  ref?: React.RefObject<HTMLElement | null>
+}): { x: MotionValue<number>; y: MotionValue<number> }
+```
+
+| Option     | Type                                  | Default | Description                                   |
+| ---------- | ------------------------------------- | ------- | --------------------------------------------- |
+| `defaultX` | `number`                              | `-1000` | Value of `x` before the first mouse move      |
+| `defaultY` | `number`                              | `-1000` | Value of `y` before the first mouse move      |
+| `ref`      | `React.RefObject<HTMLElement \| null>` |         | Element to track. Defaults to the document    |

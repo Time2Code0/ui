@@ -1,0 +1,83 @@
+---
+title: Animated Size Container
+description: A container that animates to the size of its content.
+---
+
+<ComponentPreview name="p-animated-size-container-1" />
+
+A container that animates its width or height whenever its content changes size. Use it to smooth out tab switches, expanding sections or content that loads in.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/animated-size-container
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-resize-observer
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="animated-size-container" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { AnimatedSizeContainer } from "@/components/marketing/animated-size-container"
+```
+
+```tsx
+<AnimatedSizeContainer height>
+  {expanded ? <LongContent /> : <ShortContent />}
+</AnimatedSizeContainer>
+```
+
+The content is measured with [useResizeObserver](/docs/hooks/use-resize-observer) and the outer element animates to the measured size. Set `width`, `height` or both to choose which dimensions animate. The outer element hides overflow so content never spills out mid-animation.
+
+### Custom transition
+
+Pass a Motion `transition` to change the animation. The default is a spring with a duration of 0.3 seconds.
+
+```tsx
+<AnimatedSizeContainer height transition={{ duration: 0.5, ease: "easeInOut" }}>
+  ...
+</AnimatedSizeContainer>
+```
+
+## API Reference
+
+Accepts every prop of `motion.div` except `animate`.
+
+| Prop         | Type         | Default                              | Description              |
+| ------------ | ------------ | ------------------------------------ | ------------------------ |
+| `width`      | `boolean`    | `false`                              | Animates width changes   |
+| `height`     | `boolean`    | `false`                              | Animates height changes  |
+| `transition` | `Transition` | `{ type: "spring", duration: 0.3 }`  | Motion transition        |

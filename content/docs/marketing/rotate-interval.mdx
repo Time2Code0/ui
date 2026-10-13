@@ -1,0 +1,74 @@
+---
+title: Rotate Interval
+description: Cycle through items at a fixed interval.
+---
+
+<ComponentPreview name="p-rotate-interval-1" />
+
+Cycles through a list of items at a fixed interval with a short flip animation. Typically used for a changing word in a headline.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/rotate-interval
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-interval
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="rotate-interval" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { RotateInterval } from "@/components/marketing/rotate-interval"
+```
+
+```tsx
+<h1 className="flex gap-2">
+  Build
+  <RotateInterval interval={2000} items={["faster", "better", "together"]} />
+</h1>
+```
+
+Items can be any React node. After the last item it starts over with the first. The container clips the items while they animate; style it with `containerClassName`, and the animated item with `className`.
+
+## API Reference
+
+Accepts every prop of `motion.div`, applied to the animated item.
+
+| Prop                 | Type                | Description                          |
+| -------------------- | ------------------- | ------------------------------------ |
+| `items`              | `React.ReactNode[]` | Items to cycle through               |
+| `interval`           | `number`            | Time per item in milliseconds        |
+| `containerClassName` | `string`            | Class names for the clipping container |

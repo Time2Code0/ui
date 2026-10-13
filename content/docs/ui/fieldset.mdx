@@ -1,0 +1,82 @@
+---
+title: Fieldset
+description: A native fieldset element with a legend.
+
+links:
+  doc: https://base-ui.com/react/components/fieldset#api-reference
+---
+
+<ComponentPreview name="p-fieldset-1" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/fieldset
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i @base-ui/react cn
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/separator
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="fieldset" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Fieldset, FieldsetLegend } from "@/components/ui/fieldset"
+```
+
+```tsx
+<Fieldset>
+  <FieldsetLegend>Fieldset legend</FieldsetLegend>
+</Fieldset>
+```
+
+## API Reference
+
+### Fieldset
+
+Root component. Styled wrapper for `Fieldset.Root` from Base UI with flex column layout.
+
+### FieldsetLegend
+
+Legend for the fieldset. Styled wrapper for `Fieldset.Legend` from Base UI with semibold font weight.
+
+### FieldsetSeparator
+
+Horizontal divider between groups of fields. Pass children (e.g. `Or`) to render a centered label on top of the line.
+
+## Examples
+
+### With Separator
+
+<ComponentPreview name="p-fieldset-2" />

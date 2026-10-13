@@ -1,0 +1,68 @@
+---
+title: Magic Text Reveal Card
+description: A card that reveals hidden text under the cursor.
+---
+
+<ComponentPreview name="p-magic-text-reveal-card-1" />
+
+A card with faded text that reveals a different text wherever the cursor has passed, like wiping a foggy window.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/magic-text-reveal-card
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="magic-text-reveal-card" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { MagicTextRevealCard } from "@/components/marketing/magic-text-reveal-card"
+```
+
+```tsx
+<MagicTextRevealCard revealText="Here's the secret" text="Hover over me">
+  <p>Move your cursor across the card</p>
+</MagicTextRevealCard>
+```
+
+`text` is shown faded with drifting sparkles. As the cursor moves to the right, `revealText` is uncovered up to the cursor position, with a light line marking the edge. When the cursor leaves, the reveal slides back. Children render above the text, for example a title or hint.
+
+The effect follows the mouse, so on touch devices only `text` is visible.
+
+## API Reference
+
+| Prop         | Type              | Description                         |
+| ------------ | ----------------- | ----------------------------------- |
+| `text`       | `string`          | Text shown by default               |
+| `revealText` | `string`          | Text uncovered by the cursor        |
+| `children`   | `React.ReactNode` | Content above the text              |
+| `className`  | `string`          | Class names for the card            |

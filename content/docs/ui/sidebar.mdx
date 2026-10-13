@@ -1,0 +1,386 @@
+---
+title: Sidebar
+description: A composable, collapsible application sidebar that turns into a sheet on mobile.
+
+links:
+  doc: https://ui.shadcn.com/docs/components/sidebar
+---
+
+<ComponentPreview name="p-sidebar-1" />
+
+Based on the [shadcn/ui Sidebar](https://ui.shadcn.com/docs/components/sidebar), rebuilt on Base UI and our color tokens. Instead of `asChild`, parts that render an element accept a `render` prop.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/sidebar
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i @base-ui/react @hugeicons/core-free-icons class-variance-authority cn
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/button https://design.time2code.dev/r/icon https://design.time2code.dev/r/separator https://design.time2code.dev/r/sheet https://design.time2code.dev/r/skeleton https://design.time2code.dev/r/tooltip https://design.time2code.dev/r/use-media-query
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="sidebar" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Structure
+
+A sidebar is made of these parts:
+
+- `SidebarProvider`: holds the open state and wraps the sidebar and the page content.
+- `Sidebar`: the sidebar container.
+- `SidebarHeader` and `SidebarFooter`: sticky areas at the top and bottom.
+- `SidebarContent`: the scrollable area in between.
+- `SidebarGroup`: a section inside `SidebarContent`.
+- `SidebarTrigger`: the button that toggles the sidebar.
+- `SidebarInset`: the main content next to the sidebar.
+
+## Usage
+
+```tsx title="app/layout.tsx"
+import { AppSidebar } from "@/components/app-sidebar"
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <SidebarTrigger />
+        {children}
+      </SidebarInset>
+    </SidebarProvider>
+  )
+}
+```
+
+```tsx title="components/app-sidebar.tsx"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarHeader,
+} from "@/components/ui/sidebar"
+
+export function AppSidebar() {
+  return (
+    <Sidebar>
+      <SidebarHeader />
+      <SidebarContent>
+        <SidebarGroup />
+        <SidebarGroup />
+      </SidebarContent>
+      <SidebarFooter />
+    </Sidebar>
+  )
+}
+```
+
+## SidebarProvider
+
+Provides the sidebar state through context. Every other part, and `useSidebar`, must be rendered inside it.
+
+| Prop           | Type                      | Default | Description                       |
+| -------------- | ------------------------- | ------- | --------------------------------- |
+| `defaultOpen`  | `boolean`                 | `true`  | Initial open state (uncontrolled) |
+| `open`         | `boolean`                 |         | Open state (controlled)           |
+| `onOpenChange` | `(open: boolean) => void` |         | Called when the open state changes |
+
+### Controlled
+
+```tsx
+const [open, setOpen] = useState(false)
+
+return (
+  <SidebarProvider open={open} onOpenChange={setOpen}>
+    <Sidebar />
+  </SidebarProvider>
+)
+```
+
+### Width
+
+The widths are set by constants at the top of `sidebar.tsx`:
+
+```tsx
+const SIDEBAR_WIDTH = "16rem"
+const SIDEBAR_WIDTH_MOBILE = "18rem"
+const SIDEBAR_WIDTH_ICON = "3rem"
+```
+
+To change the desktop width for a single provider, override the `--sidebar-width` variable:
+
+```tsx
+<SidebarProvider style={{ "--sidebar-width": "20rem" } as React.CSSProperties}>
+  <Sidebar />
+</SidebarProvider>
+```
+
+### Keyboard shortcut
+
+`⌘ B` on macOS and `Ctrl B` on Windows and Linux toggle the sidebar. Change `SIDEBAR_KEYBOARD_SHORTCUT` to use a different key.
+
+### Persisted state
+
+Each change writes the open state to the `sidebar_state` cookie. Read it in a server layout to restore the state on reload:
+
+```tsx title="app/layout.tsx"
+import { cookies } from "next/headers"
+
+export default async function Layout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies()
+  const defaultOpen = cookieStore.get("sidebar_state")?.value !== "false"
+
+  return <SidebarProvider defaultOpen={defaultOpen}>{children}</SidebarProvider>
+}
+```
+
+## Sidebar
+
+| Prop          | Type                                  | Default       | Description                                     |
+| ------------- | ------------------------------------- | ------------- | ----------------------------------------------- |
+| `side`        | `"left" \| "right"`                   | `"left"`      | Which side of the screen the sidebar sits on    |
+| `variant`     | `"sidebar" \| "floating" \| "inset"`  | `"sidebar"`   | Visual style                                    |
+| `collapsible` | `"offcanvas" \| "icon" \| "none"`     | `"offcanvas"` | How the sidebar collapses                       |
+
+- `offcanvas`: slides out of view.
+- `icon`: shrinks to a narrow rail that only shows icons. Labels of `SidebarMenuButton` move into tooltips.
+- `none`: always visible, can't be collapsed.
+
+Below the `md` breakpoint the sidebar renders inside a [Sheet](/docs/ui/sheet) instead, opened by `SidebarTrigger`. The breakpoint comes from [useMediaQuery](/docs/hooks/use-media-query).
+
+When you use the `inset` variant, wrap the main content in `SidebarInset`.
+
+## useSidebar
+
+Reads the sidebar state. Use it to build your own trigger or to react to the state.
+
+```tsx
+import { useSidebar } from "@/components/ui/sidebar"
+
+export function CustomTrigger() {
+  const { toggleSidebar } = useSidebar()
+
+  return <button onClick={toggleSidebar}>Toggle Sidebar</button>
+}
+```
+
+| Property        | Type                        | Description                                  |
+| --------------- | --------------------------- | -------------------------------------------- |
+| `state`         | `"expanded" \| "collapsed"` | Desktop state                                |
+| `open`          | `boolean`                   | Whether the desktop sidebar is open          |
+| `setOpen`       | `(open: boolean) => void`   | Sets the desktop open state                  |
+| `openMobile`    | `boolean`                   | Whether the mobile sheet is open             |
+| `setOpenMobile` | `(open: boolean) => void`   | Sets the mobile open state                   |
+| `isMobile`      | `boolean`                   | Whether the mobile layout is active          |
+| `toggleSidebar` | `() => void`                | Toggles the sidebar on desktop and mobile    |
+
+## SidebarHeader and SidebarFooter
+
+Sticky areas above and below `SidebarContent`. Typical uses are an app or workspace switcher at the top and the user menu at the bottom.
+
+```tsx
+<Sidebar>
+  <SidebarHeader>
+    <SidebarMenu>
+      <SidebarMenuItem>
+        <SidebarMenuButton size="lg">Acme Inc</SidebarMenuButton>
+      </SidebarMenuItem>
+    </SidebarMenu>
+  </SidebarHeader>
+  <SidebarContent />
+  <SidebarFooter>
+    <SidebarMenu>
+      <SidebarMenuItem>
+        <SidebarMenuButton>Account</SidebarMenuButton>
+      </SidebarMenuItem>
+    </SidebarMenu>
+  </SidebarFooter>
+</Sidebar>
+```
+
+## SidebarContent
+
+The scrollable area that holds the groups.
+
+## SidebarGroup
+
+A section of the sidebar with an optional `SidebarGroupLabel`, `SidebarGroupAction` and a `SidebarGroupContent`.
+
+```tsx
+<SidebarGroup>
+  <SidebarGroupLabel>Projects</SidebarGroupLabel>
+  <SidebarGroupAction title="Add project">
+    <Icon icon={PlusSignIcon} />
+    <span className="sr-only">Add project</span>
+  </SidebarGroupAction>
+  <SidebarGroupContent>
+    <SidebarMenu />
+  </SidebarGroupContent>
+</SidebarGroup>
+```
+
+`SidebarGroupLabel` and `SidebarGroupAction` accept a `render` prop. Render the label as a [CollapsibleTrigger](/docs/ui/collapsible) to make the group collapsible.
+
+## SidebarMenu
+
+A list of `SidebarMenuItem`s.
+
+```tsx
+<SidebarMenu>
+  {projects.map((project) => (
+    <SidebarMenuItem key={project.name}>
+      <SidebarMenuButton render={<a href={project.url} />}>
+        <Icon icon={project.icon} />
+        <span>{project.name}</span>
+      </SidebarMenuButton>
+    </SidebarMenuItem>
+  ))}
+</SidebarMenu>
+```
+
+### SidebarMenuButton
+
+Renders a `button` by default. Pass `render` to use a link instead.
+
+| Prop       | Type                                           | Default     | Description                                                   |
+| ---------- | ---------------------------------------------- | ----------- | ------------------------------------------------------------- |
+| `isActive` | `boolean`                                      | `false`     | Marks the current item                                        |
+| `variant`  | `"default" \| "outline"`                       | `"default"` | Visual style                                                  |
+| `size`     | `"default" \| "sm" \| "lg"`                    | `"default"` | Height of the button                                          |
+| `tooltip`  | `string \| TooltipPopupProps`                  |             | Tooltip shown when the sidebar is collapsed to icons          |
+| `render`   | `React.ReactElement`                           |             | Element to render instead of `button`                         |
+
+```tsx
+<SidebarMenuButton isActive render={<Link href="/" />} tooltip="Home">
+  <Icon icon={Home01Icon} />
+  <span>Home</span>
+</SidebarMenuButton>
+```
+
+### SidebarMenuAction
+
+A button placed inside a `SidebarMenuItem`, next to its `SidebarMenuButton`. Set `showOnHover` to only show it while the item is hovered or focused. Combine it with a [Menu](/docs/ui/menu) by rendering it as the `MenuTrigger`.
+
+```tsx
+<SidebarMenuItem>
+  <SidebarMenuButton>Design System</SidebarMenuButton>
+  <SidebarMenuAction showOnHover>
+    <Icon icon={MoreHorizontalIcon} />
+    <span className="sr-only">More</span>
+  </SidebarMenuAction>
+</SidebarMenuItem>
+```
+
+### SidebarMenuSub
+
+A nested list under a `SidebarMenuItem`, built from `SidebarMenuSubItem` and `SidebarMenuSubButton`. `SidebarMenuSubButton` renders an `a` by default and accepts `isActive`, `size` (`"sm"` or `"md"`) and `render`.
+
+```tsx
+<SidebarMenuItem>
+  <SidebarMenuButton>Dashboard</SidebarMenuButton>
+  <SidebarMenuSub>
+    <SidebarMenuSubItem>
+      <SidebarMenuSubButton href="/dashboard/analytics">Analytics</SidebarMenuSubButton>
+    </SidebarMenuSubItem>
+  </SidebarMenuSub>
+</SidebarMenuItem>
+```
+
+### SidebarMenuBadge
+
+A small count or label aligned to the end of a `SidebarMenuItem`.
+
+```tsx
+<SidebarMenuItem>
+  <SidebarMenuButton>Inbox</SidebarMenuButton>
+  <SidebarMenuBadge>24</SidebarMenuBadge>
+</SidebarMenuItem>
+```
+
+### SidebarMenuSkeleton
+
+A loading placeholder for a menu item. Set `showIcon` to include an icon placeholder.
+
+## SidebarSeparator
+
+A [Separator](/docs/ui/separator) styled for use between sidebar sections.
+
+## SidebarTrigger
+
+A ghost icon [Button](/docs/ui/button) that calls `toggleSidebar`. Use `useSidebar` to build a custom trigger.
+
+## SidebarRail
+
+A thin hit area along the edge of the sidebar that toggles it on click.
+
+```tsx
+<Sidebar>
+  <SidebarContent />
+  <SidebarRail />
+</Sidebar>
+```
+
+## SidebarInset
+
+The `main` element next to the sidebar. Required for the `inset` variant, where it renders the page as a rounded card.
+
+## Styling
+
+The parts expose data attributes you can style against:
+
+- `data-state="expanded" | "collapsed"` and `data-collapsible`, `data-variant` and `data-side` on the `Sidebar` element, which is a Tailwind `group`.
+- `data-active` on active `SidebarMenuButton`s and `SidebarMenuSubButton`s.
+
+```tsx
+// Hide an element when the sidebar is collapsed to icons
+<div className="group-data-[collapsible=icon]:hidden" />
+
+// Style an action based on the hovered or active menu button
+<SidebarMenuAction className="peer-data-active/menu-button:opacity-100" />
+```
+
+## Examples
+
+### Floating
+
+Submenus, badges and actions inside a floating sidebar.
+
+<ComponentPreview name="p-sidebar-2" />
+
+### Inset
+
+<ComponentPreview name="p-sidebar-3" />
+
+### Skeleton
+
+<ComponentPreview name="p-sidebar-4" />

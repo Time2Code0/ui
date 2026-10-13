@@ -1,0 +1,76 @@
+---
+title: Northern Lights
+description: An animated aurora background.
+---
+
+<ComponentPreview name="p-northern-lights-1" />
+
+A slowly moving aurora of colored light bands. Use it as the backdrop of a hero section.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/northern-lights
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="northern-lights" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { NorthernLights } from "@/components/marketing/northern-lights"
+```
+
+```tsx
+<section className="relative overflow-hidden">
+  <NorthernLights />
+  <h1 className="relative">Welcome</h1>
+</section>
+```
+
+The lights fill the top of their nearest positioned ancestor, up to `height` pixels, and fade out towards the edges. They're decorative, so they're hidden from assistive technology and ignore pointer events. Put your content in a positioned element so it renders above them.
+
+The effect adapts to dark mode automatically.
+
+### Colors
+
+```tsx
+<NorthernLights colors={["#0ea5e9", "#6366f1", "#ec4899"]} />
+```
+
+## API Reference
+
+| Prop        | Type       | Default                                                     | Description                         |
+| ----------- | ---------- | ----------------------------------------------------------- | ----------------------------------- |
+| `colors`    | `string[]` | `["#006354", "#006efe", "#9440d5", "#f12b82", "#ffae00"]`   | Colors of the light bands           |
+| `height`    | `number`   | `512`                                                       | Height of the lights in pixels      |
+| `angle`     | `number`   | `110`                                                       | Angle of the bands in degrees       |
+| `duration`  | `number`   | `25`                                                        | Seconds for one sweep               |
+| `className` | `string`   |                                                             | Class names for the root element    |

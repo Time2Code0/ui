@@ -1,0 +1,78 @@
+---
+title: Typewriter
+description: Type and delete text with a blinking cursor.
+---
+
+<ComponentPreview name="p-typewriter-1" />
+
+Types text character by character, then deletes it and types the next one, with a blinking cursor.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/typewriter
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="typewriter" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Typewriter } from "@/components/marketing/typewriter"
+```
+
+```tsx
+<Typewriter text={["websites", "dashboards", "design systems"]} />
+```
+
+With a single string the text is typed once and stays. With an array, each entry is typed, held for `waitTime`, deleted and followed by the next. Set `loop` to `false` to stop once the last entry has been typed and deleted.
+
+`Typewriter` renders a `p` element, so don't place it inside another paragraph or a heading. Wrap it in a `div` or `span` instead.
+
+### Cursor
+
+`cursorChar` sets the cursor, which can be any React node, and `cursorClassName` styles it. Set `hideCursorOnType` to only show it while waiting, or `showCursor` to `false` to remove it.
+
+## API Reference
+
+| Prop                      | Type                     | Default  | Description                                      |
+| ------------------------- | ------------------------ | -------- | ------------------------------------------------ |
+| `text`                    | `string \| string[]`     |          | Text or texts to type                            |
+| `speed`                   | `number`                 | `50`     | Milliseconds per typed character                 |
+| `deleteSpeed`             | `number`                 | `30`     | Milliseconds per deleted character               |
+| `waitTime`                | `number`                 | `2000`   | Milliseconds to wait before deleting             |
+| `initialDelay`            | `number`                 | `0`      | Milliseconds before typing starts                |
+| `loop`                    | `boolean`                | `true`   | Starts over after the last text                  |
+| `showCursor`              | `boolean`                | `true`   | Shows the cursor                                 |
+| `hideCursorOnType`        | `boolean`                | `false`  | Hides the cursor while typing and deleting       |
+| `cursorChar`              | `React.ReactNode`        | `"\|"`   | Cursor content                                   |
+| `cursorClassName`         | `string`                 | `"ml-1"` | Class names for the cursor                       |
+| `cursorAnimationVariants` | `{ initial; animate }`   | blink    | Motion variants for the cursor animation         |
+| `className`               | `string`                 |          | Class names for the text                         |

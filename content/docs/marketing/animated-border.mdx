@@ -1,0 +1,139 @@
+---
+title: Animated Border
+description: Animated beam, shimmer and gradient borders.
+---
+
+<ComponentPreview name="p-animated-border-1" />
+
+Three animated border effects: a light beam that travels along the edge, a shimmer that moves around it, and a gradient that flows through the whole border.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/animated-border
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i @base-ui/react cn
+```
+
+### Add the following to your CSS file: [step]
+
+```css
+@theme inline {
+  --animate-border-beam: border-beam var(--duration) linear infinite;
+  --animate-border-full: border-full var(--duration) linear infinite;
+  --animate-border-shiny: border-shiny var(--duration) linear infinite;
+}
+
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes border-full {
+  100% {
+    background-position: 300% 0;
+  }
+}
+
+@keyframes border-shiny {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="animated-border" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Beam, Full, Shiny } from "@/components/marketing/animated-border"
+```
+
+```tsx
+<Beam containerClassName="rounded-xl border p-4">Beam</Beam>
+<Shiny className="rounded-xl p-4">Shiny</Shiny>
+<Full className="rounded-xl p-4">Full</Full>
+```
+
+All three draw the effect in an overlay that inherits the element's border radius, so set `rounded-*` on the element itself. They accept a `render` prop to change the rendered element.
+
+### Beam
+
+`Beam` renders a wrapper with the beam on top. `containerClassName` styles the wrapper and `className` styles the beam overlay. To place the beam on top of an existing border, offset the overlay with `className="-inset-px"`.
+
+```tsx
+<Beam className="-inset-px" containerClassName="rounded-xl border p-4" size={110}>
+  Content
+</Beam>
+```
+
+### Colors
+
+`Beam` and `Shiny` take any CSS color in `colorFrom` and `colorTo`. `Full` always uses the `primary` and `secondary` theme colors.
+
+```tsx
+<Shiny colorFrom="var(--color-success)" colorTo="var(--color-info)">
+  Content
+</Shiny>
+```
+
+## API Reference
+
+### Beam
+
+| Prop                 | Type     | Default                   | Description                                    |
+| -------------------- | -------- | ------------------------- | ---------------------------------------------- |
+| `size`               | `number` | `300`                     | Length of the beam in pixels                   |
+| `duration`           | `number` | `15`                      | Seconds for one lap                            |
+| `delay`              | `number` | `0`                       | Animation delay in seconds                     |
+| `anchor`             | `number` | `90`                      | Offset anchor of the beam in percent           |
+| `borderWidth`        | `number` | `1`                       | Border width in pixels                         |
+| `colorFrom`          | `string` | `"var(--color-primary)"`  | Color at the head of the beam                  |
+| `colorTo`            | `string` | `"var(--color-secondary)"` | Color at the tail of the beam                 |
+| `containerClassName` | `string` |                           | Class names for the wrapper element            |
+
+### Shiny
+
+| Prop          | Type     | Default                    | Description                    |
+| ------------- | -------- | -------------------------- | ------------------------------ |
+| `duration`    | `number` | `14`                       | Seconds for one cycle          |
+| `borderWidth` | `number` | `1`                        | Border width in pixels         |
+| `colorFrom`   | `string` | `"var(--color-primary)"`   | First gradient color           |
+| `colorTo`     | `string` | `"var(--color-secondary)"` | Second gradient color          |
+
+### Full
+
+| Prop          | Type     | Default | Description             |
+| ------------- | -------- | ------- | ----------------------- |
+| `duration`    | `number` | `8`     | Seconds for one cycle   |
+| `borderWidth` | `number` | `1`     | Border width in pixels  |

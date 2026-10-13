@@ -1,0 +1,74 @@
+---
+title: Highlight Card
+description: A card with a light reflection that sweeps across on hover.
+---
+
+<ComponentPreview name="p-highlight-card-1" />
+
+A [Card](/docs/ui/card) with a light reflection that sweeps across it when the cursor enters.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/highlight-card
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Install the following registry dependencies: [step]
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/card
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="highlight-card" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { HighlightCard } from "@/components/marketing/highlight-card"
+```
+
+```tsx
+<HighlightCard angle={20}>
+  <h3>Analytics</h3>
+  <p>Understand how your product is used.</p>
+</HighlightCard>
+```
+
+Children render inside a `CardPanel`. The reflection plays once per hover and resets when the cursor leaves. `angle` tilts the reflection.
+
+The reflection is a translucent white gradient, so it shows best on dark cards.
+
+## API Reference
+
+| Prop        | Type              | Default | Description                         |
+| ----------- | ----------------- | ------- | ----------------------------------- |
+| `angle`     | `number`          | `0`     | Rotation of the reflection in degrees |
+| `className` | `string`          |         | Class names for the card            |
+| `children`  | `React.ReactNode` |         | Card content                        |

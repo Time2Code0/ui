@@ -1,0 +1,87 @@
+---
+title: Gradient Text
+description: Text filled with an optionally animated color gradient.
+---
+
+<ComponentPreview name="p-gradient-text-1" />
+
+Fills text with a gradient from the `primary` to the `secondary` theme color, optionally animated.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/gradient-text
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Add the following to your CSS file: [step]
+
+```css
+@theme inline {
+  --animate-gradient-text: gradient-text 8s linear infinite;
+}
+
+@keyframes gradient-text {
+  100% {
+    background-position: 300% 0;
+  }
+}
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="gradient-text" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { GradientText } from "@/components/marketing/gradient-text"
+```
+
+```tsx
+<h1>
+  Ship <GradientText>faster</GradientText>
+</h1>
+```
+
+`GradientText` renders an inline `span`, so it inherits the font size and weight of its surroundings. Set `animate` to let the gradient flow continuously across the text.
+
+### Custom colors
+
+Override the gradient stops with Tailwind classes. With `animate`, also set the `via-*` color.
+
+```tsx
+<GradientText className="from-success to-info">Custom</GradientText>
+```
+
+## API Reference
+
+Accepts every `span` prop.
+
+| Prop      | Type      | Default | Description                    |
+| --------- | --------- | ------- | ------------------------------ |
+| `animate` | `boolean` | `false` | Animates the gradient          |

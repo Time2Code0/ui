@@ -1,0 +1,74 @@
+---
+title: useNormalizeMotionValue
+description: Reads a Motion value as regular React state.
+---
+
+<ComponentPreview name="p-use-normalize-motion-value-1" />
+
+Turns a Motion value into regular React state. Use it when you need to render a Motion value as text or pass it to code that doesn't understand Motion values.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/use-normalize-motion-value
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="use-normalize-motion-value" title="hooks/use-normalize-motion-value.ts" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { useNormalizeMotionValue } from "@/hooks/use-normalize-motion-value"
+
+function ScrollProgress() {
+  const { scrollYProgress } = useScroll()
+  const progress = useNormalizeMotionValue(scrollYProgress)
+
+  return <span>{Math.round(progress * 100)}%</span>
+}
+```
+
+The component re-renders on every change of the Motion value, which can be once per frame. For animations, keep using the Motion value directly with `motion` components and only normalize values you actually need in render.
+
+## API Reference
+
+```tsx
+function useNormalizeMotionValue<T>(value: MotionValue<T>): T
+```
+
+| Parameter | Type             | Description               |
+| --------- | ---------------- | ------------------------- |
+| `value`   | `MotionValue<T>` | The Motion value to read  |
+
+Returns the current value of `value`, updated on every change.
+
+## Related
+
+- [useCoerceToMotionValue](/docs/hooks/use-coerce-to-motion-value) does the opposite and turns plain values into Motion values.
