@@ -508,7 +508,7 @@ const sidebarMenuButtonVariants = cva(
       variant: {
         default: "hover:bg-accent hover:text-foreground",
         outline:
-          "bg-background shadow-[0_0_0_1px_var(--foreground)/0.1] hover:bg-accent hover:text-foreground hover:shadow-[0_0_0_1px_var(--foreground)/0.05]",
+          "bg-background shadow-[0_0_0_1px_var(--color-foreground)/0.1] hover:bg-accent hover:text-foreground hover:shadow-[0_0_0_1px_var(--color-foreground)/0.05]",
       },
     },
   }

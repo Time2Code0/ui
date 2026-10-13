@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 
 import { cn } from "cn";
 import { motion } from "motion/react";
@@ -20,19 +20,7 @@ export function MagicTextRevealCard({
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [widthPercentage, setWidthPercentage] = useState(0);
-  const [left, setLeft] = useState(0);
-  const [localWidth, setLocalWidth] = useState(0);
   const [isMouseOver, setIsMouseOver] = useState(false);
-
-  useEffect(() => {
-    if (ref.current) {
-      const { left: elementLeft, width: elementWidth } =
-        ref.current.getBoundingClientRect();
-
-      setLeft(elementLeft);
-      setLocalWidth(elementWidth);
-    }
-  }, []);
 
   const onMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -40,8 +28,8 @@ export function MagicTextRevealCard({
     const { clientX } = event;
 
     if (ref.current) {
-      const relativeX = clientX - left;
-      setWidthPercentage((relativeX / localWidth) * 100);
+      const { left, width } = ref.current.getBoundingClientRect();
+      setWidthPercentage(((clientX - left) / width) * 100);
     }
   };
 
@@ -78,7 +66,10 @@ export function MagicTextRevealCard({
                   clipPath: `inset(0 ${100 - widthPercentage}% 0 0)`,
                   opacity: widthPercentage > 0 ? 1 : 0,
                 }
-              : { clipPath: `inset(0 ${100 - widthPercentage}%) 0 0` }
+              : {
+                  clipPath: `inset(0 ${100 - widthPercentage}% 0 0)`,
+                  opacity: 0,
+                }
           }
           className="absolute z-20 bg-background will-change-transform"
           style={{ width: "100%" }}
@@ -118,7 +109,7 @@ const SparklesInternal = () => {
 
   return (
     <div className="absolute inset-0">
-      {new Array(140).fill(crypto.randomUUID()).map((key) => (
+      {Array.from({ length: 140 }, (_, index) => index).map((key) => (
         <motion.span
           animate={{
             left: `calc(${random() * 100}% + ${randomMove()}px)`,
@@ -129,7 +120,7 @@ const SparklesInternal = () => {
           className="inline-block"
           key={key}
           style={{
-            backgroundColor: "white",
+            backgroundColor: "var(--color-foreground)",
             borderRadius: "50%",
             height: "2px",
             left: `${random() * 100}%`,

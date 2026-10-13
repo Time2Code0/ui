@@ -25,7 +25,7 @@ function System({
         "relative w-full",
         debug
           ? "[--guide-color:rgb(255,204,109)]"
-          : "[--guide-color:var(--foreground)]/10",
+          : "[--guide-color:color-mix(in_oklab,var(--color-foreground)_10%,transparent)]",
         "[container-type:inline-size] before:pointer-events-none before:absolute before:-inset-px before:border-[var(--guide-color)] before:[border-width:var(--guide-width)]",
         className
       )}

@@ -15,6 +15,7 @@ export function TextMarker({
   className,
   animate = true,
   transition = { duration: 0.5 },
+  ...props
 }: Props) {
   const variants = {
     hidden: {
@@ -28,9 +29,10 @@ export function TextMarker({
   return (
     <span
       className={cn(
-        "relative border-l-2 border-l-primary pr-2.5 pl-2",
+        "relative isolate border-l-2 border-l-primary pr-2.5 pl-2",
         className
       )}
+      {...props}
     >
       <motion.span
         animate={animate && "show"}

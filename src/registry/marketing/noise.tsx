@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 import { cn } from "cn";
 
 interface Props extends React.HTMLProps<SVGSVGElement> {
@@ -18,6 +20,8 @@ export function Noise({
   style,
   ...props
 }: Props) {
+  const filterId = useId();
+
   return (
     <svg
       className={cn(
@@ -36,7 +40,7 @@ export function Noise({
       {...props}
     >
       <title>noise filter</title>
-      <filter id="noise">
+      <filter id={filterId}>
         <feTurbulence
           baseFrequency={1 / grainSize}
           numOctaves={3}
@@ -67,7 +71,7 @@ export function Noise({
           <feFuncB tableValues="0 1" type="table" />
         </feComponentTransfer>
       </filter>
-      <rect filter="url(#noise)" height="100%" width="100%" />
+      <rect filter={`url(#${filterId})`} height="100%" width="100%" />
     </svg>
   );
 }

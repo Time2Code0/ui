@@ -8,7 +8,7 @@ export function PixelatedText({ pixelSize = 5, className, ...props }: Props) {
   return (
     <span
       className={cn(
-        "bg-clip-text text-transparent [background-image:radial-gradient(circle_at_.4px_.2px,#fff_1px,transparent_0)] [background-size:var(--pixel-size)]",
+        "bg-clip-text text-transparent [background-image:radial-gradient(circle_at_.4px_.2px,var(--color-foreground)_1px,transparent_0)] [background-size:var(--pixel-size)]",
         className
       )}
       style={

@@ -155,7 +155,7 @@ export function AlertFrame({
 }: React.ComponentProps<"div"> & VariantProps<typeof alertFrameVariants>) {
   return (
     <div
-      className={cn(alertFrameVariants({ variant }), className)}
+      className={cn(alertFrameVariants({ ribbon, variant }), className)}
       data-slot="alert-frame"
       {...props}
     />

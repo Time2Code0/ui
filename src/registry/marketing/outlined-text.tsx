@@ -8,7 +8,7 @@ export function OutlinedText({ className, strokeWidth = 1, ...props }: Props) {
   return (
     <span
       className={cn(
-        "text-transparent [-webkit-text-stroke-color:var(--foreground)]",
+        "text-transparent [-webkit-text-stroke-color:var(--color-foreground)]",
         className
       )}
       style={{ WebkitTextStrokeWidth: `${strokeWidth}px` }}

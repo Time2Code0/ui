@@ -25,7 +25,7 @@ export function Marquee({
         className
       )}
     >
-      {new Array(repeat).fill(crypto.randomUUID()).map((key) => (
+      {Array.from({ length: repeat }, (_, index) => index).map((index) => (
         <div
           className={cn(
             "flex shrink-0 justify-around gap-[var(--gap)]",
@@ -35,7 +35,7 @@ export function Marquee({
             pauseOnHover && "group-hover:[animation-play-state:paused]",
             reverse && "[animation-direction:reverse]"
           )}
-          key={key}
+          key={index}
         >
           {children}
         </div>

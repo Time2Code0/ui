@@ -29,12 +29,12 @@ export function HoverRotateText({
         {tokens.map((token, index) => (
           <span
             className="transition-transform duration-500 ease-in-out hover:duration-300 group-hover:-translate-y-full"
-            key={`source-${token}`}
+            key={`source-${index.toString()}`}
             style={{
               transitionDelay: `calc((${index} + 1) * ${delay}ms)`,
             }}
           >
-            <DisplayToken token={token} />
+            <DisplayToken splitBy={splitBy} token={token} />
           </span>
         ))}
       </span>
@@ -43,12 +43,12 @@ export function HoverRotateText({
         {tokens.map((token, index) => (
           <span
             className="flex translate-y-full transition-transform duration-500 ease-in-out hover:duration-300 group-hover:translate-y-0"
-            key={`copy-${token}`}
+            key={`copy-${index.toString()}`}
             style={{
               transitionDelay: `calc((${index} + 1) * ${delay}ms)`,
             }}
           >
-            <DisplayToken token={token} />
+            <DisplayToken splitBy={splitBy} token={token} />
           </span>
         ))}
       </span>

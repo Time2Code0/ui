@@ -50,6 +50,7 @@ export const badgeVariants = cva(
 );
 
 export interface BadgeProps extends useRender.ComponentProps<"span"> {
+  shape?: VariantProps<typeof badgeVariants>["shape"];
   size?: VariantProps<typeof badgeVariants>["size"];
   variant?: VariantProps<typeof badgeVariants>["variant"];
 }
@@ -58,11 +59,12 @@ export function Badge({
   className,
   variant,
   size,
+  shape,
   render,
   ...props
 }: BadgeProps): React.ReactElement {
   const defaultProps = {
-    className: cn(badgeVariants({ className, size, variant })),
+    className: cn(badgeVariants({ className, shape, size, variant })),
     "data-slot": "badge",
   };
   return useRender({

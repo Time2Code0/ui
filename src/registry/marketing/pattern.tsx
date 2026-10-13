@@ -56,7 +56,7 @@ function Square({
         width="100%"
       />
 
-      {squares.length && squares.length > 0 && (
+      {squares.length > 0 ? (
         <svg className="overflow-visible" x={x} y={y}>
           <title>Square Pattern</title>
           {squares.map(([squareX, squareY]) => (
@@ -65,12 +65,12 @@ function Square({
               key={`${squareX}-${squareY}`}
               strokeWidth="0"
               width={width + 1}
-              x={x * width}
-              y={y * height}
+              x={squareX * width}
+              y={squareY * height}
             />
           ))}
         </svg>
-      )}
+      ) : null}
     </svg>
   );
 }
@@ -212,7 +212,7 @@ function Line({ className, style, radius = 315, ...props }: LineProps) {
     <div
       className={cn(
         "pointer-events-none absolute inset-0 size-full",
-        "bg-[image:repeating-linear-gradient(315deg,_--alpha(var(--foreground)/0.05)_0,_--alpha(var(--foreground)/0.05)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed",
+        "bg-[image:repeating-linear-gradient(var(--radius),_--alpha(var(--color-foreground)/0.05)_0,_--alpha(var(--color-foreground)/0.05)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed",
         className
       )}
       style={{ "--radius": `${radius}deg`, ...style } as React.CSSProperties}

@@ -25,8 +25,8 @@ export function MagicText({ children }: { children: React.ReactNode }) {
       }}
       role="none"
     >
-      {new Array(3).fill(crypto.randomUUID()).map((key, index) => (
-        <Star delay={100 * index} hovered={isHovered} key={key} />
+      {[0, 1, 2].map((index) => (
+        <Star delay={100 * index} hovered={isHovered} key={index} />
       ))}
 
       <GradientText animate>{children}</GradientText>

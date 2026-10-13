@@ -30,7 +30,7 @@ export function SpotlightContainer({
 
       const searchChildren = (children: HTMLCollection) => {
         for (const element of children) {
-          if (element.id === "spotlight-card") {
+          if (element.hasAttribute("data-spotlight-card")) {
             boxesResult.push(element as HTMLElement);
           } else {
             searchChildren(element.children);
@@ -120,11 +120,11 @@ export function SpotlightCard({
     className: cn(
       "relative z-0 overflow-hidden rounded-xl bg-foreground/10",
       gradient
-        ? "bg-[radial-gradient(var(--mask-size)_circle_at_var(--mouse-x)_var(--mouse-y),var(--secondary)_0,var(--primary)_50%,transparent_100%)]"
-        : "bg-[radial-gradient(var(--mask-size)_circle_at_var(--mouse-x)_var(--mouse-y),var(--foreground)_0,transparent_100%)]",
+        ? "bg-[radial-gradient(var(--mask-size)_circle_at_var(--mouse-x)_var(--mouse-y),var(--color-secondary)_0,var(--color-primary)_50%,transparent_100%)]"
+        : "bg-[radial-gradient(var(--mask-size)_circle_at_var(--mouse-x)_var(--mouse-y),var(--color-foreground)_0,transparent_100%)]",
       className
     ),
-    id: "spotlight-card",
+    "data-spotlight-card": "",
     style: {
       "--mask-size": `${maskSize}px`,
     } as React.CSSProperties,

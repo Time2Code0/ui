@@ -50,7 +50,7 @@ export function HighlightDots({
             patternUnits="userSpaceOnUse"
             width={16}
           >
-            <circle cx={1} cy={1} fill="#6366f1" id="pattern-circle" r={1} />
+            <circle cx={1} cy={1} id="pattern-circle" r={1} />
           </pattern>
         </defs>
 

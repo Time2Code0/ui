@@ -3,7 +3,7 @@
 import { Fragment, useRef, useState } from "react";
 
 import { cn } from "cn";
-import { useScroll } from "motion/react";
+import { useMotionValueEvent, useScroll } from "motion/react";
 
 export function TextScrollReveal({
   text,
@@ -31,7 +31,7 @@ export function TextScrollReveal({
 
   const [progress, setProgress] = useState(0);
 
-  scrollYProgress.on("change", (latest) => {
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
     setProgress(latest);
   });
 
@@ -47,7 +47,7 @@ export function TextScrollReveal({
               />
 
               {index + 1 < tokens.length && (
-                <Token isActive={false} token="&nbsp;" />
+                <Token isActive={false} token={"\u00A0"} />
               )}
             </Fragment>
           ))}
@@ -61,7 +61,7 @@ function Token({ token, isActive }: { token: string; isActive: boolean }) {
   return (
     <span
       className={cn(
-        "inline-block opacity-10 transition-colors duration-150",
+        "inline-block opacity-10 transition-opacity duration-150",
         isActive && "opacity-100"
       )}
     >

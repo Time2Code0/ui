@@ -22,12 +22,14 @@ interface ConfettiApi {
 
 const ConfettiContext = createContext<ConfettiApi | undefined>(undefined);
 
+const DEFAULT_GLOBAL_OPTIONS: GlobalConfettiOptions = { resize: true };
+
 function Confetti({
   ref,
   children,
   manualStart = false,
   options,
-  globalOptions = { resize: true },
+  globalOptions = DEFAULT_GLOBAL_OPTIONS,
   ...props
 }: Omit<React.ComponentPropsWithRef<"canvas">, "ref"> & {
   ref: React.Ref<ConfettiApi> | undefined;

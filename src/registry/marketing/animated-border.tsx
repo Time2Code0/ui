@@ -24,8 +24,8 @@ export function Beam({
   anchor = 90,
   borderWidth = 1,
   delay = 0,
-  colorFrom = "var(--primary)",
-  colorTo = "var(--secondary)",
+  colorFrom = "var(--color-primary)",
+  colorTo = "var(--color-secondary)",
   render,
   ...props
 }: BorderBeamProps): React.ReactElement {
@@ -73,8 +73,8 @@ export function Shiny({
   className,
   duration = 14,
   borderWidth = 1,
-  colorFrom = "var(--primary)",
-  colorTo = "var(--secondary)",
+  colorFrom = "var(--color-primary)",
+  colorTo = "var(--color-secondary)",
   render,
   ...props
 }: ShinyBorderProps): React.ReactElement {

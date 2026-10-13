@@ -19,7 +19,10 @@ export function ImageComparison({ before, after, className }: Props) {
 
   return (
     <div className={cn("relative border", className)}>
-      <div className="absolute inset-0 z-10">
+      <div
+        className="absolute inset-0 z-10"
+        style={{ clipPath: `inset(0 0 0 ${location}%)` }}
+      >
         <img
           alt="After"
           className="size-full object-cover align-bottom"
@@ -38,6 +41,7 @@ export function ImageComparison({ before, after, className }: Props) {
       />
 
       <input
+        aria-label="Comparison position"
         className="absolute inset-0 z-20 cursor-pointer touch-auto opacity-0"
         max={100}
         min={0}
@@ -55,7 +59,7 @@ export function ImageComparison({ before, after, className }: Props) {
         style={{ left: `${location}%` }}
       >
         <div className="flex size-10 items-center justify-center rounded-full bg-foreground">
-          <Icon className="stroke-background" icon={MoveHorizontalIcon} />
+          <Icon className="text-background" icon={MoveHorizontalIcon} />
         </div>
       </div>
     </div>

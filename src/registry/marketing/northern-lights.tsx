@@ -38,7 +38,7 @@ export function NorthernLights({
               className="fade-in-0 pointer-events-none absolute inset-[-10px] animate-in overflow-hidden text-white blur-[46px] invert transition-opacity duration-500 dark:text-black dark:opacity-70 dark:invert-0"
               style={
                 {
-                  "--background-color": "var(--background)",
+                  "--background-color": "var(--color-background)",
                   "--duration": `${duration}s`,
                   "--gaps": `repeating-linear-gradient(${angle}deg, var(--background-color) 0%, var(--background-color) 7%, transparent 10%,transparent 12%, var(--background-color) 19%)`,
                   "--lights": `repeating-linear-gradient(${angle}deg, ${colors.map((color, index) => `${color} ${(index + 1) * 5 + 5}%`).join(", ")})`,

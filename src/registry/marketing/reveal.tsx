@@ -86,7 +86,7 @@ function From({
   return (
     <div
       className={cn(
-        animationCompleted && "overflow-hidden",
+        !animationCompleted && "overflow-hidden",
         containerClassName
       )}
     >
