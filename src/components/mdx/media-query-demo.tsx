@@ -22,20 +22,20 @@ function Section({
             key={row.label}
           >
             <div className="min-w-0">
-              <code className="relative break-all rounded-md bg-muted px-[0.3rem] py-[0.2rem] font-mono text-[.8125rem] text-muted-foreground outline-none">
+              <code className="relative break-all rounded-md bg-muted px-[0.3rem] py-[0.2rem] font-mono text-[.8125rem] text-foreground-muted outline-none">
                 {row.label}
               </code>
             </div>
             <div className="flex items-center gap-2">
               {row.description ? (
-                <span className="ms-2 text-muted-foreground text-xs">
+                <span className="ms-2 text-foreground-muted text-xs">
                   {row.description}
                 </span>
               ) : null}
               <Badge
                 className={cn(
                   "min-w-11 shrink-0 rounded-full text-xs sm:h-6 sm:min-w-11",
-                  !row.value && "text-muted-foreground"
+                  !row.value && "text-foreground-muted"
                 )}
                 variant={row.value ? "success" : "secondary"}
               >
