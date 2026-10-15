@@ -3,6 +3,8 @@ import type { CodeBlockProps } from "./codeblock";
 import fs from "node:fs/promises";
 import path from "node:path";
 
+import { cacheLife } from "next/cache";
+
 import { cn } from "cn";
 import { asMarkdown, md } from "fumadocs-core/server";
 
@@ -16,6 +18,13 @@ export type ComponentSourceProps = {
   className?: string;
   codeblock?: CodeBlockProps;
 } & ({ name: string; src?: never } | { name?: never; src: string });
+
+async function readSourceFile(src: string) {
+  "use cache";
+  cacheLife("max");
+
+  return await fs.readFile(path.join(process.cwd(), src), "utf-8");
+}
 
 export async function ComponentSource({
   name,
@@ -37,8 +46,7 @@ export async function ComponentSource({
   }
 
   if (src) {
-    const file = await fs.readFile(path.join(process.cwd(), src), "utf-8");
-    code = file;
+    code = await readSourceFile(src);
   }
 
   if (!code) {

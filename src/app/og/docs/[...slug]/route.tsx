@@ -4,8 +4,6 @@ import { ImageResponse } from "next/og";
 import { source } from "@/lib/source";
 import { getPageImageUrl } from "@/lib/utils";
 
-export const revalidate = false;
-
 export async function GET(
   _req: Request,
   { params }: RouteContext<"/og/docs/[...slug]">

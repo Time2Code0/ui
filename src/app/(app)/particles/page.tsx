@@ -15,7 +15,15 @@ export const metadata = createMetadata({
   title: "Browse Particles",
 });
 
-function ParticlesDisplayServer({ categories }: { categories: string[] }) {
+async function ParticlesDisplayServer({
+  searchParams,
+}: Pick<PageProps<"/particles">, "searchParams">) {
+  const { tags } = await searchParams;
+  const categories =
+    (typeof tags === "string" ? tags : tags?.join(","))
+      ?.split(",")
+      .filter(Boolean) ?? [];
+
   const validCategories = categories.filter((category) =>
     particleCategories.includes(category)
   );
@@ -38,13 +46,7 @@ function ParticlesDisplayServer({ categories }: { categories: string[] }) {
   return <ParticlesDisplay selectedCategories={validCategories} />;
 }
 
-export default async function Page({ searchParams }: PageProps<"/particles">) {
-  const { tags } = await searchParams;
-  const categories =
-    (typeof tags === "string" ? tags : tags?.join(","))
-      ?.split(",")
-      .filter(Boolean) ?? [];
-
+export default function Page({ searchParams }: PageProps<"/particles">) {
   return (
     <main className="px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-2xl pt-16 pb-8 text-center md:pt-20">
@@ -61,7 +63,7 @@ export default async function Page({ searchParams }: PageProps<"/particles">) {
       </div>
 
       <Suspense>
-        <ParticlesDisplayServer categories={categories} />
+        <ParticlesDisplayServer searchParams={searchParams} />
       </Suspense>
     </main>
   );

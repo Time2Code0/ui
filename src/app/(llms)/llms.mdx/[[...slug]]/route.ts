@@ -4,8 +4,6 @@ import { type NextRequest, NextResponse } from "next/server";
 import { docsLlms } from "@/lib/llms";
 import { source } from "@/lib/source";
 
-export const revalidate = false;
-
 export async function GET(
   _req: NextRequest,
   { params }: RouteContext<"/llms.mdx/[[...slug]]">

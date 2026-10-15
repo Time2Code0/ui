@@ -1,3 +1,5 @@
+import { cacheLife } from "next/cache";
+
 import { cn } from "cn";
 import { type HighlightOptions, highlight } from "fumadocs-core/highlight";
 
@@ -19,6 +21,11 @@ export async function DynamicCodeBlock({
   codeblock,
   ...options
 }: DynamicCodeBlockProps) {
+  // Shiki reads the current time while highlighting, so the output is cached
+  // to keep it in the prerendered page.
+  "use cache";
+  cacheLife("max");
+
   return await highlight(code, {
     defaultColor: false,
     ...options,
