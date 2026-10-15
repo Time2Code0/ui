@@ -8,10 +8,10 @@ import {
 
 export function Particle() {
   return (
-    <Progress value={60}>
+    <Progress suppressHydrationWarning value={60}>
       <div className="flex items-center justify-between gap-2">
         <ProgressLabel>Export data</ProgressLabel>
-        <ProgressValue />
+        <ProgressValue suppressHydrationWarning />
       </div>
       <ProgressTrack>
         <ProgressIndicator />

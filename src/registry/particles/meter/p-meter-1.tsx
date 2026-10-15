@@ -8,10 +8,10 @@ import {
 
 export function Particle() {
   return (
-    <Meter value={75}>
+    <Meter suppressHydrationWarning value={75}>
       <div className="flex items-center justify-between gap-2">
         <MeterLabel>Storage usage</MeterLabel>
-        <MeterValue />
+        <MeterValue suppressHydrationWarning />
       </div>
       <MeterTrack>
         <MeterIndicator />

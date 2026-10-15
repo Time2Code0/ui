@@ -16,5 +16,5 @@ export function Particle() {
     return () => clearInterval(interval);
   }, []);
 
-  return <Progress value={value} />;
+  return <Progress suppressHydrationWarning value={value} />;
 }

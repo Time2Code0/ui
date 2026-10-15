@@ -10,7 +10,7 @@ import {
 
 export function Particle() {
   return (
-    <Meter max={5} value={3}>
+    <Meter max={5} suppressHydrationWarning value={3}>
       <div className="flex items-center justify-between gap-2">
         <MeterLabel>Rating</MeterLabel>
         <MeterValue>{(_formatted, value) => `${value} / 5`}</MeterValue>

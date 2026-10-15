@@ -10,7 +10,7 @@ import {
 
 export function Particle() {
   return (
-    <Meter max={1000} min={500} value={700}>
+    <Meter max={1000} min={500} suppressHydrationWarning value={700}>
       <div className="flex items-center justify-between gap-2">
         <MeterLabel>Bandwidth (Mbps)</MeterLabel>
         <MeterValue>{(_formatted, value) => value}</MeterValue>
