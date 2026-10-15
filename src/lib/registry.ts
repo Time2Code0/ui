@@ -1,47 +1,20 @@
 import "server-only";
 
+import { cache } from "react";
+
 import { loadRegistryItem } from "shadcn/registry";
 
-import { Index } from "@/registry/__index__";
-
-type RegistryName = keyof typeof Index;
-
-type RegistryItem = Awaited<ReturnType<typeof loadRegistryItem>>;
-
-type RegistryItemWithComponent = RegistryItem & {
-  component: (typeof Index)[RegistryName];
-};
-
-const cache = new Map<RegistryName, RegistryItemWithComponent>();
-
-export async function getRegistryItem(registryName: string) {
-  if (!Object.hasOwn(Index, registryName)) {
-    return null;
-  }
-
-  const name = registryName as RegistryName;
-
-  const cached = cache.get(name);
-
-  if (cached) {
-    return cached;
-  }
-
+export const getRegistryItem = cache(async (name: string) => {
   const item = await loadRegistryItem(name);
 
-  const result: RegistryItemWithComponent = {
+  return {
     ...item,
-    component: Index[name],
     files: item.files?.map((file) => ({
       ...file,
       content: file.content ? fixImport(file.content) : undefined,
     })),
   };
-
-  cache.set(name, result);
-
-  return result;
-}
+});
 
 function fixImport(content: string) {
   const regex = /@\/(.+?)\/((?:.*?\/)?(?:components|ui|hooks|lib))\/([\w-]+)/g;

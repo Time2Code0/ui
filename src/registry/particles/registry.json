@@ -1875,7 +1875,7 @@
         "https://design.time2code.dev/r/switch.json"
       ],
       "files": [{ "path": "grid/p-grid-1.tsx", "type": "registry:block" }],
-      "meta": { "className": "w-full max-w-3xl" }
+      "meta": { "className": "w-full max-w-3xl", "colSpan": 2 }
     },
     {
       "name": "p-grid-2",
@@ -1884,7 +1884,7 @@
       "categories": ["grid"],
       "registryDependencies": ["https://design.time2code.dev/r/grid.json"],
       "files": [{ "path": "grid/p-grid-2.tsx", "type": "registry:block" }],
-      "meta": { "className": "w-full max-w-3xl" }
+      "meta": { "className": "w-full max-w-3xl", "colSpan": 2 }
     },
     {
       "name": "p-grid-3",
@@ -1893,7 +1893,7 @@
       "categories": ["grid"],
       "registryDependencies": ["https://design.time2code.dev/r/grid.json"],
       "files": [{ "path": "grid/p-grid-3.tsx", "type": "registry:block" }],
-      "meta": { "className": "w-full max-w-3xl" }
+      "meta": { "className": "w-full max-w-3xl", "colSpan": 2 }
     },
     {
       "name": "p-grid-4",
@@ -1902,7 +1902,7 @@
       "categories": ["grid"],
       "registryDependencies": ["https://design.time2code.dev/r/grid.json"],
       "files": [{ "path": "grid/p-grid-4.tsx", "type": "registry:block" }],
-      "meta": { "className": "w-full max-w-3xl" }
+      "meta": { "className": "w-full max-w-3xl", "colSpan": 2 }
     },
     {
       "name": "p-grid-5",
@@ -1911,7 +1911,7 @@
       "categories": ["grid"],
       "registryDependencies": ["https://design.time2code.dev/r/grid.json"],
       "files": [{ "path": "grid/p-grid-5.tsx", "type": "registry:block" }],
-      "meta": { "className": "w-full max-w-3xl" }
+      "meta": { "className": "w-full max-w-3xl", "colSpan": 2 }
     },
     {
       "name": "p-grid-6",
@@ -1920,7 +1920,7 @@
       "categories": ["grid"],
       "registryDependencies": ["https://design.time2code.dev/r/grid.json"],
       "files": [{ "path": "grid/p-grid-6.tsx", "type": "registry:block" }],
-      "meta": { "className": "w-full max-w-3xl" }
+      "meta": { "className": "w-full max-w-3xl", "colSpan": 2 }
     },
     {
       "name": "p-grid-7",
@@ -1929,7 +1929,7 @@
       "categories": ["grid"],
       "registryDependencies": ["https://design.time2code.dev/r/grid.json"],
       "files": [{ "path": "grid/p-grid-7.tsx", "type": "registry:block" }],
-      "meta": { "className": "w-full max-w-3xl" }
+      "meta": { "className": "w-full max-w-3xl", "colSpan": 2 }
     },
     {
       "name": "p-grid-8",
@@ -1938,7 +1938,7 @@
       "categories": ["grid"],
       "registryDependencies": ["https://design.time2code.dev/r/grid.json"],
       "files": [{ "path": "grid/p-grid-8.tsx", "type": "registry:block" }],
-      "meta": { "className": "w-full max-w-3xl" }
+      "meta": { "className": "w-full max-w-3xl", "colSpan": 2 }
     },
     {
       "name": "p-group-1",
@@ -3770,7 +3770,7 @@
         "https://design.time2code.dev/r/table.json"
       ],
       "files": [{ "path": "table/p-table-1.tsx", "type": "registry:block" }],
-      "meta": { "className": "w-full sm:max-w-4xl" }
+      "meta": { "className": "w-full sm:max-w-4xl", "colSpan": 2 }
     },
     {
       "name": "p-table-5",
@@ -3782,7 +3782,7 @@
         "https://design.time2code.dev/r/table.json"
       ],
       "files": [{ "path": "table/p-table-5.tsx", "type": "registry:block" }],
-      "meta": { "className": "w-full sm:max-w-4xl" }
+      "meta": { "className": "w-full sm:max-w-4xl", "colSpan": 2 }
     },
     {
       "name": "p-table-6",
@@ -3797,7 +3797,7 @@
         "https://design.time2code.dev/r/table.json"
       ],
       "files": [{ "path": "table/p-table-6.tsx", "type": "registry:block" }],
-      "meta": { "className": "w-full sm:max-w-4xl" }
+      "meta": { "className": "w-full sm:max-w-4xl", "colSpan": 2 }
     },
     {
       "name": "p-table-7",
@@ -3810,7 +3810,7 @@
         "https://design.time2code.dev/r/table.json"
       ],
       "files": [{ "path": "table/p-table-7.tsx", "type": "registry:block" }],
-      "meta": { "className": "w-full sm:max-w-4xl" }
+      "meta": { "className": "w-full sm:max-w-4xl", "colSpan": 2 }
     },
     {
       "name": "p-tabs-1",

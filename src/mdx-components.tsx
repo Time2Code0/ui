@@ -1,6 +1,5 @@
 import { cn } from "cn";
 
-import { CodeTabs } from "@/components/mdx/code-tabs";
 import {
   CodeBlock,
   CodeBlockTab,
@@ -8,9 +7,16 @@ import {
   CodeBlockTabsList,
   CodeBlockTabsTrigger,
   Pre,
-} from "@/components/mdx/codeblock";
-import { ComponentPreview } from "@/components/mdx/component-preview";
-import { ComponentSource } from "@/components/mdx/component-source";
+} from "@/components/codeblock";
+import {
+  ComponentPreview,
+  type ComponentPreviewProps,
+} from "@/components/component-preview";
+import {
+  ComponentSource,
+  type ComponentSourceProps,
+} from "@/components/component-source";
+import { CodeTabs } from "@/components/mdx/code-tabs";
 import { Heading } from "@/components/mdx/heading";
 import { MediaQueryDemo } from "@/components/mdx/media-query-demo";
 import {
@@ -48,12 +54,30 @@ export const mdxComponents = {
     />
   ),
   CodeBlockTab,
-  CodeBlockTabs,
+  CodeBlockTabs: ({
+    className,
+    ...props
+  }: React.ComponentProps<typeof Tabs>) => (
+    <CodeBlockTabs
+      className={cn("not-typeset full-width", className)}
+      {...props}
+    />
+  ),
   CodeBlockTabsList,
   CodeBlockTabsTrigger,
   CodeTabs,
-  ComponentPreview,
-  ComponentSource,
+  ComponentPreview: ({ className, ...props }: ComponentPreviewProps) => (
+    <ComponentPreview
+      className={cn("not-typeset full-width", className)}
+      {...props}
+    />
+  ),
+  ComponentSource: ({ className, ...props }: ComponentSourceProps) => (
+    <ComponentSource
+      className={cn("not-typeset full-width", className)}
+      {...props}
+    />
+  ),
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <Heading as="h1" {...props} />
   ),
@@ -85,8 +109,8 @@ export const mdxComponents = {
       {...props}
     />
   ),
-  pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
-    <CodeBlock {...props}>
+  pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
+    <CodeBlock className={cn("not-typeset full-width", className)} {...props}>
       <Pre>{props.children}</Pre>
     </CodeBlock>
   ),

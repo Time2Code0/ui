@@ -78,7 +78,7 @@ export function CodeBlock({
   return (
     <figure
       className={cn(
-        "not-typeset full-width shiki relative my-4 border-y bg-background-muted text-sm",
+        "shiki relative my-4 border-y bg-background-muted text-sm",
         className
       )}
       dir="ltr"
@@ -91,7 +91,7 @@ export function CodeBlock({
           {typeof icon === "string" ? (
             <div
               className="[&_svg]:size-3.5"
-              // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+              // biome-ignore lint/security/noDangerouslySetInnerHtml: icon is html svg
               dangerouslySetInnerHTML={{
                 __html: icon,
               }}
@@ -111,7 +111,7 @@ export function CodeBlock({
       )}
 
       <ScrollArea
-        className="full-width no-typeset **:data-[slot=scroll-area-scrollbar]:data-[orientation=horizontal]:mx-2 **:data-[slot=scroll-area-scrollbar]:data-[orientation=vertical]:my-2 **:data-[slot=scroll-area-viewport]:max-h-[600px]"
+        className="**:data-[slot=scroll-area-scrollbar]:data-[orientation=horizontal]:mx-2 **:data-[slot=scroll-area-scrollbar]:data-[orientation=vertical]:my-2 **:data-[slot=scroll-area-viewport]:max-h-[600px]"
         ref={areaRef}
         scrollFade
         style={{
@@ -182,10 +182,7 @@ export function CodeBlockTabs({
 }: React.ComponentProps<typeof Tabs>) {
   return (
     <Tabs
-      className={cn(
-        "not-typeset full-width my-4 gap-0 border-y bg-background-muted",
-        className
-      )}
+      className={cn("my-4 gap-0 border-y bg-background-muted", className)}
       {...props}
     >
       {props.children}

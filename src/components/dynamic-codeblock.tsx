@@ -1,7 +1,7 @@
 import { cn } from "cn";
 import { type HighlightOptions, highlight } from "fumadocs-core/highlight";
 
-import { CodeBlock, type CodeBlockProps, Pre } from "./mdx/codeblock";
+import { CodeBlock, type CodeBlockProps, Pre } from "./codeblock";
 
 export type DynamicCodeBlockProps = HighlightOptions & {
   code: string;

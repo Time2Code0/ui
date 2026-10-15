@@ -3,7 +3,7 @@ import { Children, isValidElement } from "react";
 import { asMarkdown, md } from "fumadocs-core/server";
 import { llms } from "fumadocs-core/source";
 
-import { ComponentSource } from "@/components/mdx/component-source";
+import { ComponentSource } from "@/components/component-source";
 
 import { source } from "./source";
 

@@ -1,15 +1,20 @@
+import type { CodeBlockProps } from "./codeblock";
+
 import fs from "node:fs/promises";
 import path from "node:path";
 
+import { cn } from "cn";
 import { asMarkdown, md } from "fumadocs-core/server";
 
 import { getRegistryItem } from "@/lib/registry";
 
-import { DynamicCodeBlock } from "../dynamic-codeblock";
+import { DynamicCodeBlock } from "./dynamic-codeblock";
 
-type ComponentSourceProps = {
+export type ComponentSourceProps = {
   language?: string;
   title?: string;
+  className?: string;
+  codeblock?: CodeBlockProps;
 } & ({ name: string; src?: never } | { name?: never; src: string });
 
 export async function ComponentSource({
@@ -17,6 +22,8 @@ export async function ComponentSource({
   src,
   title,
   language,
+  className,
+  codeblock,
 }: ComponentSourceProps) {
   if (!(name || src)) {
     return null;
@@ -26,7 +33,7 @@ export async function ComponentSource({
 
   if (name) {
     const item = await getRegistryItem(name);
-    code = item?.files?.[0]?.content;
+    code = item.files?.[0]?.content;
   }
 
   if (src) {
@@ -47,7 +54,11 @@ export async function ComponentSource({
   return (
     <DynamicCodeBlock
       code={code}
-      codeblock={{ className: "my-4", title }}
+      codeblock={{
+        ...codeblock,
+        className: cn("my-4", className, codeblock?.className),
+        title,
+      }}
       lang={lang}
     />
   );
