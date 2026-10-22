@@ -7,7 +7,9 @@
       "description": "Basic accordion",
       "categories": ["accordion"],
       "registryDependencies": ["https://design.time2code.dev/r/accordion.json"],
-      "files": [{ "path": "accordion/p-accordion-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "accordion/p-accordion-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full sm:max-w-[80%]" }
     },
     {
@@ -16,7 +18,9 @@
       "description": "Accordion with one panel open",
       "categories": ["accordion"],
       "registryDependencies": ["https://design.time2code.dev/r/accordion.json"],
-      "files": [{ "path": "accordion/p-accordion-2.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "accordion/p-accordion-2.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full sm:max-w-[80%]" }
     },
     {
@@ -25,7 +29,9 @@
       "description": "Accordion allowing multiple panels open",
       "categories": ["accordion"],
       "registryDependencies": ["https://design.time2code.dev/r/accordion.json"],
-      "files": [{ "path": "accordion/p-accordion-3.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "accordion/p-accordion-3.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full sm:max-w-[80%]" }
     },
     {
@@ -37,7 +43,9 @@
         "https://design.time2code.dev/r/accordion.json",
         "https://design.time2code.dev/r/button.json"
       ],
-      "files": [{ "path": "accordion/p-accordion-4.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "accordion/p-accordion-4.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full sm:max-w-[80%]" }
     },
     {
@@ -151,7 +159,12 @@
         "https://design.time2code.dev/r/alert-dialog.json",
         "https://design.time2code.dev/r/button.json"
       ],
-      "files": [{ "path": "alert-dialog/p-alert-dialog-1.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "alert-dialog/p-alert-dialog-1.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-alert-dialog-2",
@@ -162,7 +175,12 @@
         "https://design.time2code.dev/r/alert-dialog.json",
         "https://design.time2code.dev/r/button.json"
       ],
-      "files": [{ "path": "alert-dialog/p-alert-dialog-2.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "alert-dialog/p-alert-dialog-2.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-animate-1",
@@ -183,7 +201,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/animated-border.json"
       ],
-      "files": [{ "path": "animated-border/p-animated-border-1.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "animated-border/p-animated-border-1.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-animated-size-container-1",
@@ -195,7 +218,10 @@
         "https://design.time2code.dev/r/tabs.json"
       ],
       "files": [
-        { "path": "animated-size-container/p-animated-size-container-1.tsx", "type": "registry:block" }
+        {
+          "path": "animated-size-container/p-animated-size-container-1.tsx",
+          "type": "registry:block"
+        }
       ],
       "meta": { "className": "w-full max-w-sm" }
     },
@@ -205,7 +231,9 @@
       "description": "Text laid out along a circle",
       "categories": ["arc-text"],
       "registryDependencies": ["https://design.time2code.dev/r/arc-text.json"],
-      "files": [{ "path": "arc-text/p-arc-text-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "arc-text/p-arc-text-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-autocomplete-1",
@@ -215,7 +243,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/autocomplete.json"
       ],
-      "files": [{ "path": "autocomplete/p-autocomplete-1.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "autocomplete/p-autocomplete-1.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -226,7 +259,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/autocomplete.json"
       ],
-      "files": [{ "path": "autocomplete/p-autocomplete-2.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "autocomplete/p-autocomplete-2.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -237,7 +275,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/autocomplete.json"
       ],
-      "files": [{ "path": "autocomplete/p-autocomplete-3.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "autocomplete/p-autocomplete-3.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -248,7 +291,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/autocomplete.json"
       ],
-      "files": [{ "path": "autocomplete/p-autocomplete-4.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "autocomplete/p-autocomplete-4.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -260,7 +308,12 @@
         "https://design.time2code.dev/r/autocomplete.json",
         "https://design.time2code.dev/r/label.json"
       ],
-      "files": [{ "path": "autocomplete/p-autocomplete-5.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "autocomplete/p-autocomplete-5.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -271,7 +324,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/autocomplete.json"
       ],
-      "files": [{ "path": "autocomplete/p-autocomplete-6.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "autocomplete/p-autocomplete-6.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -282,7 +340,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/autocomplete.json"
       ],
-      "files": [{ "path": "autocomplete/p-autocomplete-7.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "autocomplete/p-autocomplete-7.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -293,7 +356,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/autocomplete.json"
       ],
-      "files": [{ "path": "autocomplete/p-autocomplete-8.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "autocomplete/p-autocomplete-8.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -304,7 +372,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/autocomplete.json"
       ],
-      "files": [{ "path": "autocomplete/p-autocomplete-9.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "autocomplete/p-autocomplete-9.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -315,7 +388,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/autocomplete.json"
       ],
-      "files": [{ "path": "autocomplete/p-autocomplete-10.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "autocomplete/p-autocomplete-10.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -326,7 +404,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/autocomplete.json"
       ],
-      "files": [{ "path": "autocomplete/p-autocomplete-11.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "autocomplete/p-autocomplete-11.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -338,7 +421,12 @@
         "https://design.time2code.dev/r/autocomplete.json",
         "https://design.time2code.dev/r/loading.json"
       ],
-      "files": [{ "path": "autocomplete/p-autocomplete-12.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "autocomplete/p-autocomplete-12.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -352,7 +440,12 @@
         "https://design.time2code.dev/r/field.json",
         "https://design.time2code.dev/r/form-baseui.json"
       ],
-      "files": [{ "path": "autocomplete/p-autocomplete-13.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "autocomplete/p-autocomplete-13.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -365,7 +458,12 @@
         "https://design.time2code.dev/r/autocomplete.json",
         "https://design.time2code.dev/r/icon.json"
       ],
-      "files": [{ "path": "autocomplete/p-autocomplete-14.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "autocomplete/p-autocomplete-14.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -547,7 +645,9 @@
         "https://design.time2code.dev/r/button.json",
         "https://design.time2code.dev/r/menu.json"
       ],
-      "files": [{ "path": "breadcrumb/p-breadcrumb-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "breadcrumb/p-breadcrumb-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-breadcrumb-2",
@@ -557,7 +657,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/breadcrumb.json"
       ],
-      "files": [{ "path": "breadcrumb/p-breadcrumb-2.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "breadcrumb/p-breadcrumb-2.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-button-1",
@@ -747,7 +849,9 @@
       "description": "Basic calendar",
       "categories": ["calendar"],
       "registryDependencies": ["https://design.time2code.dev/r/calendar.json"],
-      "files": [{ "path": "calendar/p-calendar-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "calendar/p-calendar-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-calendar-2",
@@ -755,7 +859,9 @@
       "description": "Calendar with custom cell size",
       "categories": ["calendar"],
       "registryDependencies": ["https://design.time2code.dev/r/calendar.json"],
-      "files": [{ "path": "calendar/p-calendar-2.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "calendar/p-calendar-2.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-calendar-3",
@@ -764,7 +870,9 @@
       "categories": ["calendar"],
       "dependencies": ["@daypicker/react"],
       "registryDependencies": ["https://design.time2code.dev/r/calendar.json"],
-      "files": [{ "path": "calendar/p-calendar-3.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "calendar/p-calendar-3.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-calendar-4",
@@ -772,7 +880,9 @@
       "description": "Calendar with month/year dropdown navigation",
       "categories": ["calendar"],
       "registryDependencies": ["https://design.time2code.dev/r/calendar.json"],
-      "files": [{ "path": "calendar/p-calendar-4.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "calendar/p-calendar-4.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-calendar-5",
@@ -784,7 +894,9 @@
         "https://design.time2code.dev/r/calendar.json",
         "https://design.time2code.dev/r/select.json"
       ],
-      "files": [{ "path": "calendar/p-calendar-5.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "calendar/p-calendar-5.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-calendar-6",
@@ -796,7 +908,9 @@
         "https://design.time2code.dev/r/calendar.json",
         "https://design.time2code.dev/r/combobox.json"
       ],
-      "files": [{ "path": "calendar/p-calendar-6.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "calendar/p-calendar-6.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-card-1",
@@ -825,7 +939,9 @@
         "https://design.time2code.dev/r/checkbox.json",
         "https://design.time2code.dev/r/label.json"
       ],
-      "files": [{ "path": "checkbox/p-checkbox-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "checkbox/p-checkbox-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-checkbox-2",
@@ -836,7 +952,9 @@
         "https://design.time2code.dev/r/checkbox.json",
         "https://design.time2code.dev/r/label.json"
       ],
-      "files": [{ "path": "checkbox/p-checkbox-2.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "checkbox/p-checkbox-2.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-checkbox-3",
@@ -847,7 +965,9 @@
         "https://design.time2code.dev/r/checkbox.json",
         "https://design.time2code.dev/r/label.json"
       ],
-      "files": [{ "path": "checkbox/p-checkbox-3.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "checkbox/p-checkbox-3.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-checkbox-4",
@@ -858,7 +978,9 @@
         "https://design.time2code.dev/r/checkbox.json",
         "https://design.time2code.dev/r/label.json"
       ],
-      "files": [{ "path": "checkbox/p-checkbox-4.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "checkbox/p-checkbox-4.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-checkbox-5",
@@ -871,7 +993,9 @@
         "https://design.time2code.dev/r/field.json",
         "https://design.time2code.dev/r/form-baseui.json"
       ],
-      "files": [{ "path": "checkbox/p-checkbox-5.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "checkbox/p-checkbox-5.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-checkbox-group-1",
@@ -883,7 +1007,12 @@
         "https://design.time2code.dev/r/checkbox-group.json",
         "https://design.time2code.dev/r/label.json"
       ],
-      "files": [{ "path": "checkbox-group/p-checkbox-group-1.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "checkbox-group/p-checkbox-group-1.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-checkbox-group-2",
@@ -895,7 +1024,12 @@
         "https://design.time2code.dev/r/checkbox-group.json",
         "https://design.time2code.dev/r/label.json"
       ],
-      "files": [{ "path": "checkbox-group/p-checkbox-group-2.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "checkbox-group/p-checkbox-group-2.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-checkbox-group-3",
@@ -907,7 +1041,12 @@
         "https://design.time2code.dev/r/checkbox-group.json",
         "https://design.time2code.dev/r/label.json"
       ],
-      "files": [{ "path": "checkbox-group/p-checkbox-group-3.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "checkbox-group/p-checkbox-group-3.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-checkbox-group-4",
@@ -919,7 +1058,12 @@
         "https://design.time2code.dev/r/checkbox-group.json",
         "https://design.time2code.dev/r/label.json"
       ],
-      "files": [{ "path": "checkbox-group/p-checkbox-group-4.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "checkbox-group/p-checkbox-group-4.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-checkbox-group-5",
@@ -934,7 +1078,12 @@
         "https://design.time2code.dev/r/fieldset.json",
         "https://design.time2code.dev/r/form-baseui.json"
       ],
-      "files": [{ "path": "checkbox-group/p-checkbox-group-5.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "checkbox-group/p-checkbox-group-5.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-collapsible-1",
@@ -946,7 +1095,9 @@
         "https://design.time2code.dev/r/collapsible.json",
         "https://design.time2code.dev/r/icon.json"
       ],
-      "files": [{ "path": "collapsible/p-collapsible-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "collapsible/p-collapsible-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-combobox-1",
@@ -954,7 +1105,9 @@
       "description": "Basic combobox",
       "categories": ["combobox", "input"],
       "registryDependencies": ["https://design.time2code.dev/r/combobox.json"],
-      "files": [{ "path": "combobox/p-combobox-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -963,7 +1116,9 @@
       "description": "Disabled combobox",
       "categories": ["combobox", "input", "disabled"],
       "registryDependencies": ["https://design.time2code.dev/r/combobox.json"],
-      "files": [{ "path": "combobox/p-combobox-2.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-2.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -972,7 +1127,9 @@
       "description": "Small combobox",
       "categories": ["combobox", "input"],
       "registryDependencies": ["https://design.time2code.dev/r/combobox.json"],
-      "files": [{ "path": "combobox/p-combobox-3.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-3.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -981,7 +1138,9 @@
       "description": "Large combobox",
       "categories": ["combobox", "input"],
       "registryDependencies": ["https://design.time2code.dev/r/combobox.json"],
-      "files": [{ "path": "combobox/p-combobox-4.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-4.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -993,7 +1152,9 @@
         "https://design.time2code.dev/r/combobox.json",
         "https://design.time2code.dev/r/label.json"
       ],
-      "files": [{ "path": "combobox/p-combobox-5.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-5.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1002,7 +1163,9 @@
       "description": "Combobox auto highlighting the first option",
       "categories": ["combobox", "input"],
       "registryDependencies": ["https://design.time2code.dev/r/combobox.json"],
-      "files": [{ "path": "combobox/p-combobox-6.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-6.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1011,7 +1174,9 @@
       "description": "Combobox with clear button",
       "categories": ["combobox", "input"],
       "registryDependencies": ["https://design.time2code.dev/r/combobox.json"],
-      "files": [{ "path": "combobox/p-combobox-7.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-7.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1020,7 +1185,9 @@
       "description": "Combobox with grouped items",
       "categories": ["combobox", "input"],
       "registryDependencies": ["https://design.time2code.dev/r/combobox.json"],
-      "files": [{ "path": "combobox/p-combobox-8.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-8.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1029,7 +1196,9 @@
       "description": "Combobox with multiple selection",
       "categories": ["combobox", "input"],
       "registryDependencies": ["https://design.time2code.dev/r/combobox.json"],
-      "files": [{ "path": "combobox/p-combobox-9.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-9.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1043,7 +1212,9 @@
         "https://design.time2code.dev/r/combobox.json",
         "https://design.time2code.dev/r/icon.json"
       ],
-      "files": [{ "path": "combobox/p-combobox-10.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-10.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1057,7 +1228,9 @@
         "https://design.time2code.dev/r/field.json",
         "https://design.time2code.dev/r/form-baseui.json"
       ],
-      "files": [{ "path": "combobox/p-combobox-11.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-11.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1071,7 +1244,9 @@
         "https://design.time2code.dev/r/field.json",
         "https://design.time2code.dev/r/form-baseui.json"
       ],
-      "files": [{ "path": "combobox/p-combobox-12.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-12.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1084,7 +1259,9 @@
         "https://design.time2code.dev/r/combobox.json",
         "https://design.time2code.dev/r/icon.json"
       ],
-      "files": [{ "path": "combobox/p-combobox-13.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-13.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1097,7 +1274,9 @@
         "https://design.time2code.dev/r/combobox.json",
         "https://design.time2code.dev/r/icon.json"
       ],
-      "files": [{ "path": "combobox/p-combobox-14.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-14.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1111,7 +1290,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/select.json"
       ],
-      "files": [{ "path": "combobox/p-combobox-18.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "combobox/p-combobox-18.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1137,7 +1318,9 @@
         "https://design.time2code.dev/r/button.json",
         "https://design.time2code.dev/r/confetti.json"
       ],
-      "files": [{ "path": "confetti/p-confetti-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "confetti/p-confetti-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full" }
     },
     {
@@ -1148,7 +1331,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/context-menu.json"
       ],
-      "files": [{ "path": "context-menu/p-context-menu-1.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "context-menu/p-context-menu-1.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-sm" }
     },
     {
@@ -1159,7 +1347,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/context-menu.json"
       ],
-      "files": [{ "path": "context-menu/p-context-menu-2.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "context-menu/p-context-menu-2.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-sm" }
     },
     {
@@ -1170,7 +1363,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/context-menu.json"
       ],
-      "files": [{ "path": "context-menu/p-context-menu-3.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "context-menu/p-context-menu-3.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-sm" }
     },
     {
@@ -1181,7 +1379,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/context-menu.json"
       ],
-      "files": [{ "path": "context-menu/p-context-menu-4.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "context-menu/p-context-menu-4.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-sm" }
     },
     {
@@ -1192,7 +1395,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/context-menu.json"
       ],
-      "files": [{ "path": "context-menu/p-context-menu-5.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "context-menu/p-context-menu-5.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-sm" }
     },
     {
@@ -1205,7 +1413,12 @@
         "https://design.time2code.dev/r/context-menu.json",
         "https://design.time2code.dev/r/icon.json"
       ],
-      "files": [{ "path": "context-menu/p-context-menu-6.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "context-menu/p-context-menu-6.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-sm" }
     },
     {
@@ -1216,7 +1429,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/context-menu.json"
       ],
-      "files": [{ "path": "context-menu/p-context-menu-7.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "context-menu/p-context-menu-7.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-sm" }
     },
     {
@@ -1227,7 +1445,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/context-menu.json"
       ],
-      "files": [{ "path": "context-menu/p-context-menu-8.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "context-menu/p-context-menu-8.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-sm" }
     },
     {
@@ -1253,7 +1476,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/popover.json"
       ],
-      "files": [{ "path": "date-picker/p-date-picker-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "date-picker/p-date-picker-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1272,7 +1497,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/popover.json"
       ],
-      "files": [{ "path": "date-picker/p-date-picker-2.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "date-picker/p-date-picker-2.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1300,7 +1527,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/popover.json"
       ],
-      "files": [{ "path": "date-picker/p-date-picker-3.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "date-picker/p-date-picker-3.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1315,7 +1544,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/popover.json"
       ],
-      "files": [{ "path": "date-picker/p-date-picker-4.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "date-picker/p-date-picker-4.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1331,7 +1562,9 @@
         "https://design.time2code.dev/r/input-group.json",
         "https://design.time2code.dev/r/popover.json"
       ],
-      "files": [{ "path": "date-picker/p-date-picker-5.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "date-picker/p-date-picker-5.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1346,7 +1579,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/popover.json"
       ],
-      "files": [{ "path": "date-picker/p-date-picker-6.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "date-picker/p-date-picker-6.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1798,7 +2033,9 @@
         "https://design.time2code.dev/r/fieldset.json",
         "https://design.time2code.dev/r/input.json"
       ],
-      "files": [{ "path": "fieldset/p-fieldset-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "fieldset/p-fieldset-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1812,7 +2049,9 @@
         "https://design.time2code.dev/r/fieldset.json",
         "https://design.time2code.dev/r/input.json"
       ],
-      "files": [{ "path": "fieldset/p-fieldset-2.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "fieldset/p-fieldset-2.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -1862,7 +2101,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/gradient-text.json"
       ],
-      "files": [{ "path": "gradient-text/p-gradient-text-1.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "gradient-text/p-gradient-text-1.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-grid-1",
@@ -2143,7 +2387,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/hero-image.json"
       ],
-      "files": [{ "path": "hero-image/p-hero-image-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "hero-image/p-hero-image-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-2xl" }
     },
     {
@@ -2154,7 +2400,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/highlight-card.json"
       ],
-      "files": [{ "path": "highlight-card/p-highlight-card-1.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "highlight-card/p-highlight-card-1.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-highlight-dots-1",
@@ -2164,7 +2415,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/highlight-dots.json"
       ],
-      "files": [{ "path": "highlight-dots/p-highlight-dots-1.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "highlight-dots/p-highlight-dots-1.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full" }
     },
     {
@@ -2176,7 +2432,10 @@
         "https://design.time2code.dev/r/hover-rotate-text.json"
       ],
       "files": [
-        { "path": "hover-rotate-text/p-hover-rotate-text-1.tsx", "type": "registry:block" }
+        {
+          "path": "hover-rotate-text/p-hover-rotate-text-1.tsx",
+          "type": "registry:block"
+        }
       ]
     },
     {
@@ -2188,7 +2447,10 @@
         "https://design.time2code.dev/r/image-comparison.json"
       ],
       "files": [
-        { "path": "image-comparison/p-image-comparison-1.tsx", "type": "registry:block" }
+        {
+          "path": "image-comparison/p-image-comparison-1.tsx",
+          "type": "registry:block"
+        }
       ],
       "meta": { "className": "w-full max-w-2xl" }
     },
@@ -2200,7 +2462,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/image-zoom.json"
       ],
-      "files": [{ "path": "image-zoom/p-image-zoom-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "image-zoom/p-image-zoom-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-xl" }
     },
     {
@@ -2295,7 +2559,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/input-group.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2308,7 +2574,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/input-group.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-2.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-2.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2319,7 +2587,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/input-group.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-3.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-3.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2330,7 +2600,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/input-group.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-4.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-4.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2341,7 +2613,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/input-group.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-5.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-5.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2353,7 +2627,9 @@
         "https://design.time2code.dev/r/input-group.json",
         "https://design.time2code.dev/r/number-field.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-6.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-6.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2368,7 +2644,9 @@
         "https://design.time2code.dev/r/input-group.json",
         "https://design.time2code.dev/r/popover.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-7.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-7.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2384,7 +2662,9 @@
         "https://design.time2code.dev/r/tooltip.json",
         "https://design.time2code.dev/r/use-copy-to-clipboard.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-8.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-8.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2396,7 +2676,9 @@
         "https://design.time2code.dev/r/button.json",
         "https://design.time2code.dev/r/input-group.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-9.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-9.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2408,7 +2690,9 @@
         "https://design.time2code.dev/r/badge.json",
         "https://design.time2code.dev/r/input-group.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-10.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-10.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2420,7 +2704,9 @@
         "https://design.time2code.dev/r/input-group.json",
         "https://design.time2code.dev/r/kbd.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-11.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-11.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2436,7 +2722,9 @@
         "https://design.time2code.dev/r/label.json",
         "https://design.time2code.dev/r/popover.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-12.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-12.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2449,7 +2737,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/input-group.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-13.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-13.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2462,7 +2752,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/input-group.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-14.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-14.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2476,7 +2768,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/input-group.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-15.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-15.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2488,7 +2782,9 @@
         "https://design.time2code.dev/r/input-group.json",
         "https://design.time2code.dev/r/loading.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-16.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-16.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2504,7 +2800,9 @@
         "https://design.time2code.dev/r/menu.json",
         "https://design.time2code.dev/r/tooltip.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-17.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "input-group/p-input-group-17.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-80" }
     },
     {
@@ -2520,7 +2818,9 @@
         "https://design.time2code.dev/r/input-group.json",
         "https://design.time2code.dev/r/tooltip.json"
       ],
-      "files": [{ "path": "input-group/p-input-group-29.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "input-group/p-input-group-29.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-kbd-1",
@@ -2538,7 +2838,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/led-matrix.json"
       ],
-      "files": [{ "path": "led-matrix/p-led-matrix-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "led-matrix/p-led-matrix-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full" }
     },
     {
@@ -2589,7 +2891,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/magic-button.json"
       ],
-      "files": [{ "path": "magic-button/p-magic-button-1.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "magic-button/p-magic-button-1.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-magic-text-1",
@@ -2599,7 +2906,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/magic-text.json"
       ],
-      "files": [{ "path": "magic-text/p-magic-text-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "magic-text/p-magic-text-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-magic-text-reveal-card-1",
@@ -2610,7 +2919,10 @@
         "https://design.time2code.dev/r/magic-text-reveal-card.json"
       ],
       "files": [
-        { "path": "magic-text-reveal-card/p-magic-text-reveal-card-1.tsx", "type": "registry:block" }
+        {
+          "path": "magic-text-reveal-card/p-magic-text-reveal-card-1.tsx",
+          "type": "registry:block"
+        }
       ],
       "meta": { "className": "w-full flex justify-center" }
     },
@@ -2620,7 +2932,9 @@
       "description": "Logo marquee in both directions",
       "categories": ["marquee"],
       "registryDependencies": ["https://design.time2code.dev/r/marquee.json"],
-      "files": [{ "path": "marquee/p-marquee-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "marquee/p-marquee-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full" }
     },
     {
@@ -2807,7 +3121,10 @@
         "https://design.time2code.dev/r/northern-lights.json"
       ],
       "files": [
-        { "path": "northern-lights/p-northern-lights-1.tsx", "type": "registry:block" }
+        {
+          "path": "northern-lights/p-northern-lights-1.tsx",
+          "type": "registry:block"
+        }
       ],
       "meta": { "className": "w-full" }
     },
@@ -2819,7 +3136,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/number-field.json"
       ],
-      "files": [{ "path": "number-field/p-number-field-1.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "number-field/p-number-field-1.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2830,7 +3152,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/number-field.json"
       ],
-      "files": [{ "path": "number-field/p-number-field-2.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "number-field/p-number-field-2.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2841,7 +3168,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/number-field.json"
       ],
-      "files": [{ "path": "number-field/p-number-field-3.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "number-field/p-number-field-3.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2852,7 +3184,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/number-field.json"
       ],
-      "files": [{ "path": "number-field/p-number-field-4.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "number-field/p-number-field-4.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2864,7 +3201,12 @@
         "https://design.time2code.dev/r/label.json",
         "https://design.time2code.dev/r/number-field.json"
       ],
-      "files": [{ "path": "number-field/p-number-field-5.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "number-field/p-number-field-5.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2875,7 +3217,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/number-field.json"
       ],
-      "files": [{ "path": "number-field/p-number-field-6.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "number-field/p-number-field-6.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2886,7 +3233,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/number-field.json"
       ],
-      "files": [{ "path": "number-field/p-number-field-7.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "number-field/p-number-field-7.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2897,7 +3249,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/number-field.json"
       ],
-      "files": [{ "path": "number-field/p-number-field-8.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "number-field/p-number-field-8.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2908,7 +3265,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/number-field.json"
       ],
-      "files": [{ "path": "number-field/p-number-field-9.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "number-field/p-number-field-9.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2923,7 +3285,12 @@
         "https://design.time2code.dev/r/form-baseui.json",
         "https://design.time2code.dev/r/number-field.json"
       ],
-      "files": [{ "path": "number-field/p-number-field-10.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "number-field/p-number-field-10.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -2944,7 +3311,9 @@
       "description": "Basic OTP field",
       "categories": ["otp field", "input"],
       "registryDependencies": ["https://design.time2code.dev/r/otp-field.json"],
-      "files": [{ "path": "otp-field/p-otp-field-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "otp-field/p-otp-field-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-otp-field-2",
@@ -2952,7 +3321,9 @@
       "description": "Large OTP field",
       "categories": ["otp field", "input"],
       "registryDependencies": ["https://design.time2code.dev/r/otp-field.json"],
-      "files": [{ "path": "otp-field/p-otp-field-2.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "otp-field/p-otp-field-2.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-otp-field-3",
@@ -2960,7 +3331,9 @@
       "description": "OTP field with separator",
       "categories": ["otp field", "input"],
       "registryDependencies": ["https://design.time2code.dev/r/otp-field.json"],
-      "files": [{ "path": "otp-field/p-otp-field-3.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "otp-field/p-otp-field-3.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-otp-field-4",
@@ -2971,7 +3344,9 @@
         "https://design.time2code.dev/r/field.json",
         "https://design.time2code.dev/r/otp-field.json"
       ],
-      "files": [{ "path": "otp-field/p-otp-field-4.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "otp-field/p-otp-field-4.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-otp-field-6",
@@ -2982,7 +3357,9 @@
         "https://design.time2code.dev/r/field.json",
         "https://design.time2code.dev/r/otp-field.json"
       ],
-      "files": [{ "path": "otp-field/p-otp-field-6.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "otp-field/p-otp-field-6.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-otp-field-7",
@@ -2993,7 +3370,9 @@
         "https://design.time2code.dev/r/field.json",
         "https://design.time2code.dev/r/otp-field.json"
       ],
-      "files": [{ "path": "otp-field/p-otp-field-7.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "otp-field/p-otp-field-7.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-otp-field-8",
@@ -3004,7 +3383,9 @@
         "https://design.time2code.dev/r/field.json",
         "https://design.time2code.dev/r/otp-field.json"
       ],
-      "files": [{ "path": "otp-field/p-otp-field-8.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "otp-field/p-otp-field-8.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-otp-field-9",
@@ -3016,7 +3397,9 @@
         "https://design.time2code.dev/r/field.json",
         "https://design.time2code.dev/r/otp-field.json"
       ],
-      "files": [{ "path": "otp-field/p-otp-field-9.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "otp-field/p-otp-field-9.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-otp-field-10",
@@ -3027,7 +3410,9 @@
         "https://design.time2code.dev/r/field.json",
         "https://design.time2code.dev/r/otp-field.json"
       ],
-      "files": [{ "path": "otp-field/p-otp-field-10.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "otp-field/p-otp-field-10.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-outlined-text-1",
@@ -3037,7 +3422,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/outlined-text.json"
       ],
-      "files": [{ "path": "outlined-text/p-outlined-text-1.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "outlined-text/p-outlined-text-1.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-pagination-1",
@@ -3047,7 +3437,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/pagination.json"
       ],
-      "files": [{ "path": "pagination/p-pagination-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "pagination/p-pagination-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-particles-1",
@@ -3055,7 +3447,9 @@
       "description": "Floating particle background",
       "categories": ["particles"],
       "registryDependencies": ["https://design.time2code.dev/r/particles.json"],
-      "files": [{ "path": "particles/p-particles-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "particles/p-particles-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full" }
     },
     {
@@ -3064,7 +3458,9 @@
       "description": "Square, hex, dot and line patterns",
       "categories": ["pattern"],
       "registryDependencies": ["https://design.time2code.dev/r/pattern.json"],
-      "files": [{ "path": "pattern/p-pattern-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "pattern/p-pattern-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-lg" }
     },
     {
@@ -3083,7 +3479,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/pixelated-text.json"
       ],
-      "files": [{ "path": "pixelated-text/p-pixelated-text-1.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "pixelated-text/p-pixelated-text-1.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-popover-1",
@@ -3157,7 +3558,12 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/preview-card.json"
       ],
-      "files": [{ "path": "preview-card/p-preview-card-1.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "preview-card/p-preview-card-1.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-progress-1",
@@ -3165,7 +3571,9 @@
       "description": "Basic progress bar",
       "categories": ["progress"],
       "registryDependencies": ["https://design.time2code.dev/r/progress.json"],
-      "files": [{ "path": "progress/p-progress-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "progress/p-progress-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -3174,7 +3582,9 @@
       "description": "Progress with label and value",
       "categories": ["progress"],
       "registryDependencies": ["https://design.time2code.dev/r/progress.json"],
-      "files": [{ "path": "progress/p-progress-2.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "progress/p-progress-2.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -3183,7 +3593,9 @@
       "description": "Progress with formatted value",
       "categories": ["progress"],
       "registryDependencies": ["https://design.time2code.dev/r/progress.json"],
-      "files": [{ "path": "progress/p-progress-3.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "progress/p-progress-3.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -3195,7 +3607,10 @@
         "https://design.time2code.dev/r/progressive-blur.json"
       ],
       "files": [
-        { "path": "progressive-blur/p-progressive-blur-1.tsx", "type": "registry:block" }
+        {
+          "path": "progressive-blur/p-progressive-blur-1.tsx",
+          "type": "registry:block"
+        }
       ],
       "meta": { "className": "w-full max-w-xl" }
     },
@@ -3208,7 +3623,9 @@
         "https://design.time2code.dev/r/label.json",
         "https://design.time2code.dev/r/radio-group.json"
       ],
-      "files": [{ "path": "radio-group/p-radio-group-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "radio-group/p-radio-group-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-radio-group-2",
@@ -3219,7 +3636,9 @@
         "https://design.time2code.dev/r/label.json",
         "https://design.time2code.dev/r/radio-group.json"
       ],
-      "files": [{ "path": "radio-group/p-radio-group-2.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "radio-group/p-radio-group-2.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-radio-group-3",
@@ -3230,7 +3649,9 @@
         "https://design.time2code.dev/r/label.json",
         "https://design.time2code.dev/r/radio-group.json"
       ],
-      "files": [{ "path": "radio-group/p-radio-group-3.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "radio-group/p-radio-group-3.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-radio-group-4",
@@ -3241,7 +3662,9 @@
         "https://design.time2code.dev/r/label.json",
         "https://design.time2code.dev/r/radio-group.json"
       ],
-      "files": [{ "path": "radio-group/p-radio-group-4.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "radio-group/p-radio-group-4.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-radio-group-5",
@@ -3255,7 +3678,9 @@
         "https://design.time2code.dev/r/form-baseui.json",
         "https://design.time2code.dev/r/radio-group.json"
       ],
-      "files": [{ "path": "radio-group/p-radio-group-5.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "radio-group/p-radio-group-5.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-retro-grid-1",
@@ -3265,7 +3690,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/retro-grid.json"
       ],
-      "files": [{ "path": "retro-grid/p-retro-grid-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "retro-grid/p-retro-grid-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full" }
     },
     {
@@ -3287,7 +3714,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/rotate-interval.json"
       ],
-      "files": [{ "path": "rotate-interval/p-rotate-interval-1.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "rotate-interval/p-rotate-interval-1.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-scroll-1",
@@ -3307,7 +3739,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/scroll-area.json"
       ],
-      "files": [{ "path": "scroll-area/p-scroll-area-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "scroll-area/p-scroll-area-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -3318,7 +3752,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/scroll-area.json"
       ],
-      "files": [{ "path": "scroll-area/p-scroll-area-2.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "scroll-area/p-scroll-area-2.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-scroll-area-3",
@@ -3328,7 +3764,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/scroll-area.json"
       ],
-      "files": [{ "path": "scroll-area/p-scroll-area-3.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "scroll-area/p-scroll-area-3.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-scroll-area-4",
@@ -3338,7 +3776,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/scroll-area.json"
       ],
-      "files": [{ "path": "scroll-area/p-scroll-area-4.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "scroll-area/p-scroll-area-4.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -3349,7 +3789,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/scroll-area.json"
       ],
-      "files": [{ "path": "scroll-area/p-scroll-area-5.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "scroll-area/p-scroll-area-5.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-scroll-reveal-1",
@@ -3360,7 +3802,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/scroll-reveal.json"
       ],
-      "files": [{ "path": "scroll-reveal/p-scroll-reveal-1.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "scroll-reveal/p-scroll-reveal-1.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full max-w-md" }
     },
     {
@@ -3490,7 +3937,9 @@
       "description": "Separator with horizontal and vertical orientations",
       "categories": ["separator"],
       "registryDependencies": ["https://design.time2code.dev/r/separator.json"],
-      "files": [{ "path": "separator/p-separator-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "separator/p-separator-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-sheet-1",
@@ -3539,7 +3988,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/shiny-text.json"
       ],
-      "files": [{ "path": "shiny-text/p-shiny-text-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "shiny-text/p-shiny-text-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-sidebar-1",
@@ -3551,7 +4002,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/sidebar.json"
       ],
-      "files": [{ "path": "sidebar/p-sidebar-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "sidebar/p-sidebar-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full" }
     },
     {
@@ -3564,7 +4017,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/sidebar.json"
       ],
-      "files": [{ "path": "sidebar/p-sidebar-2.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "sidebar/p-sidebar-2.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full" }
     },
     {
@@ -3577,7 +4032,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/sidebar.json"
       ],
-      "files": [{ "path": "sidebar/p-sidebar-3.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "sidebar/p-sidebar-3.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full" }
     },
     {
@@ -3586,7 +4043,9 @@
       "description": "Sidebar menu skeleton",
       "categories": ["sidebar"],
       "registryDependencies": ["https://design.time2code.dev/r/sidebar.json"],
-      "files": [{ "path": "sidebar/p-sidebar-4.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "sidebar/p-sidebar-4.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full" }
     },
     {
@@ -3601,7 +4060,9 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/skeleton.json"
       ],
-      "files": [{ "path": "skeleton/p-skeleton-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "skeleton/p-skeleton-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full flex justify-center" }
     },
     {
@@ -3610,7 +4071,9 @@
       "description": "Skeleton only",
       "categories": ["skeleton"],
       "registryDependencies": ["https://design.time2code.dev/r/skeleton.json"],
-      "files": [{ "path": "skeleton/p-skeleton-2.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "skeleton/p-skeleton-2.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full flex justify-center" }
     },
     {
@@ -3668,7 +4131,9 @@
       "description": "Spotlights shining onto a headline",
       "categories": ["spotlight"],
       "registryDependencies": ["https://design.time2code.dev/r/spotlight.json"],
-      "files": [{ "path": "spotlight/p-spotlight-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "spotlight/p-spotlight-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full" }
     },
     {
@@ -3679,7 +4144,12 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/spotlight-card.json"
       ],
-      "files": [{ "path": "spotlight-card/p-spotlight-card-1.tsx", "type": "registry:block" }],
+      "files": [
+        {
+          "path": "spotlight-card/p-spotlight-card-1.tsx",
+          "type": "registry:block"
+        }
+      ],
       "meta": { "className": "w-full" }
     },
     {
@@ -3691,7 +4161,10 @@
         "https://design.time2code.dev/r/sticky-stacked-card.json"
       ],
       "files": [
-        { "path": "sticky-stacked-card/p-sticky-stacked-card-1.tsx", "type": "registry:block" }
+        {
+          "path": "sticky-stacked-card/p-sticky-stacked-card-1.tsx",
+          "type": "registry:block"
+        }
       ],
       "meta": { "className": "w-full flex justify-center" }
     },
@@ -3854,7 +4327,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/text-marker.json"
       ],
-      "files": [{ "path": "text-marker/p-text-marker-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "text-marker/p-text-marker-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-text-scroll-reveal-1",
@@ -3865,7 +4340,10 @@
         "https://design.time2code.dev/r/text-scroll-reveal.json"
       ],
       "files": [
-        { "path": "text-scroll-reveal/p-text-scroll-reveal-1.tsx", "type": "registry:block" }
+        {
+          "path": "text-scroll-reveal/p-text-scroll-reveal-1.tsx",
+          "type": "registry:block"
+        }
       ],
       "meta": { "className": "w-full flex justify-center" }
     },
@@ -3875,7 +4353,9 @@
       "description": "Basic textarea",
       "categories": ["textarea"],
       "registryDependencies": ["https://design.time2code.dev/r/textarea.json"],
-      "files": [{ "path": "textarea/p-textarea-1.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "textarea/p-textarea-1.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -3884,7 +4364,9 @@
       "description": "Small textarea",
       "categories": ["textarea"],
       "registryDependencies": ["https://design.time2code.dev/r/textarea.json"],
-      "files": [{ "path": "textarea/p-textarea-2.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "textarea/p-textarea-2.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -3893,7 +4375,9 @@
       "description": "Large textarea",
       "categories": ["textarea"],
       "registryDependencies": ["https://design.time2code.dev/r/textarea.json"],
-      "files": [{ "path": "textarea/p-textarea-3.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "textarea/p-textarea-3.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -3902,7 +4386,9 @@
       "description": "Disabled textarea",
       "categories": ["textarea"],
       "registryDependencies": ["https://design.time2code.dev/r/textarea.json"],
-      "files": [{ "path": "textarea/p-textarea-4.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "textarea/p-textarea-4.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -3914,7 +4400,9 @@
         "https://design.time2code.dev/r/label.json",
         "https://design.time2code.dev/r/textarea.json"
       ],
-      "files": [{ "path": "textarea/p-textarea-5.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "textarea/p-textarea-5.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -3928,7 +4416,9 @@
         "https://design.time2code.dev/r/form-baseui.json",
         "https://design.time2code.dev/r/textarea.json"
       ],
-      "files": [{ "path": "textarea/p-textarea-6.tsx", "type": "registry:block" }],
+      "files": [
+        { "path": "textarea/p-textarea-6.tsx", "type": "registry:block" }
+      ],
       "meta": { "className": "w-full max-w-64" }
     },
     {
@@ -3948,7 +4438,9 @@
       "description": "3D card tilting with the cursor",
       "categories": ["tilt-card"],
       "registryDependencies": ["https://design.time2code.dev/r/tilt-card.json"],
-      "files": [{ "path": "tilt-card/p-tilt-card-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "tilt-card/p-tilt-card-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-toast-1",
@@ -4142,7 +4634,12 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/toggle-group.json"
       ],
-      "files": [{ "path": "toggle-group/p-toggle-group-1.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "toggle-group/p-toggle-group-1.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-toggle-group-2",
@@ -4154,7 +4651,12 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/toggle-group.json"
       ],
-      "files": [{ "path": "toggle-group/p-toggle-group-2.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "toggle-group/p-toggle-group-2.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-toggle-group-3",
@@ -4166,7 +4668,12 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/toggle-group.json"
       ],
-      "files": [{ "path": "toggle-group/p-toggle-group-3.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "toggle-group/p-toggle-group-3.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-toggle-group-4",
@@ -4178,7 +4685,12 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/toggle-group.json"
       ],
-      "files": [{ "path": "toggle-group/p-toggle-group-4.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "toggle-group/p-toggle-group-4.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-toggle-group-5",
@@ -4190,7 +4702,12 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/toggle-group.json"
       ],
-      "files": [{ "path": "toggle-group/p-toggle-group-5.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "toggle-group/p-toggle-group-5.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-toggle-group-6",
@@ -4202,7 +4719,12 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/toggle-group.json"
       ],
-      "files": [{ "path": "toggle-group/p-toggle-group-6.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "toggle-group/p-toggle-group-6.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-toggle-group-7",
@@ -4214,7 +4736,12 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/toggle-group.json"
       ],
-      "files": [{ "path": "toggle-group/p-toggle-group-7.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "toggle-group/p-toggle-group-7.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-toggle-group-8",
@@ -4226,7 +4753,12 @@
         "https://design.time2code.dev/r/icon.json",
         "https://design.time2code.dev/r/toggle-group.json"
       ],
-      "files": [{ "path": "toggle-group/p-toggle-group-8.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "toggle-group/p-toggle-group-8.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-toggle-group-9",
@@ -4239,7 +4771,12 @@
         "https://design.time2code.dev/r/toggle-group.json",
         "https://design.time2code.dev/r/tooltip.json"
       ],
-      "files": [{ "path": "toggle-group/p-toggle-group-9.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "toggle-group/p-toggle-group-9.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-tooltip-1",
@@ -4286,7 +4823,9 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/typewriter.json"
       ],
-      "files": [{ "path": "typewriter/p-typewriter-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "typewriter/p-typewriter-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-use-clock-1",
@@ -4298,7 +4837,9 @@
         "https://design.time2code.dev/r/button.json",
         "https://design.time2code.dev/r/use-clock.json"
       ],
-      "files": [{ "path": "use-clock/p-use-clock-1.tsx", "type": "registry:block" }]
+      "files": [
+        { "path": "use-clock/p-use-clock-1.tsx", "type": "registry:block" }
+      ]
     },
     {
       "name": "p-use-coerce-to-motion-value-1",
@@ -4328,7 +4869,10 @@
         "https://design.time2code.dev/r/use-event-listener.json"
       ],
       "files": [
-        { "path": "use-event-listener/p-use-event-listener-1.tsx", "type": "registry:block" }
+        {
+          "path": "use-event-listener/p-use-event-listener-1.tsx",
+          "type": "registry:block"
+        }
       ]
     },
     {
@@ -4340,7 +4884,12 @@
         "https://design.time2code.dev/r/button.json",
         "https://design.time2code.dev/r/use-interval.json"
       ],
-      "files": [{ "path": "use-interval/p-use-interval-1.tsx", "type": "registry:block" }]
+      "files": [
+        {
+          "path": "use-interval/p-use-interval-1.tsx",
+          "type": "registry:block"
+        }
+      ]
     },
     {
       "name": "p-use-mouse-position-1",
@@ -4352,7 +4901,10 @@
         "https://design.time2code.dev/r/use-mouse-position.json"
       ],
       "files": [
-        { "path": "use-mouse-position/p-use-mouse-position-1.tsx", "type": "registry:block" }
+        {
+          "path": "use-mouse-position/p-use-mouse-position-1.tsx",
+          "type": "registry:block"
+        }
       ],
       "meta": { "className": "w-full max-w-md" }
     },
@@ -4382,7 +4934,10 @@
         "https://design.time2code.dev/r/use-resize-observer.json"
       ],
       "files": [
-        { "path": "use-resize-observer/p-use-resize-observer-1.tsx", "type": "registry:block" }
+        {
+          "path": "use-resize-observer/p-use-resize-observer-1.tsx",
+          "type": "registry:block"
+        }
       ]
     },
     {
