@@ -32,6 +32,18 @@ export function DocsSidebar({ tree }: { tree: typeof source.pageTree }) {
             <SidebarGroupContent>
               {item.type === "folder" && (
                 <SidebarMenu className="gap-0.5">
+                  {item.index ? (
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        className="text-foreground-muted data-active:bg-primary/10 data-active:text-primary"
+                        isActive={item.index.url === pathname}
+                        render={<Link href={item.index.url} />}
+                      >
+                        Overview
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ) : null}
+
                   {item.children.map((subItem) => {
                     if (subItem.type !== "page") {
                       return null;

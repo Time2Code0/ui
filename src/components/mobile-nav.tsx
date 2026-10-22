@@ -68,6 +68,15 @@ export function MobileNav({
                   <div className="flex flex-col gap-3" key={group.$id}>
                     <div className="font-medium text-sm">{group.name}</div>
                     <div className="flex flex-col gap-0.5">
+                      {group.index ? (
+                        <MobileLink
+                          href={group.index.url}
+                          onOpenChange={setOpen}
+                        >
+                          Overview
+                        </MobileLink>
+                      ) : null}
+
                       {group.children.map((item) => {
                         if (item.type === "page") {
                           return (

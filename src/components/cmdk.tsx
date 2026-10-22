@@ -52,9 +52,21 @@ interface PageGroup {
 function getPageGroupItems(group: Folder) {
   const items: PageItem[] = [];
 
+  if (group.index) {
+    items.push({
+      isComponent: false,
+      label: "Overview",
+      url: group.index.url,
+      value: `${group.name} Overview`,
+    });
+  }
+
   for (const item of group.children) {
     if (item.type === "page") {
-      const isComponent = item.url.includes("/components/");
+      const isComponent =
+        item.url.includes("/ui/") ||
+        item.url.includes("/marketing/") ||
+        item.url.includes("/hooks/");
       const itemName = item.name?.toString() || "";
 
       items.push({
