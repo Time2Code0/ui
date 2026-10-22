@@ -1,15 +1,13 @@
-import { GithubIcon } from "@hugeicons/core-free-icons";
 import { cn } from "cn";
 import { NextProvider } from "fumadocs-core/framework/next";
 
 import { Cmdk } from "@/components/cmdk";
+import { GitHubLink } from "@/components/github-link";
 import { MainNav } from "@/components/main-nav";
 import { MobileNav } from "@/components/mobile-nav";
 import { ToggleThemeButton } from "@/components/toggle-theme-button";
 import { siteConfig } from "@/lib/config";
 import { source } from "@/lib/source";
-import { buttonVariants } from "@/registry/ui/button";
-import { Icon } from "@/registry/ui/icon";
 import { Link } from "@/registry/ui/link";
 import { Separator } from "@/registry/ui/separator";
 
@@ -20,11 +18,11 @@ export default function Layout({ children }: LayoutProps<"/">) {
         <div className="absolute inset-x-4 inset-y-0 border-x lg:inset-x-6" />
       </div>
 
-      <header className="sticky top-0 z-40 border-b">
+      <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-sm">
         <div className="mx-auto w-full max-w-[90rem] md:px-4 lg:px-6">
           <div
             className={cn(
-              "relative mx-px flex h-16 items-center justify-between gap-2 bg-background px-4 sm:px-6",
+              "relative flex h-16 items-center justify-between gap-2 border-x px-4 sm:px-6",
               "before:absolute before:-bottom-0.75 before:left-[-3.5px] before:size-1.5 before:bg-background-muted before:ring-1 before:ring-[color-mix(in_oklab,var(--color-foreground)_10%,var(--color-background))] max-md:before:hidden",
               "after:absolute after:right-[-3.5px] after:-bottom-0.75 after:size-1.5 after:bg-background-muted after:ring-1 after:ring-[color-mix(in_oklab,var(--color-foreground)_10%,var(--color-background))] max-md:after:hidden"
             )}
@@ -64,15 +62,7 @@ export default function Layout({ children }: LayoutProps<"/">) {
 
               <Separator className="h-4 max-md:hidden" orientation="vertical" />
 
-              <Link
-                className={buttonVariants({ variant: "ghost" })}
-                href={siteConfig.socials.github}
-              >
-                <Icon icon={GithubIcon} />
-                <span className="text-foreground-muted text-xs tabular-nums max-sm:sr-only">
-                  10.6k
-                </span>
-              </Link>
+              <GitHubLink />
 
               <ToggleThemeButton />
 
