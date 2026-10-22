@@ -123,6 +123,20 @@
       ]
     },
     {
+      "name": "fluid-gradient-text",
+      "type": "registry:component",
+      "title": "Fluid Gradient Text",
+      "description": "Text with a gradient fill that follows the pointer.",
+      "dependencies": ["cn", "motion"],
+      "files": [
+        {
+          "path": "fluid-gradient-text.tsx",
+          "type": "registry:component",
+          "target": "@components/marketing/fluid-gradient-text.tsx"
+        }
+      ]
+    },
+    {
       "name": "globe",
       "type": "registry:component",
       "title": "Globe",

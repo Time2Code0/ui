@@ -2084,6 +2084,22 @@
       "meta": { "className": "w-full max-w-64" }
     },
     {
+      "name": "p-fluid-gradient-text-1",
+      "type": "registry:block",
+      "description": "Wordmark with a pointer-following gradient",
+      "categories": ["fluid-gradient-text"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/fluid-gradient-text.json"
+      ],
+      "files": [
+        {
+          "path": "fluid-gradient-text/p-fluid-gradient-text-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "className": "w-full" }
+    },
+    {
       "name": "p-globe-1",
       "type": "registry:block",
       "description": "Interactive globe with markers",

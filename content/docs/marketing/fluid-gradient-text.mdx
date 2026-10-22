@@ -1,0 +1,89 @@
+---
+title: Fluid Gradient Text
+description: Text with a gradient fill that follows the pointer.
+---
+
+<ComponentPreview name="p-fluid-gradient-text-1" />
+
+Renders text as an SVG with a gradient fill that follows the pointer horizontally. The movement runs through a spring, so the gradient glides after the cursor instead of snapping to it. The lower part of the text is cropped by the bottom edge, which makes it a good fit for a large wordmark at the end of a page.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/fluid-gradient-text
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn motion
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="fluid-gradient-text" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { FluidGradientText } from "@/components/marketing/fluid-gradient-text"
+```
+
+```tsx
+<FluidGradientText text="Akari" />
+```
+
+The text fills the width of its container and inherits the font and color from it. Set them on the component or a parent:
+
+```tsx
+<footer className="font-bold text-foreground-muted uppercase">
+  <FluidGradientText text="Akari" />
+</footer>
+```
+
+### Sizing
+
+The text is drawn inside an SVG with a viewBox of `svgViewBoxWidth` × `svgViewBoxHeight`, and `svgViewBoxHeight` is also the font size. Make the width wider for longer text, or lower the height to give the text more room on the sides:
+
+```tsx
+<FluidGradientText svgViewBoxHeight={240} svgViewBoxWidth={1600} text="Components" />
+```
+
+### Cropping
+
+The SVG is shifted down by 37.5% of its height, so the bottom of the text is cut off and the space above it stays empty. To close that gap, pull the component up with a negative top margin. A percentage margin is relative to the container width, so convert the shift with the viewBox ratio:
+
+```tsx
+<div style={{ marginTop: `-${((0.375 * 300) / 1200) * 100}%` }}>
+  <FluidGradientText svgViewBoxHeight={300} svgViewBoxWidth={1200} text="Akari" />
+</div>
+```
+
+## API Reference
+
+Accepts every `div` prop except `children`.
+
+| Prop               | Type     | Default | Description                                              |
+| ------------------ | -------- | ------- | -------------------------------------------------------- |
+| `text`             | `string` |         | Text to display                                          |
+| `svgViewBoxWidth`  | `number` | `1200`  | Width of the SVG viewBox. Scales the gradient and layout |
+| `svgViewBoxHeight` | `number` | `300`   | Height of the SVG viewBox. Used as the font size         |
