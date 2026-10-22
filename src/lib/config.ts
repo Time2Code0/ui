@@ -3,8 +3,10 @@ export const siteConfig = {
     name: "Time2Code",
     url: "https://time2code.dev",
   },
-  description: "A design system for the modern web",
+  description:
+    "Akari is a shadcn-compatible React component library for building production apps and the marketing sites that sell them.",
   keywords: [
+    "akari",
     "design system",
     "shadcn",
     "react",
@@ -12,7 +14,7 @@ export const siteConfig = {
     "ui",
     "components",
   ],
-  name: "Design System",
+  name: "Akari",
   navItems: [
     {
       href: "/docs",
@@ -30,7 +32,7 @@ export const siteConfig = {
   socials: {
     github: "https://github.com/time2code0/design-system",
   },
-  title: "Design System",
+  title: "Akari — React components for apps and marketing sites",
   url: "https://design.time2code.dev",
 };
 

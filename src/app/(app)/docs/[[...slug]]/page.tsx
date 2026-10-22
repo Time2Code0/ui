@@ -16,6 +16,7 @@ import { cn } from "cn";
 import { findNeighbour } from "fumadocs-core/page-tree";
 
 import { CopyMarkdownButton } from "@/components/copy-markdown-button";
+import { ThumbnailCard } from "@/components/thumbnail-card";
 import { TableOfContents } from "@/components/toc";
 import { createMetadata } from "@/lib/metadata";
 import { source } from "@/lib/source";
@@ -152,10 +153,13 @@ async function DocsPage(props: Pick<PageProps<"/docs/[[...slug]]">, "params">) {
   const { body: MDX, toc, lastModified } = await page.data.load();
   const neighbours = findNeighbour(source.pageTree, page.url);
 
+  const { overview } = page.data;
+  const width = overview ? undefined : "max-w-167";
+
   return (
     <div className="flex size-full items-stretch">
       <div className="flex min-w-0 flex-1 flex-col">
-        <div className="mx-auto w-full max-w-167 px-4 pt-12 sm:px-6">
+        <div className={cn("mx-auto w-full px-4 pt-12 sm:px-6", width)}>
           <h1 className="font-semibold text-3xl xl:text-4xl">
             {page.data.title}
           </h1>
@@ -241,17 +245,29 @@ async function DocsPage(props: Pick<PageProps<"/docs/[[...slug]]">, "params">) {
           </Group>
         </div>
 
-        <article
-          className={cn(
-            "typeset typeset-docs @container flex-1 py-6 sm:py-8",
-            "[&>*:not(.full-width)]:mx-auto [&>*:not(.full-width)]:max-w-167 [&>*:not(.full-width)]:px-4 sm:[&>*:not(.full-width)]:px-6"
-          )}
-        >
-          <MDX components={mdxComponents} />
-        </article>
+        {overview ? (
+          <ul className="grid w-full flex-1 content-start gap-6 px-4 py-6 sm:grid-cols-2 sm:px-6 sm:py-8 lg:grid-cols-3 lg:gap-8 xl:grid-cols-4">
+            {getOverviewPages(overview).map((entry) => (
+              <li className="flex" key={entry.url}>
+                <ThumbnailCard slug={entry.slugs} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <article
+            className={cn(
+              "typeset typeset-docs @container flex-1 py-6 sm:py-8",
+              "[&>*:not(.full-width)]:mx-auto [&>*:not(.full-width)]:max-w-167 [&>*:not(.full-width)]:px-4 sm:[&>*:not(.full-width)]:px-6"
+            )}
+          >
+            <MDX components={mdxComponents} />
+          </article>
+        )}
 
         {lastModified ? (
-          <div className="mx-auto w-full max-w-167 px-4 pb-6 sm:px-6 sm:pb-8">
+          <div
+            className={cn("mx-auto w-full px-4 pb-6 sm:px-6 sm:pb-8", width)}
+          >
             <p className="text-foreground-muted text-sm">
               Last updated on{" "}
               <time dateTime={lastModified.toISOString()}>
@@ -301,9 +317,18 @@ async function DocsPage(props: Pick<PageProps<"/docs/[[...slug]]">, "params">) {
         </div>
       </div>
 
-      <aside className="sticky top-[65px] hidden h-[calc(100vh-64px)] w-72 border-l xl:flex">
-        {toc.length ? <TableOfContents toc={toc} /> : null}
-      </aside>
+      {overview ? null : (
+        <aside className="sticky top-[65px] hidden h-[calc(100vh-64px)] w-72 border-l xl:flex">
+          {toc.length ? <TableOfContents toc={toc} /> : null}
+        </aside>
+      )}
     </div>
   );
+}
+
+function getOverviewPages(section: string) {
+  return source
+    .getPages()
+    .filter((page) => page.slugs[0] === section && page.slugs.length > 1)
+    .sort((a, b) => a.data.title.localeCompare(b.data.title));
 }

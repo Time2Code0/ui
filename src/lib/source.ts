@@ -15,6 +15,7 @@ const docs = defineDocs({
       },
     },
     schema: pageSchema.extend({
+      overview: z.string().optional(),
       /**
        * Marks the page in the sidebar. Set `status: new` on pages added since
        * the last release, and remove it again once the release is out.
