@@ -17,7 +17,14 @@ export type ComponentSourceProps = {
   title?: string;
   className?: string;
   codeblock?: CodeBlockProps;
-} & ({ name: string; src?: never } | { name?: never; src: string });
+} & (
+  | {
+      name: string;
+      file?: string;
+      src?: never;
+    }
+  | { name?: never; file?: never; src: string }
+);
 
 async function readSourceFile(src: string) {
   "use cache";
@@ -28,6 +35,7 @@ async function readSourceFile(src: string) {
 
 export async function ComponentSource({
   name,
+  file,
   src,
   title,
   language,
@@ -42,7 +50,11 @@ export async function ComponentSource({
 
   if (name) {
     const item = await getRegistryItem(name);
-    code = item.files?.[0]?.content;
+    code = (
+      file
+        ? item.files?.find((candidate) => candidate.path === file)
+        : item.files?.[0]
+    )?.content;
   }
 
   if (src) {

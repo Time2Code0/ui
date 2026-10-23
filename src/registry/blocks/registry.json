@@ -6,7 +6,7 @@
       "type": "registry:block",
       "title": "Split Screen Login",
       "description": "A responsive split-screen login page with email and social sign-in options.",
-      "categories": ["authentication", "login"],
+      "categories": ["featured", "authentication", "login"],
       "dependencies": ["@hugeicons/core-free-icons", "cn"],
       "registryDependencies": [
         "https://design.time2code.dev/r/button.json",

@@ -10,18 +10,9 @@ import {
   CodeBlockTabsList,
   CodeBlockTabsTrigger,
 } from "@/components/codeblock";
-import { useConfig } from "@/hooks/use-config";
+import { type PackageManager, runners, useConfig } from "@/hooks/use-config";
 
 import { DynamicCodeBlock } from "./dynamic-codeblock.client";
-
-type PackageManager = "npm" | "pnpm" | "yarn" | "bun";
-
-const runners: [PackageManager, string][] = [
-  ["npm", "npx"],
-  ["pnpm", "pnpm dlx"],
-  ["yarn", "yarn dlx"],
-  ["bun", "bun x"],
-];
 
 export function CodeBlockCommand({
   command,
