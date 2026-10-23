@@ -25,7 +25,7 @@ export function LoginForm({
       </Field>
 
       <Field>
-        <div className="flex items-center">
+        <div className="flex w-full items-center">
           <FieldLabel htmlFor="password">Password</FieldLabel>
           <Link
             className="ml-auto text-sm underline-offset-4 hover:underline"

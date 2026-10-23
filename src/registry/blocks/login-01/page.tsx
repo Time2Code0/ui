@@ -10,7 +10,7 @@ export default function LoginPage() {
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
           <Link className="flex items-center gap-2 font-medium" href="#">
-            <div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
+            <div className="flex size-6 items-center justify-center rounded-md bg-foreground text-background">
               <Icon className="size-4" icon={GalleryVerticalEndIcon} />
             </div>
             Acme Inc.
@@ -24,7 +24,7 @@ export default function LoginPage() {
         </div>
       </div>
 
-      <div className="relative hidden bg-muted lg:block">
+      <div className="relative hidden lg:block">
         <div className="absolute inset-0 size-full bg-background-muted" />
       </div>
     </div>
