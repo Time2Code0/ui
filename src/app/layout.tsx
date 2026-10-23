@@ -3,7 +3,7 @@ import type { Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "./theme-provider";
 
 import "@/styles/globals.css";
 

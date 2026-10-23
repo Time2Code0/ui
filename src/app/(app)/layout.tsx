@@ -1,11 +1,11 @@
 import { cn } from "cn";
 import { NextProvider } from "fumadocs-core/framework/next";
 
-import { Cmdk } from "@/components/cmdk";
-import { GitHubLink } from "@/components/github-link";
-import { MainNav } from "@/components/main-nav";
-import { MobileNav } from "@/components/mobile-nav";
-import { ToggleThemeButton } from "@/components/toggle-theme-button";
+import { Cmdk } from "@/components/layout/cmdk";
+import { GitHubLink } from "@/components/layout/github-link";
+import { MainNav } from "@/components/layout/main-nav";
+import { MobileNav } from "@/components/layout/mobile-nav";
+import { ToggleThemeButton } from "@/components/layout/toggle-theme-button";
 import { siteConfig } from "@/lib/config";
 import { source } from "@/lib/source";
 import { Link } from "@/registry/ui/link";

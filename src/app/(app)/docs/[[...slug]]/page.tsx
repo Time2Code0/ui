@@ -17,7 +17,6 @@ import { findNeighbour } from "fumadocs-core/page-tree";
 
 import { CopyMarkdownButton } from "@/components/copy-markdown-button";
 import { ThumbnailCard } from "@/components/thumbnail-card";
-import { TableOfContents } from "@/components/toc";
 import { createMetadata } from "@/lib/metadata";
 import { source } from "@/lib/source";
 import { baseUrl, getPageImageUrl } from "@/lib/utils";
@@ -28,6 +27,8 @@ import { Icon } from "@/registry/ui/icon";
 import { Link } from "@/registry/ui/link";
 import { Menu, MenuItem, MenuPopup, MenuTrigger } from "@/registry/ui/menu";
 import { Skeleton } from "@/registry/ui/skeleton";
+
+import { TableOfContents } from "./toc";
 
 export const ensureStatic = "navigation";
 

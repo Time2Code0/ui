@@ -1,8 +1,9 @@
 import { NextProvider } from "fumadocs-core/framework/next";
 
-import { DocsSidebar } from "@/components/docs-sidebar";
 import { source } from "@/lib/source";
 import { SidebarInset, SidebarProvider } from "@/registry/ui/sidebar";
+
+import { DocsSidebar } from "./docs-sidebar";
 
 export default function Layout({ children }: LayoutProps<"/docs">) {
   return (
