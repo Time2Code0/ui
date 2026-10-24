@@ -9,65 +9,7 @@ Scrolls its children in an endless loop, horizontally or vertically. Use it for 
 
 ## Installation
 
-<CodeTabs>
-
-<TabsList>
-  <TabsTab value="cli">CLI</TabsTab>
-  <TabsTab value="manual">Manual</TabsTab>
-</TabsList>
-
-<TabsPanel value="cli">
-
-```npm
-npx shadcn@latest add https://design.time2code.dev/r/marquee
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-### Install the following dependencies: [step]
-
-```npm
-npm i cn
-```
-
-### Add the following to your CSS file: [step]
-
-```css
-@theme inline {
-  --animate-marquee: marquee var(--duration) linear infinite;
-  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-  }
-}
-
-@keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
-  }
-}
-```
-
-### Copy and paste the following code into your project. [step]
-
-<ComponentSource name="marquee" />
-
-### Update the import paths to match your project setup. [step]
-
-</TabsPanel>
-
-</CodeTabs>
+<InstallationTabs name="marquee" />
 
 ## Usage
 

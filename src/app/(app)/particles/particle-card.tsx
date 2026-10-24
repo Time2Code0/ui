@@ -1,11 +1,11 @@
 import { InformationCircleIcon } from "@hugeicons/core-free-icons";
 import { cn } from "cn";
 
-import { CodeBlockCommand } from "@/components/code-block-command";
 import { ComponentRenderer } from "@/components/component-renderer";
 import { ComponentSource } from "@/components/component-source";
 import { CopyRegistryButton } from "@/components/copy-registry-button";
 import { OpenInV0Button } from "@/components/open-in-v0-button";
+import { PackageManagerTabs } from "@/components/package-manager-tabs";
 import { siteConfig } from "@/lib/config";
 import { getRegistryItem } from "@/lib/registry";
 import { Button } from "@/registry/ui/button";
@@ -75,9 +75,9 @@ export async function ParticleCard({ name }: { name: string }) {
 
                   <h2 className="mb-4 font-semibold text-xl">Installation</h2>
 
-                  <CodeBlockCommand
+                  <PackageManagerTabs
                     className="my-0 overflow-hidden rounded-xl border"
-                    command={`shadcn@latest add ${registryUrl}`}
+                    command={`npx shadcn@latest add ${registryUrl}`}
                   />
 
                   <div className="mt-6 mb-4 flex items-center justify-between gap-2">

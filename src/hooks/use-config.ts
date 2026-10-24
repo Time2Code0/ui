@@ -3,18 +3,27 @@ import { useSyncExternalStore } from "react";
 import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 
-export type PackageManager = "npm" | "pnpm" | "yarn" | "bun";
+export const packageManagers = ["npm", "pnpm", "yarn", "bun"] as const;
 
-export const runners: [PackageManager, string][] = [
-  ["npm", "npx"],
-  ["pnpm", "pnpm dlx"],
-  ["yarn", "yarn dlx"],
-  ["bun", "bun x"],
-];
+export type PackageManager = (typeof packageManagers)[number];
+
+export const PM_ADD_COMMANDS: Record<PackageManager, string> = {
+  bun: "bun add",
+  npm: "npm install",
+  pnpm: "pnpm add",
+  yarn: "yarn add",
+};
+
+export const PM_EXECUTE_COMMANDS: Record<PackageManager, string> = {
+  bun: "bun x",
+  npm: "npx",
+  pnpm: "pnpm dlx",
+  yarn: "yarn dlx",
+};
 
 interface Config {
   installationType: "cli" | "manual";
-  packageManager: "npm" | "yarn" | "pnpm" | "bun";
+  packageManager: PackageManager;
 }
 
 const defaultConfig: Config = {

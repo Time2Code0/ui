@@ -21,7 +21,12 @@ import { cn } from "cn";
 import { AnimatePresence, motion } from "motion/react";
 
 import { BunIcon, NpmIcon, PnpmIcon, YarnIcon } from "@/components/brand-icons";
-import { type PackageManager, runners, useConfig } from "@/hooks/use-config";
+import {
+  type PackageManager,
+  PM_EXECUTE_COMMANDS,
+  packageManagers,
+  useConfig,
+} from "@/hooks/use-config";
 import { siteConfig } from "@/lib/config";
 import { useCopyToClipboard } from "@/registry/hooks/use-copy-to-clipboard";
 import { Button, buttonVariants } from "@/registry/ui/button";
@@ -497,16 +502,15 @@ function BlockInstallButton({ name }: { name: string }) {
   const { copied, copyToClipboard } = useCopyToClipboard();
 
   const packageManager = config.packageManager || "pnpm";
-  const runner =
-    runners.find(([key]) => key === packageManager)?.[1] ?? "pnpm dlx";
+
   const PackageManagerIcon = packageManagerIcons[packageManager];
 
   const handleCopy = useCallback(
     () =>
       copyToClipboard(
-        `${runner} shadcn@latest add ${siteConfig.url}/r/${name}`
+        `${PM_EXECUTE_COMMANDS[packageManager]} shadcn@latest add ${siteConfig.url}/r/${name}`
       ),
-    [copyToClipboard, name, runner]
+    [copyToClipboard, name, packageManager]
   );
 
   const handlePackageManagerChange = useCallback(
@@ -537,14 +541,14 @@ function BlockInstallButton({ name }: { name: string }) {
               onValueChange={handlePackageManagerChange}
               value={packageManager}
             >
-              {runners.map(([key]) => {
-                const ItemIcon = packageManagerIcons[key];
+              {packageManagers.map((pm) => {
+                const ItemIcon = packageManagerIcons[pm];
 
                 return (
-                  <MenuRadioItem key={key} value={key}>
+                  <MenuRadioItem key={pm} value={pm}>
                     <span className="flex items-center gap-2">
                       <ItemIcon className="size-4" />
-                      {key}
+                      {pm}
                     </span>
                   </MenuRadioItem>
                 );

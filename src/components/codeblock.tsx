@@ -5,7 +5,11 @@ import { useCallback, useRef } from "react";
 import {
   ComputerTerminal01Icon,
   Copy01Icon,
+  CssFile01Icon,
+  Folder01Icon,
+  ThirdBracketIcon,
   Tick01Icon,
+  Typescript02Icon,
 } from "@hugeicons/core-free-icons";
 import { cn } from "cn";
 import { AnimatePresence, motion } from "motion/react";
@@ -75,6 +79,8 @@ export function CodeBlock({
     allowCopy = false;
   }
 
+  const renderIcon = icon ?? getIconForLanguageExtension(props.lang ?? "");
+
   return (
     <figure
       className={cn(
@@ -88,17 +94,18 @@ export function CodeBlock({
     >
       {title ? (
         <div className="flex h-9.5 items-center gap-2 border-b px-4 text-foreground-muted">
-          {typeof icon === "string" ? (
+          {typeof renderIcon === "string" ? (
             <div
               className="[&_svg]:size-3.5"
               // biome-ignore lint/security/noDangerouslySetInnerHtml: icon is html svg
               dangerouslySetInnerHTML={{
-                __html: icon,
+                __html: renderIcon,
               }}
             />
           ) : (
-            icon
+            renderIcon
           )}
+
           <figcaption className="flex-1 truncate font-mono">{title}</figcaption>
           <div className="-me-2 empty:hidden">
             {allowCopy ? <CopyButton containerRef={areaRef} /> : null}
@@ -243,4 +250,21 @@ export function CodeBlockTab({
       {...props}
     />
   );
+}
+
+function getIconForLanguageExtension(language: string) {
+  switch (language) {
+    case "json":
+      return <Icon icon={ThirdBracketIcon} />;
+    case "css":
+      return <Icon icon={CssFile01Icon} />;
+    case "js":
+    case "jsx":
+    case "ts":
+    case "tsx":
+    case "typescript":
+      return <Icon icon={Typescript02Icon} />;
+    default:
+      return <Icon icon={Folder01Icon} />;
+  }
 }

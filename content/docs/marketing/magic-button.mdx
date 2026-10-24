@@ -9,71 +9,7 @@ A pill-shaped [Button](/docs/ui/button) with a rotating light around its border 
 
 ## Installation
 
-<CodeTabs>
-
-<TabsList>
-  <TabsTab value="cli">CLI</TabsTab>
-  <TabsTab value="manual">Manual</TabsTab>
-</TabsList>
-
-<TabsPanel value="cli">
-
-```npm
-npx shadcn@latest add https://design.time2code.dev/r/magic-button
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-### Install the following dependencies: [step]
-
-```npm
-npm i cn
-```
-
-### Install the following registry dependencies: [step]
-
-```npm
-npx shadcn@latest add https://design.time2code.dev/r/button
-```
-
-### Add the following to your CSS file: [step]
-
-```css
-@theme inline {
-  --animate-magic-button-border-turn: magic-button-border-turn var(--duration) linear infinite;
-  --animate-magic-button-border-turn-with-translate: magic-button-border-turn-with-translate var(--duration) linear infinite;
-}
-
-@keyframes magic-button-border-turn {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes magic-button-border-turn-with-translate {
-  0% {
-    transform: translate(-50%, -50%) rotate(0);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-```
-
-### Copy and paste the following code into your project. [step]
-
-<ComponentSource name="magic-button" />
-
-### Update the import paths to match your project setup. [step]
-
-</TabsPanel>
-
-</CodeTabs>
+<InstallationTabs name="magic-button" />
 
 ## Usage
 

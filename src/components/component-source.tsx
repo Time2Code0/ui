@@ -12,6 +12,29 @@ import { getRegistryItem } from "@/lib/registry";
 
 import { DynamicCodeBlock } from "./dynamic-codeblock";
 
+const REGISTRY_PREFIX_REGEX = /^src\/registry\//;
+const ROOT_DIRECTORY_REGEX = /^(hooks|lib)\//;
+
+// Maps a registry source path to where the file lives in a consumer project:
+// `src/registry/ui/accordion.tsx` -> `components/ui/accordion.tsx`,
+// `src/registry/hooks/use-clock.ts` -> `hooks/use-clock.ts`.
+function normalizeFilePath(filePath: string) {
+  const relativePath = filePath.replace(REGISTRY_PREFIX_REGEX, "");
+
+  if (ROOT_DIRECTORY_REGEX.test(relativePath)) {
+    return relativePath;
+  }
+
+  return `components/${relativePath}`;
+}
+
+async function readSourceFile(src: string) {
+  "use cache";
+  cacheLife("max");
+
+  return await fs.readFile(path.join(process.cwd(), src), "utf-8");
+}
+
 export type ComponentSourceProps = {
   language?: string;
   title?: string;
@@ -26,18 +49,11 @@ export type ComponentSourceProps = {
   | { name?: never; file?: never; src: string }
 );
 
-async function readSourceFile(src: string) {
-  "use cache";
-  cacheLife("max");
-
-  return await fs.readFile(path.join(process.cwd(), src), "utf-8");
-}
-
 export async function ComponentSource({
   name,
-  file,
+  file: filePath,
   src,
-  title,
+  title: defaultTitle,
   language,
   className,
   codeblock,
@@ -47,14 +63,16 @@ export async function ComponentSource({
   }
 
   let code: string | undefined;
+  let fileTitle: string | undefined;
 
   if (name) {
     const item = await getRegistryItem(name);
-    code = (
-      file
-        ? item.files?.find((candidate) => candidate.path === file)
-        : item.files?.[0]
-    )?.content;
+    const file = filePath
+      ? item.files?.find((candidate) => candidate.path === filePath)
+      : item.files?.[0];
+
+    code = file?.content;
+    fileTitle = file?.path ? normalizeFilePath(file.path) : undefined;
   }
 
   if (src) {
@@ -65,6 +83,7 @@ export async function ComponentSource({
     return null;
   }
 
+  const title = defaultTitle ?? fileTitle;
   const lang = language ?? title?.split(".").pop() ?? "tsx";
 
   if (asMarkdown()) {

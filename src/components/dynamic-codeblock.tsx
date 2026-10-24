@@ -19,6 +19,7 @@ export type DynamicCodeBlockProps = HighlightOptions & {
 export async function DynamicCodeBlock({
   code,
   codeblock,
+  lang,
   ...options
 }: DynamicCodeBlockProps) {
   // Shiki reads the current time while highlighting, so the output is cached
@@ -35,11 +36,13 @@ export async function DynamicCodeBlock({
           {...props}
           {...codeblock}
           className={cn("my-0", props.className, codeblock?.className)}
+          lang={lang}
         >
           <Pre>{props.children}</Pre>
         </CodeBlock>
       ),
       ...options.components,
     },
+    lang,
   });
 }

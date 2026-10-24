@@ -10,11 +10,17 @@ import {
   CodeBlockTabsList,
   CodeBlockTabsTrigger,
 } from "@/components/codeblock";
-import { type PackageManager, runners, useConfig } from "@/hooks/use-config";
+import {
+  type PackageManager,
+  PM_ADD_COMMANDS,
+  PM_EXECUTE_COMMANDS,
+  packageManagers,
+  useConfig,
+} from "@/hooks/use-config";
 
 import { DynamicCodeBlock } from "./dynamic-codeblock.client";
 
-export function CodeBlockCommand({
+export function PackageManagerTabs({
   command,
   className,
 }: {
@@ -23,8 +29,6 @@ export function CodeBlockCommand({
 }) {
   const [config, setConfig] = useConfig();
 
-  const packageManager = config.packageManager || "pnpm";
-
   const handleValueChange = useCallback(
     (value: TabsTab.Value) => {
       setConfig({ ...config, packageManager: value as PackageManager });
@@ -32,24 +36,39 @@ export function CodeBlockCommand({
     [config, setConfig]
   );
 
+  const isExecute = command.startsWith("npx ");
+  const isAdd = command.startsWith("npm ");
+
+  if (!(isExecute || isAdd)) {
+    throw new Error(`"${command}" is not a valid command!`);
+  }
+
+  const getCode = (pm: PackageManager) => {
+    if (isExecute) {
+      return `${PM_EXECUTE_COMMANDS[pm]} ${command.slice(4)}`;
+    }
+
+    return `${PM_ADD_COMMANDS[pm]} ${command.slice(4)}`;
+  };
+
   return (
     <CodeBlockTabs
       className={className}
       onValueChange={handleValueChange}
-      value={packageManager}
+      value={config.packageManager || "pnpm"}
     >
       <CodeBlockTabsList>
-        {runners.map(([key]) => (
-          <CodeBlockTabsTrigger key={key} value={key}>
-            {key}
+        {packageManagers.map((pm) => (
+          <CodeBlockTabsTrigger key={pm} value={pm}>
+            {pm}
           </CodeBlockTabsTrigger>
         ))}
       </CodeBlockTabsList>
 
-      {runners.map(([key, runner]) => (
-        <CodeBlockTab key={key} value={key}>
+      {packageManagers.map((pm) => (
+        <CodeBlockTab key={pm} value={pm}>
           <DynamicCodeBlock
-            code={`${runner} ${command}`}
+            code={getCode(pm)}
             codeblock={{ className: "my-0" }}
             lang="bash"
           />

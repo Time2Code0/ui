@@ -18,6 +18,7 @@ import {
 } from "@/components/component-source";
 import { CodeTabs } from "@/components/mdx/code-tabs";
 import { Heading } from "@/components/mdx/heading";
+import { InstallationTabs } from "@/components/mdx/installation-tabs";
 import { MediaQueryDemo } from "@/components/mdx/media-query-demo";
 import {
   Accordion,
@@ -96,6 +97,7 @@ export const mdxComponents = {
   h6: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <Heading as="h6" {...props} />
   ),
+  InstallationTabs,
   MediaQueryDemo,
   ol: ({ className, ...props }: React.ComponentProps<"ol">) => (
     <ol

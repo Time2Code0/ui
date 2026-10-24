@@ -9,69 +9,7 @@ Three animated border effects: a light beam that travels along the edge, a shimm
 
 ## Installation
 
-<CodeTabs>
-
-<TabsList>
-  <TabsTab value="cli">CLI</TabsTab>
-  <TabsTab value="manual">Manual</TabsTab>
-</TabsList>
-
-<TabsPanel value="cli">
-
-```npm
-npx shadcn@latest add https://design.time2code.dev/r/animated-border
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-### Install the following dependencies: [step]
-
-```npm
-npm i @base-ui/react cn
-```
-
-### Add the following to your CSS file: [step]
-
-```css
-@theme inline {
-  --animate-border-beam: border-beam var(--duration) linear infinite;
-  --animate-border-full: border-full var(--duration) linear infinite;
-  --animate-border-shiny: border-shiny var(--duration) linear infinite;
-}
-
-@keyframes border-beam {
-  100% {
-    offset-distance: 100%;
-  }
-}
-
-@keyframes border-full {
-  100% {
-    background-position: 300% 0;
-  }
-}
-
-@keyframes border-shiny {
-  0%, 100% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-}
-```
-
-### Copy and paste the following code into your project. [step]
-
-<ComponentSource name="animated-border" />
-
-### Update the import paths to match your project setup. [step]
-
-</TabsPanel>
-
-</CodeTabs>
+<InstallationTabs name="animated-border" />
 
 ## Usage
 

@@ -9,55 +9,7 @@ Muted text with a band of light that sweeps across it. Use it for announcement b
 
 ## Installation
 
-<CodeTabs>
-
-<TabsList>
-  <TabsTab value="cli">CLI</TabsTab>
-  <TabsTab value="manual">Manual</TabsTab>
-</TabsList>
-
-<TabsPanel value="cli">
-
-```npm
-npx shadcn@latest add https://design.time2code.dev/r/shiny-text
-```
-
-</TabsPanel>
-
-<TabsPanel value="manual">
-
-### Install the following dependencies: [step]
-
-```npm
-npm i cn
-```
-
-### Add the following to your CSS file: [step]
-
-```css
-@theme inline {
-  --animate-shiny-text: shiny-text var(--duration) infinite;
-}
-
-@keyframes shiny-text {
-  from {
-    background-position: calc(-100% - var(--shimmer-width)) 0;
-  }
-  to {
-    background-position: calc(100% + var(--shimmer-width)) 0;
-  }
-}
-```
-
-### Copy and paste the following code into your project. [step]
-
-<ComponentSource name="shiny-text" />
-
-### Update the import paths to match your project setup. [step]
-
-</TabsPanel>
-
-</CodeTabs>
+<InstallationTabs name="shiny-text" />
 
 ## Usage
 
