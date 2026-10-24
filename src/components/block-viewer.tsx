@@ -508,7 +508,7 @@ function BlockInstallButton({ name }: { name: string }) {
   const handleCopy = useCallback(
     () =>
       copyToClipboard(
-        `${PM_EXECUTE_COMMANDS[packageManager]} shadcn@latest add ${siteConfig.url}/r/${name}`
+        `${PM_EXECUTE_COMMANDS[packageManager]} shadcn@latest add ${siteConfig.url}/r/${name}.json`
       ),
     [copyToClipboard, name, packageManager]
   );

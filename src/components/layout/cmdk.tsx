@@ -13,7 +13,8 @@ import {
 } from "@hugeicons/core-free-icons";
 import { useHotkey } from "@tanstack/react-hotkeys";
 
-import { useConfig } from "@/hooks/use-config";
+import { PM_EXECUTE_COMMANDS, useConfig } from "@/hooks/use-config";
+import { siteConfig } from "@/lib/config";
 import { useCopyToClipboard } from "@/registry/hooks/use-copy-to-clipboard";
 import { Button } from "@/registry/ui/button";
 import {
@@ -138,25 +139,9 @@ export function Cmdk({
       }
 
       if (item.isComponent) {
-        const componentName = item.url.split("/").pop();
-
-        const registryItem = `https://design.time2code.dev/r/${componentName}`;
-        let cmd: string;
-        switch (packageManager) {
-          case "pnpm":
-            cmd = `pnpm dlx shadcn@latest add ${registryItem}`;
-            break;
-          case "bun":
-            cmd = `bunx --bun shadcn@latest add ${registryItem}`;
-            break;
-          case "yarn":
-            cmd = `yarn dlx shadcn@latest add ${registryItem}`;
-            break;
-          default:
-            cmd = `npx shadcn@latest add ${registryItem}`;
-        }
-
-        setCopyPayload(cmd);
+        setCopyPayload(
+          `${PM_EXECUTE_COMMANDS[packageManager]} shadcn@latest add ${siteConfig.url}/r/${item.url.split("/").pop()}.json`
+        );
       } else {
         setCopyPayload("");
       }

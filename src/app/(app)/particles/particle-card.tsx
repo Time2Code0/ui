@@ -21,7 +21,7 @@ import { Icon } from "@/registry/ui/icon";
 import { ParticleCardContainer } from "./particle-card-container";
 
 export async function ParticleCard({ name }: { name: string }) {
-  const registryUrl = `${siteConfig.url}/r/${name}`;
+  const registryUrl = `${siteConfig.url}/r/${name}.json`;
 
   const particle = await getRegistryItem(name);
 
@@ -57,7 +57,7 @@ export async function ParticleCard({ name }: { name: string }) {
               </Button>
             ) : null}
 
-            <CopyRegistryButton value={`${registryUrl}.json`} />
+            <CopyRegistryButton value={registryUrl} />
 
             <Drawer position="right">
               <DrawerTrigger

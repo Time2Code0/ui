@@ -1,3 +1,4 @@
+import { siteConfig } from "@/lib/config";
 import { getRegistryItem } from "@/lib/registry";
 import { TabsList, TabsPanel, TabsTab } from "@/registry/ui/tabs";
 
@@ -23,7 +24,7 @@ export async function InstallationTabs({ name }: { name: string }) {
       >
         <PackageManagerTabs
           className="not-typeset full-width"
-          command={`npx shadcn@latest add https://design.time2code.dev/r/${name}`}
+          command={`npx shadcn@latest add ${siteConfig.url}/r/${name}.json`}
         />
       </TabsPanel>
       <TabsPanel
