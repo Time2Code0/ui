@@ -478,6 +478,14 @@ export const Index = {
       ) || "meter";
     return { default: mod.default || mod[exportName] };
   }),
+  "middle-truncate": lazy(async () => {
+    const mod = await import("@/registry/ui/middle-truncate");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "middle-truncate";
+    return { default: mod.default || mod[exportName] };
+  }),
   mouse: lazy(async () => {
     const mod = await import("@/registry/marketing/mouse");
     const exportName =
@@ -2620,6 +2628,16 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "p-meter-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-middle-truncate-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/middle-truncate/p-middle-truncate-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-middle-truncate-1";
     return { default: mod.default || mod[exportName] };
   }),
   "p-mouse-1": lazy(async () => {

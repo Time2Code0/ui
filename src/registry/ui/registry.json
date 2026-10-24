@@ -358,6 +358,14 @@
       "files": [{ "path": "meter.tsx", "type": "registry:ui" }]
     },
     {
+      "name": "middle-truncate",
+      "type": "registry:ui",
+      "title": "Middle Truncate",
+      "description": "Truncates text in the middle, preserving the start and end of the string.",
+      "dependencies": ["cn"],
+      "files": [{ "path": "middle-truncate.tsx", "type": "registry:ui" }]
+    },
+    {
       "name": "number-field",
       "type": "registry:ui",
       "title": "Number Field",

@@ -1,0 +1,91 @@
+---
+title: Middle Truncate
+description: Truncates text in the middle, preserving the start and end of the string for maximum readability.
+---
+
+<ComponentPreview name="p-middle-truncate-1" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTab value="cli">CLI</TabsTab>
+  <TabsTab value="manual">Manual</TabsTab>
+</TabsList>
+
+<TabsPanel value="cli">
+
+```npm
+npx shadcn@latest add https://design.time2code.dev/r/middle-truncate
+```
+
+</TabsPanel>
+
+<TabsPanel value="manual">
+
+### Install the following dependencies: [step]
+
+```npm
+npm i cn
+```
+
+### Copy and paste the following code into your project. [step]
+
+<ComponentSource name="middle-truncate" />
+
+### Update the import paths to match your project setup. [step]
+
+</TabsPanel>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { MiddleTruncate } from "@/components/ui/middle-truncate"
+```
+
+```tsx
+<MiddleTruncate value="feature/redesign-dashboard-navigation" />
+```
+
+The component fills the width it's given and truncates only when the string doesn't fit. Constrain it with a parent width or a `max-w-*` class:
+
+```tsx
+<div className="w-48">
+  <MiddleTruncate value="2b0874e797d7c2a4092d0033ee0c2f0f9aef2869" />
+</div>
+```
+
+## When to use
+
+- Use it for strings where both the start and the end matter, such as file paths, URLs, deployment IDs, commit hashes and prefixed branch names.
+- For prose, descriptions and headings, truncate at the end with `truncate` instead.
+- Pair it with a tooltip or a copy action when people may need the full string.
+
+## Behavior
+
+- Renders a single `…` glyph instead of three periods, so monospace values don't use extra character cells.
+- Splits text by grapheme, so emoji and combining characters are never cut in half.
+- Measures the shortened text on a canvas using the element's font, size, weight, kerning and letter spacing. `text-transform` and `font-feature-settings` aren't taken into account, so text using them may be cut slightly too early or too late.
+- Recalculates when its container resizes or web fonts finish loading. If a layout changes width on hover, the truncation point moves with it, so keep the width fixed during interaction.
+- Copying a selection that includes the ellipsis puts the matching part of the original string on the clipboard. Your `onCopy` runs first; call `event.preventDefault()` to handle copying yourself.
+- Don't nest it inside another `text-overflow: ellipsis` container. The two conflict.
+
+## Accessibility
+
+- When truncated, screen readers get the full string and the visible text is hidden from them. A native `title` shows the full value on hover. Pass `title={undefined}` from a client component to turn it off, for example when using a tooltip. Server components drop `undefined` props.
+- Add an `aria-label` when it sits inside a focusable control.
+- On small screens, leave enough visible text for the start to identify the resource.
+
+## API Reference
+
+### MiddleTruncate
+
+Accepts all `<span>` props except `children`.
+
+| Prop        | Type     | Default |
+| ----------- | -------- | ------- |
+| `value`     | `string` |         |
+| `className` | `string` |         |

@@ -3111,6 +3111,27 @@
       "meta": { "className": "w-full max-w-64" }
     },
     {
+      "name": "p-middle-truncate-1",
+      "type": "registry:block",
+      "description": "Middle-truncated values with adjustable width and tooltips",
+      "categories": ["middle truncate", "slider", "toggle", "tooltip"],
+      "dependencies": ["@base-ui/react", "cn"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/label.json",
+        "https://design.time2code.dev/r/middle-truncate.json",
+        "https://design.time2code.dev/r/slider.json",
+        "https://design.time2code.dev/r/toggle.json",
+        "https://design.time2code.dev/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "middle-truncate/p-middle-truncate-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "className": "w-full", "colSpan": 2 }
+    },
+    {
       "name": "p-mouse-1",
       "type": "registry:block",
       "description": "Custom cursor reacting to hover targets",
