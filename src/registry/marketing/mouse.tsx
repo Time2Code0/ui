@@ -4,8 +4,8 @@ import type { HTMLMotionProps, MotionValue, SpringOptions } from "motion/react";
 
 import {
   createContext,
+  use,
   useCallback,
-  useContext,
   useEffect,
   useId,
   useMemo,
@@ -46,7 +46,7 @@ interface MouseContextApi {
 const MouseContext = createContext<MouseContextApi | null>(null);
 
 export function useMouse() {
-  const context = useContext(MouseContext);
+  const context = use(MouseContext);
 
   if (!context) {
     throw new Error("useMouse must be used within <MouseProvider />");

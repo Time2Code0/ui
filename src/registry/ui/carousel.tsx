@@ -2,13 +2,7 @@
 
 import type { UseEmblaCarouselType } from "embla-carousel-react";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, use, useCallback, useEffect, useState } from "react";
 
 import { ArrowLeft01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { cn } from "cn";
@@ -50,7 +44,7 @@ const CarouselContext = createContext<CarouselContextProps | undefined>(
 );
 
 function useCarousel() {
-  const context = useContext(CarouselContext);
+  const context = use(CarouselContext);
 
   if (!context) {
     throw new Error("useCarousel must be used within <Carousel />");

@@ -4,7 +4,7 @@ import type { HTMLMotionProps, MotionValue, SpringOptions } from "motion/react";
 
 import {
   createContext,
-  useContext,
+  use,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -36,7 +36,7 @@ interface ScrollApi {
 const ScrollContext = createContext<ScrollApi | null>(null);
 
 export function useScroll() {
-  const context = useContext(ScrollContext);
+  const context = use(ScrollContext);
 
   if (!context) {
     throw new Error(

@@ -2,7 +2,7 @@
 
 import type { HTMLMotionProps, MotionValue } from "motion/react";
 
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, use, useEffect, useRef, useState } from "react";
 
 import { cn } from "cn";
 import { motion, useMotionTemplate, useTransform } from "motion/react";
@@ -16,7 +16,7 @@ interface OrbitContextApi {
 const OrbitContext = createContext<OrbitContextApi | null>(null);
 
 export function useOrbit() {
-  const context = useContext(OrbitContext);
+  const context = use(OrbitContext);
 
   if (!context) {
     throw new Error("useOrbit must be used within <Orbit />");

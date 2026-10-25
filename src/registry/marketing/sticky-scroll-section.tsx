@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useRef, useState } from "react";
+import { createContext, use, useRef, useState } from "react";
 
 import { cn } from "cn";
 import { useMotionValueEvent, useScroll } from "motion/react";
@@ -17,7 +17,7 @@ const StickyScrollRevealContext = createContext<
 >(undefined);
 
 const useStickyScrollReveal = () => {
-  const context = useContext(StickyScrollRevealContext);
+  const context = use(StickyScrollRevealContext);
 
   if (!context) {
     throw new Error(

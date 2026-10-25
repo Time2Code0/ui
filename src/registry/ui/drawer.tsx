@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext } from "react";
+import { createContext, use } from "react";
 
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
 import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
@@ -74,7 +74,7 @@ export function DrawerSwipeArea({
 }: DrawerPrimitive.SwipeArea.Props & {
   position?: DrawerPosition;
 }): React.ReactElement {
-  const { position: contextPosition } = useContext(DrawerContext);
+  const { position: contextPosition } = use(DrawerContext);
   const position = positionProp ?? contextPosition;
 
   return (
@@ -155,7 +155,7 @@ export function DrawerPopup({
   showBar?: boolean;
   portalProps?: DrawerPrimitive.Portal.Props;
 }): React.ReactElement {
-  const { position: contextPosition } = useContext(DrawerContext);
+  const { position: contextPosition } = use(DrawerContext);
   const position = positionProp ?? contextPosition;
 
   return (
@@ -367,7 +367,7 @@ export function DrawerBar({
 }: useRender.ComponentProps<"div"> & {
   position?: DrawerPosition;
 }): React.ReactElement {
-  const { position: contextPosition } = useContext(DrawerContext);
+  const { position: contextPosition } = use(DrawerContext);
   const position = positionProp ?? contextPosition;
   const horizontal = position === "left" || position === "right";
 

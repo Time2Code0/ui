@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useRef } from "react";
+import { createContext, use, useRef } from "react";
 
 import { Combobox as ComboboxPrimitive } from "@base-ui/react/combobox";
 import { Cancel01Icon, UnfoldMoreIcon } from "@hugeicons/core-free-icons";
@@ -178,7 +178,7 @@ export function ComboboxPopup({
   anchor?: ComboboxPrimitive.Positioner.Props["anchor"];
   portalProps?: ComboboxPrimitive.Portal.Props;
 }): React.ReactElement {
-  const { chipsRef } = useContext(ComboboxContext);
+  const { chipsRef } = use(ComboboxContext);
   const anchor = anchorProp ?? chipsRef;
 
   return (
@@ -389,7 +389,7 @@ export function ComboboxChips({
 }: ComboboxPrimitive.Chips.Props & {
   startAddon?: React.ReactNode;
 }): React.ReactElement {
-  const { chipsRef } = useContext(ComboboxContext);
+  const { chipsRef } = use(ComboboxContext);
 
   return (
     <ComboboxPrimitive.Chips

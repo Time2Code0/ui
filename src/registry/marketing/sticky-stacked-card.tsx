@@ -2,7 +2,7 @@
 
 import type { MotionStyle, MotionValue } from "motion/react";
 
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, use, useEffect, useRef, useState } from "react";
 
 import { cn } from "cn";
 import { motion, useScroll, useTransform } from "motion/react";
@@ -19,7 +19,7 @@ const StickyStackedCardsContext = createContext<
 >(undefined);
 
 const useStickyStackedCards = () => {
-  const context = useContext(StickyStackedCardsContext);
+  const context = use(StickyStackedCardsContext);
 
   if (!context) {
     throw new Error(

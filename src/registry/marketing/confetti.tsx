@@ -2,8 +2,8 @@
 
 import {
   createContext,
+  use,
   useCallback,
-  useContext,
   useEffect,
   useImperativeHandle,
   useMemo,
@@ -102,7 +102,7 @@ function Confetti({
 }
 
 const useConfetti = () => {
-  const context = useContext(ConfettiContext);
+  const context = use(ConfettiContext);
 
   if (!context) {
     throw new Error("useConfetti must be used within <Confetti />");
