@@ -17,7 +17,7 @@ export const Select: typeof SelectPrimitive.Root = SelectPrimitive.Root;
 
 export const selectTriggerVariants = cva(
   cn(
-    "relative inline-flex min-h-9 w-full min-w-36 select-none items-center justify-between gap-2 rounded-md border bg-background px-[calc(--spacing(3)-1px)] text-left text-foreground text-sm outline-none ring-foreground/30",
+    "relative inline-flex min-h-8 w-full min-w-36 select-none items-center justify-between gap-2 rounded-md border bg-background px-[calc(--spacing(3)-1px)] text-left text-foreground text-sm outline-none ring-foreground/30",
     "focus-visible:border-foreground focus-visible:ring-[3px]",
     "aria-invalid:border-destructive/30 focus-visible:aria-invalid:border-destructive/60 focus-visible:aria-invalid:ring-destructive-subtel",
     "data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -30,14 +30,14 @@ export const selectTriggerVariants = cva(
     variants: {
       size: {
         default: "",
-        lg: "min-h-10",
-        sm: "min-h-8 gap-1.5 px-[calc(--spacing(2.5)-1px)]",
+        lg: "min-h-9",
+        sm: "min-h-7 gap-1.5 px-[calc(--spacing(2.5)-1px)]",
       },
     },
   }
 );
 
-export const selectTriggerIconClassName = "-me-1 size-4.5 opacity-80 sm:size-4";
+export const selectTriggerIconClassName = "-me-1 opacity-80 size-4";
 
 export interface SelectButtonProps extends useRender.ComponentProps<"button"> {
   size?: VariantProps<typeof selectTriggerVariants>["size"];
@@ -163,10 +163,7 @@ export function SelectPopup({
             className="top-0 z-50 flex h-6 w-full cursor-default items-center justify-center before:pointer-events-none before:absolute before:inset-x-px before:top-px before:h-[200%] before:rounded-t-[calc(var(--radius-lg)-1px)] before:bg-linear-to-b before:from-50% before:from-background"
             data-slot="select-scroll-up-arrow"
           >
-            <Icon
-              className="relative size-4.5 sm:size-4"
-              icon={ChevronUpIcon}
-            />
+            <Icon className="relative size-4" icon={ChevronUpIcon} />
           </SelectPrimitive.ScrollUpArrow>
 
           <div className="relative h-full min-w-(--anchor-width) rounded-lg border bg-background">
@@ -185,10 +182,7 @@ export function SelectPopup({
             className="bottom-0 z-50 flex h-6 w-full cursor-default items-center justify-center before:pointer-events-none before:absolute before:inset-x-px before:bottom-px before:h-[200%] before:rounded-b-[calc(var(--radius-lg)-1px)] before:bg-linear-to-t before:from-50% before:from-background"
             data-slot="select-scroll-down-arrow"
           >
-            <Icon
-              className="relative size-4.5 sm:size-4"
-              icon={ChevronDownIcon}
-            />
+            <Icon className="relative size-4" icon={ChevronDownIcon} />
           </SelectPrimitive.ScrollDownArrow>
         </SelectPrimitive.Popup>
       </SelectPrimitive.Positioner>
@@ -204,7 +198,7 @@ export function SelectItem({
   return (
     <SelectPrimitive.Item
       className={cn(
-        "grid min-h-8 in-data-[side=none]:min-w-[calc(var(--anchor-width)+1.25rem)] cursor-default grid-cols-[1rem_1fr] items-center gap-2 rounded-sm py-1 ps-2 pe-4 text-sm outline-none",
+        "grid min-h-7 in-data-[side=none]:min-w-[calc(var(--anchor-width)+1.25rem)] cursor-default grid-cols-[1rem_1fr] items-center gap-2 rounded-sm py-1 ps-2 pe-4 text-sm outline-none",
         "data-disabled:pointer-events-none data-highlighted:bg-accent data-highlighted:text-foreground data-disabled:opacity-50",
         "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
