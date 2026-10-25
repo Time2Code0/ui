@@ -40,14 +40,8 @@ export function ComponentRenderer({
   }
 
   return (
-    <>
-      {metaClassName ? (
-        <div className={metaClassName}>
-          <Component />
-        </div>
-      ) : (
-        <Component />
-      )}
-    </>
+    <div className={metaClassName} data-slot="preview">
+      <Component />
+    </div>
   );
 }
