@@ -3304,6 +3304,36 @@ export const Index = {
       ) || "p-scroll-reveal-1";
     return { default: mod.default || mod[exportName] };
   }),
+  "p-segmented-control-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/segmented-control/p-segmented-control-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-segmented-control-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-segmented-control-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/segmented-control/p-segmented-control-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-segmented-control-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-segmented-control-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/segmented-control/p-segmented-control-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-segmented-control-3";
+    return { default: mod.default || mod[exportName] };
+  }),
   "p-select-1": lazy(async () => {
     const mod = await import("@/registry/particles/select/p-select-1");
     const exportName =
@@ -4238,6 +4268,14 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "section-container";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "segmented-control": lazy(async () => {
+    const mod = await import("@/registry/ui/segmented-control");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "segmented-control";
     return { default: mod.default || mod[exportName] };
   }),
   select: lazy(async () => {

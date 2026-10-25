@@ -4060,6 +4060,51 @@
       "meta": { "className": "w-full max-w-md" }
     },
     {
+      "name": "p-segmented-control-1",
+      "type": "registry:block",
+      "description": "Segmented control with navigation links",
+      "categories": ["segmented control"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "segmented-control/p-segmented-control-1.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-segmented-control-2",
+      "type": "registry:block",
+      "description": "Small segmented control with navigation links",
+      "categories": ["segmented control"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "segmented-control/p-segmented-control-2.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-segmented-control-3",
+      "type": "registry:block",
+      "description": "Large segmented control with navigation links",
+      "categories": ["segmented control"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/segmented-control.json"
+      ],
+      "files": [
+        {
+          "path": "segmented-control/p-segmented-control-3.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
       "name": "p-select-1",
       "type": "registry:block",
       "description": "Basic select",

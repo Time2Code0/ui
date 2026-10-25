@@ -467,6 +467,14 @@
       "files": [{ "path": "section-container.tsx", "type": "registry:ui" }]
     },
     {
+      "name": "segmented-control",
+      "type": "registry:ui",
+      "title": "Segmented Control",
+      "description": "A segmented surface with a sliding indicator for related choices.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "files": [{ "path": "segmented-control.tsx", "type": "registry:ui" }]
+    },
+    {
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
