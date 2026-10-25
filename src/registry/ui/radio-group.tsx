@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/style/noExportedImports: re-exported for custom compositions */
 "use client";
 
 import { Radio as RadioPrimitive } from "@base-ui/react/radio";
@@ -39,3 +40,5 @@ export function Radio({
     </RadioPrimitive.Root>
   );
 }
+
+export { RadioGroupPrimitive, RadioPrimitive };

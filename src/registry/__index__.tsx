@@ -3160,6 +3160,56 @@ export const Index = {
       ) || "p-radio-group-5";
     return { default: mod.default || mod[exportName] };
   }),
+  "p-radio-group-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/radio-group/p-radio-group-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-radio-group-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-radio-group-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/radio-group/p-radio-group-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-radio-group-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-radio-group-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/radio-group/p-radio-group-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-radio-group-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-radio-group-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/radio-group/p-radio-group-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-radio-group-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-radio-group-10": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/radio-group/p-radio-group-10"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-radio-group-10";
+    return { default: mod.default || mod[exportName] };
+  }),
   "p-retro-grid-1": lazy(async () => {
     const mod = await import("@/registry/particles/retro-grid/p-retro-grid-1");
     const exportName =

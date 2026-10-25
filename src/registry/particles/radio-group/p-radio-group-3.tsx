@@ -3,7 +3,7 @@ import { Radio, RadioGroup } from "@/registry/ui/radio-group";
 
 export function Particle() {
   return (
-    <RadioGroup defaultValue="r-1">
+    <RadioGroup aria-label="Subscription plan" defaultValue="r-1">
       <div className="flex items-start gap-2">
         <Radio id="r-1" value="r-1" />
         <div className="flex flex-col gap-1">

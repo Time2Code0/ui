@@ -3864,6 +3864,74 @@
       ]
     },
     {
+      "name": "p-radio-group-6",
+      "type": "registry:block",
+      "description": "Theme selector with image cards",
+      "categories": ["radio group", "form"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/field.json",
+        "https://design.time2code.dev/r/fieldset.json",
+        "https://design.time2code.dev/r/radio-group.json"
+      ],
+      "files": [
+        { "path": "radio-group/p-radio-group-6.tsx", "type": "registry:block" }
+      ],
+      "meta": { "className": "w-full max-w-[320px]" }
+    },
+    {
+      "name": "p-radio-group-7",
+      "type": "registry:block",
+      "description": "Small segmented control built with a radio group",
+      "categories": ["radio group", "segmented control"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/radio-group.json",
+        "https://design.time2code.dev/r/segmented-control.json"
+      ],
+      "files": [
+        { "path": "radio-group/p-radio-group-7.tsx", "type": "registry:block" }
+      ]
+    },
+    {
+      "name": "p-radio-group-8",
+      "type": "registry:block",
+      "description": "Segmented control built with a radio group",
+      "categories": ["radio group", "segmented control"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/radio-group.json",
+        "https://design.time2code.dev/r/segmented-control.json"
+      ],
+      "files": [
+        { "path": "radio-group/p-radio-group-8.tsx", "type": "registry:block" }
+      ]
+    },
+    {
+      "name": "p-radio-group-9",
+      "type": "registry:block",
+      "description": "Large segmented control built with a radio group",
+      "categories": ["radio group", "segmented control"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/radio-group.json",
+        "https://design.time2code.dev/r/segmented-control.json"
+      ],
+      "files": [
+        { "path": "radio-group/p-radio-group-9.tsx", "type": "registry:block" }
+      ]
+    },
+    {
+      "name": "p-radio-group-10",
+      "type": "registry:block",
+      "description": "Color palette radio cards in a four-column grid",
+      "categories": ["radio group", "tooltip"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/radio-group.json",
+        "https://design.time2code.dev/r/tooltip.json"
+      ],
+      "files": [
+        { "path": "radio-group/p-radio-group-10.tsx", "type": "registry:block" }
+      ],
+      "meta": { "className": "w-full max-w-96" }
+    },
+    {
       "name": "p-retro-grid-1",
       "type": "registry:block",
       "description": "Animated perspective grid",
