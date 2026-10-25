@@ -366,7 +366,7 @@ function MemberRow({ member }: { member: (typeof members)[number] }) {
 
   return (
     <li className="flex h-14 items-center gap-3 border-b px-6">
-      <Avatar className="text-[0.6875rem]">
+      <Avatar>
         <AvatarFallback>{person.initials}</AvatarFallback>
       </Avatar>
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
@@ -560,13 +560,9 @@ export function TasksDemo() {
           <span className="text-foreground-muted text-xs tabular-nums">
             {done}/{TOTAL_TASKS}
           </span>
-          <AvatarGroup>
+          <AvatarGroup className="[--avatar-size:--spacing(6)]">
             {(["mara", "theo", "priya", "kenji"] as const).map((id) => (
-              <Avatar
-                className="size-6 text-[0.625rem]"
-                key={id}
-                title={people[id].name}
-              >
+              <Avatar key={id} title={people[id].name}>
                 <AvatarFallback>{people[id].initials}</AvatarFallback>
               </Avatar>
             ))}
@@ -698,7 +694,7 @@ function TaskRow({ task }: { task: Task }) {
       </TableCell>
       <TableCell>
         <span className="flex items-center gap-2 text-[0.8125rem]">
-          <Avatar className="size-5 text-[0.5625rem]">
+          <Avatar className="[--avatar-size:--spacing(5)]">
             <AvatarFallback>{people[task.assignee].initials}</AvatarFallback>
           </Avatar>
           {people[task.assignee].name.split(" ")[0]}
@@ -718,7 +714,7 @@ export function ScheduleDemo() {
   return (
     <Card className="size-full gap-5 overflow-hidden p-6">
       <div className="flex items-center gap-3">
-        <Avatar className="size-9">
+        <Avatar className="[--avatar-size:--spacing(9)]">
           <AvatarFallback>{people.kenji.initials}</AvatarFallback>
         </Avatar>
         <div className="flex flex-col gap-1">
@@ -1083,13 +1079,9 @@ export function WaitlistDemo() {
       </div>
 
       <div className="flex items-center gap-3">
-        <AvatarGroup>
+        <AvatarGroup className="[--avatar-size:--spacing(7)]">
           {(["ines", "theo", "priya", "kenji"] as const).map((id) => (
-            <Avatar
-              className="size-7 text-[0.625rem]"
-              key={id}
-              title={people[id].name}
-            >
+            <Avatar key={id} title={people[id].name}>
               <AvatarFallback>{people[id].initials}</AvatarFallback>
             </Avatar>
           ))}
@@ -1248,7 +1240,7 @@ export function ProofDemo() {
           minutes. The team actually reads it now.”
         </blockquote>
         <figcaption className="flex items-center gap-3">
-          <Avatar className="size-8">
+          <Avatar>
             <AvatarFallback>LB</AvatarFallback>
           </Avatar>
           <span className="flex flex-col gap-0.5 text-sm">

@@ -113,7 +113,7 @@ function NotificationTile({
   return (
     <Tile className="flex gap-3">
       <span className="relative h-fit">
-        <Avatar className="size-9">
+        <Avatar className="[--avatar-size:--spacing(9)]">
           <AvatarFallback>{people[person].initials}</AvatarFallback>
         </Avatar>
         <span className="absolute -end-0.5 -bottom-0.5 size-2.5 rounded-full bg-success ring-2 ring-background" />
@@ -159,7 +159,7 @@ function AssistantTile() {
         <Textarea placeholder="Ask anything…" />
         <div className="flex items-center justify-between px-1.5 pt-1.5 pb-0.5">
           <span className="inline-flex items-center gap-1.5 text-foreground-muted text-xs">
-            <Avatar className="size-4 text-[0.5rem]">
+            <Avatar className="text-[0.5rem] [--avatar-size:--spacing(4)]">
               <AvatarFallback>{people.camila.initials}</AvatarFallback>
             </Avatar>
             Camila
@@ -299,7 +299,7 @@ function SelectStates() {
         </span>
         <SelectButton className={fieldFocus}>
           <span className="inline-flex items-center gap-2">
-            <Avatar className="size-5 text-[0.5625rem]">
+            <Avatar className="[--avatar-size:--spacing(5)]">
               <AvatarFallback>{people.elias.initials}</AvatarFallback>
             </Avatar>
             {people.elias.name}
@@ -331,7 +331,7 @@ function SelectStates() {
                 <span />
               )}
               <span className="flex min-w-0 items-center gap-2">
-                <Avatar className="size-5 text-[0.5625rem]">
+                <Avatar className="[--avatar-size:--spacing(5)]">
                   <AvatarFallback>{people[id].initials}</AvatarFallback>
                 </Avatar>
                 <span className="truncate">{people[id].name}</span>

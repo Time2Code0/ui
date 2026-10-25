@@ -483,12 +483,32 @@
       "files": [{ "path": "avatar/p-avatar-2.tsx", "type": "registry:block" }]
     },
     {
+      "name": "p-avatar-6",
+      "type": "registry:block",
+      "description": "Avatar with user icon fallback",
+      "categories": ["avatar"],
+      "dependencies": ["@hugeicons/core-free-icons"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/avatar.json",
+        "https://design.time2code.dev/r/icon.json"
+      ],
+      "files": [{ "path": "avatar/p-avatar-6.tsx", "type": "registry:block" }]
+    },
+    {
       "name": "p-avatar-3",
       "type": "registry:block",
       "description": "Avatars with different sizes",
       "categories": ["avatar"],
       "registryDependencies": ["https://design.time2code.dev/r/avatar.json"],
       "files": [{ "path": "avatar/p-avatar-3.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "p-avatar-19",
+      "type": "registry:block",
+      "description": "Avatars sized from a parent element",
+      "categories": ["avatar"],
+      "registryDependencies": ["https://design.time2code.dev/r/avatar.json"],
+      "files": [{ "path": "avatar/p-avatar-19.tsx", "type": "registry:block" }]
     },
     {
       "name": "p-avatar-4",
@@ -499,12 +519,136 @@
       "files": [{ "path": "avatar/p-avatar-4.tsx", "type": "registry:block" }]
     },
     {
+      "name": "p-avatar-17",
+      "type": "registry:block",
+      "description": "Avatar rendered as a button",
+      "categories": ["avatar"],
+      "registryDependencies": ["https://design.time2code.dev/r/avatar.json"],
+      "files": [{ "path": "avatar/p-avatar-17.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "p-avatar-18",
+      "type": "registry:block",
+      "description": "Avatar rendered as a link",
+      "categories": ["avatar"],
+      "registryDependencies": ["https://design.time2code.dev/r/avatar.json"],
+      "files": [{ "path": "avatar/p-avatar-18.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "p-avatar-20",
+      "type": "registry:block",
+      "description": "Avatar with a tooltip",
+      "categories": ["avatar", "tooltip"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/avatar.json",
+        "https://design.time2code.dev/r/tooltip.json"
+      ],
+      "files": [{ "path": "avatar/p-avatar-20.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "p-avatar-7",
+      "type": "registry:block",
+      "description": "Avatar with emerald status dot",
+      "categories": ["avatar"],
+      "registryDependencies": ["https://design.time2code.dev/r/avatar.json"],
+      "files": [{ "path": "avatar/p-avatar-7.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "p-avatar-8",
+      "type": "registry:block",
+      "description": "Avatar with muted status dot",
+      "categories": ["avatar"],
+      "registryDependencies": ["https://design.time2code.dev/r/avatar.json"],
+      "files": [{ "path": "avatar/p-avatar-8.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "p-avatar-9",
+      "type": "registry:block",
+      "description": "Rounded avatar with top-right emerald status",
+      "categories": ["avatar"],
+      "registryDependencies": ["https://design.time2code.dev/r/avatar.json"],
+      "files": [{ "path": "avatar/p-avatar-9.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "p-avatar-10",
+      "type": "registry:block",
+      "description": "Avatar with notification badge",
+      "categories": ["avatar", "badge"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/avatar.json",
+        "https://design.time2code.dev/r/badge.json"
+      ],
+      "files": [{ "path": "avatar/p-avatar-10.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "p-avatar-11",
+      "type": "registry:block",
+      "description": "Rounded avatar with notification badge",
+      "categories": ["avatar", "badge"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/avatar.json",
+        "https://design.time2code.dev/r/badge.json"
+      ],
+      "files": [{ "path": "avatar/p-avatar-11.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "p-avatar-12",
+      "type": "registry:block",
+      "description": "Avatar with verified badge",
+      "categories": ["avatar"],
+      "registryDependencies": ["https://design.time2code.dev/r/avatar.json"],
+      "files": [{ "path": "avatar/p-avatar-12.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "p-avatar-5",
+      "type": "registry:block",
+      "description": "Overlapping avatar group",
+      "categories": ["avatar"],
+      "registryDependencies": ["https://design.time2code.dev/r/avatar.json"],
+      "files": [{ "path": "avatar/p-avatar-5.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "p-avatar-16",
+      "type": "registry:block",
+      "description": "Avatar group with a count and the last avatar on top",
+      "categories": ["avatar"],
+      "registryDependencies": ["https://design.time2code.dev/r/avatar.json"],
+      "files": [{ "path": "avatar/p-avatar-16.tsx", "type": "registry:block" }]
+    },
+    {
       "name": "p-avatar-15",
       "type": "registry:block",
-      "description": "Avatar group with overflow count",
+      "description": "Avatar group with the last avatar on top",
       "categories": ["avatar"],
       "registryDependencies": ["https://design.time2code.dev/r/avatar.json"],
       "files": [{ "path": "avatar/p-avatar-15.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "p-avatar-21",
+      "type": "registry:block",
+      "description": "Avatar group with a tooltip per member",
+      "categories": ["avatar", "tooltip"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/avatar.json",
+        "https://design.time2code.dev/r/tooltip.json"
+      ],
+      "files": [{ "path": "avatar/p-avatar-21.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "p-avatar-13",
+      "type": "registry:block",
+      "description": "Small overlapping avatar group",
+      "categories": ["avatar"],
+      "registryDependencies": ["https://design.time2code.dev/r/avatar.json"],
+      "files": [{ "path": "avatar/p-avatar-13.tsx", "type": "registry:block" }]
+    },
+    {
+      "name": "p-avatar-14",
+      "type": "registry:block",
+      "description": "Large overlapping avatar group",
+      "categories": ["avatar"],
+      "registryDependencies": ["https://design.time2code.dev/r/avatar.json"],
+      "files": [{ "path": "avatar/p-avatar-14.tsx", "type": "registry:block" }]
     },
     {
       "name": "p-badge-1",

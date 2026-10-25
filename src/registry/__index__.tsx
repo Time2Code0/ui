@@ -866,12 +866,140 @@ export const Index = {
       ) || "p-avatar-4";
     return { default: mod.default || mod[exportName] };
   }),
+  "p-avatar-5": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-5");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-6": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-6");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-7": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-7");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-8": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-8");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-9": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-9");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-10": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-10");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-10";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-11": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-11");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-11";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-12": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-12");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-12";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-13": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-13");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-13";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-14": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-14");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-14";
+    return { default: mod.default || mod[exportName] };
+  }),
   "p-avatar-15": lazy(async () => {
     const mod = await import("@/registry/particles/avatar/p-avatar-15");
     const exportName =
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "p-avatar-15";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-16": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-16");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-16";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-17": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-17");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-17";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-18": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-18");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-18";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-19": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-19");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-19";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-20": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-20");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-20";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-avatar-21": lazy(async () => {
+    const mod = await import("@/registry/particles/avatar/p-avatar-21");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-avatar-21";
     return { default: mod.default || mod[exportName] };
   }),
   "p-badge-1": lazy(async () => {

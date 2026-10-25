@@ -93,7 +93,7 @@ export function AiReady() {
 
         <figure className="mr-px flex flex-col gap-4 bg-background-muted px-4 py-8 max-lg:ml-px max-lg:border-t sm:px-8 lg:border-s lg:py-10">
           <figcaption className="flex items-center gap-3">
-            <Avatar className="size-10">
+            <Avatar className="[--avatar-size:--spacing(10)]">
               <AvatarImage alt="" src="https://github.com/shadcn.png" />
               <AvatarFallback>SC</AvatarFallback>
             </Avatar>
