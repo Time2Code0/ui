@@ -1,4 +1,3 @@
 {
-  "pages": ["(root)", "ui", "marketing", "hooks", "resources"],
-  "root": true
+  "pages": ["(root)", "ui", "marketing", "hooks", "resources"]
 }

@@ -1,4 +1,6 @@
 {
-  "pages": ["..."],
-  "title": "UI Components"
+  "root": true,
+  "title": "UI Components",
+  "icon": "Dropdown",
+  "pages": ["..."]
 }

@@ -1,4 +1,6 @@
 {
-  "pages": ["..."],
-  "title": "Hooks"
+  "root": true,
+  "title": "Hooks",
+  "icon": "Code",
+  "pages": ["..."]
 }

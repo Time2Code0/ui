@@ -1,4 +1,6 @@
 {
-  "pages": ["..."],
-  "title": "Marketing"
+  "root": true,
+  "title": "Marketing Components",
+  "icon": "Sparkles",
+  "pages": ["..."]
 }

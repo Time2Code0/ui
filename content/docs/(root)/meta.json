@@ -1,4 +1,14 @@
 {
-  "pages": ["index", "get-started", "styling", "changelog"],
-  "title": "Overview"
+  "title": "Get started",
+  "description": "What coss.com is, your first email, and the keys every product shares.",
+  "root": true,
+  "icon": "Rocket",
+  "pages": [
+    "index",
+    "get-started",
+    "styling",
+    "---Resources---",
+    "[llms.txt](/llms.txt)",
+    "[llms-full.txt](/llms-full.txt)"
+  ]
 }
