@@ -35,7 +35,7 @@ export function DocsSidebar({ tree }: { tree: typeof source.pageTree }) {
                   {item.index ? (
                     <SidebarMenuItem>
                       <SidebarMenuButton
-                        className="text-foreground-muted data-active:bg-primary/10 data-active:text-primary"
+                        className="text-foreground-muted data-[active=true]:bg-primary/10 data-[active=true]:text-primary"
                         isActive={item.index.url === pathname}
                         render={<Link href={item.index.url} />}
                       >
@@ -52,7 +52,7 @@ export function DocsSidebar({ tree }: { tree: typeof source.pageTree }) {
                     return (
                       <SidebarMenuItem key={subItem.url}>
                         <SidebarMenuButton
-                          className="text-foreground-muted data-active:bg-primary/10 data-active:text-primary"
+                          className="text-foreground-muted data-[active=true]:bg-primary/10 data-[active=true]:text-primary"
                           isActive={subItem.url === pathname}
                           render={<Link href={subItem.url} />}
                         >
