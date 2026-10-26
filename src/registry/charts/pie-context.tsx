@@ -1,14 +1,9 @@
 "use client";
 
 import type { Transition } from "motion/react";
+import type { RefObject } from "react";
 
-import {
-  createContext,
-  type ReactNode,
-  type RefObject,
-  useContext,
-  useMemo,
-} from "react";
+import { createSplitContext } from "./split-context";
 
 // CSS variable references for pie chart theming
 export const pieCssVars = {
@@ -104,99 +99,18 @@ export interface PieStableContextValue {
 
 export type PieContextValue = PieStableContextValue & PieHoverContextValue;
 
-const PieStableContext = createContext<PieStableContextValue | null>(null);
-const PieHoverContext = createContext<PieHoverContextValue | null>(null);
-
-export function PieProvider({
-  children,
-  value,
-}: {
-  children: ReactNode;
-  value: PieContextValue;
-}) {
-  const stable = useMemo<PieStableContextValue>(
-    () => ({
-      animationKey: value.animationKey,
-      arcs: value.arcs,
-      center: value.center,
-      containerRef: value.containerRef,
-      cornerRadius: value.cornerRadius,
-      data: value.data,
-      enterStaggerScale: value.enterStaggerScale,
-      enterTransition: value.enterTransition,
-      geometryScrubbing: value.geometryScrubbing,
-      getColor: value.getColor,
-      getFill: value.getFill,
-      hoverOffset: value.hoverOffset,
-      innerRadius: value.innerRadius,
-      isLoaded: value.isLoaded,
-      outerRadius: value.outerRadius,
-      padAngle: value.padAngle,
-      scrubSlicePaths: value.scrubSlicePaths,
-      size: value.size,
-      totalValue: value.totalValue,
-    }),
-    [
-      value.data,
-      value.arcs,
-      value.size,
-      value.center,
-      value.outerRadius,
-      value.innerRadius,
-      value.padAngle,
-      value.cornerRadius,
-      value.hoverOffset,
-      value.animationKey,
-      value.isLoaded,
-      value.enterTransition,
-      value.enterStaggerScale,
-      value.containerRef,
-      value.totalValue,
-      value.getColor,
-      value.getFill,
-      value.geometryScrubbing,
-      value.scrubSlicePaths,
-    ]
-  );
-
-  const hover = useMemo<PieHoverContextValue>(
-    () => ({
-      hoveredIndex: value.hoveredIndex,
-      setHoveredIndex: value.setHoveredIndex,
-    }),
-    [value.hoveredIndex, value.setHoveredIndex]
-  );
-
-  return (
-    <PieStableContext.Provider value={stable}>
-      <PieHoverContext.Provider value={hover}>
-        {children}
-      </PieHoverContext.Provider>
-    </PieStableContext.Provider>
-  );
-}
-
-export function usePieStable(): PieStableContextValue {
-  const context = useContext(PieStableContext);
-  if (!context) {
-    throw new Error(
-      "usePieStable must be used within a PieProvider. " +
-        "Make sure your component is wrapped in <PieChart>."
-    );
-  }
-  return context;
-}
-
-export function usePieHover(): PieHoverContextValue {
-  const context = useContext(PieHoverContext);
-  if (!context) {
-    throw new Error(
-      "usePieHover must be used within a PieProvider. " +
-        "Make sure your component is wrapped in <PieChart>."
-    );
-  }
-  return context;
-}
+export const {
+  Provider: PieProvider,
+  useHover: usePieHover,
+  useStable: usePieStable,
+} = createSplitContext<PieStableContextValue, PieHoverContextValue>({
+  hoverKeys: {
+    hoveredIndex: true,
+    setHoveredIndex: true,
+  },
+  name: "Pie",
+  wrappers: "<PieChart>",
+});
 
 export function usePie(): PieContextValue {
   return { ...usePieStable(), ...usePieHover() };

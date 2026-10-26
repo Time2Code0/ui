@@ -19,17 +19,14 @@ import type { ChartSelection } from "./use-chart-interaction";
 import type { YDomain } from "./y-domain-utils";
 
 import {
-  createContext,
   type Dispatch,
-  type ReactNode,
   type RefObject,
   type SetStateAction,
-  useContext,
   useEffect,
-  useMemo,
   useState,
 } from "react";
 
+import { createSplitContext } from "./split-context";
 import { DEFAULT_Y_AXIS_ID } from "./y-axis-scales";
 
 // CSS variable references for theming
@@ -260,166 +257,33 @@ export type ChartStableContextValue = Omit<
   keyof ChartHoverContextValue
 >;
 
-const ChartStableContext = createContext<ChartStableContextValue | null>(null);
-const ChartHoverContext = createContext<ChartHoverContextValue | null>(null);
+const {
+  Provider: ChartProvider,
+  useHover: useChartHover,
+  useStable: useChartStable,
+} = createSplitContext<ChartStableContextValue, ChartHoverContextValue>({
+  hoverKeys: {
+    clearSelection: true,
+    hoveredBarIndex: true,
+    hoveredCandleIndex: true,
+    selection: true,
+    setHoveredBarIndex: true,
+    setHoveredCandleIndex: true,
+    setTooltipData: true,
+    tooltipData: true,
+  },
+  name: "Chart",
+  wrappers: "<LineChart>, <AreaChart>, <BarChart>, or <ComposedChart>",
+});
 
 /**
- * Splits the merged `value` into a stable slice and a volatile hover slice,
- * publishing each to its own context. Each slice is memoized on its own
- * field identities, so changing `tooltipData` does not bust the stable
- * slice — consumers of `useChartStable()` skip re-renders on hover.
+ * `ChartProvider` publishes the stable slice (data, scales, dimensions,
+ * animation state, layout config) and the hover slice (tooltip, selection,
+ * hovered bar / candle) to separate contexts. Prefer `useChartStable()` in
+ * cold consumers like axes, grid and pattern fills; they skip re-renders on
+ * hover. `useChartHover()` subscribers re-render on every mouse move.
  */
-export function ChartProvider({
-  children,
-  value,
-}: {
-  children: ReactNode;
-  value: ChartContextValue;
-}) {
-  const stable = useMemo<ChartStableContextValue>(
-    () => ({
-      animationDuration: value.animationDuration,
-      animationEasing: value.animationEasing,
-      bands: value.bands,
-      bandWidth: value.bandWidth,
-      barScale: value.barScale,
-      barXAccessor: value.barXAccessor,
-      chartPhase: value.chartPhase,
-      chartStatus: value.chartStatus,
-      columnWidth: value.columnWidth,
-      composedBarDataKeys: value.composedBarDataKeys,
-      composedBarGap: value.composedBarGap,
-      composedBarSize: value.composedBarSize,
-      composedMaxBarSize: value.composedMaxBarSize,
-      composedStacked: value.composedStacked,
-      composedStackGap: value.composedStackGap,
-      composedStackOffsets: value.composedStackOffsets,
-      containerRef: value.containerRef,
-      data: value.data,
-      dateLabels: value.dateLabels,
-      enterTransition: value.enterTransition,
-      height: value.height,
-      innerHeight: value.innerHeight,
-      innerWidth: value.innerWidth,
-      isLoaded: value.isLoaded,
-      lines: value.lines,
-      loadingLabel: value.loadingLabel,
-      margin: value.margin,
-      nearestPointHover: value.nearestPointHover,
-      notifyLoadingPulseComplete: value.notifyLoadingPulseComplete,
-      orientation: value.orientation,
-      referenceAreas: value.referenceAreas,
-      renderData: value.renderData,
-      revealEpoch: value.revealEpoch,
-      stacked: value.stacked,
-      stackOffsets: value.stackOffsets,
-      width: value.width,
-      xAccessor: value.xAccessor,
-      xDomain: value.xDomain,
-      xDomainSlotCount: value.xDomainSlotCount,
-      xScale: value.xScale,
-      yDomainSkeletonByAxis: value.yDomainSkeletonByAxis,
-      yDomainTargetByAxis: value.yDomainTargetByAxis,
-      yDomainTweenDuration: value.yDomainTweenDuration,
-      yScale: value.yScale,
-      yScales: value.yScales,
-    }),
-    [
-      value.data,
-      value.renderData,
-      value.xScale,
-      value.yScale,
-      value.yScales,
-      value.width,
-      value.height,
-      value.innerWidth,
-      value.innerHeight,
-      value.margin,
-      value.columnWidth,
-      value.containerRef,
-      value.lines,
-      value.bands,
-      value.referenceAreas,
-      value.chartPhase,
-      value.chartStatus,
-      value.loadingLabel,
-      value.yDomainTweenDuration,
-      value.yDomainSkeletonByAxis,
-      value.yDomainTargetByAxis,
-      value.isLoaded,
-      value.animationDuration,
-      value.animationEasing,
-      value.enterTransition,
-      value.revealEpoch,
-      value.notifyLoadingPulseComplete,
-      value.xAccessor,
-      value.dateLabels,
-      value.xDomain,
-      value.xDomainSlotCount,
-      value.barScale,
-      value.bandWidth,
-      value.barXAccessor,
-      value.orientation,
-      value.stacked,
-      value.stackOffsets,
-      value.composedBarDataKeys,
-      value.composedBarSize,
-      value.composedMaxBarSize,
-      value.composedBarGap,
-      value.composedStacked,
-      value.composedStackOffsets,
-      value.composedStackGap,
-      value.nearestPointHover,
-    ]
-  );
-
-  const hover = useMemo<ChartHoverContextValue>(
-    () => ({
-      clearSelection: value.clearSelection,
-      hoveredBarIndex: value.hoveredBarIndex,
-      hoveredCandleIndex: value.hoveredCandleIndex,
-      selection: value.selection,
-      setHoveredBarIndex: value.setHoveredBarIndex,
-      setHoveredCandleIndex: value.setHoveredCandleIndex,
-      setTooltipData: value.setTooltipData,
-      tooltipData: value.tooltipData,
-    }),
-    [
-      value.tooltipData,
-      value.setTooltipData,
-      value.selection,
-      value.clearSelection,
-      value.hoveredBarIndex,
-      value.setHoveredBarIndex,
-      value.hoveredCandleIndex,
-      value.setHoveredCandleIndex,
-    ]
-  );
-
-  return (
-    <ChartStableContext.Provider value={stable}>
-      <ChartHoverContext.Provider value={hover}>
-        {children}
-      </ChartHoverContext.Provider>
-    </ChartStableContext.Provider>
-  );
-}
-
-/**
- * Stable slice — data, scales, dimensions, animation state, layout config.
- * Subscribers skip re-renders on hover (the hover slice lives in a separate
- * context). Prefer this in cold consumers like axes, grid, pattern fills.
- */
-export function useChartStable(): ChartStableContextValue {
-  const context = useContext(ChartStableContext);
-  if (!context) {
-    throw new Error(
-      "useChartStable must be used within a ChartProvider. " +
-        "Make sure your component is wrapped in <LineChart>, <AreaChart>, <BarChart>, or <ComposedChart>."
-    );
-  }
-  return context;
-}
+export { ChartProvider, useChartHover, useChartStable };
 
 /**
  * Resolves a chart container element to use as a `createPortal` target.
@@ -447,22 +311,6 @@ export function useYScale(
   const id =
     yAxisId == null || yAxisId === "" ? DEFAULT_Y_AXIS_ID : String(yAxisId);
   return yScales[id] ?? yScale;
-}
-
-/**
- * Hover slice — tooltipData, selection, hovered bar / candle indices.
- * Subscribers re-render on every mouse move. Use only when the component
- * actually reads hover state.
- */
-export function useChartHover(): ChartHoverContextValue {
-  const context = useContext(ChartHoverContext);
-  if (!context) {
-    throw new Error(
-      "useChartHover must be used within a ChartProvider. " +
-        "Make sure your component is wrapped in <LineChart>, <AreaChart>, <BarChart>, or <ComposedChart>."
-    );
-  }
-  return context;
 }
 
 /**

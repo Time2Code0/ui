@@ -1,14 +1,9 @@
 "use client";
 
 import type { Transition } from "motion/react";
+import type { RefObject } from "react";
 
-import {
-  createContext,
-  type ReactNode,
-  type RefObject,
-  useContext,
-  useMemo,
-} from "react";
+import { createSplitContext } from "./split-context";
 
 // CSS variable references for ring chart theming
 export const ringCssVars = {
@@ -113,95 +108,18 @@ export interface RingStableContextValue {
 
 export type RingContextValue = RingStableContextValue & RingHoverContextValue;
 
-const RingStableContext = createContext<RingStableContextValue | null>(null);
-const RingHoverContext = createContext<RingHoverContextValue | null>(null);
-
-export function RingProvider({
-  children,
-  value,
-}: {
-  children: ReactNode;
-  value: RingContextValue;
-}) {
-  const stable = useMemo<RingStableContextValue>(
-    () => ({
-      animationKey: value.animationKey,
-      baseInnerRadius: value.baseInnerRadius,
-      center: value.center,
-      containerRef: value.containerRef,
-      data: value.data,
-      endAngle: value.endAngle,
-      enterStaggerScale: value.enterStaggerScale,
-      enterTransition: value.enterTransition,
-      geometryScrubbing: value.geometryScrubbing,
-      getColor: value.getColor,
-      getRingRadii: value.getRingRadii,
-      isLoaded: value.isLoaded,
-      ringGap: value.ringGap,
-      size: value.size,
-      startAngle: value.startAngle,
-      strokeWidth: value.strokeWidth,
-      totalValue: value.totalValue,
-    }),
-    [
-      value.data,
-      value.size,
-      value.center,
-      value.strokeWidth,
-      value.ringGap,
-      value.baseInnerRadius,
-      value.animationKey,
-      value.isLoaded,
-      value.enterTransition,
-      value.enterStaggerScale,
-      value.containerRef,
-      value.totalValue,
-      value.getColor,
-      value.getRingRadii,
-      value.startAngle,
-      value.endAngle,
-      value.geometryScrubbing,
-    ]
-  );
-
-  const hover = useMemo<RingHoverContextValue>(
-    () => ({
-      hoveredIndex: value.hoveredIndex,
-      setHoveredIndex: value.setHoveredIndex,
-    }),
-    [value.hoveredIndex, value.setHoveredIndex]
-  );
-
-  return (
-    <RingStableContext.Provider value={stable}>
-      <RingHoverContext.Provider value={hover}>
-        {children}
-      </RingHoverContext.Provider>
-    </RingStableContext.Provider>
-  );
-}
-
-export function useRingStable(): RingStableContextValue {
-  const context = useContext(RingStableContext);
-  if (!context) {
-    throw new Error(
-      "useRingStable must be used within a RingProvider. " +
-        "Make sure your component is wrapped in <RingChart>."
-    );
-  }
-  return context;
-}
-
-export function useRingHover(): RingHoverContextValue {
-  const context = useContext(RingHoverContext);
-  if (!context) {
-    throw new Error(
-      "useRingHover must be used within a RingProvider. " +
-        "Make sure your component is wrapped in <RingChart>."
-    );
-  }
-  return context;
-}
+export const {
+  Provider: RingProvider,
+  useHover: useRingHover,
+  useStable: useRingStable,
+} = createSplitContext<RingStableContextValue, RingHoverContextValue>({
+  hoverKeys: {
+    hoveredIndex: true,
+    setHoveredIndex: true,
+  },
+  name: "Ring",
+  wrappers: "<RingChart>",
+});
 
 export function useRing(): RingContextValue {
   return { ...useRingStable(), ...useRingHover() };

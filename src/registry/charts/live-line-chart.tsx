@@ -559,48 +559,29 @@ const LiveLineChartCore = memo(function LiveLineChartCore({
     [children]
   );
 
-  const contextValue = useMemo(
-    () => ({
-      ...DEFAULT_CHART_LIFECYCLE,
-      animationDuration: 0,
-      columnWidth,
-      containerRef,
-      data: contextData,
-      dateLabels,
-      height,
-      innerHeight,
-      innerWidth,
-      isLoaded: true,
-      lines,
-      margin,
-      referenceAreas,
-      renderData: contextData,
-      setTooltipData,
-      tooltipData,
-      width,
-      xAccessor,
-      xScale,
-      yScale,
-      yScales: wrapSingleYScale(yScale),
-    }),
-    [
-      contextData,
-      xScale,
-      yScale,
-      width,
-      height,
-      innerWidth,
-      innerHeight,
-      margin,
-      columnWidth,
-      tooltipData,
-      containerRef,
-      lines,
-      referenceAreas,
-      xAccessor,
-      dateLabels,
-    ]
-  );
+  const contextValue = {
+    ...DEFAULT_CHART_LIFECYCLE,
+    animationDuration: 0,
+    columnWidth,
+    containerRef,
+    data: contextData,
+    dateLabels,
+    height,
+    innerHeight,
+    innerWidth,
+    isLoaded: true,
+    lines,
+    margin,
+    referenceAreas,
+    renderData: contextData,
+    setTooltipData,
+    tooltipData,
+    width,
+    xAccessor,
+    xScale,
+    yScale,
+    yScales: wrapSingleYScale(yScale),
+  };
 
   return (
     <ChartProvider value={contextValue}>

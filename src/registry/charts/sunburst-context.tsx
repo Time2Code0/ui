@@ -1,16 +1,11 @@
 "use client";
 
 import type { Transition } from "motion/react";
+import type { RefObject } from "react";
 import type { ArcDatum, Focus, SunburstEnterTiming } from "./sunburst";
 import type { SunburstNode } from "./sunburst-data";
 
-import {
-  createContext,
-  type ReactNode,
-  type RefObject,
-  useContext,
-  useMemo,
-} from "react";
+import { createSplitContext } from "./split-context";
 
 export const sunburstCssVars = {
   background: "var(--chart-background)",
@@ -93,115 +88,17 @@ export interface SunburstStableContextValue {
 export type SunburstContextValue = SunburstStableContextValue &
   SunburstHoverContextValue;
 
-const SunburstStableContext = createContext<SunburstStableContextValue | null>(
-  null
-);
-const SunburstHoverContext = createContext<SunburstHoverContextValue | null>(
-  null
-);
-
-export function SunburstProvider({
-  children,
-  value,
-}: {
-  children: ReactNode;
-  value: SunburstContextValue;
-}) {
-  const stable = useMemo<SunburstStableContextValue>(
-    () => ({
-      arcs: value.arcs,
-      containerRef: value.containerRef,
-      data: value.data,
-      enterStaggerScale: value.enterStaggerScale,
-      enterTiming: value.enterTiming,
-      enterTransition: value.enterTransition,
-      focus: value.focus,
-      focusById: value.focusById,
-      focusId: value.focusId,
-      getColor: value.getColor,
-      getFill: value.getFill,
-      getFillOpacity: value.getFillOpacity,
-      growAmountForArc: value.growAmountForArc,
-      hoverPop: value.hoverPop,
-      isDescendant: value.isDescendant,
-      isRelated: value.isRelated,
-      maxDepth: value.maxDepth,
-      maxExpandedThickness: value.maxExpandedThickness,
-      playKey: value.playKey,
-      prevFocus: value.prevFocus,
-      radius: value.radius,
-      rootId: value.rootId,
-      size: value.size,
-      skipEnterAnimation: value.skipEnterAnimation,
-      zoomT: value.zoomT,
-      zoomTo: value.zoomTo,
-    }),
-    [
-      value.data,
-      value.arcs,
-      value.focusById,
-      value.rootId,
-      value.maxDepth,
-      value.radius,
-      value.size,
-      value.focus,
-      value.prevFocus,
-      value.focusId,
-      value.zoomTo,
-      value.zoomT,
-      value.enterTiming,
-      value.skipEnterAnimation,
-      value.growAmountForArc,
-      value.getColor,
-      value.getFill,
-      value.getFillOpacity,
-      value.isRelated,
-      value.isDescendant,
-      value.enterTransition,
-      value.enterStaggerScale,
-      value.playKey,
-      value.hoverPop,
-      value.maxExpandedThickness,
-      value.containerRef,
-    ]
-  );
-
-  const hover = useMemo<SunburstHoverContextValue>(
-    () => ({
-      hoveredArc: value.hoveredArc,
-      hoveredArcIndex: value.hoveredArcIndex,
-      setHoveredArc: value.setHoveredArc,
-      setHoveredArcIndex: value.setHoveredArcIndex,
-    }),
-    [
-      value.hoveredArcIndex,
-      value.setHoveredArcIndex,
-      value.hoveredArc,
-      value.setHoveredArc,
-    ]
-  );
-
-  return (
-    <SunburstStableContext.Provider value={stable}>
-      <SunburstHoverContext.Provider value={hover}>
-        {children}
-      </SunburstHoverContext.Provider>
-    </SunburstStableContext.Provider>
-  );
-}
-
-export function useSunburstStable() {
-  const ctx = useContext(SunburstStableContext);
-  if (!ctx) {
-    throw new Error("useSunburstStable must be used within SunburstChart");
-  }
-  return ctx;
-}
-
-export function useSunburstHover() {
-  const ctx = useContext(SunburstHoverContext);
-  if (!ctx) {
-    throw new Error("useSunburstHover must be used within SunburstChart");
-  }
-  return ctx;
-}
+export const {
+  Provider: SunburstProvider,
+  useHover: useSunburstHover,
+  useStable: useSunburstStable,
+} = createSplitContext<SunburstStableContextValue, SunburstHoverContextValue>({
+  hoverKeys: {
+    hoveredArc: true,
+    hoveredArcIndex: true,
+    setHoveredArc: true,
+    setHoveredArcIndex: true,
+  },
+  name: "Sunburst",
+  wrappers: "<SunburstChart>",
+});
