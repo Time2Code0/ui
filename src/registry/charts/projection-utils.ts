@@ -187,41 +187,6 @@ function buildAutoFutureValues(options: {
   return result;
 }
 
-/** Slope (value change per ms) at the projection anchor from the last data segment. */
-export function computeProjectionAnchorTangentSlope(
-  sourceData: Record<string, unknown>[],
-  seriesKey: string,
-  xDataKey = "date",
-  startIndexProp?: number
-): number {
-  if (sourceData.length < 2) {
-    return 0;
-  }
-  const startIndex = resolveStartIndex(sourceData, startIndexProp);
-  const historyPoints: { t: number; y: number }[] = [];
-  for (let i = 0; i <= startIndex; i++) {
-    const row = sourceData[i];
-    if (!row) {
-      continue;
-    }
-    const date = readDate(row, xDataKey);
-    const value = readValue(row, seriesKey);
-    if (date && value != null) {
-      historyPoints.push({ t: date.getTime(), y: value });
-    }
-  }
-  if (historyPoints.length < 2) {
-    return 0;
-  }
-  const prev = historyPoints.at(-2);
-  const last = historyPoints.at(-1);
-  if (!(prev && last)) {
-    return 0;
-  }
-  const dt = last.t - prev.t;
-  return dt === 0 ? 0 : (last.y - prev.y) / dt;
-}
-
 /** Cubic bezier with horizontal tangents at start and end (price-target S-curve). */
 export function buildHorizontalTangentBezierPath(
   x0: number,

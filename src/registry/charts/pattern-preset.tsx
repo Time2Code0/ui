@@ -34,11 +34,6 @@ export function isCirclePattern(preset: PatternPresetId): boolean {
   return preset === "circles" || preset === "dots";
 }
 
-/** @deprecated Use `isCirclePattern`. */
-export function isCirclesPattern(preset: PatternPresetId): boolean {
-  return isCirclePattern(preset);
-}
-
 export function patternPresetTileSize(
   preset: PatternPresetId,
   scale = 1

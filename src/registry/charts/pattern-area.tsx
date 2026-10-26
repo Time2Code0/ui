@@ -8,8 +8,6 @@ import { AreaClosed } from "@visx/shape";
 import { useChartStable } from "./chart-context";
 
 export interface PatternAreaProps {
-  /** @deprecated Pattern fill is not clip-revealed; only the stroke `Area` animates. */
-  animate?: boolean;
   /** Curve function. Default: curveMonotoneX */
   curve?: CurveFactory;
   /** Key in data to use for y values */

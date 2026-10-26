@@ -342,67 +342,6 @@ export function buildSunburstEnterTiming(
   return { maxDelay, segmentDelays };
 }
 
-/** @deprecated Use buildSunburstEnterTiming */
-export interface SunburstRevealSchedule {
-  labelDuration: number;
-  labelsStart: number;
-  ringDuration: number;
-  ringStarts: Map<number, number>;
-  segmentsCompleteAt: number;
-}
-
-/** @deprecated Use buildSunburstEnterTiming */
-export function buildRevealSchedule(
-  arcs: ArcDatum[],
-  staggerScale = 1
-): SunburstRevealSchedule {
-  const timing = buildSunburstEnterTiming(arcs, staggerScale);
-  const ringStarts = new Map<number, number>();
-  for (const arc of arcs) {
-    const delays = timing.segmentDelays.get(arc.id);
-    if (delays) {
-      ringStarts.set(arc.depth, delays.delay);
-    }
-  }
-  return {
-    labelDuration: 0.2,
-    labelsStart: timing.maxDelay + 0.12,
-    ringDuration: 0.6,
-    ringStarts,
-    segmentsCompleteAt: timing.maxDelay,
-  };
-}
-
-/** @deprecated Ring sweep reveal — use expand + sweep enter instead. */
-export function segmentRevealFromRingSweep(
-  ringProgress: number,
-  a0: number,
-  a1: number
-): { angular: number; radial: number } {
-  const radial = Math.min(1, Math.max(0, ringProgress));
-  const startF = clockwiseFraction(a0);
-  const endF = clockwiseFraction(a1);
-
-  if (ringProgress <= startF) {
-    return { angular: 0, radial };
-  }
-  if (ringProgress >= endF) {
-    return { angular: 1, radial };
-  }
-  const angular = (ringProgress - startF) / Math.max(endF - startF, 1e-9);
-  return { angular, radial };
-}
-
-/** @deprecated Use buildSunburstEnterTiming */
-export function buildRevealDelays(arcs: ArcDatum[]): Map<string, number> {
-  const timing = buildSunburstEnterTiming(arcs);
-  const map = new Map<string, number>();
-  for (const arc of arcs) {
-    map.set(arc.id, timing.segmentDelays.get(arc.id)?.delay ?? 0);
-  }
-  return map;
-}
-
 export function arcPath(
   geometry: ArcGeometry,
   progress: number,
@@ -463,10 +402,6 @@ function arcPathFromRadii(
   const innerY0 = -Math.cos(currentA0) * currentInner;
 
   return `M ${outerX0} ${outerY0} A ${currentOuter} ${currentOuter} 0 ${largeArc} 1 ${outerX1} ${outerY1} L ${innerX1} ${innerY1} A ${currentInner} ${currentInner} 0 ${largeArc} 0 ${innerX0} ${innerY0} Z`;
-}
-
-export function centroidAngle(arc: ArcDatum): number {
-  return (arc.a0 + arc.a1) / 2;
 }
 
 export function geomCentroidAngle(geometry: ArcGeometry): number {
@@ -616,18 +551,4 @@ export function applyHoverGrow(
     innerR,
     outerR,
   };
-}
-
-export function localProgress(
-  progress: number,
-  delay: number,
-  duration: number
-): number {
-  if (progress <= delay) {
-    return 0;
-  }
-  if (duration <= 0) {
-    return 1;
-  }
-  return Math.min(1, (progress - delay) / duration);
 }
