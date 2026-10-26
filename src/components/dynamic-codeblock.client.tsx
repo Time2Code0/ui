@@ -93,8 +93,9 @@ function Placeholder({
   return (
     <PlaceholderPre>
       <Code>
-        {code.split("\n").map((line) => (
-          <span className="line" key={line}>
+        {code.split("\n").map((line, index) => (
+          // biome-ignore lint/suspicious/noArrayIndexKey: static lines, and code often repeats a line (e.g. `/>`)
+          <span className="line" key={index}>
             {line}
           </span>
         ))}
