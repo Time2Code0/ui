@@ -41,6 +41,7 @@ import {
 } from "./chart-phase";
 import { BarLoadingSkeleton } from "./loading-sweep";
 import { extractReferenceAreaConfigs } from "./reference-area-config";
+import { computeStackOffsets } from "./series-bar-layout";
 import { useRevealReplay } from "./use-reveal-replay";
 import { useScheduledTooltip } from "./use-scheduled-tooltip";
 import {
@@ -298,30 +299,16 @@ const ChartCore = memo(function ChartCore({
 
   const primaryYScale = getPrimaryYScale(yScales, valueScale);
 
-  // Compute stack offsets for stacked bars
-  const stackOffsets = useMemo(() => {
-    if (!stacked) {
-      return;
-    }
-    const offsets = new Map<number, Map<string, number>>();
-    for (let i = 0; i < data.length; i++) {
-      const d = data[i];
-      if (!d) {
-        continue;
-      }
-      const pointOffsets = new Map<string, number>();
-      let cumulative = 0;
-      for (const line of lines) {
-        pointOffsets.set(line.dataKey, cumulative);
-        const value = d[line.dataKey];
-        if (typeof value === "number") {
-          cumulative += value;
-        }
-      }
-      offsets.set(i, pointOffsets);
-    }
-    return offsets;
-  }, [data, lines, stacked]);
+  const stackOffsets = useMemo(
+    () =>
+      stacked
+        ? computeStackOffsets(
+            data,
+            lines.map((line) => line.dataKey)
+          )
+        : undefined,
+    [data, lines, stacked]
+  );
 
   // Column width for tooltip indicator
   const columnWidth = useMemo(() => {

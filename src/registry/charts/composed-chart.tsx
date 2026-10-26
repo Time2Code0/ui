@@ -1,8 +1,6 @@
 "use client";
 
-import type { Transition } from "motion/react";
-import type { LineConfig, Margin } from "./chart-context";
-import type { ChartPhase } from "./chart-phase";
+import type { LineConfig } from "./chart-context";
 
 import {
   Children,
@@ -10,46 +8,45 @@ import {
   type ReactElement,
   type ReactNode,
   useMemo,
-  useRef,
 } from "react";
-
-import { cn } from "cn";
 
 import { Area, type AreaProps } from "./area";
 import { getChartChildName } from "./chart-children";
-import { ParentSize } from "./chart-parent-size";
 import { Line, type LineProps } from "./line";
 import { SeriesBar, type SeriesBarProps } from "./series-bar";
-import { TimeSeriesChartInner } from "./time-series-chart-shell";
+import { computeStackOffsets } from "./series-bar-layout";
+import {
+  TimeSeriesChart,
+  type TimeSeriesChartProps,
+} from "./time-series-chart-shell";
 
-export interface ComposedChartProps {
-  animationDuration?: number;
-  animationEasing?: string;
-  aspectRatio?: string;
+export interface ComposedChartProps
+  extends Pick<
+    TimeSeriesChartProps,
+    | "animationDuration"
+    | "animationEasing"
+    | "aspectRatio"
+    | "children"
+    | "className"
+    | "enterTransition"
+    | "margin"
+    | "onPhaseChange"
+    | "revealSignature"
+    | "xDataKey"
+  > {
   /** Gap between grouped `SeriesBar` series in px. Default: 4 */
   barGap?: number;
   /** Target bar width in px (Recharts-style `barSize`). */
   barSize?: number;
-  children: ReactNode;
-  className?: string;
   /** Data array — each row typically has a date and multiple numeric series */
   data: Record<string, unknown>[];
-  enterTransition?: Transition;
-  margin?: Partial<Margin>;
   /** Maximum bar width in px (`maxBarSize`). */
   maxBarSize?: number;
-  onPhaseChange?: (phase: ChartPhase) => void;
-  /** Signature of motion URL state — triggers reveal replay when it changes. */
-  revealSignature?: string;
   /** Stack `SeriesBar` segments in child order at each x (line/area are not stacked). */
   stacked?: boolean;
   /** Gap in px between stacked segments. Default: 0 */
   stackGap?: number;
-  /** Key for the x-axis (time). Default: "date" */
-  xDataKey?: string;
 }
-
-const DEFAULT_MARGIN: Margin = { bottom: 40, left: 40, right: 40, top: 40 };
 
 function upsertLineConfig(lines: LineConfig[], config: LineConfig): void {
   const index = lines.findIndex((line) => line.dataKey === config.dataKey);
@@ -170,86 +167,37 @@ function computeComposedYScaleDomainMax(
   return max > 0 ? max : undefined;
 }
 
-interface ChartInnerProps {
-  animationDuration: number;
-  animationEasing?: string;
-  barGap?: number;
-  barSize?: number;
-  children: ReactNode;
-  containerRef: React.RefObject<HTMLDivElement | null>;
-  data: Record<string, unknown>[];
-  enterTransition?: Transition;
-  height: number;
-  margin: Margin;
-  maxBarSize?: number;
-  onPhaseChange?: (phase: ChartPhase) => void;
-  revealSignature?: string;
-  stacked?: boolean;
-  stackGap?: number;
-  width: number;
-  xDataKey: string;
-}
-
-function ChartInner({
-  width,
-  height,
-  data,
-  xDataKey,
-  margin,
-  animationDuration,
-  animationEasing,
-  enterTransition,
-  revealSignature,
-  children,
-  containerRef,
+export function ComposedChart({
+  barGap = 4,
   barSize,
   maxBarSize,
-  barGap,
   stacked = false,
   stackGap = 0,
-  onPhaseChange,
-}: ChartInnerProps) {
+  ...props
+}: ComposedChartProps) {
+  const { children, data } = props;
   const { lines, barDataKeys } = useMemo(
     () => extractComposedSeries(children),
     [children]
   );
+  const stacksBars = stacked && barDataKeys.length > 0;
 
-  const composedStackOffsets = useMemo(() => {
-    if (!(stacked && barDataKeys.length > 0)) {
-      return;
-    }
-    const offsets = new Map<number, Map<string, number>>();
-    for (let i = 0; i < data.length; i++) {
-      const d = data[i];
-      if (!d) {
-        continue;
-      }
-      const pointOffsets = new Map<string, number>();
-      let cumulative = 0;
-      for (const key of barDataKeys) {
-        pointOffsets.set(key, cumulative);
-        const v = d[key];
-        if (typeof v === "number") {
-          cumulative += v;
-        }
-      }
-      offsets.set(i, pointOffsets);
-    }
-    return offsets;
-  }, [data, barDataKeys, stacked]);
+  const composedStackOffsets = useMemo(
+    () => (stacksBars ? computeStackOffsets(data, barDataKeys) : undefined),
+    [data, barDataKeys, stacksBars]
+  );
 
   const yScaleDomainMax = useMemo(
     () =>
-      stacked && barDataKeys.length > 0
+      stacksBars
         ? computeComposedYScaleDomainMax(data, lines, barDataKeys)
         : undefined,
-    [data, lines, barDataKeys, stacked]
+    [data, lines, barDataKeys, stacksBars]
   );
 
   return (
-    <TimeSeriesChartInner
-      animationDuration={animationDuration}
-      animationEasing={animationEasing}
+    <TimeSeriesChart
+      {...props}
       clipPathId="composed-chart-grow-clip"
       composedBarDataKeys={barDataKeys.length > 0 ? barDataKeys : undefined}
       composedBarGap={barGap}
@@ -258,75 +206,9 @@ function ChartInner({
       composedStacked={stacked}
       composedStackGap={stackGap}
       composedStackOffsets={composedStackOffsets}
-      containerRef={containerRef}
-      data={data}
-      enterTransition={enterTransition}
-      height={height}
       lines={lines}
-      margin={margin}
-      onPhaseChange={onPhaseChange}
-      revealSignature={revealSignature}
-      width={width}
-      xDataKey={xDataKey}
       yScaleDomainMax={yScaleDomainMax}
-    >
-      {children}
-    </TimeSeriesChartInner>
-  );
-}
-
-export function ComposedChart({
-  data,
-  xDataKey = "date",
-  margin: marginProp,
-  animationDuration = 1100,
-  animationEasing,
-  enterTransition,
-  revealSignature,
-  aspectRatio = "2 / 1",
-  className = "",
-  children,
-  barSize,
-  maxBarSize,
-  barGap = 4,
-  stacked = false,
-  stackGap = 0,
-  onPhaseChange,
-}: ComposedChartProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const margin = { ...DEFAULT_MARGIN, ...marginProp };
-
-  return (
-    <div
-      className={cn("relative w-full", className)}
-      ref={containerRef}
-      style={{ aspectRatio, touchAction: "none" }}
-    >
-      <ParentSize debounceTime={10}>
-        {({ width, height }) => (
-          <ChartInner
-            animationDuration={animationDuration}
-            animationEasing={animationEasing}
-            barGap={barGap}
-            barSize={barSize}
-            containerRef={containerRef}
-            data={data}
-            enterTransition={enterTransition}
-            height={height}
-            margin={margin}
-            maxBarSize={maxBarSize}
-            onPhaseChange={onPhaseChange}
-            revealSignature={revealSignature}
-            stacked={stacked}
-            stackGap={stackGap}
-            width={width}
-            xDataKey={xDataKey}
-          >
-            {children}
-          </ChartInner>
-        )}
-      </ParentSize>
-    </div>
+    />
   );
 }
 

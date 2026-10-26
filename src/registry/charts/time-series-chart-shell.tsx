@@ -3,16 +3,19 @@
 import type { Transition } from "motion/react";
 
 import {
+  type CSSProperties,
   memo,
   type ReactNode,
   useCallback,
   useEffect,
   useId,
   useMemo,
+  useRef,
   useState,
 } from "react";
 
 import { scaleLinear, scaleTime } from "@visx/scale";
+import { cn } from "cn";
 import { extent } from "d3-array";
 
 import {
@@ -27,12 +30,15 @@ import {
 import { partitionChartChildren } from "./chart-children";
 import { ChartProvider, type LineConfig, type Margin } from "./chart-context";
 import { shortDateFmt } from "./chart-formatters";
+import { ChartLoadingLabel } from "./chart-loading-label";
+import { ParentSize } from "./chart-parent-size";
 import {
   type ChartPhase,
   type ChartStatus,
   DEFAULT_CHART_STATUS,
   DEFAULT_Y_DOMAIN_TWEEN_MS,
   isChartInteractionPhase,
+  resolveRestingChartPhase,
 } from "./chart-phase";
 import { ChartRevealClip } from "./chart-reveal-clip";
 import {
@@ -618,3 +624,140 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
     </ReferenceAreaRegistrationContext.Provider>
   );
 });
+
+export interface TimeSeriesChartProps {
+  /** Animation duration in milliseconds. Default: 1100 */
+  animationDuration?: number;
+  /** CSS easing for clip-reveal. Default: cubic-bezier(0.85, 0, 0.15, 1) */
+  animationEasing?: string;
+  /** Aspect ratio as "width / height". Default: "2 / 1". Omit to fill a sized parent. */
+  aspectRatio?: string;
+  /** Child components (series, Grid, axes, ChartTooltip, etc.) */
+  children: ReactNode;
+  /** Additional class name for the container */
+  className?: string;
+  /** Data array - each item should have a date field and numeric values */
+  data: Record<string, unknown>[];
+  /** Motion enter transition (spring or cubic-bezier tween). */
+  enterTransition?: Transition;
+  /** Centered shimmer label while loading. */
+  loadingLabel?: string;
+  /** Chart margins */
+  margin?: Partial<Margin>;
+  /** Fires when the internal chart phase changes (e.g. OG capture readiness). */
+  onPhaseChange?: (phase: ChartPhase) => void;
+  /** Signature of motion URL state — triggers reveal replay when it changes. */
+  revealSignature?: string;
+  /** Loading vs ready — drives chart phase and loading chrome. Default: `"ready"`. */
+  status?: ChartStatus;
+  /** Inline container styles (e.g. fixed height for brush strip). */
+  style?: CSSProperties;
+  /** Tween y-domain when brush changes the visible x-range. Default: false */
+  tweenYDomainOnXDomainChange?: boolean;
+  /** Key in data for the x-axis (date). Default: "date" */
+  xDataKey?: string;
+  /** Visible x-domain for brush zoom. */
+  xDomain?: [Date, Date];
+  /** Full dataset length for x-scale padding when `xDomain` is set. */
+  xDomainSlotCount?: number;
+  /** Animate y-domain when status or target domain changes. Default: true */
+  yDomainTween?: boolean;
+  /** Animate y-domain over this duration (ms) on status transitions. Default: 500. */
+  yDomainTweenDuration?: number;
+}
+
+/** Series and layout a chart root derives from its children. */
+type TimeSeriesChartSeriesProps = Pick<
+  TimeSeriesChartInnerProps,
+  | "clipPathId"
+  | "composedBarDataKeys"
+  | "composedBarGap"
+  | "composedBarSize"
+  | "composedMaxBarSize"
+  | "composedStacked"
+  | "composedStackGap"
+  | "composedStackOffsets"
+  | "lines"
+  | "yScaleDomainMax"
+>;
+
+const DEFAULT_MARGIN: Margin = { bottom: 40, left: 40, right: 40, top: 40 };
+
+/** Phases that show the centered loading label. */
+const LOADING_LABEL_PHASES = new Set<ChartPhase>([
+  "loading",
+  "exiting",
+  "gridTweenReady",
+  "revealingLoading",
+]);
+
+/**
+ * Root shared by `LineChart`, `AreaChart` and `ComposedChart`: a container
+ * that measures itself, the time-series core and the loading label. Each
+ * chart passes the series it extracted from its children.
+ */
+export function TimeSeriesChart({
+  animationDuration = 1100,
+  aspectRatio = "2 / 1",
+  children,
+  className = "",
+  data,
+  loadingLabel,
+  margin: marginProp,
+  onPhaseChange,
+  status = DEFAULT_CHART_STATUS,
+  style,
+  xDataKey = "date",
+  ...coreProps
+}: TimeSeriesChartProps & TimeSeriesChartSeriesProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const margin = { ...DEFAULT_MARGIN, ...marginProp };
+  const [chartPhase, setChartPhase] = useState<ChartPhase>(() =>
+    resolveRestingChartPhase(status)
+  );
+  const handlePhaseChange = useCallback(
+    (phase: ChartPhase) => {
+      setChartPhase(phase);
+      onPhaseChange?.(phase);
+    },
+    [onPhaseChange]
+  );
+
+  const showLoadingLabel = Boolean(
+    loadingLabel?.trim() && LOADING_LABEL_PHASES.has(chartPhase)
+  );
+
+  return (
+    <div
+      className={cn("relative w-full", className)}
+      ref={containerRef}
+      style={{ aspectRatio, touchAction: "none", ...style }}
+    >
+      <ParentSize debounceTime={10}>
+        {({ width, height }) => (
+          <TimeSeriesChartInner
+            {...coreProps}
+            animationDuration={animationDuration}
+            chartStatus={status}
+            containerRef={containerRef}
+            data={data}
+            height={height}
+            loadingLabel={loadingLabel}
+            margin={margin}
+            onPhaseChange={handlePhaseChange}
+            width={width}
+            xDataKey={xDataKey}
+          >
+            {children}
+          </TimeSeriesChartInner>
+        )}
+      </ParentSize>
+      {showLoadingLabel ? (
+        <ChartLoadingLabel
+          exiting={chartPhase !== "loading"}
+          text={loadingLabel}
+        />
+      ) : null}
+    </div>
+  );
+}

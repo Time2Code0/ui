@@ -59,3 +59,27 @@ export function computeSeriesBarRevealClipPadding(input: {
   const groupWidth = seriesCount * barWidth + (seriesCount - 1) * gap;
   return Math.ceil(groupWidth / 2);
 }
+
+/**
+ * Stacked bar baselines: data index → dataKey → sum of the numeric values of
+ * the keys stacked below it (keys stack in the given order).
+ */
+export function computeStackOffsets(
+  data: Record<string, unknown>[],
+  dataKeys: string[]
+): Map<number, Map<string, number>> {
+  const offsets = new Map<number, Map<string, number>>();
+  for (const [index, d] of data.entries()) {
+    const pointOffsets = new Map<string, number>();
+    let cumulative = 0;
+    for (const key of dataKeys) {
+      pointOffsets.set(key, cumulative);
+      const value = d[key];
+      if (typeof value === "number") {
+        cumulative += value;
+      }
+    }
+    offsets.set(index, pointOffsets);
+  }
+  return offsets;
+}
