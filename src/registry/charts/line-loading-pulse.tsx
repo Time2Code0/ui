@@ -1,8 +1,9 @@
 "use client";
 
-import type { ChartPhase } from "./chart-phase";
+import type { CurveFactory } from "d3-shape";
+import type { ChartPhase, LoadingStyle } from "./chart-phase";
 
-import { useEffect, useId } from "react";
+import { useCallback, useEffect, useId, useState } from "react";
 
 import { animate, motion, useMotionValue, useTransform } from "motion/react";
 
@@ -13,9 +14,11 @@ import {
   viewportFadeGradientAttrs,
 } from "./fade-edges";
 import {
+  LINE_LOADING_LOOP_PAUSE_MS,
   LINE_LOADING_PULSE_CYCLE_S,
   LINE_LOADING_PULSE_EASE,
 } from "./line-loading-timing";
+import { LineLoadingSweep } from "./loading-sweep";
 
 const CLIP_PADDING = 10;
 
@@ -217,3 +220,114 @@ export function LineLoadingPulseStroke({
 }
 
 LineLoadingPulseStroke.displayName = "LineLoadingPulseStroke";
+
+/**
+ * Loading pulse state for a `Line` / `Area`: which pulse plays (`loading`
+ * forces it on or off, `loadingPulseMode` overrides the phase-derived mode)
+ * and the epoch that restarts a loop after its pause.
+ */
+export function useSeriesLoadingPulse({
+  chartPhase,
+  loading,
+  loadingPulseMode,
+  notifyLoadingPulseComplete,
+  onCycleComplete,
+}: {
+  chartPhase: ChartPhase;
+  loading?: boolean;
+  loadingPulseMode?: LineLoadingPulseMode;
+  notifyLoadingPulseComplete?: () => void;
+  onCycleComplete?: () => void;
+}) {
+  const phasePulseMode = resolveLineLoadingPulseMode(chartPhase);
+  const pulseMode =
+    loading === false
+      ? null
+      : (loadingPulseMode ?? (loading === true ? "loop" : phasePulseMode));
+  const [pulseEpoch, setPulseEpoch] = useState(0);
+
+  const handleLoadingPulseComplete = useCallback(() => {
+    onCycleComplete?.();
+    if (pulseMode === "loop") {
+      window.setTimeout(() => {
+        setPulseEpoch((epoch) => epoch + 1);
+      }, LINE_LOADING_LOOP_PAUSE_MS);
+      return;
+    }
+    notifyLoadingPulseComplete?.();
+  }, [notifyLoadingPulseComplete, onCycleComplete, pulseMode]);
+
+  return {
+    handleLoadingPulseComplete,
+    pulseEpoch,
+    pulseMode,
+    showLoadingPulse: pulseMode != null,
+  };
+}
+
+/**
+ * Loading overlay for a `Line` / `Area`. The sweep style owns all loading
+ * modes (loop + the exit/enter transitions), drawing its own silhouette; the
+ * pulse covers the default style.
+ */
+export function SeriesLoadingOverlays({
+  curve,
+  handleLoadingPulseComplete,
+  innerWidth,
+  loadingStroke,
+  loadingStrokeOpacity,
+  loadingStyle,
+  pathD,
+  pulseEpoch,
+  pulseMode,
+  showLoadingPulse,
+  strokeWidth,
+  withArea = false,
+}: {
+  curve: CurveFactory;
+  handleLoadingPulseComplete: () => void;
+  innerWidth: number;
+  loadingStroke: string;
+  loadingStrokeOpacity: number;
+  loadingStyle: LoadingStyle;
+  pathD: string | null;
+  pulseEpoch: number;
+  pulseMode: LineLoadingPulseMode | null;
+  showLoadingPulse: boolean;
+  strokeWidth: number;
+  /** Sweep the filled area silhouette, not just the stroke. */
+  withArea?: boolean;
+}) {
+  const sweepLoading =
+    showLoadingPulse && innerWidth > 0 && loadingStyle === "sweep";
+  const pulseLoading = showLoadingPulse && innerWidth > 0 && !sweepLoading;
+
+  return (
+    <>
+      {sweepLoading ? (
+        <LineLoadingSweep
+          curve={curve}
+          key="loading-sweep"
+          mode={pulseMode ?? "loop"}
+          onTransitionComplete={handleLoadingPulseComplete}
+          stroke={loadingStroke}
+          strokeOpacity={loadingStrokeOpacity}
+          strokeWidth={strokeWidth}
+          withArea={withArea}
+        />
+      ) : null}
+      {pulseLoading && pathD ? (
+        <LineLoadingPulseStroke
+          key="loading-pulse"
+          loopEpoch={pulseEpoch}
+          mode={pulseMode ?? undefined}
+          onCycleComplete={handleLoadingPulseComplete}
+          pathD={pathD}
+          stroke={loadingStroke}
+          strokeOpacity={loadingStrokeOpacity}
+          strokeWidth={strokeWidth}
+        />
+      ) : null}
+    </>
+  );
+}

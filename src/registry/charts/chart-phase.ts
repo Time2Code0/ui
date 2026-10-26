@@ -35,6 +35,11 @@ export function isChartInteractionPhase(phase: ChartPhase): boolean {
   return phase === "ready";
 }
 
+/** Phases in which series draw their real stroke / fill (not loading chrome). */
+export function isSeriesContentPhase(phase: ChartPhase): boolean {
+  return phase === "revealing" || phase === "ready" || phase === "exitingReady";
+}
+
 export const DEFAULT_CHART_LIFECYCLE = {
   chartPhase: "ready",
   chartStatus: "ready",

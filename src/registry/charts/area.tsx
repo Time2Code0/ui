@@ -1,24 +1,23 @@
 "use client";
 
 import type { CurveFactory } from "d3-shape";
-import type { ChartPhase, LoadingStyle } from "./chart-phase";
+import type { LoadingStyle } from "./chart-phase";
 import type { SeriesPointMarkerStyle } from "./series-point-marker";
 
-import { useCallback, useId, useMemo, useRef, useState } from "react";
+import { useCallback, useId, useMemo, useRef } from "react";
 
 import { curveMonotoneX } from "@visx/curve";
 import { AreaClosed, LinePath } from "@visx/shape";
 
 import { AreaGradientDefs } from "./area-gradient-defs";
 import { chartCssVars, useChartStable, useYScale } from "./chart-context";
+import { isSeriesContentPhase } from "./chart-phase";
 import { type FadeEdges, resolveFadeSides } from "./fade-edges";
 import {
   type LineLoadingPulseMode,
-  LineLoadingPulseStroke,
-  resolveLineLoadingPulseMode,
+  SeriesLoadingOverlays,
+  useSeriesLoadingPulse,
 } from "./line-loading-pulse";
-import { LINE_LOADING_LOOP_PAUSE_MS } from "./line-loading-timing";
-import { LineLoadingSweep } from "./loading-sweep";
 import {
   resolveDashTailBounds,
   usePathStrokeMetrics,
@@ -106,43 +105,6 @@ export interface AreaProps {
   yAxisId?: string | number;
 }
 
-function useAreaLoadingPulseState(
-  chartPhase: ChartPhase,
-  loading: boolean | undefined,
-  loadingPulseMode: LineLoadingPulseMode | undefined,
-  notifyLoadingPulseComplete?: () => void
-) {
-  const phasePulseMode = resolveLineLoadingPulseMode(chartPhase);
-  const pulseMode =
-    loading === false
-      ? null
-      : (loadingPulseMode ?? (loading === true ? "loop" : phasePulseMode));
-  const showLoadingPulse = pulseMode != null;
-  const showSeriesContent =
-    chartPhase === "revealing" ||
-    chartPhase === "ready" ||
-    chartPhase === "exitingReady";
-  const [pulseEpoch, setPulseEpoch] = useState(0);
-
-  const handleLoadingPulseComplete = useCallback(() => {
-    if (pulseMode === "loop") {
-      window.setTimeout(() => {
-        setPulseEpoch((epoch) => epoch + 1);
-      }, LINE_LOADING_LOOP_PAUSE_MS);
-      return;
-    }
-    notifyLoadingPulseComplete?.();
-  }, [notifyLoadingPulseComplete, pulseMode]);
-
-  return {
-    handleLoadingPulseComplete,
-    pulseEpoch,
-    pulseMode,
-    showLoadingPulse,
-    showSeriesContent,
-  };
-}
-
 // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: mirrors Line series layout (fill, stroke, dash, markers, pulse)
 export function Area({
   dataKey,
@@ -188,16 +150,16 @@ export function Area({
   const yScale = useYScale(yAxisId);
   const {
     handleLoadingPulseComplete,
-    pulseMode,
     pulseEpoch,
+    pulseMode,
     showLoadingPulse,
-    showSeriesContent,
-  } = useAreaLoadingPulseState(
+  } = useSeriesLoadingPulse({
     chartPhase,
     loading,
     loadingPulseMode,
-    notifyLoadingPulseComplete
-  );
+    notifyLoadingPulseComplete,
+  });
+  const showSeriesContent = isSeriesContentPhase(chartPhase);
 
   const seriesIndex = useMemo(() => {
     const index = lines.findIndex((line) => line.dataKey === dataKey);
@@ -300,12 +262,6 @@ export function Area({
     </>
   );
 
-  // Sweep style owns all loading modes (loop + the exit/enter transitions),
-  // drawing its own silhouette; the pulse covers the default style.
-  const sweepLoading =
-    showLoadingPulse && innerWidth > 0 && loadingStyle === "sweep";
-  const pulseLoading = showLoadingPulse && innerWidth > 0 && !sweepLoading;
-
   return (
     <>
       <AreaGradientDefs
@@ -355,30 +311,20 @@ export function Area({
         />
       ) : null}
 
-      {sweepLoading ? (
-        <LineLoadingSweep
-          curve={curve}
-          key="loading-sweep"
-          mode={pulseMode ?? "loop"}
-          onTransitionComplete={handleLoadingPulseComplete}
-          stroke={loadingStroke}
-          strokeOpacity={loadingStrokeOpacity}
-          strokeWidth={strokeWidth}
-          withArea
-        />
-      ) : null}
-      {pulseLoading && pathD ? (
-        <LineLoadingPulseStroke
-          key="loading-pulse"
-          loopEpoch={pulseEpoch}
-          mode={pulseMode ?? undefined}
-          onCycleComplete={handleLoadingPulseComplete}
-          pathD={pathD}
-          stroke={loadingStroke}
-          strokeOpacity={loadingStrokeOpacity}
-          strokeWidth={strokeWidth}
-        />
-      ) : null}
+      <SeriesLoadingOverlays
+        curve={curve}
+        handleLoadingPulseComplete={handleLoadingPulseComplete}
+        innerWidth={innerWidth}
+        loadingStroke={loadingStroke}
+        loadingStrokeOpacity={loadingStrokeOpacity}
+        loadingStyle={loadingStyle}
+        pathD={pathD}
+        pulseEpoch={pulseEpoch}
+        pulseMode={pulseMode}
+        showLoadingPulse={showLoadingPulse}
+        strokeWidth={strokeWidth}
+        withArea
+      />
     </>
   );
 }
