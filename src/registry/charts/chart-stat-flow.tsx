@@ -5,6 +5,8 @@ import { type ReactNode, useEffect, useMemo, useState } from "react";
 import NumberFlow from "@number-flow/react";
 import { cn } from "cn";
 
+import { chartCenterContainerClassName } from "./chart-center-typography";
+
 /** Subset of `Intl.NumberFormatOptions` supported by NumberFlow */
 export interface ChartStatFlowFormat {
   compactDisplay?: "short" | "long";
@@ -123,3 +125,38 @@ export function ChartStatFlow({
 }
 
 ChartStatFlow.displayName = "ChartStatFlow";
+
+export interface ChartCenterContentProps extends ChartStatFlowProps {
+  className?: string;
+  /** Custom center content; replaces the default stat when provided. */
+  renderCustom?: () => ReactNode;
+  /** Square size of the center area in px. */
+  size: number;
+}
+
+/**
+ * HTML stat in the hole of a donut (pie, ring). Rendered outside the SVG,
+ * stacked via CSS Grid, to avoid Safari's foreignObject transform bug
+ * (WebKit #23113).
+ */
+export function ChartCenterContent({
+  className,
+  renderCustom,
+  size,
+  ...statProps
+}: ChartCenterContentProps) {
+  return (
+    <div
+      className={cn(
+        chartCenterContainerClassName,
+        renderCustom
+          ? "flex items-center justify-center"
+          : "flex flex-col items-center justify-center text-center",
+        className
+      )}
+      style={{ height: size, width: size }}
+    >
+      {renderCustom ? renderCustom() : <ChartStatFlow {...statProps} />}
+    </div>
+  );
+}

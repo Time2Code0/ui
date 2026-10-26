@@ -2,15 +2,12 @@
 
 import type { ReactNode } from "react";
 
-import { cn } from "cn";
-
 import {
-  chartCenterContainerClassName,
   chartCenterLabelClassName,
   chartCenterValueClassName,
 } from "./chart-center-typography";
 import {
-  ChartStatFlow,
+  ChartCenterContent,
   type ChartStatFlowFormat,
   defaultChartStatFlowFormat,
 } from "./chart-stat-flow";
@@ -74,57 +71,35 @@ export function PieCenter({
   const displayValue = hoveredData ? hoveredData.value : totalValue;
   const displayLabel = hoveredData ? hoveredData.label : defaultLabel;
 
-  // Calculate center area size based on inner radius
-  // Leave some padding so text doesn't touch the inner edge
-  const centerSize = innerRadius * 2 - 16;
-
   // Don't render if there's no inner radius (solid pie, not donut)
   if (innerRadius <= 0) {
     return null;
   }
 
-  // If custom render function is provided, use it
-  if (children) {
-    return (
-      <div
-        className={cn(
-          chartCenterContainerClassName,
-          "flex items-center justify-center",
-          className
-        )}
-        style={{ height: centerSize, width: centerSize }}
-      >
-        {children({
-          data: hoveredData ?? { label: defaultLabel, value: totalValue },
-          isHovered: Boolean(hoveredData),
-          label: displayLabel,
-          value: displayValue,
-        })}
-      </div>
-    );
-  }
-
-  // Default center content with NumberFlow animations
-  // Now renders as pure HTML, avoiding Safari's foreignObject bugs
   return (
-    <div
-      className={cn(
-        chartCenterContainerClassName,
-        "flex flex-col items-center justify-center text-center",
-        className
-      )}
-      style={{ height: centerSize, width: centerSize }}
-    >
-      <ChartStatFlow
-        formatOptions={formatOptions}
-        label={displayLabel}
-        labelClassName={labelClassName}
-        prefix={prefix}
-        suffix={suffix}
-        value={displayValue}
-        valueClassName={valueClassName}
-      />
-    </div>
+    <ChartCenterContent
+      className={className}
+      formatOptions={formatOptions}
+      label={displayLabel}
+      labelClassName={labelClassName}
+      prefix={prefix}
+      renderCustom={
+        children
+          ? () =>
+              children({
+                data: hoveredData ?? { label: defaultLabel, value: totalValue },
+                isHovered: Boolean(hoveredData),
+                label: displayLabel,
+                value: displayValue,
+              })
+          : undefined
+      }
+      // Leave some padding so text doesn't touch the inner edge.
+      size={innerRadius * 2 - 16}
+      suffix={suffix}
+      value={displayValue}
+      valueClassName={valueClassName}
+    />
   );
 }
 

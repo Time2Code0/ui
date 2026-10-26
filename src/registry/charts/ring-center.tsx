@@ -2,15 +2,12 @@
 
 import type { ReactNode } from "react";
 
-import { cn } from "cn";
-
 import {
-  chartCenterContainerClassName,
   chartCenterLabelClassName,
   chartCenterValueClassName,
 } from "./chart-center-typography";
 import {
-  ChartStatFlow,
+  ChartCenterContent,
   type ChartStatFlowFormat,
   defaultChartStatFlowFormat,
 } from "./chart-stat-flow";
@@ -67,52 +64,30 @@ export function RingCenter({
   const displayValue = hoveredData ? hoveredData.value : totalValue;
   const displayLabel = hoveredData ? hoveredData.label : defaultLabel;
 
-  // Calculate center area size based on scaled baseInnerRadius
-  // Leave some padding so text doesn't touch the inner ring
-  const centerSize = baseInnerRadius * 2 - 16;
-
-  // If custom render function is provided, use it
-  if (children && hoveredData) {
-    return (
-      <div
-        className={cn(
-          chartCenterContainerClassName,
-          "flex items-center justify-center",
-          className
-        )}
-        style={{ height: centerSize, width: centerSize }}
-      >
-        {children({
-          data: hoveredData,
-          isHovered: hoveredIndex !== null,
-          label: displayLabel,
-          value: displayValue,
-        })}
-      </div>
-    );
-  }
-
-  // Default center content with NumberFlow animations
-  // Now renders as pure HTML, avoiding Safari's foreignObject bugs
   return (
-    <div
-      className={cn(
-        chartCenterContainerClassName,
-        "flex flex-col items-center justify-center text-center",
-        className
-      )}
-      style={{ height: centerSize, width: centerSize }}
-    >
-      <ChartStatFlow
-        formatOptions={formatOptions}
-        label={displayLabel}
-        labelClassName={labelClassName}
-        prefix={prefix}
-        suffix={suffix}
-        value={displayValue}
-        valueClassName={valueClassName}
-      />
-    </div>
+    <ChartCenterContent
+      className={className}
+      formatOptions={formatOptions}
+      label={displayLabel}
+      labelClassName={labelClassName}
+      prefix={prefix}
+      renderCustom={
+        children && hoveredData
+          ? () =>
+              children({
+                data: hoveredData,
+                isHovered: hoveredIndex !== null,
+                label: displayLabel,
+                value: displayValue,
+              })
+          : undefined
+      }
+      // Leave some padding so text doesn't touch the inner edge.
+      size={baseInnerRadius * 2 - 16}
+      suffix={suffix}
+      value={displayValue}
+      valueClassName={valueClassName}
+    />
   );
 }
 
