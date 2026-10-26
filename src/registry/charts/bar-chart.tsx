@@ -11,7 +11,6 @@ import {
   useEffect,
   useMemo,
   useRef,
-  useState,
 } from "react";
 
 import { localPoint } from "@visx/event";
@@ -42,6 +41,7 @@ import {
 } from "./chart-phase";
 import { BarLoadingSkeleton } from "./loading-sweep";
 import { extractReferenceAreaConfigs } from "./reference-area-config";
+import { useRevealReplay } from "./use-reveal-replay";
 import { useScheduledTooltip } from "./use-scheduled-tooltip";
 import {
   buildYScalesForLines,
@@ -201,8 +201,15 @@ const ChartCore = memo(function ChartCore({
 }: ChartInnerProps) {
   const { tooltipData, setTooltipData, scheduleTooltip, clearTooltip } =
     useScheduledTooltip<TooltipData>();
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [revealEpoch, setRevealEpoch] = useState(1);
+  const { isLoaded, revealEpoch } = useRevealReplay({
+    // Bars grow with a stagger of up to 40% of the duration.
+    delayMs:
+      animationDuration + (data.length > 1 ? animationDuration * 0.4 : 0),
+    // While loading, hold the skeleton (no reveal, no interaction); the grow
+    // reveal plays once status flips to "ready".
+    hold: status === "loading",
+    replayKey: [animationDuration, revealSignature, status],
+  });
   const hoveredBarIndex = tooltipData?.index ?? null;
 
   const isHorizontal = orientation === "horizontal";
@@ -343,38 +350,6 @@ const ChartCore = memo(function ChartCore({
     };
     return scale;
   }, [categoryScale, innerWidth, data.length]);
-
-  // Animation timing — replay when motion settings / status change. The
-  // reset is adjusted during render ("store previous props in state") instead
-  // of setState in an effect, so a replay costs a single render.
-  const [revealKey, setRevealKey] = useState({
-    animationDuration,
-    revealSignature,
-    status,
-  });
-  if (
-    revealKey.animationDuration !== animationDuration ||
-    revealKey.revealSignature !== revealSignature ||
-    revealKey.status !== status
-  ) {
-    setRevealKey({ animationDuration, revealSignature, status });
-    setRevealEpoch((n) => n + 1);
-    setIsLoaded(false);
-  }
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: revealSignature
-  useEffect(() => {
-    // While loading, hold the skeleton (no reveal, no interaction). When
-    // status flips to "ready" this effect re-runs and plays the grow reveal.
-    if (status === "loading") {
-      return;
-    }
-    const staggerMs = data.length > 1 ? animationDuration * 0.4 : 0;
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, animationDuration + staggerMs);
-    return () => clearTimeout(timer);
-  }, [animationDuration, revealSignature, status]);
 
   useEffect(() => {
     onPhaseChange?.(isLoaded ? "ready" : "revealing");

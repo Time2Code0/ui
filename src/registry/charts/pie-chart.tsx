@@ -9,7 +9,6 @@ import {
   type ReactElement,
   type ReactNode,
   useCallback,
-  useEffect,
   useMemo,
   useRef,
   useState,
@@ -29,6 +28,7 @@ import {
   type PieData,
   PieProvider,
 } from "./pie-context";
+import { useRevealReplay } from "./use-reveal-replay";
 
 /** Default hover offset in pixels */
 export const DEFAULT_HOVER_OFFSET = 10;
@@ -151,7 +151,11 @@ const PieChartCore = memo(function PieChartCore({
     number | null
   >(null);
   const [animationKey] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const { isLoaded } = useRevealReplay({
+    delayMs: 100,
+    hold: geometryScrubbing,
+    replayKey: [enterTransition, enterStaggerScale, geometryScrubbing],
+  });
 
   // Use controlled or uncontrolled hover state
   const isControlled = hoveredIndexProp !== undefined;
@@ -246,35 +250,6 @@ const PieChartCore = memo(function PieChartCore({
   }, [geometryScrubbing, arcs, innerRadius, outerRadius, cornerRadius]);
 
   const effectiveIsLoaded = geometryScrubbing || isLoaded;
-
-  // Replay enter when motion settings change. The reset is adjusted during
-  // render ("store previous props in state") instead of setState in an effect.
-  const [enterKey, setEnterKey] = useState({
-    enterStaggerScale,
-    enterTransition,
-    geometryScrubbing,
-  });
-  if (
-    enterKey.enterTransition !== enterTransition ||
-    enterKey.enterStaggerScale !== enterStaggerScale ||
-    enterKey.geometryScrubbing !== geometryScrubbing
-  ) {
-    setEnterKey({ enterStaggerScale, enterTransition, geometryScrubbing });
-    if (!geometryScrubbing) {
-      setIsLoaded(false);
-    }
-  }
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: enterTransition
-  useEffect(() => {
-    if (geometryScrubbing) {
-      return;
-    }
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [enterTransition, enterStaggerScale, geometryScrubbing]);
 
   // Separate children into categories
   const { svgChildren, centerChildren, defsChildren } = useMemo(() => {

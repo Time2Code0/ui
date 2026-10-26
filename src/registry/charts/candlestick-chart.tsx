@@ -2,15 +2,7 @@
 
 import type { Transition } from "motion/react";
 
-import {
-  memo,
-  type ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { memo, type ReactNode, useCallback, useMemo, useRef } from "react";
 
 import { scaleLinear, scaleTime } from "@visx/scale";
 import { cn } from "cn";
@@ -27,6 +19,7 @@ import {
 } from "./decimate-time-series";
 import { extractReferenceAreaConfigs } from "./reference-area-config";
 import { useChartInteraction } from "./use-chart-interaction";
+import { useRevealReplay } from "./use-reveal-replay";
 import { wrapSingleYScale } from "./y-axis-scales";
 
 export interface OHLCDataPoint {
@@ -111,8 +104,10 @@ const ChartCore = memo(function ChartCore({
   children,
   containerRef,
 }: ChartInnerProps) {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [revealEpoch, setRevealEpoch] = useState(1);
+  const { isLoaded, revealEpoch } = useRevealReplay({
+    delayMs: animationDuration,
+    replayKey: [animationDuration, revealSignature],
+  });
 
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
@@ -193,28 +188,6 @@ const ChartCore = memo(function ChartCore({
     () => data.map((d) => shortDateFmt.format(xAccessor(d))),
     [data, xAccessor]
   );
-
-  // Replay the reveal when motion settings change. Adjusted during render
-  // ("store previous props in state") instead of setState in an effect, so a
-  // replay costs one render rather than a commit plus a cascading re-render.
-  const [revealKey, setRevealKey] = useState({
-    animationDuration,
-    revealSignature,
-  });
-  if (
-    revealKey.animationDuration !== animationDuration ||
-    revealKey.revealSignature !== revealSignature
-  ) {
-    setRevealKey({ animationDuration, revealSignature });
-    setRevealEpoch((n) => n + 1);
-    setIsLoaded(false);
-  }
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: revealSignature
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), animationDuration);
-    return () => clearTimeout(timer);
-  }, [animationDuration, revealSignature]);
 
   const {
     tooltipData,

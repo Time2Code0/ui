@@ -8,7 +8,6 @@ import {
   memo,
   type ReactNode,
   useCallback,
-  useEffect,
   useMemo,
   useRef,
   useState,
@@ -26,6 +25,7 @@ import {
   RingProvider,
   ringCssVars,
 } from "./ring-context";
+import { useRevealReplay } from "./use-reveal-replay";
 
 function generateRingArcPath(
   innerRadius: number,
@@ -152,7 +152,11 @@ const RingChartCore = memo(function RingChartCore({
     number | null
   >(null);
   const [animationKey] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const { isLoaded } = useRevealReplay({
+    delayMs: 100,
+    hold: geometryScrubbing,
+    replayKey: [enterTransition, enterStaggerScale, geometryScrubbing],
+  });
 
   // Use controlled or uncontrolled hover state
   const isControlled = hoveredIndexProp !== undefined;
@@ -262,35 +266,6 @@ const RingChartCore = memo(function RingChartCore({
   ]);
 
   const effectiveIsLoaded = geometryScrubbing || isLoaded;
-
-  // Replay enter when motion settings change. The reset is adjusted during
-  // render ("store previous props in state") instead of setState in an effect.
-  const [enterKey, setEnterKey] = useState({
-    enterStaggerScale,
-    enterTransition,
-    geometryScrubbing,
-  });
-  if (
-    enterKey.enterTransition !== enterTransition ||
-    enterKey.enterStaggerScale !== enterStaggerScale ||
-    enterKey.geometryScrubbing !== geometryScrubbing
-  ) {
-    setEnterKey({ enterStaggerScale, enterTransition, geometryScrubbing });
-    if (!geometryScrubbing) {
-      setIsLoaded(false);
-    }
-  }
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: enterTransition
-  useEffect(() => {
-    if (geometryScrubbing) {
-      return;
-    }
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [enterTransition, enterStaggerScale, geometryScrubbing]);
 
   // Separate SVG children (rings) from HTML children (RingCenter)
   // This avoids Safari's foreignObject positioning bugs (WebKit #23113)

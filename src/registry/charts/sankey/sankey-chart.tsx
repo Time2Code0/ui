@@ -7,7 +7,6 @@ import {
   memo,
   type ReactNode,
   useCallback,
-  useEffect,
   useMemo,
   useRef,
   useState,
@@ -18,6 +17,7 @@ import { sankey, sankeyCenter, sankeyLinkHorizontal } from "@visx/sankey";
 import { cn } from "cn";
 
 import { ParentSize } from "../chart-parent-size";
+import { useRevealReplay } from "../use-reveal-replay";
 import {
   type Margin,
   type SankeyLinkDatum,
@@ -100,8 +100,10 @@ const SankeyChartCore = memo(function SankeyChartCore({
   onNodeHoverChange,
 }: SankeyChartInnerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [revealEpoch, setRevealEpoch] = useState(1);
+  const { isLoaded, revealEpoch } = useRevealReplay({
+    delayMs: animationDuration,
+    replayKey: [animationDuration, revealSignature],
+  });
   const [internalHoveredNodeIndex, setInternalHoveredNodeIndex] = useState<
     number | null
   >(null);
@@ -129,30 +131,6 @@ const SankeyChartCore = memo(function SankeyChartCore({
 
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
-
-  // Replay the reveal when motion settings change. Adjusted during render
-  // ("store previous props in state") instead of setState in an effect, so a
-  // replay costs one render rather than a commit plus a cascading re-render.
-  const [revealKey, setRevealKey] = useState({
-    animationDuration,
-    revealSignature,
-  });
-  if (
-    revealKey.animationDuration !== animationDuration ||
-    revealKey.revealSignature !== revealSignature
-  ) {
-    setRevealKey({ animationDuration, revealSignature });
-    setRevealEpoch((n) => n + 1);
-    setIsLoaded(false);
-  }
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: revealSignature
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsLoaded(true);
-    }, animationDuration);
-    return () => clearTimeout(timeout);
-  }, [animationDuration, revealSignature]);
 
   const sankeyGenerator = useMemo(
     () =>
