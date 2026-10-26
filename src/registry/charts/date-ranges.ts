@@ -11,17 +11,17 @@ export const DEFAULT_WEEKEND_DAYS: readonly WeekdayIndex[] = [6, 0];
 export type DateRangeAlign = "calendar" | "centered";
 
 export interface DateRange {
-  start: Date;
   end: Date;
+  start: Date;
 }
 
 export interface ComputeWeekendRangesOptions {
-  weekendDays?: readonly number[];
-  /** Use UTC day boundaries instead of local time. Default: false */
-  utc?: boolean;
   align?: DateRangeAlign;
   /** Bail out (return `[]`) when the domain spans more days than this. Default: 20_000 */
   maxDays?: number;
+  /** Use UTC day boundaries instead of local time. Default: false */
+  utc?: boolean;
+  weekendDays?: readonly number[];
 }
 
 const HALF_DAY_MS = 12 * 60 * 60 * 1000;
@@ -121,7 +121,7 @@ function pushClipped(
   const s = Math.max(start, lo);
   const e = Math.min(end, hi);
   if (e > s) {
-    ranges.push({ start: new Date(s), end: new Date(e) });
+    ranges.push({ end: new Date(e), start: new Date(s) });
   }
 }
 

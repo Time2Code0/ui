@@ -1,7 +1,9 @@
 "use client";
 
-import { useSpring } from "motion/react";
 import { useLayoutEffect, useMemo, useRef } from "react";
+
+import { useSpring } from "motion/react";
+
 import { useChartConfig } from "./chart-config-context";
 import { useChartHover, useChartStable } from "./chart-context";
 import {
@@ -16,9 +18,9 @@ import {
 // subscription surface (anything calling this hook will re-render on hover).
 
 export interface HighlightSegmentResult {
-  xSpring: ReturnType<typeof useSpring>;
-  widthSpring: ReturnType<typeof useSpring>;
   isActive: boolean;
+  widthSpring: ReturnType<typeof useSpring>;
+  xSpring: ReturnType<typeof useSpring>;
 }
 
 /**
@@ -61,5 +63,5 @@ export function useHighlightSegment({
     wasActive.current = bounds.isActive;
   }, [bounds, xSpring, widthSpring]);
 
-  return { xSpring, widthSpring, isActive: bounds.isActive };
+  return { isActive: bounds.isActive, widthSpring, xSpring };
 }

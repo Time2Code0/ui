@@ -1,13 +1,15 @@
-import { scaleLinear } from "@visx/scale";
 import type { LineConfig } from "./chart-context";
+
+import { scaleLinear } from "@visx/scale";
+
 import { type ChartPhase, Y_DOMAIN_TWEEN_SKIP_THRESHOLD } from "./chart-phase";
 import { groupLinesByYAxisId, normalizeYAxisId } from "./y-axis-scales";
 
 export type YDomain = [number, number];
 
 export interface NumericExtents {
-  minValue: number;
   maxValue: number;
+  minValue: number;
 }
 
 /** Min / max over every numeric `dataKeys` value. `{ 0, 100 }` when none are numeric. */
@@ -33,10 +35,10 @@ export function collectNumericExtents(
   }
 
   if (minValue === Number.POSITIVE_INFINITY) {
-    return { minValue: 0, maxValue: 100 };
+    return { maxValue: 100, minValue: 0 };
   }
 
-  return { minValue, maxValue };
+  return { maxValue, minValue };
 }
 
 /**
@@ -89,7 +91,7 @@ export function collectBarValueExtents(
       }
     }
   }
-  return { minValue, maxValue };
+  return { maxValue, minValue };
 }
 
 /**
@@ -112,7 +114,7 @@ export function resolveBarValueDomain({
 
 /** Apply visx `nice()` to raw domain endpoints for stable grid ticks. */
 export function niceYDomain(domain: YDomain): YDomain {
-  const scale = scaleLinear({ domain, range: [0, 1], nice: true });
+  const scale = scaleLinear({ domain, nice: true, range: [0, 1] });
   const niceDomain = scale.domain();
   return [niceDomain[0] ?? domain[0], niceDomain[1] ?? domain[1]];
 }

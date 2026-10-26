@@ -1,7 +1,8 @@
 "use client";
 
 import type { Transition } from "motion/react";
-import { animate, motion } from "motion/react";
+import type { SunburstNode } from "./sunburst-data";
+
 import {
   Children,
   isValidElement,
@@ -15,6 +16,9 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
+
+import { animate, motion } from "motion/react";
+
 import {
   type ArcDatum,
   buildArcs,
@@ -29,7 +33,6 @@ import {
   type SunburstContextValue,
   SunburstProvider,
 } from "./sunburst-context";
-import type { SunburstNode } from "./sunburst-data";
 
 export type { ArcDatum, Focus } from "./sunburst";
 export type { SunburstNode } from "./sunburst-data";
@@ -84,24 +87,24 @@ function sortSunburstSegments(
 }
 
 export interface SunburstChartProps {
-  data: SunburstNode;
-  size?: number;
-  /** Bump to replay the initialization animation. */
-  playKey?: number;
+  children: ReactNode;
   className?: string;
+  data: SunburstNode;
+  enterStaggerScale?: number;
+  enterTransition?: Transition;
   /** Controlled focus node id for drill-down. */
   focusId?: string;
-  /** Called when focus changes via segment click or breadcrumb. */
-  onFocusChange?: (focusId: string) => void;
   /** Controlled hover — arc index in the arcs array. */
   hoveredIndex?: number | null;
-  onHoverChange?: (index: number | null) => void;
   hoverPop?: number;
+  /** Called when focus changes via segment click or breadcrumb. */
+  onFocusChange?: (focusId: string) => void;
+  onHoverChange?: (index: number | null) => void;
   /** Inset reserved for hover growth; defaults from layout depth and hoverPop. */
   padding?: number;
-  enterTransition?: Transition;
-  enterStaggerScale?: number;
-  children: ReactNode;
+  /** Bump to replay the initialization animation. */
+  playKey?: number;
+  size?: number;
 }
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
@@ -229,14 +232,14 @@ const SunburstChartCore = memo(function SunburstChartCore({
   // Reset focus / zoom when the hierarchy root or focus mode changes —
   // adjusted during render ("store previous props in state"), not in an effect.
   const [focusResetKey, setFocusResetKey] = useState({
-    rootId,
     isFocusControlled,
+    rootId,
   });
   if (
     focusResetKey.rootId !== rootId ||
     focusResetKey.isFocusControlled !== isFocusControlled
   ) {
-    setFocusResetKey({ rootId, isFocusControlled });
+    setFocusResetKey({ isFocusControlled, rootId });
     if (!isFocusControlled) {
       setInternalFocusId(rootId);
     }
@@ -274,15 +277,15 @@ const SunburstChartCore = memo(function SunburstChartCore({
       zoomControls.current = animate(0, 1, {
         duration: 0.75,
         ease: [0.22, 1, 0.36, 1],
-        onUpdate: (value) => {
-          if (zoomGen.current === gen) {
-            setZoomT(value);
-          }
-        },
         onComplete: () => {
           if (zoomGen.current === gen) {
             setZoomT(1);
             setPrevFocusId(nextId);
+          }
+        },
+        onUpdate: (value) => {
+          if (zoomGen.current === gen) {
+            setZoomT(value);
           }
         },
       });
@@ -443,36 +446,36 @@ const SunburstChartCore = memo(function SunburstChartCore({
   const orderedSvgChildren = [...orderedSegments, ...otherSvgChildren];
 
   const providerValue: SunburstContextValue = {
-    data,
     arcs,
-    focusById,
-    rootId,
-    maxDepth,
-    radius,
-    size,
-    focus,
-    prevFocus,
-    focusId,
-    zoomTo,
-    zoomT,
+    containerRef,
+    data,
+    enterStaggerScale,
     enterTiming,
-    skipEnterAnimation,
-    growAmountForArc,
+    enterTransition,
+    focus,
+    focusById,
+    focusId,
     getColor,
     getFill,
     getFillOpacity,
-    isRelated,
-    isDescendant,
-    enterTransition,
-    enterStaggerScale,
-    playKey,
-    hoverPop,
-    maxExpandedThickness,
-    containerRef,
-    hoveredArcIndex,
-    setHoveredArcIndex,
+    growAmountForArc,
     hoveredArc,
+    hoveredArcIndex,
+    hoverPop,
+    isDescendant,
+    isRelated,
+    maxDepth,
+    maxExpandedThickness,
+    playKey,
+    prevFocus,
+    radius,
+    rootId,
     setHoveredArc,
+    setHoveredArcIndex,
+    size,
+    skipEnterAnimation,
+    zoomT,
+    zoomTo,
   };
 
   return (

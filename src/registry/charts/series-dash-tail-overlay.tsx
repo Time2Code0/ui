@@ -1,21 +1,22 @@
 "use client";
 
 import { memo, useMemo } from "react";
+
 import { DashTailStroke } from "./dash-tail-stroke";
 import { resolveDashStartX, resolveDashTailBounds } from "./path-stroke-utils";
 
 interface SeriesDashTailOverlayProps {
-  dashFromIndex?: number;
   dashArray: string;
+  dashFromIndex?: number;
   data: Record<string, unknown>[];
+  innerHeight: number;
+  innerWidth: number;
   pathD: string | null;
   pathLength: number;
-  innerWidth: number;
-  innerHeight: number;
   stroke: string;
   strokeWidth: number;
-  xScale: (value: Date | number) => number | undefined;
   xAccessor: (datum: Record<string, unknown>) => Date | number;
+  xScale: (value: Date | number) => number | undefined;
 }
 
 function SeriesDashTailOverlayImpl({

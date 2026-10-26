@@ -17,20 +17,20 @@ export const DEFAULT_LINEAR_GAUGE_HEIGHT = 24;
 
 export interface NotchPoint {
   x1: number;
-  y1: number;
   x2: number;
-  y2: number;
   x3: number;
-  y3: number;
   x4: number;
+  y1: number;
+  y2: number;
+  y3: number;
   y4: number;
 }
 
 export interface ComputedNotch {
-  index: number;
-  points: NotchPoint;
-  isActive: boolean;
   gradientColor: string;
+  index: number;
+  isActive: boolean;
+  points: NotchPoint;
   xCenter: number;
   yCenter: number;
 }

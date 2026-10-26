@@ -1,10 +1,11 @@
 import type { CurveFactory } from "d3-shape";
+
 import { line as d3Line } from "d3-shape";
 
 export interface SeriesPathPoint {
+  key: string;
   x: number;
   y: number;
-  key: string;
 }
 
 export function computeSeriesPathPoints(
@@ -18,9 +19,9 @@ export function computeSeriesPathPoints(
     const xValue = xAccessor(datum);
     const yValue = datum[dataKey];
     return {
+      key: String(xValue.getTime?.() ?? index),
       x: xScale(xValue) ?? 0,
       y: typeof yValue === "number" ? (yScale(yValue) ?? 0) : 0,
-      key: String(xValue.getTime?.() ?? index),
     };
   });
 }
@@ -93,7 +94,7 @@ class PolylineRecorder {
   private y = 0;
 
   private push(x: number, y: number) {
-    this.points.push({ x, y, key: "" });
+    this.points.push({ key: "", x, y });
     this.x = x;
     this.y = y;
   }
@@ -218,7 +219,7 @@ export function morphSeriesPolylines(
     const x = first.x + (span * index) / (count - 1);
     const fromY = samplePolylineY(from, x);
     const toY = samplePolylineY(to, x);
-    result[index] = { x, y: fromY + (toY - fromY) * progress, key: "" };
+    result[index] = { key: "", x, y: fromY + (toY - fromY) * progress };
   }
   return result;
 }

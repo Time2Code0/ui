@@ -1,7 +1,9 @@
 "use client";
 
-import { motion, useTransform } from "motion/react";
 import { memo, useMemo } from "react";
+
+import { motion, useTransform } from "motion/react";
+
 import { applyHoverGrow, arcPath, transitionGeometry } from "./sunburst";
 import {
   sunburstCssVars,
@@ -14,13 +16,13 @@ import { useMountProgress } from "./use-mount-progress";
 const HOVER_DIM_TRANSITION = { duration: 0.16, ease: "easeOut" as const };
 
 export interface SunburstSegmentProps {
-  index: number;
   /** Optional color override */
   color?: string;
   /** Optional fill override (patterns/gradients) */
   fill?: string;
   /** Optional fill opacity override */
   fillOpacity?: number;
+  index: number;
 }
 
 export const SunburstSegment = memo(function SunburstSegment({

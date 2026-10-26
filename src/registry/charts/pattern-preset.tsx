@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+
 import { PatternCircles, PatternLines } from "./visx-pattern";
 
 export const PATTERN_PRESET_IDS = [
@@ -18,13 +19,13 @@ export type PatternPresetId = (typeof PATTERN_PRESET_IDS)[number];
 
 export interface PatternPresetOptions {
   color?: string;
-  scale?: number;
-  strokeWidth?: number;
-  radius?: number;
   complement?: boolean;
-  fill?: string;
   /** Dot grid only — when false, render hollow dots (stroke only). Default: true */
   dotFill?: boolean;
+  fill?: string;
+  radius?: number;
+  scale?: number;
+  strokeWidth?: number;
   tileBackground?: string;
 }
 
@@ -42,19 +43,19 @@ export function patternPresetTileSize(
   preset: PatternPresetId,
   scale = 1
 ): { width: number; height: number; strokeWidth: number } {
-  let base = { width: 6, height: 6, strokeWidth: 1 };
+  let base = { height: 6, strokeWidth: 1, width: 6 };
   if (preset === "dots") {
-    base = { width: 10, height: 10, strokeWidth: 0 };
+    base = { height: 10, strokeWidth: 0, width: 10 };
   } else if (preset === "cross") {
-    base = { width: 8, height: 8, strokeWidth: 1 };
+    base = { height: 8, strokeWidth: 1, width: 8 };
   } else if (preset === "circles") {
-    base = { width: 6, height: 6, strokeWidth: 1 };
+    base = { height: 6, strokeWidth: 1, width: 6 };
   }
 
   return {
-    width: base.width * scale,
     height: base.height * scale,
     strokeWidth: base.strokeWidth * scale,
+    width: base.width * scale,
   };
 }
 
@@ -121,10 +122,10 @@ export function renderPatternPreset(
   const scale = options.scale ?? 1;
   const tile = patternPresetTileSize(preset, scale);
   const common = {
-    id,
     height: tile.height,
-    width: tile.width,
+    id,
     strokeWidth: tile.strokeWidth,
+    width: tile.width,
     ...(options.tileBackground ? { background: options.tileBackground } : {}),
   };
 

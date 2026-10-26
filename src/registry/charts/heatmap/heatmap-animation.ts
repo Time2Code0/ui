@@ -1,5 +1,6 @@
 import type { Transition } from "motion/react";
 import type { HeatmapColumn } from "./heatmap-context";
+
 import { getHeatmapContributionLevel } from "./heatmap-utils";
 
 /** Default enter duration when no motion props are passed (ms). */
@@ -10,9 +11,9 @@ export const HEATMAP_DEFAULT_ENTER_EASE = [0.85, 0, 0.916, 0.282] as const;
 
 /** Default enter transition for {@link HeatmapChart}. */
 export const HEATMAP_DEFAULT_ENTER_TRANSITION: Transition = {
-  type: "tween",
   duration: HEATMAP_DEFAULT_ENTER_DURATION_MS / 1000,
   ease: HEATMAP_DEFAULT_ENTER_EASE,
+  type: "tween",
 };
 
 /** Chart opacity while `status="loading"`. */
@@ -49,8 +50,8 @@ export function heatmapCellSeed(column: number, row: number): number {
 }
 
 export interface HeatmapLevelRange {
-  min: number;
   max: number;
+  min: number;
 }
 
 /** Min/max contribution levels present in the dataset. */
@@ -73,10 +74,10 @@ export function computeHeatmapLevelRange(
   }
 
   if (!(Number.isFinite(min) && Number.isFinite(max))) {
-    return { min: 0, max: 4 };
+    return { max: 4, min: 0 };
   }
 
-  return { min, max };
+  return { max, min };
 }
 
 /** Per-cell fade duration derived from the motion enter transition. */

@@ -1,6 +1,7 @@
 "use client";
 
 import { memo } from "react";
+
 import { renderPatternPreset } from "../pattern-preset";
 import {
   type HeatmapLevelStyle,
@@ -21,9 +22,9 @@ export const HeatmapLegendSwatch = memo(function HeatmapLegendSwatch({
   cornerRadius: number;
 }) {
   const shellStyle = {
-    width: cellSize,
-    height: cellSize,
     borderRadius: cornerRadius,
+    height: cellSize,
+    width: cellSize,
   };
 
   if (isHeatmapLevelPattern(style) && style.pattern) {

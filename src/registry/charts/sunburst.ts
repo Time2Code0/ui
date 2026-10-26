@@ -1,32 +1,32 @@
 import type { SunburstNode } from "./sunburst-data";
 
 export interface ArcDatum {
-  id: string;
-  name: string;
-  depth: number;
-  value: number;
-  categoryIndex: number;
-  hasChildren: boolean;
-  trail: string[];
-  parentId: string | null;
   a0: number;
   a1: number;
   /** Stable index for Studio layer wiring. */
   arcIndex: number;
+  categoryIndex: number;
   /** Optional color override from data node. */
   color?: string;
+  depth: number;
   /** Optional fill override from data node (patterns). */
   fill?: string;
+  hasChildren: boolean;
+  id: string;
+  name: string;
+  parentId: string | null;
+  trail: string[];
+  value: number;
 }
 
 export interface Focus {
-  id: string;
-  name: string;
-  depth: number;
-  parentId: string | null;
-  categoryIndex: number;
   a0: number;
   a1: number;
+  categoryIndex: number;
+  depth: number;
+  id: string;
+  name: string;
+  parentId: string | null;
 }
 
 export interface ArcGeometry {
@@ -60,11 +60,11 @@ export function sumValues(node: SunburstNode): number {
 }
 
 interface BuildContext {
+  arcIndex: number;
   arcs: ArcDatum[];
   focusById: Map<string, Focus>;
   maxDepth: number;
   rootId: string;
-  arcIndex: number;
 }
 
 function layoutNode(
@@ -83,31 +83,31 @@ function layoutNode(
 
   if (depth > 0) {
     ctx.arcs.push({
-      id,
-      name: node.name,
-      depth,
-      value,
-      categoryIndex,
-      hasChildren,
-      trail: [...trail, node.name],
-      parentId,
       a0,
       a1,
       arcIndex: ctx.arcIndex,
+      categoryIndex,
       color: node.color,
+      depth,
       fill: node.fill,
+      hasChildren,
+      id,
+      name: node.name,
+      parentId,
+      trail: [...trail, node.name],
+      value,
     });
     ctx.arcIndex += 1;
   }
 
   ctx.focusById.set(id, {
-    id,
-    name: node.name,
-    depth,
-    parentId,
-    categoryIndex,
     a0,
     a1,
+    categoryIndex,
+    depth,
+    id,
+    name: node.name,
+    parentId,
   });
   ctx.maxDepth = Math.max(ctx.maxDepth, depth);
 
@@ -144,11 +144,11 @@ function toRadians(normalized: number): number {
 export function buildArcs(data: SunburstNode) {
   const rootId = data.name;
   const ctx: BuildContext = {
+    arcIndex: 0,
     arcs: [],
     focusById: new Map(),
     maxDepth: 0,
     rootId,
-    arcIndex: 0,
   };
 
   layoutNode(data, rootId, 0, 0, 1, null, 0, [], ctx);
@@ -164,10 +164,10 @@ export function buildArcs(data: SunburstNode) {
 
   return {
     arcs: ctx.arcs,
-    maxDepth: ctx.maxDepth,
-    total: sumValues(data),
     focusById: ctx.focusById,
+    maxDepth: ctx.maxDepth,
     rootId,
+    total: sumValues(data),
   };
 }
 
@@ -305,8 +305,8 @@ export interface SunburstSegmentEnterDelays {
 }
 
 export interface SunburstEnterTiming {
-  segmentDelays: Map<string, SunburstSegmentEnterDelays>;
   maxDelay: number;
+  segmentDelays: Map<string, SunburstSegmentEnterDelays>;
 }
 
 /** Matches ring chart expand — each ring/segment grows from the chart center. */
@@ -339,16 +339,16 @@ export function buildSunburstEnterTiming(
     }
   }
 
-  return { segmentDelays, maxDelay };
+  return { maxDelay, segmentDelays };
 }
 
 /** @deprecated Use buildSunburstEnterTiming */
 export interface SunburstRevealSchedule {
-  ringStarts: Map<number, number>;
-  ringDuration: number;
-  segmentsCompleteAt: number;
-  labelsStart: number;
   labelDuration: number;
+  labelsStart: number;
+  ringDuration: number;
+  ringStarts: Map<number, number>;
+  segmentsCompleteAt: number;
 }
 
 /** @deprecated Use buildSunburstEnterTiming */
@@ -365,11 +365,11 @@ export function buildRevealSchedule(
     }
   }
   return {
-    ringStarts,
-    ringDuration: 0.6,
-    segmentsCompleteAt: timing.maxDelay,
-    labelsStart: timing.maxDelay + 0.12,
     labelDuration: 0.2,
+    labelsStart: timing.maxDelay + 0.12,
+    ringDuration: 0.6,
+    ringStarts,
+    segmentsCompleteAt: timing.maxDelay,
   };
 }
 

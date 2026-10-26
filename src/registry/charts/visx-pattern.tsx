@@ -1,6 +1,7 @@
 "use client";
 
 import type { ComponentProps } from "react";
+
 import {
   PatternCircles as VisxPatternCircles,
   PatternHexagons as VisxPatternHexagons,

@@ -6,20 +6,20 @@ import {
 } from "./fade-edges";
 
 interface AreaGradientDefsProps {
-  gradientId: string;
-  strokeGradientId: string;
-  edgeMaskId: string;
   edgeGradientId: string;
+  edgeMaskId: string;
+  fadeEdges: FadeEdges;
   fill: string;
   fillOpacity: number;
-  gradientToOpacity: number;
+  gradientId: string;
   /** 0–1: where the bottom stop sits (1 = full-height gradient). */
   gradientSpan?: number;
-  resolvedStroke: string;
-  isPatternFill: boolean;
-  fadeEdges: FadeEdges;
-  innerWidth: number;
+  gradientToOpacity: number;
   innerHeight: number;
+  innerWidth: number;
+  isPatternFill: boolean;
+  resolvedStroke: string;
+  strokeGradientId: string;
 }
 
 export function AreaGradientDefs({

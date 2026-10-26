@@ -1,24 +1,24 @@
 export interface SquareColumnLayout {
-  /** Number of squares in the column */
-  count: number;
-  /** Top-left Y of each square, bottom square first (relative to bar top at 0) */
-  positions: number[];
   /** Quantized column height in pixels */
   columnHeight: number;
-  squareSize: number;
+  /** Number of squares in the column */
+  count: number;
   /** Effective gap between squares (may differ when fit mode redistributes) */
   gap: number;
+  /** Top-left Y of each square, bottom square first (relative to bar top at 0) */
+  positions: number[];
+  squareSize: number;
 }
 
 export interface SquareColumnInput {
   /** Raw bar length in pixels (baseline − value) */
   barLengthPx: number;
-  /** Square width/height — typically equals bar width */
-  squareSize: number;
-  /** Gap between stacked squares in pixels */
-  gap: number;
   /** When true, redistribute gap so column height matches barLengthPx exactly */
   fit?: boolean;
+  /** Gap between stacked squares in pixels */
+  gap: number;
+  /** Square width/height — typically equals bar width */
+  squareSize: number;
 }
 
 /** Quantize bar length into a stack of square cells. */
@@ -29,7 +29,7 @@ export function computeSquareColumn({
   fit = false,
 }: SquareColumnInput): SquareColumnLayout {
   if (barLengthPx <= 0 || squareSize <= 0) {
-    return { count: 0, positions: [], columnHeight: 0, squareSize, gap };
+    return { columnHeight: 0, count: 0, gap, positions: [], squareSize };
   }
 
   if (fit) {
@@ -50,11 +50,11 @@ export function computeSquareColumn({
     }
 
     return {
-      count,
-      positions,
       columnHeight,
-      squareSize,
+      count,
       gap: effectiveGap,
+      positions,
+      squareSize,
     };
   }
 
@@ -68,7 +68,7 @@ export function computeSquareColumn({
     positions.push(columnHeight - squareSize - offsetFromBottom);
   }
 
-  return { count, positions, columnHeight, squareSize, gap };
+  return { columnHeight, count, gap, positions, squareSize };
 }
 
 /** Y center of the topmost square in a vertical column. */
@@ -85,9 +85,9 @@ export function topSquareCenterY({
     columnHeight,
   } = computeSquareColumn({
     barLengthPx,
-    squareSize,
-    gap,
     fit,
+    gap,
+    squareSize,
   });
 
   if (count === 0) {

@@ -1,3 +1,5 @@
+import type { BandConfig } from "./chart-context";
+
 import {
   Children,
   Fragment,
@@ -5,8 +7,8 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
+
 import { isChartClipPassthrough } from "./chart-child-passthrough";
-import type { BandConfig } from "./chart-context";
 import { normalizeYAxisId } from "./y-axis-scales";
 
 export type { BandConfig } from "./chart-context";
@@ -15,12 +17,12 @@ export type { BandConfig } from "./chart-context";
 const DEFAULT_BAND_FILL = "var(--chart-line-primary)";
 
 interface BandConfigProps {
-  upperKey?: unknown;
-  lowerKey?: unknown;
-  yAxisId?: string | number;
   fill?: unknown;
   label?: unknown;
+  lowerKey?: unknown;
   showInTooltip?: unknown;
+  upperKey?: unknown;
+  yAxisId?: string | number;
 }
 
 /** Default tooltip label: the key for a single-key band, else `lower – upper`. */
@@ -39,14 +41,14 @@ function bandConfigFromProps(
     return null;
   }
   return {
-    yAxisId: normalizeYAxisId(props.yAxisId),
-    upperKey: props.upperKey,
-    lowerKey: props.lowerKey,
     color: nonEmptyString(props.fill) ? props.fill : DEFAULT_BAND_FILL,
     label: nonEmptyString(props.label)
       ? props.label
       : defaultBandLabel(props.upperKey, props.lowerKey),
+    lowerKey: props.lowerKey,
     showInTooltip: props.showInTooltip !== false,
+    upperKey: props.upperKey,
+    yAxisId: normalizeYAxisId(props.yAxisId),
   };
 }
 

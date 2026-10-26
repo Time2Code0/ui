@@ -1,13 +1,15 @@
 "use client";
 
-import { memo, type ReactNode, useMemo } from "react";
 import type { Focus } from "./sunburst";
+
+import { memo, type ReactNode, useMemo } from "react";
+
 import { useSunburstStable } from "./sunburst-context";
 
 export interface SunburstBreadcrumbItem {
   id: string;
-  label: string;
   isCurrent: boolean;
+  label: string;
 }
 
 export function useSunburstBreadcrumbItems() {
@@ -24,8 +26,8 @@ export function useSunburstBreadcrumbItems() {
 
     return crumbs.map((c, index) => ({
       id: c.id,
-      label: c.id === rootId ? rootName : c.name,
       isCurrent: index === crumbs.length - 1,
+      label: c.id === rootId ? rootName : c.name,
     }));
   }, [rootName, focus, focusById, rootId]);
 
@@ -33,8 +35,8 @@ export function useSunburstBreadcrumbItems() {
 }
 
 export interface SunburstBreadcrumbProps {
-  className?: string;
   children: ReactNode;
+  className?: string;
 }
 
 export const SunburstBreadcrumb = memo(function SunburstBreadcrumb({

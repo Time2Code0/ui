@@ -13,17 +13,17 @@ import type { ChartSelection } from "./use-chart-interaction";
 // pixels short, slightly narrowing the bright slice but never detaching it.
 
 export interface SegmentBounds {
-  /** Left edge of the highlight band, in pixels. */
-  x: number;
+  isActive: boolean;
   /** Width of the highlight band, in pixels. */
   width: number;
-  isActive: boolean;
+  /** Left edge of the highlight band, in pixels. */
+  x: number;
 }
 
 export const INACTIVE_SEGMENT: SegmentBounds = {
-  x: 0,
-  width: 0,
   isActive: false,
+  width: 0,
+  x: 0,
 };
 
 /**
@@ -49,7 +49,7 @@ export function computeSegmentBounds(
   if (selection?.active) {
     const x = Math.min(selection.startX, selection.endX);
     const width = Math.abs(selection.endX - selection.startX);
-    return { x, width, isActive: true };
+    return { isActive: true, width, x };
   }
 
   if (!tooltipData) {
@@ -67,5 +67,5 @@ export function computeSegmentBounds(
 
   const startX = xScale(xAccessor(startPoint)) ?? 0;
   const endX = xScale(xAccessor(endPoint)) ?? 0;
-  return { x: startX, width: Math.max(0, endX - startX), isActive: true };
+  return { isActive: true, width: Math.max(0, endX - startX), x: startX };
 }

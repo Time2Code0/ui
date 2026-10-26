@@ -1,9 +1,12 @@
 "use client";
 
+import type { CurveFactory } from "d3-shape";
+
+import { useCallback, useId, useMemo } from "react";
+
 import { curveLinear } from "@visx/curve";
 import { LinePath } from "@visx/shape";
-import type { CurveFactory } from "d3-shape";
-import { useCallback, useId, useMemo } from "react";
+
 import { useChart, useChartStable } from "./chart-context";
 import {
   type FadeEdges,
@@ -33,18 +36,18 @@ export function resolveProfitLossTooltipLabel(label: string) {
 }
 
 export interface ProfitLossLineProps {
-  dataKey: string;
-  xDataKey?: string;
-  strokeWidth?: number;
-  positiveColor?: string;
-  negativeColor?: string;
   /** Curve function. Default: curveLinear */
   curve?: CurveFactory;
+  dataKey: string;
   /**
    * Fade the line stroke toward transparent at the chart edges.
    * Default: false
    */
   fadeEdges?: FadeEdges;
+  negativeColor?: string;
+  positiveColor?: string;
+  strokeWidth?: number;
+  xDataKey?: string;
 }
 
 function segmentLegendIndex(isPositive: boolean) {
@@ -89,8 +92,8 @@ export function ProfitLossLine({
       splitProfitLossSegments({
         data: renderData,
         dataKey,
-        xDataKey,
         xAccessor,
+        xDataKey,
       }),
     [dataKey, renderData, xAccessor, xDataKey]
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+
 import {
   type ChartPhase,
   type ChartStatus,
@@ -8,15 +9,15 @@ import {
 } from "./chart-phase";
 
 export interface UseChartPhaseOrchestratorOptions {
-  chartStatus: ChartStatus;
-  targetData: Record<string, unknown>[];
-  skeletonData: Record<string, unknown>[];
   animationDuration: number;
-  yDomainTweenDuration: number;
+  chartStatus: ChartStatus;
   /** Signature of motion URL state — replays clip reveal in Studio. */
   revealSignature?: string;
+  skeletonData: Record<string, unknown>[];
   /** Skip mount/signature enter reveal (static docs previews). */
   skipEnterReveal?: boolean;
+  targetData: Record<string, unknown>[];
+  yDomainTweenDuration: number;
 }
 
 /** Phase the reveal starts from on mount (or the resting phase when skipped). */
@@ -47,18 +48,18 @@ function resolvePlotData<T>(
 }
 
 interface PhaseInputs {
-  chartStatus: ChartStatus;
-  chartPhase: ChartPhase;
   animationDuration: number;
+  chartPhase: ChartPhase;
+  chartStatus: ChartStatus;
   revealSignature: string;
   skipEnterReveal: boolean;
 }
 
 interface PhaseTransition {
-  nextPhase: ChartPhase;
-  resetLoaded: boolean;
   bumpConceal: boolean;
   bumpReveal: boolean;
+  nextPhase: ChartPhase;
+  resetLoaded: boolean;
 }
 
 function phaseInputsEqual(a: PhaseInputs, b: PhaseInputs): boolean {
@@ -80,20 +81,20 @@ function resolveStatusTransition(
 ): { phase: ChartPhase; conceal: boolean } | null {
   if (chartStatus === "ready" && prevStatus === "loading") {
     if (animationDuration > 0) {
-      return { phase: "exiting", conceal: false };
+      return { conceal: false, phase: "exiting" };
     }
     return {
-      phase: yDomainTweenDuration <= 0 ? "revealing" : "gridTweenReady",
       conceal: false,
+      phase: yDomainTweenDuration <= 0 ? "revealing" : "gridTweenReady",
     };
   }
   if (chartStatus === "loading" && prevStatus === "ready") {
     if (animationDuration > 0) {
-      return { phase: "exitingReady", conceal: true };
+      return { conceal: true, phase: "exitingReady" };
     }
     return {
-      phase: yDomainTweenDuration <= 0 ? "loading" : "gridTweenLoading",
       conceal: false,
+      phase: yDomainTweenDuration <= 0 ? "loading" : "gridTweenLoading",
     };
   }
   return null;
@@ -153,7 +154,7 @@ function resolvePhaseTransition(
       nextPhase !== next.chartPhase ||
       prev.animationDuration !== next.animationDuration);
 
-  return { nextPhase, resetLoaded, bumpConceal, bumpReveal };
+  return { bumpConceal, bumpReveal, nextPhase, resetLoaded };
 }
 
 /**
@@ -189,17 +190,17 @@ export function useChartPhaseOrchestrator({
 
   // Previous inputs — compared during render to derive transitions.
   const [prev, setPrev] = useState<PhaseInputs>({
-    chartStatus,
-    chartPhase,
     animationDuration,
+    chartPhase,
+    chartStatus,
     revealSignature,
     skipEnterReveal,
   });
 
   const current: PhaseInputs = {
-    chartStatus,
-    chartPhase,
     animationDuration,
+    chartPhase,
+    chartStatus,
     revealSignature,
     skipEnterReveal,
   };
@@ -273,12 +274,12 @@ export function useChartPhaseOrchestrator({
 
   return {
     chartPhase,
-    plotData,
-    revealEpoch,
     concealEpoch,
     isLoaded,
     notifyLoadingPulseComplete,
     notifyRevealConcealComplete,
     notifyYDomainTweenComplete,
+    plotData,
+    revealEpoch,
   };
 }

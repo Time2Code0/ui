@@ -108,10 +108,10 @@ export function getHeatmapMonthLabelColumnIndex(
 }
 
 export interface HeatmapWeekRange {
-  startDate: Date;
-  weekCount: number;
   /** First in-range calendar day; bins before this are empty in default year grids. */
   rangeStart: Date | null;
+  startDate: Date;
+  weekCount: number;
 }
 
 /** Default `weeks` uses 12 calendar months; other values use a rolling week window. */
@@ -126,9 +126,9 @@ export function resolveHeatmapWeekRange(
     const rangeStart = getHeatmapYearStartMonth(endDate);
     const startDate = getHeatmapWeekStartAlignedToRange(rangeStart);
     return {
+      rangeStart,
       startDate,
       weekCount: getHeatmapWeekCount(startDate, endDate),
-      rangeStart,
     };
   }
 
@@ -138,9 +138,9 @@ export function resolveHeatmapWeekRange(
   startDate.setHours(0, 0, 0, 0);
 
   return {
+    rangeStart: null,
     startDate,
     weekCount: weeks,
-    rangeStart: null,
   };
 }
 
@@ -342,24 +342,24 @@ export type HeatmapSeparatorGroupBy = "every" | "quarter";
 
 /** Separator config from props — resolved to column indices once data is known. */
 export interface HeatmapSeparatorParsedConfig {
-  groupBy: HeatmapSeparatorGroupBy;
   every?: number;
+  groupBy: HeatmapSeparatorGroupBy;
   spacing: number;
 }
 
 export interface HeatmapSeparatorGroup {
-  startColumnIndex: number;
-  quarter: number;
-  year: number;
-  startDate: Date;
   label: string;
+  quarter: number;
+  startColumnIndex: number;
+  startDate: Date;
+  year: number;
 }
 
 /** Resolved separator layout used for column offsets and rendering. */
 export interface HeatmapSeparatorLayout {
-  spacing: number;
   atColumns: number[];
   groups: HeatmapSeparatorGroup[];
+  spacing: number;
 }
 
 /** Separator line style. */
@@ -368,16 +368,16 @@ export type HeatmapSeparatorStrokeStyle = "solid" | "dashed";
 /** Vertical stroke gradient for separator lines (`from` → optional `via` → `to`). */
 export interface HeatmapSeparatorGradient {
   from: string;
-  via?: string;
-  to: string;
   fromOpacity?: number;
-  viaOpacity?: number;
+  to: string;
   toOpacity?: number;
+  via?: string;
+  viaOpacity?: number;
 }
 
 export interface HeatmapSeparatorGradientStop {
-  offset: string;
   color: string;
+  offset: string;
   opacity: number;
 }
 
@@ -392,18 +392,18 @@ export function buildHeatmapSeparatorGradientStops(
   if (gradient.via != null) {
     return [
       {
-        offset: "0%",
         color: gradient.from,
+        offset: "0%",
         opacity: scaleOpacity(gradient.fromOpacity),
       },
       {
-        offset: "50%",
         color: gradient.via,
+        offset: "50%",
         opacity: scaleOpacity(gradient.viaOpacity),
       },
       {
-        offset: "100%",
         color: gradient.to,
+        offset: "100%",
         opacity: scaleOpacity(gradient.toOpacity),
       },
     ];
@@ -411,13 +411,13 @@ export function buildHeatmapSeparatorGradientStops(
 
   return [
     {
-      offset: "0%",
       color: gradient.from,
+      offset: "0%",
       opacity: scaleOpacity(gradient.fromOpacity),
     },
     {
-      offset: "100%",
       color: gradient.to,
+      offset: "100%",
       opacity: scaleOpacity(gradient.toOpacity),
     },
   ];
@@ -511,9 +511,9 @@ export function getHeatmapColumnQuarterAnchor(column: HeatmapColumn): {
     const month = bin.date.getMonth();
     if (bin.date.getDate() === 1 && month % 3 === 0) {
       return {
+        date: bin.date,
         quarter: month / 3 + 1,
         year: bin.date.getFullYear(),
-        date: bin.date,
       };
     }
   }
@@ -525,9 +525,9 @@ export function getHeatmapColumnQuarterAnchor(column: HeatmapColumn): {
 
   const quarter = getCalendarQuarter(firstDate);
   return {
+    date: new Date(firstDate.getFullYear(), (quarter - 1) * 3, 1),
     quarter,
     year: firstDate.getFullYear(),
-    date: new Date(firstDate.getFullYear(), (quarter - 1) * 3, 1),
   };
 }
 
@@ -619,11 +619,11 @@ export function buildHeatmapQuarterSeparatorGroups(
 
   const groups: HeatmapSeparatorGroup[] = [
     {
-      startColumnIndex: 0,
-      quarter: firstQuarter,
-      year: quarterRangeStart.getFullYear(),
-      startDate: quarterRangeStart,
       label: `Q${firstQuarter}`,
+      quarter: firstQuarter,
+      startColumnIndex: 0,
+      startDate: quarterRangeStart,
+      year: quarterRangeStart.getFullYear(),
     },
   ];
 
@@ -646,11 +646,11 @@ export function buildHeatmapQuarterSeparatorGroups(
     usedColumns.add(columnIndex);
     const quarter = getCalendarQuarter(quarterStart);
     groups.push({
-      startColumnIndex: columnIndex,
-      quarter,
-      year: quarterStart.getFullYear(),
-      startDate: quarterStart,
       label: `Q${quarter}`,
+      quarter,
+      startColumnIndex: columnIndex,
+      startDate: quarterStart,
+      year: quarterStart.getFullYear(),
     });
   }
 
@@ -673,11 +673,11 @@ export function resolveHeatmapSeparatorLayout(
     }
 
     return {
-      spacing: config.spacing,
       atColumns: groups
         .map((group) => group.startColumnIndex)
         .filter((columnIndex) => columnIndex > 0),
       groups,
+      spacing: config.spacing,
     };
   }
 
@@ -691,9 +691,9 @@ export function resolveHeatmapSeparatorLayout(
   );
 
   return {
-    spacing: config.spacing,
     atColumns,
     groups: [],
+    spacing: config.spacing,
   };
 }
 
@@ -763,8 +763,8 @@ export function getHeatmapSeparatorX(
 }
 
 export interface HeatmapDisplayRange {
-  start: Date | null;
   end: Date | null;
+  start: Date | null;
 }
 
 /** Whether a bin falls outside the contribution display window (not merely inactive). */
@@ -790,12 +790,12 @@ export function resolveHeatmapDisplayRange(
   columns: HeatmapColumn[]
 ): HeatmapDisplayRange {
   if (columns.length === 0) {
-    return { start: null, end: null };
+    return { end: null, start: null };
   }
 
   const extent = getHeatmapTimeExtent(columns);
   if (!extent) {
-    return { start: null, end: null };
+    return { end: null, start: null };
   }
 
   const today = new Date();
@@ -803,21 +803,21 @@ export function resolveHeatmapDisplayRange(
 
   const firstColumn = columns[0];
   if (!firstColumn) {
-    return { start: null, end: null };
+    return { end: null, start: null };
   }
 
   const gridStart = getHeatmapColumnStartDate(firstColumn);
   if (!gridStart) {
-    return { start: null, end: null };
+    return { end: null, start: null };
   }
 
   const inferredStart = inferHeatmapCalendarRangeStart(columns);
 
   if (inferredStart && extent[1].getTime() >= today.getTime()) {
-    return { start: inferredStart, end: today };
+    return { end: today, start: inferredStart };
   }
 
-  return { start: null, end: null };
+  return { end: null, start: null };
 }
 
 /** Maps a contribution count to the GitHub-style legend level (0–4). */
@@ -838,9 +838,9 @@ export function getHeatmapContributionLevel(count: number): number {
 }
 
 export interface HeatmapHoverStyleParams {
+  activeScale: number;
   inactiveOpacity: number;
   inactiveScale: number;
-  activeScale: number;
 }
 
 /** Whether hover styling runs (disabled when all scale/opacity props are 1). */
@@ -860,9 +860,9 @@ export function isHeatmapInactiveEffectEnabled(
   inactiveScale: number
 ): boolean {
   return isHeatmapHoverEffectEnabled({
+    activeScale: 1,
     inactiveOpacity,
     inactiveScale,
-    activeScale: 1,
   });
 }
 
@@ -893,9 +893,9 @@ export function resolveHeatmapInactiveStyle(
   inactiveScale: number
 ): { opacity: number; scale: number } {
   return resolveHeatmapHoverStyle(false, isInactive, {
+    activeScale: 1,
     inactiveOpacity,
     inactiveScale,
-    activeScale: 1,
   });
 }
 

@@ -1,9 +1,9 @@
 export interface AreaLabelBox {
+  height: number;
   index: number;
+  width: number;
   x: number;
   y: number;
-  width: number;
-  height: number;
 }
 
 /** Positions are box centers; all series share the same collision space. */

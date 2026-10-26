@@ -1,8 +1,8 @@
 export interface ResponsiveChartLabelCount {
   base?: number;
-  sm?: number;
-  md?: number;
   lg?: number;
+  md?: number;
+  sm?: number;
   xl?: number;
 }
 

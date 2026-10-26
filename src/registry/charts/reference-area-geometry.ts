@@ -1,21 +1,21 @@
 export type ReferenceAreaIfOverflow = "hidden" | "visible" | "discard";
 
 export interface ReferenceAreaRect {
+  height: number;
+  width: number;
   x: number;
   y: number;
-  width: number;
-  height: number;
 }
 
 export interface ComputeReferenceAreaRectOptions {
-  innerWidth: number;
+  ifOverflow?: ReferenceAreaIfOverflow;
   innerHeight: number;
+  innerWidth: number;
   x1?: Date | number;
   x2?: Date | number;
+  xScale: (value: Date) => number;
   y1?: number;
   y2?: number;
-  ifOverflow?: ReferenceAreaIfOverflow;
-  xScale: (value: Date) => number;
   yScale: (value: number) => number;
 }
 
@@ -59,7 +59,7 @@ function clampRectToPlot(
   if (width <= 0 || height <= 0) {
     return null;
   }
-  return { x: x1, y: y1, width, height };
+  return { height, width, x: x1, y: y1 };
 }
 
 function isFullyInsidePlot(
@@ -109,7 +109,7 @@ export function computeReferenceAreaRect(
     return null;
   }
 
-  const rect: ReferenceAreaRect = { x, y, width, height };
+  const rect: ReferenceAreaRect = { height, width, x, y };
 
   if (ifOverflow === "visible") {
     return rect;

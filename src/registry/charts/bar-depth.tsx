@@ -56,7 +56,6 @@
  *     compute geometry at most once per render between them.
  */
 
-import { motion, type Transition } from "motion/react";
 import {
   createContext,
   type ReactNode,
@@ -64,6 +63,9 @@ import {
   useId,
   useMemo,
 } from "react";
+
+import { motion, type Transition } from "motion/react";
+
 import { barDepthAndRise, barDepthMaxDepth } from "./bar-depth-geometry";
 import { useChartHover, useChartStable } from "./chart-context";
 import { transitionWithDelay } from "./motion-utils";
@@ -109,7 +111,15 @@ const BAR_HOVER_TRANSITION = { duration: 0.15, ease: "easeOut" as const };
 // ─── Types ───────────────────────────────────────────────────────────
 
 export interface BarDepthEntry {
-  label: string;
+  bandWidth: number;
+  bandX: number;
+  barHeight: number;
+  /** y of the chart's baseline (= `yScale(0)`). For positive bars this equals
+   * `bottomY`; for negative bars it equals `topY`. Used as the grow-from
+   * anchor for both the clipPath (side face) and the glass rect. */
+  baselineY: number;
+  /** Visual bottom of the bar in screen Y. */
+  bottomY: number;
   /** Index in the original `data` array — used for stagger calc. NOT the
    * index in this entries list. */
   dataIndex: number;
@@ -117,6 +127,8 @@ export interface BarDepthEntry {
    * `segmentsAccessor` so consumers can color or split bars without
    * bar-depth knowing the data shape. */
   datum: Record<string, unknown>;
+  /** Side-face thickness in px (0 = dead-center bar / dense chart). */
+  depth: number;
   /** True when this bar is the active bar (`dataIndex === activeIndex`).
    * Used only by `<BarPulse>`; geometry is identical regardless. */
   isActive: boolean;
@@ -124,35 +136,25 @@ export interface BarDepthEntry {
    * the baseline. The lid still sits at the baseline; the side parallelogram
    * grows downward instead of upward. */
   isNegative: boolean;
-  /** y of the chart's baseline (= `yScale(0)`). For positive bars this equals
-   * `bottomY`; for negative bars it equals `topY`. Used as the grow-from
-   * anchor for both the clipPath (side face) and the glass rect. */
-  baselineY: number;
-  bandX: number;
-  bandWidth: number;
-  /** Visual top of the bar in screen Y (smaller y = higher on screen). */
-  topY: number;
-  /** Visual bottom of the bar in screen Y. */
-  bottomY: number;
-  barHeight: number;
+  isRightOfCenter: boolean;
+  label: string;
   /** Un-trimmed natural pixel height of the bar (= `|baselineY - yScale(value)|`).
    * Segment heights are scaled against this so they line up with `<Bar>`. */
   naturalHeight: number;
+  perspectiveRise: number;
+  /** Visual top of the bar in screen Y (smaller y = higher on screen). */
+  topY: number;
   /** Pixels subtracted from the bar's visual top (and added to `topY`) so the
    * lid's back edge lands at `yScale(value)` regardless of depth. */
   topYTrim: number;
-  /** Side-face thickness in px (0 = dead-center bar / dense chart). */
-  depth: number;
-  perspectiveRise: number;
-  isRightOfCenter: boolean;
 }
 
 /** One segment of a stacked bar, in stack order bottom→top. The values across
  * all segments should sum to the bar's value; bar-depth uses the proportions
  * to pick segment boundaries that line up with the front face's stacking. */
 export interface BarDepthSegment {
-  value: number;
   color: string;
+  value: number;
 }
 
 /** Resolve a per-datum color, falling back to the shared `color` default. */
@@ -207,7 +209,7 @@ function buildSidePieces(
   baseColor: string
 ): { path: string; color: string }[] {
   if (!(visibleSegments && visibleSegments.length > 0)) {
-    return [{ path: sideFacePath(e, e.topY, e.bottomY), color: baseColor }];
+    return [{ color: baseColor, path: sideFacePath(e, e.topY, e.bottomY) }];
   }
   const totalValue = visibleSegments.reduce((sum, s) => sum + s.value, 0);
   const pieces: { path: string; color: string }[] = [];
@@ -226,8 +228,8 @@ function buildSidePieces(
     const segTopY = cursorY - segHeight;
     cursorY = segTopY;
     pieces.push({
-      path: sideFacePath(e, segTopY, segBottomY),
       color: seg.color,
+      path: sideFacePath(e, segTopY, segBottomY),
     });
   }
   return pieces;
@@ -249,14 +251,14 @@ function buildSidePieces(
 // `<BarChart>`, not inside it.
 
 interface BarDepthContextValue {
-  segmentsAccessor?: (
-    datum: Record<string, unknown>
-  ) => BarDepthSegment[] | null | undefined;
   /** Opacity (0–1) of the baseline contact shadow. 0 removes it. */
   groundShadow?: number;
   /** Minimum bar height in px — floors short/zero bars so they stay visible.
    * Match the value passed to `<Bar minBarHeight>`. */
   minBarHeight?: number;
+  segmentsAccessor?: (
+    datum: Record<string, unknown>
+  ) => BarDepthSegment[] | null | undefined;
 }
 
 const BarDepthContext = createContext<BarDepthContextValue>({});
@@ -286,7 +288,7 @@ export function BarDepthProvider({
 }: BarDepthProviderProps) {
   // Memoize so consumers don't re-render when the config is stable.
   const value = useMemo<BarDepthContextValue>(
-    () => ({ segmentsAccessor, groundShadow, minBarHeight }),
+    () => ({ groundShadow, minBarHeight, segmentsAccessor }),
     [segmentsAccessor, groundShadow, minBarHeight]
   );
   return (
@@ -306,8 +308,8 @@ BarDepthProvider.displayName = "BarDepthProvider";
 // and read as matte.)
 
 interface GlassGradientStop {
-  offset: string;
   color: string;
+  offset: string;
   opacity: string;
 }
 
@@ -318,11 +320,11 @@ interface GlassGradientStop {
  */
 function buildPosBarStops(groundShadow: number): GlassGradientStop[] {
   return [
-    { offset: "0%", color: "white", opacity: String(GLASS_TIP_OPACITY) },
-    { offset: "3%", color: "white", opacity: "0.09" },
-    { offset: "8%", color: "white", opacity: "0.02" },
-    { offset: "55%", color: "white", opacity: "0" },
-    { offset: "100%", color: "black", opacity: String(groundShadow) },
+    { color: "white", offset: "0%", opacity: String(GLASS_TIP_OPACITY) },
+    { color: "white", offset: "3%", opacity: "0.09" },
+    { color: "white", offset: "8%", opacity: "0.02" },
+    { color: "white", offset: "55%", opacity: "0" },
+    { color: "black", offset: "100%", opacity: String(groundShadow) },
   ];
 }
 
@@ -333,11 +335,11 @@ function buildPosBarStops(groundShadow: number): GlassGradientStop[] {
  */
 function buildNegBarStops(groundShadow: number): GlassGradientStop[] {
   return [
-    { offset: "0%", color: "black", opacity: String(groundShadow) },
-    { offset: "45%", color: "white", opacity: "0" },
-    { offset: "92%", color: "white", opacity: "0.02" },
-    { offset: "97%", color: "white", opacity: "0.09" },
-    { offset: "100%", color: "white", opacity: String(GLASS_TIP_OPACITY) },
+    { color: "black", offset: "0%", opacity: String(groundShadow) },
+    { color: "white", offset: "45%", opacity: "0" },
+    { color: "white", offset: "92%", opacity: "0.02" },
+    { color: "white", offset: "97%", opacity: "0.09" },
+    { color: "white", offset: "100%", opacity: String(GLASS_TIP_OPACITY) },
   ];
 }
 
@@ -350,8 +352,8 @@ function useGlassStops() {
   const { groundShadow = DEFAULT_GROUND_SHADOW } = useContext(BarDepthContext);
   return useMemo(
     () => ({
-      posStops: buildPosBarStops(groundShadow),
       negStops: buildNegBarStops(groundShadow),
+      posStops: buildPosBarStops(groundShadow),
     }),
     [groundShadow]
   );
@@ -483,22 +485,22 @@ export function useBarDepthEntries(
 
       return [
         {
-          label,
+          bandWidth,
+          bandX,
+          barHeight,
+          baselineY: zeroY,
+          bottomY,
           dataIndex,
           datum: d,
+          depth,
           isActive,
           isNegative,
-          baselineY: zeroY,
-          bandX,
-          bandWidth,
-          topY,
-          bottomY,
-          barHeight,
-          naturalHeight,
-          topYTrim,
-          depth,
-          perspectiveRise,
           isRightOfCenter,
+          label,
+          naturalHeight,
+          perspectiveRise,
+          topY,
+          topYTrim,
         },
       ];
     });
@@ -528,12 +530,12 @@ function useBarDepthStagger() {
 // ─── Components ───────────────────────────────────────────────────────
 
 export interface BarDepthBackProps {
-  /** Key in data for the bar value. Match the sibling `<Bar dataKey>`. */
-  dataKey: string;
   /** Solid color for the side + top faces. Default: var(--chart-line-primary). */
   color?: string;
   /** Per-bar color override; takes precedence over `color` when provided. */
   colorAccessor?: ColorAccessor;
+  /** Key in data for the bar value. Match the sibling `<Bar dataKey>`. */
+  dataKey: string;
 }
 
 /**
@@ -669,20 +671,20 @@ export function BarDepthBack({
           animate: { y?: number; opacity?: number };
           transition: Transition;
         } = {
-          initial: false,
           animate: { y: 0 },
+          initial: false,
           transition: { y: growTransition },
         };
         if (!isLoaded && e.isNegative) {
           lidEntrance = {
-            initial: { y: 0, opacity: 0 },
-            animate: { y: 0, opacity: 1 },
-            transition: { y: growTransition, opacity: growTransition },
+            animate: { opacity: 1, y: 0 },
+            initial: { opacity: 0, y: 0 },
+            transition: { opacity: growTransition, y: growTransition },
           };
         } else if (!isLoaded) {
           lidEntrance = {
-            initial: { y: e.barHeight },
             animate: { y: 0 },
+            initial: { y: e.barHeight },
             transition: { y: growTransition },
           };
         }
@@ -710,10 +712,10 @@ export function BarDepthBack({
                     trails the face past the animation cutoff. */}
                 <motion.rect
                   animate={{
-                    y: e.topY - e.perspectiveRise,
                     height: e.barHeight + e.perspectiveRise,
+                    y: e.topY - e.perspectiveRise,
                   }}
-                  initial={isLoaded ? false : { y: e.baselineY, height: 0 }}
+                  initial={isLoaded ? false : { height: 0, y: e.baselineY }}
                   key={`${clipId}-${revealEpoch}-${isLoaded}`}
                   transition={growTransition}
                   width={e.bandWidth + 2 * e.depth + 2}
@@ -836,9 +838,9 @@ export function BarDepthFront({ dataKey }: BarDepthFrontProps) {
         return (
           <motion.rect
             animate={{
-              y: e.topY,
               height: e.barHeight,
               opacity: isFaded ? BAR_FADED_OPACITY : 1,
+              y: e.topY,
             }}
             fill={`url(#${e.isNegative ? glassIdNeg : glassId})`}
             // Anchor the grow at the baseline (not bottomY) so the glass grows
@@ -847,7 +849,7 @@ export function BarDepthFront({ dataKey }: BarDepthFrontProps) {
             // `opacity` must be seeded too: `animate` drives it, and an SVG
             // rect has no readable opacity to start from.
             initial={
-              isLoaded ? false : { y: e.baselineY, height: 0, opacity: 1 }
+              isLoaded ? false : { height: 0, opacity: 1, y: e.baselineY }
             }
             key={`${e.label}-${revealEpoch}-${isLoaded}`}
             transition={{ ...baseTransition, opacity: BAR_HOVER_TRANSITION }}
@@ -916,10 +918,10 @@ function buildBarSilhouettePath(e: BarDepthEntry): string {
 }
 
 export interface BarPulseProps {
-  /** Key in data for the bar value. Match the sibling `<Bar dataKey>`. */
-  dataKey: string;
   /** Index (in the data array) of the bar to pulse. */
   activeIndex?: number;
+  /** Key in data for the bar value. Match the sibling `<Bar dataKey>`. */
+  dataKey: string;
   /** Suppress the sweep while keeping the bar's 3D + glass treatment. */
   pulsePaused?: boolean;
 }

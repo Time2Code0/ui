@@ -1,8 +1,5 @@
 "use client";
 
-import { scaleLinear } from "@visx/scale";
-import { AreaClosed, type AreaClosedProps, LinePath } from "@visx/shape";
-import { motion, useReducedMotion } from "motion/react";
 import {
   useCallback,
   useEffect,
@@ -11,6 +8,11 @@ import {
   useRef,
   useState,
 } from "react";
+
+import { scaleLinear } from "@visx/scale";
+import { AreaClosed, type AreaClosedProps, LinePath } from "@visx/shape";
+import { motion, useReducedMotion } from "motion/react";
+
 import { chartCssVars, useChartStable } from "./chart-context";
 import {
   LINE_LOADING_PULSE_EASE,
@@ -182,19 +184,19 @@ export interface LineLoadingSweepProps {
   /** Curve factory from the host `<Line>` / `<Area>`, so the silhouette matches
    * the chart's interpolation (step, smooth, linear, …). */
   curve: CurveFactory;
-  /** Fill the silhouette as an area (for `<Area>`); otherwise stroke only. */
-  withArea?: boolean;
+  durationSeconds?: number;
   /** Loading phase: `"loop"` (steady), `"exit"` (loading → ready), or `"enter"`
    * (ready → loading). Exit/enter fade the silhouette and then signal the chart
    * to continue its reveal. Default: `"loop"`. */
   mode?: "loop" | "exit" | "enter";
   /** Fired when an exit/enter transition finishes, to advance the chart phase. */
   onTransitionComplete?: () => void;
+  pointCount?: number;
   stroke?: string;
   strokeOpacity?: number;
   strokeWidth?: number;
-  pointCount?: number;
-  durationSeconds?: number;
+  /** Fill the silhouette as an area (for `<Area>`); otherwise stroke only. */
+  withArea?: boolean;
 }
 
 /**
@@ -403,20 +405,20 @@ function SkeletonBars({
 }
 
 export interface BarLoadingSkeletonProps {
-  innerWidth: number;
-  innerHeight: number;
   /** Number of skeleton bars. Default: 12 */
   barCount?: number;
+  /** Bar width as a fraction of its band (0–1). Default: 0.7 */
+  barFraction?: number;
+  /** Bars rise from the bottom or diverge from the vertical center. Default: `"bottom"` */
+  baseline?: "bottom" | "center";
+  /** One shimmer sweep, in seconds. Default: 2 */
+  durationSeconds?: number;
   /** Bar fill color. Default: `var(--foreground)` */
   fill?: string;
   /** Bar fill opacity. Default: 0.45 */
   fillOpacity?: number;
-  /** Bars rise from the bottom or diverge from the vertical center. Default: `"bottom"` */
-  baseline?: "bottom" | "center";
-  /** Bar width as a fraction of its band (0–1). Default: 0.7 */
-  barFraction?: number;
-  /** One shimmer sweep, in seconds. Default: 2 */
-  durationSeconds?: number;
+  innerHeight: number;
+  innerWidth: number;
 }
 
 /**

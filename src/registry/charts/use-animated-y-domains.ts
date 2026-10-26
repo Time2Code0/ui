@@ -1,8 +1,11 @@
 "use client";
 
-import { animate, useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
 import type { ChartPhase } from "./chart-phase";
+
+import { useEffect, useRef, useState } from "react";
+
+import { animate, useReducedMotion } from "motion/react";
+
 import { LINE_LOADING_PULSE_EASE } from "./line-loading-timing";
 import {
   domainsEqual,
@@ -88,6 +91,10 @@ function tweenDomains({
   const control = animate(0, 1, {
     duration: durationMs / 1000,
     ease: [...LINE_LOADING_PULSE_EASE],
+    onComplete: () => {
+      snapDomains(destination, setAnimatedByAxis, animatedRef);
+      onSettled?.();
+    },
     onUpdate: (progress) => {
       const next: Record<string, YDomain> = {};
       for (const axisId of axisIds) {
@@ -101,22 +108,18 @@ function tweenDomains({
       animatedRef.current = next;
       setAnimatedByAxis(next);
     },
-    onComplete: () => {
-      snapDomains(destination, setAnimatedByAxis, animatedRef);
-      onSettled?.();
-    },
   });
 
   return control;
 }
 
 export interface UseAnimatedYDomainsOptions {
-  enabled: boolean;
-  durationMs: number;
   chartPhase: ChartPhase;
+  durationMs: number;
+  enabled: boolean;
+  onSettled?: () => void;
   skeletonByAxis: Record<string, YDomain>;
   targetByAxis: Record<string, YDomain>;
-  onSettled?: () => void;
   /** When true, tweens y-domains on target changes while the chart is in the ready phase (e.g. brush zoom). */
   tweenOnTargetChange?: boolean;
 }
@@ -192,13 +195,13 @@ export function useAnimatedYDomains({
     }
 
     const control = tweenDomains({
+      animatedRef,
       destination: destinationRef.current,
       durationMs,
       enabled,
-      reducedMotion,
-      animatedRef,
-      setAnimatedByAxis,
       onSettled: settle,
+      reducedMotion,
+      setAnimatedByAxis,
     });
 
     return () => control?.stop();
@@ -222,13 +225,13 @@ export function useAnimatedYDomains({
 
     if (tweenOnTargetChange && chartPhase === "ready") {
       const control = tweenDomains({
+        animatedRef,
         destination: targetRef.current,
         durationMs,
         enabled,
-        reducedMotion,
-        animatedRef,
-        setAnimatedByAxis,
         onSettled: () => onSettledRef.current?.(),
+        reducedMotion,
+        setAnimatedByAxis,
       });
 
       return () => control?.stop();

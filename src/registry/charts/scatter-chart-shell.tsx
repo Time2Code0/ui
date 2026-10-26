@@ -1,8 +1,7 @@
 "use client";
 
-import { bisector } from "d3-array";
-import { scaleLinear, scaleTime } from "d3-scale";
 import type { Transition } from "motion/react";
+
 import {
   Children,
   isValidElement,
@@ -13,6 +12,10 @@ import {
   useMemo,
   useState,
 } from "react";
+
+import { bisector } from "d3-array";
+import { scaleLinear, scaleTime } from "d3-scale";
+
 import { DEFAULT_ANIMATION_EASING } from "./animation";
 import {
   isClipExcludedComponent,
@@ -41,23 +44,23 @@ import { useScatterChartInteraction } from "./use-scatter-chart-interaction";
 import { buildYScalesForLines, getPrimaryYScale } from "./y-axis-scales";
 
 export interface ScatterChartInnerProps {
-  width: number;
-  height: number;
-  data: Record<string, unknown>[];
-  xDataKey: string;
-  margin: Margin;
   animationDuration: number;
   animationEasing?: string;
-  enterTransition?: Transition;
-  revealSignature?: string;
   children: ReactNode;
   containerRef: React.RefObject<HTMLDivElement | null>;
-  lines: LineConfig[];
+  data: Record<string, unknown>[];
+  enterTransition?: Transition;
   /** X-axis tick / date-pill label formatter. Default: "Jan 1" */
   formatXLabel?: (date: Date) => string;
+  height: number;
   /** Resolved jitter config (see `ScatterChart` `jitter`). */
   jitter?: ResolvedScatterJitterConfig | null;
+  lines: LineConfig[];
+  margin: Margin;
   onPhaseChange?: (phase: ChartPhase) => void;
+  revealSignature?: string;
+  width: number;
+  xDataKey: string;
 }
 
 export function ScatterChartInner({
@@ -138,9 +141,9 @@ export function ScatterChartInner({
     }
     const plotWidth = Math.max(0, innerWidth - 2 * xRangePadding);
     return {
+      seed: jitter.seed,
       x: (jitter.x / 2) * plotWidth * stepRatio,
       y: jitter.y,
-      seed: jitter.seed,
     };
   }, [jitter, innerWidth, xRangePadding, stepRatio]);
 
@@ -154,9 +157,9 @@ export function ScatterChartInner({
   const yScales = useMemo(
     () =>
       buildYScalesForLines({
-        lines,
         data,
         innerHeight,
+        lines,
         resolveDomain: (dataKeys) => {
           let maxValue = 0;
           for (const d of data) {
@@ -227,16 +230,16 @@ export function ScatterChartInner({
     interactionHandlers,
     interactionStyle,
   } = useScatterChartInteraction({
-    xScale,
-    yScale: yScale as ChartContextValue["yScale"],
-    yScales: yScales as ChartContextValue["yScales"],
+    bisectDate,
+    canInteract,
     data,
+    jitter: jitterOffsets,
     lines,
     margin,
     xAccessor,
-    bisectDate,
-    canInteract,
-    jitter: jitterOffsets,
+    xScale,
+    yScale: yScale as ChartContextValue["yScale"],
+    yScales: yScales as ChartContextValue["yScales"],
   });
 
   const referenceAreas = useMemo(
@@ -277,32 +280,32 @@ export function ScatterChartInner({
 
   const contextValue: ChartContextValue = {
     ...DEFAULT_CHART_LIFECYCLE,
+    animationDuration,
+    animationEasing,
+    clearSelection,
+    columnWidth,
+    containerRef,
     data,
+    dateLabels,
+    enterTransition,
+    height,
+    innerHeight,
+    innerWidth,
+    isLoaded,
+    lines,
+    margin,
+    nearestPointHover: jitterOffsets !== null,
+    referenceAreas,
     renderData: data,
+    revealEpoch,
+    selection,
+    setTooltipData,
+    tooltipData,
+    width,
+    xAccessor,
     xScale: xScale as ChartContextValue["xScale"],
     yScale: yScale as ChartContextValue["yScale"],
     yScales: yScales as ChartContextValue["yScales"],
-    width,
-    height,
-    innerWidth,
-    innerHeight,
-    margin,
-    columnWidth,
-    tooltipData,
-    setTooltipData,
-    containerRef,
-    lines,
-    referenceAreas,
-    isLoaded,
-    animationDuration,
-    animationEasing,
-    enterTransition,
-    revealEpoch,
-    xAccessor,
-    dateLabels,
-    selection,
-    clearSelection,
-    nearestPointHover: jitterOffsets !== null,
   };
 
   return (

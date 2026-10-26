@@ -15,26 +15,26 @@ export type SparklineDataKey<T> =
   | ((datum: T, index: number) => number);
 
 export interface SparklinePadding {
-  top: number;
-  right: number;
   bottom: number;
   left: number;
+  right: number;
+  top: number;
 }
 
 export interface SparklinePoint {
-  x: number;
-  y: number;
   /** NaN when the source value is missing. */
   value: number;
+  x: number;
+  y: number;
 }
 
 export interface SparklineLayout {
-  points: SparklinePoint[];
-  /** Pixel y of the baseline (0, clamped into the domain). */
-  baselineY: number;
   /** Pixel width of one bar slot (bars only; 0 for line/area). */
   band: number;
+  /** Pixel y of the baseline (0, clamped into the domain). */
+  baselineY: number;
   domain: [number, number];
+  points: SparklinePoint[];
 }
 
 const curves: Record<SparklineCurve, CurveFactory> = {
@@ -50,13 +50,13 @@ export function resolveSparklinePadding(
 ): SparklinePadding {
   if (typeof padding === "number" || padding === undefined) {
     const p = padding ?? fallback;
-    return { top: p, right: p, bottom: p, left: p };
+    return { bottom: p, left: p, right: p, top: p };
   }
   return {
-    top: padding.top ?? fallback,
-    right: padding.right ?? fallback,
     bottom: padding.bottom ?? fallback,
     left: padding.left ?? fallback,
+    right: padding.right ?? fallback,
+    top: padding.top ?? fallback,
   };
 }
 
@@ -133,16 +133,16 @@ export function computeSparklineLayout(
   const step = n > 1 ? innerWidth / (n - 1) : 0;
 
   const points = values.map((value, i) => ({
+    value,
     x:
       kind === "band"
         ? padding.left + band * (i + 0.5)
         : padding.left + (n > 1 ? step * i : innerWidth / 2),
     y: Number.isFinite(value) ? yOf(value) : Number.NaN,
-    value,
   }));
 
   const baseline = Math.min(Math.max(0, d0), d1);
-  return { points, baselineY: yOf(baseline), band, domain };
+  return { band, baselineY: yOf(baseline), domain, points };
 }
 
 const isDefined = (point: SparklinePoint) => Number.isFinite(point.y);
@@ -261,8 +261,8 @@ export function sparklineIndexAtX(
 
 function formatCompact(value: number): string {
   return new Intl.NumberFormat("en", {
-    notation: "compact",
     maximumFractionDigits: 1,
+    notation: "compact",
   }).format(value);
 }
 

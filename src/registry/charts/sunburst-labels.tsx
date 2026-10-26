@@ -1,7 +1,9 @@
 "use client";
 
-import { motion, useTransform } from "motion/react";
 import { memo } from "react";
+
+import { motion, useTransform } from "motion/react";
+
 import { DEFAULT_CHART_ENTER_TRANSITION } from "./animation";
 import {
   applyHoverGrow,
@@ -14,11 +16,11 @@ import { useEnterComplete } from "./use-enter-complete";
 import { useMountProgress } from "./use-mount-progress";
 
 export interface SunburstLabelsProps {
-  fontSize?: number;
+  className?: string;
   fill?: string;
+  fontSize?: number;
   stroke?: string;
   strokeWidth?: number;
-  className?: string;
 }
 
 export const SunburstLabels = memo(function SunburstLabels({

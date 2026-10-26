@@ -1,12 +1,14 @@
 "use client";
 
+import { useEffect } from "react";
+
 import {
   animate,
   useMotionValue,
   useReducedMotion,
   useTransform,
 } from "motion/react";
-import { useEffect } from "react";
+
 import {
   LINE_LOADING_LOOP_PAUSE_MS,
   LINE_LOADING_PULSE_CYCLE_S,
@@ -14,15 +16,15 @@ import {
 } from "./line-loading-timing";
 
 export interface UseGridShimmerOptions {
+  /** When false, shimmer animation is paused (e.g. during exit transition). */
+  active: boolean;
   innerWidth: number;
+  /** Run a single synced sweep (loading → ready handoff). */
+  oneShot?: boolean;
   shimmer: boolean;
   shimmerLength: number;
   shimmerSpeed: number;
   shimmerSync: boolean;
-  /** When false, shimmer animation is paused (e.g. during exit transition). */
-  active: boolean;
-  /** Run a single synced sweep (loading → ready handoff). */
-  oneShot?: boolean;
 }
 
 export function useGridShimmer({
@@ -94,8 +96,8 @@ export function useGridShimmer({
     progress.set(0);
     controls = animate(progress, 1, {
       duration: shimmerCycleS,
-      repeat: Number.POSITIVE_INFINITY,
       ease: [...LINE_LOADING_PULSE_EASE],
+      repeat: Number.POSITIVE_INFINITY,
     });
 
     return () => controls?.stop();

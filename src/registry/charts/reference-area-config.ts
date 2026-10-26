@@ -4,20 +4,21 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
+
 import { normalizeYAxisId } from "./y-axis-scales";
 
 export interface ReferenceAreaConfig {
-  yAxisId: string;
+  axisLabelColor?: string;
   y1?: number;
   y2?: number;
-  axisLabelColor?: string;
+  yAxisId: string;
 }
 
 interface ReferenceAreaConfigProps {
-  yAxisId?: string | number;
+  axisLabelColor?: string;
   y1?: number;
   y2?: number;
-  axisLabelColor?: string;
+  yAxisId?: string | number;
 }
 
 function getChildComponentName(child: ReactElement) {
@@ -47,10 +48,10 @@ export function extractReferenceAreaConfigs(
         const props = child.props as ReferenceAreaConfigProps | undefined;
         if (props) {
           configs.push({
-            yAxisId: normalizeYAxisId(props.yAxisId),
+            axisLabelColor: props.axisLabelColor,
             y1: props.y1,
             y2: props.y2,
-            axisLabelColor: props.axisLabelColor,
+            yAxisId: normalizeYAxisId(props.yAxisId),
           });
         }
         return;

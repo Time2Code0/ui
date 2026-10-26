@@ -11,21 +11,21 @@ export interface ProjectionPoint {
 }
 
 export interface BuildProjectionPathOptions {
-  sourceData: Record<string, unknown>[];
-  seriesKey: string;
-  xDataKey?: string;
-  mode: ProjectionMode;
   autoMethod?: ProjectionAutoMethod;
-  /** Auto mode: stepped points per interval, or anchor + end only. Default: stepped */
-  pathDensity?: ProjectionPathDensity;
-  /** Index in sourceData where projection anchors (default: last point). */
-  startIndex?: number;
-  /** How many future points to generate (matches source cadence). */
-  horizonPoints?: number;
   /** Target Y at the final projected date (target mode). */
   endValue?: number;
+  /** How many future points to generate (matches source cadence). */
+  horizonPoints?: number;
+  mode: ProjectionMode;
+  /** Auto mode: stepped points per interval, or anchor + end only. Default: stepped */
+  pathDensity?: ProjectionPathDensity;
   /** Full manual path — anchor + future points (manual mode). */
   points?: ProjectionPoint[];
+  seriesKey: string;
+  sourceData: Record<string, unknown>[];
+  /** Index in sourceData where projection anchors (default: last point). */
+  startIndex?: number;
+  xDataKey?: string;
 }
 
 function readDate(row: Record<string, unknown>, xDataKey: string): Date | null {
@@ -356,7 +356,7 @@ export function projectionValueExtents(
     return null;
   }
 
-  return { minValue, maxValue };
+  return { maxValue, minValue };
 }
 
 /** Collect date extents from projection point arrays. */
@@ -382,5 +382,5 @@ export function projectionDateExtents(
     return null;
   }
 
-  return { minTime, maxTime };
+  return { maxTime, minTime };
 }

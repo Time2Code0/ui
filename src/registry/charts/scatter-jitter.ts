@@ -25,20 +25,20 @@ export type ScatterJitter =
     };
 
 export interface ResolvedScatterJitterConfig {
+  seed: number;
   /** Fraction of the band step (total spread). */
   x: number;
   /** Max vertical offset in px (±). */
   y: number;
-  seed: number;
 }
 
 /** Jitter amplitudes in px, ready to apply to point positions. */
 export interface ScatterJitterOffsets {
+  seed: number;
   /** Max horizontal offset (±px). */
   x: number;
   /** Max vertical offset (±px). */
   y: number;
-  seed: number;
 }
 
 export const DEFAULT_SCATTER_JITTER_X = 0.35;
@@ -50,17 +50,17 @@ export function resolveScatterJitterConfig(
     return null;
   }
   if (jitter === true) {
-    return { x: DEFAULT_SCATTER_JITTER_X, y: 0, seed: 0 };
+    return { seed: 0, x: DEFAULT_SCATTER_JITTER_X, y: 0 };
   }
   if (typeof jitter === "number") {
-    return jitter > 0 ? { x: jitter, y: 0, seed: 0 } : null;
+    return jitter > 0 ? { seed: 0, x: jitter, y: 0 } : null;
   }
   const x = Math.max(0, jitter.x ?? DEFAULT_SCATTER_JITTER_X);
   const y = Math.max(0, jitter.y ?? 0);
   if (x === 0 && y === 0) {
     return null;
   }
-  return { x, y, seed: jitter.seed ?? 0 };
+  return { seed: jitter.seed ?? 0, x, y };
 }
 
 /**

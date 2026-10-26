@@ -1,7 +1,9 @@
 "use client";
 
-import { useId, useLayoutEffect, useMemo, useRef } from "react";
 import type { AreaProps } from "./area";
+
+import { useId, useLayoutEffect, useMemo, useRef } from "react";
+
 import {
   evenlySpacedLabelIndices,
   layoutAreaValueLabels,
@@ -40,12 +42,12 @@ export function AreaValueLabels({ series }: { series: AreaProps[] }) {
     const visibleSeries = series
       .map((area, seriesIndex) => ({
         area,
-        seriesIndex,
         points: visible.filter(
           ({ datum }) =>
             typeof datum[area.dataKey] === "number" &&
             Number.isFinite(datum[area.dataKey])
         ),
+        seriesIndex,
       }))
       .filter(({ area }) => area.showValue);
     const counts = visibleSeries.map(({ area, points }) =>
@@ -81,9 +83,9 @@ export function AreaValueLabels({ series }: { series: AreaProps[] }) {
           {
             index,
             seriesIndex,
+            text: area.valueLabelFormatter?.(value) ?? valueLabelFmt(value),
             x,
             y,
-            text: area.valueLabelFormatter?.(value) ?? valueLabelFmt(value),
           },
         ];
       });
@@ -114,8 +116,8 @@ export function AreaValueLabels({ series }: { series: AreaProps[] }) {
         const bounds = elements[index]?.getBBox();
         return {
           ...label,
-          width: bounds?.width ?? 0,
           height: bounds?.height ?? 0,
+          width: bounds?.width ?? 0,
         };
       });
       for (const element of elements) {
@@ -213,10 +215,10 @@ export function AreaValueLabels({ series }: { series: AreaProps[] }) {
                 chartCssVars.linePrimary
               }
               style={{
-                visibility: "hidden",
                 paintOrder: "stroke",
                 stroke: "var(--background)",
                 strokeWidth: 3,
+                visibility: "hidden",
               }}
               x={0}
               y={0}

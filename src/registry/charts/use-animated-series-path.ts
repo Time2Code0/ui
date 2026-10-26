@@ -1,9 +1,12 @@
 "use client";
 
 import type { CurveFactory } from "d3-shape";
+
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+
 import { curveLinear } from "d3-shape";
 import { animate, useReducedMotion } from "motion/react";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+
 import { LINE_LOADING_PULSE_EASE } from "./line-loading-timing";
 import {
   computeSeriesPathPoints,
@@ -17,16 +20,16 @@ import {
 } from "./series-path-utils";
 
 export interface UseAnimatedSeriesPathOptions {
+  chartPhase: string;
+  curve: CurveFactory;
+  dataKey: string;
+  durationMs: number;
+  enabled: boolean;
+  innerWidth: number;
   renderData: Record<string, unknown>[];
   xAccessor: (datum: Record<string, unknown>) => Date;
   xScale: (value: Date) => number | undefined;
   yScale: (value: number) => number | undefined;
-  dataKey: string;
-  curve: CurveFactory;
-  chartPhase: string;
-  durationMs: number;
-  innerWidth: number;
-  enabled: boolean;
 }
 
 /**
@@ -65,12 +68,12 @@ export function useAnimatedSeriesPath({
   const transitionSignature = useMemo(
     () =>
       seriesPathTransitionSignature({
-        renderData,
-        xAccessor,
         dataKey,
         innerWidth,
-        xDomainMin: xScaleDomain[0]?.getTime?.() ?? 0,
+        renderData,
+        xAccessor,
         xDomainMax: xScaleDomain[1]?.getTime?.() ?? 0,
+        xDomainMin: xScaleDomain[0]?.getTime?.() ?? 0,
       }),
     [renderData, xAccessor, dataKey, innerWidth, xScaleDomain]
   );
@@ -93,24 +96,24 @@ export function useAnimatedSeriesPath({
   // `yScale` every frame, so these must not be effect deps — otherwise the
   // effect cleanup stops the path tween after its first frame.
   const latestRef = useRef({
+    curve,
+    dataKey,
     renderData,
     xAccessor,
     xScale,
     yScale,
-    dataKey,
-    curve,
   });
   // Synced in a layout effect declared before the tween effect (not during
   // render) so `renderFrame(0)` and every animation frame see this commit's
   // inputs.
   useLayoutEffect(() => {
     latestRef.current = {
+      curve,
+      dataKey,
       renderData,
       xAccessor,
       xScale,
       yScale,
-      dataKey,
-      curve,
     };
   });
   const computeLatestTarget = () => {
@@ -201,7 +204,6 @@ export function useAnimatedSeriesPath({
     const control = animate(0, 1, {
       duration: durationMs / 1000,
       ease: [...LINE_LOADING_PULSE_EASE],
-      onUpdate: renderFrame,
       onComplete: () => {
         animatingRef.current = false;
         displayedRef.current = {
@@ -210,6 +212,7 @@ export function useAnimatedSeriesPath({
         };
         setAnimatedPath(null);
       },
+      onUpdate: renderFrame,
     });
 
     return () => {
@@ -247,7 +250,7 @@ export function useAnimatedSeriesPath({
   );
 
   return {
-    pathD,
     isPathAnimating: animatedPath != null,
+    pathD,
   };
 }

@@ -3,6 +3,7 @@
 import type { ProvidedZoom, TransformMatrix } from "@visx/zoom";
 import type { Feature, FeatureCollection, GeoJSON, Geometry } from "geojson";
 import type { Transition } from "motion/react";
+
 import {
   createContext,
   type Dispatch,
@@ -16,8 +17,8 @@ import {
 // ZoomState from visx/zoom that includes isDragging
 interface ZoomState {
   initialTransformMatrix: TransformMatrix;
-  transformMatrix: TransformMatrix;
   isDragging: boolean;
+  transformMatrix: TransformMatrix;
 }
 
 // Combined type from visx Zoom children prop
@@ -37,65 +38,65 @@ export function useChoroplethZoom() {
 }
 
 export interface Margin {
-  top: number;
-  right: number;
   bottom: number;
   left: number;
+  right: number;
+  top: number;
 }
 
 export interface ChoroplethFeatureProperties {
-  name?: string;
   id?: string | number;
+  name?: string;
   [key: string]: unknown;
 }
 
 export type ChoroplethFeature = Feature<Geometry, ChoroplethFeatureProperties>;
 
 export interface ChoroplethTooltipData {
+  feature: ChoroplethFeature;
   featureIndex: number;
   x: number;
   y: number;
-  feature: ChoroplethFeature;
 }
 
 export interface ChoroplethInteractionContextValue {
   hoveredFeatureIndex: number | null;
   setHoveredFeatureIndex: (index: number | null) => void;
-  tooltipData: ChoroplethTooltipData | null;
   setTooltipData: Dispatch<SetStateAction<ChoroplethTooltipData | null>>;
+  tooltipData: ChoroplethTooltipData | null;
 }
 
 export interface ChoroplethStableContextValue {
-  // Geo data
-  features: ChoroplethFeature[];
+  animationDuration: number;
+
+  containerRef: RefObject<HTMLDivElement | null>;
+  enterTransition?: Transition;
   featureCollection: FeatureCollection<Geometry, ChoroplethFeatureProperties>;
 
   /** Precomputed SVG path strings — one per feature index. */
   featurePaths: readonly (string | null)[];
+  // Geo data
+  features: ChoroplethFeature[];
+  height: number;
+  innerHeight: number;
+  innerWidth: number;
+
+  // Animation
+  isLoaded: boolean;
+  margin: Margin;
 
   // Projection function (returns path string)
   pathGenerator: (feature: ChoroplethFeature) => string | undefined;
 
-  // Raw path function for graticule (accepts any geo object)
-  rawPathGenerator: (geo: GeoJSON) => string | null;
-
   // Project geo coordinates to screen coordinates
   projectPoint: (coords: [number, number]) => [number, number] | null;
 
+  // Raw path function for graticule (accepts any geo object)
+  rawPathGenerator: (geo: GeoJSON) => string | null;
+  revealEpoch: number;
+
   // Dimensions
   width: number;
-  height: number;
-  innerWidth: number;
-  innerHeight: number;
-  margin: Margin;
-
-  containerRef: RefObject<HTMLDivElement | null>;
-
-  // Animation
-  isLoaded: boolean;
-  animationDuration: number;
-  enterTransition?: Transition;
-  revealEpoch: number;
 }
 
 export type ChoroplethContextValue = ChoroplethStableContextValue &
@@ -136,8 +137,8 @@ export function ChoroplethInteractionShell({
     () => ({
       hoveredFeatureIndex,
       setHoveredFeatureIndex,
-      tooltipData,
       setTooltipData,
+      tooltipData,
     }),
     [hoveredFeatureIndex, tooltipData]
   );
@@ -158,22 +159,22 @@ export function ChoroplethProvider({
 }) {
   const stable = useMemo<ChoroplethStableContextValue>(
     () => ({
-      features: value.features,
+      animationDuration: value.animationDuration,
+      containerRef: value.containerRef,
+      enterTransition: value.enterTransition,
       featureCollection: value.featureCollection,
       featurePaths: value.featurePaths,
-      pathGenerator: value.pathGenerator,
-      rawPathGenerator: value.rawPathGenerator,
-      projectPoint: value.projectPoint,
-      width: value.width,
+      features: value.features,
       height: value.height,
-      innerWidth: value.innerWidth,
       innerHeight: value.innerHeight,
-      margin: value.margin,
-      containerRef: value.containerRef,
+      innerWidth: value.innerWidth,
       isLoaded: value.isLoaded,
-      animationDuration: value.animationDuration,
-      enterTransition: value.enterTransition,
+      margin: value.margin,
+      pathGenerator: value.pathGenerator,
+      projectPoint: value.projectPoint,
+      rawPathGenerator: value.rawPathGenerator,
       revealEpoch: value.revealEpoch,
+      width: value.width,
     }),
     [
       value.features,
@@ -199,8 +200,8 @@ export function ChoroplethProvider({
     () => ({
       hoveredFeatureIndex: value.hoveredFeatureIndex,
       setHoveredFeatureIndex: value.setHoveredFeatureIndex,
-      tooltipData: value.tooltipData,
       setTooltipData: value.setTooltipData,
+      tooltipData: value.tooltipData,
     }),
     [
       value.hoveredFeatureIndex,
@@ -247,14 +248,14 @@ import { CHART_SCALE_VARS, chartScaleCssVars } from "../chart-scale";
 
 // CSS variables for choropleth theming
 export const choroplethCssVars = {
+  background: "var(--background)",
+  patternColor: chartScaleCssVars.patternColor,
   scale01: chartScaleCssVars.scale01,
   scale02: chartScaleCssVars.scale02,
   scale03: chartScaleCssVars.scale03,
   scale04: chartScaleCssVars.scale04,
   scale05: chartScaleCssVars.scale05,
-  patternColor: chartScaleCssVars.patternColor,
   stroke: "var(--chart-grid)",
-  background: "var(--background)",
 };
 
 // Default colors array for cycling through features

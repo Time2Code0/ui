@@ -39,9 +39,9 @@ export const DEFAULT_CHART_LIFECYCLE = {
   chartPhase: "ready",
   chartStatus: "ready",
   loadingLabel: undefined,
-  yDomainTweenDuration: DEFAULT_Y_DOMAIN_TWEEN_MS,
   yDomainSkeletonByAxis: { left: [0, 100] as [number, number] },
   yDomainTargetByAxis: { left: [0, 100] as [number, number] },
+  yDomainTweenDuration: DEFAULT_Y_DOMAIN_TWEEN_MS,
 } as const satisfies {
   chartPhase: ChartPhase;
   chartStatus: ChartStatus;

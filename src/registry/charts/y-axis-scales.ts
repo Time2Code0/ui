@@ -1,5 +1,6 @@
-import { scaleLinear } from "@visx/scale";
 import type { LineConfig } from "./chart-context";
+
+import { scaleLinear } from "@visx/scale";
 
 /** Default axis id when `yAxisId` is omitted (Recharts-style `0` / primary left axis). */
 export const DEFAULT_Y_AXIS_ID = "left";
@@ -58,17 +59,17 @@ export function buildYScalesForLines({
     const dataKeys = axisLines.map((line) => line.dataKey);
     const domain = resolveDomain(dataKeys);
     scales[axisId] = scaleLinear({
-      range: [innerHeight, 0],
       domain,
       nice: true,
+      range: [innerHeight, 0],
     });
   }
 
   if (!scales[DEFAULT_Y_AXIS_ID]) {
     scales[DEFAULT_Y_AXIS_ID] = scaleLinear({
-      range: [innerHeight, 0],
       domain: [0, 100],
       nice: true,
+      range: [innerHeight, 0],
     });
   }
 
@@ -94,15 +95,15 @@ export function buildYScalesFromDomains({
       domainsByAxis[DEFAULT_Y_AXIS_ID] ??
       ([0, 100] as [number, number]);
     scales[axisId] = scaleLinear({
-      range: [innerHeight, 0],
       domain,
+      range: [innerHeight, 0],
     });
   }
 
   if (!scales[DEFAULT_Y_AXIS_ID]) {
     scales[DEFAULT_Y_AXIS_ID] = scaleLinear({
-      range: [innerHeight, 0],
       domain: domainsByAxis[DEFAULT_Y_AXIS_ID] ?? [0, 100],
+      range: [innerHeight, 0],
     });
   }
 

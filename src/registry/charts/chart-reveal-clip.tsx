@@ -1,18 +1,23 @@
 "use client";
 
 import type { Transition } from "motion/react";
+
 import { motion } from "motion/react";
+
 import { clipRevealTransition } from "./animation";
 
 export type ChartRevealClipMode = "reveal" | "conceal";
 
 export interface ChartRevealClipProps {
+  /** When false, clip stays at full width (no grow animation). */
+  animating?: boolean;
   clipPathId: string;
-  height: number;
-  targetWidth: number;
   enterTransition?: Transition;
-  /** Bumps when motion settings change to replay the reveal. */
-  revealEpoch: number;
+  height: number;
+  /** Reveal grows 0 → full; conceal shrinks full → 0 (ready → loading). */
+  mode?: ChartRevealClipMode;
+  /** Called when a conceal animation finishes. */
+  onComplete?: () => void;
   /** Extra inset around the clip rect so edge glyphs are not cut off. */
   padding?: number;
   /**
@@ -21,12 +26,9 @@ export interface ChartRevealClipProps {
    * point markers and strokes at the top/bottom of the plot render in full.
    */
   paddingY?: number;
-  /** When false, clip stays at full width (no grow animation). */
-  animating?: boolean;
-  /** Reveal grows 0 → full; conceal shrinks full → 0 (ready → loading). */
-  mode?: ChartRevealClipMode;
-  /** Called when a conceal animation finishes. */
-  onComplete?: () => void;
+  /** Bumps when motion settings change to replay the reveal. */
+  revealEpoch: number;
+  targetWidth: number;
 }
 
 /**

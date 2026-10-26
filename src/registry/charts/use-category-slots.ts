@@ -1,18 +1,19 @@
 "use client";
 
 import { useMemo } from "react";
+
 import { useChartStable } from "./chart-context";
 import { detectDateKey, toValidDate } from "./date-ranges";
 
 export interface CategorySlots {
+  /** `"x"` for vertical bars (columns), `"y"` for horizontal bars. */
+  axis: "x" | "y";
   /** Per-row date (null when the row has no parseable date). */
   dates: (Date | null)[];
   /** Leading pixel edge of each row's slot, including half the inner padding. */
   slotStart: (index: number) => number;
   /** Full slot size (`bandwidth + inner padding`). */
   step: number;
-  /** `"x"` for vertical bars (columns), `"y"` for horizontal bars. */
-  axis: "x" | "y";
 }
 
 /**
@@ -32,14 +33,14 @@ export function useCategorySlots(dateKey?: string): CategorySlots | null {
     const step = barScale.step();
     const gap = step - barScale.bandwidth();
     return {
-      dates,
-      step,
       axis: orientation === "horizontal" ? "y" : "x",
+      dates,
       slotStart: (index: number) => {
         const row = data[index];
         const start = row ? barScale(barXAccessor(row)) : undefined;
         return (start ?? 0) - gap / 2;
       },
+      step,
     };
   }, [barScale, barXAccessor, data, orientation, dateKey]);
 }

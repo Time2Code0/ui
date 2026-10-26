@@ -1,48 +1,51 @@
 "use client";
 
 import type { Variants } from "motion/react";
-import { motion } from "motion/react";
+
 import { memo } from "react";
+
+import { motion } from "motion/react";
+
 import { DEFAULT_CHART_ENTER_TRANSITION } from "./animation";
 
 export interface SeriesPointMarkerStyle {
-  /** Fill color for the inner circle */
-  fill?: string;
-  /** Outer ring stroke color. Default: same as `fill` */
-  stroke?: string;
-  /** Outer ring stroke width in px. Default: 2. Set to 0 to disable. */
-  strokeWidth?: number;
-  /** Gap between the inner fill and outer ring in px. Default: 2 */
-  ringGap?: number;
-  /** Optional outer outline beyond the ring. Default: 0 */
-  outlineWidth?: number;
-  /** Outer outline color. Default: same as `stroke` */
-  outlineColor?: string;
-  /** Point radius in px. Default: 5 */
-  radius?: number;
+  /** Initial blur in px during enter animation. Default: 2 */
+  enterBlur?: number;
   /** Dim non-active points while hovering. Default: true */
   fadeOnHover?: boolean;
-  /** Opacity for non-hovered points when `fadeOnHover` is true. Default: 0.5 */
-  inactiveOpacity?: number;
+  /** Fill color for the inner circle */
+  fill?: string;
   /**
    * Blur in px for non-hovered points when `fadeOnHover` is true.
    * Applied once on the dimmed layer (not per dot) for performance. Default: 2
    */
   inactiveBlur?: number;
-  /** Initial blur in px during enter animation. Default: 2 */
-  enterBlur?: number;
+  /** Opacity for non-hovered points when `fadeOnHover` is true. Default: 0.5 */
+  inactiveOpacity?: number;
+  /** Outer outline color. Default: same as `stroke` */
+  outlineColor?: string;
+  /** Optional outer outline beyond the ring. Default: 0 */
+  outlineWidth?: number;
+  /** Point radius in px. Default: 5 */
+  radius?: number;
+  /** Gap between the inner fill and outer ring in px. Default: 2 */
+  ringGap?: number;
   /** Enlarge the active point while hovering. Default: true */
   showActiveHighlight?: boolean;
+  /** Outer ring stroke color. Default: same as `fill` */
+  stroke?: string;
+  /** Outer ring stroke width in px. Default: 2. Set to 0 to disable. */
+  strokeWidth?: number;
 }
 
 interface MarkerCirclesProps {
   fill?: string;
+  outlineColor?: string;
+  outlineWidth: number;
+  radius: number;
+  ringGap: number;
   stroke?: string;
   strokeWidth: number;
-  ringGap: number;
-  outlineWidth: number;
-  outlineColor?: string;
-  radius: number;
 }
 
 function MarkerCircles({
@@ -120,13 +123,13 @@ export const StaticSeriesPointMarker = memo(function StaticSeriesPointMarker({
 });
 
 export interface SeriesPointMarkerProps extends SeriesPointMarkerStyle {
-  dataKey: string;
-  index: number;
   cx: number;
   cy: number;
+  dataKey: string;
+  enterDuration: number;
+  index: number;
   revealDelay: number;
   revealEpoch: number;
-  enterDuration: number;
 }
 
 /** Motion enter marker — used only while the chart reveal is running. */
@@ -149,13 +152,13 @@ export function SeriesPointMarker({
 }: SeriesPointMarkerProps) {
   const variants: Variants = {
     hidden: {
-      opacity: 0,
       filter: `blur(${enterBlur}px)`,
+      opacity: 0,
       scale: 1,
     },
     visible: {
-      opacity: 1,
       filter: "blur(0px)",
+      opacity: 1,
       scale: 1,
       transition: {
         delay: revealDelay,

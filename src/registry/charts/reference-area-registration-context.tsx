@@ -1,7 +1,8 @@
 "use client";
 
-import { createContext, useContext } from "react";
 import type { ReferenceAreaConfig } from "./reference-area-config";
+
+import { createContext, useContext } from "react";
 
 export interface ReferenceAreaRegistrationContextValue {
   registerReferenceArea: (id: string, config: ReferenceAreaConfig) => void;

@@ -1,25 +1,25 @@
 export type FadeEdges = boolean | "left" | "right";
 
 export interface FadeSides {
+  /** True if either side fades — use to gate gradient/mask defs. */
+  any: boolean;
   /** Whether the left edge should fade out. */
   left: boolean;
   /** Whether the right edge should fade out. */
   right: boolean;
-  /** True if either side fades — use to gate gradient/mask defs. */
-  any: boolean;
 }
 
 export function resolveFadeSides(fade: FadeEdges): FadeSides {
   if (fade === false) {
-    return { left: false, right: false, any: false };
+    return { any: false, left: false, right: false };
   }
   if (fade === "left") {
-    return { left: true, right: false, any: true };
+    return { any: true, left: true, right: false };
   }
   if (fade === "right") {
-    return { left: false, right: true, any: true };
+    return { any: true, left: false, right: true };
   }
-  return { left: true, right: true, any: true };
+  return { any: true, left: true, right: true };
 }
 
 export interface FadeGradientStop {

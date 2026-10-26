@@ -1,24 +1,24 @@
 export type IndicatorFadeEdges = "both" | "none" | "top" | "bottom";
 
 export interface VerticalFadeSides {
-  top: boolean;
-  bottom: boolean;
   any: boolean;
+  bottom: boolean;
+  top: boolean;
 }
 
 export function resolveVerticalFadeSides(
   fade: IndicatorFadeEdges | boolean
 ): VerticalFadeSides {
   if (fade === false || fade === "none") {
-    return { top: false, bottom: false, any: false };
+    return { any: false, bottom: false, top: false };
   }
   if (fade === true || fade === "both") {
-    return { top: true, bottom: true, any: true };
+    return { any: true, bottom: true, top: true };
   }
   if (fade === "top") {
-    return { top: true, bottom: false, any: true };
+    return { any: true, bottom: false, top: true };
   }
-  return { top: false, bottom: true, any: true };
+  return { any: true, bottom: true, top: false };
 }
 
 export interface IndicatorFadeGradientStop {

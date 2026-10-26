@@ -4,15 +4,15 @@ export interface TrendPoint {
 }
 
 export interface LinearRegression {
-  slope: number;
   intercept: number;
+  slope: number;
 }
 
 /** Fitted segment endpoints in data space (regression x units → value). */
 export interface TrendSegment {
   x1: number;
-  y1: number;
   x2: number;
+  y1: number;
   y2: number;
 }
 
@@ -54,7 +54,7 @@ export function computeLinearRegression(
     return null;
   }
   const slope = covXY / varX;
-  return { slope, intercept: meanY - slope * meanX };
+  return { intercept: meanY - slope * meanX, slope };
 }
 
 /** Regression line evaluated at the min / max finite x of `points`. */
@@ -73,8 +73,8 @@ export function computeTrendSegment(points: TrendPoint[]): TrendSegment | null {
   }
   return {
     x1: minX,
-    y1: fit.slope * minX + fit.intercept,
     x2: maxX,
+    y1: fit.slope * minX + fit.intercept,
     y2: fit.slope * maxX + fit.intercept,
   };
 }
@@ -87,8 +87,8 @@ export function interpolateTrendSegment(
 ): TrendSegment {
   return {
     x1: from.x1 + (to.x1 - from.x1) * t,
-    y1: from.y1 + (to.y1 - from.y1) * t,
     x2: from.x2 + (to.x2 - from.x2) * t,
+    y1: from.y1 + (to.y1 - from.y1) * t,
     y2: from.y2 + (to.y2 - from.y2) * t,
   };
 }

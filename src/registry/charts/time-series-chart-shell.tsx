@@ -1,8 +1,7 @@
 "use client";
 
-import { scaleLinear, scaleTime } from "@visx/scale";
-import { bisector, extent } from "d3-array";
 import type { Transition } from "motion/react";
+
 import {
   Children,
   cloneElement,
@@ -16,6 +15,10 @@ import {
   useMemo,
   useState,
 } from "react";
+
+import { scaleLinear, scaleTime } from "@visx/scale";
+import { bisector, extent } from "d3-array";
+
 import {
   DEFAULT_ANIMATION_EASING,
   DEFAULT_CHART_ENTER_TRANSITION,
@@ -98,20 +101,11 @@ function ensureChildKey(child: ReactElement, index: number): ReactElement {
 }
 
 export interface TimeSeriesChartInnerProps {
-  width: number;
-  height: number;
-  data: Record<string, unknown>[];
-  xDataKey: string;
-  margin: Margin;
   animationDuration: number;
   animationEasing?: string;
-  enterTransition?: Transition;
-  /** Signature of motion URL state — triggers reveal replay when it changes. */
-  revealSignature?: string;
+  /** Loading vs ready — drives chart phase until transition orchestration lands. */
+  chartStatus?: ChartStatus;
   children: ReactNode;
-  containerRef: React.RefObject<HTMLDivElement | null>;
-  /** Series keys driving y-domain and tooltip (Line / Area / SeriesBar configs). */
-  lines: LineConfig[];
   /**
    * Base SVG clipPath id for grow animation. Uniquified per chart instance so
    * multiple charts on one page do not share a clipPath (#226).
@@ -119,27 +113,36 @@ export interface TimeSeriesChartInnerProps {
   clipPathId: string;
   /** Optional ComposedChart bar layout (forwarded into context). */
   composedBarDataKeys?: string[];
+  composedBarGap?: number;
   composedBarSize?: number;
   composedMaxBarSize?: number;
-  composedBarGap?: number;
   composedStacked?: boolean;
-  composedStackOffsets?: Map<number, Map<string, number>>;
   composedStackGap?: number;
-  /** When set, drives the y-axis max instead of scanning `lines` (e.g. stacked bar totals). */
-  yScaleDomainMax?: number;
-  /** Loading vs ready — drives chart phase until transition orchestration lands. */
-  chartStatus?: ChartStatus;
+  composedStackOffsets?: Map<number, Map<string, number>>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
+  data: Record<string, unknown>[];
+  enterTransition?: Transition;
+  height: number;
+  /** Series keys driving y-domain and tooltip (Line / Area / SeriesBar configs). */
+  lines: LineConfig[];
   loadingLabel?: string;
-  /** Animate y-domain on status / data transitions. Default: true */
-  yDomainTween?: boolean;
-  yDomainTweenDuration?: number;
+  margin: Margin;
+  onPhaseChange?: (phase: ChartPhase) => void;
+  /** Signature of motion URL state — triggers reveal replay when it changes. */
+  revealSignature?: string;
+  /** Tween y-domain when the visible x-range changes during the ready phase. */
+  tweenYDomainOnXDomainChange?: boolean;
+  width: number;
+  xDataKey: string;
   /** Visible x-domain for brush zoom. When set, y-domain and series use data in this range. */
   xDomain?: [Date, Date];
   /** Full dataset length for x-scale padding when `xDomain` is set. */
   xDomainSlotCount?: number;
-  /** Tween y-domain when the visible x-range changes during the ready phase. */
-  tweenYDomainOnXDomainChange?: boolean;
-  onPhaseChange?: (phase: ChartPhase) => void;
+  /** Animate y-domain on status / data transitions. Default: true */
+  yDomainTween?: boolean;
+  yDomainTweenDuration?: number;
+  /** When set, drives the y-axis max instead of scanning `lines` (e.g. stacked bar totals). */
+  yScaleDomainMax?: number;
 }
 
 export function TimeSeriesChartInner(props: TimeSeriesChartInnerProps) {
@@ -285,8 +288,8 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
     }
 
     return scaleTime({
-      range: [0, innerWidth],
       domain: [minTime, maxTime],
+      range: [0, innerWidth],
     });
   }, [innerWidth, plotData, projectionConfigs, xAccessor, xDomain]);
 
@@ -394,7 +397,7 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
 
   const yScale = getPrimaryYScale(
     yScales,
-    scaleLinear({ range: [innerHeight, 0], domain: [0, 100], nice: true })
+    scaleLinear({ domain: [0, 100], nice: true, range: [innerHeight, 0] })
   );
 
   const dateLabels = useMemo(
@@ -412,9 +415,9 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
     interactionHandlers,
     interactionStyle,
   } = useChartInteraction({
+    bands: bandConfigs,
     bisectDate,
     canInteract,
-    bands: bandConfigs,
     data: visiblePlotData,
     lines,
     margin,
@@ -509,48 +512,48 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
 
   const contextValue = useMemo(
     () => ({
-      data: visiblePlotData,
-      renderData,
-      xScale,
-      yScale,
-      yScales,
-      width,
-      height,
-      innerWidth,
-      innerHeight,
-      margin,
-      columnWidth,
-      tooltipData,
-      setTooltipData,
-      containerRef,
-      lines,
-      bands: bandConfigs,
-      referenceAreas,
-      chartPhase,
-      chartStatus,
-      loadingLabel,
-      yDomainTweenDuration,
-      yDomainSkeletonByAxis,
-      yDomainTargetByAxis,
-      isLoaded,
       animationDuration,
       animationEasing,
-      enterTransition,
-      revealEpoch,
-      notifyLoadingPulseComplete,
-      xAccessor,
-      dateLabels,
-      xDomain,
-      xDomainSlotCount,
-      selection,
+      bands: bandConfigs,
+      chartPhase,
+      chartStatus,
       clearSelection,
+      columnWidth,
       composedBarDataKeys,
+      composedBarGap,
       composedBarSize,
       composedMaxBarSize,
-      composedBarGap,
       composedStacked,
-      composedStackOffsets,
       composedStackGap,
+      composedStackOffsets,
+      containerRef,
+      data: visiblePlotData,
+      dateLabels,
+      enterTransition,
+      height,
+      innerHeight,
+      innerWidth,
+      isLoaded,
+      lines,
+      loadingLabel,
+      margin,
+      notifyLoadingPulseComplete,
+      referenceAreas,
+      renderData,
+      revealEpoch,
+      selection,
+      setTooltipData,
+      tooltipData,
+      width,
+      xAccessor,
+      xDomain,
+      xDomainSlotCount,
+      xScale,
+      yDomainSkeletonByAxis,
+      yDomainTargetByAxis,
+      yDomainTweenDuration,
+      yScale,
+      yScales,
     }),
     [
       visiblePlotData,

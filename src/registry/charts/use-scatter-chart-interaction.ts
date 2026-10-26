@@ -1,14 +1,16 @@
 "use client";
 
 import type { ScaleLinear, ScaleTime } from "d3-scale";
-import { useCallback, useMemo, useRef, useState } from "react";
 import type { LineConfig, Margin, TooltipData } from "./chart-context";
+import type { ChartSelection } from "./use-chart-interaction";
+
+import { useCallback, useMemo, useRef, useState } from "react";
+
 import {
   type ScatterJitterOffsets,
   scatterJitterOffset,
 } from "./scatter-jitter";
 import { localPointFromSvg } from "./scatter-svg";
-import type { ChartSelection } from "./use-chart-interaction";
 import { useScheduledTooltip } from "./use-scheduled-tooltip";
 import { normalizeYAxisId } from "./y-axis-scales";
 
@@ -16,34 +18,31 @@ type XScale = ScaleTime<number, number>;
 type YScale = ScaleLinear<number, number>;
 
 interface UseScatterChartInteractionParams {
-  xScale: XScale;
-  yScale: YScale;
-  yScales: Record<string, YScale>;
-  data: Record<string, unknown>[];
-  lines: LineConfig[];
-  margin: Margin;
-  xAccessor: (d: Record<string, unknown>) => Date;
   bisectDate: (
     data: Record<string, unknown>[],
     date: Date,
     lo: number
   ) => number;
   canInteract: boolean;
+  data: Record<string, unknown>[];
   /** When set, hover resolves to the nearest jittered point (2D hit test). */
   jitter?: ScatterJitterOffsets | null;
+  lines: LineConfig[];
+  margin: Margin;
+  xAccessor: (d: Record<string, unknown>) => Date;
+  xScale: XScale;
+  yScale: YScale;
+  yScales: Record<string, YScale>;
 }
 
 interface JitteredPoint {
-  index: number;
   dataKey: string;
+  index: number;
   x: number;
   y: number;
 }
 
 interface ScatterChartInteractionResult {
-  tooltipData: TooltipData | null;
-  setTooltipData: React.Dispatch<React.SetStateAction<TooltipData | null>>;
-  selection: ChartSelection | null;
   clearSelection: () => void;
   interactionHandlers: {
     onMouseMove?: (event: React.MouseEvent<SVGGElement>) => void;
@@ -55,6 +54,9 @@ interface ScatterChartInteractionResult {
     onTouchEnd?: () => void;
   };
   interactionStyle: React.CSSProperties;
+  selection: ChartSelection | null;
+  setTooltipData: React.Dispatch<React.SetStateAction<TooltipData | null>>;
+  tooltipData: TooltipData | null;
 }
 
 export function useScatterChartInteraction({
@@ -113,8 +115,8 @@ export function useScatterChartInteraction({
       }
 
       return {
-        point: d,
         index: finalIndex,
+        point: d,
         x: xScale(xAccessor(d)) ?? 0,
         yPositions,
       };
@@ -137,8 +139,8 @@ export function useScatterChartInteraction({
         }
         const offset = scatterJitterOffset(jitter, index, seriesIndex);
         points.push({
-          index,
           dataKey: line.dataKey,
+          index,
           x: (xScale(xAccessor(d)) ?? 0) + offset.x,
           y: (axisScale(value) ?? 0) + offset.y,
         });
@@ -184,12 +186,12 @@ export function useScatterChartInteraction({
         yPositions[line.dataKey] = (axisScale(value) ?? 0) + offset.y;
       }
       return {
-        point: d,
+        activeDataKey: nearest.dataKey,
         index: nearest.index,
+        point: d,
         x: baseX,
         xPositions,
         yPositions,
-        activeDataKey: nearest.dataKey,
       };
     },
     [
@@ -275,11 +277,11 @@ export function useScatterChartInteraction({
         const startX = Math.min(dragStartXRef.current, chartX);
         const endX = Math.max(dragStartXRef.current, chartX);
         setSelection({
-          startX,
+          active: true,
+          endIndex: resolveIndexFromX(endX),
           endX,
           startIndex: resolveIndexFromX(startX),
-          endIndex: resolveIndexFromX(endX),
-          active: true,
+          startX,
         });
         return;
       }
@@ -354,11 +356,11 @@ export function useScatterChartInteraction({
         const startX = Math.min(x0, x1);
         const endX = Math.max(x0, x1);
         setSelection({
-          startX,
+          active: true,
+          endIndex: resolveIndexFromX(endX),
           endX,
           startIndex: resolveIndexFromX(startX),
-          endIndex: resolveIndexFromX(endX),
-          active: true,
+          startX,
         });
       }
     },
@@ -395,11 +397,11 @@ export function useScatterChartInteraction({
         const startX = Math.min(x0, x1);
         const endX = Math.max(x0, x1);
         setSelection({
-          startX,
+          active: true,
+          endIndex: resolveIndexFromX(endX),
           endX,
           startIndex: resolveIndexFromX(startX),
-          endIndex: resolveIndexFromX(endX),
-          active: true,
+          startX,
         });
       }
     },
@@ -423,13 +425,13 @@ export function useScatterChartInteraction({
 
   const interactionHandlers = canInteract
     ? {
-        onMouseMove: handleMouseMove,
-        onMouseLeave: handleMouseLeave,
         onMouseDown: handleMouseDown,
+        onMouseLeave: handleMouseLeave,
+        onMouseMove: handleMouseMove,
         onMouseUp: handleMouseUp,
-        onTouchStart: handleTouchStart,
-        onTouchMove: handleTouchMove,
         onTouchEnd: handleTouchEnd,
+        onTouchMove: handleTouchMove,
+        onTouchStart: handleTouchStart,
       }
     : {};
 
@@ -439,11 +441,11 @@ export function useScatterChartInteraction({
   };
 
   return {
-    tooltipData,
-    setTooltipData,
-    selection,
     clearSelection,
     interactionHandlers,
     interactionStyle,
+    selection,
+    setTooltipData,
+    tooltipData,
   };
 }

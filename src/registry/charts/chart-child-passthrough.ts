@@ -22,9 +22,9 @@ export function isChartClipPassthrough(type: unknown): boolean {
 const REACT_LAZY_TYPE = Symbol.for("react.lazy");
 
 interface LazyComponentType {
-  $$typeof: symbol;
   _init: (payload: unknown) => unknown;
   _payload: unknown;
+  $$typeof: symbol;
 }
 
 function isLazyComponentType(type: unknown): type is LazyComponentType {

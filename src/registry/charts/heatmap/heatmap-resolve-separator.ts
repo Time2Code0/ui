@@ -1,16 +1,18 @@
 import type { ReactElement, ReactNode } from "react";
-import { Children, isValidElement } from "react";
-import { resolveChartChildElement } from "../chart-child-passthrough";
 import type { HeatmapColumn } from "./heatmap-context";
-import {
-  HEATMAP_SEPARATOR_MARKER,
-  HeatmapSeparator,
-} from "./heatmap-separator";
 import type {
   HeatmapSeparatorGroupBy,
   HeatmapSeparatorLayout,
   HeatmapSeparatorParsedConfig,
 } from "./heatmap-utils";
+
+import { Children, isValidElement } from "react";
+
+import { resolveChartChildElement } from "../chart-child-passthrough";
+import {
+  HEATMAP_SEPARATOR_MARKER,
+  HeatmapSeparator,
+} from "./heatmap-separator";
 import { resolveHeatmapSeparatorLayout } from "./heatmap-utils";
 
 function getChildComponentName(child: ReactElement): string {
@@ -52,8 +54,8 @@ function readHeatmapSeparatorConfig(
   }
 
   return {
-    groupBy: "every",
     every: props.every,
+    groupBy: "every",
     spacing: props.spacing ?? 0,
   };
 }
@@ -110,8 +112,8 @@ function normalizeHeatmapSeparatorConfig(
   }
 
   return {
-    groupBy: "every",
     every: config.every,
+    groupBy: "every",
     spacing: config.spacing ?? 0,
   };
 }

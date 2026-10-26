@@ -1,5 +1,6 @@
-import { CHART_SCALE_VARS } from "../chart-scale";
 import type { PatternPresetId } from "../pattern-preset";
+
+import { CHART_SCALE_VARS } from "../chart-scale";
 import { getHeatmapContributionLevel } from "./heatmap-utils";
 
 /** Default Less → More scale using {@link CHART_SCALE_VARS}. */
@@ -20,14 +21,14 @@ export interface HeatmapLevelStyle {
   fillMode?: HeatmapLevelFillMode;
   pattern?: PatternPresetId;
   patternColor?: string;
+  patternComplement?: boolean;
+  patternDotsFill?: boolean;
+  patternFill?: string;
+  patternOpacity?: number;
+  patternRadius?: number;
   patternScale?: number;
   patternStrokeWidth?: number;
-  patternRadius?: number;
-  patternComplement?: boolean;
-  patternFill?: string;
   patternTileBackground?: string;
-  patternOpacity?: number;
-  patternDotsFill?: boolean;
 }
 
 export type HeatmapLevelStyles = readonly [
@@ -95,13 +96,13 @@ export function heatmapLevelPatternRenderOptions(style: HeatmapLevelStyle) {
       (preset === "accent"
         ? "#e879f9"
         : heatmapPatternStrokeFallback(style.color)),
-    tileBackground: style.patternTileBackground?.trim() || style.color,
+    complement: style.patternComplement,
+    dotFill: style.patternDotsFill,
+    fill: style.patternFill?.trim() || undefined,
+    radius: style.patternRadius,
     scale: style.patternScale ?? defaultScale,
     strokeWidth: style.patternStrokeWidth,
-    radius: style.patternRadius,
-    complement: style.patternComplement,
-    fill: style.patternFill?.trim() || undefined,
-    dotFill: style.patternDotsFill,
+    tileBackground: style.patternTileBackground?.trim() || style.color,
   };
 }
 

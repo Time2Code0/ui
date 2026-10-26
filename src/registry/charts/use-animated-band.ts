@@ -1,8 +1,11 @@
 "use client";
 
 import type { CurveFactory } from "d3-shape";
-import { animate, useReducedMotion } from "motion/react";
+
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+
+import { animate, useReducedMotion } from "motion/react";
+
 import {
   type BandSegment,
   bandDataSignature,
@@ -14,23 +17,23 @@ import {
 import { LINE_LOADING_PULSE_EASE } from "./line-loading-timing";
 
 export interface UseAnimatedBandOptions {
+  chartPhase: string;
+  curve: CurveFactory;
+  durationMs: number;
+  enabled: boolean;
+  innerWidth: number;
+  lowerKey: string;
   renderData: Record<string, unknown>[];
+  upperKey: string;
   xAccessor: (datum: Record<string, unknown>) => Date;
   xScale: (value: Date) => number | undefined;
   yScale: (value: number) => number | undefined;
-  upperKey: string;
-  lowerKey: string;
-  curve: CurveFactory;
-  chartPhase: string;
-  durationMs: number;
-  innerWidth: number;
-  enabled: boolean;
 }
 
 /** Band currently on screen. `polyline` frames render with `curveLinear`. */
 export interface DisplayedBand {
-  segments: BandSegment[];
   polyline: boolean;
+  segments: BandSegment[];
 }
 
 type LatestBandInputs = Pick<
@@ -110,26 +113,26 @@ export function useAnimatedBand({
   // Live inputs for the running tween — the y-domain tween rebuilds `yScale`
   // every frame, so these must not be effect deps (see useAnimatedSeriesPath).
   const latestRef = useRef<LatestBandInputs>({
+    curve,
+    lowerKey,
     renderData,
+    upperKey,
     xAccessor,
     xScale,
     yScale,
-    upperKey,
-    lowerKey,
-    curve,
   });
   // Synced in a layout effect declared before the tween effect (not during
   // render) so `renderFrame(0)` and every animation frame see this commit's
   // inputs.
   useLayoutEffect(() => {
     latestRef.current = {
+      curve,
+      lowerKey,
       renderData,
+      upperKey,
       xAccessor,
       xScale,
       yScale,
-      upperKey,
-      lowerKey,
-      curve,
     };
   });
 
@@ -157,8 +160,8 @@ export function useAnimatedBand({
     if (!shouldAnimate) {
       animatingRef.current = false;
       displayedRef.current = {
-        segments: computeLatestTarget(),
         polyline: false,
+        segments: computeLatestTarget(),
       };
       prevTransitionSignatureRef.current = transitionSignature;
       return;
@@ -170,13 +173,13 @@ export function useAnimatedBand({
     prevTransitionSignatureRef.current = transitionSignature;
 
     const from = displayedRef.current ?? {
-      segments: computeLatestTarget(),
       polyline: false,
+      segments: computeLatestTarget(),
     };
     if (from.segments.length === 0) {
       displayedRef.current = {
-        segments: computeLatestTarget(),
         polyline: false,
+        segments: computeLatestTarget(),
       };
       return;
     }
@@ -191,21 +194,21 @@ export function useAnimatedBand({
       const currentTarget = computeLatestTarget();
       const next: DisplayedBand = fromPolylines
         ? {
+            polyline: true,
             segments: morphBandSegments(
               fromPolylines,
               currentTarget,
               latestRef.current.curve,
               progress
             ),
-            polyline: true,
           }
         : {
+            polyline: false,
             segments: interpolateBandSegments(
               from.segments,
               currentTarget,
               progress
             ),
-            polyline: false,
           };
       displayedRef.current = next;
       setAnimatedBand(next);
@@ -215,15 +218,15 @@ export function useAnimatedBand({
     const control = animate(0, 1, {
       duration: durationMs / 1000,
       ease: [...LINE_LOADING_PULSE_EASE],
-      onUpdate: renderFrame,
       onComplete: () => {
         animatingRef.current = false;
         displayedRef.current = {
-          segments: computeLatestTarget(),
           polyline: false,
+          segments: computeLatestTarget(),
         };
         setAnimatedBand(null);
       },
+      onUpdate: renderFrame,
     });
 
     return () => {
@@ -245,9 +248,9 @@ export function useAnimatedBand({
   // segments as its `from`, not the new target.
   useEffect(() => {
     if (!animatingRef.current) {
-      displayedRef.current = { segments: targetSegments, polyline: false };
+      displayedRef.current = { polyline: false, segments: targetSegments };
     }
   }, [targetSegments]);
 
-  return animatedBand ?? { segments: targetSegments, polyline: false };
+  return animatedBand ?? { polyline: false, segments: targetSegments };
 }

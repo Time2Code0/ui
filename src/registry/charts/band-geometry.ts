@@ -1,4 +1,5 @@
 import { type CurveFactory, area as d3Area, line as d3Line } from "d3-shape";
+
 import {
   flattenSeriesPath,
   interpolateSeriesPathPoints,
@@ -8,10 +9,10 @@ import {
 
 /** One plotted row of a band, in pixels. */
 export interface BandPoint {
-  x: number;
-  upper: number;
-  lower: number;
   key: string;
+  lower: number;
+  upper: number;
+  x: number;
 }
 
 /** Contiguous run of defined rows (gaps split the band into segments). */
@@ -48,10 +49,10 @@ export function computeBandSegments(
     }
     const xValue = xAccessor(datum);
     current.push({
-      x: xScale(xValue) ?? 0,
-      upper: yScale(upper) ?? 0,
-      lower: yScale(lower) ?? 0,
       key: String(xValue.getTime?.() ?? index),
+      lower: yScale(lower) ?? 0,
+      upper: yScale(upper) ?? 0,
+      x: xScale(xValue) ?? 0,
     });
   });
 
@@ -66,9 +67,9 @@ function edgePoints(
   edge: "upper" | "lower"
 ): SeriesPathPoint[] {
   return segment.map((point) => ({
+    key: point.key,
     x: point.x,
     y: point[edge],
-    key: point.key,
   }));
 }
 
@@ -116,13 +117,13 @@ export function bandPixelExtent(
       bottom = Math.max(bottom, point.upper, point.lower);
     }
   }
-  return Number.isFinite(top) ? { top, bottom } : null;
+  return Number.isFinite(top) ? { bottom, top } : null;
 }
 
 /** Dense polylines of both edges, all segments concatenated and sorted by x. */
 export interface BandEdgePolylines {
-  upper: SeriesPathPoint[];
   lower: SeriesPathPoint[];
+  upper: SeriesPathPoint[];
 }
 
 export function flattenBandEdges(
@@ -137,7 +138,7 @@ export function flattenBandEdges(
         return alreadyPolyline ? points : flattenSeriesPath(points, curve);
       })
       .sort((a, b) => a.x - b.x);
-  return { upper: flatten("upper"), lower: flatten("lower") };
+  return { lower: flatten("lower"), upper: flatten("upper") };
 }
 
 /**
@@ -172,10 +173,10 @@ export function morphBandSegments(
       const fromUpper = samplePolylineY(from.upper, x);
       const fromLower = samplePolylineY(from.lower, x);
       result[index] = {
-        x,
-        upper: fromUpper + (samplePolylineY(toUpper, x) - fromUpper) * progress,
-        lower: fromLower + (samplePolylineY(toLower, x) - fromLower) * progress,
         key: "",
+        lower: fromLower + (samplePolylineY(toLower, x) - fromLower) * progress,
+        upper: fromUpper + (samplePolylineY(toUpper, x) - fromUpper) * progress,
+        x,
       };
     }
     return result;
@@ -208,10 +209,10 @@ export function interpolateBandSegments(
       progress
     );
     return upper.map((point, index) => ({
-      x: point.x,
-      upper: point.y,
-      lower: lower[index]?.y ?? point.y,
       key: point.key,
+      lower: lower[index]?.y ?? point.y,
+      upper: point.y,
+      x: point.x,
     }));
   });
 }
@@ -239,30 +240,30 @@ export type BandFadeEdges =
   | { top?: boolean; right?: boolean; bottom?: boolean; left?: boolean };
 
 export interface BandFadeSides {
-  top: boolean;
-  right: boolean;
   bottom: boolean;
-  left: boolean;
   horizontal: boolean;
+  left: boolean;
+  right: boolean;
+  top: boolean;
   vertical: boolean;
 }
 
 export function resolveBandFadeSides(
   fade: BandFadeEdges | undefined
 ): BandFadeSides {
-  let sides = { top: false, right: false, bottom: false, left: false };
+  let sides = { bottom: false, left: false, right: false, top: false };
   if (fade === true) {
-    sides = { top: true, right: true, bottom: true, left: true };
+    sides = { bottom: true, left: true, right: true, top: true };
   } else if (fade === "left") {
     sides.left = true;
   } else if (fade === "right") {
     sides.right = true;
   } else if (fade && typeof fade === "object") {
     sides = {
-      top: fade.top === true,
-      right: fade.right === true,
       bottom: fade.bottom === true,
       left: fade.left === true,
+      right: fade.right === true,
+      top: fade.top === true,
     };
   }
   return {

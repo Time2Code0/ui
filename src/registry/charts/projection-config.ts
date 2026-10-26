@@ -1,3 +1,5 @@
+import type { ProjectionPoint } from "./projection-utils";
+
 import {
   Children,
   Fragment,
@@ -5,8 +7,8 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
+
 import { isChartClipPassthrough } from "./chart-child-passthrough";
-import type { ProjectionPoint } from "./projection-utils";
 import {
   projectionDateExtents,
   projectionValueExtents,
@@ -14,8 +16,8 @@ import {
 import { normalizeYAxisId } from "./y-axis-scales";
 
 export interface ProjectionLineConfig {
-  yAxisId: string;
   data: ProjectionPoint[];
+  yAxisId: string;
 }
 
 interface ProjectionLineConfigProps {
@@ -68,8 +70,8 @@ export function extractProjectionLineConfigs(
         const data = normalizeProjectionData(props?.data);
         if (data.length >= 2) {
           configs.push({
-            yAxisId: normalizeYAxisId(props?.yAxisId),
             data,
+            yAxisId: normalizeYAxisId(props?.yAxisId),
           });
         }
         return;

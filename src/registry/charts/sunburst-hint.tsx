@@ -1,18 +1,20 @@
 "use client";
 
-import { memo, type ReactNode } from "react";
 import type { ArcDatum, Focus } from "./sunburst";
+
+import { memo, type ReactNode } from "react";
+
 import { useSunburstHover, useSunburstStable } from "./sunburst-context";
 
 export interface SunburstHintContext {
+  focus: Focus;
   hintText: string;
   hoveredArc: ArcDatum | null;
-  focus: Focus;
 }
 
 export interface SunburstHintProps {
-  className?: string;
   children?: ReactNode | ((context: SunburstHintContext) => ReactNode);
+  className?: string;
 }
 
 export const SunburstHint = memo(function SunburstHint({
@@ -32,7 +34,7 @@ export const SunburstHint = memo(function SunburstHint({
     return "Click the center to zoom out";
   })();
 
-  const context: SunburstHintContext = { hintText, hoveredArc, focus };
+  const context: SunburstHintContext = { focus, hintText, hoveredArc };
 
   let content: ReactNode;
   if (typeof children === "function") {
