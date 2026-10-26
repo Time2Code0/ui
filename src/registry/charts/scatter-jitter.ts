@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext } from "react";
+import { createContext, use } from "react";
 
 /**
  * Jitter for `ScatterChart` — spreads points that share the same (or nearby)
@@ -172,5 +172,5 @@ export const ScatterJitterContext = createContext<ScatterJitterOffsets | null>(
 );
 
 export function useScatterJitter(): ScatterJitterOffsets | null {
-  return useContext(ScatterJitterContext);
+  return use(ScatterJitterContext);
 }

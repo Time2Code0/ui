@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, type ReactNode, useCallback, useContext } from "react";
+import { createContext, type ReactNode, use, useCallback } from "react";
 
 import { useInViewOnce } from "../_hooks/use-in-view-once";
 import { usePauseWhenOffscreen } from "../_hooks/use-pause-when-offscreen";
@@ -19,7 +19,7 @@ const ChartPreviewOffscreenContext = createContext(false);
  * (live data feeds, rAF tickers) should pause on it.
  */
 export function useChartPreviewOffscreen() {
-  return useContext(ChartPreviewOffscreenContext);
+  return use(ChartPreviewOffscreenContext);
 }
 
 /**

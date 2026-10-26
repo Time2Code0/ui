@@ -8,7 +8,7 @@ import {
   type Dispatch,
   type RefObject,
   type SetStateAction,
-  useContext,
+  use,
 } from "react";
 
 export interface Margin {
@@ -94,7 +94,7 @@ export function SankeyProvider({
 }
 
 export function useSankey(): SankeyContextValue {
-  const context = useContext(SankeyContext);
+  const context = use(SankeyContext);
   if (!context) {
     throw new Error("useSankey must be used within a SankeyProvider");
   }

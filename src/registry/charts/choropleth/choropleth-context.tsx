@@ -9,7 +9,7 @@ import {
   type Dispatch,
   type RefObject,
   type SetStateAction,
-  useContext,
+  use,
   useMemo,
   useState,
 } from "react";
@@ -34,7 +34,7 @@ export const ChoroplethZoomContext = createContext<ChoroplethZoomContextValue>({
 });
 
 export function useChoroplethZoom() {
-  return useContext(ChoroplethZoomContext);
+  return use(ChoroplethZoomContext);
 }
 
 export interface Margin {
@@ -221,7 +221,7 @@ export function ChoroplethProvider({
 }
 
 export function useChoroplethStable(): ChoroplethStableContextValue {
-  const context = useContext(ChoroplethStableContext);
+  const context = use(ChoroplethStableContext);
   if (!context) {
     throw new Error(
       "useChoroplethStable must be used within a ChoroplethProvider"
@@ -231,7 +231,7 @@ export function useChoroplethStable(): ChoroplethStableContextValue {
 }
 
 export function useChoroplethInteraction(): ChoroplethInteractionContextValue {
-  const context = useContext(ChoroplethInteractionContext);
+  const context = use(ChoroplethInteractionContext);
   if (!context) {
     throw new Error(
       "useChoroplethInteraction must be used within a ChoroplethProvider"

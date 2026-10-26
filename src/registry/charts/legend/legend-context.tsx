@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext } from "react";
+import { createContext, use } from "react";
 
 // CSS variable references for legend theming
 export const legendCssVars = {
@@ -74,7 +74,7 @@ export function LegendItemProvider({
 }
 
 export function useLegend(): LegendContextValue {
-  const context = useContext(LegendContext);
+  const context = use(LegendContext);
   if (!context) {
     throw new Error("useLegend must be used within a <Legend> component.");
   }
@@ -82,7 +82,7 @@ export function useLegend(): LegendContextValue {
 }
 
 export function useLegendItem(): LegendItemContextValue {
-  const context = useContext(LegendItemContext);
+  const context = use(LegendItemContext);
   if (!context) {
     throw new Error(
       "useLegendItem must be used within a <LegendItem> component."

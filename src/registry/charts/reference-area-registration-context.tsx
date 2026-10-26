@@ -2,7 +2,7 @@
 
 import type { ReferenceAreaConfig } from "./reference-area-config";
 
-import { createContext, useContext } from "react";
+import { createContext, use } from "react";
 
 export interface ReferenceAreaRegistrationContextValue {
   registerReferenceArea: (id: string, config: ReferenceAreaConfig) => void;
@@ -13,5 +13,5 @@ export const ReferenceAreaRegistrationContext =
   createContext<ReferenceAreaRegistrationContextValue | null>(null);
 
 export function useReferenceAreaRegistration(): ReferenceAreaRegistrationContextValue | null {
-  return useContext(ReferenceAreaRegistrationContext);
+  return use(ReferenceAreaRegistrationContext);
 }

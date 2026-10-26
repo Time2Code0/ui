@@ -16,8 +16,8 @@ import {
   type ReactNode,
   type RefObject,
   type SetStateAction,
+  use,
   useCallback,
-  useContext,
   useMemo,
   useState,
 } from "react";
@@ -157,7 +157,7 @@ export function HeatmapProvider({
 }
 
 export function useHeatmap(): HeatmapContextValue {
-  const context = useContext(HeatmapContext);
+  const context = use(HeatmapContext);
   if (!context) {
     throw new Error("useHeatmap must be used within a HeatmapProvider");
   }
@@ -165,7 +165,7 @@ export function useHeatmap(): HeatmapContextValue {
 }
 
 export function useHeatmapInteraction(): HeatmapInteractionContextValue {
-  const context = useContext(HeatmapInteractionContext);
+  const context = use(HeatmapInteractionContext);
   if (!context) {
     throw new Error(
       "useHeatmapInteraction must be used within a HeatmapInteractionProvider"
@@ -175,7 +175,7 @@ export function useHeatmapInteraction(): HeatmapInteractionContextValue {
 }
 
 export function useHeatmapInteractionOptional(): HeatmapInteractionContextValue | null {
-  return useContext(HeatmapInteractionContext);
+  return use(HeatmapInteractionContext);
 }
 
 /** Clears hover state when the pointer leaves chart + legend. */
@@ -200,7 +200,7 @@ export function HeatmapInteractionBoundary({
 
 /** Nests a provider only when one is not already present upstream. */
 export function HeatmapInteractionRoot({ children }: { children: ReactNode }) {
-  const existing = useContext(HeatmapInteractionContext);
+  const existing = use(HeatmapInteractionContext);
   if (existing) {
     return children;
   }

@@ -56,13 +56,7 @@
  *     compute geometry at most once per render between them.
  */
 
-import {
-  createContext,
-  type ReactNode,
-  useContext,
-  useId,
-  useMemo,
-} from "react";
+import { createContext, type ReactNode, use, useId, useMemo } from "react";
 
 import { motion, type Transition } from "motion/react";
 
@@ -349,7 +343,7 @@ function buildNegBarStops(groundShadow: number): GlassGradientStop[] {
  * paints it objectBoundingBox, so the gloss is identical across bar heights.
  */
 function useGlassStops() {
-  const { groundShadow = DEFAULT_GROUND_SHADOW } = useContext(BarDepthContext);
+  const { groundShadow = DEFAULT_GROUND_SHADOW } = use(BarDepthContext);
   return useMemo(
     () => ({
       negStops: buildNegBarStops(groundShadow),
@@ -394,7 +388,7 @@ export function useBarDepthEntries(
   } = useChartStable();
   // Read shared config from `<BarDepthProvider>`. Outside a provider these are
   // the defaults (no segmentation, no floor) — correct for simple charts.
-  const { segmentsAccessor, minBarHeight = 0 } = useContext(BarDepthContext);
+  const { segmentsAccessor, minBarHeight = 0 } = use(BarDepthContext);
 
   return useMemo(() => {
     if (!(barScale && bandWidth && barXAccessor)) {
@@ -556,7 +550,7 @@ export function BarDepthBack({
 }: BarDepthBackProps) {
   const { isLoaded, enterTransition, revealEpoch = 0 } = useChartStable();
   const { hoveredBarIndex } = useChartHover();
-  const { segmentsAccessor } = useContext(BarDepthContext);
+  const { segmentsAccessor } = use(BarDepthContext);
   const entries = useBarDepthEntries(dataKey);
   const stagger = useBarDepthStagger();
   const { posStops: glassStops, negStops: glassNegStops } = useGlassStops();

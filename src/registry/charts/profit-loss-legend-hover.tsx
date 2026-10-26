@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, type ReactNode, useContext } from "react";
+import { createContext, type ReactNode, use } from "react";
 
 interface ProfitLossLegendHoverContextValue {
   hoveredIndex: number | null;
@@ -24,6 +24,6 @@ export function ProfitLossLegendHoverProvider({
 }
 
 export function useProfitLossLegendHover(): ProfitLossLegendHoverContextValue {
-  const context = useContext(ProfitLossLegendHoverContext);
+  const context = use(ProfitLossLegendHoverContext);
   return context ?? { hoveredIndex: null };
 }

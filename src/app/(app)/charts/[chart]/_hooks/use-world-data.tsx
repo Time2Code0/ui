@@ -3,13 +3,7 @@
 import type { FeatureCollection, Geometry } from "geojson";
 import type { GeometryCollection, Topology } from "topojson-specification";
 
-import {
-  createContext,
-  type ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, type ReactNode, use, useEffect, useState } from "react";
 
 import { feature } from "topojson-client";
 
@@ -120,7 +114,7 @@ export function WorldDataProvider({ children }: { children: ReactNode }) {
 }
 
 export function useWorldData() {
-  return useContext(WorldDataContext);
+  return use(WorldDataContext);
 }
 
 // Standalone hook for components that don't have the provider
