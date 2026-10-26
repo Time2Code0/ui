@@ -52,7 +52,12 @@ export async function ComponentPreview({
         </ComponentPreviewStage>
       </TabsPanel>
       <TabsPanel className="**:data-[slot=codeblock]:border-y-0" value="code">
-        <ComponentSource codeblock={{ className: "my-0" }} name={name} />
+        <ComponentSource
+          codeblock={{ className: "my-0" }}
+          language="tsx"
+          name={name}
+          title=""
+        />
       </TabsPanel>
     </Tabs>
   );
