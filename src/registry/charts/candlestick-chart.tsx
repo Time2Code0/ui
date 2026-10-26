@@ -6,7 +6,6 @@ import { memo, type ReactNode, useCallback, useMemo, useRef } from "react";
 
 import { scaleLinear, scaleTime } from "@visx/scale";
 import { cn } from "cn";
-import { bisector } from "d3-array";
 
 import { partitionChartChildren } from "./chart-children";
 import { ChartProvider, type LineConfig, type Margin } from "./chart-context";
@@ -120,11 +119,6 @@ const ChartCore = memo(function ChartCore({
     [xDataKey]
   );
 
-  const bisectDate = useMemo(
-    () => bisector<Record<string, unknown>, Date>((d) => xAccessor(d)).left,
-    [xAccessor]
-  );
-
   const slotCount =
     xDomain && xDomainSlotCount != null ? xDomainSlotCount : data.length;
   const slotWidth = innerWidth / Math.max(slotCount, 1);
@@ -197,7 +191,6 @@ const ChartCore = memo(function ChartCore({
     interactionHandlers,
     interactionStyle,
   } = useChartInteraction({
-    bisectDate,
     canInteract: isLoaded,
     data,
     lines,

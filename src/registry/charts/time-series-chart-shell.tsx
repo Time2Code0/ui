@@ -13,7 +13,7 @@ import {
 } from "react";
 
 import { scaleLinear, scaleTime } from "@visx/scale";
-import { bisector, extent } from "d3-array";
+import { extent } from "d3-array";
 
 import {
   DEFAULT_ANIMATION_EASING,
@@ -225,11 +225,6 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
     [xDataKey]
   );
 
-  const bisectDate = useMemo(
-    () => bisector<Record<string, unknown>, Date>((d) => xAccessor(d)).left,
-    [xAccessor]
-  );
-
   const visiblePlotData = useMemo(() => {
     if (!xDomain) {
       return plotData;
@@ -398,7 +393,6 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
     interactionStyle,
   } = useChartInteraction({
     bands: bandConfigs,
-    bisectDate,
     canInteract,
     data: visiblePlotData,
     lines,

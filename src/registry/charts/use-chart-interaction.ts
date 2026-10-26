@@ -8,15 +8,24 @@ import type {
   TooltipData,
 } from "./chart-context";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { localPoint } from "@visx/event";
+import { bisector } from "d3-array";
 
+import {
+  type ScatterJitterOffsets,
+  scatterJitterOffset,
+} from "./scatter-jitter";
 import { useScheduledTooltip } from "./use-scheduled-tooltip";
 import { normalizeYAxisId } from "./y-axis-scales";
 
 type ScaleTime = ReturnType<typeof scaleTime<number>>;
 type ScaleLinear = ReturnType<typeof scaleLinear<number>>;
+type Datum = Record<string, unknown>;
+type ChartPointerEvent =
+  | React.MouseEvent<SVGGElement>
+  | React.TouchEvent<SVGGElement>;
 
 export interface ChartSelection {
   active: boolean;
@@ -29,16 +38,16 @@ export interface ChartSelection {
 interface UseChartInteractionParams {
   /** `<Band>` configs — edge y-positions for tooltip dots. */
   bands?: BandConfig[];
-  bisectDate: (
-    data: Record<string, unknown>[],
-    date: Date,
-    lo: number
-  ) => number;
   canInteract: boolean;
-  data: Record<string, unknown>[];
+  data: Datum[];
+  /**
+   * Scatter jitter offsets. When set, hover resolves to the nearest jittered
+   * point in 2D instead of the nearest x column.
+   */
+  jitter?: ScatterJitterOffsets | null;
   lines: LineConfig[];
   margin: Margin;
-  xAccessor: (d: Record<string, unknown>) => Date;
+  xAccessor: (d: Datum) => Date;
   xScale: ScaleTime;
   yScale: ScaleLinear;
   yScales: Record<string, ScaleLinear>;
@@ -61,9 +70,19 @@ interface ChartInteractionResult {
   tooltipData: TooltipData | null;
 }
 
+interface ChartPoint {
+  x: number;
+  y: number;
+}
+
+interface JitteredPoint extends ChartPoint {
+  dataKey: string;
+  index: number;
+}
+
 /** Pixel y per line dataKey, plus band edge keys (line keys win on collisions). */
 function resolveYPositions(
-  d: Record<string, unknown>,
+  d: Datum,
   lines: LineConfig[],
   bands: BandConfig[] | undefined,
   yScales: Record<string, ScaleLinear>,
@@ -90,6 +109,10 @@ function resolveYPositions(
   return yPositions;
 }
 
+/**
+ * Hover, drag-to-select and pinch-to-select for x-based charts. The tooltip
+ * snaps to the nearest x column, or with `jitter` to the nearest point.
+ */
 export function useChartInteraction({
   xScale,
   yScale,
@@ -99,8 +122,8 @@ export function useChartInteraction({
   bands,
   margin,
   xAccessor,
-  bisectDate,
   canInteract,
+  jitter = null,
 }: UseChartInteractionParams): ChartInteractionResult {
   const [selection, setSelection] = useState<ChartSelection | null>(null);
   const {
@@ -113,48 +136,22 @@ export function useChartInteraction({
 
   const isDraggingRef = useRef(false);
   const dragStartXRef = useRef<number>(0);
-  const lastHoveredXRef = useRef<number | null>(null);
+  const lastHoveredRef = useRef<ChartPoint | null>(null);
 
-  const resolveTooltipFromX = useCallback(
-    (pixelX: number): TooltipData | null => {
-      const x0 = xScale.invert(pixelX);
-      const index = bisectDate(data, x0, 1);
-      const d0 = data[index - 1];
-      const d1 = data[index];
-
-      if (!d0) {
-        return null;
-      }
-
-      let d = d0;
-      let finalIndex = index - 1;
-      if (d1) {
-        const d0Time = xAccessor(d0).getTime();
-        const d1Time = xAccessor(d1).getTime();
-        if (x0.getTime() - d0Time > d1Time - x0.getTime()) {
-          d = d1;
-          finalIndex = index;
-        }
-      }
-
-      return {
-        index: finalIndex,
-        point: d,
-        x: xScale(xAccessor(d)) ?? 0,
-        yPositions: resolveYPositions(d, lines, bands, yScales, yScale),
-      };
-    },
-    [xScale, yScale, yScales, data, lines, bands, xAccessor, bisectDate]
+  const bisectDate = useMemo(
+    () => bisector<Datum, Date>((d) => xAccessor(d)).left,
+    [xAccessor]
   );
 
-  const resolveIndexFromX = useCallback(
+  /** Index of the datum nearest to `pixelX`; -1 when there is no data. */
+  const nearestIndexAtX = useCallback(
     (pixelX: number): number => {
       const x0 = xScale.invert(pixelX);
       const index = bisectDate(data, x0, 1);
       const d0 = data[index - 1];
       const d1 = data[index];
       if (!d0) {
-        return 0;
+        return -1;
       }
       if (d1) {
         const d0Time = xAccessor(d0).getTime();
@@ -168,169 +165,225 @@ export function useChartInteraction({
     [xScale, data, xAccessor, bisectDate]
   );
 
-  const getChartX = useCallback(
-    (
-      event: React.MouseEvent<SVGGElement> | React.TouchEvent<SVGGElement>,
-      touchIndex = 0
-    ): number | null => {
-      let point: { x: number; y: number } | null = null;
+  const resolveTooltipFromX = useCallback(
+    (pixelX: number): TooltipData | null => {
+      const index = nearestIndexAtX(pixelX);
+      const d = data[index];
+      if (!d) {
+        return null;
+      }
+      return {
+        index,
+        point: d,
+        x: xScale(xAccessor(d)) ?? 0,
+        yPositions: resolveYPositions(d, lines, bands, yScales, yScale),
+      };
+    },
+    [nearestIndexAtX, data, xScale, xAccessor, lines, bands, yScales, yScale]
+  );
 
+  /** Jittered pixel positions for every rendered point (only when jitter is on). */
+  const jitteredPoints = useMemo<JitteredPoint[]>(() => {
+    if (!jitter) {
+      return [];
+    }
+    const points: JitteredPoint[] = [];
+    for (const [seriesIndex, line] of lines.entries()) {
+      const axisScale = yScales[normalizeYAxisId(line.yAxisId)] ?? yScale;
+      for (const [index, d] of data.entries()) {
+        const value = d[line.dataKey];
+        if (typeof value !== "number") {
+          continue;
+        }
+        const offset = scatterJitterOffset(jitter, index, seriesIndex);
+        points.push({
+          dataKey: line.dataKey,
+          index,
+          x: (xScale(xAccessor(d)) ?? 0) + offset.x,
+          y: (axisScale(value) ?? 0) + offset.y,
+        });
+      }
+    }
+    return points;
+  }, [jitter, lines, data, xScale, xAccessor, yScale, yScales]);
+
+  const resolveTooltip = useCallback(
+    (point: ChartPoint): TooltipData | null => {
+      if (!jitter || jitteredPoints.length === 0) {
+        return resolveTooltipFromX(point.x);
+      }
+      let nearest: JitteredPoint | null = null;
+      let nearestDistance = Number.POSITIVE_INFINITY;
+      for (const candidate of jitteredPoints) {
+        const dx = candidate.x - point.x;
+        const dy = candidate.y - point.y;
+        const distance = dx * dx + dy * dy;
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearest = candidate;
+        }
+      }
+      const d = nearest ? data[nearest.index] : undefined;
+      if (!(nearest && d)) {
+        return null;
+      }
+      const xPositions: Record<string, number> = {};
+      const yPositions: Record<string, number> = {};
+      const baseX = xScale(xAccessor(d)) ?? 0;
+      for (const [seriesIndex, line] of lines.entries()) {
+        const value = d[line.dataKey];
+        if (typeof value !== "number") {
+          continue;
+        }
+        const axisScale = yScales[normalizeYAxisId(line.yAxisId)] ?? yScale;
+        const offset = scatterJitterOffset(jitter, nearest.index, seriesIndex);
+        xPositions[line.dataKey] = baseX + offset.x;
+        yPositions[line.dataKey] = (axisScale(value) ?? 0) + offset.y;
+      }
+      return {
+        activeDataKey: nearest.dataKey,
+        index: nearest.index,
+        point: d,
+        x: baseX,
+        xPositions,
+        yPositions,
+      };
+    },
+    [
+      jitter,
+      jitteredPoints,
+      resolveTooltipFromX,
+      data,
+      lines,
+      xScale,
+      xAccessor,
+      yScale,
+      yScales,
+    ]
+  );
+
+  /** Pointer position in plot coordinates (margin removed). */
+  const getChartPoint = useCallback(
+    (event: ChartPointerEvent, touchIndex = 0): ChartPoint | null => {
+      const svg = event.currentTarget.ownerSVGElement;
+      let point: ChartPoint | null;
       if ("touches" in event) {
         const touch = event.touches[touchIndex];
-        if (!touch) {
-          return null;
-        }
-        const svg = event.currentTarget.ownerSVGElement;
-        if (!svg) {
+        if (!(touch && svg)) {
           return null;
         }
         point = localPoint(svg, touch as unknown as MouseEvent);
       } else {
         point = localPoint(event);
       }
-
       if (!point) {
         return null;
       }
-      return point.x - margin.left;
+      return { x: point.x - margin.left, y: point.y - margin.top };
     },
-    [margin.left]
+    [margin.left, margin.top]
   );
 
-  const handleMouseMove = useCallback(
-    (event: React.MouseEvent<SVGGElement>) => {
-      const chartX = getChartX(event);
-      if (chartX === null) {
-        return;
-      }
-
-      if (isDraggingRef.current) {
-        const startX = Math.min(dragStartXRef.current, chartX);
-        const endX = Math.max(dragStartXRef.current, chartX);
-        setSelection({
-          active: true,
-          endIndex: resolveIndexFromX(endX),
-          endX,
-          startIndex: resolveIndexFromX(startX),
-          startX,
-        });
-        return;
-      }
-
-      lastHoveredXRef.current = chartX;
-      const tooltip = resolveTooltipFromX(chartX);
+  const hoverAt = useCallback(
+    (point: ChartPoint) => {
+      lastHoveredRef.current = point;
+      const tooltip = resolveTooltip(point);
       if (tooltip) {
         scheduleTooltip(tooltip);
       }
     },
-    [getChartX, resolveTooltipFromX, resolveIndexFromX, scheduleTooltip]
+    [resolveTooltip, scheduleTooltip]
+  );
+
+  const selectRange = useCallback(
+    (fromX: number, toX: number) => {
+      const startX = Math.min(fromX, toX);
+      const endX = Math.max(fromX, toX);
+      setSelection({
+        active: true,
+        endIndex: Math.max(0, nearestIndexAtX(endX)),
+        endX,
+        startIndex: Math.max(0, nearestIndexAtX(startX)),
+        startX,
+      });
+    },
+    [nearestIndexAtX]
+  );
+
+  const handleMouseMove = useCallback(
+    (event: React.MouseEvent<SVGGElement>) => {
+      const point = getChartPoint(event);
+      if (!point) {
+        return;
+      }
+      if (isDraggingRef.current) {
+        selectRange(dragStartXRef.current, point.x);
+        return;
+      }
+      hoverAt(point);
+    },
+    [getChartPoint, selectRange, hoverAt]
   );
 
   const handleMouseLeave = useCallback(() => {
-    lastHoveredXRef.current = null;
+    lastHoveredRef.current = null;
     clearTooltip();
-    if (isDraggingRef.current) {
-      isDraggingRef.current = false;
-    }
+    isDraggingRef.current = false;
     setSelection(null);
   }, [clearTooltip]);
 
   const handleMouseDown = useCallback(
     (event: React.MouseEvent<SVGGElement>) => {
-      const chartX = getChartX(event);
-      if (chartX === null) {
+      const point = getChartPoint(event);
+      if (!point) {
         return;
       }
       isDraggingRef.current = true;
-      dragStartXRef.current = chartX;
+      dragStartXRef.current = point.x;
       clearTooltip();
       setSelection(null);
     },
-    [getChartX, clearTooltip]
+    [getChartPoint, clearTooltip]
   );
 
   const handleMouseUp = useCallback(() => {
-    if (isDraggingRef.current) {
-      isDraggingRef.current = false;
-    }
+    isDraggingRef.current = false;
     setSelection(null);
   }, []);
 
-  const handleTouchStart = useCallback(
-    (event: React.TouchEvent<SVGGElement>) => {
+  /** One finger hovers; two fingers select the range between them. */
+  const handleTouch = useCallback(
+    (event: React.TouchEvent<SVGGElement>, isStart: boolean) => {
       if (event.touches.length === 1) {
         event.preventDefault();
-        const chartX = getChartX(event, 0);
-        if (chartX === null) {
-          return;
-        }
-        lastHoveredXRef.current = chartX;
-        const tooltip = resolveTooltipFromX(chartX);
-        if (tooltip) {
-          scheduleTooltip(tooltip);
+        const point = getChartPoint(event, 0);
+        if (point) {
+          hoverAt(point);
         }
       } else if (event.touches.length === 2) {
         event.preventDefault();
-        resetTooltipDedupe();
-        clearTooltip();
-        const x0 = getChartX(event, 0);
-        const x1 = getChartX(event, 1);
-        if (x0 === null || x1 === null) {
-          return;
+        if (isStart) {
+          resetTooltipDedupe();
+          clearTooltip();
         }
-        const startX = Math.min(x0, x1);
-        const endX = Math.max(x0, x1);
-        setSelection({
-          active: true,
-          endIndex: resolveIndexFromX(endX),
-          endX,
-          startIndex: resolveIndexFromX(startX),
-          startX,
-        });
+        const first = getChartPoint(event, 0);
+        const second = getChartPoint(event, 1);
+        if (first && second) {
+          selectRange(first.x, second.x);
+        }
       }
     },
-    [
-      getChartX,
-      resolveTooltipFromX,
-      resolveIndexFromX,
-      scheduleTooltip,
-      resetTooltipDedupe,
-      clearTooltip,
-    ]
+    [getChartPoint, hoverAt, selectRange, resetTooltipDedupe, clearTooltip]
+  );
+
+  const handleTouchStart = useCallback(
+    (event: React.TouchEvent<SVGGElement>) => handleTouch(event, true),
+    [handleTouch]
   );
 
   const handleTouchMove = useCallback(
-    (event: React.TouchEvent<SVGGElement>) => {
-      if (event.touches.length === 1) {
-        event.preventDefault();
-        const chartX = getChartX(event, 0);
-        if (chartX === null) {
-          return;
-        }
-        lastHoveredXRef.current = chartX;
-        const tooltip = resolveTooltipFromX(chartX);
-        if (tooltip) {
-          scheduleTooltip(tooltip);
-        }
-      } else if (event.touches.length === 2) {
-        event.preventDefault();
-        const x0 = getChartX(event, 0);
-        const x1 = getChartX(event, 1);
-        if (x0 === null || x1 === null) {
-          return;
-        }
-        const startX = Math.min(x0, x1);
-        const endX = Math.max(x0, x1);
-        setSelection({
-          active: true,
-          endIndex: resolveIndexFromX(endX),
-          endX,
-          startIndex: resolveIndexFromX(startX),
-          startX,
-        });
-      }
-    },
-    [getChartX, resolveTooltipFromX, resolveIndexFromX, scheduleTooltip]
+    (event: React.TouchEvent<SVGGElement>) => handleTouch(event, false),
+    [handleTouch]
   );
 
   const handleTouchEnd = useCallback(() => {
@@ -344,16 +397,16 @@ export function useChartInteraction({
 
   // Re-anchor tooltip/crosshair when x-scale or visible data changes (e.g. brush zoom commit).
   useEffect(() => {
-    if (!canInteract || lastHoveredXRef.current === null) {
+    if (!canInteract || lastHoveredRef.current === null) {
       return;
     }
-    const tooltip = resolveTooltipFromX(lastHoveredXRef.current);
+    const tooltip = resolveTooltip(lastHoveredRef.current);
     if (tooltip) {
       scheduleTooltip(tooltip, `${tooltip.index}:${Math.round(tooltip.x)}`);
       return;
     }
     clearTooltip();
-  }, [canInteract, clearTooltip, resolveTooltipFromX, scheduleTooltip]);
+  }, [canInteract, clearTooltip, resolveTooltip, scheduleTooltip]);
 
   const interactionHandlers = canInteract
     ? {

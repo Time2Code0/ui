@@ -4,7 +4,6 @@ import type { Transition } from "motion/react";
 
 import { type ReactNode, useCallback, useEffect, useMemo } from "react";
 
-import { bisector } from "d3-array";
 import { scaleLinear, scaleTime } from "d3-scale";
 
 import { DEFAULT_ANIMATION_EASING } from "./animation";
@@ -25,8 +24,8 @@ import {
   type ScatterJitterOffsets,
   scatterJitterRangePadding,
 } from "./scatter-jitter";
+import { useChartInteraction } from "./use-chart-interaction";
 import { useRevealReplay } from "./use-reveal-replay";
-import { useScatterChartInteraction } from "./use-scatter-chart-interaction";
 import { buildYScalesForLines, getPrimaryYScale } from "./y-axis-scales";
 
 export interface ScatterChartInnerProps {
@@ -80,11 +79,6 @@ export function ScatterChartInner({
       return value instanceof Date ? value : new Date(value as string | number);
     },
     [xDataKey]
-  );
-
-  const bisectDate = useMemo(
-    () => bisector<Record<string, unknown>, Date>((d) => xAccessor(d)).left,
-    [xAccessor]
   );
 
   const baseRangePadding = useMemo(() => {
@@ -193,8 +187,7 @@ export function ScatterChartInner({
     clearSelection,
     interactionHandlers,
     interactionStyle,
-  } = useScatterChartInteraction({
-    bisectDate,
+  } = useChartInteraction({
     canInteract,
     data,
     jitter: jitterOffsets,
@@ -202,8 +195,8 @@ export function ScatterChartInner({
     margin,
     xAccessor,
     xScale,
-    yScale: yScale as ChartContextValue["yScale"],
-    yScales: yScales as ChartContextValue["yScales"],
+    yScale,
+    yScales,
   });
 
   const referenceAreas = useMemo(
