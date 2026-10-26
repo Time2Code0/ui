@@ -16,6 +16,7 @@ import {
 import { cn } from "cn";
 
 import { Area, type AreaProps } from "./area";
+import { getChartChildName } from "./chart-children";
 import { ParentSize } from "./chart-parent-size";
 import { Line, type LineProps } from "./line";
 import { SeriesBar, type SeriesBarProps } from "./series-bar";
@@ -50,13 +51,6 @@ export interface ComposedChartProps {
 
 const DEFAULT_MARGIN: Margin = { bottom: 40, left: 40, right: 40, top: 40 };
 
-function getChildComponentName(child: ReactElement): string {
-  const childType = child.type as { displayName?: string; name?: string };
-  return typeof child.type === "function"
-    ? childType.displayName || childType.name || ""
-    : "";
-}
-
 function upsertLineConfig(lines: LineConfig[], config: LineConfig): void {
   const index = lines.findIndex((line) => line.dataKey === config.dataKey);
   if (index === -1) {
@@ -72,7 +66,7 @@ function tryAppendSeriesBar(
   lines: LineConfig[],
   barDataKeys: string[]
 ): boolean {
-  const name = getChildComponentName(child);
+  const name = getChartChildName(child);
   if (!(child.type === SeriesBar || name === "SeriesBar")) {
     return false;
   }
@@ -90,7 +84,7 @@ function tryAppendSeriesBar(
 }
 
 function tryAppendLine(child: ReactElement, lines: LineConfig[]): boolean {
-  const name = getChildComponentName(child);
+  const name = getChartChildName(child);
   if (!(child.type === Line || name === "Line")) {
     return false;
   }
@@ -107,7 +101,7 @@ function tryAppendLine(child: ReactElement, lines: LineConfig[]): boolean {
 }
 
 function tryAppendArea(child: ReactElement, lines: LineConfig[]): boolean {
-  const name = getChildComponentName(child);
+  const name = getChartChildName(child);
   if (!(child.type === Area || name === "Area")) {
     return false;
   }

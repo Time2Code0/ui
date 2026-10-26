@@ -15,6 +15,7 @@ import { cn } from "cn";
 import useMeasure from "react-use-measure";
 
 import { DEFAULT_CHART_ENTER_TRANSITION } from "./animation";
+import { getChartChildName } from "./chart-children";
 import {
   defaultScatterColors,
   type LineConfig,
@@ -72,14 +73,7 @@ function extractScatterConfigs(children: ReactNode): LineConfig[] {
       return;
     }
 
-    const childType = child.type as {
-      displayName?: string;
-      name?: string;
-    };
-    const componentName =
-      typeof child.type === "function"
-        ? childType.displayName || childType.name || ""
-        : "";
+    const componentName = getChartChildName(child);
 
     const props = child.props as ScatterProps | undefined;
     const isScatterComponent =

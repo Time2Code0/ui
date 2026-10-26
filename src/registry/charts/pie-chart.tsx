@@ -20,6 +20,7 @@ import { arc as arcGenerator } from "@visx/shape";
 import { cn } from "cn";
 import { pie as d3Pie } from "d3-shape";
 
+import { getChartChildName, isChartDefComponent } from "./chart-children";
 import { ParentSize } from "./chart-parent-size";
 import {
   defaultPieColors,
@@ -115,29 +116,6 @@ function isPieCenter(child: ReactNode): boolean {
     typeof child.type === "function" &&
     ((child.type as { displayName?: string }).displayName === "PieCenter" ||
       (child.type as { name?: string }).name === "PieCenter")
-  );
-}
-
-function isPieSlice(child: ReactNode): boolean {
-  return (
-    isValidElement(child) &&
-    typeof child.type === "function" &&
-    ((child.type as { displayName?: string }).displayName === "PieSlice" ||
-      (child.type as { name?: string }).name === "PieSlice")
-  );
-}
-
-// Helper to check if a component is a gradient or pattern definition
-function isDefsComponent(child: ReactElement): boolean {
-  const displayName =
-    (child.type as { displayName?: string })?.displayName ||
-    (child.type as { name?: string })?.name ||
-    "";
-  return (
-    displayName.includes("Gradient") ||
-    displayName.includes("Pattern") ||
-    displayName === "LinearGradient" ||
-    displayName === "RadialGradient"
   );
 }
 
@@ -312,9 +290,9 @@ const PieChartCore = memo(function PieChartCore({
 
       if (isPieCenter(child)) {
         centerNodes.push(child);
-      } else if (isDefsComponent(child)) {
+      } else if (isChartDefComponent(child)) {
         defsNodes.push(child);
-      } else if (geometryScrubbing && isPieSlice(child)) {
+      } else if (geometryScrubbing && getChartChildName(child) === "PieSlice") {
       } else {
         svgNodes.push(child);
       }

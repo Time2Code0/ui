@@ -18,6 +18,7 @@ import { cn } from "cn";
 
 import { Area, type AreaProps } from "./area";
 import { AreaValueLabels } from "./area-value-labels";
+import { getChartChildName } from "./chart-children";
 import { ChartLoadingLabel } from "./chart-loading-label";
 import { ParentSize } from "./chart-parent-size";
 import {
@@ -81,14 +82,7 @@ function extractAreaConfigs(children: ReactNode): (LineConfig & AreaProps)[] {
       return;
     }
 
-    const childType = child.type as {
-      displayName?: string;
-      name?: string;
-    };
-    const componentName =
-      typeof child.type === "function"
-        ? childType.displayName || childType.name || ""
-        : "";
+    const componentName = getChartChildName(child);
 
     const props = child.props as AreaProps | undefined;
     const isPatternArea =

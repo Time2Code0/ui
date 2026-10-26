@@ -6,6 +6,8 @@ import {
   type ReactNode,
 } from "react";
 
+import { isChartDefComponent } from "./chart-children";
+
 export const DEFAULT_ACTIVE_GRADIENT: readonly [string, string] = [
   "#bef264",
   "#10b981",
@@ -35,24 +37,6 @@ export interface ComputedNotch {
   yCenter: number;
 }
 
-function isDefsComponent(child: ReactElement): boolean {
-  const typeLabel =
-    (child.type as { displayName?: string })?.displayName ||
-    (child.type as { name?: string })?.name ||
-    "";
-  return (
-    typeLabel.includes("Gradient") ||
-    typeLabel.includes("Pattern") ||
-    typeLabel === "LinearGradient" ||
-    typeLabel === "RadialGradient" ||
-    typeLabel === "Lines" ||
-    typeLabel === "PatternLines" ||
-    typeLabel === "Circles" ||
-    typeLabel === "Hexagons" ||
-    typeLabel === "Waves"
-  );
-}
-
 export function collectGaugeDefsElements(nodes: ReactNode): ReactElement[] {
   const out: ReactElement[] = [];
   Children.forEach(nodes, (child) => {
@@ -67,7 +51,7 @@ export function collectGaugeDefsElements(nodes: ReactNode): ReactElement[] {
       );
       return;
     }
-    if (isDefsComponent(child)) {
+    if (isChartDefComponent(child)) {
       out.push(child);
     }
   });

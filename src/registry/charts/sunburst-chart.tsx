@@ -19,6 +19,7 @@ import {
 
 import { animate, motion } from "motion/react";
 
+import { getChartChildName, isChartDefComponent } from "./chart-children";
 import {
   type ArcDatum,
   buildArcs,
@@ -39,24 +40,6 @@ export type { SunburstNode } from "./sunburst-data";
 
 const DEFAULT_HOVER_POP = 8;
 
-function componentDisplayName(child: ReactElement): string {
-  return (
-    (child.type as { displayName?: string }).displayName ||
-    (child.type as { name?: string }).name ||
-    ""
-  );
-}
-
-function isDefsComponent(child: ReactElement): boolean {
-  const name = componentDisplayName(child);
-  return (
-    name.includes("Gradient") ||
-    name.includes("Pattern") ||
-    name === "LinearGradient" ||
-    name === "RadialGradient"
-  );
-}
-
 function isOutsideSvgComponent(name: string): boolean {
   return name === "SunburstBreadcrumb" || name === "SunburstHint";
 }
@@ -65,7 +48,7 @@ function isSunburstSegment(
   child: ReactNode
 ): child is ReactElement<{ index: number }> {
   return (
-    isValidElement(child) && componentDisplayName(child) === "SunburstSegment"
+    isValidElement(child) && getChartChildName(child) === "SunburstSegment"
   );
 }
 
@@ -416,7 +399,7 @@ const SunburstChartCore = memo(function SunburstChartCore({
   const childArray = Children.toArray(children);
   const defsChildren = childArray.filter(
     (child): child is ReactElement =>
-      isValidElement(child) && isDefsComponent(child)
+      isValidElement(child) && isChartDefComponent(child)
   );
 
   const outsideChildren: ReactNode[] = [];
@@ -427,10 +410,10 @@ const SunburstChartCore = memo(function SunburstChartCore({
       svgChildren.push(child);
       continue;
     }
-    if (isDefsComponent(child)) {
+    if (isChartDefComponent(child)) {
       continue;
     }
-    const name = componentDisplayName(child);
+    const name = getChartChildName(child);
     if (isOutsideSvgComponent(name)) {
       outsideChildren.push(child);
     } else {
@@ -488,7 +471,7 @@ const SunburstChartCore = memo(function SunburstChartCore({
         {outsideChildren.filter(
           (child) =>
             isValidElement(child) &&
-            componentDisplayName(child) === "SunburstBreadcrumb"
+            getChartChildName(child) === "SunburstBreadcrumb"
         )}
         <div
           className="mx-auto w-full"
@@ -511,8 +494,7 @@ const SunburstChartCore = memo(function SunburstChartCore({
         </div>
         {outsideChildren.filter(
           (child) =>
-            isValidElement(child) &&
-            componentDisplayName(child) === "SunburstHint"
+            isValidElement(child) && getChartChildName(child) === "SunburstHint"
         )}
       </div>
     </SunburstProvider>

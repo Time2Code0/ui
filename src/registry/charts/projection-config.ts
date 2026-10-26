@@ -1,14 +1,7 @@
+import type { ReactNode } from "react";
 import type { ProjectionPoint } from "./projection-utils";
 
-import {
-  Children,
-  Fragment,
-  isValidElement,
-  type ReactElement,
-  type ReactNode,
-} from "react";
-
-import { isChartClipPassthrough } from "./chart-child-passthrough";
+import { getChartChildName, walkChartChildren } from "./chart-children";
 import {
   projectionDateExtents,
   projectionValueExtents,
@@ -23,17 +16,6 @@ export interface ProjectionLineConfig {
 interface ProjectionLineConfigProps {
   data?: ProjectionPoint[];
   yAxisId?: string | number;
-}
-
-function getChildComponentName(child: ReactElement) {
-  const childType = child.type as { displayName?: string; name?: string };
-  return typeof child.type === "function"
-    ? childType.displayName || childType.name || ""
-    : "";
-}
-
-function isProjectionLineElement(child: ReactElement): boolean {
-  return getChildComponentName(child) === "ProjectionLine";
 }
 
 function normalizeProjectionData(
@@ -53,43 +35,17 @@ export function extractProjectionLineConfigs(
   children: ReactNode
 ): ProjectionLineConfig[] {
   const configs: ProjectionLineConfig[] = [];
-
-  const visit = (node: ReactNode) => {
-    Children.forEach(node, (child) => {
-      if (!isValidElement(child)) {
-        return;
-      }
-
-      if (child.type === Fragment) {
-        visit((child.props as { children?: ReactNode }).children);
-        return;
-      }
-
-      if (isProjectionLineElement(child)) {
-        const props = child.props as ProjectionLineConfigProps | undefined;
-        const data = normalizeProjectionData(props?.data);
-        if (data.length >= 2) {
-          configs.push({
-            data,
-            yAxisId: normalizeYAxisId(props?.yAxisId),
-          });
-        }
-        return;
-      }
-
-      if (isChartClipPassthrough(child.type)) {
-        visit((child.props as { children?: ReactNode }).children);
-        return;
-      }
-
-      const childProps = child.props as { children?: ReactNode } | undefined;
-      if (childProps?.children) {
-        visit(childProps.children);
-      }
-    });
-  };
-
-  visit(children);
+  walkChartChildren(children, (child) => {
+    if (getChartChildName(child) !== "ProjectionLine") {
+      return false;
+    }
+    const props = child.props as ProjectionLineConfigProps | undefined;
+    const data = normalizeProjectionData(props?.data);
+    if (data.length >= 2) {
+      configs.push({ data, yAxisId: normalizeYAxisId(props?.yAxisId) });
+    }
+    return true;
+  });
   return configs;
 }
 

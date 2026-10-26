@@ -3,9 +3,6 @@
 import type { Transition } from "motion/react";
 
 import {
-  Children,
-  isValidElement,
-  type ReactElement,
   type ReactNode,
   useCallback,
   useEffect,
@@ -17,19 +14,13 @@ import { bisector } from "d3-array";
 import { scaleLinear, scaleTime } from "d3-scale";
 
 import { DEFAULT_ANIMATION_EASING } from "./animation";
-import {
-  isClipExcludedComponent,
-  isPostOverlayComponent,
-  isUnderlayComponent,
-  resolveLazyChartChild,
-} from "./chart-child-passthrough";
+import { partitionChartChildren } from "./chart-children";
 import {
   type ChartContextValue,
   ChartProvider,
   type LineConfig,
   type Margin,
 } from "./chart-context";
-import { isGradientDefComponent, isPatternDefComponent } from "./chart-defs";
 import { shortDateFmt } from "./chart-formatters";
 import { type ChartPhase, DEFAULT_CHART_LIFECYCLE } from "./chart-phase";
 import { extractReferenceAreaConfigs } from "./reference-area-config";
@@ -251,32 +242,7 @@ export function ScatterChartInner({
     return null;
   }
 
-  const defsChildren: ReactElement[] = [];
-  const clipExcludedChildren: ReactElement[] = [];
-  const underlayChildren: ReactElement[] = [];
-  const preOverlayChildren: ReactElement[] = [];
-  const postOverlayChildren: ReactElement[] = [];
-
-  Children.forEach(children, (rawChild) => {
-    if (!isValidElement(rawChild)) {
-      return;
-    }
-    const child = resolveLazyChartChild(rawChild);
-
-    if (isGradientDefComponent(child)) {
-      defsChildren.push(child);
-    } else if (isPatternDefComponent(child)) {
-      preOverlayChildren.push(child);
-    } else if (isPostOverlayComponent(child)) {
-      postOverlayChildren.push(child);
-    } else if (isClipExcludedComponent(child)) {
-      clipExcludedChildren.push(child);
-    } else if (isUnderlayComponent(child)) {
-      underlayChildren.push(child);
-    } else {
-      preOverlayChildren.push(child);
-    }
-  });
+  const layers = partitionChartChildren(children);
 
   const contextValue: ChartContextValue = {
     ...DEFAULT_CHART_LIFECYCLE,
@@ -317,7 +283,7 @@ export function ScatterChartInner({
           height={height}
           width={width}
         >
-          {defsChildren.length > 0 && <defs>{defsChildren}</defs>}
+          {layers.defs.length > 0 && <defs>{layers.defs}</defs>}
 
           <rect fill="transparent" height={height} width={width} x={0} y={0} />
 
@@ -334,10 +300,10 @@ export function ScatterChartInner({
               y={0}
             />
 
-            {clipExcludedChildren}
-            {underlayChildren}
-            {preOverlayChildren}
-            {postOverlayChildren}
+            {layers.clipExcluded}
+            {layers.underlay}
+            {layers.series}
+            {layers.postOverlay}
           </g>
         </svg>
       </ScatterJitterContext.Provider>

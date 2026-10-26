@@ -3,11 +3,7 @@
 import type { Transition } from "motion/react";
 
 import {
-  Children,
-  cloneElement,
-  isValidElement,
   memo,
-  type ReactElement,
   type ReactNode,
   useCallback,
   useEffect,
@@ -28,15 +24,8 @@ import {
   bandKeysByAxis,
   extractBandConfigs,
 } from "./band-config";
-import {
-  isClipExcludedComponent,
-  isPostOverlayComponent,
-  isUnderlayComponent,
-  renderableChartChild,
-  resolveChartChildElement,
-} from "./chart-child-passthrough";
+import { partitionChartChildren } from "./chart-children";
 import { ChartProvider, type LineConfig, type Margin } from "./chart-context";
-import { isGradientDefComponent, isPatternDefComponent } from "./chart-defs";
 import { shortDateFmt } from "./chart-formatters";
 import {
   type ChartPhase,
@@ -92,13 +81,6 @@ import {
  * `xDomain` viewport is set because series then extend past the plot edges.
  */
 const SERIES_CLIP_EDGE_BLEED = 24;
-
-function ensureChildKey(child: ReactElement, index: number): ReactElement {
-  if (child.key != null) {
-    return child;
-  }
-  return cloneElement(child, { key: `chart-child-${index}` });
-}
 
 export interface TimeSeriesChartInnerProps {
   animationDuration: number;
@@ -427,35 +409,7 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
     yScales,
   });
 
-  const defsChildren: ReactElement[] = [];
-  const clipExcludedChildren: ReactElement[] = [];
-  const underlayChildren: ReactElement[] = [];
-  const preOverlayChildren: ReactElement[] = [];
-  const postOverlayChildren: ReactElement[] = [];
-
-  Children.forEach(children, (child, index) => {
-    if (!isValidElement(child)) {
-      return;
-    }
-
-    const keyedChild = ensureChildKey(child, index);
-    const resolvedChild = resolveChartChildElement(keyedChild);
-    const renderChild = renderableChartChild(keyedChild);
-
-    if (isGradientDefComponent(resolvedChild)) {
-      defsChildren.push(renderChild);
-    } else if (isPatternDefComponent(resolvedChild)) {
-      preOverlayChildren.push(renderChild);
-    } else if (isPostOverlayComponent(resolvedChild)) {
-      postOverlayChildren.push(renderChild);
-    } else if (isClipExcludedComponent(resolvedChild)) {
-      clipExcludedChildren.push(renderChild);
-    } else if (isUnderlayComponent(resolvedChild)) {
-      underlayChildren.push(renderChild);
-    } else {
-      preOverlayChildren.push(renderChild);
-    }
-  });
+  const layers = partitionChartChildren(children);
 
   const [registeredReferenceAreas, setRegisteredReferenceAreas] = useState(
     () => new Map<string, ReferenceAreaConfig>()
@@ -622,7 +576,7 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
           width={width}
         >
           <defs>
-            {defsChildren}
+            {layers.defs}
             {useClipReveal ? (
               <ChartRevealClip
                 animating={isRevealAnimating || isRevealConcealing}
@@ -656,14 +610,14 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
               y={0}
             />
 
-            {clipExcludedChildren}
-            {underlayChildren}
+            {layers.clipExcluded}
+            {layers.underlay}
             {useClipReveal ? (
-              <g clipPath={`url(#${uniqueClipPathId})`}>{preOverlayChildren}</g>
+              <g clipPath={`url(#${uniqueClipPathId})`}>{layers.series}</g>
             ) : (
-              preOverlayChildren
+              layers.series
             )}
-            {postOverlayChildren}
+            {layers.postOverlay}
           </g>
         </svg>
       </ChartProvider>

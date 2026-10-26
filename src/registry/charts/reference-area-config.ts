@@ -1,10 +1,6 @@
-import {
-  Children,
-  isValidElement,
-  type ReactElement,
-  type ReactNode,
-} from "react";
+import type { ReactNode } from "react";
 
+import { getChartChildName, walkChartChildren } from "./chart-children";
 import { normalizeYAxisId } from "./y-axis-scales";
 
 export interface ReferenceAreaConfig {
@@ -21,49 +17,25 @@ interface ReferenceAreaConfigProps {
   yAxisId?: string | number;
 }
 
-function getChildComponentName(child: ReactElement) {
-  const childType = child.type as { displayName?: string; name?: string };
-  return typeof child.type === "function"
-    ? childType.displayName || childType.name || ""
-    : "";
-}
-
-function isReferenceAreaElement(child: ReactElement): boolean {
-  return getChildComponentName(child) === "ReferenceArea";
-}
-
 /** Collect {@link ReferenceArea} props from chart children for axis label styling. */
 export function extractReferenceAreaConfigs(
   children: ReactNode
 ): ReferenceAreaConfig[] {
   const configs: ReferenceAreaConfig[] = [];
-
-  const visit = (node: ReactNode) => {
-    Children.forEach(node, (child) => {
-      if (!isValidElement(child)) {
-        return;
-      }
-
-      if (isReferenceAreaElement(child)) {
-        const props = child.props as ReferenceAreaConfigProps | undefined;
-        if (props) {
-          configs.push({
-            axisLabelColor: props.axisLabelColor,
-            y1: props.y1,
-            y2: props.y2,
-            yAxisId: normalizeYAxisId(props.yAxisId),
-          });
-        }
-        return;
-      }
-
-      const childProps = child.props as { children?: ReactNode } | undefined;
-      if (childProps?.children) {
-        visit(childProps.children);
-      }
-    });
-  };
-
-  visit(children);
+  walkChartChildren(children, (child) => {
+    if (getChartChildName(child) !== "ReferenceArea") {
+      return false;
+    }
+    const props = child.props as ReferenceAreaConfigProps | undefined;
+    if (props) {
+      configs.push({
+        axisLabelColor: props.axisLabelColor,
+        y1: props.y1,
+        y2: props.y2,
+        yAxisId: normalizeYAxisId(props.yAxisId),
+      });
+    }
+    return true;
+  });
   return configs;
 }

@@ -4,9 +4,7 @@ import type { Transition } from "motion/react";
 import type { LineConfig, Margin } from "./chart-context";
 
 import {
-  Children,
   type CSSProperties,
-  isValidElement,
   type ReactElement,
   type ReactNode,
   useCallback,
@@ -17,6 +15,7 @@ import {
 
 import { cn } from "cn";
 
+import { getChartChildName, walkChartChildren } from "./chart-children";
 import { ChartLoadingLabel } from "./chart-loading-label";
 import { ParentSize } from "./chart-parent-size";
 import {
@@ -84,13 +83,6 @@ const LINE_DOMAIN_EXCLUDED_NAMES = new Set([
   "TrendLine",
 ]);
 
-function getChildComponentName(child: ReactElement) {
-  const childType = child.type as { displayName?: string; name?: string };
-  return typeof child.type === "function"
-    ? childType.displayName || childType.name || ""
-    : "";
-}
-
 function registersLineDomain(
   child: ReactElement,
   props: LineProps | undefined
@@ -99,7 +91,7 @@ function registersLineDomain(
     return false;
   }
 
-  const componentName = getChildComponentName(child);
+  const componentName = getChartChildName(child);
   if (componentName === "Line" || child.type === Line) {
     return true;
   }
@@ -112,33 +104,19 @@ function registersLineDomain(
 
 function extractLineConfigs(children: ReactNode): LineConfig[] {
   const configs: LineConfig[] = [];
-
-  const visit = (node: ReactNode) => {
-    Children.forEach(node, (child) => {
-      if (!isValidElement(child)) {
-        return;
-      }
-
-      const props = child.props as LineProps | undefined;
-
-      if (registersLineDomain(child, props) && props?.dataKey) {
-        configs.push({
-          dataKey: props.dataKey,
-          stroke: props.stroke || "var(--chart-line-primary)",
-          strokeWidth: props.strokeWidth || 2.5,
-          yAxisId: props.yAxisId,
-        });
-        return;
-      }
-
-      const childProps = child.props as { children?: ReactNode } | undefined;
-      if (childProps?.children) {
-        visit(childProps.children);
-      }
+  walkChartChildren(children, (child) => {
+    const props = child.props as LineProps | undefined;
+    if (!(registersLineDomain(child, props) && props?.dataKey)) {
+      return false;
+    }
+    configs.push({
+      dataKey: props.dataKey,
+      stroke: props.stroke || "var(--chart-line-primary)",
+      strokeWidth: props.strokeWidth || 2.5,
+      yAxisId: props.yAxisId,
     });
-  };
-
-  visit(children);
+    return true;
+  });
   return configs;
 }
 

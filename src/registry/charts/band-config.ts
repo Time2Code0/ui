@@ -1,14 +1,7 @@
+import type { ReactNode } from "react";
 import type { BandConfig } from "./chart-context";
 
-import {
-  Children,
-  Fragment,
-  isValidElement,
-  type ReactElement,
-  type ReactNode,
-} from "react";
-
-import { isChartClipPassthrough } from "./chart-child-passthrough";
+import { getChartChildName, walkChartChildren } from "./chart-children";
 import { normalizeYAxisId } from "./y-axis-scales";
 
 export type { BandConfig } from "./chart-context";
@@ -52,51 +45,21 @@ function bandConfigFromProps(
   };
 }
 
-function getChildComponentName(child: ReactElement) {
-  const childType = child.type as { displayName?: string; name?: string };
-  return typeof child.type === "function"
-    ? childType.displayName || childType.name || ""
-    : "";
-}
-
 /** Collect `<Band>` props from chart children so band edges extend the y-domain. */
 export function extractBandConfigs(children: ReactNode): BandConfig[] {
   const configs: BandConfig[] = [];
-
-  const visit = (node: ReactNode) => {
-    Children.forEach(node, (child) => {
-      if (!isValidElement(child)) {
-        return;
-      }
-
-      if (child.type === Fragment) {
-        visit((child.props as { children?: ReactNode }).children);
-        return;
-      }
-
-      if (getChildComponentName(child) === "Band") {
-        const config = bandConfigFromProps(
-          child.props as BandConfigProps | undefined
-        );
-        if (config) {
-          configs.push(config);
-        }
-        return;
-      }
-
-      if (isChartClipPassthrough(child.type)) {
-        visit((child.props as { children?: ReactNode }).children);
-        return;
-      }
-
-      const childProps = child.props as { children?: ReactNode } | undefined;
-      if (childProps?.children) {
-        visit(childProps.children);
-      }
-    });
-  };
-
-  visit(children);
+  walkChartChildren(children, (child) => {
+    if (getChartChildName(child) !== "Band") {
+      return false;
+    }
+    const config = bandConfigFromProps(
+      child.props as BandConfigProps | undefined
+    );
+    if (config) {
+      configs.push(config);
+    }
+    return true;
+  });
   return configs;
 }
 

@@ -22,19 +22,16 @@ import { DEFAULT_ANIMATION_EASING } from "./animation";
 import { topSquareCenterY } from "./bar-squares-layout";
 import {
   forEachChartChild,
-  isClipExcludedComponent,
-  isPostOverlayComponent,
-  isUnderlayComponent,
-  renderKeyedChartLayers,
+  getChartChildName,
+  partitionChartChildren,
   resolveChartChildElement,
-} from "./chart-child-passthrough";
+} from "./chart-children";
 import {
   ChartProvider,
   type LineConfig,
   type Margin,
   type TooltipData,
 } from "./chart-context";
-import { isGradientDefComponent, isPatternDefComponent } from "./chart-defs";
 import { shortDateFmt } from "./chart-formatters";
 import { ParentSize } from "./chart-parent-size";
 import {
@@ -108,35 +105,19 @@ export interface BarChartProps {
 
 const DEFAULT_MARGIN: Margin = { bottom: 40, left: 40, right: 40, top: 40 };
 
-function isSeriesOverlayComponent(child: ReactElement): boolean {
-  const childType = child.type as { displayName?: string; name?: string };
-  const componentName =
-    typeof child.type === "function"
-      ? childType.displayName || childType.name || ""
-      : "";
-  return componentName === "TrendLine";
-}
-
 // Extract bar configs from children synchronously
 function extractBarConfigs(children: ReactNode): LineConfig[] {
   const configs: LineConfig[] = [];
 
   forEachChartChild(children, (child) => {
-    const childType = child.type as {
-      displayName?: string;
-      name?: string;
-      __isBarDepthLayer?: boolean;
-    };
+    const childType = child.type as { __isBarDepthLayer?: boolean };
     // Bar-depth surface layers (BarDepthBack/Front, BarPulse) carry a
     // `dataKey` to pair with a Bar but are not series themselves — skip them
     // so they don't inflate the series count and shrink the real bars.
     if (childType.__isBarDepthLayer) {
       return;
     }
-    const componentName =
-      typeof child.type === "function"
-        ? childType.displayName || childType.name || ""
-        : "";
+    const componentName = getChartChildName(child);
     // Trend overlays fit an existing series — not a bar series themselves.
     if (componentName === "TrendLine") {
       return;
@@ -560,33 +541,12 @@ const ChartCore = memo(function ChartCore({
   const canInteract = isLoaded;
 
   // Separate children into defs, pre-overlay, and post-overlay
-  const defsChildren: ReactElement[] = [];
-  const clipExcludedChildren: ReactElement[] = [];
-  const underlayChildren: ReactElement[] = [];
-  const preOverlayChildren: ReactElement[] = [];
+  const layers = partitionChartChildren(children);
   // Trend lines draw above every bar regardless of child order.
-  const seriesOverlayChildren: ReactElement[] = [];
-  const postOverlayChildren: ReactElement[] = [];
-
-  forEachChartChild(children, (child) => {
-    const resolvedChild = resolveChartChildElement(child);
-
-    if (isGradientDefComponent(child)) {
-      defsChildren.push(child);
-    } else if (isPatternDefComponent(child)) {
-      preOverlayChildren.push(child);
-    } else if (isPostOverlayComponent(resolvedChild)) {
-      postOverlayChildren.push(child);
-    } else if (isClipExcludedComponent(resolvedChild)) {
-      clipExcludedChildren.push(child);
-    } else if (isUnderlayComponent(resolvedChild)) {
-      underlayChildren.push(child);
-    } else if (isSeriesOverlayComponent(resolvedChild)) {
-      seriesOverlayChildren.push(child);
-    } else {
-      preOverlayChildren.push(child);
-    }
-  });
+  const isTrendLine = (child: ReactElement) =>
+    getChartChildName(resolveChartChildElement(child)) === "TrendLine";
+  const bars = layers.series.filter((child) => !isTrendLine(child));
+  const trendLines = layers.series.filter(isTrendLine);
 
   const referenceAreas = useMemo(
     () => extractReferenceAreaConfigs(children),
@@ -642,7 +602,7 @@ const ChartCore = memo(function ChartCore({
         width={width}
       >
         {/* Gradient and pattern definitions */}
-        {defsChildren.length > 0 && <defs>{defsChildren}</defs>}
+        {layers.defs.length > 0 && <defs>{layers.defs}</defs>}
 
         <rect fill="transparent" height={height} width={width} x={0} y={0} />
 
@@ -662,8 +622,8 @@ const ChartCore = memo(function ChartCore({
             y={0}
           />
 
-          {renderKeyedChartLayers(clipExcludedChildren)}
-          {renderKeyedChartLayers(underlayChildren)}
+          {layers.clipExcluded}
+          {layers.underlay}
           {status === "loading" ? (
             <BarLoadingSkeleton
               barCount={data.length || FALLBACK_LOADING_BARS}
@@ -673,13 +633,13 @@ const ChartCore = memo(function ChartCore({
             />
           ) : (
             <>
-              {renderKeyedChartLayers(preOverlayChildren)}
-              {renderKeyedChartLayers(seriesOverlayChildren)}
+              {bars}
+              {trendLines}
             </>
           )}
 
           {/* Markers rendered last so they're on top for interaction */}
-          {renderKeyedChartLayers(postOverlayChildren)}
+          {layers.postOverlay}
         </g>
       </svg>
     </ChartProvider>

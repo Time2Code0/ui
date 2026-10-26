@@ -8,19 +8,12 @@ import type {
 
 import { Children, isValidElement } from "react";
 
-import { resolveChartChildElement } from "../chart-child-passthrough";
+import { getChartChildName, resolveChartChildElement } from "../chart-children";
 import {
   HEATMAP_SEPARATOR_MARKER,
   HeatmapSeparator,
 } from "./heatmap-separator";
 import { resolveHeatmapSeparatorLayout } from "./heatmap-utils";
-
-function getChildComponentName(child: ReactElement): string {
-  const childType = child.type as { displayName?: string; name?: string };
-  return typeof child.type === "function"
-    ? childType.displayName || childType.name || ""
-    : "";
-}
 
 function isHeatmapSeparatorElement(child: ReactElement): boolean {
   const resolved = resolveChartChildElement(child);
@@ -28,7 +21,7 @@ function isHeatmapSeparatorElement(child: ReactElement): boolean {
   return (
     resolved.type === HeatmapSeparator ||
     type[HEATMAP_SEPARATOR_MARKER] === true ||
-    getChildComponentName(resolved) === "HeatmapSeparator"
+    getChartChildName(resolved) === "HeatmapSeparator"
   );
 }
 

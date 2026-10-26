@@ -116,7 +116,7 @@ export {
   chartCenterLabelClassName,
   chartCenterValueClassName,
 } from "@/registry/charts/chart-center-typography";
-export { CHART_CLIP_PASSTHROUGH } from "@/registry/charts/chart-child-passthrough";
+export { CHART_CLIP_PASSTHROUGH } from "@/registry/charts/chart-children";
 export {
   ChartConfigProvider,
   type ChartConfigProviderProps,

@@ -6,7 +6,6 @@ import {
   Children,
   isValidElement,
   memo,
-  type ReactElement,
   type ReactNode,
   startTransition,
   useCallback,
@@ -21,10 +20,7 @@ import { scaleLinear, scaleTime } from "@visx/scale";
 import { cn } from "cn";
 import { bisector } from "d3-array";
 
-import {
-  isClipExcludedComponent,
-  isUnderlayComponent,
-} from "./chart-child-passthrough";
+import { getChartChildName, partitionChartChildren } from "./chart-children";
 import {
   ChartProvider,
   type LineConfig,
@@ -195,11 +191,7 @@ function extractLiveLineConfigs(children: ReactNode): LineConfig[] {
     if (!isValidElement(child)) {
       return;
     }
-    const childType = child.type as { displayName?: string; name?: string };
-    const name =
-      typeof child.type === "function"
-        ? childType.displayName || childType.name || ""
-        : "";
+    const name = getChartChildName(child);
     const props = child.props as LiveLineProps | undefined;
     if (
       (name === "LiveLine" || (props && "dataKey" in props)) &&
@@ -538,21 +530,7 @@ const LiveLineChartCore = memo(function LiveLineChartCore({
     return innerWidth / (contextData.length - 1);
   }, [innerWidth, contextData.length]);
 
-  const clipExcludedChildren: ReactElement[] = [];
-  const underlayChildren: ReactElement[] = [];
-  const seriesChildren: ReactElement[] = [];
-  Children.forEach(children, (child) => {
-    if (!isValidElement(child)) {
-      return;
-    }
-    if (isClipExcludedComponent(child)) {
-      clipExcludedChildren.push(child);
-    } else if (isUnderlayComponent(child)) {
-      underlayChildren.push(child);
-    } else {
-      seriesChildren.push(child);
-    }
-  });
+  const layers = partitionChartChildren(children);
 
   const referenceAreas = useMemo(
     () => extractReferenceAreaConfigs(children),
@@ -591,6 +569,7 @@ const LiveLineChartCore = memo(function LiveLineChartCore({
         height={height}
         width={width}
       >
+        {layers.defs.length > 0 && <defs>{layers.defs}</defs>}
         {/* biome-ignore lint/a11y/noStaticElementInteractions: SVG group for mouse tracking */}
         <g
           onMouseLeave={handleMouseLeave}
@@ -605,9 +584,10 @@ const LiveLineChartCore = memo(function LiveLineChartCore({
             x={0}
             y={0}
           />
-          {clipExcludedChildren}
-          {underlayChildren}
-          {seriesChildren}
+          {layers.clipExcluded}
+          {layers.underlay}
+          {layers.series}
+          {layers.postOverlay}
         </g>
       </svg>
     </ChartProvider>

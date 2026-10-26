@@ -3,10 +3,7 @@
 import type { Transition } from "motion/react";
 
 import {
-  Children,
-  isValidElement,
   memo,
-  type ReactElement,
   type ReactNode,
   useCallback,
   useEffect,
@@ -19,13 +16,7 @@ import { scaleLinear, scaleTime } from "@visx/scale";
 import { cn } from "cn";
 import { bisector } from "d3-array";
 
-import {
-  isClipExcludedComponent,
-  isPostOverlayComponent,
-  isUnderlayComponent,
-  renderableChartChild,
-  resolveChartChildElement,
-} from "./chart-child-passthrough";
+import { partitionChartChildren } from "./chart-children";
 import { ChartProvider, type LineConfig, type Margin } from "./chart-context";
 import { shortDateFmt } from "./chart-formatters";
 import { ParentSize } from "./chart-parent-size";
@@ -246,44 +237,7 @@ const ChartCore = memo(function ChartCore({
 
   const hoveredCandleIndex = tooltipData?.index ?? null;
 
-  const isDefsComponent = (child: ReactElement): boolean => {
-    const displayName =
-      (child.type as { displayName?: string })?.displayName ||
-      (child.type as { name?: string })?.name ||
-      "";
-    return (
-      displayName.includes("Gradient") ||
-      displayName.includes("Pattern") ||
-      displayName === "LinearGradient" ||
-      displayName === "RadialGradient" ||
-      displayName === "Lines" ||
-      displayName === "PatternLines"
-    );
-  };
-
-  const defsChildren: ReactElement[] = [];
-  const clipExcludedChildren: ReactElement[] = [];
-  const underlayChildren: ReactElement[] = [];
-  const preOverlayChildren: ReactElement[] = [];
-  const postOverlayChildren: ReactElement[] = [];
-  Children.forEach(children, (rawChild) => {
-    if (!isValidElement(rawChild)) {
-      return;
-    }
-    const child = renderableChartChild(rawChild);
-    const resolvedChild = resolveChartChildElement(rawChild);
-    if (isDefsComponent(resolvedChild)) {
-      defsChildren.push(child);
-    } else if (isPostOverlayComponent(resolvedChild)) {
-      postOverlayChildren.push(child);
-    } else if (isClipExcludedComponent(resolvedChild)) {
-      clipExcludedChildren.push(child);
-    } else if (isUnderlayComponent(resolvedChild)) {
-      underlayChildren.push(child);
-    } else {
-      preOverlayChildren.push(child);
-    }
-  });
+  const layers = partitionChartChildren(children);
 
   const referenceAreas = useMemo(
     () => extractReferenceAreaConfigs(children),
@@ -352,7 +306,7 @@ const ChartCore = memo(function ChartCore({
               stopColor="var(--chart-negative, var(--color-red-500))"
             />
           </linearGradient>
-          {defsChildren}
+          {layers.defs}
         </defs>
         <rect fill="transparent" height={height} width={width} x={0} y={0} />
         <g
@@ -367,10 +321,10 @@ const ChartCore = memo(function ChartCore({
             x={0}
             y={0}
           />
-          {clipExcludedChildren}
-          {underlayChildren}
-          {preOverlayChildren}
-          {postOverlayChildren}
+          {layers.clipExcluded}
+          {layers.underlay}
+          {layers.series}
+          {layers.postOverlay}
         </g>
       </svg>
     </ChartProvider>
