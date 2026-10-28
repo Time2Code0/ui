@@ -14,21 +14,21 @@ import {
 export type BackgroundPatternPreset = PatternPresetId;
 
 export interface BackgroundProps extends PatternPresetOptions {
-  /** Pattern stroke color. Default: `var(--chart-grid)` */
+  /** Pattern stroke color. @default color-mix(in oklab, var(--color-foreground) 10%, transparent) */
   color?: string;
-  /** Fade pattern at the left and right chart edges. Default: true */
+  /** Fade pattern at the left and right chart edges. @default true */
   fadeHorizontal?: boolean;
-  /** Horizontal fade zone as % of plot width per edge. Default: 10 */
+  /** Horizontal fade zone as % of plot width per edge. @default 10 */
   fadeHorizontalLength?: number;
-  /** Fade pattern at the top and bottom chart edges. Default: true */
+  /** Fade pattern at the top and bottom chart edges. @default true */
   fadeVertical?: boolean;
-  /** Vertical fade zone as % of plot height per edge. Default: 10 */
+  /** Vertical fade zone as % of plot height per edge. @default 10 */
   fadeVerticalLength?: number;
-  /** Pattern fill opacity. Default: 1 */
+  /** Pattern fill opacity. @default 1 */
   opacity?: number;
-  /** Pattern preset. `"none"` renders nothing. */
+  /** Pattern preset. `"none"` renders nothing. @default "diagonal" */
   pattern?: BackgroundPatternPreset;
-  /** Apply the pattern texture to the plot area. Default: true */
+  /** Apply the pattern texture to the plot area. @default true */
   showFill?: boolean;
 }
 
@@ -54,7 +54,7 @@ function fadeMaskStops(lengthPercent: number): Array<{
 /** Plot-area pattern fill for charts without a grid. Renders behind series layers. */
 export function Background({
   pattern = "diagonal",
-  color = "var(--chart-grid)",
+  color = "color-mix(in oklab, var(--color-foreground) 10%, transparent)",
   scale = 1,
   strokeWidth,
   radius,

@@ -13,26 +13,26 @@ import { transitionWithDelay } from "./motion-utils";
 const DEFAULT_POSITIVE = "url(#candlestick-positive)";
 const DEFAULT_NEGATIVE = "url(#candlestick-negative)";
 
-const SOLID_POSITIVE = "var(--chart-positive, var(--color-emerald-500))";
-const SOLID_NEGATIVE = "var(--chart-negative, var(--color-red-500))";
+const SOLID_POSITIVE = "var(--color-success-foreground)";
+const SOLID_NEGATIVE = "var(--color-destructive-foreground)";
 const WICK_WIDTH = 1.5;
 
 export interface CandlestickProps {
-  /** Whether to animate the candlesticks. Default: true */
+  /** Whether to animate the candlesticks. @default true */
   animate?: boolean;
   /** Optional pattern URL for negative candle body. */
   bodyPatternNegative?: string;
   /** Optional pattern URL for body only (e.g. url(#pattern)). When set, body is drawn solid first, then pattern overlaid and masked to the body rect. */
   bodyPatternPositive?: string;
-  /** Opacity when another candle is hovered. Default: 0.3 */
+  /** Opacity when another candle is hovered. @default 0.3 */
   fadedOpacity?: number;
-  /** Inner border width on the body (drawn inside so it does not expand the shape). Default: 0 (off). */
+  /** Inner border width on the body (drawn inside so it does not expand the shape). @default 0 */
   insideStrokeWidth?: number;
-  /** Fill for negative candles. Color or url(#gradient). Default: --chart-negative (red) */
+  /** Fill for negative candles. Color or url(#gradient). @default --color-destructive-foreground */
   negativeFill?: string;
-  /** Fill for positive (close >= open) candles. Color or url(#gradient). Default: --chart-positive (emerald) */
+  /** Fill for positive (close >= open) candles. Color or url(#gradient). @default --color-success-foreground */
   positiveFill?: string;
-  /** Dim non-hovered candles on hover. Default: true */
+  /** Dim non-hovered candles on hover. @default true */
   showHoverFade?: boolean;
 }
 

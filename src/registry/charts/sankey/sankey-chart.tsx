@@ -32,9 +32,9 @@ export interface SankeyData {
 }
 
 export interface SankeyChartProps {
-  /** Animation duration in milliseconds. Default: 1100 */
+  /** Animation duration in milliseconds. @default 1100 */
   animationDuration?: number;
-  /** Aspect ratio as "width / height". Default: "2 / 1" */
+  /** Aspect ratio as "width / height". @default "2 / 1" */
   aspectRatio?: string;
   /** Child components (SankeyNode, SankeyLink, SankeyTooltip) */
   children: ReactNode;
@@ -46,15 +46,15 @@ export interface SankeyChartProps {
   enterTransition?: Transition;
   /** Controlled hovered node index (e.g. from ChartLegend). */
   hoveredNodeIndex?: number | null;
-  /** Chart margins */
+  /** Chart margins @default { top: 40, right: 180, bottom: 40, left: 180 } */
   margin?: Partial<Margin>;
-  /** Node padding in pixels. Default: 24 */
+  /** Node padding in pixels. @default 24 */
   nodePadding?: number;
-  /** Node width in pixels. Default: 16 */
+  /** Node width in pixels. @default 16 */
   nodeWidth?: number;
   /** Called when node hover changes from the chart surface. */
   onNodeHoverChange?: (index: number | null) => void;
-  /** Signature of motion URL state — triggers enter replay when it changes. */
+  /** Signature of motion URL state — triggers enter replay when it changes. @internal */
   revealSignature?: string;
 }
 

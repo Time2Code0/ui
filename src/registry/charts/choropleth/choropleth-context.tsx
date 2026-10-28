@@ -248,14 +248,14 @@ import { CHART_SCALE_VARS, chartScaleCssVars } from "../chart-scale";
 
 // CSS variables for choropleth theming
 export const choroplethCssVars = {
-  background: "var(--background)",
+  background: "var(--color-background)",
   patternColor: chartScaleCssVars.patternColor,
   scale01: chartScaleCssVars.scale01,
   scale02: chartScaleCssVars.scale02,
   scale03: chartScaleCssVars.scale03,
   scale04: chartScaleCssVars.scale04,
   scale05: chartScaleCssVars.scale05,
-  stroke: "var(--chart-grid)",
+  stroke: "color-mix(in oklab, var(--color-foreground) 10%, transparent)",
 };
 
 // Default colors array for cycling through features

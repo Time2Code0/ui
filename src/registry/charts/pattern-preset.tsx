@@ -19,13 +19,23 @@ export type PatternPresetId = (typeof PATTERN_PRESET_IDS)[number];
 
 export interface PatternPresetOptions {
   color?: string;
+  /** Alternate tile fill for circle patterns @default false */
   complement?: boolean;
-  /** Dot grid only — when false, render hollow dots (stroke only). Default: true */
+  /** Dot grid only — when false, render hollow dots (stroke only). @default true */
   dotFill?: boolean;
+  /** Solid fill inside circles */
   fill?: string;
+  /**
+   * Dot or circle radius for `dots` / `circles`. Defaults to the preset value.
+   */
   radius?: number;
+  /** Tile scale multiplier @default 1 */
   scale?: number;
+  /**
+   * Line stroke width for line-based patterns. Defaults to the preset value.
+   */
   strokeWidth?: number;
+  /** Background color inside each pattern tile */
   tileBackground?: string;
 }
 
@@ -113,7 +123,7 @@ export function renderPatternPreset(
     return null;
   }
 
-  const color = options.color ?? "var(--chart-1)";
+  const color = options.color ?? "var(--color-chart-1)";
   const scale = options.scale ?? 1;
   const tile = patternPresetTileSize(preset, scale);
   const common = {

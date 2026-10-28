@@ -29,7 +29,7 @@ export interface ChartMarker {
   icon: React.ReactNode;
   /** Click handler */
   onClick?: () => void;
-  /** Open href in new tab. Default: false */
+  /** Open href in new tab. @default false */
   target?: "_blank" | "_self";
   /** Title shown in tooltip */
   title: string;
@@ -46,7 +46,8 @@ export interface MarkerGroupProps {
    */
   borderColor?: string;
   /**
-   * Marker circle stroke width in px. Default 1.5.
+   * Marker circle stroke width in px.
+   * @default 1.5
    */
   borderWidth?: number;
   /** Reference to chart container for portal positioning */
@@ -87,7 +88,7 @@ export interface MarkerGroupProps {
   maxFanned?: number;
   /** Callback when marker group is hovered */
   onHover?: (markers: ChartMarker[] | null) => void;
-  /** Whether to show the vertical guide line. Default: true */
+  /** Whether to show the vertical guide line. @default true */
   showLine?: boolean;
   /** Size of each marker circle */
   size?: number;

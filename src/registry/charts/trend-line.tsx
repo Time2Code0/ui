@@ -29,30 +29,31 @@ import {
 export type TrendLineStrokeStyle = "solid" | "gradient" | "dashed";
 
 export interface TrendLineProps {
-  /** Fade in on reveal and tween on data change. Default: true */
+  /** Fade in on reveal and tween on data change. @default true */
   animate?: boolean;
+  /** Class on the wrapping `<g>` @default "chart-trend-line" */
   className?: string;
   /** Series key to fit (linear least-squares). */
   dataKey: string;
-  /** Fade the line ends to transparent. Default: false */
+  /** Fade the line ends to transparent. @default false */
   fadeEdges?: FadeEdges;
-  /** Fade zone as % of line length per faded end. Default: 15 */
+  /** Fade zone as % of line length per faded end. @default 15 */
   fadeEdgesLength?: number;
-  /** Gradient end color when `strokeStyle` is gradient. Default: var(--chart-5) */
+  /** Gradient end color when `strokeStyle` is gradient. @default var(--color-chart-5) */
   gradientEnd?: string;
-  /** Gradient start color when `strokeStyle` is gradient. Default: `stroke` */
+  /** Gradient start color when `strokeStyle` is gradient. @default stroke */
   gradientStart?: string;
-  /** Line opacity. Default: 1 */
+  /** Line opacity. @default 1 */
   opacity?: number;
-  /** Stroke color. Default: var(--chart-line-primary) */
+  /** Stroke color. @default var(--color-chart-1) */
   stroke?: string;
-  /** Dash pattern when `strokeStyle` is `"dashed"`. Default: "6,4" */
+  /** Dash pattern when `strokeStyle` is `"dashed"`. @default "6,4" */
   strokeDasharray?: string;
-  /** Solid, dashed, or path-aligned gradient stroke. Default: dashed */
+  /** Solid, dashed, or path-aligned gradient stroke. @default "dashed" */
   strokeStyle?: TrendLineStrokeStyle;
-  /** Stroke width. Default: 2 */
+  /** Stroke width. @default 2 */
   strokeWidth?: number;
-  /** Y-scale group id. Default: `"left"`. */
+  /** Y-scale group id. @default "left" */
   yAxisId?: string;
 }
 
@@ -265,7 +266,7 @@ export function TrendLine({
   strokeStyle = "dashed",
   strokeDasharray = "6,4",
   gradientStart,
-  gradientEnd = "var(--chart-5)",
+  gradientEnd = "var(--color-chart-5)",
   fadeEdges = false,
   fadeEdgesLength = 15,
   opacity = 1,

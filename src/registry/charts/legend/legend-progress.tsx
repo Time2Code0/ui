@@ -6,7 +6,7 @@ import { cn } from "cn";
 import { useLegendItem } from "./legend-context";
 
 export interface LegendProgressProps {
-  /** Track height. Default: "h-1.5" */
+  /** Track height. @default "h-1.5" */
   height?: string;
   /** Indicator class name */
   indicatorClassName?: string;
@@ -30,7 +30,7 @@ export function LegendProgress({
     <Progress.Root max={item.maxValue} value={item.value}>
       <Progress.Track
         className={cn(
-          "w-full overflow-hidden rounded-full bg-legend-track",
+          "w-full overflow-hidden rounded-full bg-foreground/10",
           height,
           trackClassName
         )}

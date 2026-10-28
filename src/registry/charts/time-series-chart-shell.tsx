@@ -126,7 +126,7 @@ export interface TimeSeriesChartInnerProps {
   xDomain?: [Date, Date];
   /** Full dataset length for x-scale padding when `xDomain` is set. */
   xDomainSlotCount?: number;
-  /** Animate y-domain on status / data transitions. Default: true */
+  /** Animate y-domain on status / data transitions. @default true */
   yDomainTween?: boolean;
   yDomainTweenDuration?: number;
   /** When set, drives the y-axis max instead of scanning `lines` (e.g. stacked bar totals). */
@@ -626,11 +626,11 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
 });
 
 export interface TimeSeriesChartProps {
-  /** Animation duration in milliseconds. Default: 1100 */
+  /** Animation duration in milliseconds. @default 1100 */
   animationDuration?: number;
-  /** CSS easing for clip-reveal. Default: cubic-bezier(0.85, 0, 0.15, 1) */
+  /** CSS easing for clip-reveal. @default cubic-bezier(0.85, 0, 0.15, 1) */
   animationEasing?: string;
-  /** Aspect ratio as "width / height". Default: "2 / 1". Omit to fill a sized parent. */
+  /** Aspect ratio as "width / height". Omit to fill a sized parent. @default "2 / 1" */
   aspectRatio?: string;
   /** Child components (series, Grid, axes, ChartTooltip, etc.) */
   children: ReactNode;
@@ -642,27 +642,27 @@ export interface TimeSeriesChartProps {
   enterTransition?: Transition;
   /** Centered shimmer label while loading. */
   loadingLabel?: string;
-  /** Chart margins */
+  /** Chart margins @default { top: 40, right: 40, bottom: 40, left: 40 } */
   margin?: Partial<Margin>;
   /** Fires when the internal chart phase changes (e.g. OG capture readiness). */
   onPhaseChange?: (phase: ChartPhase) => void;
-  /** Signature of motion URL state — triggers reveal replay when it changes. */
+  /** Signature of motion URL state — triggers reveal replay when it changes. @internal */
   revealSignature?: string;
-  /** Loading vs ready — drives chart phase and loading chrome. Default: `"ready"`. */
+  /** Loading vs ready — drives chart phase and loading chrome. @default "ready" */
   status?: ChartStatus;
   /** Inline container styles (e.g. fixed height for brush strip). */
   style?: CSSProperties;
-  /** Tween y-domain when brush changes the visible x-range. Default: false */
+  /** Tween y-domain when brush changes the visible x-range. @default false */
   tweenYDomainOnXDomainChange?: boolean;
-  /** Key in data for the x-axis (date). Default: "date" */
+  /** Key in data for the x-axis (date). @default "date" */
   xDataKey?: string;
   /** Visible x-domain for brush zoom. */
   xDomain?: [Date, Date];
   /** Full dataset length for x-scale padding when `xDomain` is set. */
   xDomainSlotCount?: number;
-  /** Animate y-domain when status or target domain changes. Default: true */
+  /** Animate y-domain when status or target domain changes. @default true */
   yDomainTween?: boolean;
-  /** Animate y-domain over this duration (ms) on status transitions. Default: 500. */
+  /** Animate y-domain over this duration (ms) on status transitions. @default 500 */
   yDomainTweenDuration?: number;
 }
 

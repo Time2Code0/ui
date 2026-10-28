@@ -99,7 +99,7 @@ export function ChartStatFlow({
   return (
     <>
       {icon ? (
-        <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-muted/50">
+        <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-background-muted/50">
           {icon}
         </div>
       ) : null}
@@ -117,7 +117,7 @@ export function ChartStatFlow({
           staticValue
         )}
       </span>
-      <span className={cn("mt-0.5 text-chart-label", labelClassName)}>
+      <span className={cn("mt-0.5 text-foreground-muted", labelClassName)}>
         {label}
       </span>
     </>

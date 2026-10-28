@@ -16,7 +16,9 @@ import {
 } from "./legend-context";
 
 export interface LegendProps {
-  /** Children - should contain a single LegendItem that will be mapped for each item */
+  /**
+   * Children - should contain a single LegendItem that will be mapped for each item
+   */
   children: ReactElement;
   /** Container class name */
   className?: string;
@@ -28,7 +30,7 @@ export interface LegendProps {
   onHoverChange?: (index: number | null) => void;
   /** Title shown above the legend */
   title?: string;
-  /** Title class name */
+  /** Title class name @default "text-sm font-semibold" */
   titleClassName?: string;
 }
 
@@ -68,7 +70,7 @@ export function Legend({
     <LegendProvider value={contextValue}>
       <div className={cn("legend-container flex flex-col gap-2", className)}>
         {title && (
-          <h3 className={cn("mb-1 text-legend-foreground", titleClassName)}>
+          <h3 className={cn("mb-1 text-foreground", titleClassName)}>
             {title}
           </h3>
         )}

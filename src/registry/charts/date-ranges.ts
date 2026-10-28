@@ -17,9 +17,9 @@ export interface DateRange {
 
 export interface ComputeWeekendRangesOptions {
   align?: DateRangeAlign;
-  /** Bail out (return `[]`) when the domain spans more days than this. Default: 20_000 */
+  /** Bail out (return `[]`) when the domain spans more days than this. @default 20_000 */
   maxDays?: number;
-  /** Use UTC day boundaries instead of local time. Default: false */
+  /** Use UTC day boundaries instead of local time. @default false */
   utc?: boolean;
   weekendDays?: readonly number[];
 }

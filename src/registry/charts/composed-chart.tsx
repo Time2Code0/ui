@@ -34,7 +34,7 @@ export interface ComposedChartProps
     | "revealSignature"
     | "xDataKey"
   > {
-  /** Gap between grouped `SeriesBar` series in px. Default: 4 */
+  /** Gap between grouped `SeriesBar` series in px. @default 4 */
   barGap?: number;
   /** Target bar width in px (Recharts-style `barSize`). */
   barSize?: number;
@@ -44,7 +44,7 @@ export interface ComposedChartProps
   maxBarSize?: number;
   /** Stack `SeriesBar` segments in child order at each x (line/area are not stacked). */
   stacked?: boolean;
-  /** Gap in px between stacked segments. Default: 0 */
+  /** Gap in px between stacked segments. @default 0 */
   stackGap?: number;
 }
 
@@ -74,7 +74,7 @@ function tryAppendSeriesBar(
   barDataKeys.push(props.dataKey);
   upsertLineConfig(lines, {
     dataKey: props.dataKey,
-    stroke: props.stroke || props.fill || "var(--chart-line-primary)",
+    stroke: props.stroke || props.fill || "var(--color-chart-1)",
     strokeWidth: 0,
   });
   return true;
@@ -89,7 +89,7 @@ function tryAppendLine(child: ReactElement, lines: LineConfig[]): boolean {
   if (props.dataKey) {
     upsertLineConfig(lines, {
       dataKey: props.dataKey,
-      stroke: props.stroke || "var(--chart-line-primary)",
+      stroke: props.stroke || "var(--color-chart-1)",
       strokeWidth: props.strokeWidth ?? 2.5,
       yAxisId: props.yAxisId,
     });
@@ -106,7 +106,7 @@ function tryAppendArea(child: ReactElement, lines: LineConfig[]): boolean {
   if (props.dataKey) {
     upsertLineConfig(lines, {
       dataKey: props.dataKey,
-      stroke: props.stroke || props.fill || "var(--chart-line-primary)",
+      stroke: props.stroke || props.fill || "var(--color-chart-1)",
       strokeWidth: props.strokeWidth ?? 2,
       yAxisId: props.yAxisId,
     });

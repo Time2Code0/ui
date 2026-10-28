@@ -13,7 +13,12 @@ export interface SunburstHintContext {
 }
 
 export interface SunburstHintProps {
+  /** Custom hint content; receives `{ hintText, hoveredArc, focus }` */
   children?: ReactNode | ((context: SunburstHintContext) => ReactNode);
+  /**
+   * Hint wrapper class
+   * @default "mt-3 min-h-5 text-center text-foreground-muted text-sm"
+   */
   className?: string;
 }
 
@@ -49,7 +54,7 @@ export const SunburstHint = memo(function SunburstHint({
     <div
       aria-live="polite"
       className={
-        className ?? "mt-3 min-h-5 text-center text-muted-foreground text-sm"
+        className ?? "mt-3 min-h-5 text-center text-foreground-muted text-sm"
       }
       style={{ minHeight: 20 }}
     >

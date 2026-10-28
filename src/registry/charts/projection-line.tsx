@@ -17,32 +17,33 @@ import {
 export type ProjectionStrokeStyle = "solid" | "gradient";
 
 export interface ProjectionLineProps {
+  /** Class on the projection line group */
   className?: string;
   /** Advanced curve override (used when `curveKind` is omitted). */
   curve?: CurveFactory;
-  /** Straight segment or horizontal-tangent S-curve. Default: linear */
+  /** Straight segment or horizontal-tangent S-curve. @default "linear" */
   curveKind?: ProjectionCurveKind;
   /** Projection path points — anchor (last data row) + horizon end. */
   data: ProjectionPoint[];
-  /** Endpoint marker radius. Default: 5 */
+  /** Endpoint marker radius. @default 5 */
   endpointRadius?: number;
-  /** Gradient end color when `strokeStyle` is gradient. Default: var(--chart-5) */
+  /** Gradient end color when `strokeStyle` is gradient. @default var(--color-chart-5) */
   gradientEnd?: string;
-  /** Gradient start color when `strokeStyle` is gradient. Default: `stroke` */
+  /** Gradient start color when `strokeStyle` is gradient. @default stroke */
   gradientStart?: string;
-  /** Show horizon endpoint marker. Default: true */
+  /** Show horizon endpoint marker. @default true */
   showEndMarker?: boolean;
-  /** Solid stroke color. Default: var(--chart-3) */
+  /** Solid stroke color. @default var(--color-chart-3) */
   stroke?: string;
-  /** Dash pattern. Default: "6,4" */
+  /** Dash pattern. @default "6,4" */
   strokeDasharray?: string;
-  /** Stroke opacity. Default: 1 */
+  /** Stroke opacity. @default 1 */
   strokeOpacity?: number;
-  /** Solid or path-aligned gradient stroke. Default: solid */
+  /** Solid or path-aligned gradient stroke. @default "solid" */
   strokeStyle?: ProjectionStrokeStyle;
-  /** Stroke width. Default: 2 */
+  /** Stroke width. @default 2 */
   strokeWidth?: number;
-  /** Y-scale group id. Default: `"left"`. */
+  /** Y-scale group id. @default "left" */
   yAxisId?: string | number;
 }
 
@@ -101,10 +102,10 @@ function renderProjectionStroke({
 export function ProjectionLine({
   data,
   yAxisId,
-  stroke = "var(--chart-3)",
+  stroke = "var(--color-chart-3)",
   strokeStyle = "solid",
   gradientStart,
-  gradientEnd = "var(--chart-5)",
+  gradientEnd = "var(--color-chart-5)",
   strokeWidth = 2,
   curveKind = "linear",
   curve,

@@ -73,48 +73,62 @@ export const DEFAULT_SPARKLINE_HOVER_SPRING: SparklineSpringConfig = {
 };
 
 export interface SparklineBaseProps<T> {
-  /** Play the enter animation on mount. Respects `prefers-reduced-motion`. */
+  /**
+   * Play the enter animation on mount. Respects `prefers-reduced-motion`.
+   * @default true
+   */
   animate?: boolean;
+  /** Enter duration in ms @default 900 */
   animationDuration?: number;
-  /** Any CSS easing string. */
+  /** Any CSS easing string. @default cubic-bezier(0.85, 0, 0.15, 1) */
   animationEasing?: string;
   /** Accessible summary. Generated from the data when omitted. */
   "aria-label"?: string;
+  /** Additional class name for the SVG */
   className?: string;
-  /** Series colour. Defaults to `var(--chart-line-primary)`. */
+  /** Series colour. @default var(--color-chart-1) */
   color?: string;
-  /** Hover guide line. Set `false` to hide. */
+  /** Hover guide line. Set `false` to hide. @default "dashed" */
   crosshair?: SparklineCrosshair;
+  /** Rows to plot */
   data: readonly T[];
   /** Field (or accessor) holding the numeric value. */
   dataKey: SparklineDataKey<T>;
   /**
    * Morph to new data instead of snapping, in ms. `0` snaps. Requires
    * `animate`; snaps under `prefers-reduced-motion`.
+   * @default 500
    */
   dataTransitionDuration?: number;
-  /** Show a dot on the hovered point. */
+  /** Show a dot on the hovered point. @default true */
   dot?: boolean;
-  /** Height in px. Defaults to 32. */
+  /** Height in px. Defaults to 32. @default 32 */
   height?: number;
   /** Controlled hovered index. Pass `null` for "not hovering". */
   hoverIndex?: number | null;
   /**
    * Spring the crosshair and dot between points, like the main charts'
    * tooltip. Snaps under `prefers-reduced-motion`.
+   * @default true
    */
   hoverTransition?: boolean;
-  /** Disable pointer tracking entirely (no hover state, no listeners). */
+  /**
+   * Disable pointer tracking entirely (no hover state, no listeners).
+   * @default true
+   */
   interactive?: boolean;
+  /** Hover callback */
   onHoverChange?: (index: number | null, datum: T | null) => void;
-  /** Inner padding so strokes and the hover dot are not clipped. */
+  /** Inner padding so strokes and the hover dot are not clipped. @default 4 */
   padding?: number | Partial<SparklinePadding>;
   /**
    * Hover spring for the crosshair and dot. Defaults to the main charts'
    * tooltip spring (300 / 30); pass only what you want to change, e.g.
    * `{ damping: 40 }`. Higher stiffness = snappier; lower damping = bouncier.
+   * @default { stiffness: 300, damping: 30 }
    */
   springConfig?: Partial<SparklineSpringConfig>;
+  /** Inline SVG styles */
   style?: CSSProperties;
   /** Fixed width in px. Omit to fill the parent width. */
   width?: number;
@@ -123,30 +137,35 @@ export interface SparklineBaseProps<T> {
 }
 
 export interface LineSparklineProps<T> extends SparklineBaseProps<T> {
+  /** Interpolation @default "monotone" */
   curve?: SparklineCurve;
-  /** Keep a dot on the last point when not hovering. */
+  /** Keep a dot on the last point when not hovering. @default false */
   endDot?: boolean;
-  /** Series opacity while hovering (with `showHighlight`). Default `0.5`. */
+  /** Series opacity while hovering (with `showHighlight`). @default 0.5 */
   inactiveOpacity?: number;
   /**
    * On hover, fade the series and re-stroke the segment around the hovered
-   * point at full strength — the main charts' highlight. Default `true`.
+   * point at full strength — the main charts' highlight.
+   * @default true
    */
   showHighlight?: boolean;
+  /** Line width @default 1.5 */
   strokeWidth?: number;
 }
 
 export interface AreaSparklineProps<T> extends LineSparklineProps<T> {
+  /** Fill style @default "gradient" */
   fill?: "gradient" | "solid";
-  /** Opacity of the fill at its strongest point. */
+  /** Opacity of the fill at its strongest point. @default 0.3 */
   fillOpacity?: number;
 }
 
 export interface BarSparklineProps<T> extends SparklineBaseProps<T> {
-  /** Gap between bars in px. */
+  /** Gap between bars in px. @default 2 */
   barGap?: number;
+  /** Corner radius away from the baseline @default 1 */
   barRadius?: number;
-  /** Opacity of non-hovered bars while hovering. */
+  /** Opacity of non-hovered bars while hovering. @default 0.4 */
   inactiveOpacity?: number;
 }
 

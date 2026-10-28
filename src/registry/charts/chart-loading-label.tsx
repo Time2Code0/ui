@@ -47,7 +47,7 @@ export function ChartLoadingLabel({
       }}
     >
       <ShimmeringText
-        className="whitespace-nowrap font-medium text-sm tracking-normal [--color:var(--muted-foreground)] [--shimmering-color:var(--foreground)]"
+        className="whitespace-nowrap font-medium text-sm tracking-normal [--color:var(--color-foreground-muted)] [--shimmering-color:var(--color-foreground)]"
         text={text}
       />
     </motion.div>

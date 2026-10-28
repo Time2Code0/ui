@@ -55,7 +55,7 @@ function extractLineConfigs(children: ReactNode): LineConfig[] {
     }
     configs.push({
       dataKey: props.dataKey,
-      stroke: props.stroke || "var(--chart-line-primary)",
+      stroke: props.stroke || "var(--color-chart-1)",
       strokeWidth: props.strokeWidth || 2.5,
       yAxisId: props.yAxisId,
     });

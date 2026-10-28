@@ -15,20 +15,21 @@ export type ScatterInactiveMode = "opacity" | "blur";
 
 export interface ScatterProps
   extends Omit<SeriesMarkersProps, "animate" | "getPointOffset"> {
-  /** Whether to animate points with clip reveal. Default: true */
+  /** Whether to animate points with clip reveal. @default true */
   animate?: boolean;
-  /** Blur in px for non-active points when `inactiveMode="blur"`. Default: 2 */
+  /** Blur in px for non-active points when `inactiveMode="blur"`. @default 2 */
   inactiveBlur?: number;
-  /** De-emphasis style for non-active points while hovering. Default: "opacity" */
+  /** De-emphasis style for non-active points while hovering. @default "opacity" */
   inactiveMode?: ScatterInactiveMode;
-  /** Opacity for non-active points while hovering. Default: 0.3 */
+  /** Opacity for non-active points while hovering. @default 0.3 */
   inactiveOpacity?: number;
   /**
    * Outer ring stroke width in px. Rings are opt-in — set e.g. `2` to draw an
-   * offset ring around each point (see `ringGap`). Default: 0 (no ring)
+   * offset ring around each point (see `ringGap`).
+   * @default 0
    */
   strokeWidth?: number;
-  /** Y-scale group id (Recharts `yAxisId`). Default: `"left"`. */
+  /** Y-scale group id (Recharts `yAxisId`). @default "left" */
   yAxisId?: string | number;
   /**
    * Color each dot by its vertical position using a chart-space linear gradient.
@@ -37,8 +38,8 @@ export interface ScatterProps
   yGradient?: boolean | { from?: string; to?: string };
 }
 
-const DEFAULT_Y_GRADIENT_FROM = "var(--chart-negative, var(--color-red-500))";
-const DEFAULT_Y_GRADIENT_TO = "var(--chart-positive, var(--color-emerald-500))";
+const DEFAULT_Y_GRADIENT_FROM = "var(--color-destructive-foreground)";
+const DEFAULT_Y_GRADIENT_TO = "var(--color-success-foreground)";
 
 export function Scatter({
   dataKey,

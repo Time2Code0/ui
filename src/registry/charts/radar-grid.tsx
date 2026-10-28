@@ -10,11 +10,11 @@ import { radarCssVars, useRadarStable } from "./radar-context";
 export interface RadarGridProps {
   /** Additional class name */
   className?: string;
-  /** Show level value labels. Default: true */
+  /** Show level value labels. @default true */
   showLabels?: boolean;
-  /** Grid line stroke color. Default: var(--border) */
+  /** Grid line stroke color. @default color-mix(in oklab, var(--color-foreground) 10%, transparent) */
   stroke?: string;
-  /** Grid line stroke opacity. Default: 0.6 */
+  /** Grid line stroke opacity. @default 0.6 */
   strokeOpacity?: number;
 }
 

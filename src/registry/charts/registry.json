@@ -1,0 +1,4049 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "chart-theme",
+      "type": "registry:style",
+      "title": "Chart Theme",
+      "description": "Chart palette (--color-chart-1 … 5) and utilities shared by every chart.",
+      "cssVars": {
+        "light": {
+          "color-chart-1": "oklch(0.585 0.233 277.117)",
+          "color-chart-2": "oklch(0.852 0.199 91.936)",
+          "color-chart-3": "oklch(0.667 0.295 322.15)",
+          "color-chart-4": "oklch(0.56 0.021 213.5)",
+          "color-chart-5": "oklch(0 0 0)"
+        },
+        "dark": {
+          "color-chart-5": "oklch(1 0 0)"
+        }
+      },
+      "css": {
+        "@utility no-scrollbar": {
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
+          "&::-webkit-scrollbar": { "display": "none" }
+        }
+      }
+    },
+    {
+      "name": "chart-core",
+      "type": "registry:component",
+      "title": "Chart Core",
+      "description": "Shared chart context, hooks, and helpers used by every chart.",
+      "dependencies": [
+        "@number-flow/react",
+        "@visx/event",
+        "@visx/scale",
+        "cn",
+        "d3-array",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "chart-center-typography.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-center-typography.ts"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "chart-stat-flow.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-stat-flow.tsx"
+        },
+        {
+          "path": "pattern-preset.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pattern-preset.tsx"
+        },
+        {
+          "path": "patterns/circles.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/circles.tsx"
+        },
+        {
+          "path": "patterns/constants.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/constants.ts"
+        },
+        {
+          "path": "patterns/hexagons.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/hexagons.tsx"
+        },
+        {
+          "path": "patterns/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/index.ts"
+        },
+        {
+          "path": "patterns/lines.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/lines.tsx"
+        },
+        {
+          "path": "patterns/path.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/path.tsx"
+        },
+        {
+          "path": "patterns/pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/pattern.tsx"
+        },
+        {
+          "path": "patterns/waves.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/waves.tsx"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "visx-pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/visx-pattern.tsx"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "area-chart",
+      "type": "registry:component",
+      "title": "Area Chart",
+      "description": "Time-series area chart with gradient fills, value labels, and loading states.",
+      "dependencies": [
+        "@visx/curve",
+        "@visx/event",
+        "@visx/grid",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "cn",
+        "d3-array",
+        "d3-shape",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array", "@types/d3-shape"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "area-chart-loading.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/area-chart-loading.tsx"
+        },
+        {
+          "path": "area-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/area-chart.tsx"
+        },
+        {
+          "path": "area-gradient-defs.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/area-gradient-defs.tsx"
+        },
+        {
+          "path": "area-value-label-layout.ts",
+          "type": "registry:component",
+          "target": "@components/charts/area-value-label-layout.ts"
+        },
+        {
+          "path": "area-value-labels.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/area-value-labels.tsx"
+        },
+        {
+          "path": "area.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/area.tsx"
+        },
+        {
+          "path": "band-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/band-config.ts"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-config-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-config-context.tsx"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-formatters.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-formatters.ts"
+        },
+        {
+          "path": "chart-legend-hover.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-legend-hover.tsx"
+        },
+        {
+          "path": "chart-loading-label.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-loading-label.tsx"
+        },
+        {
+          "path": "chart-parent-size.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-parent-size.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "chart-reveal-clip.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-reveal-clip.tsx"
+        },
+        {
+          "path": "dash-tail-stroke.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/dash-tail-stroke.tsx"
+        },
+        {
+          "path": "decimate-time-series.ts",
+          "type": "registry:component",
+          "target": "@components/charts/decimate-time-series.ts"
+        },
+        {
+          "path": "fade-edges.ts",
+          "type": "registry:component",
+          "target": "@components/charts/fade-edges.ts"
+        },
+        {
+          "path": "filter-data-by-x-domain.ts",
+          "type": "registry:component",
+          "target": "@components/charts/filter-data-by-x-domain.ts"
+        },
+        {
+          "path": "generate-chart-skeleton-data.ts",
+          "type": "registry:component",
+          "target": "@components/charts/generate-chart-skeleton-data.ts"
+        },
+        {
+          "path": "grid.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/grid.tsx"
+        },
+        {
+          "path": "highlight-segment-bounds.ts",
+          "type": "registry:component",
+          "target": "@components/charts/highlight-segment-bounds.ts"
+        },
+        {
+          "path": "highlight-segment.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/highlight-segment.tsx"
+        },
+        {
+          "path": "line-loading-pulse.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/line-loading-pulse.tsx"
+        },
+        {
+          "path": "line-loading-timing.ts",
+          "type": "registry:component",
+          "target": "@components/charts/line-loading-timing.ts"
+        },
+        {
+          "path": "loading-sweep.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/loading-sweep.tsx"
+        },
+        {
+          "path": "path-stroke-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/path-stroke-utils.ts"
+        },
+        {
+          "path": "pattern-area.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pattern-area.tsx"
+        },
+        {
+          "path": "projection-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/projection-config.ts"
+        },
+        {
+          "path": "projection-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/projection-utils.ts"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "reference-area-registration-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-registration-context.tsx"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "series-bar-layout.ts",
+          "type": "registry:component",
+          "target": "@components/charts/series-bar-layout.ts"
+        },
+        {
+          "path": "series-dash-tail-overlay.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-dash-tail-overlay.tsx"
+        },
+        {
+          "path": "series-highlight-layer.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-highlight-layer.tsx"
+        },
+        {
+          "path": "series-hover-dim.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-hover-dim.tsx"
+        },
+        {
+          "path": "series-markers.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-markers.tsx"
+        },
+        {
+          "path": "series-point-marker.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-point-marker.tsx"
+        },
+        {
+          "path": "shimmering-text.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/shimmering-text.tsx"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "static-chart-preview-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/static-chart-preview-context.tsx"
+        },
+        {
+          "path": "time-series-chart-shell.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/time-series-chart-shell.tsx"
+        },
+        {
+          "path": "use-animated-y-domains.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-animated-y-domains.ts"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-chart-phase-orchestrator.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-phase-orchestrator.ts"
+        },
+        {
+          "path": "use-grid-shimmer.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-grid-shimmer.ts"
+        },
+        {
+          "path": "use-highlight-segment.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-highlight-segment.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "bar-chart",
+      "type": "registry:component",
+      "title": "Bar Chart",
+      "description": "Vertical and horizontal bar chart with stacking, 3D depth, and square columns.",
+      "dependencies": [
+        "@visx/event",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "cn",
+        "d3-array",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "bar-chart-loading.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/bar-chart-loading.tsx"
+        },
+        {
+          "path": "bar-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/bar-chart.tsx"
+        },
+        {
+          "path": "bar-depth-geometry.ts",
+          "type": "registry:component",
+          "target": "@components/charts/bar-depth-geometry.ts"
+        },
+        {
+          "path": "bar-depth.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/bar-depth.tsx"
+        },
+        {
+          "path": "bar-squares-layout.ts",
+          "type": "registry:component",
+          "target": "@components/charts/bar-squares-layout.ts"
+        },
+        {
+          "path": "bar-squares.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/bar-squares.tsx"
+        },
+        {
+          "path": "bar-value-label-layout.ts",
+          "type": "registry:component",
+          "target": "@components/charts/bar-value-label-layout.ts"
+        },
+        {
+          "path": "bar-x-axis.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/bar-x-axis.tsx"
+        },
+        {
+          "path": "bar-y-axis.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/bar-y-axis.tsx"
+        },
+        {
+          "path": "bar.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/bar.tsx"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-formatters.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-formatters.ts"
+        },
+        {
+          "path": "chart-legend-hover.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-legend-hover.tsx"
+        },
+        {
+          "path": "chart-parent-size.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-parent-size.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "line-loading-timing.ts",
+          "type": "registry:component",
+          "target": "@components/charts/line-loading-timing.ts"
+        },
+        {
+          "path": "loading-sweep.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/loading-sweep.tsx"
+        },
+        {
+          "path": "motion-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/motion-utils.ts"
+        },
+        {
+          "path": "pattern-preset.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pattern-preset.tsx"
+        },
+        {
+          "path": "patterns/circles.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/circles.tsx"
+        },
+        {
+          "path": "patterns/constants.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/constants.ts"
+        },
+        {
+          "path": "patterns/hexagons.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/hexagons.tsx"
+        },
+        {
+          "path": "patterns/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/index.ts"
+        },
+        {
+          "path": "patterns/lines.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/lines.tsx"
+        },
+        {
+          "path": "patterns/path.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/path.tsx"
+        },
+        {
+          "path": "patterns/pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/pattern.tsx"
+        },
+        {
+          "path": "patterns/waves.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/waves.tsx"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "responsive-chart-label-count.ts",
+          "type": "registry:component",
+          "target": "@components/charts/responsive-chart-label-count.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "series-bar-layout.ts",
+          "type": "registry:component",
+          "target": "@components/charts/series-bar-layout.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-reveal-replay.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-reveal-replay.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "visx-pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/visx-pattern.tsx"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "candlestick-chart",
+      "type": "registry:component",
+      "title": "Candlestick Chart",
+      "description": "OHLC candlestick chart with optional Bollinger bands.",
+      "dependencies": [
+        "@visx/event",
+        "@visx/responsive",
+        "@visx/scale",
+        "cn",
+        "d3-array",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "bollinger.ts",
+          "type": "registry:component",
+          "target": "@components/charts/bollinger.ts"
+        },
+        {
+          "path": "candlestick-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/candlestick-chart.tsx"
+        },
+        {
+          "path": "candlestick.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/candlestick.tsx"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-formatters.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-formatters.ts"
+        },
+        {
+          "path": "chart-legend-hover.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-legend-hover.tsx"
+        },
+        {
+          "path": "chart-parent-size.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-parent-size.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "decimate-time-series.ts",
+          "type": "registry:component",
+          "target": "@components/charts/decimate-time-series.ts"
+        },
+        {
+          "path": "motion-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/motion-utils.ts"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-reveal-replay.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-reveal-replay.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "choropleth-chart",
+      "type": "registry:component",
+      "title": "Choropleth Chart",
+      "description": "Zoomable world map that colors countries by value.",
+      "dependencies": [
+        "@visx/event",
+        "@visx/geo",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/zoom",
+        "cn",
+        "d3-array",
+        "d3-geo",
+        "motion",
+        "topojson-client"
+      ],
+      "devDependencies": [
+        "@types/d3-array",
+        "@types/d3-geo",
+        "@types/geojson",
+        "@types/topojson-client",
+        "@types/topojson-specification"
+      ],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-config-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-config-context.tsx"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-formatters.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-formatters.ts"
+        },
+        {
+          "path": "chart-parent-size.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-parent-size.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "chart-scale.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-scale.ts"
+        },
+        {
+          "path": "choropleth/choropleth-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/choropleth/choropleth-chart.tsx"
+        },
+        {
+          "path": "choropleth/choropleth-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/choropleth/choropleth-context.tsx"
+        },
+        {
+          "path": "choropleth/choropleth-feature.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/choropleth/choropleth-feature.tsx"
+        },
+        {
+          "path": "choropleth/choropleth-graticule.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/choropleth/choropleth-graticule.tsx"
+        },
+        {
+          "path": "choropleth/choropleth-tooltip.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/choropleth/choropleth-tooltip.tsx"
+        },
+        {
+          "path": "choropleth/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/choropleth/index.ts"
+        },
+        {
+          "path": "choropleth/use-world-data.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/choropleth/use-world-data.tsx"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "tooltip/tooltip-box.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/tooltip-box.tsx"
+        },
+        {
+          "path": "tooltip/tooltip-content.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/tooltip-content.tsx"
+        },
+        {
+          "path": "tooltip/use-delayed-tooltip-data.ts",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/use-delayed-tooltip-data.ts"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-enter-complete.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-enter-complete.ts"
+        },
+        {
+          "path": "use-mount-progress.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-mount-progress.ts"
+        },
+        {
+          "path": "use-reveal-replay.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-reveal-replay.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "composed-chart",
+      "type": "registry:component",
+      "title": "Composed Chart",
+      "description": "Lines, areas, and bars on one shared time scale.",
+      "dependencies": [
+        "@visx/curve",
+        "@visx/event",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "cn",
+        "d3-array",
+        "d3-shape",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array", "@types/d3-shape"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "area-gradient-defs.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/area-gradient-defs.tsx"
+        },
+        {
+          "path": "area.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/area.tsx"
+        },
+        {
+          "path": "band-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/band-config.ts"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-config-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-config-context.tsx"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-formatters.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-formatters.ts"
+        },
+        {
+          "path": "chart-legend-hover.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-legend-hover.tsx"
+        },
+        {
+          "path": "chart-loading-label.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-loading-label.tsx"
+        },
+        {
+          "path": "chart-parent-size.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-parent-size.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "chart-reveal-clip.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-reveal-clip.tsx"
+        },
+        {
+          "path": "composed-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/composed-chart.tsx"
+        },
+        {
+          "path": "dash-tail-stroke.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/dash-tail-stroke.tsx"
+        },
+        {
+          "path": "decimate-time-series.ts",
+          "type": "registry:component",
+          "target": "@components/charts/decimate-time-series.ts"
+        },
+        {
+          "path": "fade-edges.ts",
+          "type": "registry:component",
+          "target": "@components/charts/fade-edges.ts"
+        },
+        {
+          "path": "filter-data-by-x-domain.ts",
+          "type": "registry:component",
+          "target": "@components/charts/filter-data-by-x-domain.ts"
+        },
+        {
+          "path": "generate-chart-skeleton-data.ts",
+          "type": "registry:component",
+          "target": "@components/charts/generate-chart-skeleton-data.ts"
+        },
+        {
+          "path": "highlight-segment-bounds.ts",
+          "type": "registry:component",
+          "target": "@components/charts/highlight-segment-bounds.ts"
+        },
+        {
+          "path": "highlight-segment.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/highlight-segment.tsx"
+        },
+        {
+          "path": "line-loading-pulse.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/line-loading-pulse.tsx"
+        },
+        {
+          "path": "line-loading-timing.ts",
+          "type": "registry:component",
+          "target": "@components/charts/line-loading-timing.ts"
+        },
+        {
+          "path": "line.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/line.tsx"
+        },
+        {
+          "path": "loading-sweep.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/loading-sweep.tsx"
+        },
+        {
+          "path": "motion-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/motion-utils.ts"
+        },
+        {
+          "path": "path-stroke-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/path-stroke-utils.ts"
+        },
+        {
+          "path": "projection-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/projection-config.ts"
+        },
+        {
+          "path": "projection-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/projection-utils.ts"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "reference-area-registration-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-registration-context.tsx"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "series-bar-layout.ts",
+          "type": "registry:component",
+          "target": "@components/charts/series-bar-layout.ts"
+        },
+        {
+          "path": "series-bar.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-bar.tsx"
+        },
+        {
+          "path": "series-dash-tail-overlay.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-dash-tail-overlay.tsx"
+        },
+        {
+          "path": "series-highlight-layer.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-highlight-layer.tsx"
+        },
+        {
+          "path": "series-hover-dim.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-hover-dim.tsx"
+        },
+        {
+          "path": "series-markers.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-markers.tsx"
+        },
+        {
+          "path": "series-path-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/series-path-utils.ts"
+        },
+        {
+          "path": "series-point-marker.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-point-marker.tsx"
+        },
+        {
+          "path": "shimmering-text.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/shimmering-text.tsx"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "static-chart-preview-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/static-chart-preview-context.tsx"
+        },
+        {
+          "path": "time-series-chart-shell.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/time-series-chart-shell.tsx"
+        },
+        {
+          "path": "use-animated-series-path.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-animated-series-path.ts"
+        },
+        {
+          "path": "use-animated-y-domains.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-animated-y-domains.ts"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-chart-phase-orchestrator.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-phase-orchestrator.ts"
+        },
+        {
+          "path": "use-highlight-segment.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-highlight-segment.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "funnel-chart",
+      "type": "registry:component",
+      "title": "Funnel Chart",
+      "description": "Conversion funnel with horizontal and vertical orientations.",
+      "dependencies": ["cn", "motion"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "chart-formatters.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-formatters.ts"
+        },
+        {
+          "path": "funnel-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/funnel-chart.tsx"
+        },
+        {
+          "path": "use-enter-complete.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-enter-complete.ts"
+        },
+        {
+          "path": "use-mount-progress.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-mount-progress.ts"
+        }
+      ]
+    },
+    {
+      "name": "gauge-chart",
+      "type": "registry:component",
+      "title": "Gauge",
+      "description": "Arc and linear gauges with animated values.",
+      "dependencies": [
+        "@number-flow/react",
+        "@visx/responsive",
+        "cn",
+        "d3-shape",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-shape"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "chart-center-typography.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-center-typography.ts"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-parent-size.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-parent-size.tsx"
+        },
+        {
+          "path": "chart-stat-flow.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-stat-flow.tsx"
+        },
+        {
+          "path": "gauge-label-layout.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/gauge-label-layout.tsx"
+        },
+        {
+          "path": "gauge.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/gauge.tsx"
+        },
+        {
+          "path": "notch-gauge-shared.ts",
+          "type": "registry:component",
+          "target": "@components/charts/notch-gauge-shared.ts"
+        },
+        {
+          "path": "pie-center-shell.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pie-center-shell.tsx"
+        },
+        {
+          "path": "pie-center.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pie-center.tsx"
+        },
+        {
+          "path": "pie-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pie-context.tsx"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        }
+      ]
+    },
+    {
+      "name": "heatmap-chart",
+      "type": "registry:component",
+      "title": "Heatmap Chart",
+      "description": "Calendar heatmap for contribution-style activity data.",
+      "dependencies": [
+        "@visx/event",
+        "@visx/group",
+        "@visx/heatmap",
+        "@visx/responsive",
+        "@visx/scale",
+        "cn",
+        "d3-array",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-config-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-config-context.tsx"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-formatters.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-formatters.ts"
+        },
+        {
+          "path": "chart-loading-label.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-loading-label.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "chart-scale.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-scale.ts"
+        },
+        {
+          "path": "heatmap/generate-heatmap-skeleton-data.ts",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/generate-heatmap-skeleton-data.ts"
+        },
+        {
+          "path": "heatmap/heatmap-animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-animation.ts"
+        },
+        {
+          "path": "heatmap/heatmap-cells.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-cells.tsx"
+        },
+        {
+          "path": "heatmap/heatmap-chart-loading.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-chart-loading.tsx"
+        },
+        {
+          "path": "heatmap/heatmap-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-chart.tsx"
+        },
+        {
+          "path": "heatmap/heatmap-colors.ts",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-colors.ts"
+        },
+        {
+          "path": "heatmap/heatmap-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-context.tsx"
+        },
+        {
+          "path": "heatmap/heatmap-legend-gradient.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-legend-gradient.tsx"
+        },
+        {
+          "path": "heatmap/heatmap-legend-swatch.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-legend-swatch.tsx"
+        },
+        {
+          "path": "heatmap/heatmap-legend.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-legend.tsx"
+        },
+        {
+          "path": "heatmap/heatmap-pattern-defs.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-pattern-defs.tsx"
+        },
+        {
+          "path": "heatmap/heatmap-resolve-separator.ts",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-resolve-separator.ts"
+        },
+        {
+          "path": "heatmap/heatmap-separator.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-separator.tsx"
+        },
+        {
+          "path": "heatmap/heatmap-tooltip.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-tooltip.tsx"
+        },
+        {
+          "path": "heatmap/heatmap-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-utils.ts"
+        },
+        {
+          "path": "heatmap/heatmap-x-axis.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-x-axis.tsx"
+        },
+        {
+          "path": "heatmap/heatmap-y-axis.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/heatmap-y-axis.tsx"
+        },
+        {
+          "path": "heatmap/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/heatmap/index.ts"
+        },
+        {
+          "path": "line-loading-timing.ts",
+          "type": "registry:component",
+          "target": "@components/charts/line-loading-timing.ts"
+        },
+        {
+          "path": "motion-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/motion-utils.ts"
+        },
+        {
+          "path": "pattern-preset.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pattern-preset.tsx"
+        },
+        {
+          "path": "patterns/circles.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/circles.tsx"
+        },
+        {
+          "path": "patterns/constants.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/constants.ts"
+        },
+        {
+          "path": "patterns/hexagons.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/hexagons.tsx"
+        },
+        {
+          "path": "patterns/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/index.ts"
+        },
+        {
+          "path": "patterns/lines.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/lines.tsx"
+        },
+        {
+          "path": "patterns/path.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/path.tsx"
+        },
+        {
+          "path": "patterns/pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/pattern.tsx"
+        },
+        {
+          "path": "patterns/waves.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/waves.tsx"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "shimmering-text.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/shimmering-text.tsx"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "tooltip/tooltip-box.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/tooltip-box.tsx"
+        },
+        {
+          "path": "tooltip/tooltip-content.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/tooltip-content.tsx"
+        },
+        {
+          "path": "tooltip/use-delayed-tooltip-data.ts",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/use-delayed-tooltip-data.ts"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "visx-pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/visx-pattern.tsx"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "line-chart",
+      "type": "registry:component",
+      "title": "Line Chart",
+      "description": "Time-series line chart with profit/loss and projection lines.",
+      "dependencies": [
+        "@base-ui/react",
+        "@visx/curve",
+        "@visx/event",
+        "@visx/grid",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "cn",
+        "d3-array",
+        "d3-shape",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array", "@types/d3-shape"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "band-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/band-config.ts"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-config-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-config-context.tsx"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-formatters.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-formatters.ts"
+        },
+        {
+          "path": "chart-legend-hover.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-legend-hover.tsx"
+        },
+        {
+          "path": "chart-loading-label.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-loading-label.tsx"
+        },
+        {
+          "path": "chart-parent-size.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-parent-size.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "chart-reveal-clip.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-reveal-clip.tsx"
+        },
+        {
+          "path": "dash-tail-stroke.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/dash-tail-stroke.tsx"
+        },
+        {
+          "path": "decimate-time-series.ts",
+          "type": "registry:component",
+          "target": "@components/charts/decimate-time-series.ts"
+        },
+        {
+          "path": "fade-edges.ts",
+          "type": "registry:component",
+          "target": "@components/charts/fade-edges.ts"
+        },
+        {
+          "path": "filter-data-by-x-domain.ts",
+          "type": "registry:component",
+          "target": "@components/charts/filter-data-by-x-domain.ts"
+        },
+        {
+          "path": "generate-chart-skeleton-data.ts",
+          "type": "registry:component",
+          "target": "@components/charts/generate-chart-skeleton-data.ts"
+        },
+        {
+          "path": "grid.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/grid.tsx"
+        },
+        {
+          "path": "highlight-segment-bounds.ts",
+          "type": "registry:component",
+          "target": "@components/charts/highlight-segment-bounds.ts"
+        },
+        {
+          "path": "highlight-segment.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/highlight-segment.tsx"
+        },
+        {
+          "path": "legend/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/legend/index.ts"
+        },
+        {
+          "path": "legend/legend-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/legend/legend-context.tsx"
+        },
+        {
+          "path": "legend/legend-item.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/legend/legend-item.tsx"
+        },
+        {
+          "path": "legend/legend-label.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/legend/legend-label.tsx"
+        },
+        {
+          "path": "legend/legend-marker.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/legend/legend-marker.tsx"
+        },
+        {
+          "path": "legend/legend-progress.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/legend/legend-progress.tsx"
+        },
+        {
+          "path": "legend/legend-value.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/legend/legend-value.tsx"
+        },
+        {
+          "path": "legend/legend.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/legend/legend.tsx"
+        },
+        {
+          "path": "line-chart-loading.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/line-chart-loading.tsx"
+        },
+        {
+          "path": "line-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/line-chart.tsx"
+        },
+        {
+          "path": "line-loading-pulse.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/line-loading-pulse.tsx"
+        },
+        {
+          "path": "line-loading-timing.ts",
+          "type": "registry:component",
+          "target": "@components/charts/line-loading-timing.ts"
+        },
+        {
+          "path": "line-series-terminal-marker.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/line-series-terminal-marker.tsx"
+        },
+        {
+          "path": "line.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/line.tsx"
+        },
+        {
+          "path": "loading-sweep.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/loading-sweep.tsx"
+        },
+        {
+          "path": "path-stroke-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/path-stroke-utils.ts"
+        },
+        {
+          "path": "profit-loss-legend-hover.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/profit-loss-legend-hover.tsx"
+        },
+        {
+          "path": "profit-loss-legend.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/profit-loss-legend.tsx"
+        },
+        {
+          "path": "profit-loss-line.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/profit-loss-line.tsx"
+        },
+        {
+          "path": "profit-loss-segments.ts",
+          "type": "registry:component",
+          "target": "@components/charts/profit-loss-segments.ts"
+        },
+        {
+          "path": "projection-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/projection-config.ts"
+        },
+        {
+          "path": "projection-line.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/projection-line.tsx"
+        },
+        {
+          "path": "projection-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/projection-utils.ts"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "reference-area-registration-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-registration-context.tsx"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "series-bar-layout.ts",
+          "type": "registry:component",
+          "target": "@components/charts/series-bar-layout.ts"
+        },
+        {
+          "path": "series-dash-tail-overlay.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-dash-tail-overlay.tsx"
+        },
+        {
+          "path": "series-highlight-layer.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-highlight-layer.tsx"
+        },
+        {
+          "path": "series-hover-dim.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-hover-dim.tsx"
+        },
+        {
+          "path": "series-markers.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-markers.tsx"
+        },
+        {
+          "path": "series-path-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/series-path-utils.ts"
+        },
+        {
+          "path": "series-point-marker.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-point-marker.tsx"
+        },
+        {
+          "path": "shimmering-text.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/shimmering-text.tsx"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "static-chart-preview-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/static-chart-preview-context.tsx"
+        },
+        {
+          "path": "time-series-chart-shell.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/time-series-chart-shell.tsx"
+        },
+        {
+          "path": "use-animated-series-path.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-animated-series-path.ts"
+        },
+        {
+          "path": "use-animated-y-domains.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-animated-y-domains.ts"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-chart-phase-orchestrator.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-phase-orchestrator.ts"
+        },
+        {
+          "path": "use-grid-shimmer.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-grid-shimmer.ts"
+        },
+        {
+          "path": "use-highlight-segment.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-highlight-segment.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "live-line-chart",
+      "type": "registry:component",
+      "title": "Live Line Chart",
+      "description": "Real-time streaming line chart.",
+      "dependencies": [
+        "@visx/curve",
+        "@visx/event",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "cn",
+        "d3-array",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-formatters.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-formatters.ts"
+        },
+        {
+          "path": "chart-parent-size.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-parent-size.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "live-line-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/live-line-chart.tsx"
+        },
+        {
+          "path": "live-line.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/live-line.tsx"
+        },
+        {
+          "path": "live-x-axis.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/live-x-axis.tsx"
+        },
+        {
+          "path": "live-y-axis.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/live-y-axis.tsx"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "pie-chart",
+      "type": "registry:component",
+      "title": "Pie Chart",
+      "description": "Pie and donut chart with an optional center label.",
+      "dependencies": [
+        "@number-flow/react",
+        "@visx/group",
+        "@visx/responsive",
+        "@visx/shape",
+        "cn",
+        "d3-shape",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-shape"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "chart-center-typography.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-center-typography.ts"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-parent-size.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-parent-size.tsx"
+        },
+        {
+          "path": "chart-stat-flow.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-stat-flow.tsx"
+        },
+        {
+          "path": "pie-center.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pie-center.tsx"
+        },
+        {
+          "path": "pie-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pie-chart.tsx"
+        },
+        {
+          "path": "pie-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pie-context.tsx"
+        },
+        {
+          "path": "pie-slice.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pie-slice.tsx"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-enter-complete.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-enter-complete.ts"
+        },
+        {
+          "path": "use-mount-progress.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-mount-progress.ts"
+        },
+        {
+          "path": "use-reveal-replay.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-reveal-replay.ts"
+        }
+      ]
+    },
+    {
+      "name": "radar-chart",
+      "type": "registry:component",
+      "title": "Radar Chart",
+      "description": "Radar chart comparing series across several metrics.",
+      "dependencies": [
+        "@visx/group",
+        "@visx/responsive",
+        "@visx/scale",
+        "@visx/shape",
+        "cn",
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "chart-parent-size.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-parent-size.tsx"
+        },
+        {
+          "path": "motion-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/motion-utils.ts"
+        },
+        {
+          "path": "radar-area.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/radar-area.tsx"
+        },
+        {
+          "path": "radar-axis.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/radar-axis.tsx"
+        },
+        {
+          "path": "radar-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/radar-chart.tsx"
+        },
+        {
+          "path": "radar-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/radar-context.tsx"
+        },
+        {
+          "path": "radar-grid.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/radar-grid.tsx"
+        },
+        {
+          "path": "radar-labels.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/radar-labels.tsx"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-enter-complete.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-enter-complete.ts"
+        },
+        {
+          "path": "use-mount-progress.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-mount-progress.ts"
+        }
+      ]
+    },
+    {
+      "name": "ring-chart",
+      "type": "registry:component",
+      "title": "Ring Chart",
+      "description": "Concentric progress rings with a center label.",
+      "dependencies": [
+        "@number-flow/react",
+        "@visx/group",
+        "@visx/responsive",
+        "@visx/shape",
+        "cn",
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "chart-center-typography.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-center-typography.ts"
+        },
+        {
+          "path": "chart-parent-size.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-parent-size.tsx"
+        },
+        {
+          "path": "chart-stat-flow.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-stat-flow.tsx"
+        },
+        {
+          "path": "ring-center.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/ring-center.tsx"
+        },
+        {
+          "path": "ring-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/ring-chart.tsx"
+        },
+        {
+          "path": "ring-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/ring-context.tsx"
+        },
+        {
+          "path": "ring.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/ring.tsx"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-enter-complete.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-enter-complete.ts"
+        },
+        {
+          "path": "use-mount-progress.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-mount-progress.ts"
+        },
+        {
+          "path": "use-reveal-replay.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-reveal-replay.ts"
+        }
+      ]
+    },
+    {
+      "name": "sankey-chart",
+      "type": "registry:component",
+      "title": "Sankey Chart",
+      "description": "Flow diagram linking sources to targets.",
+      "dependencies": [
+        "@visx/event",
+        "@visx/responsive",
+        "@visx/sankey",
+        "@visx/scale",
+        "cn",
+        "d3-array",
+        "d3-sankey",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array", "@types/d3-sankey"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-config-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-config-context.tsx"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-formatters.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-formatters.ts"
+        },
+        {
+          "path": "chart-parent-size.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-parent-size.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "motion-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/motion-utils.ts"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "sankey/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/sankey/index.ts"
+        },
+        {
+          "path": "sankey/sankey-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/sankey/sankey-chart.tsx"
+        },
+        {
+          "path": "sankey/sankey-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/sankey/sankey-context.tsx"
+        },
+        {
+          "path": "sankey/sankey-link.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/sankey/sankey-link.tsx"
+        },
+        {
+          "path": "sankey/sankey-node.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/sankey/sankey-node.tsx"
+        },
+        {
+          "path": "sankey/sankey-tooltip.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/sankey/sankey-tooltip.tsx"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "tooltip/tooltip-box.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/tooltip-box.tsx"
+        },
+        {
+          "path": "tooltip/tooltip-content.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/tooltip-content.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-mount-progress.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-mount-progress.ts"
+        },
+        {
+          "path": "use-reveal-replay.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-reveal-replay.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "scatter-chart",
+      "type": "registry:component",
+      "title": "Scatter Chart",
+      "description": "Scatter plot with jitter and multi-series support.",
+      "dependencies": [
+        "@visx/event",
+        "@visx/scale",
+        "cn",
+        "d3-array",
+        "d3-scale",
+        "motion",
+        "react-use-measure"
+      ],
+      "devDependencies": ["@types/d3-array", "@types/d3-scale"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-formatters.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-formatters.ts"
+        },
+        {
+          "path": "chart-legend-hover.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-legend-hover.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-chart-shell.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-chart-shell.tsx"
+        },
+        {
+          "path": "scatter-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-chart.tsx"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "scatter.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/scatter.tsx"
+        },
+        {
+          "path": "series-markers.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-markers.tsx"
+        },
+        {
+          "path": "series-point-marker.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/series-point-marker.tsx"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-reveal-replay.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-reveal-replay.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "sparkline",
+      "type": "registry:component",
+      "title": "Sparkline",
+      "description": "Compact inline line, area, and bar sparklines.",
+      "dependencies": [
+        "@visx/event",
+        "@visx/scale",
+        "cn",
+        "d3-array",
+        "d3-shape",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array", "@types/d3-shape"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "sparkline-geometry.ts",
+          "type": "registry:component",
+          "target": "@components/charts/sparkline-geometry.ts"
+        },
+        {
+          "path": "sparkline.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/sparkline.tsx"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "sunburst-chart",
+      "type": "registry:component",
+      "title": "Sunburst Chart",
+      "description": "Drillable hierarchical sunburst chart.",
+      "dependencies": ["motion"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "animation.ts",
+          "type": "registry:component",
+          "target": "@components/charts/animation.ts"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "sunburst-breadcrumb.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/sunburst-breadcrumb.tsx"
+        },
+        {
+          "path": "sunburst-center.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/sunburst-center.tsx"
+        },
+        {
+          "path": "sunburst-chart.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/sunburst-chart.tsx"
+        },
+        {
+          "path": "sunburst-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/sunburst-context.tsx"
+        },
+        {
+          "path": "sunburst-data.ts",
+          "type": "registry:component",
+          "target": "@components/charts/sunburst-data.ts"
+        },
+        {
+          "path": "sunburst-hint.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/sunburst-hint.tsx"
+        },
+        {
+          "path": "sunburst-labels.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/sunburst-labels.tsx"
+        },
+        {
+          "path": "sunburst-segment.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/sunburst-segment.tsx"
+        },
+        {
+          "path": "sunburst.ts",
+          "type": "registry:component",
+          "target": "@components/charts/sunburst.ts"
+        },
+        {
+          "path": "use-enter-complete.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-enter-complete.ts"
+        },
+        {
+          "path": "use-mount-progress.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-mount-progress.ts"
+        }
+      ]
+    },
+    {
+      "name": "chart-axis",
+      "type": "registry:component",
+      "title": "Chart Axis",
+      "description": "X and Y axes for time-series charts.",
+      "dependencies": [
+        "@visx/event",
+        "@visx/scale",
+        "cn",
+        "d3-array",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-formatters.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-formatters.ts"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "line-loading-timing.ts",
+          "type": "registry:component",
+          "target": "@components/charts/line-loading-timing.ts"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "reference-area-geometry.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-geometry.ts"
+        },
+        {
+          "path": "responsive-chart-label-count.ts",
+          "type": "registry:component",
+          "target": "@components/charts/responsive-chart-label-count.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "x-axis.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/x-axis.tsx"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-axis-ticks.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-ticks.ts"
+        },
+        {
+          "path": "y-axis.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis.tsx"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "chart-background",
+      "type": "registry:component",
+      "title": "Chart Background",
+      "description": "Pattern fill for the plot area.",
+      "dependencies": [
+        "@visx/event",
+        "@visx/scale",
+        "cn",
+        "d3-array",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "background.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/background.tsx"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "pattern-preset.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pattern-preset.tsx"
+        },
+        {
+          "path": "patterns/circles.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/circles.tsx"
+        },
+        {
+          "path": "patterns/constants.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/constants.ts"
+        },
+        {
+          "path": "patterns/hexagons.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/hexagons.tsx"
+        },
+        {
+          "path": "patterns/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/index.ts"
+        },
+        {
+          "path": "patterns/lines.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/lines.tsx"
+        },
+        {
+          "path": "patterns/path.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/path.tsx"
+        },
+        {
+          "path": "patterns/pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/pattern.tsx"
+        },
+        {
+          "path": "patterns/waves.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/waves.tsx"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "visx-pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/visx-pattern.tsx"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "chart-band",
+      "type": "registry:component",
+      "title": "Chart Band",
+      "description": "Shaded band between two series or values.",
+      "dependencies": [
+        "@visx/curve",
+        "@visx/event",
+        "@visx/scale",
+        "cn",
+        "d3-array",
+        "d3-shape",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array", "@types/d3-shape"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "band-geometry.ts",
+          "type": "registry:component",
+          "target": "@components/charts/band-geometry.ts"
+        },
+        {
+          "path": "band.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/band.tsx"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "line-loading-timing.ts",
+          "type": "registry:component",
+          "target": "@components/charts/line-loading-timing.ts"
+        },
+        {
+          "path": "pattern-preset.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pattern-preset.tsx"
+        },
+        {
+          "path": "patterns/circles.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/circles.tsx"
+        },
+        {
+          "path": "patterns/constants.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/constants.ts"
+        },
+        {
+          "path": "patterns/hexagons.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/hexagons.tsx"
+        },
+        {
+          "path": "patterns/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/index.ts"
+        },
+        {
+          "path": "patterns/lines.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/lines.tsx"
+        },
+        {
+          "path": "patterns/path.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/path.tsx"
+        },
+        {
+          "path": "patterns/pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/pattern.tsx"
+        },
+        {
+          "path": "patterns/waves.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/waves.tsx"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "series-path-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/series-path-utils.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-animated-band.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-animated-band.ts"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "visx-pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/visx-pattern.tsx"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "chart-brush",
+      "type": "registry:component",
+      "title": "Chart Brush",
+      "description": "Brush strip for zooming time-series charts.",
+      "dependencies": [
+        "@visx/brush",
+        "@visx/event",
+        "@visx/scale",
+        "cn",
+        "d3-array",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "chart-brush-handle.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-brush-handle.tsx"
+        },
+        {
+          "path": "chart-brush-layout.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-brush-layout.tsx"
+        },
+        {
+          "path": "chart-brush-selection-overlay.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-brush-selection-overlay.tsx"
+        },
+        {
+          "path": "chart-brush-track-overlay.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-brush-track-overlay.tsx"
+        },
+        {
+          "path": "chart-brush.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-brush.tsx"
+        },
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "filter-data-by-x-domain.ts",
+          "type": "registry:component",
+          "target": "@components/charts/filter-data-by-x-domain.ts"
+        },
+        {
+          "path": "pattern-preset.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pattern-preset.tsx"
+        },
+        {
+          "path": "patterns/circles.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/circles.tsx"
+        },
+        {
+          "path": "patterns/constants.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/constants.ts"
+        },
+        {
+          "path": "patterns/hexagons.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/hexagons.tsx"
+        },
+        {
+          "path": "patterns/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/index.ts"
+        },
+        {
+          "path": "patterns/lines.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/lines.tsx"
+        },
+        {
+          "path": "patterns/path.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/path.tsx"
+        },
+        {
+          "path": "patterns/pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/pattern.tsx"
+        },
+        {
+          "path": "patterns/waves.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/waves.tsx"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "visx-pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/visx-pattern.tsx"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "chart-date-highlights",
+      "type": "registry:component",
+      "title": "Chart Date Highlights",
+      "description": "Weekend shading and deadline markers.",
+      "dependencies": [
+        "@visx/event",
+        "@visx/scale",
+        "cn",
+        "d3-array",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "date-ranges.ts",
+          "type": "registry:component",
+          "target": "@components/charts/date-ranges.ts"
+        },
+        {
+          "path": "deadline.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/deadline.tsx"
+        },
+        {
+          "path": "pattern-preset.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pattern-preset.tsx"
+        },
+        {
+          "path": "patterns/circles.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/circles.tsx"
+        },
+        {
+          "path": "patterns/constants.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/constants.ts"
+        },
+        {
+          "path": "patterns/hexagons.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/hexagons.tsx"
+        },
+        {
+          "path": "patterns/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/index.ts"
+        },
+        {
+          "path": "patterns/lines.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/lines.tsx"
+        },
+        {
+          "path": "patterns/path.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/path.tsx"
+        },
+        {
+          "path": "patterns/pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/pattern.tsx"
+        },
+        {
+          "path": "patterns/waves.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/waves.tsx"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-category-slots.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-category-slots.ts"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "visx-pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/visx-pattern.tsx"
+        },
+        {
+          "path": "weekends.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/weekends.tsx"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "chart-grid",
+      "type": "registry:component",
+      "title": "Chart Grid",
+      "description": "Horizontal and vertical grid lines.",
+      "dependencies": [
+        "@visx/event",
+        "@visx/grid",
+        "@visx/scale",
+        "d3-array",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "grid.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/grid.tsx"
+        },
+        {
+          "path": "line-loading-timing.ts",
+          "type": "registry:component",
+          "target": "@components/charts/line-loading-timing.ts"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-grid-shimmer.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-grid-shimmer.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "chart-legend",
+      "type": "registry:component",
+      "title": "Chart Legend",
+      "description": "Composable chart legend.",
+      "dependencies": ["@base-ui/react", "cn"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "chart-formatters.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-formatters.ts"
+        },
+        {
+          "path": "chart-legend-hover.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-legend-hover.tsx"
+        },
+        {
+          "path": "chart-legend.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-legend.tsx"
+        },
+        {
+          "path": "legend/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/legend/index.ts"
+        },
+        {
+          "path": "legend/legend-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/legend/legend-context.tsx"
+        },
+        {
+          "path": "legend/legend-item.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/legend/legend-item.tsx"
+        },
+        {
+          "path": "legend/legend-label.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/legend/legend-label.tsx"
+        },
+        {
+          "path": "legend/legend-marker.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/legend/legend-marker.tsx"
+        },
+        {
+          "path": "legend/legend-progress.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/legend/legend-progress.tsx"
+        },
+        {
+          "path": "legend/legend-value.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/legend/legend-value.tsx"
+        },
+        {
+          "path": "legend/legend.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/legend/legend.tsx"
+        }
+      ]
+    },
+    {
+      "name": "chart-markers",
+      "type": "registry:component",
+      "title": "Chart Markers",
+      "description": "Event markers on the X axis.",
+      "dependencies": [
+        "@visx/event",
+        "@visx/scale",
+        "cn",
+        "d3-array",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "markers/chart-markers.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/markers/chart-markers.tsx"
+        },
+        {
+          "path": "markers/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/markers/index.ts"
+        },
+        {
+          "path": "markers/marker-group.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/markers/marker-group.tsx"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "chart-reference-area",
+      "type": "registry:component",
+      "title": "Chart Reference Area",
+      "description": "Highlighted Y range behind the series.",
+      "dependencies": [
+        "@visx/event",
+        "@visx/scale",
+        "cn",
+        "d3-array",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "pattern-preset.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/pattern-preset.tsx"
+        },
+        {
+          "path": "patterns/circles.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/circles.tsx"
+        },
+        {
+          "path": "patterns/constants.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/constants.ts"
+        },
+        {
+          "path": "patterns/hexagons.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/hexagons.tsx"
+        },
+        {
+          "path": "patterns/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/index.ts"
+        },
+        {
+          "path": "patterns/lines.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/lines.tsx"
+        },
+        {
+          "path": "patterns/path.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/path.tsx"
+        },
+        {
+          "path": "patterns/pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/pattern.tsx"
+        },
+        {
+          "path": "patterns/waves.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/patterns/waves.tsx"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "reference-area-geometry.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-geometry.ts"
+        },
+        {
+          "path": "reference-area-registration-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-registration-context.tsx"
+        },
+        {
+          "path": "reference-area.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area.tsx"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "visx-pattern.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/visx-pattern.tsx"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "chart-segment",
+      "type": "registry:component",
+      "title": "Chart Segment",
+      "description": "Highlight for a brushed X range.",
+      "dependencies": ["@visx/event", "@visx/scale", "d3-array", "motion"],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "segment.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/segment.tsx"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "chart-tooltip",
+      "type": "registry:component",
+      "title": "Chart Tooltip",
+      "description": "Crosshair tooltip for time-series charts.",
+      "dependencies": [
+        "@visx/event",
+        "@visx/scale",
+        "cn",
+        "d3-array",
+        "motion"
+      ],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-config-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-config-context.tsx"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-formatters.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-formatters.ts"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "indicator-fade.ts",
+          "type": "registry:component",
+          "target": "@components/charts/indicator-fade.ts"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "tooltip/chart-tooltip.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/chart-tooltip.tsx"
+        },
+        {
+          "path": "tooltip/date-ticker.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/date-ticker.tsx"
+        },
+        {
+          "path": "tooltip/index.ts",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/index.ts"
+        },
+        {
+          "path": "tooltip/tooltip-box.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/tooltip-box.tsx"
+        },
+        {
+          "path": "tooltip/tooltip-content.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/tooltip-content.tsx"
+        },
+        {
+          "path": "tooltip/tooltip-dot.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/tooltip-dot.tsx"
+        },
+        {
+          "path": "tooltip/tooltip-indicator.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/tooltip/tooltip-indicator.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "chart-trend-line",
+      "type": "registry:component",
+      "title": "Chart Trend Line",
+      "description": "Least-squares trend line.",
+      "dependencies": ["@visx/event", "@visx/scale", "d3-array", "motion"],
+      "devDependencies": ["@types/d3-array"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/chart-theme.json"
+      ],
+      "files": [
+        {
+          "path": "chart-children.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-children.ts"
+        },
+        {
+          "path": "chart-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-context.tsx"
+        },
+        {
+          "path": "chart-phase.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-phase.ts"
+        },
+        {
+          "path": "fade-edges.ts",
+          "type": "registry:component",
+          "target": "@components/charts/fade-edges.ts"
+        },
+        {
+          "path": "line-loading-timing.ts",
+          "type": "registry:component",
+          "target": "@components/charts/line-loading-timing.ts"
+        },
+        {
+          "path": "reference-area-config.ts",
+          "type": "registry:component",
+          "target": "@components/charts/reference-area-config.ts"
+        },
+        {
+          "path": "scatter-jitter.ts",
+          "type": "registry:component",
+          "target": "@components/charts/scatter-jitter.ts"
+        },
+        {
+          "path": "split-context.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/split-context.tsx"
+        },
+        {
+          "path": "trend-line-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/trend-line-utils.ts"
+        },
+        {
+          "path": "trend-line.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/trend-line.tsx"
+        },
+        {
+          "path": "use-chart-interaction.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-chart-interaction.ts"
+        },
+        {
+          "path": "use-scheduled-tooltip.ts",
+          "type": "registry:component",
+          "target": "@components/charts/use-scheduled-tooltip.ts"
+        },
+        {
+          "path": "y-axis-scales.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-axis-scales.ts"
+        },
+        {
+          "path": "y-domain-utils.ts",
+          "type": "registry:component",
+          "target": "@components/charts/y-domain-utils.ts"
+        }
+      ]
+    }
+  ]
+}

@@ -156,21 +156,21 @@ function syncHeatmapCellLayerOpacities(params: SyncCellLayerParams) {
 }
 
 export interface HeatmapCellsProps {
-  /** Scale for the highlighted cell while hovering. Default: 1 */
+  /** Scale for the highlighted cell while hovering. @default 1 */
   activeScale?: number;
   /** Override the default GitHub-style green color scale. */
   colorScale?: (count: number | null | undefined) => string;
-  /** Corner radius for each cell. Default: 2 */
+  /** Corner radius for each cell. @default 2 */
   cornerRadius?: number;
-  /** Hide out-of-range bins (GitHub-style ghost cells). Default: true */
+  /** Hide out-of-range bins (GitHub-style ghost cells). @default true */
   hideGhostCells?: boolean;
-  /** Opacity for inactive cells while hovering. Default: 0.3 */
+  /** Opacity for inactive cells while hovering. @default 0.3 */
   inactiveOpacity?: number;
-  /** Scale for inactive cells while hovering. Default: 1 */
+  /** Scale for inactive cells while hovering. @default 1 */
   inactiveScale?: number;
-  /** Pointer hover + dimming. Default: true */
+  /** Pointer hover + dimming. @default true */
   interactive?: boolean;
-  /** Per-row opacity multiplier (display row index). Default: 1 */
+  /** Per-row opacity multiplier (display row index). @default 1 */
   rowOpacity?: number | readonly number[];
 }
 

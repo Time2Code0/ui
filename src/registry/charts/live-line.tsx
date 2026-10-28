@@ -62,15 +62,15 @@ export function detectMomentum(
 }
 
 export interface LiveLineProps {
-  /** Show value badge pill at the live tip. Default: true */
+  /** Show value badge pill at the live tip. @default true */
   badge?: boolean;
-  /** Curve function. Default: curveMonotoneX */
+  /** Curve function. @default curveMonotoneX */
   curve?: CurveFactory;
   /** Key in data to use for y values */
   dataKey: string;
-  /** Radius of the live dot. Default: 4 */
+  /** Radius of the live dot. @default 4 */
   dotSize?: number;
-  /** Show gradient fill under the curve. Default: true */
+  /** Show gradient fill under the curve. @default true */
   fill?: boolean;
   /** Value label formatter for the badge */
   formatValue?: (v: number) => string;
@@ -79,11 +79,11 @@ export interface LiveLineProps {
    * Overrides `stroke` for the line and fill (dot always uses momentum colors).
    */
   momentumColors?: MomentumColors;
-  /** Show pulsing live dot at the right edge. Default: true */
+  /** Show pulsing live dot at the right edge. @default true */
   pulse?: boolean;
-  /** Stroke color. Default: var(--chart-line-primary) */
+  /** Stroke color. @default var(--color-chart-1) */
   stroke?: string;
-  /** Stroke width. Default: 2 */
+  /** Stroke width. @default 2 */
   strokeWidth?: number;
 }
 
@@ -150,9 +150,9 @@ export function LiveLine({
   );
 
   const defaultMomentumColors: MomentumColors = {
-    down: "var(--chart-5)",
+    down: "var(--color-chart-5)",
     flat: stroke,
-    up: "var(--chart-1)",
+    up: "var(--color-chart-1)",
   };
   const dotMomentumColors = momentumColors ?? defaultMomentumColors;
   const dotColor = dotMomentumColors[momentum];
@@ -300,7 +300,7 @@ export function LiveLine({
         {badge && (
           <g transform={`translate(${liveDotX + 12},${liveDotY})`}>
             <rect
-              fill="var(--popover)"
+              fill="var(--color-background)"
               height={24}
               opacity={0.95}
               rx={6}
@@ -309,7 +309,7 @@ export function LiveLine({
               y={-12}
             />
             <text
-              fill="var(--popover-foreground)"
+              fill="var(--color-foreground)"
               fontFamily="SF Mono, Menlo, Monaco, monospace"
               fontSize={11}
               fontWeight={500}

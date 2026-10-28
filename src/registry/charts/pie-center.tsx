@@ -28,9 +28,9 @@ export interface PieCenterProps {
   }) => ReactNode;
   /** Additional class name for the container */
   className?: string;
-  /** Label shown below the value. Default: "Total" when not hovering */
+  /** Label shown below the value when not hovering. @default "Total" */
   defaultLabel?: string;
-  /** Format options for NumberFlow. Default: standard notation */
+  /** Format options for NumberFlow. Defaults to standard notation. */
   formatOptions?: ChartStatFlowFormat;
   /** Class name for the label text. Scales with center size via container queries. */
   labelClassName?: string;

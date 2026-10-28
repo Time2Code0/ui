@@ -27,9 +27,9 @@ function getNodeIndex(nodeOrIndex: NodeOrIndex): number | undefined {
 }
 
 export interface SankeyNodeProps {
-  /** Opacity when another node/link is hovered. Default: 0.4 */
+  /** Opacity when another node/link is hovered. @default 0.4 */
   fadedOpacity?: number;
-  /** Fill color for nodes. Default: uses theme colors */
+  /** Fill color for nodes. Defaults to the theme chart colors. */
   fill?: string;
   /** Custom node color function */
   getNodeColor?: (
@@ -40,13 +40,14 @@ export interface SankeyNodeProps {
    * Label reading direction for outside node labels.
    * - "horizontal": labels sit left/right of nodes (default).
    * - "vertical": labels rotate 90° and read along the node edge.
+   * @default "horizontal"
    */
   labelOrientation?: SankeyLabelOrientation;
-  /** Corner radius for nodes. Default: 4 */
+  /** Corner radius for nodes. @default 4 */
   lineCap?: number;
-  /** Show node labels. Default: true */
+  /** Show node labels. @default true */
   showLabels?: boolean;
-  /** Show value labels under node names. Default: true */
+  /** Show value labels under node names. @default true */
   showValueLabels?: boolean;
 }
 
@@ -332,11 +333,11 @@ export function SankeyNode({
   // Default colors using CSS variables
   const defaultColors = useMemo(
     () => [
-      "var(--chart-1)",
-      "var(--chart-2)",
-      "var(--chart-3)",
-      "var(--chart-4)",
-      "var(--chart-5)",
+      "var(--color-chart-1)",
+      "var(--color-chart-2)",
+      "var(--color-chart-3)",
+      "var(--color-chart-4)",
+      "var(--color-chart-5)",
     ],
     []
   );
@@ -354,7 +355,9 @@ export function SankeyNode({
         return getNodeColorProp(node, index);
       }
 
-      return defaultColors[index % defaultColors.length] ?? "var(--chart-1)";
+      return (
+        defaultColors[index % defaultColors.length] ?? "var(--color-chart-1)"
+      );
     },
     [fill, getNodeColorProp, defaultColors]
   );

@@ -83,17 +83,17 @@ function computeSeriesBarLayout(input: {
 }
 
 export interface SeriesBarProps {
-  /** Animate grow from baseline. Default: true */
+  /** Animate grow from baseline. @default true */
   animate?: boolean;
   /** Key in data for bar height (y value) */
   dataKey: string;
-  /** Opacity for non-hovered bars when another point is hovered (matches BarChart). Default: 0.3 */
+  /** Opacity for non-hovered bars when another point is hovered (matches BarChart). @default 0.3 */
   fadedOpacity?: number;
-  /** Fill color. Default: var(--chart-line-primary) */
+  /** Fill color. @default var(--color-chart-1) */
   fill?: string;
-  /** Corner radius for bar top corners. Default: 0 (square tops, similar to Bar lineCap="butt") */
+  /** Corner radius for bar top corners (`0` = square tops, like `Bar` `lineCap="butt"`). @default 0 */
   radius?: number;
-  /** Tooltip dot color when fill is gradient/pattern. Default: fill */
+  /** Tooltip dot color when fill is gradient/pattern. @default fill */
   stroke?: string;
 }
 

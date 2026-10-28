@@ -88,7 +88,7 @@ export function ShimmeringText({
         }
         className={cn(
           "inline-block select-none whitespace-nowrap leading-none",
-          "[--color:var(--muted-foreground)] [--shimmering-color:var(--foreground)]",
+          "[--color:var(--color-foreground-muted)] [--shimmering-color:var(--color-foreground)]",
           className
         )}
         transition={{
@@ -107,7 +107,7 @@ export function ShimmeringText({
     <motion.span
       className={cn(
         "inline-flex select-none items-center leading-none",
-        "[--color:var(--muted-foreground)] [--shimmering-color:var(--foreground)]",
+        "[--color:var(--color-foreground-muted)] [--shimmering-color:var(--color-foreground)]",
         className
       )}
       {...props}

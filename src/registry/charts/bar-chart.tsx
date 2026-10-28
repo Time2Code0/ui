@@ -61,13 +61,13 @@ const FALLBACK_LOADING_BARS = 12;
 export type BarOrientation = "vertical" | "horizontal";
 
 export interface BarChartProps {
-  /** Animation duration in milliseconds. Default: 1100 */
+  /** Animation duration in milliseconds. @default 1100 */
   animationDuration?: number;
   /** CSS easing for bar grow transitions. */
   animationEasing?: string;
-  /** Aspect ratio as "width / height". Default: "2 / 1" */
+  /** Aspect ratio as "width / height". @default "2 / 1" */
   aspectRatio?: string;
-  /** Gap between bar groups as a fraction of band width (0-1). Default: 0.2 */
+  /** Gap between bar groups as a fraction of band width (0-1). @default 0.2 */
   barGap?: number;
   /** Fixed bar width in pixels. If not set, bars auto-size to fill the band. */
   barWidth?: number;
@@ -81,26 +81,26 @@ export interface BarChartProps {
   /** Motion enter transition (spring or cubic-bezier tween). */
   enterTransition?: Transition;
   /** Fill color for the loading skeleton. Defaults to the first `<Bar>`'s
-   * `stroke`, falling back to `var(--foreground)`. */
+   * `stroke`, falling back to `var(--color-foreground)`. */
   loadingFill?: string;
-  /** Chart margins */
+  /** Chart margins @default { top: 40, right: 40, bottom: 40, left: 40 } */
   margin?: Partial<Margin>;
   /** Reports reveal lifecycle for OG screenshots and loading orchestration. */
   onPhaseChange?: (phase: ChartPhase) => void;
-  /** Bar chart orientation. Default: "vertical" */
+  /** Bar chart orientation. @default "vertical" */
   orientation?: BarOrientation;
-  /** Signature of motion URL state — triggers enter replay when it changes. */
+  /** Signature of motion URL state — triggers enter replay when it changes. @internal */
   revealSignature?: string;
   /** When set, tooltip Y positions snap to the top square center (shape variant). */
   squareSnap?: { squareGap: number; groupGap?: number; fit?: boolean };
-  /** Whether to stack bars instead of grouping them. Default: false */
+  /** Whether to stack bars instead of grouping them. @default false */
   stacked?: boolean;
-  /** Gap between stacked bar segments in pixels. Default: 0 */
+  /** Gap between stacked bar segments in pixels. @default 0 */
   stackGap?: number;
   /** Fetch / display status. When `"loading"`, a shimmer skeleton replaces the
-   * bars (no chart data required). Default: `"ready"`. */
+   * bars (no chart data required). @default "ready" */
   status?: ChartStatus;
-  /** Key in data for the categorical axis. Default: "name" */
+  /** Key in data for the categorical axis. @default "name" */
   xDataKey?: string;
 }
 
@@ -133,8 +133,7 @@ function extractBarConfigs(children: ReactNode): LineConfig[] {
     if (isBarComponent && props?.dataKey) {
       // Use stroke for tooltip dot color if provided, otherwise fall back to fill
       // This allows gradient/pattern fills to have a solid dot color
-      const dotColor =
-        props.stroke || props.fill || "var(--chart-line-primary)";
+      const dotColor = props.stroke || props.fill || "var(--color-chart-1)";
       configs.push({
         dataKey: props.dataKey,
         stroke: dotColor,
@@ -218,7 +217,7 @@ const ChartCore = memo(function ChartCore({
   // Extract bar configs synchronously from children
   const lines = useMemo(() => extractBarConfigs(children), [children]);
   const effectiveLoadingFill =
-    loadingFill ?? lines[0]?.stroke ?? "var(--foreground)";
+    loadingFill ?? lines[0]?.stroke ?? "var(--color-foreground)";
 
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;

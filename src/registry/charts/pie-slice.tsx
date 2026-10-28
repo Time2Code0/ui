@@ -51,7 +51,7 @@ function getSliceOffset(
 export type PieSliceHoverEffect = "translate" | "grow" | "none";
 
 export interface PieSliceProps {
-  /** Animate the slice on mount. Default: true */
+  /** Animate the slice on mount. @default true */
   animate?: boolean;
   /** Additional CSS class */
   className?: string;
@@ -60,17 +60,20 @@ export interface PieSliceProps {
   /** Optional fill override for patterns/gradients (e.g., "url(#patternId)") */
   fill?: string;
   /**
-   * Hover effect type. Default: "translate"
+   * Hover effect type.
    * - "translate": Slice moves outward along its radial axis
    * - "grow": Slice extends its outer radius (gets longer)
    * - "none": No hover animation
+   * @default "translate"
    */
   hoverEffect?: PieSliceHoverEffect;
-  /** Distance in pixels for hover effect (translate distance or grow amount). Defaults to PieChart's hoverOffset */
+  /**
+   * Distance in pixels for the hover effect (translate distance or grow amount). Defaults to the `PieChart` `hoverOffset`.
+   */
   hoverOffset?: number;
   /** Index of the slice in the data array */
   index: number;
-  /** Show glow effect on hover. Default: true */
+  /** Show glow effect on hover. @default true */
   showGlow?: boolean;
 }
 

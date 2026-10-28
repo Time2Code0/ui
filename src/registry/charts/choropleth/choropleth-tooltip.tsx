@@ -17,7 +17,7 @@ import {
 export interface ChoroplethTooltipProps {
   /**
    * Tooltip panel background color (CSS variable or color value).
-   * Default: `var(--chart-tooltip-background)`.
+   * @default var(--color-background)
    */
   backgroundColor?: string;
   /** Custom class name */
@@ -27,11 +27,11 @@ export interface ChoroplethTooltipProps {
     feature: ChoroplethFeature;
     index: number;
   }) => React.ReactNode;
-  /** Fade the panel out when hover ends. Default: true */
+  /** Fade the panel out when hover ends. @default true */
   exit?: boolean;
   /** Value formatter function */
   formatValue?: (value: number) => string;
-  /** Get the display name for a feature. Default: uses feature.properties.name */
+  /** Get the display name for a feature. @default (feature) => feature.properties.name */
   getFeatureName?: (feature: ChoroplethFeature, index: number) => string;
   /** Get the value for a feature (for display in tooltip) */
   getFeatureValue?: (
@@ -41,12 +41,13 @@ export interface ChoroplethTooltipProps {
   /**
    * Grace period before hiding when the pointer leaves a feature (ms).
    * Bridges border gaps so the panel springs to the next feature instead of
-   * fading out and back in. Default: `120`.
+   * fading out and back in.
+   * @default 120
    */
   hideDelay?: number;
   /** Inline styles for the tooltip panel (background, blur, etc.). */
   panelStyle?: React.CSSProperties;
-  /** Label for the value row. Default: "Value" */
+  /** Label for the value row. @default "Value" */
   valueLabel?: string;
 }
 
@@ -93,7 +94,7 @@ export function ChoroplethTooltip({
           ? []
           : [
               {
-                color: "var(--chart-1)",
+                color: "var(--color-chart-1)",
                 label: valueLabel,
                 value: formatValue(value),
               },

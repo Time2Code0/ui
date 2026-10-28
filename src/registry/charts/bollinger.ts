@@ -1,22 +1,23 @@
 export interface BollingerBandsOptions {
   /** Numeric key to compute bands for. */
   dataKey: string;
-  /** Default: `${dataKey}Lower` */
+  /** Key written for the lower band @default `${dataKey}Lower` */
   lowerKey?: string;
-  /** Default: `${dataKey}Sma` */
+  /** Key written for the SMA @default `${dataKey}Sma` */
   middleKey?: string;
   /**
    * Minimum finite values in the window needed to emit a row (pandas
-   * `min_periods`). Clamped to [1, `period`]. Default: `period` — a gap until
+   * `min_periods`). Clamped to [1, `period`]. The default leaves a gap until
    * the window fills. Use `1` to warm up from the first row over a partial
    * window.
+   * @default period
    */
   minPeriods?: number;
-  /** Standard deviations above / below the SMA. Default: 2 */
+  /** Standard deviations above / below the SMA. @default 2 */
   multiplier?: number;
-  /** Rolling window length. Default: 20 */
+  /** Rolling window length. @default 20 */
   period?: number;
-  /** Default: `${dataKey}Upper` */
+  /** Key written for the upper band @default `${dataKey}Upper` */
   upperKey?: string;
 }
 

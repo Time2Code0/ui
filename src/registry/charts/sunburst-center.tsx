@@ -6,6 +6,7 @@ import { ringOptions } from "./sunburst";
 import { sunburstCssVars, useSunburstStable } from "./sunburst-context";
 
 export interface SunburstCenterProps {
+  /** Additional CSS class */
   className?: string;
 }
 

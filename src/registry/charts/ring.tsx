@@ -32,10 +32,15 @@ function generateArcPath(
 export type RingLineCap = "round" | "butt";
 
 export interface RingProps {
+  /** Enable animation on mount @default true */
   animate?: boolean;
+  /** Optional color override. Falls back to the data color or palette. */
   color?: string;
+  /** Index of the ring in the data array */
   index: number;
+  /** Line cap style for ring ends @default "round" */
   lineCap?: RingLineCap;
+  /** Show glow effect on hover @default true */
   showGlow?: boolean;
 }
 

@@ -37,22 +37,22 @@ function getNodeObject(
 
 // Default node color palette using CSS variables
 const defaultColors = [
-  "var(--chart-1)",
-  "var(--chart-2)",
-  "var(--chart-3)",
-  "var(--chart-4)",
-  "var(--chart-5)",
+  "var(--color-chart-1)",
+  "var(--color-chart-2)",
+  "var(--color-chart-3)",
+  "var(--color-chart-4)",
+  "var(--color-chart-5)",
 ];
 
 function getDefaultNodeColor(
   node: SankeyNodeType<SankeyNodeDatum, SankeyLinkDatum>
 ): string {
   const index = node.index ?? 0;
-  return defaultColors[index % defaultColors.length] ?? "var(--chart-1)";
+  return defaultColors[index % defaultColors.length] ?? "var(--color-chart-1)";
 }
 
 export interface SankeyLinkProps {
-  /** Opacity when another link/node is hovered. Default: 0.1 */
+  /** Opacity when another link/node is hovered. @default 0.1 */
   fadedOpacity?: number;
   /** Custom link color function (overrides gradient) */
   getLinkColor?: (
@@ -71,11 +71,11 @@ export interface SankeyLinkProps {
   ) => string;
   /** Pattern definitions to render in defs. Use @visx/pattern components (PatternLines, PatternCircles, etc.) */
   patterns?: React.ReactNode;
-  /** Stroke color for links (overrides gradient). Default: uses gradient */
+  /** Stroke color for links (overrides the default gradient). */
   stroke?: string;
-  /** Stroke opacity. Default: 0.5 */
+  /** Stroke opacity. @default 0.5 */
   strokeOpacity?: number;
-  /** Use gradient from source to target color. Default: true */
+  /** Use gradient from source to target color. @default true */
   useGradient?: boolean;
 }
 
@@ -209,7 +209,7 @@ export function SankeyLink({
       if (getLinkColor) {
         return getLinkColor(link, index);
       }
-      return stroke || "var(--chart-line-primary)";
+      return stroke || "var(--color-chart-1)";
     },
     [getLinkColor, stroke]
   );
@@ -231,10 +231,10 @@ export function SankeyLink({
       // Use fallback colors if nodes can't be resolved
       const sourceColor = sourceNode
         ? getNodeColorFn(sourceNode)
-        : "var(--chart-1)";
+        : "var(--color-chart-1)";
       const targetColor = targetNode
         ? getNodeColorFn(targetNode)
-        : "var(--chart-1)";
+        : "var(--color-chart-1)";
       const gradientId = `link-gradient-${index}`;
 
       // Get absolute x positions for gradient

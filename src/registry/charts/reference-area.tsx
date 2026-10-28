@@ -15,41 +15,65 @@ import { normalizeYAxisId } from "./y-axis-scales";
 import { isReferenceAreaVisiblePhase } from "./y-domain-utils";
 
 const DEFAULT_FILL =
-  "color-mix(in oklch, var(--chart-foreground-muted) 12%, transparent)";
+  "color-mix(in oklch, var(--color-foreground-muted) 12%, transparent)";
 
 export type ReferenceAreaStrokeStyle = "solid" | "dashed";
 
 export interface ReferenceAreaProps {
   /** Y-axis tick label color for values inside this band. */
   axisLabelColor?: string;
+  /** Class on the reference area group */
   className?: string;
-  /** Fade fill and edge lines at left/right. Default: true */
+  /** Fade fill and edge lines at left/right. @default true */
   fadeEdges?: boolean;
-  /** Horizontal fade zone as % of plot width per edge. Default: 10 */
+  /** Horizontal fade zone as % of plot width per edge. @default 10 */
   fadeEdgesLength?: number;
-  /** Solid fill when `pattern` is `"none"`. */
+  /**
+   * Solid fill when `pattern` is `"none"`.
+   * @default color-mix(in oklch, var(--color-foreground-muted) 12%, transparent)
+   */
   fill?: string;
+  /** Fill opacity @default 1 */
   fillOpacity?: number;
+  /**
+   * Clip the band to the plot when bounds exceed the domain
+   * @default "hidden"
+   */
   ifOverflow?: ReferenceAreaIfOverflow;
+  /** Bracket marker color */
   markerColor?: string;
+  /** Bracket marker size */
   markerSize?: number;
-  /** Pattern preset. `"none"` uses solid `fill`. */
+  /** Pattern preset. `"none"` uses solid `fill`. @default "none" */
   pattern?: PatternPresetId;
   /** Pattern stroke / tile color. */
   patternColor?: string;
+  /** Alternate tile fill for circle patterns */
   patternComplement?: boolean;
+  /** Dot grid only — hollow dots when `false` */
   patternDotFill?: boolean;
+  /** Solid fill inside circles */
   patternFill?: string;
+  /** Dot or circle radius for `dots` / `circles` */
   patternRadius?: number;
+  /** Pattern tile scale */
   patternScale?: number;
+  /** Line stroke width for line-based patterns */
   patternStrokeWidth?: number;
+  /** Background color inside each pattern tile */
   patternTileBackground?: string;
-  /** Inward bracket markers at the horizontal center of the band. */
+  /**
+   * Inward bracket markers at the horizontal center of the band.
+   * @default false
+   */
   showMarkers?: boolean;
+  /** Edge line color */
   stroke?: string;
-  /** Dash array when `strokeStyle` is `"dashed"`. Default: `"4,4"`. */
+  /** Dash array when `strokeStyle` is `"dashed"`. @default "4,4" */
   strokeDasharray?: string;
+  /** Edge line style @default "dashed" */
   strokeStyle?: ReferenceAreaStrokeStyle;
+  /** Edge line width @default 1 */
   strokeWidth?: number;
   /** Starting X data coordinate (extends to plot left when omitted). */
   x1?: Date | number;
@@ -59,7 +83,7 @@ export interface ReferenceAreaProps {
   y1?: number;
   /** Upper Y data bound (extends to plot bottom when omitted). */
   y2?: number;
-  /** Y-scale group id. Default: `"left"`. */
+  /** Y-scale group id. @default "left" */
   yAxisId?: string | number;
 }
 
@@ -107,7 +131,7 @@ export function ReferenceArea({
   fadeEdgesLength = 10,
   axisLabelColor,
   showMarkers = false,
-  markerColor = "var(--chart-1)",
+  markerColor = "var(--color-chart-1)",
   markerSize = 6,
   ifOverflow = "hidden",
   className,

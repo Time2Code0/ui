@@ -7,9 +7,9 @@ import { radarCssVars, useRadarStable } from "./radar-context";
 export interface RadarAxisProps {
   /** Additional class name */
   className?: string;
-  /** Axis line stroke color. Default: var(--border) */
+  /** Axis line stroke color. @default color-mix(in oklab, var(--color-foreground) 10%, transparent) */
   stroke?: string;
-  /** Axis line stroke opacity. Default: 0.6 */
+  /** Axis line stroke opacity. @default 0.6 */
   strokeOpacity?: number;
 }
 

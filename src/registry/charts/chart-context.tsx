@@ -31,34 +31,34 @@ import { DEFAULT_Y_AXIS_ID } from "./y-axis-scales";
 
 // CSS variable references for theming
 export const chartCssVars = {
-  background: "var(--chart-background)",
-  badgeBackground: "var(--chart-marker-badge-background)",
-  badgeForeground: "var(--chart-marker-badge-foreground)",
-  brushBorder: "var(--chart-brush-border)",
-  crosshair: "var(--chart-crosshair)",
-  foreground: "var(--chart-foreground)",
-  foregroundMuted: "var(--chart-foreground-muted)",
-  grid: "var(--chart-grid)",
-  indicatorColor: "var(--chart-indicator-color)",
-  indicatorSecondaryColor: "var(--chart-indicator-secondary-color)",
-  label: "var(--chart-label)",
-  linePrimary: "var(--chart-line-primary)",
-  lineSecondary: "var(--chart-line-secondary)",
-  markerBackground: "var(--chart-marker-background)",
-  markerBorder: "var(--chart-marker-border)",
-  markerForeground: "var(--chart-marker-foreground)",
-  segmentBackground: "var(--chart-segment-background)",
-  segmentLine: "var(--chart-segment-line)",
-  tooltipBackground: "var(--chart-tooltip-background)",
+  background: "var(--color-background)",
+  badgeBackground: "var(--color-foreground)",
+  badgeForeground: "var(--color-background)",
+  brushBorder: "color-mix(in oklab, var(--color-foreground) 10%, transparent)",
+  crosshair: "var(--color-foreground)",
+  foreground: "var(--color-foreground)",
+  foregroundMuted: "var(--color-foreground-muted)",
+  grid: "color-mix(in oklab, var(--color-foreground) 10%, transparent)",
+  indicatorColor: "var(--color-foreground)",
+  label: "var(--color-foreground-muted)",
+  linePrimary: "var(--color-chart-1)",
+  lineSecondary: "var(--color-chart-2)",
+  markerBackground: "var(--color-background-muted)",
+  markerBorder: "color-mix(in oklab, var(--color-foreground) 10%, transparent)",
+  markerForeground: "var(--color-foreground)",
+  segmentBackground:
+    "color-mix(in oklab, var(--color-foreground-muted) 10%, transparent)",
+  segmentLine: "color-mix(in oklab, var(--color-foreground) 30%, transparent)",
+  tooltipBackground: "var(--color-background)",
 };
 
-/** Default scatter series colors from the chart palette (`--chart-1` … `--chart-5`). */
+/** Default scatter series colors from the chart palette (`--color-chart-1` … `--color-chart-5`). */
 export const defaultScatterColors = [
-  "var(--chart-1)",
-  "var(--chart-2)",
-  "var(--chart-3)",
-  "var(--chart-4)",
-  "var(--chart-5)",
+  "var(--color-chart-1)",
+  "var(--color-chart-2)",
+  "var(--color-chart-3)",
+  "var(--color-chart-4)",
+  "var(--color-chart-5)",
 ] as const;
 
 export interface Margin {
@@ -91,7 +91,7 @@ export interface LineConfig {
   dataKey: string;
   stroke: string;
   strokeWidth: number;
-  /** Scale group id (Recharts `yAxisId`). Default: `"left"`. */
+  /** Scale group id (Recharts `yAxisId`). @default "left" */
   yAxisId?: string | number;
 }
 
@@ -132,12 +132,15 @@ export interface ChartHoverContextValue {
   setHoveredBarIndex?: (index: number | null) => void;
   /** Setter for hovered candle index */
   setHoveredCandleIndex?: (index: number | null) => void;
+  /** Setter for tooltip data */
   setTooltipData: Dispatch<SetStateAction<TooltipData | null>>;
   // Tooltip state
+  /** Current tooltip data including position */
   tooltipData: TooltipData | null;
 }
 
 export interface ChartContextValue extends ChartHoverContextValue {
+  /** Animation duration in milliseconds */
   animationDuration: number;
   /** CSS easing for clip-reveal / line draw (cartesian charts). */
   animationEasing?: string;
@@ -158,6 +161,7 @@ export interface ChartContextValue extends ChartHoverContextValue {
   chartStatus: ChartStatus;
 
   // Column width for spacing calculations
+  /** Width of a single data column */
   columnWidth: number;
 
   // ComposedChart + SeriesBar (optional)
@@ -171,31 +175,40 @@ export interface ChartContextValue extends ChartHoverContextValue {
   composedMaxBarSize?: number;
   /** When true, `SeriesBar` segments stack in child order at each x. */
   composedStacked?: boolean;
-  /** Vertical gap in px between stacked `SeriesBar` segments. Default: 0 */
+  /** Vertical gap in px between stacked `SeriesBar` segments. @default 0 */
   composedStackGap?: number;
   /** Per-row cumulative offsets for stacked `SeriesBar` (data index → dataKey → offset). */
   composedStackOffsets?: Map<number, Map<string, number>>;
 
   // Container ref for portals
+  /** Ref to the chart container (for portals) */
   containerRef: RefObject<HTMLDivElement | null>;
   // Data
+  /** The chart's data array */
   data: Record<string, unknown>[];
 
   // Pre-computed date labels for ticker animation
+  /** Pre-computed date labels for the ticker */
   dateLabels: string[];
   /** Motion enter transition (spring or tween) — drives clip reveal when spring. */
   enterTransition?: Transition;
+  /** Total chart height in pixels */
   height: number;
+  /** Chart area height (excluding margins) */
   innerHeight: number;
+  /** Chart area width (excluding margins) */
   innerWidth: number;
 
   // Animation state
+  /** Whether the chart has finished its initial animation */
   isLoaded: boolean;
 
   // Line configurations (extracted from children)
+  /** Registered line/bar configurations */
   lines: LineConfig[];
   /** Centered label while `chartPhase` shows loading chrome. */
   loadingLabel?: string;
+  /** Chart margins `{ top, right, bottom, left }` */
   margin: Margin;
 
   /**
@@ -223,9 +236,11 @@ export interface ChartContextValue extends ChartHoverContextValue {
   stackOffsets?: Map<number, Map<string, number>>;
 
   // Dimensions
+  /** Total chart width in pixels */
   width: number;
 
   // X accessor - how to get the x value from data points
+  /** Function to get the Date from a data point */
   xAccessor: (d: Record<string, unknown>) => Date;
 
   /** Active brush zoom range — when set, axis ticks align to visible data rows. */
@@ -234,6 +249,7 @@ export interface ChartContextValue extends ChartHoverContextValue {
   xDomainSlotCount?: number;
 
   // Scales
+  /** Time scale for x-axis (line/area charts) */
   xScale: ScaleTime<number, number>;
   /** Nice’d y-domains per axis from skeleton data (placeholder). */
   yDomainSkeletonByAxis: Record<string, YDomain>;

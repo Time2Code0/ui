@@ -7,16 +7,16 @@ import { createSplitContext } from "./split-context";
 
 // CSS variable references for pie chart theming
 export const pieCssVars = {
-  background: "var(--chart-background)",
-  foreground: "var(--chart-foreground)",
-  foregroundMuted: "var(--chart-foreground-muted)",
-  label: "var(--chart-label)",
+  background: "var(--color-background)",
+  foreground: "var(--color-foreground)",
+  foregroundMuted: "var(--color-foreground-muted)",
+  label: "var(--color-foreground-muted)",
   // Default slice colors from chart palette
-  slice1: "var(--chart-1)",
-  slice2: "var(--chart-2)",
-  slice3: "var(--chart-3)",
-  slice4: "var(--chart-4)",
-  slice5: "var(--chart-5)",
+  slice1: "var(--color-chart-1)",
+  slice2: "var(--color-chart-2)",
+  slice3: "var(--color-chart-3)",
+  slice4: "var(--color-chart-4)",
+  slice5: "var(--color-chart-5)",
 };
 
 // Default slice color palette

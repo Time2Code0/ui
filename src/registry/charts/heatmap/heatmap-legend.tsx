@@ -30,38 +30,39 @@ const HEATMAP_INACTIVE_TRANSITION = {
 export type HeatmapLegendVariant = "swatches" | "gradient";
 
 export interface HeatmapLegendProps {
-  /** Scale for the highlighted swatch while interacting. Default: 1 */
+  /** Scale for the highlighted swatch while interacting. @default 1 */
   activeScale?: number;
-  /** Horizontal alignment within the legend cell. Default: "end" */
+  /** Horizontal alignment within the legend cell. @default "end" */
   align?: "start" | "center" | "end";
-  /** Swatch size in pixels. Default: 11 */
+  /** Swatch size in pixels. @default 11 */
   cellSize?: number;
+  /** Additional class name for the legend wrapper */
   className?: string;
   /** Override the default color scale (used when `levelStyles` is omitted). */
   colorScale?: (count: number | null | undefined) => string;
-  /** Corner radius for swatches. Default: 2 */
+  /** Corner radius for swatches. @default 2 */
   cornerRadius?: number;
   /** Font size in pixels for side labels. */
   fontSize?: number;
-  /** Gap between swatches. Default: 2 */
+  /** Gap between swatches. @default 2 */
   gap?: number;
-  /** Gradient bar width in swatch units when `variant="gradient"`. Default: 5 */
+  /** Gradient bar width in swatch units when `variant="gradient"`. @default 5 */
   gradientSpan?: number;
-  /** Opacity for inactive swatches while interacting. Default: 0.3 */
+  /** Opacity for inactive swatches while interacting. @default 0.3 */
   inactiveOpacity?: number;
-  /** Scale for inactive swatches while interacting. Default: 1 */
+  /** Scale for inactive swatches while interacting. @default 1 */
   inactiveScale?: number;
-  /** Sync dimming with chart hover. Default: true when inside HeatmapInteractionProvider */
+  /** Sync dimming with chart hover. Defaults to `true` inside `HeatmapInteractionProvider`. */
   interactive?: boolean;
   /** Additional class name for less/more labels. */
   labelClassName?: string;
-  /** Side label before the swatches. Default: "Less" */
+  /** Side label before the swatches. @default "Less" */
   lessLabel?: string;
   /** Shared level styles for cells and legend swatches. */
   levelStyles?: HeatmapLevelStyles;
-  /** Side label after the swatches. Default: "More" */
+  /** Side label after the swatches. @default "More" */
   moreLabel?: string;
-  /** Legend layout — discrete swatches or a continuous gradient bar. Default: `"swatches"` */
+  /** Legend layout — discrete swatches or a continuous gradient bar. @default "swatches" */
   variant?: HeatmapLegendVariant;
 }
 
@@ -142,7 +143,7 @@ export const HeatmapLegend = memo(function HeatmapLegend({
   return (
     <div
       className={cn(
-        "flex w-full items-center gap-1.5 text-chart-label text-xs",
+        "flex w-full items-center gap-1.5 text-foreground-muted text-xs",
         align === "start" && "justify-start",
         align === "center" && "justify-center",
         align === "end" && "justify-end",

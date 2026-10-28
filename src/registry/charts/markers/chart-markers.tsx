@@ -6,18 +6,21 @@ import { chartCssVars, useChart, useChartHover } from "../chart-context";
 import { type ChartMarker, MarkerGroup } from "./marker-group";
 
 export interface ChartMarkersProps {
-  /** Whether to animate markers on entrance. Default: true */
+  /** Whether to animate markers on entrance. @default true */
   animate?: boolean;
   /** Array of markers to display */
   items: ChartMarker[];
-  /** Whether to show vertical guide lines. Default: true */
+  /** Whether to show vertical guide lines. @default true */
   showLines?: boolean;
-  /** Size of each marker circle. Default: 28 */
+  /** Size of each marker circle. @default 28 */
   size?: number;
 }
 
 // Tooltip content for markers
 export interface MarkerTooltipContentProps {
+  /**
+   * Markers to list — typically the result of `useActiveMarkers` (shows up to two, then "+N more")
+   */
   markers: ChartMarker[];
 }
 
@@ -56,16 +59,16 @@ export function MarkerTooltipContent({ markers }: MarkerTooltipContentProps) {
                 marker.content
               ) : (
                 <>
-                  <div className="flex items-center gap-1.5 truncate font-medium text-chart-tooltip-foreground text-sm">
+                  <div className="flex items-center gap-1.5 truncate font-medium text-foreground text-sm">
                     {marker.title}
                     {isClickable && (
-                      <span className="text-[10px] text-chart-tooltip-muted">
+                      <span className="text-[10px] text-foreground-muted">
                         ↗
                       </span>
                     )}
                   </div>
                   {marker.description && (
-                    <div className="truncate text-chart-tooltip-muted text-xs">
+                    <div className="truncate text-foreground-muted text-xs">
                       {marker.description}
                     </div>
                   )}
@@ -76,7 +79,7 @@ export function MarkerTooltipContent({ markers }: MarkerTooltipContentProps) {
         );
       })}
       {hiddenCount > 0 && (
-        <div className="pl-7 text-chart-tooltip-muted text-xs">
+        <div className="pl-7 text-foreground-muted text-xs">
           +{hiddenCount} more...
         </div>
       )}

@@ -30,11 +30,11 @@ import {
 } from "./scatter-jitter";
 
 export interface ScatterChartProps {
-  /** Animation duration in milliseconds. Default: 1100 */
+  /** Animation duration in milliseconds. @default 1100 */
   animationDuration?: number;
-  /** CSS easing for clip-reveal. Default: cubic-bezier(0.85, 0, 0.15, 1) */
+  /** CSS easing for clip-reveal. @default cubic-bezier(0.85, 0, 0.15, 1) */
   animationEasing?: string;
-  /** Aspect ratio as "width / height". Default: "2 / 1" */
+  /** Aspect ratio as "width / height". @default "2 / 1" */
   aspectRatio?: string;
   /** Child components (Scatter, Grid, ChartTooltip, XAxis, etc.) */
   children: ReactNode;
@@ -42,23 +42,32 @@ export interface ScatterChartProps {
   className?: string;
   /** Data array — each item should have a date field and numeric values */
   data: Record<string, unknown>[];
+  /**
+   * Motion transition for the enter reveal. Defaults to the line chart reveal.
+   */
   enterTransition?: Transition;
   /**
    * Format x-axis tick and date-pill labels, e.g. short month names for
-   * monthly data. Hoist or memoize it to avoid recomputing labels. Default: "Jan 1"
+   * monthly data. Hoist or memoize it to avoid recomputing labels. Defaults to
+   * short dates such as "Jan 1".
    */
   formatXLabel?: (date: Date) => string;
   /**
    * Spread points that share an x value (strip plot). Offsets are deterministic
    * (seeded), so points never jump between renders; tooltips show the original
-   * values. `true` = `0.35` band steps horizontally. Default: off
+   * values. `true` = `0.35` band steps horizontally.
+   * @default false
    */
   jitter?: ScatterJitter;
-  /** Chart margins */
+  /** Chart margins @default { top: 40, right: 40, bottom: 40, left: 40 } */
   margin?: Partial<Margin>;
+  /**
+   * Fires when the internal chart phase changes (e.g. OG capture readiness).
+   */
   onPhaseChange?: (phase: ChartPhase) => void;
+  /** Signature of motion URL state — triggers enter replay when it changes. @internal */
   revealSignature?: string;
-  /** Key in data for the x-axis (date). Default: "date" */
+  /** Key in data for the x-axis (date). @default "date" */
   xDataKey?: string;
 }
 

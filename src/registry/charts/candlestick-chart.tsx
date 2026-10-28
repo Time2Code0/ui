@@ -30,11 +30,11 @@ export interface OHLCDataPoint {
 }
 
 export interface CandlestickChartProps {
-  /** Animation duration in milliseconds. Default: 1500 */
+  /** Animation duration in milliseconds. @default 1500 */
   animationDuration?: number;
-  /** Aspect ratio as "width / height". Default: "2 / 1" */
+  /** Aspect ratio as "width / height". @default "2 / 1" */
   aspectRatio?: string;
-  /** Gap between candles as fraction of slot width (0–1). Default: 0.2. Ignored when candleWidth is set. */
+  /** Gap between candles as fraction of slot width (0–1). Ignored when candleWidth is set. @default 0.2 */
   candleGap?: number;
   /** Fixed candle body width in pixels. If set, overrides candleGap. */
   candleWidth?: number;
@@ -48,11 +48,11 @@ export interface CandlestickChartProps {
   enterTransition?: Transition;
   /** Chart margins */
   margin?: Partial<Margin>;
-  /** Signature of motion URL state — triggers enter replay when it changes. */
+  /** Signature of motion URL state — triggers enter replay when it changes. @internal */
   revealSignature?: string;
   /** Inline styles for the container (e.g. { height: 320 }) */
   style?: React.CSSProperties;
-  /** Key in data for the x-axis (date). Default: "date" */
+  /** Key in data for the x-axis (date). @default "date" */
   xDataKey?: string;
   /** When set, xScale uses this domain instead of deriving from data. Use with brush so main chart and strip share the same scale. */
   xDomain?: [Date, Date];
@@ -168,7 +168,7 @@ const ChartCore = memo(function ChartCore({
 
   const lines: LineConfig[] = useMemo(
     () => [
-      { dataKey: "close", stroke: "var(--chart-line-primary)", strokeWidth: 0 },
+      { dataKey: "close", stroke: "var(--color-chart-1)", strokeWidth: 0 },
     ],
     []
   );
@@ -251,25 +251,16 @@ const ChartCore = memo(function ChartCore({
         width={width}
       >
         <defs>
-          {/* Default vertical gradients for positive/negative candles (--chart-positive / --chart-negative) */}
+          {/* Default vertical gradients for positive/negative candles (success / destructive foreground) */}
           <linearGradient id="candlestick-positive" x1="0" x2="0" y1="1" y2="0">
-            <stop
-              offset="0%"
-              stopColor="var(--chart-positive, var(--color-emerald-500))"
-            />
-            <stop
-              offset="100%"
-              stopColor="var(--chart-positive, var(--color-emerald-500))"
-            />
+            <stop offset="0%" stopColor="var(--color-success-foreground)" />
+            <stop offset="100%" stopColor="var(--color-success-foreground)" />
           </linearGradient>
           <linearGradient id="candlestick-negative" x1="0" x2="0" y1="1" y2="0">
-            <stop
-              offset="0%"
-              stopColor="var(--chart-negative, var(--color-red-500))"
-            />
+            <stop offset="0%" stopColor="var(--color-destructive-foreground)" />
             <stop
               offset="100%"
-              stopColor="var(--chart-negative, var(--color-red-500))"
+              stopColor="var(--color-destructive-foreground)"
             />
           </linearGradient>
           {layers.defs}

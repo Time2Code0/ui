@@ -18,11 +18,11 @@ import { type SpringConfig, useChartConfig } from "../chart-config-context";
 import { chartCssVars, useChartPortalContainer } from "../chart-context";
 
 export interface TooltipBoxProps {
-  /** Animate panel position with a spring. Default: true */
+  /** Animate panel position with a spring. @default true */
   animate?: boolean;
   /**
    * Tooltip panel background color (CSS variable or color value).
-   * Default: `var(--chart-tooltip-background)`.
+   * @default var(--color-background)
    */
   backgroundColor?: string;
   /** Tooltip content */
@@ -35,18 +35,19 @@ export interface TooltipBoxProps {
   containerRef: RefObject<HTMLDivElement | null>;
   /** Container width for flip detection */
   containerWidth: number;
-  /** Fade/scale the panel on show. Default: true */
+  /** Fade/scale the panel on show. @default true */
   entrance?: boolean;
   /**
    * Fade the panel out when `visible` turns false (via `AnimatePresence`).
    * Requires `entrance`. Keep the box mounted and toggle `visible` (rather
-   * than unmounting it) so the exit can play. Default: true
+   * than unmounting it) so the exit can play.
+   * @default true
    */
   exit?: boolean;
   /** Force flip direction (for custom positioning) */
   flipped?: boolean;
   /**
-   * X (container px) that decides which side the panel opens on. Default: `x`.
+   * X (container px) that decides which side the panel opens on. Defaults to `x`.
    * Nearest-point hover passes the column x so every point in a column opens
    * on the same side (no flip — and entrance replay — between nearby points).
    */
@@ -60,7 +61,8 @@ export interface TooltipBoxProps {
   /**
    * Replay the panel entrance when it flips sides. `false` springs the panel
    * across instead (used by nearest-point hover, where neighbouring points
-   * can sit on either side of the flip line). Default: true
+   * can sit on either side of the flip line).
+   * @default true
    */
   replayOnFlip?: boolean;
   /** Per-chart override; falls back to `ChartConfigProvider.tooltipBoxSpring`. */
@@ -81,7 +83,7 @@ export interface TooltipBoxProps {
  * tokens (`border`, `--radius`) and Tailwind utilities.
  */
 const TOOLTIP_PANEL_CLASS_NAME =
-  "relative min-w-[160px] rounded-xl border not-dark:bg-clip-padding text-chart-tooltip-foreground shadow-lg/5 before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-xl)-1px)] before:shadow-[0_1px_rgb(0_0_0/0.04)] dark:before:shadow-[0_-1px_rgb(255_255_255/0.06)]";
+  "relative min-w-[160px] rounded-xl border not-dark:bg-clip-padding text-foreground shadow-lg/5 before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-xl)-1px)] before:shadow-[0_1px_rgb(0_0_0/0.04)] dark:before:shadow-[0_-1px_rgb(255_255_255/0.06)]";
 
 /** Clips content to the panel's inner radius without clipping the edge highlight. */
 const TOOLTIP_PANEL_INNER_CLASS_NAME =
@@ -282,7 +284,7 @@ function TooltipBoxInner({
     TOOLTIP_PANEL_CLASS_NAME,
     panelStyle?.backgroundColor === undefined &&
       backgroundColor === chartCssVars.tooltipBackground &&
-      "bg-chart-tooltip-background",
+      "bg-background",
     panelStyle?.backdropFilter === undefined && "backdrop-blur-md"
   );
   const panelStyleResolved = {

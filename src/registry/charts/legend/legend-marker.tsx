@@ -5,7 +5,7 @@ import { cn } from "cn";
 import { useLegendItem } from "./legend-context";
 
 export interface LegendMarkerProps {
-  /** Marker size class. Default: "h-2.5 w-2.5" */
+  /** Marker size class. @default "h-2.5 w-2.5" */
   className?: string;
 }
 

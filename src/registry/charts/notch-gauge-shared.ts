@@ -157,7 +157,7 @@ export function resolveGaugeBgFill(options: {
     return inactiveFill as string;
   }
   if (useThemePaletteGradient) {
-    return linearMode ? "var(--chart-1)" : arcTrackFill;
+    return linearMode ? "var(--color-chart-1)" : arcTrackFill;
   }
   if (useGradient) {
     const denom = totalNotches > 1 ? totalNotches - 1 : 1;

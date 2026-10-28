@@ -15,15 +15,24 @@ import {
 } from "./choropleth-context";
 
 export interface ChoroplethFeatureProps {
+  /** Opacity when another feature is hovered @default 0.4 */
   fadedOpacity?: number;
+  /** Fill color for all features (overrides `getFeatureColor`) */
   fill?: string;
+  /** Custom color function */
   getFeatureColor?: (feature: ChoroplethFeatureType, index: number) => string;
+  /** Return a pattern ID for a feature */
   getFeaturePattern?: (
     feature: ChoroplethFeatureType,
     index: number
   ) => string | null | undefined;
+  /**
+   * Pattern definitions, e.g. `PatternLines` from `@/components/charts/patterns/lines`
+   */
   patterns?: React.ReactNode;
+  /** Stroke color for borders @default var(--color-background) */
   stroke?: string;
+  /** Border stroke width @default 0.5 */
   strokeWidth?: number;
 }
 
@@ -54,7 +63,7 @@ function resolveFeatureFill(
   }
   return (
     defaultChoroplethColors[index % defaultChoroplethColors.length] ??
-    "var(--chart-1)"
+    "var(--color-chart-1)"
   );
 }
 
@@ -212,7 +221,7 @@ const EnterFeatureLayer = memo(function EnterFeatureLayer({
 
 export const ChoroplethFeature = memo(function ChoroplethFeature({
   fill,
-  stroke = "var(--background)",
+  stroke = "var(--color-background)",
   strokeWidth = 0.5,
   fadedOpacity = 0.4,
   getFeatureColor,

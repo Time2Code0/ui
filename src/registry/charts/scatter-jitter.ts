@@ -16,11 +16,11 @@ export type ScatterJitter =
   | boolean
   | number
   | {
-      /** Total horizontal spread as a fraction of the band step (0–1). Default: 0.35 */
+      /** Total horizontal spread as a fraction of the band step (0–1). @default 0.35 */
       x?: number;
-      /** Maximum vertical offset in px (±). Default: 0 */
+      /** Maximum vertical offset in px (±). @default 0 */
       y?: number;
-      /** Seed for the deterministic offset pattern. Default: 0 */
+      /** Seed for the deterministic offset pattern. @default 0 */
       seed?: number;
     };
 

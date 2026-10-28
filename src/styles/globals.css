@@ -40,6 +40,12 @@
   --color-warning-foreground: oklch(0.48 0.09 75);
   --color-warning-background: oklch(0.96 0.03 75);
   --color-warning-subtel: oklch(0.91 0.065 75);
+
+  --color-chart-1: oklch(0.585 0.233 277.117);
+  --color-chart-2: oklch(0.852 0.199 91.936);
+  --color-chart-3: oklch(0.667 0.295 322.15);
+  --color-chart-4: oklch(0.56 0.021 213.5);
+  --color-chart-5: oklch(0 0 0);
 }
 
 .dark {

@@ -17,11 +17,11 @@ export interface RadarAreaProps {
   color?: string;
   /** Index of this area in the data array */
   index: number;
-  /** Show glow effect on hover. Default: true */
+  /** Show glow effect on hover. @default true */
   showGlow?: boolean;
-  /** Show data point circles. Default: true */
+  /** Show data point circles. @default true */
   showPoints?: boolean;
-  /** Show stroke outline on the polygon. Default: true */
+  /** Show stroke outline on the polygon. @default true */
   showStroke?: boolean;
 }
 

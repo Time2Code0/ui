@@ -2,11 +2,11 @@ const DEFAULT_SKELETON_DATA_KEY = "value";
 const DEFAULT_SKELETON_POINT_COUNT = 7;
 
 export interface GenerateChartSkeletonDataOptions {
-  /** Start date for the x axis. Default: 2025-01-01. */
+  /** Start date for the x axis. @default new Date("2025-01-01") */
   baseDate?: Date;
-  /** Key used for y values in each row. Default: `"value"`. */
+  /** Key used for y values in each row. @default "value" */
   dataKey?: string;
-  /** Number of points. Default: 7. */
+  /** Number of points. @default 7 */
   pointCount?: number;
 }
 

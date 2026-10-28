@@ -13,9 +13,9 @@ import {
 } from "./chart-context";
 
 export interface BarYAxisProps {
-  /** Maximum number of labels to show. Default: 20 */
+  /** Maximum number of labels to show. @default 20 */
   maxLabels?: number;
-  /** Whether to show all labels or skip some for dense data. Default: true */
+  /** Whether to show all labels or skip some for dense data. @default true */
   showAllLabels?: boolean;
 }
 
@@ -43,13 +43,13 @@ function BarYAxisLabel({
       <motion.span
         animate={{
           color: isHovered
-            ? "var(--foreground)"
-            : "var(--chart-label, var(--color-zinc-500))",
+            ? "var(--color-foreground)"
+            : "var(--color-foreground-muted)",
           opacity: isHovered ? 1 : 0.7,
         }}
         className={cn("truncate whitespace-nowrap text-right text-xs")}
         initial={{
-          color: "var(--chart-label, var(--color-zinc-500))",
+          color: "var(--color-foreground-muted)",
           opacity: 0.7,
         }}
         style={{ maxWidth: 70 }}

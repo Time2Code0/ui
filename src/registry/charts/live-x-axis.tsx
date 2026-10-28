@@ -36,9 +36,9 @@ function labelFadeOpacity(
 }
 
 export interface LiveXAxisProps {
-  /** Time formatter. Default: HH:MM:SS */
+  /** Time formatter. Defaults to `HH:MM:SS`. */
   formatTime?: (t: number) => string;
-  /** Number of time labels. Default: 5 */
+  /** Number of time labels. @default 5 */
   numTicks?: number;
 }
 
@@ -115,7 +115,7 @@ const LiveXAxisInner = memo(function LiveXAxisInner({
             animate={{
               opacity: labelFadeOpacity(l.x, crosshairX, isHovering),
             }}
-            className="whitespace-nowrap text-chart-label text-xs"
+            className="whitespace-nowrap text-foreground-muted text-xs"
             transition={{ duration: 0.15, ease: "easeOut" }}
           >
             {l.label}

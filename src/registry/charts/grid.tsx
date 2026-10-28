@@ -15,58 +15,64 @@ import {
 const DEFAULT_SHIMMER_LENGTH_PX = 140;
 const DEFAULT_SHIMMER_SPEED = 1;
 const DEFAULT_SHIMMER_STROKE =
-  "color-mix(in oklch, var(--foreground) 68%, transparent)";
+  "color-mix(in oklch, var(--color-foreground) 68%, transparent)";
 
 export interface GridProps {
-  /** Enable horizontal fade effect on grid rows (fades at left/right). Default: true */
+  /** Enable horizontal fade effect on grid rows (fades at left/right). @default true */
   fadeHorizontal?: boolean;
-  /** Enable vertical fade effect on grid columns (fades at top/bottom). Default: false */
+  /** Enable vertical fade effect on grid columns (fades at top/bottom). @default false */
   fadeVertical?: boolean;
-  /** Omit the first and last horizontal grid lines. Default: false */
+  /** Omit the first and last horizontal grid lines. @default false */
   hideHorizontalEdgeLines?: boolean;
-  /** Omit the first and last vertical grid lines. Default: false */
+  /** Omit the first and last vertical grid lines. @default false */
   hideVerticalEdgeLines?: boolean;
-  /** Stroke for highlighted rows. Default: var(--chart-foreground-muted) */
+  /** Stroke for highlighted rows. @default var(--color-foreground-muted) */
   highlightRowStroke?: string;
-  /** Dash array for highlighted rows. Default: solid line */
+  /** Dash array for highlighted rows. @default "0" */
   highlightRowStrokeDasharray?: string;
-  /** Stroke opacity for highlighted rows. Default: 1 */
+  /** Stroke opacity for highlighted rows. @default 1 */
   highlightRowStrokeOpacity?: number;
-  /** Stroke width for highlighted rows. Default: 1 */
+  /** Stroke width for highlighted rows. @default 1 */
   highlightRowStrokeWidth?: number;
   /** Horizontal row values rendered with alternate styling (e.g. zero baseline). */
   highlightRowValues?: number[];
-  /** Show horizontal grid lines. Default: true */
+  /** Show horizontal grid lines. @default true */
   horizontal?: boolean;
   /** Grid stroke while loading chrome is active. Falls back to `stroke`. */
   loadingStroke?: string;
-  /** Number of vertical grid lines. Default: 10 */
+  /** Number of vertical grid lines. @default 10 */
   numTicksColumns?: number;
-  /** Number of horizontal grid lines. Default: 5 */
+  /** Number of horizontal grid lines. @default 5 */
   numTicksRows?: number;
   /** Explicit tick values for horizontal grid lines. Overrides numTicksRows. */
   rowTickValues?: number[];
-  /** Animate a shimmer band across horizontal grid lines. Default: false */
+  /** Animate a shimmer band across horizontal grid lines. @default false */
   shimmer?: boolean;
-  /** Shimmer band width in pixels. Default: 140 */
+  /** Shimmer band width in pixels. @default 140 */
   shimmerLength?: number;
-  /** Shimmer speed multiplier (higher = faster). Default: 1 */
+  /** Shimmer speed multiplier (higher = faster). @default 1 */
   shimmerSpeed?: number;
-  /** Shimmer band stroke (color and opacity via color-mix or oklch alpha). */
+  /**
+   * Shimmer band stroke (color and opacity via color-mix or oklch alpha).
+   * @default color-mix(in oklch, var(--color-foreground) 68%, transparent)
+   */
   shimmerStroke?: string;
-  /** Match loop timing to the loading line pulse (cycle + inter-loop pause). */
+  /**
+   * Match loop timing to the loading line pulse (cycle + inter-loop pause).
+   * @default false
+   */
   shimmerSync?: boolean;
-  /** Grid line stroke color. Default: var(--chart-grid) */
+  /** Grid line stroke color. @default color-mix(in oklab, var(--color-foreground) 10%, transparent) */
   stroke?: string;
-  /** Grid line dash array. Default: "4,4" for dashed lines */
+  /** Grid line dash array. @default "4,4" */
   strokeDasharray?: string;
-  /** Grid line stroke opacity. Default: 1 */
+  /** Grid line stroke opacity. @default 1 */
   strokeOpacity?: number;
-  /** Grid line stroke width. Default: 1 */
+  /** Grid line stroke width. @default 1 */
   strokeWidth?: number;
-  /** Show vertical grid lines. Default: false */
+  /** Show vertical grid lines. @default false */
   vertical?: boolean;
-  /** Y-scale for horizontal grid lines. Default: primary (`"left"`) axis. */
+  /** Y-scale for horizontal grid lines. @default "left" */
   yAxisId?: string | number;
 }
 

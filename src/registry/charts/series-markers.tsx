@@ -18,8 +18,9 @@ import {
 } from "./series-point-marker";
 
 export interface SeriesMarkersProps extends SeriesPointMarkerStyle {
-  /** Whether to animate markers with clip reveal. Default: true */
+  /** Whether to animate markers with clip reveal. @default true */
   animate?: boolean;
+  /** Key in data for y values */
   dataKey: string;
   /** Marker fill color. Defaults to series stroke or chart palette color. */
   fill?: string;

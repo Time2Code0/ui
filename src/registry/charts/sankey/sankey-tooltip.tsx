@@ -24,7 +24,7 @@ function getNodeName(nodeOrIndex: NodeOrIndex, fallbackIndex: number): string {
 export interface SankeyTooltipProps {
   /** Custom class name */
   className?: string;
-  /** Fade the panel out when hover ends. Default: true */
+  /** Fade the panel out when hover ends. @default true */
   exit?: boolean;
   /** Value formatter function */
   formatValue?: (value: number) => string;
@@ -87,7 +87,7 @@ export function SankeyTooltip({
       <TooltipContent
         rows={[
           {
-            color: "var(--chart-line-primary)",
+            color: "var(--color-chart-1)",
             label: "Sessions",
             value: formatValue(node.value ?? 0),
           },
@@ -104,7 +104,7 @@ export function SankeyTooltip({
       const targetName = getNodeName(link.target as NodeOrIndex, index);
       const rows: TooltipRow[] = [
         {
-          color: "var(--chart-foreground-muted)",
+          color: "var(--color-foreground-muted)",
           label: "Flow",
           value: formatValue(link.value),
         },

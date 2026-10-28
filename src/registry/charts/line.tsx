@@ -33,11 +33,11 @@ import { SeriesMarkers } from "./series-markers";
 import { useAnimatedSeriesPath } from "./use-animated-series-path";
 
 export interface LineProps {
-  /** Whether to animate the line. Default: true */
+  /** Whether to animate the line. @default true */
   animate?: boolean;
-  /** Curve function. Default: curveNatural */
+  /** Curve function. @default curveNatural */
   curve?: CurveFactory;
-  /** Dash pattern for the tail segment when `dashFromIndex` is set. Default: "6,4" */
+  /** Dash pattern for the tail segment when `dashFromIndex` is set. @default "6,4" */
   dashArray?: string;
   /**
    * Data index from which the line stroke becomes dashed (inclusive).
@@ -50,39 +50,40 @@ export interface LineProps {
    * Fade the line stroke toward transparent at the chart edges.
    * - `true` fades both edges, `false` disables the fade entirely.
    * - `"left"` / `"right"` fades only that side.
-   * Default: true
+   * @default true
    */
   fadeEdges?: FadeEdges;
   /**
-   * Show the loading pulse overlay. Default: follows chart loading phase.
-   * Set `false` to disable even during loading.
+   * Show the loading pulse overlay. Follows the chart loading phase by
+   * default; set `false` to disable even during loading.
    */
   loading?: boolean;
-  /** Override pulse animation mode (loop / exit / enter). */
+  /** Override pulse animation mode (loop / exit / enter). @internal */
   loadingPulseMode?: LineLoadingPulseMode;
-  /** Stroke color for the loading pulse overlay. Default: var(--foreground) */
+  /** Stroke color for the loading pulse overlay. @default var(--color-foreground) */
   loadingStroke?: string;
-  /** Loading pulse stroke opacity. Default: 0.5 */
+  /** Loading pulse stroke opacity. @default 0.5 */
   loadingStrokeOpacity?: number;
   /**
    * Loading animation while the chart is in loading status: the default
    * traveling `"pulse"`, or a diagonal `"sweep"` shimmer across the skeleton
-   * line. Default: `"pulse"`.
+   * line.
+   * @default "pulse"
    */
   loadingStyle?: LoadingStyle;
   /** Marker styling (same options as Scatter). */
   markers?: SeriesPointMarkerStyle;
   /** Called when a loop-mode pulse cycle completes. */
   onLoadingPulseCycleComplete?: () => void;
-  /** Whether to show highlight segment on hover. Default: true */
+  /** Whether to show highlight segment on hover. @default true */
   showHighlight?: boolean;
-  /** Render scatter-style circle markers at each data point. Default: false */
+  /** Render scatter-style circle markers at each data point. @default false */
   showMarkers?: boolean;
-  /** Stroke color. Default: var(--chart-line-primary) */
+  /** Stroke color. @default var(--color-chart-1) */
   stroke?: string;
-  /** Stroke width. Default: 2.5 */
+  /** Stroke width. @default 2.5 */
   strokeWidth?: number;
-  /** Y-scale group id (Recharts `yAxisId`). Default: `"left"`. */
+  /** Y-scale group id (Recharts `yAxisId`). @default "left" */
   yAxisId?: string | number;
 }
 

@@ -28,43 +28,57 @@ export interface GradientStop {
 }
 
 export interface BarSquaresProps {
+  /** Enable enter animation @default true */
   animate?: boolean;
   /**
    * Datum key holding a per-column color. When the datum has a string there,
    * it replaces `fill` for that column and solid-fills it (no gradient).
    */
   colorKey?: string;
+  /** Key in data for values */
   dataKey: string;
+  /** Opacity when another bar is hovered @default 0.3 */
   fadedOpacity?: number;
-  /** Fill color, gradient url, or pattern url. Default: var(--chart-line-primary) */
+  /** Fill color, gradient url, or pattern url. @default var(--color-chart-1) */
   fill?: string;
+  /** Gradient stops (0–100) when `useGradient` is true */
   gradientStops?: GradientStop[];
+  /** Gap between grouped series columns in pixels @default 4 */
   groupGap?: number;
   /** Pattern preset when fill is a pattern (for gradient tinting) */
   patternPreset?: PatternPresetId;
-  /** Redistribute gap so columns fit bar height exactly */
+  /** Redistribute gap so columns fit bar height exactly @default false */
   squareFit?: boolean;
-  /** Gap between stacked squares in pixels. Default: 3 */
+  /** Gap between stacked squares in pixels. @default 3 */
   squareGap?: number;
-  /** Corner radius as a fraction of square size (0 = flat, 0.5 = circle). Default: 0.25 */
+  /** Corner radius as a fraction of square size (0 = flat, 0.5 = circle). @default 0.25 */
   squareRadius?: number;
+  /**
+   * Override per-column stagger delay (seconds). Spread across the animation duration by default.
+   */
   staggerDelay?: number;
   /** Tooltip dot / ring stroke color when fill is gradient/pattern */
   stroke?: string;
-  /** Apply bar-spanning gradient from gradientStops */
+  /** Apply bar-spanning gradient from gradientStops @default false */
   useGradient?: boolean;
+  /** Y-scale group for biaxial charts. Defaults to the series axis. */
   yAxisId?: string | number;
 }
 
 export interface BarColumnTrackProps {
-  /** Fill color or pattern url. Default: var(--chart-grid) */
+  /** Fill color or pattern url. @default color-mix(in oklab, var(--color-foreground) 10%, transparent) */
   fill?: string;
+  /** Match `<BarSquares groupGap>` @default 4 */
   groupGap?: number;
+  /** Track opacity @default 0.3 */
   opacity?: number;
+  /** Match `<BarSquares squareFit>` @default false */
   squareFit?: boolean;
+  /** Match `<BarSquares squareGap>` @default 3 */
   squareGap?: number;
-  /** Corner radius fraction (matches squares). Default: 0.25 */
+  /** Corner radius fraction (matches squares). @default 0.25 */
   squareRadius?: number;
+  /** Match `<BarSquares staggerDelay>` */
   staggerDelay?: number;
 }
 

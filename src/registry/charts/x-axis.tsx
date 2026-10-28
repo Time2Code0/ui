@@ -23,13 +23,14 @@ const X_AXIS_POSITION_TWEEN_MS = DEFAULT_Y_DOMAIN_TWEEN_MS;
 export interface XAxisProps {
   /** Optional labels aligned with data rows for the displayed ticks. */
   labels?: string[];
-  /** Number of ticks to show (including first and last). Default: 5. */
+  /** Number of ticks to show (including first and last). @default 5 */
   numTicks?: ChartLabelCount;
-  /** Width of the date ticker box for fade calculation. Default: 50 */
+  /** Width of the date ticker box for fade calculation. @default 50 */
   tickerHalfWidth?: number;
   /**
    * `"data"` — tick labels snap to data rows so crosshair and tooltip stay aligned (default).
    * `"domain"` — evenly spaced ticks across the time domain (may not align with hover).
+   * @default "data"
    */
   tickMode?: "domain" | "data";
 }
@@ -89,7 +90,7 @@ function XAxisLabel({
       }}
     >
       <span
-        className={cn("whitespace-nowrap text-chart-label text-xs")}
+        className={cn("whitespace-nowrap text-foreground-muted text-xs")}
         style={{
           opacity,
           transition: "opacity 0.4s ease-in-out",

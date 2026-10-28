@@ -18,7 +18,7 @@ export interface ProjectionLineEndMarkerProps {
 export function ProjectionLineEndMarker({
   data,
   yAxisId,
-  stroke = "var(--chart-3)",
+  stroke = "var(--color-chart-3)",
   strokeOpacity = 1,
   radius = 5,
 }: ProjectionLineEndMarkerProps) {

@@ -20,7 +20,7 @@ export type IndicatorWidth =
   | "thick"; // 8px
 
 export interface TooltipIndicatorProps {
-  /** Animate position with a spring. Default: true */
+  /** Animate position with a spring. @default true */
   animate?: boolean;
   /** Primary color at edges (10% and 90%) */
   colorEdge?: string;
@@ -30,7 +30,7 @@ export interface TooltipIndicatorProps {
   columnWidth?: number;
   /** Vertical fade: both ends, top, bottom, or none (solid). */
   fadeEdges?: IndicatorFadeEdges | boolean;
-  /** Fade zone size as a percentage of indicator height. Default: 10 */
+  /** Fade zone size as a percentage of indicator height. @default 10 */
   fadeLength?: number;
   /** Unique ID for the gradient */
   gradientId?: string;

@@ -78,13 +78,13 @@ function edgeOpacity(y: number, chartHeight: number): number {
 // ---------------------------------------------------------------------------
 
 export interface LiveYAxisProps {
-  /** Allow decimal tick values. Default: true */
+  /** Allow decimal tick values. @default true */
   allowDecimals?: boolean;
   /** Value formatter */
   formatValue?: (v: number) => string;
-  /** Minimum pixel gap between labels. Default: 36 */
+  /** Minimum pixel gap between labels. @default 36 */
   minGap?: number;
-  /** Position. Default: "left" */
+  /** Position. @default "left" */
   position?: "left" | "right";
 }
 
@@ -209,7 +209,7 @@ const LiveYAxisInner = memo(function LiveYAxisInner({
               }}
               transition={tickSpring}
             >
-              <span className="whitespace-nowrap font-mono text-chart-label text-xs">
+              <span className="whitespace-nowrap font-mono text-foreground-muted text-xs">
                 {tick.label}
               </span>
             </motion.div>

@@ -216,7 +216,7 @@ export function AreaValueLabels({ series }: { series: AreaProps[] }) {
               }
               style={{
                 paintOrder: "stroke",
-                stroke: "var(--background)",
+                stroke: "var(--color-background)",
                 strokeWidth: 3,
                 visibility: "hidden",
               }}

@@ -739,7 +739,7 @@ export function getHeatmapSeparatorLineY({
 }: {
   innerHeight: number;
   marginTop: number;
-  /** Distance from the chart container top to the line start. Default: plot top. */
+  /** Distance from the chart container top to the line start. Defaults to the plot top. */
   startOffset?: number;
   paddingY?: number;
 }): { y1: number; y2: number } {

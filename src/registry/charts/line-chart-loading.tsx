@@ -17,23 +17,23 @@ import { Line } from "./line";
 import { LineChart } from "./line-chart";
 
 const LOADING_DATA_KEY = DEFAULT_SKELETON_DATA_KEY;
-const DEFAULT_LOADING_STROKE = "var(--foreground)";
+const DEFAULT_LOADING_STROKE = "var(--color-foreground)";
 const DEFAULT_LOADING_GRID_STROKE =
-  "color-mix(in oklch, var(--chart-grid) 50%, transparent)";
+  "color-mix(in oklab, var(--color-foreground) 5%, transparent)";
 const DEFAULT_LOADING_GRID_SHIMMER_STROKE =
-  "color-mix(in oklch, var(--foreground) 68%, transparent)";
+  "color-mix(in oklch, var(--color-foreground) 68%, transparent)";
 const DEFAULT_LOADING_STROKE_OPACITY = 0.5;
 
 export interface LineChartLoadingProps {
-  /** Aspect ratio as "width / height". Default: "2 / 1" */
+  /** Aspect ratio as "width / height". @default "2 / 1" */
   aspectRatio?: string;
   /** Additional class name for the container */
   className?: string;
-  /** Animate a shimmer band across grid lines. Default: true */
+  /** Animate a shimmer band across grid lines. @default true */
   gridShimmer?: boolean;
-  /** Shimmer band width in pixels. Default: 140 */
+  /** Shimmer band width in pixels. @default 140 */
   gridShimmerLength?: number;
-  /** Shimmer speed multiplier (higher = faster). Default: 1 */
+  /** Shimmer speed multiplier (higher = faster). @default 1 */
   gridShimmerSpeed?: number;
   /** Shimmer band stroke (color and opacity via color-mix or oklch alpha). */
   gridShimmerStroke?: string;
@@ -41,16 +41,16 @@ export interface LineChartLoadingProps {
   gridShimmerSync?: boolean;
   /** Grid line stroke (color and opacity via color-mix or oklch alpha). */
   gridStroke?: string;
-  /** Centered shimmer label text. Default: "Loading" */
+  /** Centered shimmer label text. @default "Loading" */
   label?: string;
   /** Loading animation: `"pulse"` (default traveling pulse) or `"sweep"` (a
-   * diagonal shimmer across the skeleton line). Default: `"pulse"`. */
+   * diagonal shimmer across the skeleton line). @default "pulse" */
   loadingStyle?: LoadingStyle;
   /** Chart margins */
   margin?: Partial<Margin>;
   /** Stroke color for the animated loading segment. */
   stroke?: string;
-  /** Stroke opacity for the animated loading segment. Default: 0.5 */
+  /** Stroke opacity for the animated loading segment. @default 0.5 */
   strokeOpacity?: number;
 }
 

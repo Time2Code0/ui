@@ -35,44 +35,46 @@ export interface HeatmapSeparatorProps {
   gradient?: HeatmapSeparatorGradient;
   /**
    * Group columns by fixed interval (`every`) or calendar quarter (`quarter`).
-   * Default: `"every"`.
+   * @default "every"
    */
   groupBy?: "every" | "quarter";
   /** Additional class name for quarter labels */
   labelClassName?: string;
-  /** Format quarter group labels. Default: `Q{n}` */
+  /** Format quarter group labels. @default Q{n} */
   labelFormat?: (quarter: number, startDate: Date) => string;
   /**
    * Distance below the separator line top to place quarter labels.
-   * `0` aligns labels with the line top. Default: 0.
+   * `0` aligns labels with the line top.
+   * @default 0
    */
   labelOffset?: number;
-  /** Half-width of the line band in pixels (line is centered). Default: 0 */
+  /** Half-width of the line band in pixels (line is centered). @default 0 */
   paddingX?: number;
-  /** Inset from the bottom of the plot in pixels. Default: 0 */
+  /** Inset from the bottom of the plot in pixels. @default 0 */
   paddingY?: number;
-  /** Draw Q1–Q4 labels at the start of each quarter group. Default: false */
+  /** Draw Q1–Q4 labels at the start of each quarter group. @default false */
   showLabels?: boolean;
   /**
    * Extra horizontal gap between column groups in pixels (shifts cells apart).
-   * Parsed from this component by {@link HeatmapChart} for layout. Default: 0
+   * Parsed from this component by {@link HeatmapChart} for layout.
+   * @default 0
    */
   spacing?: number;
   /**
    * Distance from the chart container top to the line start, in pixels.
    * Use to align with {@link HeatmapXAxis} labels (e.g. `14`). The line always
-   * extends to the plot bottom. Default: plot top (`margin.top`).
+   * extends to the plot bottom. Defaults to the plot top (`margin.top`).
    */
   startOffset?: number;
-  /** Line stroke color when `gradient` is omitted. Default: `var(--border)` */
+  /** Line stroke color when `gradient` is omitted. @default color-mix(in oklab, var(--color-foreground) 10%, transparent) */
   stroke?: string;
-  /** Dash pattern when `strokeStyle="dashed"`. Default: `"4,4"` */
+  /** Dash pattern when `strokeStyle="dashed"`. @default "4,4" */
   strokeDasharray?: string;
-  /** Multiplier applied to solid strokes or gradient stop opacities. Default: 1 */
+  /** Multiplier applied to solid strokes or gradient stop opacities. @default 1 */
   strokeOpacity?: number;
-  /** Solid or dashed separator line. Default: `"solid"` */
+  /** Solid or dashed separator line. @default "solid" */
   strokeStyle?: HeatmapSeparatorStrokeStyle;
-  /** Line stroke width in pixels. Default: 1 */
+  /** Line stroke width in pixels. @default 1 */
   strokeWidth?: number;
 }
 
@@ -87,7 +89,7 @@ export const HeatmapSeparator = memo(function HeatmapSeparator({
   labelClassName,
   strokeStyle = "solid",
   strokeDasharray,
-  stroke = "var(--border)",
+  stroke = "color-mix(in oklab, var(--color-foreground) 10%, transparent)",
   gradient,
   strokeWidth = 1,
   strokeOpacity = 1,
@@ -166,7 +168,7 @@ export const HeatmapSeparator = memo(function HeatmapSeparator({
             >
               <span
                 className={cn(
-                  "whitespace-nowrap text-chart-label text-xs",
+                  "whitespace-nowrap text-foreground-muted text-xs",
                   labelClassName
                 )}
               >

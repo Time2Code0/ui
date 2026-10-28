@@ -7,7 +7,9 @@ import { cn } from "cn";
 import { useLegend, useLegendItem } from "./legend-context";
 
 export interface LegendItemProps {
-  /** Children components (LegendMarker, LegendLabel, LegendValue, LegendProgress) */
+  /**
+   * Children components (LegendMarker, LegendLabel, LegendValue, LegendProgress)
+   */
   children: ReactNode;
   /** Container class name */
   className?: string;
@@ -23,7 +25,7 @@ export function LegendItem({ className = "", children }: LegendItemProps) {
     <div
       className={cn(
         "cursor-pointer rounded-lg px-2 py-1.5 transition-all duration-150 ease-out",
-        isHovered && "bg-legend-muted",
+        isHovered && "bg-accent",
         className
       )}
       data-hovered={isHovered ? "" : undefined}

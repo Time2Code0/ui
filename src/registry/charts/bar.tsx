@@ -61,49 +61,55 @@ function barDepthPerspectiveRise(
 }
 
 export interface BarProps {
-  /** Whether to animate the bars. Default: true */
+  /** Whether to animate the bars. @default true */
   animate?: boolean;
-  /** Animation type: "grow" (height) or "fade" (opacity + blur). Default: "grow" */
+  /** Animation type: "grow" (height) or "fade" (opacity + blur). @default "grow" */
   animationType?: BarAnimationType;
   /** Key in data to use for y values */
   dataKey: string;
-  /** Opacity when not hovered (when another bar is hovered). Default: 0.3 */
+  /** Opacity when not hovered (when another bar is hovered). @default 0.3 */
   fadedOpacity?: number;
-  /** Fill color for the bar. Can be a color, gradient url, or pattern url. Default: var(--chart-line-primary) */
+  /** Fill color for the bar. Can be a color, gradient url, or pattern url. @default var(--color-chart-1) */
   fill?: string;
-  /** Gap between grouped bars in pixels. Default: 4 */
+  /** Gap between grouped bars in pixels. @default 4 */
   groupGap?: number;
-  /** Line cap style for bar ends: "round", "butt", or a number for custom radius. Default: "round" */
+  /** Line cap style for bar ends: "round", "butt", or a number for custom radius. @default "round" */
   lineCap?: BarLineCap;
   /** Minimum rendered bar height in px (non-stacked, vertical). Floors short or
    * zero-value bars so they stay visible. Pair with the same value on
-   * `<BarDepthProvider minBarHeight>` when using the 3D surfaces. Default: 0 */
+   * `<BarDepthProvider minBarHeight>` when using the 3D surfaces. @default 0 */
   minBarHeight?: number;
   /** Shrink each positive bar's top by its perspective rise so the front face
    * lines up with `<BarDepthBack>`'s lid (instead of the lid sitting above the
    * front face). Pass `true` whenever the chart also renders the bar-depth 3D
-   * surfaces. Default: false */
+   * surfaces. @default false */
   perspective?: boolean;
-  /** Show the formatted value inside each bar when it fits. Default: false. */
+  /** Show the formatted value inside each bar when it fits. @default false */
   showValue?: boolean;
-  /** Gap between stacked bars in pixels. Default: 0 */
+  /** Gap between stacked bars in pixels. @default 0 */
   stackGap?: number;
   /** Stagger delay between bars in seconds. Auto-calculated if not provided. */
   staggerDelay?: number;
-  /** Color for tooltip dot. Use when fill is a gradient/pattern. Default: uses fill value */
+  /** Color for tooltip dot. Use when fill is a gradient/pattern. @default fill */
   stroke?: string;
   /** Optional class for value labels. */
   valueLabelClassName?: string;
-  /** Text color for values displayed inside bars. Default: white. */
+  /** Text color for values displayed inside bars. @default "white" */
   valueLabelColor?: string;
   /** Format values displayed inside bars. Defaults to English integers. */
   valueLabelFormatter?: (value: number) => string;
-  /** Label text direction. `auto` uses horizontal text, then rotates if needed. */
+  /**
+   * Label text direction. `auto` uses horizontal text, then rotates if needed.
+   * @default "auto"
+   */
   valueLabelOrientation?: BarValueLabelOrientation;
-  /** Position of the label inside the bar. On horizontal bars `"top"` is the
-   * value end (right) and `"bottom"` the base (left). Default: center. */
+  /**
+   * Position of the label inside the bar. On horizontal bars `"top"` is the
+   * value end (right) and `"bottom"` the base (left). Centered when omitted.
+   * @default "center"
+   */
   valueLabelPosition?: BarValueLabelPosition;
-  /** Y-scale group id for vertical bars (Recharts `yAxisId`). Default: `"left"`. */
+  /** Y-scale group id for vertical bars (Recharts `yAxisId`). @default "left" */
   yAxisId?: string | number;
 }
 

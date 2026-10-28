@@ -35,7 +35,9 @@ export function useSunburstBreadcrumbItems() {
 }
 
 export interface SunburstBreadcrumbProps {
+  /** Breadcrumb UI composed from chart context */
   children: ReactNode;
+  /** Nav wrapper class @default "mb-4" */
   className?: string;
 }
 

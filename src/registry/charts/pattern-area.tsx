@@ -8,7 +8,7 @@ import { AreaClosed } from "@visx/shape";
 import { useChartStable } from "./chart-context";
 
 export interface PatternAreaProps {
-  /** Curve function. Default: curveMonotoneX */
+  /** Curve function. @default curveMonotoneX */
   curve?: CurveFactory;
   /** Key in data to use for y values */
   dataKey: string;

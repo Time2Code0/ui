@@ -28,11 +28,11 @@ import { SeriesHoverDim } from "./series-hover-dim";
 import { SeriesMarkers } from "./series-markers";
 
 export interface AreaProps {
-  /** Whether to animate the area. Default: true */
+  /** Whether to animate the area. @default true */
   animate?: boolean;
-  /** Curve function. Default: curveMonotoneX */
+  /** Curve function. @default curveMonotoneX */
   curve?: CurveFactory;
-  /** Dash pattern for the tail segment when `dashFromIndex` is set. Default: "6,4" */
+  /** Dash pattern for the tail segment when `dashFromIndex` is set. @default "6,4" */
   dashArray?: string;
   /**
    * Data index from which the line stroke becomes dashed (inclusive).
@@ -46,62 +46,67 @@ export interface AreaProps {
    * - `true` fades both edges, `false` disables the fade entirely.
    * - `"left"` / `"right"` fades only that side — useful when the opposite
    *   edge butts up against another element you don't want to fade into.
-   * Default: false
+   * @default false
    */
   fadeEdges?: FadeEdges;
-  /** Fade value labels with the chart edges. Default: false. */
+  /** Fade value labels with the chart edges. @default false */
   fadeValueLabels?: boolean;
-  /** Fill color for the area gradient start. Default: var(--chart-line-primary) */
+  /** Fill color for the area gradient start. @default var(--color-chart-1) */
   fill?: string;
-  /** Fill opacity at the top of the area. Default: 0.4 */
+  /** Fill opacity at the top of the area. @default 0.4 */
   fillOpacity?: number;
   /**
    * Vertical extent of the fill gradient (0–1). `1` fades across the full
    * height; lower values compress the gradient toward the top.
    */
   gradientSpan?: number;
-  /** Gradient opacity at bottom (0 = fully transparent). Default: 0 */
+  /** Gradient opacity at bottom (0 = fully transparent). @default 0 */
   gradientToOpacity?: number;
   /**
-   * Show the loading pulse overlay. Default: follows chart loading phase.
-   * Set `false` to disable even during loading.
+   * Show the loading pulse overlay. Follows the chart loading phase by
+   * default; set `false` to disable even during loading.
    */
   loading?: boolean;
-  /** Override pulse animation mode (loop / exit / enter). */
+  /** Override pulse animation mode (loop / exit / enter). @internal */
   loadingPulseMode?: LineLoadingPulseMode;
-  /** Pulse stroke color while chart is loading. Default: var(--foreground) */
+  /** Pulse stroke color while chart is loading. @default var(--color-foreground) */
   loadingStroke?: string;
-  /** Pulse stroke opacity while chart is loading. Default: 0.5 */
+  /** Pulse stroke opacity while chart is loading. @default 0.5 */
   loadingStrokeOpacity?: number;
   /**
    * Loading animation while the chart is in loading status: the default
    * traveling `"pulse"`, or a diagonal `"sweep"` shimmer across the skeleton
-   * area. Default: `"pulse"`.
+   * area.
+   * @default "pulse"
    */
   loadingStyle?: LoadingStyle;
   /** Marker styling (same options as Scatter). */
   markers?: SeriesPointMarkerStyle;
-  /** Whether to show highlight segment on hover. Default: true */
+  /** Whether to show highlight segment on hover. @default true */
   showHighlight?: boolean;
-  /** Whether to show the stroke line. Default: true */
+  /** Whether to show the stroke line. @default true */
   showLine?: boolean;
-  /** Render scatter-style circle markers at each data point. Default: false */
+  /** Render scatter-style circle markers at each data point. @default false */
   showMarkers?: boolean;
-  /** Show smart formatted values above data points. Default: false. */
+  /** Show smart formatted values above data points. @default false */
   showValue?: boolean;
-  /** Stroke color for the line. Default: same as fill */
+  /** Stroke color for the line. @default fill */
   stroke?: string;
-  /** Stroke width. Default: 2 */
+  /** Stroke width. @default 2 */
   strokeWidth?: number;
-  /** Text color for values displayed above data points. Default: same as stroke. */
+  /** Text color for values displayed above data points. @default stroke */
   valueLabelColor?: string;
-  /** Format values displayed above data points. */
+  /**
+   * Format values displayed above data points. Defaults to English integer formatting.
+   */
   valueLabelFormatter?: (value: number) => string;
-  /** Maximum labels per series. Zero hides labels; omitted uses available width. */
+  /**
+   * Maximum labels per series. `0` hides labels; when omitted, the count follows the available width.
+   */
   valueLabelMaxCount?: number;
-  /** Preferred minimum labels per series, subject to available space. Default: 2. */
+  /** Preferred minimum labels per series, subject to available space. @default 2 */
   valueLabelMinCount?: number;
-  /** Y-scale group id (Recharts `yAxisId`). Default: `"left"`. */
+  /** Y-scale group id (Recharts `yAxisId`). @default "left" */
   yAxisId?: string | number;
 }
 

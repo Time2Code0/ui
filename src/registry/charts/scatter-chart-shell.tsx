@@ -35,7 +35,7 @@ export interface ScatterChartInnerProps {
   containerRef: React.RefObject<HTMLDivElement | null>;
   data: Record<string, unknown>[];
   enterTransition?: Transition;
-  /** X-axis tick / date-pill label formatter. Default: "Jan 1" */
+  /** X-axis tick / date-pill label formatter. @default "Jan 1" */
   formatXLabel?: (date: Date) => string;
   height: number;
   /** Resolved jitter config (see `ScatterChart` `jitter`). */

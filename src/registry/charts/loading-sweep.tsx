@@ -44,7 +44,7 @@ const HEIGHT_MIN_PCT = 20;
 const HEIGHT_MAX_PCT = 80;
 const DEFAULT_POINT_COUNT = 14;
 const DEFAULT_BAR_COUNT = 12;
-const DEFAULT_FILL = "var(--foreground)";
+const DEFAULT_FILL = "var(--color-foreground)";
 const DEFAULT_BAR_FILL_OPACITY = 0.45;
 const LINE_STROKE_OPACITY = 0.55;
 const AREA_FILL_TOP_OPACITY = 0.18;
@@ -187,7 +187,7 @@ export interface LineLoadingSweepProps {
   durationSeconds?: number;
   /** Loading phase: `"loop"` (steady), `"exit"` (loading → ready), or `"enter"`
    * (ready → loading). Exit/enter fade the silhouette and then signal the chart
-   * to continue its reveal. Default: `"loop"`. */
+   * to continue its reveal. @default "loop" */
   mode?: "loop" | "exit" | "enter";
   /** Fired when an exit/enter transition finishes, to advance the chart phase. */
   onTransitionComplete?: () => void;
@@ -405,17 +405,17 @@ function SkeletonBars({
 }
 
 export interface BarLoadingSkeletonProps {
-  /** Number of skeleton bars. Default: 12 */
+  /** Number of skeleton bars. @default 12 */
   barCount?: number;
-  /** Bar width as a fraction of its band (0–1). Default: 0.7 */
+  /** Bar width as a fraction of its band (0–1). @default 0.7 */
   barFraction?: number;
-  /** Bars rise from the bottom or diverge from the vertical center. Default: `"bottom"` */
+  /** Bars rise from the bottom or diverge from the vertical center. @default "bottom" */
   baseline?: "bottom" | "center";
-  /** One shimmer sweep, in seconds. Default: 2 */
+  /** One shimmer sweep, in seconds. @default 2 */
   durationSeconds?: number;
-  /** Bar fill color. Default: `var(--foreground)` */
+  /** Bar fill color. @default var(--color-foreground) */
   fill?: string;
-  /** Bar fill opacity. Default: 0.45 */
+  /** Bar fill opacity. @default 0.45 */
   fillOpacity?: number;
   innerHeight: number;
   innerWidth: number;

@@ -55,17 +55,11 @@ export function GaugeLabelShell({
       <ChartStatFlow
         formatOptions={formatOptions}
         label={defaultLabel}
-        labelClassName={cn(
-          chartCenterLabelClassName,
-          "text-[length:var(--chart-foreground-muted)]"
-        )}
+        labelClassName={cn(chartCenterLabelClassName, "text-foreground-muted")}
         prefix={prefix}
         suffix={suffix}
         value={centerValue}
-        valueClassName={cn(
-          chartCenterValueClassName,
-          "text-[length:var(--chart-foreground)]"
-        )}
+        valueClassName={cn(chartCenterValueClassName, "text-foreground")}
       />
     </div>
   );

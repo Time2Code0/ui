@@ -33,11 +33,11 @@ import { ChoroplethGraticule as ChoroplethGraticuleLayer } from "./choropleth-gr
 import { ChoroplethTooltip as ChoroplethTooltipLayer } from "./choropleth-tooltip";
 
 export interface ChoroplethChartProps {
-  /** Animation duration in milliseconds. Default: 800 */
+  /** Animation duration in milliseconds. @default 800 */
   animationDuration?: number;
-  /** Aspect ratio as "width / height". Default: "16 / 9" */
+  /** Aspect ratio as "width / height". @default "16 / 9" */
   aspectRatio?: string;
-  /** Center coordinates [longitude, latitude]. Default: [0, 20] */
+  /** Center coordinates [longitude, latitude]. @default [0, 20] */
   center?: [number, number];
   /** Child components (ChoroplethFeature, ChoroplethGraticule, ChoroplethTooltip) */
   children: ReactNode;
@@ -49,19 +49,19 @@ export interface ChoroplethChartProps {
   enterTransition?: Transition;
   /** Initial zoom transform */
   initialZoom?: TransformMatrix;
-  /** Chart margins */
+  /** Chart margins @default { top: 0, right: 0, bottom: 0, left: 0 } */
   margin?: Partial<Margin>;
-  /** Signature of motion URL state — triggers enter replay when it changes. */
+  /** Signature of motion URL state — triggers enter replay when it changes. @internal */
   revealSignature?: string;
   /** Projection scale. If not provided, auto-calculated based on width */
   scale?: number;
   /** Translate offset [x, y]. If not provided, auto-calculated to center */
   translate?: [number, number];
-  /** Enable zoom and pan. Default: false */
+  /** Enable zoom and pan. @default false */
   zoomEnabled?: boolean;
-  /** Maximum zoom scale. Default: 4 */
+  /** Maximum zoom scale. @default 4 */
   zoomMax?: number;
-  /** Minimum zoom scale. Default: 0.5 */
+  /** Minimum zoom scale. @default 0.5 */
   zoomMin?: number;
 }
 

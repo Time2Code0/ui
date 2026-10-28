@@ -38,11 +38,11 @@ export interface PieChartProps {
   children: ReactNode;
   /** Additional class name for the container */
   className?: string;
-  /** Corner radius for rounded slice edges. Default: 0 */
+  /** Corner radius for rounded slice edges. @default 0 */
   cornerRadius?: number;
   /** Data array - each item represents a slice */
   data: PieData[];
-  /** End angle in radians. Default: 3*PI/2 (full circle from top) */
+  /** End angle in radians (full circle from top by default). @default (3 * Math.PI) / 2 */
   endAngle?: number;
   /** Scales slice stagger delays (1 = default). */
   enterStaggerScale?: number;
@@ -51,6 +51,8 @@ export interface PieChartProps {
   /**
    * High-frequency geometry updates (e.g. studio NumberField scrub).
    * Uses plain SVG paths instead of Motion `d` / spring hover morphing.
+
+   * @internal
    */
   geometryScrubbing?: boolean;
   /** Controlled hover state - index of hovered slice */
@@ -58,18 +60,18 @@ export interface PieChartProps {
   /**
    * Hover offset in pixels for slice hover effects.
    * This also determines the padding around the chart to prevent clipping.
-   * Default: 10
+   * @default 10
    */
   hoverOffset?: number;
-  /** Inner radius for donut charts. Default: 0 (solid pie) */
+  /** Inner radius for donut charts (`0` = solid pie). @default 0 */
   innerRadius?: number;
   /** Callback when hover state changes */
   onHoverChange?: (index: number | null) => void;
-  /** Padding angle between slices in radians. Default: 0 */
+  /** Padding angle between slices in radians. @default 0 */
   padAngle?: number;
   /** Chart size in pixels. If not provided, uses parent container size */
   size?: number;
-  /** Start angle in radians. Default: -PI/2 (top) */
+  /** Start angle in radians (top by default). @default -Math.PI / 2 */
   startAngle?: number;
 }
 

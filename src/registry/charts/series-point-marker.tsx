@@ -9,32 +9,33 @@ import { motion } from "motion/react";
 import { DEFAULT_CHART_ENTER_TRANSITION } from "./animation";
 
 export interface SeriesPointMarkerStyle {
-  /** Initial blur in px during enter animation. Default: 2 */
+  /** Initial blur in px during enter animation. @default 2 */
   enterBlur?: number;
-  /** Dim non-active points while hovering. Default: true */
+  /** Dim non-active points while hovering. @default true */
   fadeOnHover?: boolean;
   /** Fill color for the inner circle */
   fill?: string;
   /**
    * Blur in px for non-hovered points when `fadeOnHover` is true.
-   * Applied once on the dimmed layer (not per dot) for performance. Default: 2
+   * Applied once on the dimmed layer (not per dot) for performance.
+   * @default 2
    */
   inactiveBlur?: number;
-  /** Opacity for non-hovered points when `fadeOnHover` is true. Default: 0.5 */
+  /** Opacity for non-hovered points when `fadeOnHover` is true. @default 0.5 */
   inactiveOpacity?: number;
-  /** Outer outline color. Default: same as `stroke` */
+  /** Outer outline color. @default stroke */
   outlineColor?: string;
-  /** Optional outer outline beyond the ring. Default: 0 */
+  /** Optional outer outline beyond the ring. @default 0 */
   outlineWidth?: number;
-  /** Point radius in px. Default: 5 */
+  /** Point radius in px. @default 5 */
   radius?: number;
-  /** Gap between the inner fill and outer ring in px. Default: 2 */
+  /** Gap between the inner fill and outer ring in px. @default 2 */
   ringGap?: number;
-  /** Enlarge the active point while hovering. Default: true */
+  /** Enlarge the active point while hovering. @default true */
   showActiveHighlight?: boolean;
-  /** Outer ring stroke color. Default: same as `fill` */
+  /** Outer ring stroke color. @default fill */
   stroke?: string;
-  /** Outer ring stroke width in px. Default: 2. Set to 0 to disable. */
+  /** Outer ring stroke width in px. Set to 0 to disable. @default 2 */
   strokeWidth?: number;
 }
 

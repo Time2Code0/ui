@@ -7,17 +7,17 @@ import { createSplitContext } from "./split-context";
 // CSS variable references for radar chart theming
 export const radarCssVars = {
   // Default radar colors from chart palette
-  area1: "var(--chart-1)",
-  area2: "var(--chart-2)",
-  area3: "var(--chart-3)",
-  area4: "var(--chart-4)",
-  area5: "var(--chart-5)",
-  background: "var(--chart-background)",
-  border: "var(--border)",
-  foreground: "var(--chart-foreground)",
-  foregroundMuted: "var(--chart-foreground-muted)",
-  grid: "var(--chart-grid)",
-  label: "var(--chart-label, oklch(0.65 0.01 260))",
+  area1: "var(--color-chart-1)",
+  area2: "var(--color-chart-2)",
+  area3: "var(--color-chart-3)",
+  area4: "var(--color-chart-4)",
+  area5: "var(--color-chart-5)",
+  background: "var(--color-background)",
+  border: "color-mix(in oklab, var(--color-foreground) 10%, transparent)",
+  foreground: "var(--color-foreground)",
+  foregroundMuted: "var(--color-foreground-muted)",
+  grid: "color-mix(in oklab, var(--color-foreground) 10%, transparent)",
+  label: "var(--color-foreground-muted)",
 };
 
 // Default radar color palette

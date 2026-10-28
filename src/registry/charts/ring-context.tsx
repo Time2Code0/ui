@@ -7,17 +7,18 @@ import { createSplitContext } from "./split-context";
 
 // CSS variable references for ring chart theming
 export const ringCssVars = {
-  background: "var(--chart-background)",
-  foreground: "var(--chart-foreground)",
-  foregroundMuted: "var(--chart-foreground-muted)",
-  label: "var(--chart-label)",
+  background: "var(--color-background)",
+  foreground: "var(--color-foreground)",
+  foregroundMuted: "var(--color-foreground-muted)",
+  label: "var(--color-foreground-muted)",
   // Default ring colors from chart palette
-  ring1: "var(--chart-1)",
-  ring2: "var(--chart-2)",
-  ring3: "var(--chart-3)",
-  ring4: "var(--chart-4)",
-  ring5: "var(--chart-5)",
-  ringBackground: "var(--border)",
+  ring1: "var(--color-chart-1)",
+  ring2: "var(--color-chart-2)",
+  ring3: "var(--color-chart-3)",
+  ring4: "var(--color-chart-4)",
+  ring5: "var(--color-chart-5)",
+  ringBackground:
+    "color-mix(in oklab, var(--color-foreground) 10%, transparent)",
 };
 
 // Default ring color palette

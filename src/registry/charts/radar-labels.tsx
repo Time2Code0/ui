@@ -7,11 +7,11 @@ import { radarCssVars, useRadarStable } from "./radar-context";
 export interface RadarLabelsProps {
   /** Additional class name */
   className?: string;
-  /** Font size for labels. Default: 11 */
+  /** Font size for labels. @default 11 */
   fontSize?: number;
-  /** Enable interactive hover on labels. Default: false */
+  /** Enable interactive hover on labels. @default false */
   interactive?: boolean;
-  /** Distance from the chart edge. Default: 24 */
+  /** Distance from the chart edge. @default 24 */
   offset?: number;
 }
 

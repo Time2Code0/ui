@@ -38,34 +38,38 @@ import { wrapSingleYScale } from "./y-axis-scales";
 // ---------------------------------------------------------------------------
 
 export interface LiveLinePoint {
+  /** Unix time in seconds */
   time: number;
+  /** Y-axis value */
   value: number;
 }
 
 export interface LiveLineChartProps {
   /** Child components (LiveLine, Grid, ChartTooltip, LiveXAxis, LiveYAxis, etc.) */
   children: ReactNode;
+  /** Additional class name for the container */
   className?: string;
   /** Streaming data — array of { time: unixSeconds, value } */
   data: LiveLinePoint[];
-  /** Key used for the value field in context data. Default: "value" */
+  /** Key used for the value field in context data. @default "value" */
   dataKey?: string;
-  /** Tight Y-axis. Default: false */
+  /** Tight Y-axis. @default false */
   exaggerate?: boolean;
-  /** Interpolation speed (0–1). Default: 0.08 */
+  /** Interpolation speed (0–1). @default 0.08 */
   lerpSpeed?: number;
   /** Chart margins */
   margin?: Partial<Margin>;
-  /** Leading offset in X-tick units (0 = now at right edge). Default: 0 */
+  /** Leading offset in X-tick units (0 = now at right edge). @default 0 */
   nowOffsetUnits?: number;
-  /** Number of X-axis ticks (used to compute leading offset). Default: 5 */
+  /** Number of X-axis ticks (used to compute leading offset). @default 5 */
   numXTicks?: number;
-  /** Freeze chart scrolling. Default: false */
+  /** Freeze chart scrolling. @default false */
   paused?: boolean;
+  /** Inline container styles */
   style?: React.CSSProperties;
   /** Latest value (smoothly interpolated to) */
   value: number;
-  /** Visible time window in seconds. Default: 30 */
+  /** Visible time window in seconds. @default 30 */
   window?: number;
 }
 
@@ -199,7 +203,7 @@ function extractLiveLineConfigs(children: ReactNode): LineConfig[] {
     ) {
       configs.push({
         dataKey: props.dataKey,
-        stroke: props.stroke || "var(--chart-line-primary)",
+        stroke: props.stroke || "var(--color-chart-1)",
         strokeWidth: props.strokeWidth || 2,
       });
     }

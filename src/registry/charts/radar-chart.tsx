@@ -18,7 +18,7 @@ import {
 } from "./radar-context";
 
 export interface RadarChartProps {
-  /** Enable animations. Default: true */
+  /** Enable animations. @default true */
   animate?: boolean;
   /** Child components (RadarGrid, RadarAxis, RadarLabels, RadarArea) */
   children: ReactNode;
@@ -26,19 +26,19 @@ export interface RadarChartProps {
   className?: string;
   /** Data array - each item represents a data series (polygon) */
   data: RadarData[];
-  /** Enter animation budget in ms. Default: 1100 */
+  /** Enter animation budget in ms. @default 1100 */
   enterDurationMs?: number;
   /** Motion enter transition (spring or cubic-bezier tween). */
   enterTransition?: Transition;
   /** Controlled hover state - index of hovered area */
   hoveredIndex?: number | null;
-  /** Number of concentric grid circles. Default: 5 */
+  /** Number of concentric grid circles. @default 5 */
   levels?: number;
-  /** Margin around the chart. Default: 60 */
+  /** Margin around the chart. @default 60 */
   margin?: number;
   /** Metrics to display on the radar */
   metrics: RadarMetric[];
-  /** Changes when motion settings change — replays enter animations. */
+  /** Changes when motion settings change — replays enter animations. @internal */
   motionReplayKey?: string;
   /** Callback when hover state changes */
   onHoverChange?: (index: number | null) => void;

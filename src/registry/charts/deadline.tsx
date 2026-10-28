@@ -15,53 +15,54 @@ export type DeadlineFillType = "pattern" | "solid" | "gradient" | "none";
 export type DeadlineDate = Date | number | string;
 
 export interface DeadlineProps {
+  /** Class on the root `<g>` */
   className?: string;
-  /** Line and fill colour. Default: `var(--chart-negative)` (red) */
+  /** Line and fill colour. @default var(--color-destructive-foreground) */
   color?: string;
   /** Date of the marker line (left edge of the region). */
   date: DeadlineDate;
   /**
-   * Band (bar chart) scales only — data key holding each row's date. Default:
-   * first field holding a `Date` or `"YYYY-MM-DD"` string.
+   * Band (bar chart) scales only — data key holding each row's date. Defaults
+   * to the first field holding a `Date` or `"YYYY-MM-DD"` string.
    */
   dateKey?: string;
-  /** Where the region ends. Default: the right edge of the plot. */
+  /** Where the region ends. Defaults to the right edge of the plot. */
   endDate?: DeadlineDate;
-  /** Fade the region out towards its right edge. Default: true */
+  /** Fade the region out towards its right edge. @default true */
   fade?: boolean;
-  /** Fraction (0–1) of the region, measured from the right, that fades. Default: 0.5 */
+  /** Fraction (0–1) of the region, measured from the right, that fades. @default 0.5 */
   fadeLength?: number;
-  /** Default: 0.6 for `pattern`, 0.12 for `solid`, 0.25 for `gradient`. */
+  /** Region fill opacity. @default 0.6 (pattern), 0.12 (solid), 0.25 (gradient) */
   fillOpacity?: number;
-  /** Default: `"pattern"` (diagonal stripes). `"none"` draws only the line. */
+  /** Region fill: diagonal stripes, solid, gradient, or `"none"` to draw only the line. @default "pattern" */
   fillType?: DeadlineFillType;
-  /** `gradient` only — opacity at the region's right edge. Default: 0 */
+  /** `gradient` only — opacity at the region's right edge. @default 0 */
   gradientToOpacity?: number;
   /** Text drawn beside the marker line. */
   label?: string;
-  /** Default: `color` */
+  /** Label colour @default color */
   labelColor?: string;
-  /** Default: `"top"` */
+  /** Label placement @default "top" */
   labelPosition?: "top" | "bottom";
-  /** Pattern preset when `fillType` is `"pattern"`. Default: `"diagonal"` */
+  /** Pattern preset when `fillType` is `"pattern"`. @default "diagonal" */
   pattern?: PatternPresetId;
-  /** Default: 1.5 */
+  /** Pattern tile scale @default 1.5 */
   patternScale?: number;
-  /** Default: 1 */
+  /** Stripe width @default 1 */
   patternStrokeWidth?: number;
-  /** Draw the vertical marker line. Default: true */
+  /** Draw the vertical marker line. @default true */
   showLine?: boolean;
-  /** Line colour. Default: `color` */
+  /** Line colour. @default color */
   stroke?: string;
-  /** Default: undefined (solid). */
+  /** Line dash pattern. Omit for a solid line. */
   strokeDasharray?: string;
-  /** Default: 1 */
+  /** Line opacity @default 1 */
   strokeOpacity?: number;
-  /** Default: 1 */
+  /** Line width @default 1 */
   strokeWidth?: number;
 }
 
-const DEFAULT_COLOR = "var(--chart-negative, var(--color-red-500))";
+const DEFAULT_COLOR = "var(--color-destructive-foreground)";
 const ENTER_FADE_MS = 420;
 const LABEL_INSET = 6;
 const LABEL_FLIP_WIDTH = 96;

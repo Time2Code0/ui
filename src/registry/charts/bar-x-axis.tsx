@@ -17,11 +17,14 @@ import {
 } from "./responsive-chart-label-count";
 
 export interface BarXAxisProps {
-  /** Maximum number of labels to show. Supports responsive breakpoints. */
+  /**
+   * Maximum number of labels to show. Supports responsive breakpoints.
+   * @default 12
+   */
   maxLabels?: ChartLabelCount;
-  /** Whether to show all labels or skip some for dense data. Default: false */
+  /** Whether to show all labels or skip some for dense data. @default false */
   showAllLabels?: boolean;
-  /** Width of the date ticker box for fade calculation. Default: 50 */
+  /** Width of the date ticker box for fade calculation. @default 50 */
   tickerHalfWidth?: number;
 }
 
@@ -67,7 +70,7 @@ function BarXAxisLabel({
     >
       <motion.span
         animate={{ opacity }}
-        className={cn("whitespace-nowrap text-chart-label text-xs")}
+        className={cn("whitespace-nowrap text-foreground-muted text-xs")}
         initial={{ opacity: 1 }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
       >

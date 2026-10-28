@@ -11,20 +11,30 @@ export interface ProjectionPoint {
 }
 
 export interface BuildProjectionPathOptions {
+  /** Slope for `mode="auto"` @default "linearRegression" */
   autoMethod?: ProjectionAutoMethod;
   /** Target Y at the final projected date (target mode). */
   endValue?: number;
-  /** How many future points to generate (matches source cadence). */
+  /** How many future points to generate (matches source cadence). @default 6 */
   horizonPoints?: number;
+  /** How future points are generated */
   mode: ProjectionMode;
-  /** Auto mode: stepped points per interval, or anchor + end only. Default: stepped */
+  /**
+   * Auto mode: stepped points per interval, or anchor + end only.
+   * @default "endpoints"
+   */
   pathDensity?: ProjectionPathDensity;
   /** Full manual path — anchor + future points (manual mode). */
   points?: ProjectionPoint[];
+  /** Y value key */
   seriesKey: string;
+  /** Chart rows */
   sourceData: Record<string, unknown>[];
-  /** Index in sourceData where projection anchors (default: last point). */
+  /**
+   * Index in `sourceData` where the projection anchors. Defaults to the last row.
+   */
   startIndex?: number;
+  /** X value key @default "date" */
   xDataKey?: string;
 }
 
@@ -193,7 +203,7 @@ export function buildHorizontalTangentBezierPath(
   y0: number,
   x1: number,
   y1: number,
-  /** How far control points sit along the x span (0–0.5). Default: 0.45 */
+  /** How far control points sit along the x span (0–0.5). @default 0.45 */
   tension = 0.45
 ): string {
   const dx = x1 - x0;

@@ -46,7 +46,7 @@ export interface LineLoadingPulseStrokeProps {
   onCycleComplete?: () => void;
   pathD: string;
   stroke?: string;
-  /** Stroke opacity for the animated segment. Default: 0.5 */
+  /** Stroke opacity for the animated segment. @default 0.5 */
   strokeOpacity?: number;
   strokeWidth?: number;
 }

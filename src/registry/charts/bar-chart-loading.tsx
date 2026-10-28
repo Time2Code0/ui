@@ -7,7 +7,7 @@ import { BarChart } from "./bar-chart";
 const EMPTY_DATA: Record<string, unknown>[] = [];
 
 export interface BarChartLoadingProps {
-  /** Aspect ratio as "width / height". Default: "2 / 1" */
+  /** Aspect ratio as "width / height". @default "2 / 1" */
   aspectRatio?: string;
   /** Additional class name for the container. */
   className?: string;

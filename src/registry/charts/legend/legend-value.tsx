@@ -6,15 +6,18 @@ import { intFmt } from "../chart-formatters";
 import { useLegendItem } from "./legend-context";
 
 export interface LegendValueProps {
-  /** Value class name. Default: "text-sm tabular-nums" */
+  /** Value class name. @default "text-sm tabular-nums" */
   className?: string;
-  /** Format function for percentage. Default: (p) => `${p.toFixed(0)}%` */
+  /** Format function for percentage. @default (p) => `${p.toFixed(0)}%` */
   formatPercentage?: (percentage: number) => string;
-  /** Format function for the value. Default: toLocaleString() */
+  /**
+   * Format function for the value. Defaults to integer locale formatting.
+   * @default (value) => value.toLocaleString()
+   */
   formatValue?: (value: number) => string;
-  /** Percentage class name. Default: "text-xs tabular-nums" */
+  /** Percentage class name. @default "text-xs tabular-nums" */
   percentageClassName?: string;
-  /** Show percentage alongside value. Default: false */
+  /** Show percentage alongside value. @default false */
   showPercentage?: boolean;
 }
 
@@ -29,10 +32,7 @@ export function LegendValue({
 
   return (
     <span
-      className={cn(
-        "flex items-center gap-2 text-legend-muted-foreground",
-        className
-      )}
+      className={cn("flex items-center gap-2 text-foreground-muted", className)}
     >
       <span>{formatValue(item.value)}</span>
       {showPercentage && item.maxValue && (

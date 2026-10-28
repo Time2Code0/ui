@@ -8,16 +8,16 @@ import type { SunburstNode } from "./sunburst-data";
 import { createSplitContext } from "./split-context";
 
 export const sunburstCssVars = {
-  background: "var(--chart-background)",
-  foreground: "var(--chart-foreground)",
-  foregroundMuted: "var(--chart-foreground-muted)",
-  label: "var(--chart-label)",
-  ring: "var(--chart-background)",
-  slice1: "var(--chart-1)",
-  slice2: "var(--chart-2)",
-  slice3: "var(--chart-3)",
-  slice4: "var(--chart-4)",
-  slice5: "var(--chart-5)",
+  background: "var(--color-background)",
+  foreground: "var(--color-foreground)",
+  foregroundMuted: "var(--color-foreground-muted)",
+  label: "var(--color-foreground-muted)",
+  ring: "var(--color-background)",
+  slice1: "var(--color-chart-1)",
+  slice2: "var(--color-chart-2)",
+  slice3: "var(--color-chart-3)",
+  slice4: "var(--color-chart-4)",
+  slice5: "var(--color-chart-5)",
 };
 
 export const defaultSunburstColors = [

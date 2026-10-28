@@ -27,6 +27,7 @@ export interface FunnelGradientStop {
 export interface FunnelStage {
   /** Override the chart-level color for this segment */
   color?: string;
+  /** Custom display string (overrides formatted value) */
   displayValue?: string;
   /**
    * Apply a linear gradient to this segment.
@@ -35,55 +36,66 @@ export interface FunnelStage {
    * Outer halo rings use the first stop color as their solid color.
    */
   gradient?: FunnelGradientStop[];
+  /** Stage name displayed below the segment */
   label: string;
+  /** Numeric value (first item is treated as 100%) */
   value: number;
 }
 
 export interface FunnelChartProps {
+  /** Additional CSS class */
   className?: string;
+  /** Default color for all segments @default var(--color-chart-1) */
   color?: string;
+  /** Array of funnel stages */
   data: FunnelStage[];
-  /** Edge style for the funnel segments. Default "curved" */
+  /** Edge style for the funnel segments. @default "curved" */
   edges?: "curved" | "straight";
   /** Framer Motion transition for segment enter animation */
   enterTransition?: Transition;
+  /** Custom percentage formatter. Rounds to an integer by default. */
   formatPercentage?: (pct: number) => string;
+  /** Custom value formatter. Uses locale formatting by default. */
   formatValue?: (value: number) => string;
-  /** Gap between segments in pixels. Default 4 */
+  /** Gap between segments in pixels. @default 4 */
   gap?: number;
-  /** Grid configuration. Pass `true` for default bands + lines, or an object for fine control. */
+  /**
+   * Grid configuration. Pass `true` for default bands + lines, or an object for fine control.
+   * @default false
+   */
   grid?:
     | boolean
     | {
-        /** Show alternating background bands behind each segment. Default true */
+        /** Show alternating background bands behind each segment. @default true */
         bands?: boolean;
-        /** Color of the background bands. Default "var(--color-muted)" */
+        /** Color of the background bands. @default var(--color-muted) */
         bandColor?: string;
-        /** Show grid lines at each gap between segments. Default true */
+        /** Show grid lines at each gap between segments. @default true */
         lines?: boolean;
-        /** Color of the grid lines. Default "var(--chart-grid)" */
+        /** Color of the grid lines. @default color-mix(in oklab, var(--color-foreground) 10%, transparent) */
         lineColor?: string;
-        /** Opacity of the grid lines. Default 1 */
+        /** Opacity of the grid lines. @default 1 */
         lineOpacity?: number;
-        /** Width of the grid lines in pixels. Default 1 */
+        /** Width of the grid lines in pixels. @default 1 */
         lineWidth?: number;
       };
   /** Controlled hover state — index of the hovered segment */
   hoveredIndex?: number | null;
   /**
    * Where the label group sits within the segment cell.
-   * - "center" (default), "start", "end"
    * For horizontal funnel: start=top, end=bottom.
    * For vertical funnel: start=left, end=right.
+   * @default "center"
    */
   labelAlign?: "center" | "start" | "end";
   /**
    * Controls how segment labels (value, percentage, stage name) are arranged.
    * - "spread": Value/percentage/label are spread apart (top/center/bottom for horizontal,
-   *   left/center/right for vertical). This is the default.
+   *   left/center/right for vertical).
    * - "grouped": All label items stack together in a tight group.
    *
    * When "grouped", use `labelOrientation` and `labelAlign` for full control.
+   * @default "spread"
    */
   labelLayout?: "spread" | "grouped";
   /**
@@ -92,9 +104,11 @@ export interface FunnelChartProps {
    * - "horizontal": Items stack left-to-right. Default for vertical funnels.
    */
   labelOrientation?: "vertical" | "horizontal";
+  /** Number of concentric halo rings per segment @default 3 */
   layers?: number;
   /** Callback when hover state changes */
   onHoverChange?: (index: number | null) => void;
+  /** Layout direction @default "horizontal" */
   orientation?: "horizontal" | "vertical";
   /**
    * Render a visx pattern definition. Receives a unique `id` string per segment
@@ -103,11 +117,15 @@ export interface FunnelChartProps {
    * innermost ring while keeping outer halo rings as solid color.
    */
   renderPattern?: (id: string, color: string) => ReactNode;
+  /** Show stage name labels @default true */
   showLabels?: boolean;
+  /** Show percentage badges @default true */
   showPercentage?: boolean;
+  /** Show value labels @default true */
   showValues?: boolean;
-  /** Stagger delay between segments in seconds. Default 0.12 */
+  /** Stagger delay between segments in seconds. @default 0.12 */
   staggerDelay?: number;
+  /** Additional inline styles */
   style?: CSSProperties;
 }
 
@@ -399,7 +417,7 @@ function SegmentLabel({
     </span>
   );
   const labelEl = showLabels && (
-    <span className="whitespace-nowrap font-medium text-muted-foreground text-xs">
+    <span className="whitespace-nowrap font-medium text-foreground-muted text-xs">
       {stage.label}
     </span>
   );
@@ -510,7 +528,7 @@ function SegmentLabel({
 export function FunnelChart({
   data,
   orientation = "horizontal",
-  color = "var(--chart-1)",
+  color = "var(--color-chart-1)",
   layers = 3,
   className,
   style,
@@ -593,7 +611,9 @@ export function FunnelChart({
   const showBands = gridEnabled && (gridCfg.bands ?? true);
   const bandColor = gridCfg.bandColor ?? "var(--color-muted)";
   const showGridLines = gridEnabled && (gridCfg.lines ?? true);
-  const gridLineColor = gridCfg.lineColor ?? "var(--chart-grid)";
+  const gridLineColor =
+    gridCfg.lineColor ??
+    "color-mix(in oklab, var(--color-foreground) 10%, transparent)";
   const gridLineOpacity = gridCfg.lineOpacity ?? 1;
   const gridLineWidth = gridCfg.lineWidth ?? 1;
 

@@ -4,11 +4,11 @@ import { createContext, use } from "react";
 
 // CSS variable references for legend theming
 export const legendCssVars = {
-  background: "var(--legend)",
-  foreground: "var(--legend-foreground)",
-  muted: "var(--legend-muted)",
-  mutedForeground: "var(--legend-muted-foreground)",
-  track: "var(--legend-track)",
+  background: "var(--color-background)",
+  foreground: "var(--color-foreground)",
+  muted: "var(--color-accent)",
+  mutedForeground: "var(--color-foreground-muted)",
+  track: "color-mix(in oklab, var(--color-foreground) 10%, transparent)",
 };
 
 export interface LegendItemData {

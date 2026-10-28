@@ -43,9 +43,9 @@ function generateRingArcPath(
 }
 
 export interface RingChartProps {
-  /** Animation duration in milliseconds. Default: 1100 */
+  /** Animation duration in milliseconds. @default 1100 */
   animationDuration?: number;
-  /** Inner radius of the innermost ring. Default: 60 */
+  /** Inner radius of the innermost ring. @default 60 */
   baseInnerRadius?: number;
   /** Child components (Ring, RingCenter, etc.) */
   children: ReactNode;
@@ -53,7 +53,7 @@ export interface RingChartProps {
   className?: string;
   /** Data array - each item represents a ring */
   data: RingData[];
-  /** End angle in radians. Default: 3*PI/2 (full circle) */
+  /** End angle in radians (full circle by default). @default (3 * Math.PI) / 2 */
   endAngle?: number;
   /** Scales ring stagger delays (1 = default). */
   enterStaggerScale?: number;
@@ -62,19 +62,21 @@ export interface RingChartProps {
   /**
    * High-frequency geometry updates (e.g. studio NumberField scrub).
    * Uses plain SVG paths instead of Motion `d` morphing.
+
+   * @internal
    */
   geometryScrubbing?: boolean;
   /** Controlled hover state - index of hovered ring */
   hoveredIndex?: number | null;
   /** Callback when hover state changes */
   onHoverChange?: (index: number | null) => void;
-  /** Gap between rings. Default: 6 */
+  /** Gap between rings. @default 6 */
   ringGap?: number;
   /** Chart size in pixels. If not provided, uses parent container size */
   size?: number;
-  /** Start angle in radians. Default: -PI/2 (top) */
+  /** Start angle in radians (top by default). @default -Math.PI / 2 */
   startAngle?: number;
-  /** Stroke width of each ring. Default: 12 */
+  /** Stroke width of each ring. @default 12 */
   strokeWidth?: number;
 }
 

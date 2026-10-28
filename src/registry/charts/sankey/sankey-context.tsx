@@ -103,9 +103,9 @@ export function useSankey(): SankeyContextValue {
 
 // CSS variables for sankey theming
 export const sankeyCssVars = {
-  background: "var(--chart-background)",
-  foreground: "var(--chart-foreground)",
-  linkColor: "var(--chart-foreground-muted, hsl(0, 0%, 50%))",
-  nodePrimary: "var(--chart-line-primary)",
-  nodeSecondary: "var(--chart-line-secondary)",
+  background: "var(--color-background)",
+  foreground: "var(--color-foreground)",
+  linkColor: "var(--color-foreground-muted)",
+  nodePrimary: "var(--color-chart-1)",
+  nodeSecondary: "var(--color-chart-2)",
 };

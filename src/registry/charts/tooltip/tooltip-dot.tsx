@@ -6,7 +6,7 @@ import { type SpringConfig, useChartConfig } from "../chart-config-context";
 import { chartCssVars } from "../chart-context";
 
 export interface TooltipDotProps {
-  /** Animate position with a spring. Default: true */
+  /** Animate position with a spring. @default true */
   animate?: boolean;
   color: string;
   /**
@@ -14,25 +14,26 @@ export interface TooltipDotProps {
    * Same semantics as bar square radius.
    */
   cornerRadiusFraction?: number;
-  /** `dot` variant: halo opacity (0–1). Default: `0.3` */
+  /** `dot` variant: halo opacity (0–1). @default 0.3 */
   haloOpacity?: number;
   /**
    * `dot` variant: halo radius as a multiple of `size`. The halo is a soft disc
-   * in the series color behind the core. `0` hides it. Default: `2.6`
+   * in the series color behind the core. `0` hides it.
+   * @default 2.6
    */
   haloScale?: number;
-  /** Core dot radius; half-extent for ring squares. Default: 5 */
+  /** Core dot radius; half-extent for ring squares. @default 5 */
   size?: number;
   /** Per-chart override; falls back to `ChartConfigProvider.tooltipSpring`. */
   springConfig?: SpringConfig;
-  /** Outline color for the `dot` variant. Default: `var(--chart-background)` */
+  /** Outline color for the `dot` variant. @default var(--color-background) */
   strokeColor?: string;
   /**
    * `dot`: outline width around the core (default `0`, no outline).
    * `ring`: ring stroke width (default `1.5`).
    */
   strokeWidth?: number;
-  /** Dot fill or transparent ring around the hovered mark. Default: "dot" */
+  /** Dot fill or transparent ring around the hovered mark. @default "dot" */
   variant?: "dot" | "ring";
   visible: boolean;
   x: number;

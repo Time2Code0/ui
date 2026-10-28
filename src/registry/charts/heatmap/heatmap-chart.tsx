@@ -64,13 +64,13 @@ import {
 export type HeatmapLayout = "fluid" | "fill";
 
 export interface HeatmapChartProps {
-  /** Play enter fade-in / loading shimmer animations. Default: true */
+  /** Play enter fade-in / loading shimmer animations. @default true */
   animate?: boolean;
-  /** Enter animation duration in milliseconds. Default: 1600 */
+  /** Enter animation duration in milliseconds. @default 1600 */
   animationDuration?: number;
   /** Optional outer aspect ratio (e.g. "2 / 1"). Omit to fill the parent. */
   aspectRatio?: string;
-  /** Fixed cell size in pixels. When 0, cells are square and sized to fit the plot. Default: 0 */
+  /** Fixed cell size in pixels. When 0, cells are square and sized to fit the plot. @default 0 */
   binSize?: number;
   /** Child components (HeatmapCells, HeatmapXAxis, HeatmapYAxis) */
   children: ReactNode;
@@ -89,41 +89,43 @@ export interface HeatmapChartProps {
   enterStaggerScale?: number;
   /** Motion enter transition (spring or cubic-bezier tween). */
   enterTransition?: Transition;
-  /** Gap between cells in pixels. Default: 2 */
+  /** Gap between cells in pixels. @default 2 */
   gap?: number;
   /**
    * `fluid` — width drives square cells; chart height hugs the grid (GitHub-style).
    * `fill` — expands cells to fill the parent.
+   * @default "fluid"
    */
   layout?: HeatmapLayout;
   /** Per-level colors for the Less → More scale (5 entries). */
   levelColors?: HeatmapLevelColors;
   /** Per-level fill styles (color and optional pattern). Takes precedence over `levelColors`. */
   levelStyles?: HeatmapLevelStyles;
-  /** Max opacity loading cells animate toward (0–1). Default: 0.5 */
+  /** Max opacity loading cells animate toward (0–1). @default 0.5 */
   loadingCellMaxOpacity?: number;
-  /** Share of cells that participate in loading shimmer (0–1). Default: 0.65 */
+  /** Share of cells that participate in loading shimmer (0–1). @default 0.65 */
   loadingCellRandomness?: number;
   /** Centered label while loading. */
   loadingLabel?: string;
-  /** Chart opacity while loading. Default: 0.5 */
+  /** Chart opacity while loading. @default 0.5 */
   loadingOpacity?: number;
-  /** Chart margins */
+  /** Chart margins @default { top: 28, right: 16, bottom: 0, left: 40 } */
   margin?: Partial<Margin>;
-  /** Signature of motion URL state — triggers enter replay when it changes. */
+  /** Signature of motion URL state — triggers enter replay when it changes. @internal */
   revealSignature?: string;
-  /** Show loading cell shimmer while loading. Default: true */
+  /** Show loading cell shimmer while loading. @default true */
   showLoadingCells?: boolean;
   /**
    * Week columns used for cell sizing when `xDomain` is set. Keeps bin height
    * stable while scrubbing (filtered columns can vary by ±1 at boundaries).
    */
   sizingColumnCount?: number;
-  /** Fetch / display status. Default: `"ready"`. */
+  /** Fetch / display status. @default "ready" */
   status?: ChartStatus;
   /**
    * First row of the grid — `0` = Sunday (GitHub default), `1` = Monday, etc.
    * Rotates column bins for display without reshaping source data.
+   * @default 0
    */
   weekStartDay?: HeatmapWeekStartDay;
   /** Visible time range — filters week columns that overlap the domain. */

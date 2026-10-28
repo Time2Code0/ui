@@ -39,49 +39,91 @@ const DEFAULT_NOTCH_ENTER_TRANSITION: Transition = {
 export type GaugeOrientation = "arc" | "linear";
 
 export interface GaugeProps {
+  /** Active notch fill: CSS color or `url(#patternId)`. Defaults to the theme chart color. */
   activeFill?: string;
+  /** SVG `fill-opacity` (0–1) for active notches @default 1 */
   activeFillOpacity?: number;
+  /**
+   * Hex stops for active notches when `useGradient` (lime → emerald by default)
+   */
   activeGradient?: readonly [string, string];
   /** Center statistic — omit to hide the label block */
   centerValue?: number;
+  /** Defs (`Pattern*`, `*Gradient`, …) */
   children?: ReactNode;
+  /** Root wrapper class */
   className?: string;
+  /** Center label @default "Total" */
   defaultLabel?: string;
+  /** Arc only — sweep end in degrees @default 405 */
   endAngle?: number;
+  /** Scales the notch enter stagger @default 1 */
   enterStaggerScale?: number;
+  /** Override the notch enter transition */
   enterTransition?: Transition;
+  /** NumberFlow format options for the center value */
   formatOptions?: ChartStatFlowFormat;
-  /** Studio-only: static paths while scrubbing geometry controls */
+  /** Studio-only: static paths while scrubbing geometry controls @internal */
   geometryScrubbing?: boolean;
+  /** Fixed height in px; omit for responsive */
   height?: number;
+  /** Track notch fill: CSS color or `url(#patternId)`. Defaults to the theme track color. */
   inactiveFill?: string;
+  /** SVG `fill-opacity` (0–1) for track notches @default 0.8 */
   inactiveFillOpacity?: number;
+  /**
+   * Hex stops for inactive notches when `useGradient`. Defaults to the active stops.
+   */
   inactiveGradient?: readonly [string, string];
-  /** Cross-axis alignment (start / center / end), same model as chart legend */
+  /**
+   * Cross-axis alignment (start / center / end), same model as chart legend
+   * @default "start"
+   */
   labelAlign?: GaugeLabelAlign;
-  /** Label position for `orientation="linear"`. Arc gauges always overlay center. */
+  /**
+   * Label position for `orientation="linear"`. Arc gauges always overlay center.
+   * @default "top"
+   */
   labelPlacement?: GaugeLabelPlacement;
-  /** Linear only — bar thickness in px when responsive (default 24) */
+  /** Linear only — bar thickness in px when responsive @default 24 */
   linearHeight?: number;
+  /**
+   * Min width (px) when responsive. Defaults to `300` for arc and `200` for linear.
+   */
   minWidth?: number;
+  /**
+   * Corner fillet in px (0 = sharp); large values clamp toward a capsule shape
+   * @default 0
+   */
   notchCornerRadius?: number;
+  /**
+   * Notch depth as % of default (5–100); lower = shorter notches
+   * @default 100
+   */
   notchLengthPercent?: number;
-  /** Linear only — notch width as % of each slot (default 80) */
+  /** Linear only — notch width as % of each slot @default 80 */
   notchWidthPercent?: number;
-  /** Arc (default) or horizontal linear notch track */
+  /** Arc (default) or horizontal linear notch track @default "arc" */
   orientation?: GaugeOrientation;
+  /** Text before the center value */
   prefix?: string;
-  /** Percentage of the track reserved for gaps between notches */
+  /** Percentage of the track reserved for gaps between notches @default 25 */
   spacing?: number;
+  /** Arc only — sweep start in degrees @default 135 */
   startAngle?: number;
+  /** Text after the center value */
   suffix?: string;
-  /** Number of notches */
+  /** Number of notches @default 40 */
   totalNotches?: number;
-  /** `true` = rectangular notches; `false` = tapered toward center / midline */
+  /**
+   * `true` = rectangular notches; `false` = tapered toward center / midline. Defaults to `false` for arc and `true` for linear.
+   */
   uniformWidth?: boolean;
+  /** Per-notch color ramp @default false */
   useGradient?: boolean;
   /** Fill level 0–100 */
   value: number;
+  /** Fixed width in px; omit for responsive */
   width?: number;
 }
 
@@ -141,8 +183,8 @@ function GaugeNotchSvg({
               y1="0%"
               y2="0%"
             >
-              <stop offset="0%" stopColor="var(--chart-1)" />
-              <stop offset="100%" stopColor="var(--chart-5)" />
+              <stop offset="0%" stopColor="var(--color-chart-1)" />
+              <stop offset="100%" stopColor="var(--color-chart-5)" />
             </linearGradient>
           ) : null}
           {defsChildren}
@@ -357,7 +399,7 @@ function GaugeArcInner(props: GaugeInnerProps) {
                 fillState.activeGrad1,
                 i / denom
               )
-            : "var(--chart-1)";
+            : "var(--color-chart-1)";
 
         return {
           gradientColor,
@@ -389,13 +431,15 @@ function GaugeArcInner(props: GaugeInnerProps) {
 
   const resolveBgFill = (notchIndex: number) =>
     resolveGaugeBgFill({
-      arcTrackFill: "var(--border)",
+      arcTrackFill:
+        "color-mix(in oklab, var(--color-foreground) 10%, transparent)",
       hasCustomInactive: fillState.hasCustomInactive,
       inactiveFill,
       inactiveGrad0: fillState.inactiveGrad0,
       inactiveGrad1: fillState.inactiveGrad1,
       linearMode: false,
-      linearTrackFill: "var(--chart-background)",
+      linearTrackFill:
+        "color-mix(in oklab, var(--color-foreground) 10%, transparent)",
       notchIndex,
       totalNotches,
       useGradient,
@@ -405,7 +449,7 @@ function GaugeArcInner(props: GaugeInnerProps) {
   const resolveActiveFill = (notch: ComputedNotch) =>
     resolveGaugeActiveFill({
       activeFill,
-      activeFillSolid: "var(--chart-1)",
+      activeFillSolid: "var(--color-chart-1)",
       hasCustomActive: fillState.hasCustomActive,
       notch,
       themeActiveGradientId: fillState.themeActiveGradientId,
@@ -548,7 +592,7 @@ function GaugeLinearInner(props: GaugeInnerProps) {
                 fillState.activeGrad1,
                 i / denom
               )
-            : "var(--chart-1)";
+            : "var(--color-chart-1)";
 
         return {
           gradientColor,
@@ -579,13 +623,15 @@ function GaugeLinearInner(props: GaugeInnerProps) {
 
   const resolveBgFill = (notchIndex: number) =>
     resolveGaugeBgFill({
-      arcTrackFill: "var(--border)",
+      arcTrackFill:
+        "color-mix(in oklab, var(--color-foreground) 10%, transparent)",
       hasCustomInactive: fillState.hasCustomInactive,
       inactiveFill,
       inactiveGrad0: fillState.inactiveGrad0,
       inactiveGrad1: fillState.inactiveGrad1,
       linearMode: true,
-      linearTrackFill: "var(--chart-background)",
+      linearTrackFill:
+        "color-mix(in oklab, var(--color-foreground) 10%, transparent)",
       notchIndex,
       totalNotches,
       useGradient,
@@ -595,7 +641,7 @@ function GaugeLinearInner(props: GaugeInnerProps) {
   const resolveActiveFill = (notch: ComputedNotch) =>
     resolveGaugeActiveFill({
       activeFill,
-      activeFillSolid: "var(--chart-1)",
+      activeFillSolid: "var(--color-chart-1)",
       hasCustomActive: fillState.hasCustomActive,
       notch,
       themeActiveGradientId: fillState.themeActiveGradientId,

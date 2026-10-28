@@ -8,12 +8,19 @@ import { useChartStable, useYScale } from "./chart-context";
 import { StaticSeriesPointMarker } from "./series-point-marker";
 
 export interface LineSeriesTerminalMarkerProps {
+  /** Series to anchor */
   dataKey: string;
+  /** Dot fill */
   fill?: string;
+  /** Dot radius */
   radius?: number;
+  /** Gap between dot and ring */
   ringGap?: number;
+  /** Ring color */
   stroke?: string;
+  /** Ring stroke width */
   strokeWidth?: number;
+  /** Y-scale group id */
   yAxisId?: string | number;
 }
 
@@ -26,7 +33,7 @@ export function LineSeriesTerminalMarker({
   dataKey,
   yAxisId,
   fill = "transparent",
-  stroke = "var(--chart-1)",
+  stroke = "var(--color-chart-1)",
   radius = 5,
   ringGap = 0,
   strokeWidth = 1.5,

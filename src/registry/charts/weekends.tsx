@@ -23,34 +23,36 @@ export interface WeekendsProps {
    * daily points / columns sit mid-band. `"auto"` picks `"centered"` when the
    * chart has `SeriesBar` columns anchored at midnight. Band (bar) scales
    * always shade whole columns.
-   * Default: `"auto"`
+   * @default "auto"
    */
   align?: "auto" | DateRangeAlign;
+  /** Class on the root `<g>` */
   className?: string;
   /**
-   * Band (bar chart) scales only — data key holding each row's date. Default:
-   * first field holding a `Date` or `"YYYY-MM-DD"` string.
+   * Band (bar chart) scales only — data key holding each row's date. Defaults
+   * to the first field holding a `Date` or `"YYYY-MM-DD"` string.
    */
   dateKey?: string;
-  /** Band / stripe colour. Default: `var(--chart-foreground-muted)` */
+  /** Band / stripe colour. @default var(--color-foreground-muted) */
   fill?: string;
-  /** Default: 0.45 for `pattern`, 0.08 for `solid`. */
+  /** Shading opacity. @default 0.45 (pattern), 0.08 (solid) */
   fillOpacity?: number;
-  /** Default: `"pattern"` (diagonal stripes). */
+  /** Shading fill: diagonal stripes or solid. @default "pattern" */
   fillType?: WeekendsFillType;
-  /** Skip rendering when one day is narrower than this many pixels. Default: 2 */
+  /** Skip rendering when one day is narrower than this many pixels. @default 2 */
   minDayWidth?: number;
-  /** Pattern preset when `fillType` is `"pattern"`. Default: `"diagonal"` */
+  /** Pattern preset when `fillType` is `"pattern"`. @default "diagonal" */
   pattern?: PatternPresetId;
-  /** Default: 1.5 */
+  /** Pattern tile scale @default 1.5 */
   patternScale?: number;
-  /** Default: 1 */
+  /** Stripe width @default 1 */
   patternStrokeWidth?: number;
-  /** Use UTC day boundaries. Default: false (local time) */
+  /** Use UTC day boundaries instead of local time. @default false */
   utc?: boolean;
   /**
    * Days that count as weekend, as `Date#getDay()` numbers (0 = Sunday).
-   * Default: `[6, 0]` (Saturday + Sunday). Use `[5, 6]` for Fri–Sat locales.
+   * Use `[5, 6]` for Fri–Sat locales.
+   * @default [6, 0]
    */
   weekendDays?: readonly number[];
 }

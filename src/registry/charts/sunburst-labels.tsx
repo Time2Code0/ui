@@ -16,10 +16,15 @@ import { useEnterComplete } from "./use-enter-complete";
 import { useMountProgress } from "./use-mount-progress";
 
 export interface SunburstLabelsProps {
+  /** SVG group class */
   className?: string;
+  /** Label fill color @default var(--color-foreground-muted) */
   fill?: string;
+  /** Label font size @default 11 */
   fontSize?: number;
+  /** Outline stroke for contrast @default var(--color-background) */
   stroke?: string;
+  /** Outline width (`0` to disable) @default 2.5 */
   strokeWidth?: number;
 }
 

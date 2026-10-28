@@ -21,8 +21,8 @@
  *
  *   <BarChart data={data} xDataKey="month">
  *     <Grid horizontal />
- *     <BarDepthBack dataKey="value" color="var(--chart-1)" />  // before <Bar>
- *     <Bar dataKey="value" fill="var(--chart-1)" />
+ *     <BarDepthBack dataKey="value" color="var(--color-chart-1)" />  // before <Bar>
+ *     <Bar dataKey="value" fill="var(--color-chart-1)" />
  *     <BarDepthFront dataKey="value" />                        // after <Bar>
  *   </BarChart>
  *
@@ -73,7 +73,7 @@ const BAR_DEPTH_MIN_PX = 0.5;
  * their bar when a sibling bar is hovered. */
 const BAR_FADED_OPACITY = 0.3;
 /** Default bar color when neither `color` nor `colorAccessor` is provided. */
-const DEFAULT_BAR_COLOR = "var(--chart-line-primary)";
+const DEFAULT_BAR_COLOR = "var(--color-chart-1)";
 /** Default opacity of the baseline "contact shadow" that grounds each bar at
  * the zero line. Configurable via `<BarDepthProvider groundShadow>`. */
 const DEFAULT_GROUND_SHADOW = 0.26;
@@ -245,11 +245,18 @@ function buildSidePieces(
 // `<BarChart>`, not inside it.
 
 interface BarDepthContextValue {
-  /** Opacity (0–1) of the baseline contact shadow. 0 removes it. */
+  /**
+   * Opacity (0–1) of the baseline contact shadow. 0 removes it.
+   * @default 0.26
+   */
   groundShadow?: number;
-  /** Minimum bar height in px — floors short/zero bars so they stay visible.
-   * Match the value passed to `<Bar minBarHeight>`. */
+  /**
+   * Minimum bar height in px — floors short/zero bars so they stay visible.
+   * Match the value passed to `<Bar minBarHeight>`.
+   * @default 0
+   */
   minBarHeight?: number;
+  /** Stacked segments (bottom→top) for each datum */
   segmentsAccessor?: (
     datum: Record<string, unknown>
   ) => BarDepthSegment[] | null | undefined;
@@ -258,6 +265,7 @@ interface BarDepthContextValue {
 const BarDepthContext = createContext<BarDepthContextValue>({});
 
 export interface BarDepthProviderProps extends BarDepthContextValue {
+  /** Bars and depth surfaces that share the provider */
   children: ReactNode;
 }
 
@@ -524,7 +532,7 @@ function useBarDepthStagger() {
 // ─── Components ───────────────────────────────────────────────────────
 
 export interface BarDepthBackProps {
-  /** Solid color for the side + top faces. Default: var(--chart-line-primary). */
+  /** Solid color for the side + top faces. @default var(--color-chart-1) */
   color?: string;
   /** Per-bar color override; takes precedence over `color` when provided. */
   colorAccessor?: ColorAccessor;
@@ -916,7 +924,10 @@ export interface BarPulseProps {
   activeIndex?: number;
   /** Key in data for the bar value. Match the sibling `<Bar dataKey>`. */
   dataKey: string;
-  /** Suppress the sweep while keeping the bar's 3D + glass treatment. */
+  /**
+   * Suppress the sweep while keeping the bar's 3D + glass treatment.
+   * @default false
+   */
   pulsePaused?: boolean;
 }
 

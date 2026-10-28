@@ -16,11 +16,9 @@ import {
 import { useProfitLossLegendHover } from "./profit-loss-legend-hover";
 import { splitProfitLossSegments } from "./profit-loss-segments";
 
-/** Semantic trend tokens with Tailwind fallbacks for apps without `--chart-positive` / `--chart-negative`. */
-export const PROFIT_LOSS_POSITIVE_COLOR =
-  "var(--chart-positive, var(--color-emerald-500))";
-export const PROFIT_LOSS_NEGATIVE_COLOR =
-  "var(--chart-negative, var(--color-red-500))";
+/** Semantic trend colors from the base success / destructive tokens. */
+export const PROFIT_LOSS_POSITIVE_COLOR = "var(--color-success-foreground)";
+export const PROFIT_LOSS_NEGATIVE_COLOR = "var(--color-destructive-foreground)";
 
 const LEGEND_DIM_OPACITY = 0.25;
 
@@ -36,17 +34,22 @@ export function resolveProfitLossTooltipLabel(label: string) {
 }
 
 export interface ProfitLossLineProps {
-  /** Curve function. Default: curveLinear */
+  /** Curve function. @default curveLinear */
   curve?: CurveFactory;
+  /** Key in data for y values */
   dataKey: string;
   /**
    * Fade the line stroke toward transparent at the chart edges.
-   * Default: false
+   * @default false
    */
   fadeEdges?: FadeEdges;
+  /** Color for loss segments @default var(--color-destructive-foreground) */
   negativeColor?: string;
+  /** Color for profit segments @default var(--color-success-foreground) */
   positiveColor?: string;
+  /** Line width @default 2.5 */
   strokeWidth?: number;
+  /** Key in data for x values @default "date" */
   xDataKey?: string;
 }
 

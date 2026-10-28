@@ -7,11 +7,11 @@ import { Graticule } from "@visx/geo";
 import { useChoroplethStable } from "./choropleth-context";
 
 export interface ChoroplethGraticuleProps {
-  /** Step intervals for graticule lines [longitude, latitude] in degrees. Default: [10, 10] */
+  /** Step intervals for graticule lines [longitude, latitude] in degrees. @default [10, 10] */
   step?: [number, number];
-  /** Stroke color for graticule lines. Default: rgba(255,255,255,0.1) */
+  /** Stroke color for graticule lines. @default rgba(255,255,255,0.1) */
   stroke?: string;
-  /** Stroke width for graticule lines. Default: 0.5 */
+  /** Stroke width for graticule lines. @default 0.5 */
   strokeWidth?: number;
 }
 

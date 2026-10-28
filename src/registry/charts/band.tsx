@@ -24,71 +24,74 @@ export type { BandFadeEdges } from "./band-geometry";
 export type BandFillType = "solid" | "gradient" | "pattern";
 
 export interface BandStrokeProps {
-  /** Default: Band `stroke` ?? `fill`. */
+  /** Edge stroke colour. @default Band stroke ?? fill */
   stroke?: string;
-  /** Default: Band `strokeDasharray`. */
+  /** Edge dash pattern. @default Band strokeDasharray */
   strokeDasharray?: string;
-  /** Default: Band `strokeOpacity`. */
+  /** Edge stroke opacity. @default Band strokeOpacity */
   strokeOpacity?: number;
-  /** Default: Band `strokeWidth`. */
+  /** Edge stroke width. @default Band strokeWidth */
   strokeWidth?: number;
 }
 
 export interface BandProps {
+  /** Class on the band's `<g>` @default "chart-band" */
   className?: string;
-  /** Curve function. Default: curveNatural (same as Line). */
+  /** Curve function (same default as `Line`). @default curveNatural */
   curve?: CurveFactory;
   /**
    * Fade fill and strokes to transparent at the given sides. Horizontal fades
    * span the plot width; vertical fades span the band's own pixel extent.
-   * Default: false
+   * @default false
    */
   fadeEdges?: BandFadeEdges;
-  /** Fraction (0–0.5) of the width / height each fade covers. Default: 0.15 */
+  /** Fraction (0–0.5) of the width / height each fade covers. @default 0.15 */
   fadeSize?: number;
-  /** Band colour. Default: var(--chart-line-primary) */
+  /** Band colour. @default var(--color-chart-1) */
   fill?: string;
-  /** Solid opacity, or gradient opacity at the upper edge. Default: 0.15 */
+  /** Solid opacity, or gradient opacity at the upper edge. @default 0.15 */
   fillOpacity?: number;
-  /** Default: `"solid"`. */
+  /** Fill style @default "solid" */
   fillType?: BandFillType;
-  /** Gradient opacity at the lower edge. Default: 0 */
+  /** Gradient opacity at the lower edge. @default 0 */
   gradientToOpacity?: number;
   /**
-   * Tooltip row label. Default: `"lowerKey – upperKey"` (or the key when both
-   * edges share one key).
+   * Tooltip row label. Falls back to the key when both edges share one key.
+   * @default "lowerKey – upperKey"
    */
   label?: string;
   /** Data key for the band's lower edge. */
   lowerKey: string;
   /** `false` hides the bottom edge; an object overrides the shared stroke. */
   lowerStroke?: BandStrokeProps | false;
-  /** Pattern preset when `fillType` is `"pattern"`. Default: `"diagonal"`. */
+  /** Pattern preset when `fillType` is `"pattern"`. @default "diagonal" */
   pattern?: PatternPresetId;
-  /** Default: `fill`. */
+  /** Pattern stroke or tile color @default fill */
   patternColor?: string;
-  /** Opacity applied to the pattern fill. Default: 1 */
+  /** Opacity applied to the pattern fill. @default 1 */
   patternOpacity?: number;
+  /** Pattern tile scale */
   patternScale?: number;
+  /** Line stroke width for line-based patterns */
   patternStrokeWidth?: number;
   /**
    * Add a `low – high` row (and dots on both edges) to `ChartTooltip`.
-   * Default: true
+   * @default true
    */
   showInTooltip?: boolean;
-  /** Shared edge stroke colour. Default: `fill`. */
+  /** Shared edge stroke colour. @default fill */
   stroke?: string;
-  /** Default: undefined (solid). */
+  /** Edge dash pattern. Omit for a solid line. */
   strokeDasharray?: string;
-  /** Default: 1 */
+  /** Shared edge stroke opacity @default 1 */
   strokeOpacity?: number;
-  /** Default: 1 */
+  /** Shared edge stroke width (`0` hides both edges) @default 1 */
   strokeWidth?: number;
   /** Data key for the band's upper edge. */
   upperKey: string;
   /** `false` hides the top edge; an object overrides the shared stroke. */
   upperStroke?: BandStrokeProps | false;
-  /** Y-scale group id. Default: `"left"`. */
+  /** Y-scale group id. @default "left" */
   yAxisId?: string;
 }
 

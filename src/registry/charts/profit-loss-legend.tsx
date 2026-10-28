@@ -14,9 +14,13 @@ export const PROFIT_LOSS_LEGEND_ITEMS = [
 ] as const;
 
 export interface ProfitLossLegendProps {
+  /** Horizontal alignment @default "start" */
   align?: "start" | "center" | "end";
+  /** Additional CSS class */
   className?: string;
+  /** Controlled hover index @default null */
   hoveredIndex?: number | null;
+  /** Hover callback */
   onHoverChange?: (index: number | null) => void;
 }
 

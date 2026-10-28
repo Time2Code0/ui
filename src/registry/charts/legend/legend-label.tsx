@@ -5,7 +5,7 @@ import { cn } from "cn";
 import { useLegendItem } from "./legend-context";
 
 export interface LegendLabelProps {
-  /** Label class name. Default: "text-sm font-medium" */
+  /** Label class name. @default "text-sm font-medium" */
   className?: string;
 }
 
@@ -14,11 +14,7 @@ export function LegendLabel({
 }: LegendLabelProps) {
   const { item } = useLegendItem();
 
-  return (
-    <span className={cn("text-legend-foreground", className)}>
-      {item.label}
-    </span>
-  );
+  return <span className={cn("text-foreground", className)}>{item.label}</span>;
 }
 
 LegendLabel.displayName = "LegendLabel";

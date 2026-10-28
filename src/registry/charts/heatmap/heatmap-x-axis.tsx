@@ -76,7 +76,7 @@ export const HeatmapXAxis = memo(function HeatmapXAxis({
       >
         <span
           className={cn(
-            "whitespace-nowrap text-chart-label text-xs",
+            "whitespace-nowrap text-foreground-muted text-xs",
             className
           )}
         >

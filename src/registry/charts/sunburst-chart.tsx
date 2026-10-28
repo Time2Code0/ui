@@ -70,23 +70,34 @@ function sortSunburstSegments(
 }
 
 export interface SunburstChartProps {
+  /** Segments, labels, and center content */
   children: ReactNode;
+  /** Wrapper class */
   className?: string;
+  /** Hierarchical data tree */
   data: SunburstNode;
+  /** Scale ring-by-ring stagger timing @default 1 */
   enterStaggerScale?: number;
+  /** Override the enter animation transition */
   enterTransition?: Transition;
   /** Controlled focus node id for drill-down. */
   focusId?: string;
   /** Controlled hover — arc index in the arcs array. */
   hoveredIndex?: number | null;
+  /**
+   * Segment grow distance on hover (px), cumulative along the path from root to hovered node
+   * @default 8
+   */
   hoverPop?: number;
   /** Called when focus changes via segment click or breadcrumb. */
   onFocusChange?: (focusId: string) => void;
+  /** Hover state callback */
   onHoverChange?: (index: number | null) => void;
   /** Inset reserved for hover growth; defaults from layout depth and hoverPop. */
   padding?: number;
-  /** Bump to replay the initialization animation. */
+  /** Bump to replay the initialization animation. @default 0 */
   playKey?: number;
+  /** Chart diameter in pixels @default 520 */
   size?: number;
 }
 

@@ -31,7 +31,7 @@ import { TooltipIndicator } from "./tooltip-indicator";
 export interface ChartTooltipProps {
   /**
    * Tooltip panel background color (CSS variable or color value).
-   * Default: `var(--chart-tooltip-background)`.
+   * @default var(--color-background)
    */
   backgroundColor?: string;
   /** Per-chart override for the floating-panel spring. */
@@ -47,7 +47,8 @@ export interface ChartTooltipProps {
   }) => React.ReactNode;
   /**
    * Spring damping for the floating tooltip panel when `matchCrosshair` is `false`.
-   * `0` disables spring motion (instant). Default: `20`.
+   * `0` disables spring motion (instant).
+   * @default 20
    */
   damping?: number;
   /** Optional labels aligned with chart data for the x-axis ticker. */
@@ -59,18 +60,18 @@ export interface ChartTooltipProps {
   dotColor?:
     | string
     | ((point: Record<string, unknown>, line: LineConfig) => string);
-  /** `dot` variant: halo opacity (0–1). Default: `0.3` */
+  /** `dot` variant: halo opacity (0–1). @default 0.3 */
   dotHaloOpacity?: number;
   /**
    * `dot` variant: halo radius as a multiple of the core radius. `0` hides the halo.
-   * Default: `2.6`
+   * @default 2.6
    */
   dotHaloScale?: number;
   /** Ring corner radius as a fraction of side length (0 = square, 0.5 = circle). */
   dotRadiusFraction?: number;
-  /** Multiplier applied to the computed dot / ring pixel radius. Default: 1 */
+  /** Multiplier applied to the computed dot / ring pixel radius. @default 1 */
   dotScale?: number;
-  /** Dot core / ring radius in pixels. Default: 5 */
+  /** Dot core / ring radius in pixels. @default 5 */
   dotSize?: number;
   /**
    * Ring stroke width in pixels (default `1.5`). For the `dot` variant, draws a
@@ -79,25 +80,27 @@ export interface ChartTooltipProps {
   dotStrokeWidth?: number;
   /**
    * Dot style: filled circle with a soft same-color halo, or transparent ring.
-   * Default: "dot"
+   * @default "dot"
    */
   dotVariant?: "dot" | "ring";
-  /** Fade the panel out when hover ends. Default: true */
+  /** Fade the panel out when hover ends. @default true */
   exit?: boolean;
   /**
    * Color for the crosshair/indicator line. When a function, receives the hovered point
-   * (e.g. for candlestick: match candle color from close vs open). Default: --chart-crosshair.
+   * (e.g. for candlestick: match candle color from close vs open).
+   * @default --color-foreground
    */
   indicatorColor?: string | ((point: Record<string, unknown>) => string);
   /** SVG stroke dash pattern for the crosshair. Omit for solid. */
   indicatorDasharray?: string;
-  /** Vertical crosshair fade: `both`, `top`, `bottom`, or `none` (solid). Default: `both`. */
+  /** Vertical crosshair fade: `both`, `top`, `bottom`, or `none` (solid). @default "both" */
   indicatorFadeEdges?: IndicatorFadeEdges;
-  /** Crosshair fade zone size (% of height). Default: `10`. */
+  /** Crosshair fade zone size (% of height). @default 10 */
   indicatorFadeLength?: number;
   /**
    * When `true`, the floating panel uses the crosshair spring and stays in sync.
-   * Default `false` — panel follow uses `damping` (`20`).
+   * When `false`, panel follow uses `damping`.
+   * @default false
    */
   matchCrosshair?: boolean;
   /** Inline styles for the tooltip panel (background, blur, etc.). */
@@ -105,15 +108,15 @@ export interface ChartTooltipProps {
   /** Custom row renderer - return array of TooltipRow */
   rows?: (point: Record<string, unknown>) => TooltipRow[];
   /**
-   * Whether to show the crosshair indicator line. Default: `true` for
+   * Whether to show the crosshair indicator line. Defaults to `true` for
    * line / area / composed / scatter charts, `false` inside `BarChart`
    * (vertical and horizontal) and `ScatterChart` with `jitter` (hover snaps to
    * the nearest point, not a date) — pass `showCrosshair` to opt in.
    */
   showCrosshair?: boolean;
-  /** Whether to show the date pill at bottom. Default: true */
+  /** Whether to show the date pill at bottom. @default true */
   showDatePill?: boolean;
-  /** Whether to show dots on the lines. Default: true */
+  /** Whether to show dots on the lines. @default true */
   showDots?: boolean;
   /** Per-chart override for the crosshair / dot / date-pill spring. */
   springConfig?: SpringConfig;

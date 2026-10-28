@@ -22,6 +22,7 @@ export interface SunburstSegmentProps {
   fill?: string;
   /** Optional fill opacity override */
   fillOpacity?: number;
+  /** Arc index from `buildArcs(data).arcs` */
   index: number;
 }
 

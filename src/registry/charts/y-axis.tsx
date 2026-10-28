@@ -22,18 +22,19 @@ import {
 const Y_AXIS_POSITION_TWEEN_MS = DEFAULT_Y_DOMAIN_TWEEN_MS;
 
 export interface YAxisProps {
-  /** Format large numbers (e.g. 1000 as "1k"). Default: true */
+  /** Format large numbers (e.g. 1000 as "1k"). @default true */
   formatLargeNumbers?: boolean;
   /** Custom formatter for tick labels (e.g. USD). Overrides formatLargeNumbers when set. */
   formatValue?: (value: number) => string;
   /**
    * Approximate tick count hint for `scale.ticks()` (d3). Actual label count may differ.
-   * Clamped to {@link Y_AXIS_MIN_TICK_COUNT}–{@link Y_AXIS_MAX_TICK_COUNT}. Default: 5.
+   * Clamped to {@link Y_AXIS_MIN_TICK_COUNT}–{@link Y_AXIS_MAX_TICK_COUNT}.
+   * @default 5
    */
   numTicks?: number;
-  /** Which side of the chart to render labels. Default: `"left"`. */
+  /** Which side of the chart to render labels. @default "left" */
   orientation?: YAxisOrientation;
-  /** Scale group id (Recharts `yAxisId`). Default: `"left"`. */
+  /** Scale group id (Recharts `yAxisId`). @default "left" */
   yAxisId?: string | number;
 }
 
@@ -154,7 +155,7 @@ const YAxisInner = memo(function YAxisInner({
             }}
           >
             <span
-              className="text-chart-label text-xs"
+              className="text-foreground-muted text-xs"
               style={tick.labelColor ? { color: tick.labelColor } : undefined}
             >
               {tick.label}

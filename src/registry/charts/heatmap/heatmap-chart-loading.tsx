@@ -14,13 +14,13 @@ import { HeatmapYAxis } from "./heatmap-y-axis";
 export interface HeatmapChartLoadingProps {
   /** Additional class name for the container */
   className?: string;
-  /** Corner radius for each cell. Default: 2 */
+  /** Corner radius for each cell. @default 2 */
   cornerRadius?: number;
   /** Target column data used to size the skeleton grid. */
   data: HeatmapColumn[];
-  /** Gap between cells in pixels. Default: 2 */
+  /** Gap between cells in pixels. @default 2 */
   gap?: number;
-  /** Centered shimmer label text. Default: "Loading" */
+  /** Centered shimmer label text. @default "Loading" */
   label?: string;
   /** Chart margins */
   margin?: Partial<Margin>;

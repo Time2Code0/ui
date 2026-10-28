@@ -22,25 +22,28 @@ import {
 export interface HeatmapTooltipProps {
   /**
    * Tooltip panel background color (CSS variable or color value).
-   * Default: `var(--chart-tooltip-background)`.
+   * @default var(--color-background)
    */
   backgroundColor?: string;
   /** Custom class name */
   className?: string;
   /**
    * Spring damping for the panel following the hovered cell (same scale as
-   * `ChartTooltip`). `0` disables the follow spring. Default: `20`.
+   * `ChartTooltip`). `0` disables the follow spring.
+   * @default 20
    */
   damping?: number;
-  /** Custom contribution line (bottom section). Default: `N contribution(s)`. */
+  /** Custom contribution line (bottom section). @default N contribution(s) */
   formatLabel?: (count: number, date: Date) => string;
   /**
    * Grace period before hiding when the pointer leaves a cell (ms).
    * Helps avoid flicker when moving quickly between adjacent cells.
+   * @default 120
    */
   hideDelay?: number;
   /**
    * When true, the tooltip appears and disappears instantly with no motion.
+   * @default false
    */
   instant?: boolean;
   /** Inline styles for the tooltip panel (background, blur, etc.). */
@@ -48,6 +51,7 @@ export interface HeatmapTooltipProps {
   /**
    * Delay before showing the tooltip on first hover (ms).
    * Moving between cells updates immediately once visible.
+   * @default 0
    */
   showDelay?: number;
   /** Per-chart override for the panel follow spring (wins over `damping`). */
@@ -104,11 +108,11 @@ export const HeatmapTooltip = memo(function HeatmapTooltip({
         <>
           <TooltipHeader>
             {formatHeatmapTooltipDate(displayData.date)}
-            <div className="mt-0.5 font-normal text-chart-tooltip-muted text-xs">
+            <div className="mt-0.5 font-normal text-foreground-muted text-xs">
               {formatHeatmapTooltipWeekday(displayData.date)}
             </div>
           </TooltipHeader>
-          <div className="px-3.5 py-3 text-left text-chart-tooltip-foreground text-sm">
+          <div className="px-3.5 py-3 text-left text-foreground text-sm">
             {formatLabel(displayData.count, displayData.date)}
           </div>
         </>
