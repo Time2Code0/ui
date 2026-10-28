@@ -1,7 +1,16 @@
-export const isChartSlug = (
-  slug: string
-): slug is (typeof chartTypes)[number]["slug"] =>
+export type ChartSlug = (typeof chartTypes)[number]["slug"];
+
+export const isChartSlug = (slug: string): slug is ChartSlug =>
   chartTypes.some((chart) => chart.slug === slug);
+
+/**
+ * Registry category of a page's particles. Utilities are prefixed so their
+ * particles (`p-chart-tooltip-1`, …) don't clash with the ui particles.
+ */
+export function getChartParticleCategory(slug: ChartSlug) {
+  const chart = chartTypes.find((type) => type.slug === slug);
+  return chart && "group" in chart ? `chart-${slug}` : slug;
+}
 
 export const chartTypes = [
   { label: "Area Chart", slug: "area-chart" },
@@ -18,7 +27,12 @@ export const chartTypes = [
   { label: "Radar Chart", slug: "radar-chart" },
   { label: "Ring Chart", slug: "ring-chart" },
   { label: "Scatter Chart", slug: "scatter-chart" },
-  { label: "Sankey Chart", slug: "sankey-chart" },
+  {
+    label: "Sankey Chart",
+    notice:
+      "The Sankey chart is in pre-alpha and is being actively developed. APIs may change.",
+    slug: "sankey-chart",
+  },
   { label: "Sparkline", slug: "sparkline" },
   { label: "Sunburst Chart", slug: "sunburst-chart" },
   // Utilities (docs demos only)

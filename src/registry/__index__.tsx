@@ -62,6 +62,14 @@ export const Index = {
       ) || "arc-text";
     return { default: mod.default || mod[exportName] };
   }),
+  "area-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/area-chart-loading");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "area-chart";
+    return { default: mod.default || mod[exportName] };
+  }),
   autocomplete: lazy(async () => {
     const mod = await import("@/registry/ui/autocomplete");
     const exportName =
@@ -84,6 +92,14 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "badge";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "bar-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/bar-chart-loading");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "bar-chart";
     return { default: mod.default || mod[exportName] };
   }),
   beam: lazy(async () => {
@@ -126,6 +142,14 @@ export const Index = {
       ) || "calendar";
     return { default: mod.default || mod[exportName] };
   }),
+  "candlestick-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/candlestick-chart");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "candlestick-chart";
+    return { default: mod.default || mod[exportName] };
+  }),
   card: lazy(async () => {
     const mod = await import("@/registry/ui/card");
     const exportName =
@@ -142,6 +166,110 @@ export const Index = {
       ) || "carousel";
     return { default: mod.default || mod[exportName] };
   }),
+  "chart-axis": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "chart-axis";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "chart-background": lazy(async () => {
+    const mod = await import("@/registry/charts/background");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "chart-background";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "chart-band": lazy(async () => {
+    const mod = await import("@/registry/charts/band");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "chart-band";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "chart-brush": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-brush-handle");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "chart-brush";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "chart-core": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "chart-core";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "chart-date-highlights": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "chart-date-highlights";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "chart-grid": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "chart-grid";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "chart-legend": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-legend-hover");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "chart-legend";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "chart-markers": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "chart-markers";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "chart-reference-area": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "chart-reference-area";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "chart-segment": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "chart-segment";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "chart-tooltip": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-config-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "chart-tooltip";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "chart-trend-line": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "chart-trend-line";
+    return { default: mod.default || mod[exportName] };
+  }),
   checkbox: lazy(async () => {
     const mod = await import("@/registry/ui/checkbox");
     const exportName =
@@ -156,6 +284,14 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "checkbox-group";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "choropleth-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-config-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "choropleth-chart";
     return { default: mod.default || mod[exportName] };
   }),
   collapsible: lazy(async () => {
@@ -180,6 +316,14 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "command";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "composed-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/area-gradient-defs");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "composed-chart";
     return { default: mod.default || mod[exportName] };
   }),
   confetti: lazy(async () => {
@@ -270,6 +414,22 @@ export const Index = {
       ) || "form-baseui";
     return { default: mod.default || mod[exportName] };
   }),
+  "funnel-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/funnel-chart");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "funnel-chart";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "gauge-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-parent-size");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "gauge-chart";
+    return { default: mod.default || mod[exportName] };
+  }),
   globe: lazy(async () => {
     const mod = await import("@/registry/marketing/globe");
     const exportName =
@@ -300,6 +460,14 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "group";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "heatmap-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-config-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "heatmap-chart";
     return { default: mod.default || mod[exportName] };
   }),
   "hero-image": lazy(async () => {
@@ -398,12 +566,28 @@ export const Index = {
       ) || "led-matrix";
     return { default: mod.default || mod[exportName] };
   }),
+  "line-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-config-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "line-chart";
+    return { default: mod.default || mod[exportName] };
+  }),
   link: lazy(async () => {
     const mod = await import("@/registry/ui/link");
     const exportName =
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "link";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "live-line-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "live-line-chart";
     return { default: mod.default || mod[exportName] };
   }),
   loading: lazy(async () => {
@@ -692,6 +876,266 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "p-arc-text-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-10": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-10"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-10";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-11": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-11"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-11";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-12": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-12"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-12";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-13": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-13"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-13";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-14": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-14"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-14";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-15": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-15"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-15";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-16": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-16"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-16";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-17": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-17"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-17";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-18": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-18"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-18";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-19": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-19"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-19";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-20": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-20"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-20";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-21": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-21"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-21";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-22": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-22"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-22";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-23": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-23"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-23";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-24": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-24"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-24";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-25": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-25"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-25";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-area-chart-26": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/area-chart/p-area-chart-26"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-area-chart-26";
     return { default: mod.default || mod[exportName] };
   }),
   "p-autocomplete-1": lazy(async () => {
@@ -1114,6 +1558,376 @@ export const Index = {
       ) || "p-badge-14";
     return { default: mod.default || mod[exportName] };
   }),
+  "p-bar-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-10": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-10"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-10";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-11": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-11"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-11";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-12": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-12"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-12";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-13": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-13"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-13";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-14": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-14"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-14";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-15": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-15"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-15";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-16": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-16"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-16";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-17": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-17"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-17";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-18": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-18"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-18";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-19": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-19"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-19";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-20": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-20"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-20";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-21": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-21"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-21";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-22": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-22"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-22";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-23": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-23"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-23";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-24": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-24"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-24";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-25": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-25"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-25";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-26": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-26"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-26";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-27": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-27"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-27";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-28": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-28"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-28";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-29": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-29"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-29";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-30": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-30"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-30";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-31": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-31"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-31";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-32": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-32"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-32";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-33": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-33"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-33";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-34": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-34"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-34";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-35": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-35"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-35";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-36": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-36"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-36";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-bar-chart-37": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/bar-chart/p-bar-chart-37"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-bar-chart-37";
+    return { default: mod.default || mod[exportName] };
+  }),
   "p-beam-1": lazy(async () => {
     const mod = await import("@/registry/particles/beam/p-beam-1");
     const exportName =
@@ -1346,12 +2160,732 @@ export const Index = {
       ) || "p-calendar-6";
     return { default: mod.default || mod[exportName] };
   }),
+  "p-candlestick-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/candlestick-chart/p-candlestick-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-candlestick-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-candlestick-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/candlestick-chart/p-candlestick-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-candlestick-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-candlestick-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/candlestick-chart/p-candlestick-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-candlestick-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-candlestick-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/candlestick-chart/p-candlestick-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-candlestick-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-candlestick-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/candlestick-chart/p-candlestick-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-candlestick-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-candlestick-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/candlestick-chart/p-candlestick-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-candlestick-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-candlestick-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/candlestick-chart/p-candlestick-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-candlestick-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-candlestick-chart-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/candlestick-chart/p-candlestick-chart-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-candlestick-chart-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-candlestick-chart-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/candlestick-chart/p-candlestick-chart-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-candlestick-chart-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-candlestick-chart-10": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/candlestick-chart/p-candlestick-chart-10"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-candlestick-chart-10";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-candlestick-chart-11": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/candlestick-chart/p-candlestick-chart-11"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-candlestick-chart-11";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-candlestick-chart-12": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/candlestick-chart/p-candlestick-chart-12"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-candlestick-chart-12";
+    return { default: mod.default || mod[exportName] };
+  }),
   "p-card-1": lazy(async () => {
     const mod = await import("@/registry/particles/card/p-card-1");
     const exportName =
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "p-card-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-axis-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-axis/p-chart-axis-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-axis-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-axis-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-axis/p-chart-axis-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-axis-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-axis-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-axis/p-chart-axis-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-axis-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-background-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-background/p-chart-background-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-background-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-background-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-background/p-chart-background-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-background-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-background-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-background/p-chart-background-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-background-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-background-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-background/p-chart-background-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-background-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-band-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-band/p-chart-band-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-band-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-band-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-band/p-chart-band-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-band-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-band-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-band/p-chart-band-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-band-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-band-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-band/p-chart-band-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-band-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-band-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-band/p-chart-band-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-band-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-band-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-band/p-chart-band-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-band-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-band-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-band/p-chart-band-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-band-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-custom-indicator-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-custom-indicator/p-chart-custom-indicator-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-custom-indicator-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-date-highlights-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-date-highlights/p-chart-date-highlights-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-date-highlights-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-date-highlights-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-date-highlights/p-chart-date-highlights-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-date-highlights-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-date-highlights-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-date-highlights/p-chart-date-highlights-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-date-highlights-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-date-highlights-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-date-highlights/p-chart-date-highlights-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-date-highlights-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-date-highlights-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-date-highlights/p-chart-date-highlights-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-date-highlights-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-date-highlights-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-date-highlights/p-chart-date-highlights-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-date-highlights-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-date-highlights-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-date-highlights/p-chart-date-highlights-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-date-highlights-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-date-highlights-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-date-highlights/p-chart-date-highlights-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-date-highlights-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-grid-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-grid/p-chart-grid-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-grid-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-grid-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-grid/p-chart-grid-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-grid-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-grid-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-grid/p-chart-grid-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-grid-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-grid-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-grid/p-chart-grid-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-grid-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-grid-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-grid/p-chart-grid-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-grid-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-grid-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-grid/p-chart-grid-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-grid-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-grid-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-grid/p-chart-grid-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-grid-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-legend-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-legend/p-chart-legend-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-legend-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-legend-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-legend/p-chart-legend-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-legend-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-legend-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-legend/p-chart-legend-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-legend-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-markers-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-markers/p-chart-markers-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-markers-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-markers-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-markers/p-chart-markers-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-markers-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-markers-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-markers/p-chart-markers-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-markers-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-reference-area-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-reference-area/p-chart-reference-area-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-reference-area-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-reference-area-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-reference-area/p-chart-reference-area-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-reference-area-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-reference-area-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-reference-area/p-chart-reference-area-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-reference-area-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-segment-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-segment/p-chart-segment-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-segment-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-tooltip-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-tooltip/p-chart-tooltip-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-tooltip-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-tooltip-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-tooltip/p-chart-tooltip-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-tooltip-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-tooltip-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-tooltip/p-chart-tooltip-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-tooltip-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-tooltip-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-tooltip/p-chart-tooltip-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-tooltip-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-tooltip-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-tooltip/p-chart-tooltip-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-tooltip-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-tooltip-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-tooltip/p-chart-tooltip-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-tooltip-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-tooltip-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-tooltip/p-chart-tooltip-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-tooltip-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-tooltip-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-tooltip/p-chart-tooltip-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-tooltip-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-tooltip-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-tooltip/p-chart-tooltip-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-tooltip-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-tooltip-10": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-tooltip/p-chart-tooltip-10"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-tooltip-10";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-tooltip-11": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-tooltip/p-chart-tooltip-11"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-tooltip-11";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-trend-line-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-trend-line/p-chart-trend-line-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-trend-line-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-trend-line-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-trend-line/p-chart-trend-line-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-trend-line-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-trend-line-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-trend-line/p-chart-trend-line-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-trend-line-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-trend-line-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-trend-line/p-chart-trend-line-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-trend-line-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-trend-line-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-trend-line/p-chart-trend-line-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-trend-line-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-trend-line-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-trend-line/p-chart-trend-line-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-trend-line-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-trend-line-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-trend-line/p-chart-trend-line-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-trend-line-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-trend-line-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-trend-line/p-chart-trend-line-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-trend-line-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-chart-trend-line-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/chart-trend-line/p-chart-trend-line-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-chart-trend-line-9";
     return { default: mod.default || mod[exportName] };
   }),
   "p-checkbox-1": lazy(async () => {
@@ -1442,6 +2976,96 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "p-checkbox-group-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-choropleth-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/choropleth-chart/p-choropleth-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-choropleth-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-choropleth-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/choropleth-chart/p-choropleth-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-choropleth-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-choropleth-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/choropleth-chart/p-choropleth-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-choropleth-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-choropleth-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/choropleth-chart/p-choropleth-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-choropleth-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-choropleth-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/choropleth-chart/p-choropleth-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-choropleth-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-choropleth-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/choropleth-chart/p-choropleth-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-choropleth-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-choropleth-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/choropleth-chart/p-choropleth-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-choropleth-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-choropleth-chart-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/choropleth-chart/p-choropleth-chart-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-choropleth-chart-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-choropleth-chart-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/choropleth-chart/p-choropleth-chart-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-choropleth-chart-9";
     return { default: mod.default || mod[exportName] };
   }),
   "p-collapsible-1": lazy(async () => {
@@ -1580,6 +3204,166 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "p-command-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-10": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-10"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-10";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-11": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-11"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-11";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-12": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-12"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-12";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-13": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-13"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-13";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-14": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-14"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-14";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-15": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-15"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-15";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-composed-chart-16": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/composed-chart/p-composed-chart-16"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-composed-chart-16";
     return { default: mod.default || mod[exportName] };
   }),
   "p-confetti-1": lazy(async () => {
@@ -2052,6 +3836,236 @@ export const Index = {
       ) || "p-form-2";
     return { default: mod.default || mod[exportName] };
   }),
+  "p-funnel-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/funnel-chart/p-funnel-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-funnel-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-funnel-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/funnel-chart/p-funnel-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-funnel-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-funnel-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/funnel-chart/p-funnel-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-funnel-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-funnel-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/funnel-chart/p-funnel-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-funnel-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-funnel-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/funnel-chart/p-funnel-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-funnel-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-funnel-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/funnel-chart/p-funnel-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-funnel-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-funnel-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/funnel-chart/p-funnel-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-funnel-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-funnel-chart-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/funnel-chart/p-funnel-chart-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-funnel-chart-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-funnel-chart-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/funnel-chart/p-funnel-chart-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-funnel-chart-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-gauge-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/gauge-chart/p-gauge-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-gauge-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-gauge-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/gauge-chart/p-gauge-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-gauge-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-gauge-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/gauge-chart/p-gauge-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-gauge-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-gauge-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/gauge-chart/p-gauge-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-gauge-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-gauge-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/gauge-chart/p-gauge-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-gauge-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-gauge-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/gauge-chart/p-gauge-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-gauge-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-gauge-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/gauge-chart/p-gauge-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-gauge-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-gauge-chart-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/gauge-chart/p-gauge-chart-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-gauge-chart-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-gauge-chart-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/gauge-chart/p-gauge-chart-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-gauge-chart-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-gauge-chart-10": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/gauge-chart/p-gauge-chart-10"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-gauge-chart-10";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-gauge-chart-11": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/gauge-chart/p-gauge-chart-11"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-gauge-chart-11";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-gauge-chart-12": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/gauge-chart/p-gauge-chart-12"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-gauge-chart-12";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-gauge-chart-13": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/gauge-chart/p-gauge-chart-13"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-gauge-chart-13";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-gauge-chart-14": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/gauge-chart/p-gauge-chart-14"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-gauge-chart-14";
+    return { default: mod.default || mod[exportName] };
+  }),
   "p-globe-1": lazy(async () => {
     const mod = await import("@/registry/particles/globe/p-globe-1");
     const exportName =
@@ -2244,6 +4258,116 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "p-group-14";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-heatmap-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/heatmap-chart/p-heatmap-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-heatmap-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-heatmap-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/heatmap-chart/p-heatmap-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-heatmap-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-heatmap-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/heatmap-chart/p-heatmap-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-heatmap-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-heatmap-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/heatmap-chart/p-heatmap-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-heatmap-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-heatmap-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/heatmap-chart/p-heatmap-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-heatmap-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-heatmap-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/heatmap-chart/p-heatmap-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-heatmap-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-heatmap-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/heatmap-chart/p-heatmap-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-heatmap-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-heatmap-chart-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/heatmap-chart/p-heatmap-chart-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-heatmap-chart-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-heatmap-chart-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/heatmap-chart/p-heatmap-chart-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-heatmap-chart-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-heatmap-chart-10": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/heatmap-chart/p-heatmap-chart-10"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-heatmap-chart-10";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-heatmap-chart-11": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/heatmap-chart/p-heatmap-chart-11"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-heatmap-chart-11";
     return { default: mod.default || mod[exportName] };
   }),
   "p-hero-image-1": lazy(async () => {
@@ -2562,12 +4686,382 @@ export const Index = {
       ) || "p-led-matrix-1";
     return { default: mod.default || mod[exportName] };
   }),
+  "p-line-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-10": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-10"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-10";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-11": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-11"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-11";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-12": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-12"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-12";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-13": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-13"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-13";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-14": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-14"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-14";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-15": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-15"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-15";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-16": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-16"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-16";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-17": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-17"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-17";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-18": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-18"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-18";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-19": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-19"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-19";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-20": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-20"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-20";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-21": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-21"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-21";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-22": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-22"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-22";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-23": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-23"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-23";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-24": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-24"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-24";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-25": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-25"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-25";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-26": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-26"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-26";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-line-chart-27": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/line-chart/p-line-chart-27"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-line-chart-27";
+    return { default: mod.default || mod[exportName] };
+  }),
   "p-link-1": lazy(async () => {
     const mod = await import("@/registry/particles/link/p-link-1");
     const exportName =
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "p-link-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-live-line-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/live-line-chart/p-live-line-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-live-line-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-live-line-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/live-line-chart/p-live-line-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-live-line-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-live-line-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/live-line-chart/p-live-line-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-live-line-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-live-line-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/live-line-chart/p-live-line-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-live-line-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-live-line-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/live-line-chart/p-live-line-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-live-line-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-live-line-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/live-line-chart/p-live-line-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-live-line-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-live-line-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/live-line-chart/p-live-line-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-live-line-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-live-line-chart-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/live-line-chart/p-live-line-chart-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-live-line-chart-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-live-line-chart-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/live-line-chart/p-live-line-chart-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-live-line-chart-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-live-line-chart-10": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/live-line-chart/p-live-line-chart-10"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-live-line-chart-10";
     return { default: mod.default || mod[exportName] };
   }),
   "p-loading-1": lazy(async () => {
@@ -3008,6 +5502,176 @@ export const Index = {
       ) || "p-pattern-1";
     return { default: mod.default || mod[exportName] };
   }),
+  "p-pie-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-10": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-10"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-10";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-11": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-11"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-11";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-12": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-12"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-12";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-13": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-13"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-13";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-14": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-14"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-14";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-15": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-15"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-15";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-16": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-16"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-16";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-pie-chart-17": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/pie-chart/p-pie-chart-17"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-pie-chart-17";
+    return { default: mod.default || mod[exportName] };
+  }),
   "p-pill-1": lazy(async () => {
     const mod = await import("@/registry/particles/pill/p-pill-1");
     const exportName =
@@ -3108,6 +5772,96 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "p-progressive-blur-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-radar-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/radar-chart/p-radar-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-radar-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-radar-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/radar-chart/p-radar-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-radar-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-radar-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/radar-chart/p-radar-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-radar-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-radar-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/radar-chart/p-radar-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-radar-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-radar-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/radar-chart/p-radar-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-radar-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-radar-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/radar-chart/p-radar-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-radar-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-radar-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/radar-chart/p-radar-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-radar-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-radar-chart-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/radar-chart/p-radar-chart-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-radar-chart-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-radar-chart-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/radar-chart/p-radar-chart-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-radar-chart-9";
     return { default: mod.default || mod[exportName] };
   }),
   "p-radio-group-1": lazy(async () => {
@@ -3226,6 +5980,96 @@ export const Index = {
       ) || "p-reveal-1";
     return { default: mod.default || mod[exportName] };
   }),
+  "p-ring-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/ring-chart/p-ring-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-ring-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-ring-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/ring-chart/p-ring-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-ring-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-ring-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/ring-chart/p-ring-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-ring-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-ring-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/ring-chart/p-ring-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-ring-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-ring-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/ring-chart/p-ring-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-ring-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-ring-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/ring-chart/p-ring-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-ring-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-ring-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/ring-chart/p-ring-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-ring-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-ring-chart-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/ring-chart/p-ring-chart-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-ring-chart-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-ring-chart-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/ring-chart/p-ring-chart-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-ring-chart-9";
+    return { default: mod.default || mod[exportName] };
+  }),
   "p-rotate-interval-1": lazy(async () => {
     const mod = await import(
       "@/registry/particles/rotate-interval/p-rotate-interval-1"
@@ -3234,6 +6078,216 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "p-rotate-interval-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sankey-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sankey-chart/p-sankey-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sankey-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sankey-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sankey-chart/p-sankey-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sankey-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sankey-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sankey-chart/p-sankey-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sankey-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sankey-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sankey-chart/p-sankey-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sankey-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sankey-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sankey-chart/p-sankey-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sankey-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sankey-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sankey-chart/p-sankey-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sankey-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sankey-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sankey-chart/p-sankey-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sankey-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-scatter-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/scatter-chart/p-scatter-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-scatter-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-scatter-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/scatter-chart/p-scatter-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-scatter-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-scatter-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/scatter-chart/p-scatter-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-scatter-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-scatter-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/scatter-chart/p-scatter-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-scatter-chart-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-scatter-chart-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/scatter-chart/p-scatter-chart-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-scatter-chart-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-scatter-chart-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/scatter-chart/p-scatter-chart-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-scatter-chart-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-scatter-chart-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/scatter-chart/p-scatter-chart-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-scatter-chart-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-scatter-chart-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/scatter-chart/p-scatter-chart-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-scatter-chart-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-scatter-chart-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/scatter-chart/p-scatter-chart-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-scatter-chart-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-scatter-chart-10": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/scatter-chart/p-scatter-chart-10"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-scatter-chart-10";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-scatter-chart-11": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/scatter-chart/p-scatter-chart-11"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-scatter-chart-11";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-scatter-chart-12": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/scatter-chart/p-scatter-chart-12"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-scatter-chart-12";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-scatter-chart-13": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/scatter-chart/p-scatter-chart-13"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-scatter-chart-13";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-scatter-chart-14": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/scatter-chart/p-scatter-chart-14"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-scatter-chart-14";
     return { default: mod.default || mod[exportName] };
   }),
   "p-scroll-1": lazy(async () => {
@@ -3558,6 +6612,196 @@ export const Index = {
       ) || "p-slider-5";
     return { default: mod.default || mod[exportName] };
   }),
+  "p-sparkline-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-10": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-10"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-10";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-11": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-11"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-11";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-12": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-12"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-12";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-13": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-13"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-13";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-14": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-14"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-14";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-15": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-15"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-15";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-16": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-16"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-16";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-17": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-17"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-17";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-18": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-18"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-18";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sparkline-19": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sparkline/p-sparkline-19"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sparkline-19";
+    return { default: mod.default || mod[exportName] };
+  }),
   "p-spotlight-1": lazy(async () => {
     const mod = await import("@/registry/particles/spotlight/p-spotlight-1");
     const exportName =
@@ -3584,6 +6828,46 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "p-sticky-stacked-card-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sunburst-chart-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sunburst-chart/p-sunburst-chart-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sunburst-chart-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sunburst-chart-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sunburst-chart/p-sunburst-chart-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sunburst-chart-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sunburst-chart-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sunburst-chart/p-sunburst-chart-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sunburst-chart-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-sunburst-chart-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/charts/sunburst-chart/p-sunburst-chart-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-sunburst-chart-4";
     return { default: mod.default || mod[exportName] };
   }),
   "p-switch-1": lazy(async () => {
@@ -4142,6 +7426,14 @@ export const Index = {
       ) || "pattern";
     return { default: mod.default || mod[exportName] };
   }),
+  "pie-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-parent-size");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "pie-chart";
+    return { default: mod.default || mod[exportName] };
+  }),
   pill: lazy(async () => {
     const mod = await import("@/registry/marketing/pill");
     const exportName =
@@ -4198,6 +7490,14 @@ export const Index = {
       ) || "progressive-blur";
     return { default: mod.default || mod[exportName] };
   }),
+  "radar-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-parent-size");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "radar-chart";
+    return { default: mod.default || mod[exportName] };
+  }),
   "radio-group": lazy(async () => {
     const mod = await import("@/registry/ui/radio-group");
     const exportName =
@@ -4230,12 +7530,36 @@ export const Index = {
       ) || "reveal";
     return { default: mod.default || mod[exportName] };
   }),
+  "ring-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-parent-size");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "ring-chart";
+    return { default: mod.default || mod[exportName] };
+  }),
   "rotate-interval": lazy(async () => {
     const mod = await import("@/registry/marketing/rotate-interval");
     const exportName =
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "rotate-interval";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "sankey-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-config-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "sankey-chart";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "scatter-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "scatter-chart";
     return { default: mod.default || mod[exportName] };
   }),
   scroll: lazy(async () => {
@@ -4334,6 +7658,14 @@ export const Index = {
       ) || "slider";
     return { default: mod.default || mod[exportName] };
   }),
+  sparkline: lazy(async () => {
+    const mod = await import("@/registry/charts/chart-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "sparkline";
+    return { default: mod.default || mod[exportName] };
+  }),
   spotlight: lazy(async () => {
     const mod = await import("@/registry/marketing/spotlight");
     const exportName =
@@ -4364,6 +7696,14 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "sticky-stacked-card";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "sunburst-chart": lazy(async () => {
+    const mod = await import("@/registry/charts/split-context");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "sunburst-chart";
     return { default: mod.default || mod[exportName] };
   }),
   switch: lazy(async () => {

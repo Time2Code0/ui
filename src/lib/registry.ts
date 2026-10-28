@@ -65,6 +65,8 @@ function calculateRelevanceWeight(
   return weight;
 }
 
+const chartImportRegex = /@\/registry\/charts\/([\w/-]+)/g;
+
 function fixImport(content: string) {
   const regex = /@\/(.+?)\/((?:.*?\/)?(?:components|ui|hooks|lib))\/([\w-]+)/g;
 
@@ -93,5 +95,8 @@ function fixImport(content: string) {
     return match;
   };
 
-  return content.replace(regex, replacement);
+  // Chart library files install under `components/charts/` (see their `target`).
+  return content
+    .replace(chartImportRegex, "@/components/charts/$1")
+    .replace(regex, replacement);
 }

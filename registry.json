@@ -8,6 +8,7 @@
     "src/registry/marketing/registry.json",
     "src/registry/hooks/registry.json",
     "src/registry/particles/registry.json",
+    "src/registry/particles/charts/registry.json",
     "src/registry/blocks/registry.json"
   ]
 }

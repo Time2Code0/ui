@@ -2,14 +2,18 @@ import type { ReactNode, Ref } from "react";
 
 import { cn } from "cn";
 
+export const chartExamplePreviewLayouts = [
+  "cartesian",
+  "time-series",
+  "compact",
+  "funnel",
+  "wide",
+  "heatmap",
+  "inline",
+] as const;
+
 export type ChartExamplePreviewLayout =
-  | "cartesian"
-  | "time-series"
-  | "compact"
-  | "funnel"
-  | "wide"
-  | "heatmap"
-  | "inline";
+  (typeof chartExamplePreviewLayouts)[number];
 
 /** Override inline chart aspect on narrow viewports so demos aren't paper-thin. */
 const cartesianChartMobileAspectClassName =
@@ -80,23 +84,6 @@ export function getChartExamplePreviewFrameClassName(
       );
   }
 }
-
-/** Responsive shell for gauge previews — no 300px min-width squeeze on mobile. */
-export const chartExampleGaugeShellClassName =
-  "w-full min-w-0 sm:mx-auto sm:max-w-md";
-
-export const chartExampleGaugeClassName =
-  "min-w-0 [&>div]:aspect-[5/4] [&>div]:sm:aspect-[21/16]";
-
-/** Wrap fixed-size radial demos when omitting the `size` prop. */
-export const chartExampleRadialShellClassName =
-  "mx-auto aspect-square w-full max-w-[min(100%,300px)] sm:max-w-[260px]";
-
-/** Larger shell for sunburst hero previews. */
-export const chartExampleSunburstHeroShellClassName =
-  "mx-auto aspect-square w-full max-w-[min(100%,480px)] sm:max-w-[440px]";
-
-export const chartExampleCardClassName = "overflow-visible gap-0";
 
 /** Let chart SVGs paint 3D lids, dots, and markers outside the plot box. */
 export const chartExamplePreviewOverflowClassName =

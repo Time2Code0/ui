@@ -1,0 +1,173 @@
+"use client";
+
+import React, { useEffect } from "react";
+
+import { LinearGradient } from "@visx/gradient";
+import { motion, useSpring } from "motion/react";
+
+import { Bar } from "@/registry/charts/bar";
+import { BarChart } from "@/registry/charts/bar-chart";
+import { BarXAxis } from "@/registry/charts/bar-x-axis";
+import { useChart } from "@/registry/charts/chart-context";
+import { Grid } from "@/registry/charts/grid";
+import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
+import { PatternLines } from "@/registry/charts/visx-pattern";
+
+// Sample data for the demo with two data keys
+const chartData = [
+  { cost: 8000, month: "Jan", revenue: 12_000 },
+  { cost: 10_200, month: "Feb", revenue: 15_500 },
+  { cost: 7500, month: "Mar", revenue: 11_000 },
+  { cost: 12_000, month: "Apr", revenue: 18_500 },
+  { cost: 11_500, month: "May", revenue: 16_800 },
+  { cost: 14_000, month: "Jun", revenue: 21_200 },
+];
+
+// Individual animated line for a single bar
+function AnimatedBarLine({
+  barX,
+  barTopY,
+  barBottomY,
+  width,
+  isHovered,
+}: {
+  barX: number;
+  barTopY: number;
+  barBottomY: number;
+  width: number;
+  isHovered: boolean;
+}) {
+  const animatedY = useSpring(barBottomY, { damping: 30, stiffness: 300 });
+  const animatedOpacity = useSpring(0, { damping: 30, stiffness: 300 });
+
+  useEffect(() => {
+    animatedY.set(isHovered ? barTopY : barBottomY);
+    animatedOpacity.set(isHovered ? 1 : 0);
+  }, [isHovered, barTopY, barBottomY, animatedY, animatedOpacity]);
+
+  return (
+    <motion.rect
+      fill="var(--color-foreground)"
+      height={2}
+      style={{
+        opacity: animatedOpacity,
+        y: animatedY,
+      }}
+      width={width}
+      x={barX}
+    />
+  );
+}
+
+// Custom horizontal line indicator - each bar has its own line that rises on hover
+function BarHorizontalLineIndicator({
+  data,
+  dataKeys,
+}: {
+  data: { month: string; revenue: number; cost: number }[];
+  dataKeys: string[];
+}) {
+  const {
+    barScale,
+    bandWidth,
+    innerHeight,
+    margin,
+    containerRef,
+    hoveredBarIndex,
+    yScale,
+  } = useChart();
+  const [mounted, setMounted] = React.useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const container = containerRef.current;
+  if (!(mounted && container && bandWidth && barScale)) {
+    return null;
+  }
+
+  const { createPortal } = require("react-dom") as typeof import("react-dom");
+
+  // Calculate individual bar width when there are multiple bars per group
+  const barCount = dataKeys.length;
+  const individualBarWidth = bandWidth / barCount;
+
+  return createPortal(
+    <svg
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 z-50"
+      height="100%"
+      width="100%"
+    >
+      <g transform={`translate(${margin.left},${margin.top})`}>
+        {data.map((d, i) => {
+          const groupX = barScale(d.month) ?? 0;
+          const isHovered = hoveredBarIndex === i;
+
+          return dataKeys.map((dataKey, barIndex) => {
+            const value = d[dataKey as keyof typeof d] as number;
+            const barTopY = yScale(value) ?? innerHeight;
+            const barX = groupX + barIndex * individualBarWidth;
+
+            return (
+              <AnimatedBarLine
+                barBottomY={innerHeight}
+                barTopY={barTopY}
+                barX={barX}
+                isHovered={isHovered}
+                key={`${d.month}-${dataKey}`}
+                width={individualBarWidth}
+              />
+            );
+          });
+        })}
+      </g>
+    </svg>,
+    container
+  );
+}
+
+// Exported demo component for the documentation page
+export function Particle() {
+  return (
+    <div className="w-full">
+      <BarChart barGap={0} data={chartData} xDataKey="month">
+        <LinearGradient
+          from="var(--color-chart-3)"
+          id="customIndicatorGradient"
+          to="transparent"
+        />
+        <PatternLines
+          height={6}
+          id="diagonalPattern"
+          orientation={["diagonal"]}
+          stroke="var(--color-chart-4)"
+          strokeWidth={1.5}
+          width={6}
+        />
+        <Grid horizontal />
+        <Bar
+          dataKey="revenue"
+          fill="url(#customIndicatorGradient)"
+          groupGap={0}
+          lineCap="butt"
+          stroke="var(--color-chart-3)"
+        />
+        <Bar
+          dataKey="cost"
+          fill="url(#diagonalPattern)"
+          groupGap={0}
+          lineCap="butt"
+          stroke="var(--color-chart-4)"
+        />
+        <BarXAxis />
+        <ChartTooltip showCrosshair={false} showDots={false} />
+        <BarHorizontalLineIndicator
+          data={chartData}
+          dataKeys={["revenue", "cost"]}
+        />
+      </BarChart>
+    </div>
+  );
+}

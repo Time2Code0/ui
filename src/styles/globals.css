@@ -79,6 +79,8 @@
   --color-warning-foreground: oklch(0.78 0.105 75);
   --color-warning-background: oklch(0.23 0.035 75);
   --color-warning-subtel: oklch(0.32 0.06 75);
+
+  --color-chart-5: oklch(1 0 0);
 }
 
 @theme inline {
@@ -99,6 +101,15 @@
 @utility full-width {
   width: 100cqi;
   margin-inline: calc(50% - 50cqi);
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer base {

@@ -24,39 +24,10 @@ import {
   MenuTrigger,
 } from "@/registry/ui/menu";
 
-export interface ChartGalleryAnchor {
+interface ChartGalleryAnchor {
   featured?: boolean;
   id: string;
   label: string;
-}
-
-const titleSeparatorPattern = /\s+[-–—]\s+/;
-
-function slugify(value: string) {
-  return value
-    .toLowerCase()
-    .replace(/&/g, " and ")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
-/** "Area Chart - Pattern Background" → "Pattern Background". */
-export function chartGalleryAnchorLabel(title: string) {
-  const parts = title.split(titleSeparatorPattern);
-  const label = parts.length > 1 ? parts.slice(1).join(" – ") : title;
-  return label.charAt(0).toUpperCase() + label.slice(1);
-}
-
-/** Stable, unique anchor ids for a chart page's variations (in render order). */
-export function createChartGalleryAnchorIds(titles: string[]) {
-  const seen = new Map<string, number>();
-
-  return titles.map((title) => {
-    const base = slugify(chartGalleryAnchorLabel(title)) || "chart";
-    const count = (seen.get(base) ?? 0) + 1;
-    seen.set(base, count);
-    return count === 1 ? base : `${base}-${count}`;
-  });
 }
 
 /** A section is "current" once its title row crosses this fraction of the viewport. */
@@ -268,7 +239,7 @@ function ChartGalleryRail({
   return (
     <nav
       aria-label="Chart variations"
-      className="sticky top-[calc(var(--site-header-height)+1.5rem)] hidden max-h-[calc(100svh-var(--site-header-height)-3rem)] min-w-0 flex-col self-start lg:flex"
+      className="sticky top-[calc(--spacing(12)+--spacing(16))] hidden max-h-[calc(100svh---spacing(16)-3rem)] min-w-0 flex-col self-start lg:flex"
     >
       <p className="m-0 flex h-7 shrink-0 items-center font-medium text-foreground text-xs">
         On this page
@@ -313,7 +284,7 @@ function ChartGalleryMobileNav({
   return (
     <nav
       aria-label="Chart variations"
-      className="sticky top-(--site-header-height) z-20 bg-background/80 py-2 backdrop-blur-sm lg:hidden"
+      className="sticky top-16 z-20 bg-background/80 py-2 backdrop-blur-sm lg:hidden"
     >
       <Menu>
         <MenuTrigger

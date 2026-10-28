@@ -28,6 +28,10 @@ export const siteConfig = {
       href: "/blocks",
       label: "Blocks",
     },
+    {
+      href: "/charts",
+      label: "Charts",
+    },
   ],
   socials: {
     github: "https://github.com/time2code0/design-system",

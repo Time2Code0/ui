@@ -2,120 +2,145 @@
 
 import type { ChartExamplePreviewLayout } from "./chart-example-preview";
 
-import { Fragment, type ReactNode, useEffect, useState } from "react";
+import { Fragment, type ReactNode, useCallback, useState } from "react";
 
-import { cn } from "cn";
-import { useReducedMotion } from "motion/react";
+import { InformationCircleIcon, RefreshIcon } from "@hugeicons/core-free-icons";
+
+import { CopyRegistryButton } from "@/components/copy-registry-button";
+import { Button } from "@/registry/ui/button";
+import {
+  Card,
+  CardFrame,
+  CardFrameAction,
+  CardFrameDescription,
+  CardFrameFooter,
+  CardFrameHeader,
+} from "@/registry/ui/card";
+import {
+  Collapsible,
+  CollapsiblePanel,
+  CollapsibleTrigger,
+} from "@/registry/ui/collapsible";
+import { Icon } from "@/registry/ui/icon";
+import { Tooltip, TooltipPopup, TooltipTrigger } from "@/registry/ui/tooltip";
 
 import { ChartPreviewGate } from "./chart-preview-gate";
-import { ComponentShowcase } from "./component-showcase";
-import { ShowcaseReplayAction } from "./showcase-replay-action";
 
-/**
- * Chart gallery item: title row, then a `ComponentShowcase` (live preview with
- * collapsible code below it). The icon-only Replay control sits over the
- * preview's top-right corner, revealed on hover / focus (always shown on touch
- * or reduced motion).
- */
 export function ChartExampleFrame({
   anchorId,
   title,
   description,
   code,
-  data,
+  registryUrl,
   footer,
   hero = false,
   previewLayout = "cartesian",
   children,
 }: {
-  /** Deep-link target (`#anchorId`) placed on the title row for the gallery sidebar. */
+  /** Deep-link target (`#anchorId`) placed on the frame for the gallery sidebar. */
   anchorId?: string;
-  /** Gallery chart type (`/charts/[chart]`). */
-  chartSlug: string;
   title: string;
   description: string;
-  code: string;
-  data?: string;
+  /** Highlighted particle source. */
+  code: ReactNode;
+  /** shadcn registry item URL copied by the header action. */
+  registryUrl?: string;
   footer?: string;
   hero?: boolean;
   previewLayout?: ChartExamplePreviewLayout;
   children: ReactNode;
 }) {
   const [replayKey, setReplayKey] = useState(0);
-  const reducedMotion = useReducedMotion();
-  const [hovered, setHovered] = useState(false);
-  const [focused, setFocused] = useState(false);
-  // null until mounted: the server can't know the pointer type or motion
-  // preference, so the Replay button only appears after hydration.
-  const [coarsePointer, setCoarsePointer] = useState<boolean | null>(null);
 
-  useEffect(() => {
-    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
-    const update = () => setCoarsePointer(!mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
-  const showReplay =
-    coarsePointer !== null &&
-    (reducedMotion === true || coarsePointer || hovered || focused);
-  const fullCode = data ? `${code}\n\n${data}` : code;
-  const TitleTag = hero ? "h2" : "h3";
+  const replay = useCallback(() => setReplayKey((key) => key + 1), []);
 
   return (
-    <div
-      className="flex min-w-0 flex-col gap-3"
-      onBlurCapture={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget)) {
-          setFocused(false);
-        }
-      }}
-      onFocusCapture={() => setFocused(true)}
-      onPointerEnter={() => setHovered(true)}
-      onPointerLeave={() => setHovered(false)}
-    >
-      <header
-        className="flex scroll-mt-[calc(var(--site-header-height)+4.5rem)] flex-col gap-0.5 lg:scroll-mt-[calc(var(--site-header-height)+1.5rem)]"
+    <div className="flex min-w-0 flex-col gap-3">
+      <CardFrame
+        className="scroll-mt-[calc(--spacing(16)+4.5rem)] lg:scroll-mt-[calc(--spacing(16)+1.5rem)]"
         id={anchorId}
       >
-        <TitleTag
-          className={cn(
-            "m-0 font-semibold text-foreground tracking-tight",
-            hero ? "text-base" : "text-sm"
-          )}
-        >
-          {title}
-        </TitleTag>
-        <p className="m-0 text-pretty text-foreground-muted text-sm">
-          {description}
-        </p>
-      </header>
+        <CardFrameHeader className="p-2">
+          <CardFrameDescription
+            className="flex gap-1.5 truncate"
+            render={<p />}
+          >
+            <Tooltip>
+              <TooltipTrigger
+                render={
+                  <Icon
+                    className="size-3.5 h-lh shrink-0"
+                    icon={InformationCircleIcon}
+                  />
+                }
+              />
+              <TooltipPopup>{description}</TooltipPopup>
+            </Tooltip>
 
-      <ComponentShowcase
-        code={fullCode}
-        previewOverlay={
-          <div className="absolute top-3 right-3 z-10">
-            <ShowcaseReplayAction
-              index={0}
-              onReplay={() => setReplayKey((key) => key + 1)}
-              reducedMotion={reducedMotion}
-              visible={showReplay}
-            />
+            <span className="truncate">{title}</span>
+          </CardFrameDescription>
+          <CardFrameAction className="gap-1.5">
+            <Tooltip>
+              <TooltipTrigger
+                render={
+                  <Button
+                    aria-label="Replay animation"
+                    onClick={replay}
+                    size="icon-sm"
+                    variant="outline"
+                  >
+                    <Icon icon={RefreshIcon} />
+                  </Button>
+                }
+              />
+              <TooltipPopup>Replay animation</TooltipPopup>
+            </Tooltip>
+            {registryUrl ? <CopyRegistryButton value={registryUrl} /> : null}
+          </CardFrameAction>
+        </CardFrameHeader>
+
+        <Card className="flex w-full shrink-0 items-center justify-center p-6 sm:p-8">
+          <div className="flex w-full items-stretch justify-stretch">
+            <ChartPreviewGate
+              layout={previewLayout}
+              previewRole={hero ? "hero" : "example"}
+            >
+              <Fragment key={replayKey}>{children}</Fragment>
+            </ChartPreviewGate>
           </div>
-        }
-      >
-        <ChartPreviewGate
-          layout={previewLayout}
-          previewRole={hero ? "hero" : "example"}
-        >
-          <Fragment key={replayKey}>{children}</Fragment>
-        </ChartPreviewGate>
-      </ComponentShowcase>
+        </Card>
+
+        <CardFrameFooter className="overflow-hidden rounded-b-2xl p-0">
+          <CodeCollapsibleWrapper>{code}</CodeCollapsibleWrapper>
+        </CardFrameFooter>
+      </CardFrame>
 
       {footer ? (
-        <p className="m-0 text-foreground-muted text-xs">{footer}</p>
+        <p className="text-foreground-muted text-xs">{footer}</p>
       ) : null}
     </div>
+  );
+}
+
+function CodeCollapsibleWrapper({ children }: { children: React.ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Collapsible
+      className="group/collapsible relative md:-mx-1"
+      onOpenChange={setIsOpen}
+      open={isOpen}
+    >
+      <CollapsiblePanel
+        className="relative h-full overflow-hidden data-closed:max-h-32"
+        hidden={false}
+        keepMounted
+      >
+        {children}
+      </CollapsiblePanel>
+      <CollapsibleTrigger className="absolute inset-x-0 -bottom-2 flex h-20 cursor-pointer items-center justify-center rounded-b-2xl bg-linear-to-b from-transparent via-background-muted/80 to-background-muted font-medium text-foreground-muted text-sm transition-colors hover:text-foreground">
+        {isOpen ? "Collapse" : "Expand"}
+      </CollapsibleTrigger>
+    </Collapsible>
   );
 }

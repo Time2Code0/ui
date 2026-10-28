@@ -1,26 +1,13 @@
 "use client";
 
-import { createContext, type ReactNode, use, useCallback } from "react";
+import { type ReactNode, useRef } from "react";
 
-import { useInViewOnce } from "../_hooks/use-in-view-once";
-import { usePauseWhenOffscreen } from "../_hooks/use-pause-when-offscreen";
+import { useInView } from "motion/react";
+
 import {
   ChartExamplePreviewFrame,
   type ChartExamplePreviewLayout,
 } from "./chart-example-preview";
-
-/** Mount just before the preview scrolls in so the entrance plays on screen. */
-const CHART_PREVIEW_MOUNT_ROOT_MARGIN = "80px 0px";
-
-const ChartPreviewOffscreenContext = createContext(false);
-
-/**
- * True while a mounted gallery preview is scrolled out of view. Looping demos
- * (live data feeds, rAF tickers) should pause on it.
- */
-export function useChartPreviewOffscreen() {
-  return use(ChartPreviewOffscreenContext);
-}
 
 /**
  * Same-size stand-in rendered before the chart mounts. Uses the classes the
@@ -66,32 +53,19 @@ export function ChartPreviewGate({
   previewRole?: "hero" | "example";
   children: ReactNode;
 }) {
-  const { ref: inViewRef, inView } = useInViewOnce({
-    rootMargin: CHART_PREVIEW_MOUNT_ROOT_MARGIN,
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, {
+    margin: "80px 0px",
+    once: true,
   });
-  const { ref: offscreenRef, paused: offscreen } = usePauseWhenOffscreen();
-
-  const setRefs = useCallback(
-    (node: HTMLDivElement | null) => {
-      inViewRef.current = node;
-      offscreenRef.current = node;
-    },
-    [inViewRef, offscreenRef]
-  );
 
   return (
     <ChartExamplePreviewFrame
       layout={layout}
       previewRole={previewRole}
-      ref={setRefs}
+      ref={ref}
     >
-      {inView ? (
-        <ChartPreviewOffscreenContext.Provider value={offscreen}>
-          {children}
-        </ChartPreviewOffscreenContext.Provider>
-      ) : (
-        <ChartPreviewPlaceholder layout={layout} />
-      )}
+      {inView ? children : <ChartPreviewPlaceholder layout={layout} />}
     </ChartExamplePreviewFrame>
   );
 }

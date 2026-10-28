@@ -1,0 +1,34 @@
+"use client";
+
+import { Bar } from "@/registry/charts/bar";
+import { BarChart } from "@/registry/charts/bar-chart";
+import { BarXAxis } from "@/registry/charts/bar-x-axis";
+import { Grid } from "@/registry/charts/grid";
+import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
+
+const barDailyData = Array.from({ length: 60 }, (_, i) => {
+  const date = new Date(2024, 0, 1);
+  date.setDate(date.getDate() + i);
+  const baseValue = 50 + Math.sin(i / 7) * 30;
+  const variation = ((i * 7) % 37) - 18;
+  return {
+    day: date.toLocaleDateString("en-US", { day: "numeric", month: "short" }),
+    value: Math.floor(baseValue + variation),
+  };
+});
+
+export function Particle() {
+  return (
+    <BarChart
+      barGap={0.1}
+      data={barDailyData}
+      margin={{ bottom: 40, left: 8, right: 8, top: 20 }}
+      xDataKey="day"
+    >
+      <Grid horizontal />
+      <Bar dataKey="value" lineCap="butt" />
+      <BarXAxis maxLabels={6} />
+      <ChartTooltip />
+    </BarChart>
+  );
+}

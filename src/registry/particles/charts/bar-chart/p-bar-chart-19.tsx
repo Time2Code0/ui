@@ -1,0 +1,48 @@
+"use client";
+
+import { Bar } from "@/registry/charts/bar";
+import { BarChart } from "@/registry/charts/bar-chart";
+import { BarXAxis } from "@/registry/charts/bar-x-axis";
+import { Grid } from "@/registry/charts/grid";
+import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
+import { YAxis } from "@/registry/charts/y-axis";
+
+const barStackedData = [
+  { desktop: 4000, mobile: 2400, month: "Jan" },
+  { desktop: 5000, mobile: 3000, month: "Feb" },
+  { desktop: 3500, mobile: 2800, month: "Mar" },
+  { desktop: 4200, mobile: 3200, month: "Apr" },
+  { desktop: 3800, mobile: 2600, month: "May" },
+  { desktop: 5500, mobile: 3800, month: "Jun" },
+];
+
+/** Biaxial charts with labels on both sides. */
+const chartMarginBiaxialYAxis = {
+  bottom: 40,
+  left: 56,
+  right: 56,
+  top: 8,
+} as const;
+
+export function Particle() {
+  return (
+    <BarChart
+      data={barStackedData}
+      margin={chartMarginBiaxialYAxis}
+      xDataKey="month"
+    >
+      <Grid horizontal />
+      <Bar dataKey="desktop" lineCap="round" yAxisId="left" />
+      <Bar
+        dataKey="mobile"
+        fill="var(--color-chart-3)"
+        lineCap="round"
+        yAxisId="right"
+      />
+      <YAxis yAxisId="left" />
+      <YAxis orientation="right" yAxisId="right" />
+      <BarXAxis />
+      <ChartTooltip />
+    </BarChart>
+  );
+}
