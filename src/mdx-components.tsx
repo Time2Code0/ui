@@ -20,6 +20,7 @@ import { CodeTabs } from "@/components/mdx/code-tabs";
 import { Heading } from "@/components/mdx/heading";
 import { InstallationTabs } from "@/components/mdx/installation-tabs";
 import { MediaQueryDemo } from "@/components/mdx/media-query-demo";
+import { TypeTable } from "@/components/mdx/type-table";
 import {
   Accordion,
   AccordionItem,
@@ -144,6 +145,7 @@ export const mdxComponents = {
   TabsTab: ({ className, ...props }: React.ComponentProps<typeof TabsTab>) => (
     <TabsTab className={cn("rounded-lg", className)} {...props} />
   ),
+  TypeTable,
   ul: ({ className, ...props }: React.ComponentProps<"ul">) => (
     <ul
       className={cn("list-disc text-foreground-muted", className)}

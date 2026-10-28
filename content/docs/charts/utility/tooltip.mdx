@@ -1,0 +1,158 @@
+---
+title: Tooltip
+description: An interactive tooltip component for charts with crosshair, dots, date picker, and customizable content
+---
+
+<ComponentPreview name="p-chart-tooltip-1" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="chart-tooltip" />
+
+## Usage
+
+The ChartTooltip component provides hover interactions for charts. It must be used inside a chart component (`LineChart`, `AreaChart`, `BarChart`).
+
+```tsx
+import { LineChart } from "@/components/charts/line-chart"
+import { Line } from "@/components/charts/line"
+import { Grid } from "@/components/charts/grid"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+
+;<LineChart data={data}>
+  <Grid horizontal />
+  <Line dataKey="value" />
+  <ChartTooltip />
+</LineChart>
+```
+
+## API Reference
+
+<auto-type-table cwd path="src/registry/charts/tooltip/chart-tooltip.tsx" name="ChartTooltipProps" />
+
+### TooltipRow Interface
+
+```ts
+interface TooltipRow {
+  color: string // Dot color
+  label: string // Row label
+  value: string | number // Display value
+}
+```
+
+## Anatomy
+
+The tooltip has several visual components:
+
+1. **Crosshair** - Vertical line that follows the cursor
+2. **Dots** - A solid dot with a soft halo in the series color on each data point at the hovered position
+3. **Tooltip Box** - Popover-style panel: a header row with the date / category, a full-width separator, then rows (color dot, muted label, right-aligned value)
+4. **Date Pill** - Animated date ticker at the bottom
+
+Each component can be shown/hidden independently.
+
+## Examples
+
+### Default Tooltip
+
+Full-featured tooltip with crosshair, dots, and date pill.
+
+<ComponentPreview name="p-chart-tooltip-1" className="**:data-[slot=preview]:w-full" />
+
+### Solid crosshair
+
+Remove vertical fade with `indicatorFadeEdges="none"` for a flat crosshair line.
+
+<ComponentPreview name="p-chart-tooltip-6" className="**:data-[slot=preview]:w-full" />
+
+### Crosshair fade
+
+Fade the crosshair from the top, bottom, both ends, or not at all. Use `indicatorFadeLength` to control how far the fade extends (percentage of chart height).
+
+<ComponentPreview name="p-chart-tooltip-7" className="**:data-[slot=preview]:w-full" />
+
+### Dashed crosshair
+
+Pass an SVG dash pattern to `indicatorDasharray`.
+
+<ComponentPreview name="p-chart-tooltip-8" className="**:data-[slot=preview]:w-full" />
+
+### Match crosshair
+
+By default the tooltip panel eases independently with `damping={20}`. Set `matchCrosshair` to lock the panel to the crosshair spring.
+
+<ComponentPreview name="p-chart-tooltip-9" className="**:data-[slot=preview]:w-full" />
+
+### Panel damping
+
+The default panel uses `damping={20}` without any props. Increase `damping` for heavier lag, or set `damping={0}` for instant follow.
+
+<ComponentPreview name="p-chart-tooltip-10" className="**:data-[slot=preview]:w-full" />
+
+### Crosshair Only
+
+Minimal tooltip with just the crosshair line and tooltip box.
+
+<ComponentPreview name="p-chart-tooltip-2" className="**:data-[slot=preview]:w-full" />
+
+### Minimal (Box Only)
+
+Just the tooltip content box, no visual indicators.
+
+<ComponentPreview name="p-chart-tooltip-3" className="**:data-[slot=preview]:w-full" />
+
+### Custom Row Labels
+
+Use the `rows` prop to customize row labels and value formatting.
+
+<ComponentPreview name="p-chart-tooltip-4" className="**:data-[slot=preview]:w-full" />
+
+### With Bar Chart
+
+The tooltip adapts to bar charts, showing category names instead of dates. Inside `BarChart` the crosshair line is hidden by default (only the hover dots and panel show); pass `showCrosshair` to bring it back.
+
+<ComponentPreview name="p-chart-tooltip-5" className="**:data-[slot=preview]:w-full" />
+
+### Fully Custom Content
+
+Use the `content` prop for complete control over the tooltip layout.
+
+<ComponentPreview name="p-chart-tooltip-11" className="**:data-[slot=preview]:w-full" />
+
+## Animation
+
+The tooltip features smooth animations:
+
+- **Tooltip panel** - By default the panel eases with `damping={20}`. Set `matchCrosshair` to share the crosshair spring, or tune lag with `damping` (`0`–`100`) or `boxSpringConfig`.
+- **Crosshair** - Spring physics for snappy following (`springConfig`)
+- **Crosshair style** - Solid by default; pass `indicatorDasharray="4,4"` (or any SVG dash pattern) for a dashed line.
+- **Tooltip Box** - Scale/fade in, fade out on leave (`exit`), flip detection (`boxSpringConfig`). Under `prefers-reduced-motion` the panel jumps to position and skips the scale; the opacity fade remains
+- **Date Pill** - Slot machine-style number animation
+- **Dots** - Follow the crosshair spring; the core and halo spring open on hover
+
+All animations use motion/react for fluid, natural movement.
+
+```tsx
+<ChartTooltip
+  indicatorDasharray="6,4"
+  damping={60}
+  indicatorColor="var(--color-chart-2)"
+/>
+```
+
+## Theming
+
+The tooltip box is styled like the other popovers: `var(--color-background)` panel, `text-foreground` with `foreground-muted` labels, a `border`, `rounded-xl` and a soft `shadow-lg/5`. The crosshair and dots default to `var(--color-foreground)` and the series color. Pass `backgroundColor` or `panelStyle` to override the panel, e.g. for a translucent blurred panel.
+
+To match the built-in header in custom `content`, use `TooltipHeader`:
+
+```tsx
+<ChartTooltip
+  content={({ point }) => (
+    <>
+      <TooltipHeader>{String(point.label)}</TooltipHeader>
+      <div className="px-3.5 py-3 text-sm">…</div>
+    </>
+  )}
+/>
+```

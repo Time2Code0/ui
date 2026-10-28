@@ -1,0 +1,93 @@
+---
+title: Pie Chart
+description: A composable pie and donut chart with animated slices, hover interactions, patterns, gradients, and an interactive legend
+---
+
+<ComponentPreview name="p-pie-chart-10" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="pie-chart" />
+
+## Usage
+
+The Pie Chart uses a composable API similar to other charts in the library. Build charts by combining components:
+
+```tsx
+import { PieChart } from "@/components/charts/pie-chart"
+import { PieSlice } from "@/components/charts/pie-slice"
+
+const data = [
+  { label: "Electronics", value: 4250, color: "#0ea5e9" },
+  { label: "Clothing", value: 3120, color: "#a855f7" },
+  { label: "Food", value: 2100, color: "#f59e0b" },
+]
+
+export default function SalesChart() {
+  return (
+    <PieChart data={data} size={280}>
+      {data.map((_, index) => (
+        <PieSlice key={index} index={index} />
+      ))}
+    </PieChart>
+  )
+}
+```
+
+## API Reference
+
+### PieChart
+
+The root component that provides context to all children.
+
+<auto-type-table cwd path="src/registry/charts/pie-chart.tsx" name="PieChartProps" />
+
+### PieSlice
+
+Renders an individual slice with animated arc and hover effects.
+
+<auto-type-table cwd path="src/registry/charts/pie-slice.tsx" name="PieSliceProps" />
+
+### PieCenter
+
+Displays content in the center of a donut chart. Only renders when `innerRadius > 0`.
+
+<auto-type-table cwd path="src/registry/charts/pie-center.tsx" name="PieCenterProps" />
+
+### Legend
+
+A composable legend component for pie charts and other visualizations. See the full [Legend documentation](/docs/charts/utility/legend) for all components and options.
+
+## Data Shape
+
+```ts
+interface PieData {
+  label: string // Display label
+  value: number // Value (determines slice size)
+  color?: string // Optional color (falls back to palette)
+  fill?: string // Optional fill for patterns/gradients
+}
+
+interface LegendItemData {
+  label: string
+  value: number
+  color: string
+}
+```
+
+See the [charts gallery](/charts/pie-chart) for donut charts, patterns, gradients, legend sync, and hover effects.
+
+## Theming
+
+Slice colors default to [`--color-chart-1` … `--color-chart-5`](/docs/styling) via `defaultPieColors`. Pass `fill` on a `PieSlice` to override one slice.
+
+## Animation
+
+The pie chart features animations on mount:
+
+1. **Slice Appearance** - Slices animate in with staggered timing
+2. **Hover Effects** - Slices scale up on hover with glow effect
+3. **Fade Effect** - Non-hovered slices fade when another slice is hovered
+4. **Center Content** - Value animates when switching between slices
+
+All animations use spring physics for natural motion.

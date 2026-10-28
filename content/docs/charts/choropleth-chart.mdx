@@ -1,0 +1,95 @@
+---
+title: Choropleth Chart
+description: A composable geographic map chart for visualizing data across regions with interactive tooltips, zoom controls, and pattern support
+---
+
+<ComponentPreview name="p-choropleth-chart-6" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="choropleth-chart" />
+
+## Usage
+
+The Choropleth Chart uses a composable API similar to other charts. Build maps by combining components:
+
+```tsx
+import { ChoroplethChart } from "@/components/charts/choropleth/choropleth-chart"
+import { ChoroplethFeature as ChoroplethFeatureComponent } from "@/components/charts/choropleth/choropleth-feature"
+import { CHART_SCALE_VARS } from "@/components/charts/chart-scale"
+import { ChoroplethGraticule } from "@/components/charts/choropleth/choropleth-graticule"
+import { ChoroplethTooltip } from "@/components/charts/choropleth/choropleth-tooltip"
+import * as topojson from "topojson-client"
+
+// Load your GeoJSON data (from TopoJSON or direct GeoJSON)
+const geojson = topojson.feature(topology, topology.objects.countries)
+
+export default function WorldMap() {
+  return (
+    <ChoroplethChart data={geojson} aspectRatio="16 / 9">
+      <ChoroplethGraticule />
+      <ChoroplethFeatureComponent fill={CHART_SCALE_VARS[2]} />
+      <ChoroplethTooltip />
+    </ChoroplethChart>
+  )
+}
+```
+
+## API Reference
+
+### ChoroplethChart
+
+The root component that sets up the Mercator projection and provides context to children.
+
+<auto-type-table cwd path="src/registry/charts/choropleth/choropleth-chart.tsx" name="ChoroplethChartProps" />
+
+### ChoroplethFeatureComponent
+
+Renders the geographic feature paths with hover states and optional patterns.
+
+<auto-type-table cwd path="src/registry/charts/choropleth/choropleth-feature.tsx" name="ChoroplethFeatureProps" />
+
+### ChoroplethGraticule
+
+Renders optional graticule (latitude/longitude grid lines).
+
+<auto-type-table cwd path="src/registry/charts/choropleth/choropleth-graticule.tsx" name="ChoroplethGraticuleProps" />
+
+### ChoroplethTooltip
+
+Displays tooltips for features on hover, following the mouse position.
+
+<auto-type-table cwd path="src/registry/charts/choropleth/choropleth-tooltip.tsx" name="ChoroplethTooltipProps" />
+
+## Data Format
+
+The choropleth expects a GeoJSON FeatureCollection:
+
+```ts
+interface FeatureCollection {
+  type: "FeatureCollection"
+  features: Array<{
+    type: "Feature"
+    geometry: Geometry // Polygon, MultiPolygon, etc.
+    properties: {
+      name?: string
+      id?: string | number
+      [key: string]: unknown
+    }
+  }>
+}
+```
+
+For TopoJSON data, convert it using `topojson-client`:
+
+```ts
+import * as topojson from "topojson-client"
+
+const geojson = topojson.feature(topology, topology.objects.countries)
+```
+
+See the [charts gallery](/charts/choropleth-chart) for analytics color scales, zoom controls, and pattern fills.
+
+## Theming
+
+For categorical maps, `defaultChoroplethColors` cycles through `CHART_SCALE_VARS` (from `@/components/charts/chart-scale`): a neutral empty tone (`var(--color-accent)`) followed by `--color-chart-1` mixed into the background at increasing strength. Pass `getFeatureColor` for custom bins. Use `CHART_SCALE_VARS[0]` for zero / no-data regions so they stay visible in light and dark.

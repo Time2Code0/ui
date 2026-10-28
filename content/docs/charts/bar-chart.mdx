@@ -1,0 +1,420 @@
+---
+title: Bar Chart
+description: A composable bar chart with spring animations, stacked bars, horizontal orientation, and grouped series support
+---
+
+<ComponentPreview name="p-bar-chart-7" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="bar-chart" />
+
+## Usage
+
+The Bar Chart uses the same composable API as the Line and Area charts. Build charts by combining components:
+
+```tsx
+import { BarChart } from "@/components/charts/bar-chart"
+import { Bar } from "@/components/charts/bar"
+import { BarXAxis } from "@/components/charts/bar-x-axis"
+import { Grid } from "@/components/charts/grid"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+
+const data = [
+  { month: "Jan", revenue: 12000, profit: 4500 },
+  { month: "Feb", revenue: 15500, profit: 5200 },
+  // ... more data
+]
+
+export default function RevenueChart() {
+  return (
+    <BarChart data={data} xDataKey="month">
+      <Grid horizontal />
+      <Bar dataKey="revenue" fill="var(--color-chart-1)" lineCap="round" />
+      <Bar dataKey="profit" fill="var(--color-chart-2)" lineCap="round" />
+      <BarXAxis />
+      <ChartTooltip />
+    </BarChart>
+  )
+}
+```
+
+See the [charts gallery](/charts/bar-chart) for stacked bars, horizontal layouts, gradients, patterns, the **Shape** square-column variant, and more.
+
+## API Reference
+
+### BarChart
+
+The root component that provides context to all children.
+
+<auto-type-table cwd path="src/registry/charts/bar-chart.tsx" name="BarChartProps" />
+
+### Bar
+
+Renders a bar for each data point with configurable styling and animations.
+
+<auto-type-table cwd path="src/registry/charts/bar.tsx" name="BarProps" />
+
+### Value labels
+
+Labels are opt-in. When enabled, each value appears only if the selected
+orientation fits inside its bar. `"auto"` prefers horizontal text, rotates it
+when vertical text fits and hides the label if neither orientation fits. Use
+`"horizontal"` or `"vertical"` to require one orientation; labels that do not
+fit that orientation stay hidden. `valueLabelPosition` controls placement
+along the bar: on horizontal bars `"top"` is the value end and `"bottom"`
+the base. These fit checks run again as the chart resizes, so
+dense data can show fewer labels at narrow widths without clipping or overlap.
+
+```tsx
+<BarChart data={data} xDataKey="month">
+  <Grid horizontal />
+  <Bar
+    dataKey="revenue"
+    showValue
+    valueLabelFormatter={(value) => `$${value.toLocaleString("en-US")}`}
+    valueLabelOrientation="auto"
+    valueLabelPosition="center"
+  />
+  <BarXAxis />
+  <ChartTooltip />
+</BarChart>
+```
+
+The default formatter uses English integer digits. Supply `valueLabelFormatter`
+for other locales or precision. Since labels are visual SVG annotations, keep a
+chart summary or accessible data table for people who need the values without
+the visual plot. Existing charts remain unchanged while `showValue` is omitted
+or `false`. See the [live examples](/charts/bar-chart) for automatic orientation
+with dense data.
+
+### BarSquares
+
+Renders a **Shape** bar as a vertical stack of discrete squares instead of a continuous `<Bar>`. Use one `<BarSquares>` per series (grouped, vertical charts only). Squares cascade upward on enter; supports solid fills, bar-spanning gradients, and pattern presets.
+
+<auto-type-table cwd path="src/registry/charts/bar-squares.tsx" name="BarSquaresProps" />
+
+Pass **`squareSnap`** on `<BarChart>` with the same `squareGap`, `groupGap`, and `squareFit` so tooltip ring indicators align with square columns:
+
+```tsx
+<BarChart
+  data={data}
+  xDataKey="month"
+  squareSnap={{ squareGap: 3, groupGap: 4 }}
+>
+  <BarSquares
+    dataKey="desktop"
+    fill="url(#desktop-pattern)"
+    stroke="var(--color-chart-5)"
+    squareGap={3}
+    groupGap={4}
+  />
+  <BarSquares
+    dataKey="mobile"
+    fill="var(--color-chart-1)"
+    useGradient
+    gradientStops={[
+      { offset: 0, color: "var(--color-chart-1)" },
+      { offset: 25, color: "var(--color-chart-2)" },
+      { offset: 50, color: "var(--color-chart-3)" },
+      { offset: 75, color: "var(--color-chart-4)" },
+      { offset: 100, color: "var(--color-chart-5)" },
+    ]}
+    stroke="var(--color-chart-5)"
+    squareGap={3}
+    groupGap={4}
+  />
+  <BarXAxis />
+  <ChartTooltip showCrosshair={false} dotVariant="ring" dotScale={1.05} />
+</BarChart>
+```
+
+See the **Shape & Gradient** and **Shape Squircle Ring** examples on the [bar chart gallery](/charts/bar-chart).
+
+### BarColumnTrack
+
+Optional underlay for Shape bars: patterned or solid fill in the **empty space above** each square column (not behind the bars). Place before `<BarSquares>`.
+
+<auto-type-table cwd path="src/registry/charts/bar-squares.tsx" name="BarColumnTrackProps" />
+
+Tracks animate from full column height on enter and shrink in sync as squares stack upward.
+
+### BarXAxis
+
+Displays categorical labels along the x-axis (for vertical bar charts).
+
+<auto-type-table cwd path="src/registry/charts/bar-x-axis.tsx" name="BarXAxisProps" />
+
+### BarYAxis
+
+Displays categorical labels along the y-axis (for horizontal bar charts).
+
+<auto-type-table cwd path="src/registry/charts/bar-y-axis.tsx" name="BarYAxisProps" />
+
+### Grid
+
+The Grid component now supports `fadeVertical` for vertical grid lines.
+
+<auto-type-table cwd path="src/registry/charts/grid.tsx" name="GridProps" />
+
+### ChartTooltip
+
+Inside `BarChart` the tooltip shows the hover dots and panel but **no crosshair line** by default (vertical and horizontal orientation). Opt in with `showCrosshair`. See the [Tooltip utility](/docs/charts/utility/tooltip) for all props.
+
+<auto-type-table cwd path="src/registry/charts/tooltip/chart-tooltip.tsx" name="ChartTooltipProps" />
+
+```tsx
+<ChartTooltip showCrosshair />
+```
+
+### Background
+
+Pattern fill for the plot area when you omit `Grid`. See the [Background utility](/docs/charts/utility/background) and **Pattern Background** examples on the [bar chart gallery](/charts/bar-chart).
+
+### TrendLine
+
+Least-squares regression line through the bar centers of one series (vertical or horizontal). Place it after the `Bar` so it draws on top; it fades in once the bars have landed. See the [Trend Line utility](/docs/charts/utility/trend-line) and the **Trend Line** examples on the [bar chart gallery](/charts/bar-chart).
+
+```tsx
+<Bar dataKey="revenue" />
+<TrendLine dataKey="revenue" strokeStyle="gradient" />
+```
+
+### Weekends / Deadline
+
+With daily rows whose x value is a `Date` (or a `"YYYY-MM-DD"` string), [`Weekends`](/docs/charts/utility/weekends) shades the weekend columns and [`Deadline`](/docs/charts/utility/deadline) marks a due date at the left edge of its column. Pass `dateKey` if the date lives in a different field than the x key.
+
+<ComponentPreview name="p-chart-date-highlights-8" className="**:data-[slot=preview]:w-full" />
+
+### BarDepthBack
+
+Renders the 3D side + top faces. Place **before** `<Bar>` so the bar's front face occludes depth that would extend into the next column.
+
+<auto-type-table cwd path="src/registry/charts/bar-depth.tsx" name="BarDepthBackProps" />
+
+### BarDepthFront
+
+Renders the glossy glass sheen over the bar's fill. Place **after** `<Bar>`.
+
+<auto-type-table cwd path="src/registry/charts/bar-depth.tsx" name="BarDepthFrontProps" />
+
+### BarPulse
+
+Optional looping vertical sweep over a single active bar (e.g. a live value). Place **after** `<BarDepthFront>`.
+
+<auto-type-table cwd path="src/registry/charts/bar-depth.tsx" name="BarPulseProps" />
+
+### BarDepthProvider
+
+Optional wrapper supplying shared depth config to every layer beneath it. Wrap it **around** `<BarChart>`, not inside it. Use it to split **stacked** bars (`segmentsAccessor`) and/or tune the baseline contact shadow (`groundShadow`).
+
+<auto-type-table cwd path="src/registry/charts/bar-depth.tsx" name="BarDepthProviderProps" />
+
+## 3D Depth & Glass Surfaces
+
+Give bars a head-on 3D perspective and a glass-block sheen by layering `BarDepthBack` (side + top faces, before `Bar`) and `BarDepthFront` (front glass, after `Bar`). The layers read geometry from the chart context, so the only required prop is the matching `dataKey`.
+
+Add **`perspective`** to the `Bar` and you're done — it shrinks the front face's top so the lid sits flush on the bar (instead of floating above it) and forces a flat top so the lid meets it with no gap. **Always pass it when using the depth layers.**
+
+```tsx
+import { BarChart } from "@/components/charts/bar-chart"
+import { Bar } from "@/components/charts/bar"
+import { BarDepthBack, BarDepthFront } from "@/components/charts/bar-depth"
+import { BarXAxis } from "@/components/charts/bar-x-axis"
+import { Grid } from "@/components/charts/grid"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+
+;<BarChart data={data} xDataKey="month">
+  <Grid horizontal />
+  <BarDepthBack dataKey="revenue" color="var(--color-chart-1)" />
+  <Bar dataKey="revenue" fill="var(--color-chart-1)" perspective />
+  <BarDepthFront dataKey="revenue" />
+  <BarXAxis />
+  <ChartTooltip />
+</BarChart>
+```
+
+### Custom indicator (optional)
+
+The [3D Depth gallery example](/charts/bar-chart) pairs depth bars with a rising line indicator. Disable the default crosshair and dots on `ChartTooltip`, then render your own overlay via `useChart` and a portal — see [Custom Indicator](/docs/charts/utility/custom-indicator).
+
+Color bars individually with `colorAccessor`:
+
+```tsx
+<BarDepthBack
+  dataKey="revenue"
+  colorAccessor={(d) =>
+    (d.revenue as number) >= 15000
+      ? "var(--color-chart-1)"
+      : "var(--color-chart-3)"
+  }
+/>
+```
+
+Highlight a live / in-progress bar with `BarPulse` (render it after `BarDepthFront`):
+
+```tsx
+<BarPulse dataKey="revenue" activeIndex={data.length - 1} />
+```
+
+### Stacked bars (multiple data sources)
+
+To give a **stacked** bar 3D depth, wrap the chart in `BarDepthProvider` with a `segmentsAccessor` returning one `{ value, color }` per data source (bottom→top). The side face splits into a matching parallelogram per segment, and the lid takes the topmost segment's color. The depth's height is the **sum of the segments**, so you don't need a separate total column — just stack a `<Bar>` per source (each with `perspective`) in the same order:
+
+```tsx
+<BarDepthProvider
+  segmentsAccessor={(d) => [
+    { value: d.desktop as number, color: "var(--color-chart-1)" },
+    { value: d.mobile as number, color: "var(--color-chart-3)" },
+  ]}
+>
+  <BarChart data={data} xDataKey="month" stacked>
+    <BarDepthBack dataKey="desktop" />
+    <Bar dataKey="desktop" fill="var(--color-chart-1)" perspective />
+    <Bar dataKey="mobile" fill="var(--color-chart-3)" perspective />
+    <BarDepthFront dataKey="desktop" />
+    <BarXAxis />
+    <ChartTooltip showCrosshair={false} showDots={false} />
+  </BarChart>
+</BarDepthProvider>
+```
+
+Each bar gets a subtle dark "contact shadow" at the baseline so it reads as sitting on the axis. Tune or remove it with `groundShadow` on the provider (it reads strongest over bright fills):
+
+```tsx
+<BarDepthProvider groundShadow={0.12}>
+  {/* ...BarChart with depth layers... */}
+</BarDepthProvider>
+```
+
+To keep **zero or very short** bars visible as a tiny bar instead of vanishing, set `minBarHeight` on **both** the `<Bar>` (floors the front face) and `<BarDepthProvider>` (floors the 3D surfaces) — they must match:
+
+```tsx
+<BarDepthProvider minBarHeight={6}>
+  <BarChart data={data} xDataKey="month">
+    <BarDepthBack dataKey="value" color="var(--color-chart-1)" />
+    <Bar
+      dataKey="value"
+      fill="var(--color-chart-1)"
+      perspective
+      minBarHeight={6}
+    />
+    <BarDepthFront dataKey="value" />
+  </BarChart>
+</BarDepthProvider>
+```
+
+Negative values are supported (bars grow downward from the zero line — see [Negative values](#negative-values)). See the [charts gallery](/charts/bar-chart) for a live 3D depth example.
+
+## Negative values
+
+`BarChart` handles positive and negative values. While every value is zero or above, the value axis starts at `0`; once any value is negative, the domain stretches to include it and bars grow up or down from the zero line (or left / right for `orientation="horizontal"`). Use `Grid highlightRowValues={[0]}` to draw a visible zero line.
+
+<div className="not-prose mb-3 flex items-center justify-between gap-4">
+  <h3 className="m-0 font-semibold text-foreground text-base tracking-tight">
+    Preview
+  </h3>
+</div>
+
+<ComponentPreview name="p-bar-chart-37" className="**:data-[slot=preview]:w-full" />
+
+Negative values in **stacked** charts (diverging stacks) are not supported yet.
+
+## Loading state
+
+<Alert variant="info">
+  <AlertTitle>Loading state is experimental</AlertTitle>
+  <AlertDescription>
+    Bar chart loading is still in development. Its API and docs may change
+    before release — use with caution in production.
+  </AlertDescription>
+</Alert>
+
+`BarChart` accepts a `status` prop. While `status="loading"`, it replaces the bars with a shimmer skeleton: placeholder bars with a soft diagonal shimmer sweeping across them on a loop. On `status="ready"` it switches to the real bars. No chart data is required during loading. Bar heights come from a deterministic seed (SSR-safe, no `Math.random()`), and it respects `prefers-reduced-motion` by rendering a calm, static skeleton.
+
+<div className="not-prose mb-3 flex items-center justify-between gap-4">
+  <h3 className="m-0 font-semibold text-foreground text-base tracking-tight">
+    Preview
+  </h3>
+</div>
+
+<ComponentPreview name="p-bar-chart-36" className="**:data-[slot=preview]:w-full" />
+
+Toggle **Loading** / **Ready** in the preview to swap the shimmer skeleton for the real bars.
+
+```tsx
+import { BarChart } from "@/components/charts/bar-chart"
+import { Bar } from "@/components/charts/bar"
+import { BarXAxis } from "@/components/charts/bar-x-axis"
+
+function RevenueChart({ data, isLoading }) {
+  return (
+    <BarChart
+      data={data}
+      xDataKey="month"
+      status={isLoading ? "loading" : "ready"}
+    >
+      <Bar dataKey="revenue" />
+      <BarXAxis />
+    </BarChart>
+  )
+}
+```
+
+For the common "render a placeholder until data arrives" case, `BarChartLoading` is a turnkey shortcut for `<BarChart status="loading" />`:
+
+```tsx
+import { BarChartLoading } from "@/components/charts/bar-chart-loading"
+
+;<BarChartLoading />
+```
+
+<auto-type-table cwd path="src/registry/charts/bar-chart-loading.tsx" name="BarChartLoadingProps" />
+
+## Animation
+
+Bars animate with the same easing as Line charts (`cubic-bezier(0.85, 0, 0.15, 1)`) for a smooth, organic feel. The stagger delay is automatically calculated based on the number of bars to ensure all animations complete within the total animation duration (~1.2s).
+
+### Grow Animation (Default)
+
+Bars grow from zero to their final size:
+
+```tsx
+<Bar dataKey="revenue" animationType="grow" />
+```
+
+### Fade Animation
+
+Bars fade in with a blur effect:
+
+```tsx
+<Bar dataKey="revenue" animationType="fade" />
+```
+
+### Custom Stagger
+
+Stagger is calculated automatically, but you can override it:
+
+```tsx
+// Override automatic stagger with custom delay
+<Bar dataKey="revenue" staggerDelay={0.02} />
+
+// No stagger (all bars animate together)
+<Bar dataKey="revenue" staggerDelay={0} />
+```
+
+## Line Cap Styles
+
+Control the bar end style:
+
+```tsx
+// Rounded caps (default) - full rounding
+<Bar dataKey="revenue" lineCap="round" />
+
+// Square caps - no rounding
+<Bar dataKey="revenue" lineCap="butt" />
+
+// Custom radius in pixels
+<Bar dataKey="revenue" lineCap={4} />
+<Bar dataKey="revenue" lineCap={8} />
+```

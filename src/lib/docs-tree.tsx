@@ -2,15 +2,16 @@ import type * as PageTree from "fumadocs-core/page-tree";
 
 import {
   AiSparklesIcon,
+  Chart02Icon,
   DropdownFieldTypeIcon,
   RocketIcon,
   SourceCodeIcon,
 } from "@hugeicons/core-free-icons";
-import { flattenTree } from "fumadocs-core/page-tree";
 
 import { Icon } from "@/registry/ui/icon";
 
 const SECTION_ICONS = {
+  Chart: Chart02Icon,
   Code: SourceCodeIcon,
   Dropdown: DropdownFieldTypeIcon,
   Rocket: RocketIcon,

@@ -1,0 +1,317 @@
+---
+title: Area Chart
+description: A composable area chart with gradient fills, tooltips, and hover interactions
+---
+
+<ComponentPreview name="p-area-chart-26" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="area-chart" />
+
+## Usage
+
+The Area Chart uses the same composable API as the Line Chart. See the [charts gallery](/charts/area-chart) for interactive examples.
+
+```tsx
+import { AreaChart } from "@/components/charts/area-chart"
+import { Area } from "@/components/charts/area"
+import { Grid } from "@/components/charts/grid"
+import { XAxis } from "@/components/charts/x-axis"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+
+const data = [
+  { date: new Date("2025-01-01"), revenue: 12000, costs: 8500 },
+  { date: new Date("2025-01-02"), revenue: 13500, costs: 9200 },
+  // ... more data
+]
+
+export default function RevenueChart() {
+  return (
+    <AreaChart data={data}>
+      <Grid horizontal />
+      <Area dataKey="revenue" fill="var(--color-chart-1)" />
+      <Area dataKey="costs" fill="var(--color-chart-2)" />
+      <XAxis />
+      <ChartTooltip />
+    </AreaChart>
+  )
+}
+```
+
+## API Reference
+
+### AreaChart
+
+The root component that provides context to all children. It shares the same props as `LineChart`.
+
+<auto-type-table cwd path="src/registry/charts/area-chart.tsx" name="AreaChartProps" />
+
+### Area
+
+Renders a filled area on the chart with a gradient fill.
+
+<auto-type-table cwd path="src/registry/charts/area.tsx" name="AreaProps" />
+
+### PatternArea
+
+Renders a filled area using an SVG pattern (`url(#id)`). Define the pattern (e.g. `PatternLines`) as a child of `AreaChart`, then pair `PatternArea` with an `Area` that has `fillOpacity={0}` for the stroke line.
+
+<auto-type-table cwd path="src/registry/charts/pattern-area.tsx" name="PatternAreaProps" />
+
+### Grid
+
+Renders grid lines.
+
+<auto-type-table cwd path="src/registry/charts/grid.tsx" name="GridProps" />
+
+### Background
+
+Pattern fill for the plot area when you omit `Grid`. See the [Background utility](/docs/charts/utility/background) and **Pattern Background** examples on the [area chart gallery](/charts/area-chart).
+
+### TrendLine
+
+Least-squares regression line over one series. Place it after the `Area` so it draws on top. See the [Trend Line utility](/docs/charts/utility/trend-line) for stroke styles and edge fade, and the **Trend Line** examples on the [area chart gallery](/charts/area-chart).
+
+```tsx
+<Area dataKey="desktop" />
+<TrendLine dataKey="desktop" fadeEdges />
+```
+
+### YAxis
+
+Value labels on the left or right. See [Y Axis](/docs/charts/utility/axis/y-axis) for `yAxisId`, `orientation`, and biaxial usage.
+
+### XAxis
+
+Renders x-axis labels that fade when the crosshair passes.
+
+<auto-type-table cwd path="src/registry/charts/x-axis.tsx" name="XAxisProps" />
+
+### ChartTooltip
+
+Renders the tooltip with crosshair, dots, and content box.
+
+<auto-type-table cwd path="src/registry/charts/tooltip/chart-tooltip.tsx" name="ChartTooltipProps" />
+
+## Weekends and deadlines
+
+Add [`Weekends`](/docs/charts/utility/weekends) to shade Saturday and Sunday, and [`Deadline`](/docs/charts/utility/deadline) to mark a due date with a fading region. Both sit behind the areas and follow brush zoom.
+
+<ComponentPreview name="p-chart-date-highlights-6" className="**:data-[slot=preview]:w-full" />
+
+## Brush zoom
+
+See the [Brush](/docs/charts/utility/brush) utility docs for `ChartBrushLayout` and `ChartBrush` props.
+
+Wrap the main chart in `ChartBrushLayout`, render a simplified mini chart in `brushStrip`, and add `ChartBrush` as a child of that strip. Pass `xDomain`, `xDomainSlotCount`, and `tweenYDomainOnXDomainChange` to the main `AreaChart` so the y-scale adapts as users pan and resize the brush.
+
+<ComponentPreview name="p-area-chart-23" className="**:data-[slot=preview]:w-full" />
+
+## Loading state
+
+Drive loading and ready from your data layer with a single `AreaChart` — one `Grid`, one `Area`, no component swap. Set `status="loading"` while fetching; switch to `"ready"` when data resolves.
+
+**Loading → ready:** pulse loop on skeleton data → pulse finishes its grow, then flows out right → loading label drifts down 30px, blurs, and fades → grid y-domain tween (500ms) → clip-path reveal (`cubic-bezier(0.85, 0, 0.15, 1)`) → interaction enabled.
+
+**Ready → loading:** ready area conceals to the right → grid y-domain tween → pulse loop and shimmer resume.
+
+Pair `Grid` `stroke` / `loadingStroke` with shimmer props. Pair `Area` `loadingStroke` props. Use `loadingLabel` on `AreaChart` for centered shimmer text.
+
+<ComponentPreview name="p-area-chart-25" className="**:data-[slot=preview]:w-full" />
+
+Toggle **Loading** / **Ready** in the preview to replay the transition, and **Pulse** / **Sweep** to switch the loading animation style. When target data spans a different y-range than the skeleton, `yDomainTween` morphs the scale before the area reveals.
+
+### Loading style: pulse or sweep
+
+The loading state has two animation styles, set with `loadingStyle` on the `Area`: the default `"pulse"` (a segment travels along the skeleton stroke) or `"sweep"` (a soft diagonal shimmer sweeps across the whole area). Set it on the `Area` inside a `status="loading"` chart, or on the `AreaChartLoading` wrapper:
+
+```tsx
+<AreaChart data={data} status="loading">
+  <Grid horizontal shimmer />
+  <Area dataKey="revenue" loadingStyle="sweep" />
+</AreaChart>
+
+// or, with the turnkey wrapper:
+<AreaChartLoading loadingStyle="sweep" />
+```
+
+The sweep masks over the real skeleton stroke, so it follows whatever `curve` the `Area` uses and respects `prefers-reduced-motion`. The sweep is used only during steady loading; the pulse still drives the exit transition. See the **Loading (Sweep)** example on the [area chart gallery](/charts/area-chart).
+
+## Dashed tail
+
+Set `dashFromIndex` on `Area` to draw a solid stroke through one data point, then a dashed segment through the end of the series. Useful when the final period is still in progress (e.g. yesterday → today).
+
+`dashFromIndex` is **inclusive** — dashing starts at that row and continues through the last point. The dashed segment follows the same curved path as the solid stroke and respects the stroke gradient fade from `fadeEdges`.
+
+<auto-type-table cwd path="src/registry/charts/area.tsx" name="AreaDashedTailProps" type="Pick<AreaProps, 'dashFromIndex' | 'dashArray'>" />
+
+```tsx
+<Area
+  dataKey="visitors"
+  dashFromIndex={5}
+  dashArray="6,4"
+  fill="var(--color-chart-1)"
+  fillOpacity={0.35}
+/>
+```
+
+## Markers
+
+Add markers to annotate specific dates on the chart:
+
+```tsx
+import { AreaChart } from "@/components/charts/area-chart"
+import { Area } from "@/components/charts/area"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import {
+  ChartMarkers,
+  MarkerTooltipContent,
+  useActiveMarkers,
+} from "@/components/charts/markers/chart-markers"
+import type { ChartMarker } from "@/components/charts/markers/marker-group"
+
+const markers: ChartMarker[] = [
+  {
+    date: new Date("2025-01-05"),
+    icon: "🚀",
+    title: "v1.2.0 Released",
+    description: "New chart animations",
+  },
+]
+
+function MyChart({ data }) {
+  return (
+    <AreaChart data={data}>
+      <Area dataKey="revenue" fill="var(--color-chart-1)" />
+      <ChartMarkers items={markers} />
+      <ChartTooltip>
+        <MarkerContent markers={markers} />
+      </ChartTooltip>
+    </AreaChart>
+  )
+}
+
+function MarkerContent({ markers }) {
+  const activeMarkers = useActiveMarkers(markers)
+  if (activeMarkers.length === 0) return null
+  return <MarkerTooltipContent markers={activeMarkers} />
+}
+```
+
+### ChartMarker Interface
+
+```ts
+interface ChartMarker {
+  date: Date
+  icon: React.ReactNode
+  title: string
+  description?: string
+  content?: React.ReactNode
+  color?: string
+  onClick?: () => void
+  href?: string
+  target?: "_blank" | "_self"
+}
+```
+
+### ChartMarkers Props
+
+<auto-type-table cwd path="src/registry/charts/markers/chart-markers.tsx" name="ChartMarkersProps" />
+
+## Segment Selection
+
+Add click-drag and touch segment selection with composable components. The area highlight automatically shows the selected path segment.
+
+### Basic Usage
+
+```tsx
+import { AreaChart } from "@/components/charts/area-chart"
+import { Area } from "@/components/charts/area"
+import { Grid } from "@/components/charts/grid"
+import { XAxis } from "@/components/charts/x-axis"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import {
+  SegmentBackground,
+  SegmentLineFrom,
+  SegmentLineTo,
+} from "@/components/charts/segment"
+
+;<AreaChart data={data}>
+  <Grid horizontal />
+  <Area dataKey="revenue" fill="var(--color-chart-1)" />
+  <SegmentBackground />
+  <SegmentLineFrom />
+  <SegmentLineTo />
+  <XAxis />
+  <ChartTooltip />
+</AreaChart>
+```
+
+Use `SegmentBackground`, `SegmentLineFrom`, and `SegmentLineTo` independently — you do not need all three. Boundary lines support `variant="dashed" | "solid" | "gradient"`.
+
+### Reading Selection Data
+
+Use the `useChart` hook inside a child component to read the active selection:
+
+```tsx
+import { useChart } from "@/components/charts/chart-context"
+
+function SelectionStats({ onSelectionChange }) {
+  const { selection, data, xAccessor } = useChart()
+
+  useEffect(() => {
+    if (!selection?.active) {
+      onSelectionChange(null)
+      return
+    }
+
+    const startPoint = data[selection.startIndex]
+    const endPoint = data[selection.endIndex]
+    onSelectionChange({ startPoint, endPoint })
+  }, [selection, data, xAccessor, onSelectionChange])
+
+  return null
+}
+```
+
+### SegmentBackground
+
+<auto-type-table cwd path="src/registry/charts/segment.tsx" name="SegmentBackgroundProps" />
+
+### SegmentLineFrom / SegmentLineTo
+
+<auto-type-table cwd path="src/registry/charts/segment.tsx" name="SegmentLineProps" />
+
+## Value labels
+
+Enable labels on each `Area` independently. Labels use measured text bounds, stay
+inside the plot, and share collision detection across series. Crowded labels are
+hidden; full values remain available in the tooltip. Labels render above all area
+fills and do not inherit `fadeEdges` unless `fadeValueLabels` is enabled.
+The renderer samples labels from the visible data and adjusts the count to the
+plot width. `valueLabelMinCount` is a preference; available space and collisions
+can reduce it. `valueLabelMaxCount` is a strict per-series ceiling. All enabled
+series use the same final label count so comparisons stay aligned.
+
+```tsx
+<AreaChart data={data}>
+  <Area dataKey="net" showValue valueLabelMinCount={2} valueLabelMaxCount={5} />
+  <Area
+    dataKey="gross"
+    showValue
+    valueLabelMinCount={2}
+    valueLabelMaxCount={5}
+  />
+  <ChartTooltip />
+</AreaChart>
+```
+
+<auto-type-table cwd path="src/registry/charts/area.tsx" name="AreaValueLabelProps" type="Pick<AreaProps, 'showValue' | 'valueLabelMinCount' | 'valueLabelMaxCount' | 'valueLabelFormatter' | 'valueLabelColor' | 'fadeValueLabels'>" />
+
+Labels are opt-in, so charts without `showValue` keep their existing rendering.
+Value labels are drawn by `AreaChart`; `showValue` on an `Area` inside
+`ComposedChart` is currently ignored.
+Use `valueLabelFormatter` for currency, units, or localized digits. The SVG
+labels are visual annotations; provide a chart summary or accessible data table
+when people need the underlying values without relying on the visual plot.

@@ -1,0 +1,37 @@
+---
+title: X Axis
+description: Date labels for the horizontal axis in line and area charts
+---
+
+<ComponentPreview name="p-chart-axis-2" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="chart-axis" />
+
+## Usage
+
+The XAxis component displays date labels along the bottom of line and area charts. It must be used inside a chart component (`LineChart` or `AreaChart`).
+
+```tsx
+import { LineChart } from "@/components/charts/line-chart"
+import { Line } from "@/components/charts/line"
+import { XAxis } from "@/components/charts/x-axis"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+
+;<LineChart data={data}>
+  <Line dataKey="value" />
+  <XAxis />
+  <ChartTooltip />
+</LineChart>
+```
+
+## API Reference
+
+<auto-type-table cwd path="src/registry/charts/x-axis.tsx" name="XAxisProps" />
+
+## Behavior
+
+- **Data-aligned labels**: By default, XAxis picks evenly spaced data rows for tick labels so crosshair and tooltip line up with the axis. Use `tickMode="domain"` for calendar-even spacing when alignment is not needed.
+- **Crosshair fade**: When the tooltip is visible, labels near the crosshair fade to reduce visual clutter and improve readability.
+- **Client-side only**: Renders via portal after mount to avoid SSR issues.

@@ -1,0 +1,97 @@
+---
+title: Brush
+description: Time-range brush for zooming area and line charts with a mini-chart strip and draggable selection handles
+---
+
+<ComponentPreview name="p-area-chart-23" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+`ChartBrush` and `ChartBrushLayout` ship with time-series charts. Install the [area chart](/docs/charts/area-chart) (or [line chart](/docs/charts/line-chart)) registry item, then import from your charts package:
+
+```tsx
+import {
+  AreaChart,
+  Area,
+  ChartBrush,
+  ChartBrushLayout,
+  Grid,
+  XAxis,
+  ChartTooltip,
+} from "@/components/charts"
+```
+
+## Usage
+
+Wrap the main chart in `ChartBrushLayout`. Render a simplified mini chart in `brushStrip` with `ChartBrush` as a child. Pass `xDomain`, `xDomainSlotCount`, and `tweenYDomainOnXDomainChange` to the main chart so it zooms and tweens the y-scale as the brush changes.
+
+```tsx
+<ChartBrushLayout
+  data={data}
+  enabled
+  height={72}
+  brushStrip={(layout) => (
+    <AreaChart
+      animationDuration={0}
+      data={data}
+      status="ready"
+      style={{ aspectRatio: "unset", height: "100%" }}
+    >
+      <Area
+        dataKey="value"
+        fillOpacity={0.15}
+        animate={false}
+        showHighlight={false}
+      />
+      <ChartBrush
+        initialSelection={layout.brushSelection ?? undefined}
+        onSelectionChange={layout.onBrushSelectionChange}
+      />
+    </AreaChart>
+  )}
+>
+  {(layout) => (
+    <AreaChart
+      data={data}
+      tweenYDomainOnXDomainChange
+      xDomain={layout.xDomain}
+      xDomainSlotCount={layout.xDomainSlotCount}
+      yDomainTween
+    >
+      <Grid horizontal />
+      <Area dataKey="value" fillOpacity={0.35} />
+      <XAxis />
+      <ChartTooltip />
+    </AreaChart>
+  )}
+</ChartBrushLayout>
+```
+
+Works the same with `LineChart` and `Line` in the brush strip and main chart. See [Area Chart](/docs/charts/area-chart#brush-zoom) and [Line Chart](/docs/charts/line-chart#brush-zoom) for chart-specific notes.
+
+## ChartBrushLayout
+
+Orchestrates the main chart and optional brush strip. Owns brush selection state and derives `xDomain` for the main chart.
+
+<auto-type-table cwd path="src/registry/charts/chart-brush-layout.tsx" name="ChartBrushLayoutProps" />
+
+The `layout` argument provides:
+
+<auto-type-table cwd path="src/registry/charts/chart-brush-layout.tsx" name="ChartBrushLayoutState" />
+
+## ChartBrush
+
+Renders inside a time-series chart (typically the brush strip). Drag handles to pan and resize; the main chart zooms via `ChartBrushLayout`.
+
+<auto-type-table cwd path="src/registry/charts/chart-brush.tsx" name="ChartBrushProps" />
+
+### Selection pattern presets
+
+`selectionPattern.preset` accepts: `diagonal`, `horizontal`, `vertical`, `cross`, `dots`, or `accent`. Omit `selectionPattern` for a solid selection fill.
+
+## Main chart props
+
+When brush zoom is active, pass these to `AreaChart` or `LineChart`:
+
+<auto-type-table cwd path="src/registry/charts/area-chart.tsx" name="BrushMainChartProps" type="Pick<AreaChartProps, 'xDomain' | 'xDomainSlotCount' | 'tweenYDomainOnXDomainChange'>" />
+

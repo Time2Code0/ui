@@ -1,0 +1,83 @@
+---
+title: Projection Line
+description: Forecast segment extending a line series past the last data point — dashed stroke, gradient, and horizon marker
+---
+
+<ComponentPreview name="p-line-chart-2" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="line-chart" />
+
+## Usage
+
+`ProjectionLine` draws a segment from the last data row (the anchor) into the future. It renders outside the series reveal clip so the horizon stays visible while the main line animates in.
+
+Build the path with `buildProjectionPath`, or pass manual `{ date, value }[]` points. Pair with [`LineSeriesTerminalMarker`](/docs/charts/utility/projection-line#terminal-marker) at the anchor when you want a ring at the hand-off.
+
+```tsx
+import { buildProjectionPath } from "@/components/charts/projection-utils"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { Grid } from "@/components/charts/grid"
+import { Line } from "@/components/charts/line"
+import { LineChart } from "@/components/charts/line-chart"
+import { LineSeriesTerminalMarker } from "@/components/charts/line-series-terminal-marker"
+import { ProjectionLine } from "@/components/charts/projection-line"
+import { XAxis } from "@/components/charts/x-axis"
+
+const projectionPath = buildProjectionPath({
+  sourceData: chartData,
+  seriesKey: "value",
+  mode: "target",
+  pathDensity: "endpoints",
+  horizonPoints: 6,
+  endValue: 301,
+})
+
+;<LineChart data={chartData}>
+  <Grid horizontal />
+  <Line dataKey="value" strokeWidth={2} />
+  <LineSeriesTerminalMarker dataKey="value" />
+  <ProjectionLine
+    data={projectionPath}
+    strokeDasharray="1,4"
+    curveKind="bezier"
+    strokeStyle="gradient"
+    gradientStart="oklch(0.979 0.037 110.273)"
+    gradientEnd="oklch(0.59 0.17 166.38)"
+    showEndMarker
+  />
+  <XAxis />
+  <ChartTooltip />
+</LineChart>
+```
+
+The chart extends its x-domain to fit the projection horizon. Projections are intended for line charts without [brush zoom](/docs/charts/utility/brush) — the two features are not supported together.
+
+## ProjectionLine props
+
+<auto-type-table cwd path="src/registry/charts/projection-line.tsx" name="ProjectionLineProps" />
+
+## buildProjectionPath
+
+<auto-type-table cwd path="src/registry/charts/projection-utils.ts" name="BuildProjectionPathOptions" />
+
+## Terminal marker
+
+`LineSeriesTerminalMarker` renders a hollow ring at the last data point for the given `dataKey`. It fades in after the clip reveal completes.
+
+<auto-type-table cwd path="src/registry/charts/line-series-terminal-marker.tsx" name="LineSeriesTerminalMarkerProps" />
+
+## Examples
+
+### Auto forecast with terminal marker
+
+<ComponentPreview name="p-line-chart-2" className="**:data-[slot=preview]:w-full" />
+
+### Gradient stroke
+
+<ComponentPreview name="p-line-chart-27" className="**:data-[slot=preview]:w-full" />
+
+## Gallery
+
+See **Projection** on the [line chart gallery](/charts/line-chart).

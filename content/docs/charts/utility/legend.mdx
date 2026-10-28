@@ -1,0 +1,183 @@
+---
+title: Legend
+description: A composable legend component for charts with progress bars, markers, and customizable layouts
+---
+
+<ComponentPreview name="p-chart-legend-2" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="chart-legend" />
+
+## Usage
+
+The Legend uses a composable API where you define the layout once and it maps to each item in your data:
+
+```tsx
+const data = [
+  { label: "Organic", value: 4250, maxValue: 5000, color: "#0ea5e9" },
+  { label: "Paid", value: 3120, maxValue: 5000, color: "#a855f7" },
+]
+
+;<Legend items={data} title="Traffic Sources">
+  <LegendItem>
+    <LegendMarker />
+    <LegendLabel />
+    <LegendValue />
+  </LegendItem>
+</Legend>
+```
+
+## API Reference
+
+### Legend
+
+The root container that provides context and maps items.
+
+<auto-type-table cwd path="src/registry/charts/legend/legend.tsx" name="LegendProps" />
+
+### LegendItem
+
+Wrapper for each legend item. Handles hover interactions and animations.
+
+<auto-type-table cwd path="src/registry/charts/legend/legend-item.tsx" name="LegendItemProps" />
+
+### LegendMarker
+
+Color indicator dot.
+
+<auto-type-table cwd path="src/registry/charts/legend/legend-marker.tsx" name="LegendMarkerProps" />
+
+### LegendLabel
+
+Displays the item label.
+
+<auto-type-table cwd path="src/registry/charts/legend/legend-label.tsx" name="LegendLabelProps" />
+
+### LegendValue
+
+Displays the item value with optional percentage.
+
+<auto-type-table cwd path="src/registry/charts/legend/legend-value.tsx" name="LegendValueProps" />
+
+### LegendProgress
+
+Progress bar using base-ui Progress component.
+
+<auto-type-table cwd path="src/registry/charts/legend/legend-progress.tsx" name="LegendProgressProps" />
+
+## Data Shape
+
+```ts
+interface LegendItemData {
+  label: string // Display label
+  value: number // Current value
+  maxValue?: number // Max value (for progress/percentage)
+  color: string // Item color
+}
+```
+
+## Examples
+
+### Simple Legend
+
+<ComponentPreview name="p-chart-legend-1" className="**:data-[slot=preview]:w-full" />
+
+### With Progress Bars
+
+<ComponentPreview name="p-chart-legend-2" className="**:data-[slot=preview]:w-full" />
+
+### Horizontal Layout
+
+<ComponentPreview name="p-chart-legend-3" className="**:data-[slot=preview]:w-full" />
+
+### Custom Value Formatting
+
+```tsx
+<Legend items={revenueData}>
+  <LegendItem className="flex items-center gap-3">
+    <LegendMarker />
+    <LegendLabel className="flex-1" />
+    <LegendValue
+      formatValue={(v) => `$${(v / 1000).toFixed(0)}k`}
+      showPercentage
+      formatPercentage={(p) => `(${p.toFixed(1)}%)`}
+    />
+  </LegendItem>
+</Legend>
+```
+
+### Synced with Chart
+
+Connect the legend to a chart for bidirectional hover interactions:
+
+```tsx
+import { useState } from "react"
+import { RingChart } from "@/components/charts/ring-chart"
+import { Ring } from "@/components/charts/ring"
+import { RingCenter } from "@/components/charts/ring-center"
+import { Legend } from "@/components/charts/legend/legend"
+import { LegendItem } from "@/components/charts/legend/legend-item"
+import { LegendMarker } from "@/components/charts/legend/legend-marker"
+import { LegendLabel } from "@/components/charts/legend/legend-label"
+import { LegendValue } from "@/components/charts/legend/legend-value"
+
+function SyncedChart() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
+  return (
+    <div className="flex items-center gap-8">
+      <RingChart
+        data={data}
+        hoveredIndex={hoveredIndex}
+        onHoverChange={setHoveredIndex}
+      >
+        {data.map((_, i) => (
+          <Ring key={i} index={i} />
+        ))}
+        <RingCenter />
+      </RingChart>
+
+      <Legend
+        items={data}
+        hoveredIndex={hoveredIndex}
+        onHoverChange={setHoveredIndex}
+      >
+        <LegendItem className="flex items-center gap-3">
+          <LegendMarker />
+          <LegendLabel className="flex-1" />
+          <LegendValue />
+        </LegendItem>
+      </Legend>
+    </div>
+  )
+}
+```
+
+## Hooks
+
+### useLegend
+
+Access the legend context from any child component:
+
+```tsx
+import { useLegend } from "@/components/charts/legend/legend-context"
+
+function CustomComponent() {
+  const { items, hoveredIndex, setHoveredIndex } = useLegend()
+  // ...
+}
+```
+
+### useLegendItem
+
+Access the current item data from within a LegendItem:
+
+```tsx
+import { useLegendItem } from "@/components/charts/legend/legend-context"
+
+function CustomItemContent() {
+  const { item, index, isHovered, isFaded, percentage } = useLegendItem()
+  // ...
+}
+```

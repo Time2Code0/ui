@@ -1,0 +1,64 @@
+---
+title: Weekends
+description: Shade weekend days behind the series on date x axes — diagonal stripes or a solid fill, configurable weekend days, and zoom-aware rendering
+---
+
+<ComponentPreview name="p-chart-date-highlights-1" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="chart-date-highlights" />
+
+## Usage
+
+`Weekends` draws a band over every weekend span on a date x axis. Place it as a child of `LineChart`, `AreaChart`, `ComposedChart`, `CandlestickChart`, or `BarChart` (with date rows). It renders in the underlay layer — above grid and background, behind series.
+
+```tsx
+import { LineChart } from "@/components/charts/line-chart"
+import { Line } from "@/components/charts/line"
+import { Grid } from "@/components/charts/grid"
+import { Weekends } from "@/components/charts/weekends"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { XAxis } from "@/components/charts/x-axis"
+
+;<LineChart data={data}>
+  <Grid horizontal />
+  <Weekends />
+  <Line dataKey="completed" />
+  <XAxis />
+  <ChartTooltip />
+</LineChart>
+```
+
+- **Time scales** (line, area, composed, candlestick) — only spans inside the visible x-domain are drawn, so brush zoom and long ranges stay cheap. When one day is narrower than `minDayWidth` pixels (e.g. multi-year ranges), nothing renders.
+- **Band scales** (`BarChart`) — consecutive weekend columns merge into one band that covers the full column slots. Dates are read from the first field holding a `Date` or a `"YYYY-MM-DD"` string; pass `dateKey` to pick one. Horizontal bar charts shade rows instead of columns.
+- **Locales** — set `weekendDays` with `Date#getDay()` numbers (0 = Sunday … 6 = Saturday), e.g. `[5, 6]` for Friday–Saturday weekends.
+- **Time zones** — day boundaries use local time. Pass `utc` when your dates are anchored to UTC (e.g. ISO strings ending in `Z`).
+- **Alignment** — by default bands run midnight to midnight. On a `ComposedChart` with `SeriesBar` columns at midnight, `align="auto"` shifts bands half a day so each column sits inside its day.
+
+## API Reference
+
+<auto-type-table cwd path="src/registry/charts/weekends.tsx" name="WeekendsProps" />
+
+The date math is exported as `computeWeekendRanges(start, end, options)` (time domains) and `computeWeekendIndexRuns(dates, options)` (row runs) if you need the spans elsewhere — for example to skip weekends in a tooltip.
+
+## Examples
+
+### Brush zoom
+
+Bands are recomputed from the visible domain, so zooming in reveals weekends that were too narrow to draw at full range.
+
+<ComponentPreview name="p-chart-date-highlights-5" className="**:data-[slot=preview]:w-full" />
+
+### Bar chart columns
+
+<ComponentPreview name="p-chart-date-highlights-8" className="**:data-[slot=preview]:w-full" />
+
+### Composed chart
+
+<ComponentPreview name="p-chart-date-highlights-7" className="**:data-[slot=preview]:w-full" />
+
+## See also
+
+- [Deadline](/docs/charts/utility/deadline) — due-date marker with a fading region
+- [Reference Area](/docs/charts/utility/reference-area) — shaded Y (or X) data band

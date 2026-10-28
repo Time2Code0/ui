@@ -1,0 +1,6 @@
+{
+  "root": true,
+  "title": "Charts",
+  "icon": "Chart",
+  "pages": ["..."]
+}

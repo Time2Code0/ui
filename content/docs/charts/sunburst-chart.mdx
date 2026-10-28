@@ -1,0 +1,206 @@
+---
+title: Sunburst Chart
+description: A composable hierarchical sunburst chart with drill-down zoom, animated segments, breadcrumb navigation, and legend sync
+---
+
+<ComponentPreview name="p-sunburst-chart-4" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="sunburst-chart" />
+
+## Usage
+
+The Sunburst Chart uses a composable API. Map one `SunburstSegment` per arc in the layout, then add optional chrome for navigation and labels:
+
+```tsx
+import { buildArcs } from "@/components/charts/sunburst"
+import { SunburstBreadcrumb } from "@/components/charts/sunburst-breadcrumb"
+import { SunburstCenter } from "@/components/charts/sunburst-center"
+import { SunburstChart } from "@/components/charts/sunburst-chart"
+import { SunburstHint } from "@/components/charts/sunburst-hint"
+import { SunburstLabels } from "@/components/charts/sunburst-labels"
+import { SunburstSegment } from "@/components/charts/sunburst-segment"
+
+const data = {
+  name: "Revenue",
+  children: [
+    {
+      name: "Product",
+      children: [
+        { name: "Enterprise", value: 198 },
+        { name: "Pro", value: 145 },
+      ],
+    },
+    {
+      name: "Services",
+      children: [
+        { name: "Consulting", value: 160 },
+        { name: "Support", value: 90 },
+      ],
+    },
+  ],
+}
+
+export default function RevenueSunburst() {
+  const { arcs } = buildArcs(data)
+
+  return (
+    <SunburstChart data={data} size={440}>
+      <SunburstBreadcrumb>
+        <DrillBreadcrumb />
+      </SunburstBreadcrumb>
+      {arcs.map((arc) => (
+        <SunburstSegment index={arc.arcIndex} key={arc.id} />
+      ))}
+      <SunburstCenter />
+      <SunburstLabels />
+      <SunburstHint />
+    </SunburstChart>
+  )
+}
+```
+
+Click a segment with children to zoom in. Click the center hub or a breadcrumb crumb to zoom back out.
+
+## Breadcrumb composition
+
+`SunburstBreadcrumb` is a chrome slot rendered above the SVG. Compose your own trail UI with `useSunburstBreadcrumbItems()`:
+
+```tsx
+import {
+  SunburstBreadcrumb,
+  useSunburstBreadcrumbItems,
+} from "@/components/charts/sunburst-breadcrumb"
+import {
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+
+function DrillBreadcrumb() {
+  const { items, zoomTo } = useSunburstBreadcrumbItems()
+
+  return (
+    <BreadcrumbList>
+      {items.map((item, index) => (
+        <span className="contents" key={item.id}>
+          {index > 0 ? <BreadcrumbSeparator /> : null}
+          <BreadcrumbItem>
+            {item.isCurrent ? (
+              <BreadcrumbPage>{item.label}</BreadcrumbPage>
+            ) : (
+              <BreadcrumbLink
+                render={
+                  <button onClick={() => zoomTo(item.id)} type="button" />
+                }
+              >
+                {item.label}
+              </BreadcrumbLink>
+            )}
+          </BreadcrumbItem>
+        </span>
+      ))}
+    </BreadcrumbList>
+  )
+}
+```
+
+## API Reference
+
+### SunburstChart
+
+The root component that computes the layout and provides context to children.
+
+<auto-type-table cwd path="src/registry/charts/sunburst-chart.tsx" name="SunburstChartProps" />
+
+### SunburstSegment
+
+Renders one arc with enter animation, drill-down click handling, and hover grow along the ancestor path.
+
+<auto-type-table cwd path="src/registry/charts/sunburst-segment.tsx" name="SunburstSegmentProps" />
+
+### SunburstCenter
+
+Navigation hub rendered after drill-down. Click to zoom out to the parent focus.
+
+<auto-type-table cwd path="src/registry/charts/sunburst-center.tsx" name="SunburstCenterProps" />
+
+### SunburstBreadcrumb
+
+Chrome slot above the chart for drill-down navigation. Pass your breadcrumb UI as `children`. Use `useSunburstBreadcrumbItems()` inside children to read the trail and `zoomTo`.
+
+<auto-type-table cwd path="src/registry/charts/sunburst-breadcrumb.tsx" name="SunburstBreadcrumbProps" />
+
+### useSunburstBreadcrumbItems
+
+Hook for building breadcrumb UI inside `SunburstBreadcrumb`:
+
+```ts
+const { items, zoomTo } = useSunburstBreadcrumbItems()
+// items: { id, label, isCurrent }[]
+```
+
+### SunburstLabels
+
+Segment name labels positioned at arc centroids. Each label fades in after its segment finishes the enter animation.
+
+<auto-type-table cwd path="src/registry/charts/sunburst-labels.tsx" name="SunburstLabelsProps" />
+
+### SunburstHint
+
+Contextual hint text below the chart (hover trail or zoom instructions). Rendered outside the SVG.
+
+<auto-type-table cwd path="src/registry/charts/sunburst-hint.tsx" name="SunburstHintProps" />
+
+Custom hint example:
+
+```tsx
+<SunburstHint>
+  {({ hintText, hoveredArc }) =>
+    hoveredArc ? (
+      <span className="font-medium">{hintText}</span>
+    ) : (
+      <span>Explore the breakdown</span>
+    )
+  }
+</SunburstHint>
+```
+
+### Legend
+
+A composable legend synced to the current focus level. See the full [Legend documentation](/docs/charts/utility/legend) for all components and options.
+
+## Data Shape
+
+```ts
+interface SunburstNode {
+  name: string
+  value?: number // Leaf value (parent values are summed from children)
+  color?: string // Optional color override
+  fill?: string // Optional fill for patterns/gradients
+  children?: SunburstNode[]
+}
+```
+
+Use `buildArcs(data)` to get the flat `arcs` array, `maxDepth`, and `focusById` map for controlled drill-down and legend wiring.
+
+See the [charts gallery](/charts/sunburst-chart) for pattern fills, legend sync, and drill-down interaction.
+
+## Theming
+
+Category colors default to [`--color-chart-1` … `--color-chart-5`](/docs/styling). Inner rings use full opacity; outer rings step down in opacity for depth.
+
+## Animation
+
+1. **Enter reveal** — Rings animate clockwise with staggered segment timing
+2. **Label fade** — Labels fade in per segment after that segment's reveal completes
+3. **Drill-down zoom** — Focus morphs matching arcs; others collapse to a point
+4. **Hover grow** — Segments on the path from root to the hovered node extend outward, capped at the thickness of one expanded ring at the first drill level; descendants shift radially to accommodate parent growth. A padded inset inside the view box (auto from `hoverPop` and depth) prevents clipping.
+5. **Fade** — Unrelated segments dim to 25% opacity when another branch is hovered (160ms ease-out)
+
+All animations respect `prefers-reduced-motion`.
+
+For `PatternLines` or other pattern fills, import them from `@/components/charts/visx-pattern`. They are vendored from `@visx/pattern` and installed with every chart, so no extra package is needed.

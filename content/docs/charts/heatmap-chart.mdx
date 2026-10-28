@@ -1,0 +1,245 @@
+---
+title: Heatmap Chart
+description: A contribution heatmap with animated cells, configurable level colors and patterns, and an interactive legend
+---
+
+<ComponentPreview name="p-heatmap-chart-2" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="heatmap-chart" />
+
+## Usage
+
+The Heatmap Chart uses a composable API. Wrap the chart and legend in `HeatmapInteractionProvider` so hover dimming and tooltips stay in sync:
+
+```tsx
+import { HeatmapCells } from "@/components/charts/heatmap/heatmap-cells"
+import { HeatmapChart } from "@/components/charts/heatmap/heatmap-chart"
+import {
+  HeatmapInteractionBoundary,
+  HeatmapInteractionProvider,
+} from "@/components/charts/heatmap/heatmap-context"
+import { HeatmapLegend } from "@/components/charts/heatmap/heatmap-legend"
+import { HeatmapTooltip } from "@/components/charts/heatmap/heatmap-tooltip"
+import { HeatmapXAxis } from "@/components/charts/heatmap/heatmap-x-axis"
+import { HeatmapYAxis } from "@/components/charts/heatmap/heatmap-y-axis"
+
+const data = [
+  {
+    bin: 0,
+    bins: [
+      { bin: 0, count: 2, date: new Date(2024, 0, 1) },
+      { bin: 1, count: 0, date: new Date(2024, 0, 2) },
+      // …one week column with 7 day bins
+    ],
+  },
+  // …one column per week
+]
+
+export default function ContributionHeatmap() {
+  return (
+    <HeatmapInteractionProvider>
+      <HeatmapInteractionBoundary>
+        <HeatmapChart data={data} layout="fluid">
+          <HeatmapCells />
+          <HeatmapXAxis />
+          <HeatmapYAxis />
+          <HeatmapTooltip />
+        </HeatmapChart>
+        <HeatmapLegend />
+      </HeatmapInteractionBoundary>
+    </HeatmapInteractionProvider>
+  )
+}
+```
+
+## API Reference
+
+### HeatmapChart
+
+The root component that sizes the grid, builds color scales, and provides context to children.
+
+<auto-type-table cwd path="src/registry/charts/heatmap/heatmap-chart.tsx" name="HeatmapChartProps" />
+
+### HeatmapCells
+
+Renders the grid of cells with enter animation and hover dimming.
+
+<auto-type-table cwd path="src/registry/charts/heatmap/heatmap-cells.tsx" name="HeatmapCellsProps" />
+
+When `inactiveOpacity`, `inactiveScale`, and `activeScale` are all `1`, hover dimming is disabled.
+
+### HeatmapXAxis / HeatmapYAxis
+
+Month labels along the top and weekday labels along the left. Y-axis labels follow `weekStartDay` on `HeatmapChart`.
+
+`HeatmapXAxis`:
+
+<auto-type-table cwd path="src/registry/charts/heatmap/heatmap-x-axis.tsx" name="HeatmapXAxisProps" />
+
+`HeatmapYAxis`:
+
+<auto-type-table cwd path="src/registry/charts/heatmap/heatmap-y-axis.tsx" name="HeatmapYAxisProps" />
+
+### HeatmapLegend
+
+Less → More scale swatches that share `levelStyles` with the chart.
+
+<auto-type-table cwd path="src/registry/charts/heatmap/heatmap-legend.tsx" name="HeatmapLegendProps" />
+
+Gradient mode uses solid colors only (patterns are ignored).
+
+### HeatmapSeparator
+
+Vertical column separators with optional quarter labels.
+
+<auto-type-table cwd path="src/registry/charts/heatmap/heatmap-separator.tsx" name="HeatmapSeparatorProps" />
+
+**Solid stroke** — no `gradient` prop:
+
+```tsx
+<HeatmapSeparator
+  groupBy="quarter"
+  showLabels
+  labelClassName="text-black dark:text-white"
+  stroke="color-mix(in oklab, var(--color-foreground) 10%, transparent)"
+  strokeStyle="solid"
+/>
+```
+
+**Gradient fade** — softens the top and bottom of each line:
+
+```tsx
+<HeatmapSeparator
+  groupBy="quarter"
+  showLabels
+  stroke="var(--color-accent)"
+  gradient={{
+    from: "var(--color-accent)",
+    via: "var(--color-accent)",
+    to: "var(--color-accent)",
+    fromOpacity: 0,
+    viaOpacity: 1,
+    toOpacity: 0,
+  }}
+/>
+```
+
+### HeatmapTooltip
+
+Shows the contribution count and date for the hovered cell. Fades in on first hover, springs between cells, and fades out on leave (position jumps and scale is skipped under `prefers-reduced-motion`).
+
+<auto-type-table cwd path="src/registry/charts/heatmap/heatmap-tooltip.tsx" name="HeatmapTooltipProps" />
+
+## Level styles and patterns
+
+Pass `levelStyles` (five entries: empty + levels 1–4) to control both cell fills and legend swatches. Each level can be solid or use a pattern preset. Omit `patternColor` to derive stripe color from the level color, or set `patternColor` explicitly:
+
+```tsx
+import { CHART_SCALE_VARS } from "@/components/charts/chart-scale"
+
+const levelStyles = [
+  { color: CHART_SCALE_VARS[0], fillMode: "solid" },
+  { color: CHART_SCALE_VARS[1], fillMode: "solid" },
+  { color: CHART_SCALE_VARS[2], fillMode: "pattern", pattern: "diagonal", patternColor: "var(--color-background)" },
+  { color: CHART_SCALE_VARS[3], fillMode: "solid" },
+  { color: CHART_SCALE_VARS[4], fillMode: "solid" },
+] as const
+
+<HeatmapChart data={data} levelStyles={levelStyles}>
+  <HeatmapCells />
+</HeatmapChart>
+<HeatmapLegend levelStyles={levelStyles} />
+```
+
+## Data format
+
+```ts
+interface HeatmapBin {
+  bin: number // row index (0–6 for days of week)
+  count: number // activity level 0–4
+  date: Date
+}
+
+interface HeatmapColumn {
+  bin: number // column index (week number)
+  bins: HeatmapBin[]
+}
+```
+
+Counts map to five visual levels (0 = empty, 1–4 = increasing activity). Use `getHeatmapContributionLevel(count)` from `@/components/charts/heatmap/heatmap-utils` to derive the level from a raw count.
+
+### Row opacity
+
+`rowOpacity` on `HeatmapCells` and `HeatmapYAxis` controls opacity **per display row** — the row index after `weekStartDay` rotation, where `0` is the top row of the grid.
+
+With `weekStartDay={1}` (Monday-first):
+
+| Display row | Day |
+|-------------|-----|
+| 0 | Mon |
+| 1 | Tue |
+| 2 | Wed |
+| 3 | Thu |
+| 4 | Fri |
+| 5 | Sat |
+| 6 | Sun |
+
+Pass the **same** value to `HeatmapCells` and `HeatmapYAxis` so faded rows and their labels stay aligned.
+
+**Plain array** — explicit opacity per row:
+
+```tsx
+const rowOpacity = [1, 1, 1, 1, 1, 0.35, 0.35] // fade Sat + Sun (Mon-first)
+```
+
+**Helper** — `buildHeatmapRowOpacity` from `@/components/charts/heatmap/heatmap-utils`:
+
+```tsx
+import { buildHeatmapRowOpacity } from "@/components/charts/heatmap/heatmap-utils"
+
+// Fade rows 5 and 6 (Sat + Sun when weekStartDay={1})
+const weekendOpacity = buildHeatmapRowOpacity([5, 6], 0.35)
+
+// Same result with a row predicate (nth-style rule)
+const weekendOpacity = buildHeatmapRowOpacity((row) => row >= 5, 0.35)
+```
+
+Other predicate examples:
+
+```tsx
+buildHeatmapRowOpacity((row) => row % 2 === 0, 0.5) // even rows
+buildHeatmapRowOpacity((row) => row < 2, 0.5) // first two rows
+```
+
+**Single number** — applies to every row:
+
+```tsx
+<HeatmapCells rowOpacity={0.6} />
+```
+
+### Monday-first grid with faded weekends
+
+Source data can stay Sunday-first; `weekStartDay` rotates display rows without reshaping your data:
+
+```tsx
+import { buildHeatmapRowOpacity } from "@/components/charts/heatmap/heatmap-utils"
+
+const weekendOpacity = buildHeatmapRowOpacity((row) => row >= 5, 0.35)
+
+;<HeatmapChart data={data} weekStartDay={1}>
+  <HeatmapCells rowOpacity={weekendOpacity} />
+  <HeatmapYAxis
+    tickFilter="all"
+    labelFormat="initial"
+    rowOpacity={weekendOpacity}
+  />
+</HeatmapChart>
+```
+
+Default level colors come from `CHART_SCALE_VARS` (from `@/components/charts/chart-scale`): a neutral empty tone, then `--color-chart-1` mixed into the background at increasing strength.
+
+## Gallery
+
+See the [charts gallery](/charts/heatmap-chart) for pattern fills and layout variants.

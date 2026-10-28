@@ -1,0 +1,96 @@
+---
+title: Ring Chart
+description: A composable multi-ring progress chart with animated arcs, hover interactions, and a reusable legend component
+---
+
+<ComponentPreview name="p-ring-chart-7" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="ring-chart" />
+
+## Usage
+
+The Ring Chart uses a composable API similar to other charts in the library. Build charts by combining components:
+
+```tsx
+import { RingChart } from "@/components/charts/ring-chart"
+import { Ring } from "@/components/charts/ring"
+import { RingCenter } from "@/components/charts/ring-center"
+
+const data = [
+  { label: "Organic", value: 4250, maxValue: 5000, color: "#0ea5e9" },
+  { label: "Paid", value: 3120, maxValue: 5000, color: "#a855f7" },
+  { label: "Email", value: 2100, maxValue: 5000, color: "#f59e0b" },
+]
+
+export default function SessionsChart() {
+  return (
+    <RingChart data={data} size={300}>
+      {data.map((item, index) => (
+        <Ring key={item.label} index={index} />
+      ))}
+      <RingCenter defaultLabel="Total Sessions" />
+    </RingChart>
+  )
+}
+```
+
+## API Reference
+
+### RingChart
+
+The root component that provides context to all children.
+
+<auto-type-table cwd path="src/registry/charts/ring-chart.tsx" name="RingChartProps" />
+
+### Ring
+
+Renders an individual ring with background track and animated progress arc.
+
+<auto-type-table cwd path="src/registry/charts/ring.tsx" name="RingProps" />
+
+### RingCenter
+
+Displays the total or hovered value in the center of the chart.
+
+<auto-type-table cwd path="src/registry/charts/ring-center.tsx" name="RingCenterProps" />
+
+### Legend
+
+A composable legend component for ring charts, pie charts, and other visualizations. See the full [Legend documentation](/docs/charts/utility/legend) for all components and options.
+
+## Data Shape
+
+```ts
+interface RingData {
+  label: string // Display label
+  value: number // Current value
+  maxValue: number // Maximum value (for percentage)
+  color?: string // Optional color (falls back to palette)
+}
+
+interface LegendItem {
+  label: string
+  value: number
+  maxValue?: number // Required if showProgress is true
+  color: string
+}
+```
+
+See the [charts gallery](/charts/ring-chart) for custom colors, legend sync, and center content variations.
+
+## Theming
+
+Ring colors default to [`--color-chart-1` … `--color-chart-5`](/docs/styling) via `defaultRingColors`. The ring track uses `color-mix(in oklab, var(--color-foreground) 10%, transparent)` — the same tone as radar grid lines and gauge inactive notches.
+
+## Animation
+
+The ring chart features a multi-phase animation on mount:
+
+1. **Ring Expansion** - Background rings scale in with staggered timing
+2. **Progress Arcs** - Progress arcs animate from 0 to their target value
+3. **Center Content** - Value and label fade in
+4. **Legend** - Items slide in from the right with progress bars filling
+
+All animations use spring physics for natural motion.

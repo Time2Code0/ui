@@ -1,0 +1,94 @@
+---
+title: Gauge
+description: Notch-based radial or linear gauge with optional center label, theme fills, patterns, arc gradients, and responsive sizing
+---
+
+<ComponentPreview name="p-gauge-chart-14" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="gauge-chart" />
+
+## Usage
+
+`Gauge` draws **notches** around an arc (default) or along a horizontal track (`orientation="linear"`). The center label is **optional** — omit `centerValue` for a track-only gauge.
+
+- **Fill vs center:** `value` is the fill level **0–100**. `centerValue` is the statistic shown in the label (often the same story or a related KPI).
+- **Arc center:** arc gauges overlay the label in the middle of the sweep (PieCenter-style NumberFlow + caption).
+- **Linear label placement:** with `orientation="linear"`, place the label above or below the track using `labelPlacement` (`top` | `bottom`) and `labelAlign` (`start` | `center` | `end`) — the same six-position model as chart legend (top/bottom × left/center/right).
+- **Responsive:** omit `width` and `height` to fill the parent. Arc gauges use **`minWidth`** (default **300**) and an aspect ratio. Linear gauges fill the parent width and use **`linearHeight`** (default **24**).
+- **Linear notches:** linear gauges default to **`uniformWidth`** (rectangular notches). Pass `uniformWidth={false}` for tapered ticks.
+- **Patterns / gradients in `<defs>`:** pass **`PatternLines`**, **`LinearGradient`**, etc. as **`children`**, then set **`activeFill`** / **`inactiveFill`** to `url(#id)`.
+- **Arc gradients:** set **`useGradient`**. Optional **`activeGradient`** and **`inactiveGradient`** are **`[hexFrom, hexTo]`** tuples (interpolated along the notch index).
+- **Fill opacity:** `activeFillOpacity` and `inactiveFillOpacity` map to SVG `fill-opacity` (0–1). Defaults are **1** for active notches and **0.8** for the track; docs and gallery examples use **`inactiveFillOpacity={0.4}`** for a lighter track.
+- **Corner radius:** `notchCornerRadius` is the fillet in **pixels** at each notch corner (**0** = sharp). Large values are clamped by edge length and radial depth so shapes can approach a **capsule** / near-circular look.
+
+```tsx
+import { Gauge } from "@/components/charts/gauge"
+import { PatternLines } from "@/components/charts/visx-pattern"
+
+export default function RevenueGauge() {
+  return (
+    <Gauge
+      value={66}
+      centerValue={428_000}
+      spacing={25}
+      inactiveFillOpacity={0.4}
+      defaultLabel="ARR run rate"
+      formatOptions={{
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0,
+      }}
+    />
+  )
+}
+```
+
+### Linear gauge
+
+Track-only (no label):
+
+```tsx
+<Gauge
+  orientation="linear"
+  value={72}
+  totalNotches={72}
+  spacing={0}
+  notchCornerRadius={3}
+  inactiveFillOpacity={0.4}
+  useGradient
+/>
+```
+
+With label below center:
+
+```tsx
+<Gauge
+  orientation="linear"
+  value={72}
+  centerValue={428_000}
+  defaultLabel="ARR run rate"
+  labelPlacement="bottom"
+  labelAlign="center"
+  totalNotches={72}
+  spacing={0}
+  notchCornerRadius={3}
+  inactiveFillOpacity={0.4}
+  useGradient
+/>
+```
+
+## API Reference
+
+### Gauge
+
+<auto-type-table cwd path="src/registry/charts/gauge.tsx" name="GaugeProps" />
+
+## Theming
+
+Inactive (track) notches default to `color-mix(in oklab, var(--color-foreground) 10%, transparent)` — shared with ring tracks and radar grid lines. Active notches default to `var(--color-chart-1)`. Override with `inactiveFill` / `activeFill`.
+
+## Live examples
+
+See the [Gauge gallery](/charts/gauge-chart) for arc and linear variants.

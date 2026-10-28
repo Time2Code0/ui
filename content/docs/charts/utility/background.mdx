@@ -1,0 +1,59 @@
+---
+title: Background
+description: Pattern fill for the plot area when grid lines are hidden — presets, edge fade, and enter animation
+---
+
+<ComponentPreview name="p-chart-background-1" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="chart-background" />
+
+## Usage
+
+Use `Background` instead of `Grid` when you want a textured plot fill rather than reference lines. It must be a child of a cartesian chart (`LineChart`, `AreaChart`, `BarChart`, `ScatterChart`, `CandlestickChart`, `ComposedChart`, `LiveLineChart`, and other charts that provide chart context).
+
+```tsx
+import { LineChart } from "@/components/charts/line-chart"
+import { Line } from "@/components/charts/line"
+import { Background } from "@/components/charts/background"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { XAxis } from "@/components/charts/x-axis"
+
+;<LineChart data={data}>
+  <Background pattern="diagonal" />
+  <Line dataKey="value" />
+  <XAxis />
+  <ChartTooltip />
+</LineChart>
+```
+
+`Background` renders behind series layers. On time-series charts it sits outside the series clip reveal and fades in after the chart finishes loading.
+
+## API Reference
+
+<auto-type-table cwd path="src/registry/charts/background.tsx" name="BackgroundProps" />
+
+Patterns use `PatternLines` and `PatternCircles` from `@/components/charts/visx-pattern`, vendored from [@visx/pattern](https://visx.airbnb.tech/docs/pattern) (MIT), so there is no package dependency.
+
+## Examples
+
+### Diagonal (default)
+
+<ComponentPreview name="p-chart-background-1" className="**:data-[slot=preview]:w-full" />
+
+### Dot grid
+
+<ComponentPreview name="p-chart-background-2" className="**:data-[slot=preview]:w-full" />
+
+### Cross hatch
+
+<ComponentPreview name="p-chart-background-3" className="**:data-[slot=preview]:w-full" />
+
+### No edge fade
+
+<ComponentPreview name="p-chart-background-4" className="**:data-[slot=preview]:w-full" />
+
+## Grid vs Background
+
+Use [`Grid`](/docs/charts/utility/grid) for reference lines. Use `Background` when you want a subtle pattern fill without ticks. They are typically mutually exclusive — pick one visual treatment for the plot area.

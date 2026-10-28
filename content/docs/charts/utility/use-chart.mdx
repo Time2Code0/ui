@@ -1,0 +1,127 @@
+---
+title: useChart Hook
+description: Access chart state and context for building custom chart components
+---
+
+## Overview
+
+The `useChart` hook provides access to the chart's internal state, scales, dimensions, and tooltip data. Use it to build custom components that integrate with the chart system.
+
+```tsx
+import { useChart } from "@/components/charts/chart-context"
+
+function MyCustomComponent() {
+  const { tooltipData, hoveredBarIndex, yScale, innerHeight } = useChart()
+  // ... use chart state
+}
+```
+
+## Requirements
+
+The hook must be used within a chart component (`LineChart`, `AreaChart`, or `BarChart`). It will throw an error if used outside of a chart context.
+
+```tsx
+// Correct: Inside a chart
+<BarChart data={data} xDataKey="month">
+  <MyCustomComponent /> {/* useChart works here */}
+</BarChart>
+
+// Error: Outside a chart
+<MyCustomComponent /> {/* useChart will throw */}
+```
+
+## Return Values
+
+### Dimensions
+
+<auto-type-table cwd path="src/registry/charts/chart-context.tsx" name="ChartDimensions" type="Pick<ChartContextValue, 'width' | 'height' | 'innerWidth' | 'innerHeight' | 'margin' | 'columnWidth'>" />
+
+### Scales
+
+<auto-type-table cwd path="src/registry/charts/chart-context.tsx" name="ChartScales" type="Pick<ChartContextValue, 'xScale' | 'yScale' | 'barScale' | 'bandWidth'>" />
+
+### Tooltip State
+
+<auto-type-table cwd path="src/registry/charts/chart-context.tsx" name="ChartTooltipState" type="Pick<ChartContextValue, 'tooltipData' | 'setTooltipData' | 'hoveredBarIndex' | 'setHoveredBarIndex'>" />
+
+### TooltipData Structure
+
+```tsx
+interface TooltipData {
+  point: Record<string, unknown> // The data point being hovered
+  index: number // Index in the data array
+  x: number // X position in pixels
+  yPositions: Record<string, number> // Y positions keyed by dataKey
+  xPositions?: Record<string, number> // X positions (grouped bars)
+}
+```
+
+### Container & Animation
+
+<auto-type-table cwd path="src/registry/charts/chart-context.tsx" name="ChartContainerState" type="Pick<ChartContextValue, 'containerRef' | 'isLoaded' | 'animationDuration'>" />
+
+### Data & Configuration
+
+<auto-type-table cwd path="src/registry/charts/chart-context.tsx" name="ChartDataConfig" type="Pick<ChartContextValue, 'data' | 'lines' | 'xAccessor' | 'barXAccessor' | 'dateLabels'>" />
+
+### Bar Chart Specific
+
+<auto-type-table cwd path="src/registry/charts/chart-context.tsx" name="ChartBarState" type="Pick<ChartContextValue, 'orientation' | 'stacked' | 'stackOffsets'>" />
+
+## Common Use Cases
+
+### Reading Hover Position
+
+```tsx
+function HoverIndicator() {
+  const { tooltipData, innerHeight, margin } = useChart()
+
+  if (!tooltipData) return null
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: tooltipData.x + margin.left,
+        top: margin.top,
+        height: innerHeight,
+      }}
+    >
+      {/* Custom indicator */}
+    </div>
+  )
+}
+```
+
+### Accessing Bar Positions
+
+```tsx
+function BarOverlay() {
+  const { barScale, bandWidth, hoveredBarIndex, data } = useChart()
+
+  if (!barScale || hoveredBarIndex === null) return null
+
+  const hoveredData = data[hoveredBarIndex]
+  const x = barScale(hoveredData.category)
+
+  return <rect x={x} width={bandWidth} /* ... */ />
+}
+```
+
+### Using Scales for Custom Rendering
+
+```tsx
+function CustomMarker({ value, category }) {
+  const { yScale, barScale, innerHeight } = useChart()
+
+  const y = yScale(value)
+  const x = barScale?.(category) ?? 0
+
+  return <circle cx={x} cy={y} r={5} fill="red" />
+}
+```
+
+## Related
+
+- [Custom Indicator](/docs/charts/utility/custom-indicator) - Building custom tooltip indicators
+- [Styling](/docs/styling) - Color tokens

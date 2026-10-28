@@ -1,0 +1,329 @@
+---
+title: Line Chart
+description: A composable line chart with tooltips, markers, and hover interactions
+---
+
+<ComponentPreview name="p-line-chart-4" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="line-chart" />
+
+## Usage
+
+Build charts by composing components. See the [charts gallery](/charts/line-chart) for interactive examples.
+
+```tsx
+import { LineChart } from "@/components/charts/line-chart"
+import { Line } from "@/components/charts/line"
+import { Grid } from "@/components/charts/grid"
+import { XAxis } from "@/components/charts/x-axis"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+
+const data = [
+  { date: new Date("2025-01-01"), users: 1200 },
+  { date: new Date("2025-01-02"), users: 1350 },
+  // ...
+]
+
+export default function SimpleChart() {
+  return (
+    <LineChart data={data}>
+      <Grid horizontal />
+      <Line dataKey="users" />
+      <XAxis />
+      <ChartTooltip />
+    </LineChart>
+  )
+}
+```
+
+## Updating data smoothly
+
+When your data changes (e.g. filtering by date range, refreshing from an API), the chart automatically updates smoothly without replaying the enter animation. The y-domain tweens to the new scale via `yDomainTween` (enabled by default).
+
+**Do not** change or pass the `revealSignature` prop when updating data — that prop is only for manually replaying the reveal animation.
+
+<ComponentPreview name="p-line-chart-23" className="**:data-[slot=preview]:w-full" />
+
+Click the date range buttons — the line and y-axis morph smoothly without reinitialization. Switch the dataset between **Revenue**, **~1,000** and **~10** (with the **Y axis** toggle on) to see a large y-domain change: the grid and y-axis labels rescale first — outgoing labels fade out while new ones cascade in — then the line morphs into place, so it never leaves the chart. Use the replay button to run the enter animation again.
+
+## API Reference
+
+### LineChart
+
+The root component that provides context to all children.
+
+<auto-type-table cwd path="src/registry/charts/line-chart.tsx" name="LineChartProps" />
+
+### Line
+
+Renders a line on the chart.
+
+<auto-type-table cwd path="src/registry/charts/line.tsx" name="LineProps" />
+
+### Grid
+
+Renders grid lines.
+
+<auto-type-table cwd path="src/registry/charts/grid.tsx" name="GridProps" />
+
+### Background
+
+Pattern fill for the plot area when you omit `Grid`. Fades in after the series reveal on time-series charts. See the [Background utility](/docs/charts/utility/background) for presets (`diagonal`, `dots`, `cross`, …), edge fade, and opacity — and the **Pattern Background** examples on the [line chart gallery](/charts/line-chart).
+
+### TrendLine
+
+Least-squares regression line over one series. Place it after the `Line` so it draws on top. Dashed by default; also `solid` or `gradient`, with optional `fadeEdges`. See the [Trend Line utility](/docs/charts/utility/trend-line) and the **Trend Line** examples on the [line chart gallery](/charts/line-chart).
+
+```tsx
+<Line dataKey="value" />
+<TrendLine dataKey="value" stroke="var(--color-chart-1)" />
+```
+
+### XAxis
+
+Renders x-axis labels that fade when the crosshair passes.
+
+<auto-type-table cwd path="src/registry/charts/x-axis.tsx" name="XAxisProps" />
+
+### ChartTooltip
+
+Renders the tooltip with crosshair, dots, and content box.
+
+<auto-type-table cwd path="src/registry/charts/tooltip/chart-tooltip.tsx" name="ChartTooltipProps" />
+
+## Dual Y axes (biaxial)
+
+Pair `yAxisId` on each `Line` with matching `YAxis` components. Increase `margin.left` and `margin.right` so labels fit. See [Y Axis](/docs/charts/utility/axis/y-axis) and the **Left and right Y axes** examples on the [line chart gallery](/charts/line-chart).
+
+## Profit/Loss line
+
+For a single series that crosses zero, use [`ProfitLossLine`](/docs/charts/profit-loss-line) inside `LineChart`. Pair it with a hidden `Line` (same `dataKey`) so the chart registers the series for the y-domain and tooltip. When any value is negative, the y-axis automatically includes the full data extent instead of anchoring at zero.
+
+Highlight the break-even baseline with `Grid highlightRowValues={[0]}`:
+
+```tsx
+<Grid
+  highlightRowValues={[0]}
+  highlightRowStroke="var(--color-foreground)"
+  highlightRowStrokeOpacity={0.35}
+  horizontal
+/>
+```
+
+See the [Profit/Loss Line](/docs/charts/profit-loss-line) docs and the [line chart gallery](/charts/line-chart) (**Profit/Loss** example).
+
+## Projection
+
+Extend a series past the last data point with [`ProjectionLine`](/docs/charts/utility/projection-line). Build the path with `buildProjectionPath` (auto slope, target value, or manual points). Optionally add [`LineSeriesTerminalMarker`](/docs/charts/utility/projection-line#terminal-marker) at the anchor.
+
+Projections extend the x-domain to the horizon and are not supported together with [brush zoom](/docs/charts/utility/brush).
+
+<ComponentPreview name="p-line-chart-2" className="**:data-[slot=preview]:w-full" />
+
+See the [Projection Line utility](/docs/charts/utility/projection-line) for props and `buildProjectionPath` options.
+
+## Band
+
+Shade a range between two per-row values — min/max, a confidence interval, or Bollinger bands — with [`Band`](/docs/charts/utility/band). Place it before your `Line`s; it reveals and morphs with them and extends the y-domain to fit both edges. Use `withBollingerBands` to derive the edges from a series.
+
+<ComponentPreview name="p-chart-band-3" className="**:data-[slot=preview]:w-full" />
+
+See the [Band utility](/docs/charts/utility/band) for fill types, edge strokes, faded edges, and `withBollingerBands` options.
+
+## Weekends and deadlines
+
+Shade weekends with [`Weekends`](/docs/charts/utility/weekends) and mark a due date with [`Deadline`](/docs/charts/utility/deadline) — a line at the date plus a striped region that fades out to the right. Both render behind the series and only draw what is inside the visible x-domain, so they work with [brush zoom](#brush-zoom).
+
+<ComponentPreview name="p-chart-date-highlights-3" className="**:data-[slot=preview]:w-full" />
+
+## Brush zoom
+
+Use `ChartBrushLayout` and `ChartBrush` the same way as on [`AreaChart`](/docs/charts/area-chart#brush-zoom). See the [Brush](/docs/charts/utility/brush) utility docs for full API reference. The brush strip typically shows simplified `Line` series; the main chart receives `xDomain`, `xDomainSlotCount`, and `tweenYDomainOnXDomainChange` for live zoom and y-domain tweening.
+
+<ComponentPreview name="p-line-chart-22" className="**:data-[slot=preview]:w-full" />
+
+## Loading state
+
+Drive loading and ready from your data layer with a single `LineChart` — one `Grid`, one `Line`, no component swap. Set `status="loading"` while fetching; switch to `"ready"` when data resolves.
+
+**Loading → ready:** pulse loop on skeleton data → pulse finishes its grow, then flows out right → loading label drifts down 30px, blurs, and fades → grid y-domain tween (500ms) → clip-path reveal (`cubic-bezier(0.85, 0, 0.15, 1)`) → interaction enabled.
+
+**Ready → loading:** ready line conceals to the right → grid y-domain tween → pulse loop and shimmer resume.
+
+Pair `Grid` `stroke` / `loadingStroke` with shimmer props. Pair `Line` `loadingStroke` props. Use `loadingLabel` on `LineChart` for centered shimmer text.
+
+<ComponentPreview name="p-line-chart-25" className="**:data-[slot=preview]:w-full" />
+
+Toggle **Loading** / **Ready** in the preview to replay the transition, and **Pulse** / **Sweep** to switch the loading animation style. When target data spans a different y-range than the skeleton, `yDomainTween` morphs the scale before the line reveals.
+
+### Loading style: pulse or sweep
+
+The loading state has two animation styles, set with `loadingStyle` on the `Line`: the default `"pulse"` (a segment travels along the skeleton stroke) or `"sweep"` (a soft diagonal shimmer sweeps across the whole line). Set it on the `Line` inside a `status="loading"` chart, or on the `LineChartLoading` wrapper:
+
+```tsx
+<LineChart data={data} status="loading">
+  <Grid horizontal shimmer />
+  <Line dataKey="revenue" loadingStyle="sweep" />
+</LineChart>
+
+// or, with the turnkey wrapper:
+<LineChartLoading loadingStyle="sweep" />
+```
+
+The sweep masks over the real skeleton line, so it follows whatever `curve` the `Line` uses (`curveStepAfter`, `curveNatural`, …) and respects `prefers-reduced-motion`. To keep the loading→ready handoff smooth, the sweep is used only during steady loading; the pulse still drives the exit transition. See the **Loading (Sweep)** example on the [line chart gallery](/charts/line-chart).
+
+## Dashed tail
+
+Set `dashFromIndex` on `Line` to draw a solid stroke through one data point, then a dashed segment through the end of the series. Useful when the final period is still in progress (e.g. yesterday → today).
+
+`dashFromIndex` is **inclusive** — dashing starts at that row and continues through the last point. The dashed segment follows the same curved path as the solid stroke and respects `fadeEdges`.
+
+<auto-type-table cwd path="src/registry/charts/line.tsx" name="LineDashedTailProps" type="Pick<LineProps, 'dashFromIndex' | 'dashArray'>" />
+
+```tsx
+<Line
+  dataKey="visitors"
+  dashFromIndex={5}
+  dashArray="6,4"
+  stroke="var(--color-chart-1)"
+/>
+```
+
+## Markers
+
+Add markers to annotate specific dates on the chart:
+
+```tsx
+import { LineChart } from "@/components/charts/line-chart"
+import { Line } from "@/components/charts/line"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import {
+  ChartMarkers,
+  MarkerTooltipContent,
+  useActiveMarkers,
+} from "@/components/charts/markers/chart-markers"
+import type { ChartMarker } from "@/components/charts/markers/marker-group"
+
+const markers: ChartMarker[] = [
+  {
+    date: new Date("2025-01-05"),
+    icon: "🚀",
+    title: "v1.2.0 Released",
+    description: "New chart animations",
+  },
+  {
+    date: new Date("2025-01-05"), // Same day - will stack!
+    icon: "🐛",
+    title: "Bug Fix",
+    description: "Fixed tooltip positioning",
+  },
+]
+
+function MyChart({ data }) {
+  return (
+    <LineChart data={data}>
+      <Line dataKey="users" />
+      <ChartMarkers items={markers} />
+      <ChartTooltip>
+        <MarkerContent markers={markers} />
+      </ChartTooltip>
+    </LineChart>
+  )
+}
+
+// Use the hook to get markers for the hovered date
+function MarkerContent({ markers }) {
+  const activeMarkers = useActiveMarkers(markers)
+  if (activeMarkers.length === 0) return null
+  return <MarkerTooltipContent markers={activeMarkers} />
+}
+```
+
+### ChartMarker Interface
+
+```ts
+interface ChartMarker {
+  date: Date // Date for marker position
+  icon: React.ReactNode // Icon (emoji or component)
+  title: string // Tooltip title
+  description?: string // Optional description
+  content?: React.ReactNode // Custom tooltip content
+  color?: string // Background color override
+  onClick?: () => void // Click handler
+  href?: string // URL to navigate to
+  target?: "_blank" | "_self" // Link target
+}
+```
+
+### ChartMarkers Props
+
+<auto-type-table cwd path="src/registry/charts/markers/chart-markers.tsx" name="ChartMarkersProps" />
+
+## Segment Selection
+
+Add click-drag and touch segment selection with composable components. The line highlight automatically shows the selected path segment.
+
+### Basic Usage
+
+Click and drag (or two-finger touch on mobile) to select a range:
+
+```tsx
+import { LineChart } from "@/components/charts/line-chart"
+import { Line } from "@/components/charts/line"
+import { Grid } from "@/components/charts/grid"
+import { XAxis } from "@/components/charts/x-axis"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import {
+  SegmentBackground,
+  SegmentLineFrom,
+  SegmentLineTo,
+} from "@/components/charts/segment"
+
+;<LineChart data={data}>
+  <Grid horizontal />
+  <Line dataKey="users" />
+  <SegmentBackground />
+  <SegmentLineFrom />
+  <SegmentLineTo />
+  <XAxis />
+  <ChartTooltip />
+</LineChart>
+```
+
+Use `SegmentBackground`, `SegmentLineFrom`, and `SegmentLineTo` independently — you do not need all three. Boundary lines support `variant="dashed" | "solid" | "gradient"`.
+
+### Reading Selection Data
+
+Use the `useChart` hook inside a child component to read the active selection:
+
+```tsx
+import { useChart } from "@/components/charts/chart-context"
+
+function SelectionStats({ onSelectionChange }) {
+  const { selection, data, xAccessor } = useChart()
+
+  useEffect(() => {
+    if (!selection?.active) {
+      onSelectionChange(null)
+      return
+    }
+
+    const startPoint = data[selection.startIndex]
+    const endPoint = data[selection.endIndex]
+    // Compute and report stats...
+    onSelectionChange({ startPoint, endPoint })
+  }, [selection, data, xAccessor, onSelectionChange])
+
+  return null
+}
+```
+
+### SegmentBackground
+
+<auto-type-table cwd path="src/registry/charts/segment.tsx" name="SegmentBackgroundProps" />
+
+### SegmentLineFrom / SegmentLineTo
+
+<auto-type-table cwd path="src/registry/charts/segment.tsx" name="SegmentLineProps" />

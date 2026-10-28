@@ -1,0 +1,142 @@
+---
+title: Radar Chart
+description: A composable multi-series radar chart with animated polygons, hover interactions, and customizable metrics
+---
+
+<ComponentPreview name="p-radar-chart-7" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="radar-chart" />
+
+## Usage
+
+The Radar Chart uses a composable API. Define your metrics and data, then combine components:
+
+```tsx
+import { RadarChart } from "@/components/charts/radar-chart"
+import { RadarGrid } from "@/components/charts/radar-grid"
+import { RadarAxis } from "@/components/charts/radar-axis"
+import { RadarLabels } from "@/components/charts/radar-labels"
+import { RadarArea } from "@/components/charts/radar-area"
+
+const metrics = [
+  { key: "speed", label: "Speed" },
+  { key: "power", label: "Power" },
+  { key: "technique", label: "Technique" },
+]
+
+const data = [
+  {
+    label: "Player A",
+    color: "#3b82f6",
+    values: { speed: 85, power: 70, technique: 90 },
+  },
+  {
+    label: "Player B",
+    color: "#f59e0b",
+    values: { speed: 65, power: 95, technique: 60 },
+  },
+]
+
+export default function PerformanceRadar() {
+  return (
+    <RadarChart data={data} metrics={metrics} size={400}>
+      <RadarGrid />
+      <RadarAxis />
+      <RadarLabels />
+      {data.map((item, index) => (
+        <RadarArea key={item.label} index={index} />
+      ))}
+    </RadarChart>
+  )
+}
+```
+
+## API Reference
+
+### RadarChart
+
+The root container that provides context to all children.
+
+<auto-type-table cwd path="src/registry/charts/radar-chart.tsx" name="RadarChartProps" />
+
+### RadarGrid
+
+Renders the circular grid lines (spider web pattern).
+
+<auto-type-table cwd path="src/registry/charts/radar-grid.tsx" name="RadarGridProps" />
+
+### RadarAxis
+
+Renders axis lines from center to each metric.
+
+<auto-type-table cwd path="src/registry/charts/radar-axis.tsx" name="RadarAxisProps" />
+
+### RadarLabels
+
+Renders metric labels around the perimeter.
+
+<auto-type-table cwd path="src/registry/charts/radar-labels.tsx" name="RadarLabelsProps" />
+
+### RadarArea
+
+Renders a single data polygon with hover effects.
+
+<auto-type-table cwd path="src/registry/charts/radar-area.tsx" name="RadarAreaProps" />
+
+## Data Shape
+
+```ts
+interface RadarMetric {
+  key: string // Unique identifier
+  label: string // Display label
+}
+
+interface RadarData {
+  label: string // Series label
+  color: string // Series color
+  values: Record<string, number> // metric key -> value (0-100)
+}
+```
+
+See the [charts gallery](/charts/radar-chart) for minimal styles, legend sync, and layout variations.
+
+## Theming
+
+`RadarGrid` and `RadarAxis` strokes default to `color-mix(in oklab, var(--color-foreground) 10%, transparent)` — the same tone as ring tracks and gauge inactive notches. Pass a custom `stroke` prop to override.
+
+Series fill colors default to [`--color-chart-1` … `--color-chart-5`](/docs/styling) via `defaultRadarColors`.
+
+## Hooks
+
+### useRadar
+
+Access the radar context from any child component:
+
+```tsx
+import { useRadar } from "@/components/charts/radar-context"
+
+function CustomComponent() {
+  const {
+    data,
+    metrics,
+    radius,
+    hoveredIndex,
+    setHoveredIndex,
+    getPointPosition,
+  } = useRadar()
+  // ...
+}
+```
+
+## Animation
+
+The radar chart features a multi-phase animation on mount:
+
+1. **Grid Expansion** - Concentric circles scale in from center
+2. **Axis Growth** - Lines grow outward from center
+3. **Label Fade** - Metric labels fade in
+4. **Area Expansion** - Data polygons animate from center to values
+
+All animations use spring physics for natural motion. Hover interactions are instant with no delays.

@@ -1,0 +1,125 @@
+---
+title: Band
+description: Shaded range between per-row upper and lower values on a line chart — range area charts, min/max ranges, confidence intervals, and Bollinger bands
+---
+
+<ComponentPreview name="p-chart-band-3" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="chart-band" />
+
+## Usage
+
+`Band` fills the area between two data keys on every row — a min/max range, a forecast interval, or Bollinger bands. Use it inside `LineChart` (or `AreaChart` / `ComposedChart`) and place it **before** your `<Line>`s so the lines paint on top.
+
+- It animates in left-to-right with the lines through the shared reveal clip, and morphs with them when `data` changes.
+- Both edges extend the y-domain, so the band is never clipped at the top or bottom of the plot — even with no `<Line>` at all.
+- `ChartTooltip` adds a `low – high` row per band (labelled with `label`) and a dot on each edge. Pass `showInTooltip={false}` for a purely decorative band.
+- `null` / non-numeric edge values break the band into separate segments.
+
+```tsx
+import { Band } from "@/components/charts/band"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { Grid } from "@/components/charts/grid"
+import { Line } from "@/components/charts/line"
+import { LineChart } from "@/components/charts/line-chart"
+import { XAxis } from "@/components/charts/x-axis"
+
+const data = [
+  {
+    date: new Date("2024-01-01"),
+    value: 142,
+    valueUpper: 160,
+    valueLower: 125,
+  },
+  {
+    date: new Date("2024-01-02"),
+    value: 151,
+    valueUpper: 170,
+    valueLower: 133,
+  },
+  // ...
+]
+
+;<LineChart data={data}>
+  <Grid horizontal />
+  <Band upperKey="valueUpper" lowerKey="valueLower" label="range" />
+  <Line dataKey="value" />
+  <XAxis />
+  <ChartTooltip />
+</LineChart>
+```
+
+## Range area
+
+A `Band` on its own is a range area chart: a filled area between a per-row low and high, with no centre line. The y-axis scales to the band, and the tooltip shows the range for the hovered date.
+
+<ComponentPreview name="p-chart-band-1" className="**:data-[slot=preview]:w-full" />
+
+## Range area + line combo
+
+Use one `Band` per series and give each the same colour as its `Line` — for example each team's min / max around its average. The tooltip lists every line value and every band range for the hovered date. `strokeWidth={0}` drops the band edges so only the lines are stroked.
+
+`Legend` takes explicit items, so add one entry per series in the shared colour.
+
+<ComponentPreview name="p-chart-band-2" className="**:data-[slot=preview]:w-full" />
+
+## Bollinger bands
+
+`withBollingerBands` adds a rolling simple moving average (SMA) ± `multiplier` standard deviations to each row. Rows before the window fills get `null` for all three keys, which `Band` renders as a gap (pass `minPeriods: 1` to start at the first row instead).
+
+To draw the SMA as a dashed middle line, use a second, zero-height `Band` with the same key for both edges — unlike `Line`, it skips the warm-up `null`s.
+
+<ComponentPreview name="p-chart-band-4" className="**:data-[slot=preview]:w-full" />
+
+<auto-type-table cwd path="src/registry/charts/bollinger.ts" name="BollingerBandsOptions" />
+
+`withBollingerBands` returns new rows and leaves the input array untouched. It uses the population standard deviation. Non-numeric values are skipped, and a row yields `null` when its window has fewer than `minPeriods` valid values — by default the full window must be numeric. With `minPeriods: 1` the first row's spread is zero, so the band starts pinched onto the line and widens as the window fills.
+
+## Fill types
+
+`fillType` switches between a flat `"solid"` fill, a vertical `"gradient"` (from `fillOpacity` at the upper edge to `gradientToOpacity` at the lower edge), and a `"pattern"` fill using the [`Background`](/docs/charts/utility/background) presets.
+
+<ComponentPreview name="p-chart-band-5" className="**:data-[slot=preview]:w-full" />
+
+## Edges
+
+### Faded edges
+
+`fadeEdges` fades the fill and strokes to transparent. Horizontal fades span the plot width; vertical fades span the band's own pixel height. `fadeSize` sets how much of that width or height each fade covers.
+
+<ComponentPreview name="p-chart-band-6" className="**:data-[slot=preview]:w-full" />
+
+### Edge strokes
+
+Both edges share `stroke`, `strokeWidth`, `strokeDasharray`, and `strokeOpacity`. Override one edge with `upperStroke` / `lowerStroke`, or pass `false` to hide it.
+
+<ComponentPreview name="p-chart-band-7" className="**:data-[slot=preview]:w-full" />
+
+## Band props
+
+<auto-type-table cwd path="src/registry/charts/band.tsx" name="BandProps" />
+
+### BandStrokeProps
+
+Every field falls back to the matching shared `Band` prop.
+
+<auto-type-table cwd path="src/registry/charts/band.tsx" name="BandStrokeProps" />
+
+### BandFadeEdges
+
+```ts
+type BandFadeEdges =
+  | boolean
+  | "left"
+  | "right"
+  | { top?: boolean; right?: boolean; bottom?: boolean; left?: boolean }
+```
+
+| Value | Fades |
+|-------|-------|
+| `false` | Nothing (default) |
+| `true` | All four sides |
+| `"left"` / `"right"` | That horizontal side only |
+| `{ left: true, right: true }` | Any combination of sides |

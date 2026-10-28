@@ -1,0 +1,93 @@
+---
+title: Grid
+description: A customizable grid component for charts with horizontal and vertical lines, edge fade, edge line hiding, and dashed styling
+---
+
+<ComponentPreview name="p-chart-grid-3" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="chart-grid" />
+
+## Usage
+
+The Grid component adds visual reference lines to charts. It must be used inside a chart component (`LineChart`, `AreaChart`, `BarChart`, `ScatterChart`, `CandlestickChart`, `LiveLineChart`, and other cartesian charts).
+
+```tsx
+import { LineChart } from "@/components/charts/line-chart"
+import { Line } from "@/components/charts/line"
+import { Grid } from "@/components/charts/grid"
+import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+
+;<LineChart data={data}>
+  <Grid horizontal />
+  <Line dataKey="value" />
+  <ChartTooltip />
+</LineChart>
+```
+
+## API Reference
+
+<auto-type-table cwd path="src/registry/charts/grid.tsx" name="GridProps" />
+
+## Examples
+
+### Horizontal Only (Default)
+
+The most common configuration with horizontal reference lines.
+
+<ComponentPreview name="p-chart-grid-1" className="**:data-[slot=preview]:w-full" />
+
+### Vertical Only
+
+Use vertical grid lines to emphasize time intervals.
+
+<ComponentPreview name="p-chart-grid-2" className="**:data-[slot=preview]:w-full" />
+
+### Both Horizontal and Vertical
+
+Display a full grid for detailed reference. Turn off `fadeHorizontal` so the rows run edge to edge like the columns (vertical lines don't fade by default).
+
+<ComponentPreview name="p-chart-grid-3" className="**:data-[slot=preview]:w-full" />
+
+### Solid Lines
+
+Remove the dash pattern for solid grid lines.
+
+<ComponentPreview name="p-chart-grid-4" className="**:data-[slot=preview]:w-full" />
+
+### Without Edge Fade
+
+Disable the edge fade effect for sharp line endings.
+
+<ComponentPreview name="p-chart-grid-5" className="**:data-[slot=preview]:w-full" />
+
+### Hide edge lines
+
+Omit the outermost horizontal or vertical grid lines — useful when the chart border already provides a frame.
+
+<ComponentPreview name="p-chart-grid-6" className="**:data-[slot=preview]:w-full" />
+
+### Dense Grid
+
+Increase the number of grid lines for more granular reference.
+
+<ComponentPreview name="p-chart-grid-7" className="**:data-[slot=preview]:w-full" />
+
+### Custom Styling
+
+```tsx
+<LineChart data={data}>
+  <Grid
+    horizontal
+    vertical
+    stroke="color-mix(in oklab, var(--color-foreground) 10%, transparent)"
+    strokeOpacity={0.5}
+    strokeWidth={0.5}
+    strokeDasharray=""
+    fadeHorizontal={false}
+    fadeVertical={false}
+  />
+  <Line dataKey="value" />
+</LineChart>
+```

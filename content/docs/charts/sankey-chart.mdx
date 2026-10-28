@@ -1,0 +1,125 @@
+---
+title: Sankey Chart
+description: A composable sankey diagram for visualizing flow between nodes with animated links and interactive tooltips
+---
+
+<ComponentPreview name="p-sankey-chart-1" className="**:data-[slot=preview]:w-full" />
+
+## Installation
+
+<InstallationTabs name="sankey-chart" />
+
+## Usage
+
+The Sankey Chart uses a composable API similar to other charts. Build diagrams by combining components:
+
+```tsx
+import { SankeyChart } from "@/components/charts/sankey/sankey-chart"
+import { SankeyNode } from "@/components/charts/sankey/sankey-node"
+import { SankeyLink } from "@/components/charts/sankey/sankey-link"
+import { SankeyTooltip } from "@/components/charts/sankey/sankey-tooltip"
+
+const data = {
+  nodes: [
+    { name: "Organic Search", category: "source" },
+    { name: "Homepage", category: "landing" },
+    { name: "Converted", category: "outcome" },
+  ],
+  links: [
+    { source: 0, target: 1, value: 100 },
+    { source: 1, target: 2, value: 80 },
+  ],
+}
+
+export default function FlowDiagram() {
+  return (
+    <SankeyChart data={data}>
+      <SankeyLink />
+      <SankeyNode lineCap={4} labelOrientation="vertical" />
+      <SankeyTooltip />
+    </SankeyChart>
+  )
+}
+```
+
+## API Reference
+
+### SankeyChart
+
+The root component that computes the layout and provides context to children.
+
+<auto-type-table cwd path="src/registry/charts/sankey/sankey-chart.tsx" name="SankeyChartProps" />
+
+### SankeyNode
+
+Renders the nodes (bars) in the diagram with animated initialization and internal labels.
+
+<auto-type-table cwd path="src/registry/charts/sankey/sankey-node.tsx" name="SankeyNodeProps" />
+
+### SankeyLink
+
+Renders the links (flows) between nodes with animated path reveal and gradient colors.
+
+<auto-type-table cwd path="src/registry/charts/sankey/sankey-link.tsx" name="SankeyLinkProps" />
+
+### SankeyTooltip
+
+Displays tooltips for nodes and links on hover.
+
+<auto-type-table cwd path="src/registry/charts/sankey/sankey-tooltip.tsx" name="SankeyTooltipProps" />
+
+## Data Format
+
+The sankey data follows the d3-sankey format:
+
+```ts
+interface SankeyData {
+  nodes: Array<{
+    name: string
+    category: "source" | "landing" | "outcome"
+    [key: string]: unknown
+  }>
+  links: Array<{
+    source: number // Index into nodes array
+    target: number // Index into nodes array
+    value: number // Flow value
+  }>
+}
+```
+
+## Label orientation
+
+Outside node labels default to horizontal text on the left or right of each column. Pass `labelOrientation="vertical"` on `SankeyNode` to rotate labels 90° along the node edge — the node name and session count stay on separate lines, stacked along the reading direction. Use wider side margins so rotated labels are not clipped.
+
+```tsx
+<SankeyChart data={data} margin={{ top: 40, right: 80, bottom: 40, left: 80 }}>
+  <SankeyLink />
+  <SankeyNode labelOrientation="vertical" />
+  <SankeyTooltip />
+</SankeyChart>
+```
+
+## Animation
+
+The sankey chart uses the same animation system as other charts:
+
+- **Nodes**: ScaleY and opacity fade in, staggered by index
+- **Links**: Grow from source to target node using stroke-dashoffset animation
+- **Gradients**: Links use gradient colors flowing from source node color to target node color
+- **Easing**: `cubic-bezier(0.85, 0, 0.15, 1)` for smooth, organic motion
+
+### Animation Timeline
+
+- **0-600ms**: Nodes fade/scale in (staggered)
+- **200-1100ms**: Links grow from source to target (staggered, starts after nodes begin appearing)
+
+## Hover Behavior
+
+When hovering over a node or link:
+
+- Hovered link and its source/target nodes stay at full opacity
+- Connected nodes and links remain visible
+- All other links and nodes fade
+- Tooltip appears showing relevant data
+
+See the [charts gallery](/charts/sankey-chart) for label-free layouts and pattern fills.
