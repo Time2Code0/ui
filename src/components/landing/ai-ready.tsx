@@ -73,7 +73,7 @@ export function AiReady() {
       <div className="grid lg:grid-cols-3">
         <div className="px-4 py-10 sm:px-8 lg:col-span-2">
           <h2
-            className="text-balance font-medium text-4xl leading-[1.05] tracking-[-0.03em] sm:text-5xl"
+            className="text-balance font-medium text-4xl leading-[1.05] tracking-[-0.03em] lg:text-5xl"
             id="ai-title"
           >
             Ready for AI ✨

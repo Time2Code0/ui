@@ -28,7 +28,7 @@ export function Particle() {
               <span className="relative block h-[70px] w-[88px] overflow-hidden rounded-lg not-peer-data-checked:opacity-80 shadow-xs transition-shadow peer-data-disabled:cursor-not-allowed peer-data-disabled:opacity-64 peer-data-checked:ring-2 peer-data-checked:ring-foreground/48 peer-data-checked:ring-offset-1 peer-data-checked:ring-offset-background">
                 {themePreviews[item.value]}
               </span>
-              <span className="not-peer-data-checked:text-foreground-muted/72">
+              <span className="not-peer-data-checked:text-foreground-muted">
                 {item.label}
               </span>
             </FieldLabel>

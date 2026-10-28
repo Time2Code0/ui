@@ -138,7 +138,7 @@ function DropzoneContent({ children, className }: DropzoneContentProps) {
     >
       {children ?? (
         <>
-          <div className="flex size-8 items-center justify-center rounded-md bg-muted text-foreground-muted">
+          <div className="flex size-8 items-center justify-center rounded-md bg-background-muted text-foreground-muted">
             <Icon icon={Upload01Icon} size={16} />
           </div>
 
@@ -197,7 +197,7 @@ function DropzoneEmptyState({ children, className }: DropzoneEmptyStateProps) {
     >
       {children ?? (
         <>
-          <div className="flex size-8 items-center justify-center rounded-md bg-muted text-foreground-muted">
+          <div className="flex size-8 items-center justify-center rounded-md bg-background-muted text-foreground-muted">
             <Icon icon={Upload01Icon} size={16} />
           </div>
 

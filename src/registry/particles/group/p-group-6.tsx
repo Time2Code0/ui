@@ -20,12 +20,12 @@ export function Particle() {
         <Icon aria-hidden="true" icon={FilesIcon} />
         Files
       </Button>
-      <GroupSeparator className="bg-foreground/72" />
+      <GroupSeparator className="bg-foreground/70" />
       <Button>
         <Icon aria-hidden="true" icon={FilmIcon} />
         Media
       </Button>
-      <GroupSeparator className="bg-foreground/72" />
+      <GroupSeparator className="bg-foreground/70" />
       <Menu>
         <MenuTrigger
           render={

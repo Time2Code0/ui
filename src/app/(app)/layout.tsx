@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import { cn } from "cn";
 import { NextProvider } from "fumadocs-core/framework/next";
 
@@ -56,7 +58,9 @@ export default function Layout({ children }: LayoutProps<"/">) {
             </div>
 
             <div className="flex items-center gap-2">
-              <MainNav navItems={siteConfig.navItems} />
+              <Suspense>
+                <MainNav navItems={siteConfig.navItems} />
+              </Suspense>
 
               <Cmdk navItems={siteConfig.navItems} tree={source.pageTree} />
 

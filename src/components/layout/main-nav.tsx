@@ -2,6 +2,8 @@
 
 import { usePathname } from "next/navigation";
 
+import { cn } from "cn";
+
 import { buttonVariants } from "@/registry/ui/button";
 import { Link } from "@/registry/ui/link";
 
@@ -16,8 +18,11 @@ export function MainNav({
     <nav className="hidden items-center gap-2 lg:flex">
       {navItems.map((item) => (
         <Link
-          className={buttonVariants({ variant: "ghost" })}
-          data-pressed={pathname.includes(item.href) || undefined}
+          className={cn(
+            buttonVariants({ variant: "ghost" }),
+            (pathname === item.href || pathname.startsWith(`${item.href}/`)) &&
+              "bg-accent"
+          )}
           href={item.href}
           key={item.href}
         >

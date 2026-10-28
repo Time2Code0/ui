@@ -3,15 +3,23 @@
 import type * as PageTree from "fumadocs-core/page-tree";
 import type { source } from "@/lib/source";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
+import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { cn } from "cn";
 import { searchPath } from "fumadocs-core/breadcrumb";
+import { flattenTree } from "fumadocs-core/page-tree";
 
 import { useActiveIndicator } from "@/hooks/use-active-indicator";
 import { groupsOf, isLayoutTabActive, type LayoutTab } from "@/lib/docs-tree";
 import { Badge } from "@/registry/ui/badge";
+import {
+  Collapsible,
+  CollapsiblePanel,
+  CollapsibleTrigger,
+} from "@/registry/ui/collapsible";
+import { Icon } from "@/registry/ui/icon";
 import { Link } from "@/registry/ui/link";
 import {
   Sidebar,
@@ -23,7 +31,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
 } from "@/registry/ui/sidebar";
+
 export function DocsSidebar({
   tree,
   tabs,
@@ -97,8 +109,22 @@ export function DocsSidebar({
 
             <SidebarGroupContent>
               <SidebarMenu className="gap-0.5">
-                {group.children.map((node) =>
-                  node.type === "page" ? (
+                {group.children.map((node) => {
+                  if (node.type === "folder") {
+                    return (
+                      <FolderEntry
+                        folder={node}
+                        key={node.$id}
+                        pathname={pathname}
+                      />
+                    );
+                  }
+
+                  if (node.type === "separator") {
+                    return null;
+                  }
+
+                  return (
                     <SidebarMenuItem key={node.url}>
                       <SidebarMenuButton
                         className="h-auto min-h-8 py-1.5 ps-3.5 text-foreground-muted hover:bg-transparent active:bg-transparent data-[active=true]:bg-transparent"
@@ -111,13 +137,70 @@ export function DocsSidebar({
                         ) : null}
                       </SidebarMenuButton>
                     </SidebarMenuItem>
-                  ) : null
-                )}
+                  );
+                })}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
         ))}
       </SidebarContent>
     </Sidebar>
+  );
+}
+
+function FolderEntry({
+  folder,
+  pathname,
+}: {
+  folder: PageTree.Folder;
+  pathname: string;
+}) {
+  const pages = flattenTree(folder.children);
+  const holdsPage = pages.some((page) => page.url === pathname);
+
+  const [open, setOpen] = useState(holdsPage);
+
+  // Navigating into the folder from elsewhere (search, a link in a page) opens it.
+  const [seen, setSeen] = useState(pathname);
+  if (seen !== pathname) {
+    setSeen(pathname);
+
+    if (holdsPage) {
+      setOpen(true);
+    }
+  }
+
+  return (
+    <SidebarMenuItem>
+      <Collapsible onOpenChange={setOpen} open={open}>
+        <CollapsibleTrigger
+          render={
+            <SidebarMenuButton className="group/folder h-auto min-h-8 gap-2 py-1.5 ps-3.5 text-foreground-muted hover:bg-transparent active:bg-transparent data-[active=true]:bg-transparent" />
+          }
+        >
+          <span className="flex-1 truncate">{folder.name}</span>
+          <Icon
+            className="size-3.5 transition-transform duration-200 group-aria-expanded/folder:rotate-90 motion-reduce:transition-none"
+            icon={ArrowRight01Icon}
+          />
+        </CollapsibleTrigger>
+
+        <CollapsiblePanel>
+          <SidebarMenuSub className="me-0 gap-0.5 pe-0">
+            {pages.map((page) => (
+              <SidebarMenuSubItem key={page.url}>
+                <SidebarMenuSubButton
+                  className="h-auto min-h-7 py-1 text-foreground-muted hover:bg-transparent active:bg-transparent data-[active=true]:bg-transparent data-[active=true]:font-medium sm:h-auto"
+                  isActive={page.url === pathname}
+                  render={<Link href={page.url} />}
+                >
+                  <span>{page.name}</span>
+                </SidebarMenuSubButton>
+              </SidebarMenuSubItem>
+            ))}
+          </SidebarMenuSub>
+        </CollapsiblePanel>
+      </Collapsible>
+    </SidebarMenuItem>
   );
 }

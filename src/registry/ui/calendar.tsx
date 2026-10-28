@@ -36,7 +36,7 @@ export function Calendar({
     day: "size-(--cell-size) text-sm py-px",
     day_button: cn(
       buttonClassNames,
-      "in-data-disabled:pointer-events-none in-[.range-middle]:rounded-none in-[.range-end:not(.range-start)]:rounded-s-none in-[.range-start:not(.range-end)]:rounded-e-none in-[.range-middle]:in-data-selected:bg-accent in-data-selected:bg-foreground in-[.range-middle]:in-data-selected:text-foreground in-data-disabled:text-foreground-muted/72 in-data-outside:text-foreground-muted/72 in-data-selected:in-data-outside:text-background in-data-selected:text-background in-data-disabled:line-through outline-none in-[[data-selected]:not(.range-middle)]:transition-[color,background-color,border-radius,box-shadow] focus-visible:z-1 focus-visible:ring-[3px] focus-visible:ring-foreground/50"
+      "in-data-disabled:pointer-events-none in-[.range-middle]:rounded-none in-[.range-end:not(.range-start)]:rounded-s-none in-[.range-start:not(.range-end)]:rounded-e-none in-[.range-middle]:in-data-selected:bg-accent in-data-selected:bg-foreground in-[.range-middle]:in-data-selected:text-foreground in-data-disabled:text-foreground-muted/70 in-data-outside:text-foreground-muted/70 in-data-selected:in-data-outside:text-background in-data-selected:text-background in-data-disabled:line-through outline-none in-[[data-selected]:not(.range-middle)]:transition-[color,background-color,border-radius,box-shadow] focus-visible:z-1 focus-visible:ring-[3px] focus-visible:ring-foreground/50"
     ),
     dropdown: "absolute bg-background inset-0 opacity-0",
     dropdown_root: cn(
@@ -59,9 +59,9 @@ export function Calendar({
     today:
       "*:after:pointer-events-none *:after:absolute *:after:bottom-1 *:after:start-1/2 *:after:z-1 *:after:size-[3px] *:after:-translate-x-1/2 *:after:rounded-full *:after:bg-foreground [&[data-selected]:not(.range-middle)>*]:after:bg-background [&[data-disabled]>*]:after:bg-foreground/30 *:after:transition-colors",
     week_number:
-      "size-(--cell-size) p-0 text-xs font-medium text-foreground-muted/72",
+      "size-(--cell-size) p-0 text-xs font-medium text-foreground-muted/70",
     weekday:
-      "size-(--cell-size) p-0 text-xs font-medium text-foreground-muted/72",
+      "size-(--cell-size) p-0 text-xs font-medium text-foreground-muted/70",
   };
   const mergedClassNames: typeof defaultClassNames = Object.keys(
     defaultClassNames

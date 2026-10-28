@@ -20,10 +20,7 @@ export function ComponentPreviewStage({
   const handleRefresh = useCallback(() => setKey((prev) => prev + 1), []);
 
   return (
-    <div
-      className="relative flex min-h-72 items-center justify-center bg-white px-4 py-12 sm:px-6 dark:bg-[oklch(0.159_0_0)]"
-      data-slot="preview-stage"
-    >
+    <>
       <div className="absolute top-2.5 right-2.5 z-10 flex items-center gap-1">
         <OpenInV0Button name={name} />
 
@@ -38,6 +35,6 @@ export function ComponentPreviewStage({
       </div>
 
       <Fragment key={key}>{children}</Fragment>
-    </div>
+    </>
   );
 }

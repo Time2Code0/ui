@@ -14,7 +14,7 @@ export function Particle() {
   return (
     <Group aria-label="Subscription actions">
       <Button>Subscribe</Button>
-      <GroupSeparator className="bg-foreground/72" />
+      <GroupSeparator className="bg-foreground/70" />
       <Menu>
         <MenuTrigger
           render={

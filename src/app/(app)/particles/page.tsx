@@ -48,7 +48,7 @@ async function ParticlesDisplayServer({
 
 export default function Page({ searchParams }: PageProps<"/particles">) {
   return (
-    <main className="px-4 sm:px-6 lg:px-8">
+    <main className="px-4 sm:px-6">
       <div className="mx-auto max-w-2xl pt-16 pb-8 text-center md:pt-20">
         <h1 className="font-semibold text-3xl xl:text-4xl">Browse Particles</h1>
         <p className="mt-3 text-balance text-foreground-muted text-lg">

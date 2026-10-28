@@ -135,7 +135,7 @@ function normalize(urlOrPath: string) {
 /**
  * Splits a root folder into sidebar groups, each a folder of pages: the leading pages (unnamed: the
  * section's name already says what they are), one group per `---Separator---`, and one per nested
- * folder, its pages flattened.
+ * folder. Folders nested in that one stay folders, shown as collapsible entries.
  */
 export function groupsOf(root: PageTree.Folder): PageTree.Folder[] {
   const groups: PageTree.Folder[] = [];
@@ -146,7 +146,16 @@ export function groupsOf(root: PageTree.Folder): PageTree.Folder[] {
 
   for (const node of nodes) {
     if (node.type === "folder") {
-      groups.push(group(node.$id, node.name, flattenTree([node])));
+      const children = node.index
+        ? [node.index, ...node.children]
+        : node.children;
+      groups.push(
+        group(
+          node.$id,
+          node.name,
+          children.filter((child) => child.type !== "separator")
+        )
+      );
       current = undefined;
     } else if (node.type === "separator") {
       current = group(node.$id, node.name ?? "");

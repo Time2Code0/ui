@@ -22,7 +22,7 @@ function Section({
             key={row.label}
           >
             <div className="min-w-0">
-              <code className="relative break-all rounded-md bg-muted px-[0.3rem] py-[0.2rem] font-mono text-[.8125rem] text-foreground-muted outline-none">
+              <code className="relative break-all rounded-md bg-background-muted px-[0.3rem] py-[0.2rem] font-mono text-[.8125rem] text-foreground-muted outline-none">
                 {row.label}
               </code>
             </div>

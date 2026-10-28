@@ -7,28 +7,16 @@ import { useCallback, useId, useRef, useState } from "react";
 import {
   ArrowRight01Icon,
   ComputerIcon,
-  Copy01Icon,
   File01Icon,
   Folder01Icon,
   LinkSquare02Icon,
   RefreshIcon,
   SmartPhone01Icon,
   Tablet01Icon,
-  Tick01Icon,
-  UnfoldMoreIcon,
 } from "@hugeicons/core-free-icons";
 import { cn } from "cn";
-import { AnimatePresence, motion } from "motion/react";
 
-import { BunIcon, NpmIcon, PnpmIcon, YarnIcon } from "@/components/brand-icons";
-import {
-  type PackageManager,
-  PM_EXECUTE_COMMANDS,
-  packageManagers,
-  useConfig,
-} from "@/hooks/use-config";
 import { siteConfig } from "@/lib/config";
-import { useCopyToClipboard } from "@/registry/hooks/use-copy-to-clipboard";
 import { Button, buttonVariants } from "@/registry/ui/button";
 import {
   Collapsible,
@@ -38,19 +26,17 @@ import {
 import { Group, GroupSeparator } from "@/registry/ui/group";
 import { Icon } from "@/registry/ui/icon";
 import { Link } from "@/registry/ui/link";
-import {
-  Menu,
-  MenuGroup,
-  MenuGroupLabel,
-  MenuPopup,
-  MenuRadioGroup,
-  MenuRadioItem,
-  MenuTrigger,
-} from "@/registry/ui/menu";
 import { Separator } from "@/registry/ui/separator";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/registry/ui/tabs";
 import { ToggleGroup, ToggleGroupItem } from "@/registry/ui/toggle-group";
-import { Tooltip, TooltipPopup, TooltipTrigger } from "@/registry/ui/tooltip";
+import {
+  Tooltip,
+  TooltipPopup,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/registry/ui/tooltip";
+
+import { CopyRegistryButton } from "./copy-registry-button";
 
 type View = "preview" | "code";
 
@@ -63,16 +49,6 @@ const viewports = [
 
 const MIN_PREVIEW_WIDTH = 320;
 const RESIZE_STEP = 16;
-
-const packageManagerIcons: Record<
-  PackageManager,
-  (props: React.SVGProps<SVGSVGElement>) => React.ReactElement
-> = {
-  bun: BunIcon,
-  npm: NpmIcon,
-  pnpm: PnpmIcon,
-  yarn: YarnIcon,
-};
 
 export interface BlockViewerFile {
   /** Highlighted source, rendered on the server. */
@@ -143,59 +119,83 @@ export function BlockViewer({
         </TabsList>
 
         <div className="ms-auto flex items-center gap-2">
-          <ToggleGroup
-            aria-label="Preview size"
-            className="max-md:hidden"
-            onValueChange={handleViewportChange}
-            size="sm"
-            value={viewport ? [viewport.value] : []}
-            variant="outline"
-          >
-            {viewports.map((item) => (
-              <ToolbarTooltip key={item.value} label={item.label}>
-                <ToggleGroupItem aria-label={item.label} value={item.value}>
-                  <Icon icon={item.icon} />
-                </ToggleGroupItem>
-              </ToolbarTooltip>
-            ))}
-          </ToggleGroup>
+          <TooltipProvider>
+            <ToggleGroup
+              aria-label="Preview size"
+              className="max-md:hidden"
+              onValueChange={handleViewportChange}
+              size="sm"
+              value={viewport ? [viewport.value] : []}
+              variant="outline"
+            >
+              {viewports.map((item) => (
+                <Tooltip key={item.value}>
+                  <TooltipTrigger
+                    render={
+                      <ToggleGroupItem
+                        aria-label={item.label}
+                        value={item.value}
+                      >
+                        <Icon icon={item.icon} />
+                      </ToggleGroupItem>
+                    }
+                  />
+                  <TooltipPopup>{item.label}</TooltipPopup>
+                </Tooltip>
+              ))}
+            </ToggleGroup>
+          </TooltipProvider>
 
           <Separator className="h-4 max-md:hidden" orientation="vertical" />
 
-          <Group aria-label="Preview actions">
-            <ToolbarTooltip label="Refresh preview">
-              <Button
-                aria-label="Refresh preview"
-                onClick={handleRefresh}
-                size="icon-sm"
-                variant="outline"
-              >
-                <Icon icon={RefreshIcon} />
-              </Button>
-            </ToolbarTooltip>
+          <TooltipProvider>
+            <Group aria-label="Preview actions">
+              <Tooltip>
+                <TooltipTrigger
+                  render={
+                    <Button
+                      aria-label="Refresh preview"
+                      onClick={handleRefresh}
+                      size="icon-sm"
+                      variant="outline"
+                    >
+                      <Icon icon={RefreshIcon} />
+                    </Button>
+                  }
+                />
+                <TooltipPopup>Refresh preview</TooltipPopup>
+              </Tooltip>
 
-            <GroupSeparator />
+              <GroupSeparator />
 
-            <ToolbarTooltip label="Open in new tab">
-              <Link
-                aria-label="Open in new tab"
-                className={buttonVariants({
-                  size: "icon-sm",
-                  variant: "outline",
-                })}
-                data-slot="button"
-                href={`/view/${name}`}
-                rel="noopener"
-                target="_blank"
-              >
-                <Icon icon={LinkSquare02Icon} />
-              </Link>
-            </ToolbarTooltip>
-          </Group>
+              <Tooltip>
+                <TooltipTrigger
+                  render={
+                    <Link
+                      aria-label="Open in new tab"
+                      className={buttonVariants({
+                        size: "icon-sm",
+                        variant: "outline",
+                      })}
+                      data-slot="button"
+                      href={`/view/${name}`}
+                      rel="noopener"
+                      target="_blank"
+                    >
+                      <Icon icon={LinkSquare02Icon} />
+                    </Link>
+                  }
+                />
+                <TooltipPopup>Open in new tab</TooltipPopup>
+              </Tooltip>
+
+              <GroupSeparator />
+
+              <CopyRegistryButton value={`${siteConfig.url}/r/${name}.json`} />
+            </Group>
+          </TooltipProvider>
 
           <Separator className="h-4" orientation="vertical" />
-
-          <BlockInstallButton name={name} />
         </div>
       </div>
 
@@ -383,21 +383,6 @@ function BlockViewerPreview({
   );
 }
 
-function ToolbarTooltip({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactElement;
-}) {
-  return (
-    <Tooltip>
-      <TooltipTrigger render={children} />
-      <TooltipPopup>{label}</TooltipPopup>
-    </Tooltip>
-  );
-}
-
 function FileTreeItem({
   node,
   depth,
@@ -494,98 +479,5 @@ function FileTreeButton({
       <Icon className="size-4" icon={File01Icon} />
       <span className="truncate">{name}</span>
     </button>
-  );
-}
-
-function BlockInstallButton({ name }: { name: string }) {
-  const [config, setConfig] = useConfig();
-  const { copied, copyToClipboard } = useCopyToClipboard();
-
-  const packageManager = config.packageManager || "pnpm";
-
-  const PackageManagerIcon = packageManagerIcons[packageManager];
-
-  const handleCopy = useCallback(
-    () =>
-      copyToClipboard(
-        `${PM_EXECUTE_COMMANDS[packageManager]} shadcn@latest add ${siteConfig.url}/r/${name}.json`
-      ),
-    [copyToClipboard, name, packageManager]
-  );
-
-  const handlePackageManagerChange = useCallback(
-    (value: PackageManager) => setConfig({ ...config, packageManager: value }),
-    [config, setConfig]
-  );
-
-  return (
-    <Group aria-label="Install block">
-      <Menu>
-        <MenuTrigger
-          render={
-            <Button
-              aria-label={`Package manager: ${packageManager}`}
-              className="gap-1 px-2"
-              size="sm"
-              variant="outline"
-            >
-              <PackageManagerIcon className="size-4" />
-              <Icon className="size-3.5" icon={UnfoldMoreIcon} />
-            </Button>
-          }
-        />
-        <MenuPopup align="start">
-          <MenuGroup>
-            <MenuGroupLabel>Package manager</MenuGroupLabel>
-            <MenuRadioGroup
-              onValueChange={handlePackageManagerChange}
-              value={packageManager}
-            >
-              {packageManagers.map((pm) => {
-                const ItemIcon = packageManagerIcons[pm];
-
-                return (
-                  <MenuRadioItem key={pm} value={pm}>
-                    <span className="flex items-center gap-2">
-                      <ItemIcon className="size-4" />
-                      {pm}
-                    </span>
-                  </MenuRadioItem>
-                );
-              })}
-            </MenuRadioGroup>
-          </MenuGroup>
-        </MenuPopup>
-      </Menu>
-
-      <GroupSeparator />
-
-      <ToolbarTooltip label={copied ? "Copied" : "Copy install command"}>
-        <Button
-          aria-label={copied ? "Copied" : "Copy install command"}
-          onClick={handleCopy}
-          size="sm"
-          variant="outline"
-        >
-          <span className="font-mono font-normal text-xs max-sm:hidden">
-            shadcn add {name}
-          </span>
-          <AnimatePresence initial={false} mode="popLayout">
-            <motion.span
-              animate={{ filter: "blur(0px)", opacity: 1, scale: 1 }}
-              exit={{ filter: "blur(4px)", opacity: 0, scale: 0.25 }}
-              initial={{ filter: "blur(4px)", opacity: 0, scale: 0.25 }}
-              key={copied ? "copied" : "copy"}
-              transition={{ bounce: 0, duration: 0.3, type: "spring" }}
-            >
-              <Icon
-                className="text-foreground-muted"
-                icon={copied ? Tick01Icon : Copy01Icon}
-              />
-            </motion.span>
-          </AnimatePresence>
-        </Button>
-      </ToolbarTooltip>
-    </Group>
   );
 }

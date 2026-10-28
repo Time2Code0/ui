@@ -15,6 +15,11 @@ const docs = defineDocs({
       },
     },
     schema: pageSchema.extend({
+      links: z
+        .object({
+          api: z.string().optional(),
+        })
+        .optional(),
       overview: z.string().optional(),
       /**
        * Marks the page in the sidebar. Set `status: new` on pages added since

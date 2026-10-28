@@ -30,7 +30,7 @@ export function Catalog() {
     >
       <div className="flex flex-col items-center gap-4 px-4 py-10 text-center sm:px-8">
         <h2
-          className="max-w-[22ch] text-balance font-medium text-4xl leading-[1.05] tracking-[-0.03em] sm:text-5xl"
+          className="max-w-[22ch] text-balance font-medium text-4xl leading-[1.05] tracking-[-0.03em] lg:text-5xl"
           id="components-title"
         >
           React components with every state built in.

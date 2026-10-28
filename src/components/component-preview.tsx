@@ -11,6 +11,7 @@ import { ComponentRenderer } from "./component-renderer";
 import { ComponentSource } from "./component-source";
 
 export interface ComponentPreviewProps {
+  align?: "center" | "start" | "end";
   className?: string;
   name: string;
 }
@@ -18,6 +19,7 @@ export interface ComponentPreviewProps {
 export async function ComponentPreview({
   name,
   className,
+  align = "center",
 }: ComponentPreviewProps) {
   const item = await getRegistryItem(name);
 
@@ -43,13 +45,19 @@ export async function ComponentPreview({
         </TabsList>
       </div>
       <TabsPanel value="preview">
-        <ComponentPreviewStage name={name}>
-          <Suspense
-            fallback={<Spinner className="size-5 text-foreground-muted" />}
-          >
-            <ComponentRenderer metaClassName={metaClassName} name={name} />
-          </Suspense>
-        </ComponentPreviewStage>
+        <div
+          className="relative flex min-h-72 w-full justify-center overflow-y-auto bg-white p-10 data-[align=start]:items-start data-[align=end]:items-end data-[align=center]:items-center max-sm:px-6 dark:bg-[oklch(0.159_0_0)]"
+          data-align={align}
+          data-slot="preview-stage"
+        >
+          <ComponentPreviewStage name={name}>
+            <Suspense
+              fallback={<Spinner className="size-5 text-foreground-muted" />}
+            >
+              <ComponentRenderer metaClassName={metaClassName} name={name} />
+            </Suspense>
+          </ComponentPreviewStage>
+        </div>
       </TabsPanel>
       <TabsPanel className="**:data-[slot=codeblock]:border-y-0" value="code">
         <ComponentSource

@@ -171,18 +171,6 @@ async function DocsPage(props: Pick<PageProps<"/docs/[[...slug]]">, "params">) {
 
           <Group className="mt-4 w-full">
             <Group>
-              <Button
-                aria-label="API Reference"
-                nativeButton={false}
-                render={<Link href={""} />}
-                variant="secondary"
-              >
-                <Icon icon={ExternalLinkIcon} />
-                <span>API Reference</span>
-              </Button>
-            </Group>
-
-            <Group className="ms-auto">
               <CopyMarkdownButton markdownUrl={`${baseUrl}/${page.url}.mdx`} />
 
               <GroupSeparator />
@@ -218,7 +206,21 @@ async function DocsPage(props: Pick<PageProps<"/docs/[[...slug]]">, "params">) {
               </Menu>
             </Group>
 
-            <Group>
+            {page.data.links?.api ? (
+              <Group>
+                <Button
+                  aria-label="API Reference"
+                  nativeButton={false}
+                  render={<Link href={""} />}
+                  variant="secondary"
+                >
+                  <Icon icon={ExternalLinkIcon} />
+                  <span>API Reference</span>
+                </Button>
+              </Group>
+            ) : null}
+
+            <Group className="ms-auto">
               <Button
                 aria-label="Previous"
                 disabled={!neighbours.previous}
@@ -248,11 +250,15 @@ async function DocsPage(props: Pick<PageProps<"/docs/[[...slug]]">, "params">) {
 
         {overview ? (
           <ul className="grid w-full flex-1 content-start gap-6 px-4 py-6 sm:grid-cols-2 sm:px-6 sm:py-8 lg:grid-cols-3 lg:gap-8 xl:grid-cols-4">
-            {getOverviewPages(overview).map((entry) => (
-              <li className="flex" key={entry.url}>
-                <ThumbnailCard slug={entry.slugs} />
-              </li>
-            ))}
+            {source
+              .getPages()
+              .filter((p) => p.slugs[0] === overview && p.slugs.length === 2)
+              .sort((a, b) => a.data.title.localeCompare(b.data.title))
+              .map((entry) => (
+                <li className="flex" key={entry.url}>
+                  <ThumbnailCard slug={entry.slugs} />
+                </li>
+              ))}
           </ul>
         ) : (
           <article
@@ -325,11 +331,4 @@ async function DocsPage(props: Pick<PageProps<"/docs/[[...slug]]">, "params">) {
       )}
     </div>
   );
-}
-
-function getOverviewPages(section: string) {
-  return source
-    .getPages()
-    .filter((page) => page.slugs[0] === section && page.slugs.length > 1)
-    .sort((a, b) => a.data.title.localeCompare(b.data.title));
 }

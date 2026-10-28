@@ -18,7 +18,7 @@ export function Hero() {
       <div className="relative grid gap-8 px-4 py-8 sm:px-8 md:py-12 lg:py-16 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-end xl:gap-10">
         <div className="motion-safe:fade-in motion-safe:slide-in-from-bottom-2 flex max-w-2xl flex-col items-start gap-2 fill-mode-both motion-safe:animate-in motion-safe:duration-700 xl:gap-4">
           <h1
-            className="text-balance font-medium text-4xl tracking-[-0.03em] lg:text-5xl"
+            className="text-balance font-medium text-4xl leading-[1.05] tracking-[-0.03em] lg:text-5xl"
             id="hero-title"
           >
             A component library built for humans and agents.
