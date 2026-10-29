@@ -22,6 +22,12 @@ import {
 import { Icon } from "@/registry/ui/icon";
 import { Link } from "@/registry/ui/link";
 import {
+  PreviewCard,
+  PreviewCardCreateHandle,
+  PreviewCardPopup,
+  PreviewCardTrigger,
+} from "@/registry/ui/preview-card";
+import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
@@ -36,12 +42,16 @@ import {
   SidebarMenuSubItem,
 } from "@/registry/ui/sidebar";
 
+const previewCardHandle = PreviewCardCreateHandle<PageTree.Item>();
+
 export function DocsSidebar({
   tree,
   tabs,
+  previews,
 }: {
   tree: typeof source.pageTree;
   tabs: LayoutTab[];
+  previews: Map<string, React.ReactNode>;
 }) {
   const sidebarContentRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
@@ -116,6 +126,7 @@ export function DocsSidebar({
                         folder={node}
                         key={node.$id}
                         pathname={pathname}
+                        previews={previews}
                       />
                     );
                   }
@@ -129,7 +140,7 @@ export function DocsSidebar({
                       <SidebarMenuButton
                         className="h-auto min-h-8 py-1.5 ps-3.5 text-foreground-muted hover:bg-transparent active:bg-transparent data-[active=true]:bg-transparent"
                         isActive={node.url === pathname}
-                        render={<Link href={node.url} />}
+                        render={renderLink(node, previews)}
                       >
                         <span>{node.name}</span>
                         {"status" in node && node.status === "new" ? (
@@ -144,6 +155,18 @@ export function DocsSidebar({
           </SidebarGroup>
         ))}
       </SidebarContent>
+
+      <PreviewCard handle={previewCardHandle}>
+        {({ payload }) => (
+          <PreviewCardPopup
+            className="w-72 bg-background-muted *:data-[slot=preview-card-viewport]:p-1 *:data-[slot=preview-card-viewport]:[--viewport-inline-padding:--spacing(1)]"
+            side="inline-end"
+            sideOffset={-24}
+          >
+            {payload !== undefined && previews.get(payload.url)}
+          </PreviewCardPopup>
+        )}
+      </PreviewCard>
     </Sidebar>
   );
 }
@@ -151,9 +174,11 @@ export function DocsSidebar({
 function FolderEntry({
   folder,
   pathname,
+  previews,
 }: {
   folder: PageTree.Folder;
   pathname: string;
+  previews: Map<string, React.ReactNode>;
 }) {
   const pages = flattenTree(folder.children);
   const holdsPage = pages.some((page) => page.url === pathname);
@@ -192,7 +217,7 @@ function FolderEntry({
                 <SidebarMenuSubButton
                   className="h-auto min-h-7 py-1 text-foreground-muted hover:bg-transparent active:bg-transparent data-[active=true]:bg-transparent data-[active=true]:font-medium sm:h-auto"
                   isActive={page.url === pathname}
-                  render={<Link href={page.url} />}
+                  render={renderLink(page, previews)}
                 >
                   <span>{page.name}</span>
                 </SidebarMenuSubButton>
@@ -203,4 +228,23 @@ function FolderEntry({
       </Collapsible>
     </SidebarMenuItem>
   );
+}
+
+function renderLink(
+  page: PageTree.Item,
+  previews: Map<string, React.ReactNode>
+) {
+  const link = <Link href={page.url} />;
+
+  if (previews.has(page.url)) {
+    return (
+      <PreviewCardTrigger
+        handle={previewCardHandle}
+        payload={page}
+        render={link}
+      />
+    );
+  }
+
+  return link;
 }

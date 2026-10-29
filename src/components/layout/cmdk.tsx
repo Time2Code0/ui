@@ -67,7 +67,8 @@ function getPageGroupItems(group: Folder) {
       const isComponent =
         item.url.includes("/ui/") ||
         item.url.includes("/marketing/") ||
-        item.url.includes("/hooks/");
+        item.url.includes("/hooks/") ||
+        item.url.includes("/charts/");
       const itemName = item.name?.toString() || "";
 
       items.push({
