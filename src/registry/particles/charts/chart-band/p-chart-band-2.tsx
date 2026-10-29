@@ -1,15 +1,17 @@
 "use client";
 
-import { Band } from "@/registry/charts/band";
-import { Grid } from "@/registry/charts/grid";
-import { Legend } from "@/registry/charts/legend/legend";
-import { LegendItem as LegendItemComponent } from "@/registry/charts/legend/legend-item";
-import { LegendLabel } from "@/registry/charts/legend/legend-label";
-import { LegendMarker } from "@/registry/charts/legend/legend-marker";
-import { Line } from "@/registry/charts/line";
-import { LineChart } from "@/registry/charts/line-chart";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { XAxis } from "@/registry/charts/x-axis";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { Band } from "@/registry/charts/chart-band/band";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import {
+  Legend,
+  LegendItem as LegendItemComponent,
+  LegendLabel,
+  LegendMarker,
+} from "@/registry/charts/chart-legend/legend";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { Line } from "@/registry/charts/line-chart/line";
+import { LineChart } from "@/registry/charts/line-chart/line-chart";
 
 const BAND_DEMO_POINT_COUNT = 24;
 

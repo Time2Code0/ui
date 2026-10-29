@@ -1,10 +1,10 @@
 "use client";
 
-import { Bar } from "@/registry/charts/bar";
-import { BarChart } from "@/registry/charts/bar-chart";
-import { BarXAxis } from "@/registry/charts/bar-x-axis";
-import { Grid } from "@/registry/charts/grid";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
+import { Bar } from "@/registry/charts/bar-chart/bar";
+import { BarChart } from "@/registry/charts/bar-chart/bar-chart";
+import { BarXAxis } from "@/registry/charts/bar-chart/bar-x-axis";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
 
 const barProfitLossData = [
   { month: "Jan", profit: 4200 },

@@ -9,8 +9,10 @@ import { CodeTabs } from "./code-tabs";
 import { Heading } from "./heading";
 
 export async function InstallationTabs({ name }: { name: string }) {
-  const item = await getRegistryItem(name);
-  const css = getCss(item);
+  const items = await getRegistryTree(name);
+  const dependencies = [...new Set(items.flatMap((item) => item.dependencies ?? []))];
+  const devDependencies = [...new Set(items.flatMap((item) => item.devDependencies ?? []))]
+  const css = getCss(items);
 
   return (
     <CodeTabs>
@@ -31,13 +33,19 @@ export async function InstallationTabs({ name }: { name: string }) {
         className="relative [&>.steps]:mt-6 [&_h3]:font-medium [&_h3]:text-base *:[figure]:first:mt-0"
         value="manual"
       >
-        {item.dependencies ? (
+        {dependencies.length > 0 ? (
           <>
             <Heading as="h3">Install the following dependencies:</Heading>
             <PackageManagerTabs
               className="not-typeset full-width"
-              command={`npm ${item.dependencies.join(" ")}`}
+              command={`npm ${dependencies.join(" ")}`}
             />
+            {devDependencies.length > 0 ? (
+              <PackageManagerTabs
+                className="not-typeset full-width"
+                command={`npm -D ${devDependencies.join(" ")}`}
+              />
+            ) : null}
           </>
         ) : null}
 
@@ -45,17 +53,16 @@ export async function InstallationTabs({ name }: { name: string }) {
           Copy and paste the following code into your project.
         </Heading>
 
-        <ComponentSource className="not-typeset full-width" name={name} />
-
-        {item.registryDependencies && item.registryDependencies.length > 0
-          ? item.registryDependencies?.map((dep) => (
-              <ComponentSource
-                className="not-typeset full-width"
-                key={dep}
-                name={dep.split("/").pop()?.replace(".json", "") ?? ""}
-              />
-            ))
-          : null}
+        {items.flatMap((item) =>
+          (item.files ?? []).map((file) => (
+            <ComponentSource
+              className="not-typeset full-width"
+              file={file.path}
+              key={`${item.name}:${file.path}`}
+              name={item.name}
+            />
+          ))
+        )}
 
         {css ? (
           <>
@@ -78,6 +85,35 @@ export async function InstallationTabs({ name }: { name: string }) {
 
 type RegistryItem = Awaited<ReturnType<typeof getRegistryItem>>;
 type CssRules = NonNullable<RegistryItem["css"]>;
+type CssVars = NonNullable<RegistryItem["cssVars"]>;
+
+const REGISTRY_ITEM_URL_REGEX = /\/r\/([\w-]+)\.json$/;
+
+// The item followed by all of its registry dependencies, breadth-first and
+// de-duplicated, so the manual install lists every file the CLI would add.
+async function getRegistryTree(
+  name: string,
+  items = new Map<string, RegistryItem>(),
+  pending = [name]
+): Promise<RegistryItem[]> {
+  const names = [...new Set(pending)].filter(
+    (pendingName) => !items.has(pendingName)
+  );
+
+  if (names.length === 0) {
+    return [...items.values()];
+  }
+
+  const registryItems = await Promise.all(names.map(getRegistryItem));
+
+  for (const item of registryItems) {
+    items.set(item.name, item);
+  }
+
+  const subItems = registryItems.flatMap((item) => (item.registryDependencies ?? []).map((dependency) => dependency.match(REGISTRY_ITEM_URL_REGEX)?.[1] ?? dependency))
+
+  return getRegistryTree(name, items, subItems);
+}
 
 const CSS_VAR_SELECTORS = [
   ["theme", "@theme inline"],
@@ -106,11 +142,24 @@ function printRules(rules: CssRules, depth = 0): string[] {
   });
 }
 
-function getCss({ cssVars, css }: RegistryItem) {
+function getCss(items: RegistryItem[]) {
+  const cssVars: CssVars = {};
+  const css: CssRules = {};
+
+  for (const item of items) {
+    for (const [key] of CSS_VAR_SELECTORS) {
+      if (item.cssVars?.[key]) {
+        cssVars[key] = { ...cssVars[key], ...item.cssVars[key] };
+      }
+    }
+
+    Object.assign(css, item.css);
+  }
+
   const blocks: string[] = [];
 
   for (const [key, selector] of CSS_VAR_SELECTORS) {
-    const vars = cssVars?.[key];
+    const vars = cssVars[key];
 
     if (vars && Object.keys(vars).length > 0) {
       const declarations = Object.fromEntries(
@@ -120,9 +169,7 @@ function getCss({ cssVars, css }: RegistryItem) {
     }
   }
 
-  if (css) {
-    blocks.push(...printRules(css));
-  }
+  blocks.push(...printRules(css));
 
   return blocks.length > 0 ? blocks.join("\n\n") : null;
 }

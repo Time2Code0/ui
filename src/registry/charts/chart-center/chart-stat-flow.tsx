@@ -1,0 +1,171 @@
+"use client";
+
+import { type ReactNode, useEffect, useMemo, useState } from "react";
+
+import NumberFlow from "@number-flow/react";
+import { cn } from "cn";
+
+/** Subset of `Intl.NumberFormatOptions` supported by NumberFlow */
+export interface ChartStatFlowFormat {
+  compactDisplay?: "short" | "long";
+  currency?: string;
+  currencyDisplay?: "symbol" | "narrowSymbol" | "code" | "name";
+  maximumFractionDigits?: number;
+  maximumSignificantDigits?: number;
+  minimumFractionDigits?: number;
+  minimumIntegerDigits?: number;
+  minimumSignificantDigits?: number;
+  notation?: "standard" | "compact";
+  style?: "decimal" | "percent" | "currency";
+  unit?: string;
+  unitDisplay?: "short" | "long" | "narrow";
+}
+
+export const defaultChartStatFlowFormat: ChartStatFlowFormat = {
+  maximumFractionDigits: 0,
+  notation: "standard",
+};
+
+function formatStatValue(
+  value: number,
+  formatOptions: ChartStatFlowFormat,
+  prefix?: string,
+  suffix?: string
+): string {
+  const formatted = new Intl.NumberFormat(undefined, formatOptions).format(
+    value
+  );
+  return `${prefix ?? ""}${formatted}${suffix ?? ""}`;
+}
+
+function useNumberFlowElementReady(): boolean {
+  const [ready, setReady] = useState(
+    () =>
+      typeof customElements !== "undefined" &&
+      Boolean(customElements.get("number-flow-react"))
+  );
+
+  useEffect(() => {
+    if (ready) {
+      return;
+    }
+    let cancelled = false;
+    customElements.whenDefined("number-flow-react").then(() => {
+      if (!cancelled) {
+        setReady(true);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [ready]);
+
+  return ready;
+}
+
+export interface ChartStatFlowProps {
+  formatOptions?: ChartStatFlowFormat;
+  icon?: ReactNode;
+  label: string;
+  labelClassName?: string;
+  prefix?: string;
+  suffix?: string;
+  value: number;
+  valueClassName?: string;
+}
+
+/**
+ * Shared value + label stack using NumberFlow (same layout as pie / ring centers).
+ * Parent should provide flex alignment and sizing when needed.
+ */
+export function ChartStatFlow({
+  value,
+  label,
+  formatOptions = defaultChartStatFlowFormat,
+  prefix,
+  suffix,
+  valueClassName = "text-2xl font-bold",
+  labelClassName = "text-xs",
+  icon,
+}: ChartStatFlowProps) {
+  const numberFlowReady = useNumberFlowElementReady();
+  const staticValue = useMemo(
+    () => formatStatValue(value, formatOptions, prefix, suffix),
+    [value, formatOptions, prefix, suffix]
+  );
+
+  return (
+    <>
+      {icon ? (
+        <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-background-muted/50">
+          {icon}
+        </div>
+      ) : null}
+      <span className={cn("text-foreground tabular-nums", valueClassName)}>
+        {numberFlowReady ? (
+          <NumberFlow
+            format={formatOptions}
+            isolate
+            prefix={prefix}
+            suffix={suffix}
+            value={value}
+            willChange
+          />
+        ) : (
+          staticValue
+        )}
+      </span>
+      <span className={cn("mt-0.5 text-foreground-muted", labelClassName)}>
+        {label}
+      </span>
+    </>
+  );
+}
+
+ChartStatFlow.displayName = "ChartStatFlow";
+
+export interface ChartCenterContentProps extends ChartStatFlowProps {
+  className?: string;
+  /** Custom center content; replaces the default stat when provided. */
+  renderCustom?: () => ReactNode;
+  /** Square size of the center area in px. */
+  size: number;
+}
+
+/**
+ * HTML stat in the hole of a donut (pie, ring). Rendered outside the SVG,
+ * stacked via CSS Grid, to avoid Safari's foreignObject transform bug
+ * (WebKit #23113).
+ */
+export function ChartCenterContent({
+  className,
+  renderCustom,
+  size,
+  ...statProps
+}: ChartCenterContentProps) {
+  return (
+    <div
+      className={cn(
+        chartCenterContainerClassName,
+        renderCustom
+          ? "flex items-center justify-center"
+          : "flex flex-col items-center justify-center text-center",
+        className
+      )}
+      style={{ height: size, width: size }}
+    >
+      {renderCustom ? renderCustom() : <ChartStatFlow {...statProps} />}
+    </div>
+  );
+}
+
+export const chartCenterContainerClassName =
+  "@container/chart-center size-full min-w-0";
+
+/** Primary stat — ~22% of center width, clamped between text-sm and text-3xl. */
+export const chartCenterValueClassName =
+  "font-bold tabular-nums leading-none text-[clamp(0.75rem,22cqw,1.875rem)]";
+
+/** Supporting label — ~9% of center width, clamped between 10px and text-xs. */
+export const chartCenterLabelClassName =
+  "max-w-full truncate leading-tight text-[clamp(0.625rem,9cqw,0.75rem)]";

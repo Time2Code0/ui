@@ -1,9 +1,9 @@
 "use client";
 
-import type { PieData } from "@/registry/charts/pie-context";
+import type { PieData } from "@/registry/charts/pie-chart/pie-context";
 
-import { PieChart } from "@/registry/charts/pie-chart";
-import { PieSlice } from "@/registry/charts/pie-slice";
+import { PieChart } from "@/registry/charts/pie-chart/pie-chart";
+import { PieSlice } from "@/registry/charts/pie-chart/pie-slice";
 
 const pieData: PieData[] = [
   { color: "var(--color-chart-1)", label: "Chrome", value: 275 },

@@ -14,7 +14,11 @@ description: Tiny line, area and bar charts built for density — one path per c
 Sparklines are single-element charts. Pass `data` and a `dataKey` — no axes, grid or tooltip to configure.
 
 ```tsx
-import { AreaSparkline, BarSparkline, LineSparkline } from "@/components/charts/sparkline"
+import {
+  AreaSparkline,
+  BarSparkline,
+  LineSparkline,
+} from "@/components/charts/sparkline/sparkline"
 
 <LineSparkline data={rows} dataKey="value" />
 <AreaSparkline data={rows} dataKey="value" fill="gradient" />
@@ -80,19 +84,19 @@ Each sparkline renders a single `<path>` (bars included), animates with the Web 
 
 ### LineSparkline
 
-<auto-type-table cwd path="src/registry/charts/sparkline.tsx" name="LineSparklineProps" />
+<auto-type-table cwd path="src/registry/charts/sparkline/sparkline.tsx" name="LineSparklineProps" />
 
 ### AreaSparkline
 
 Everything on `LineSparkline`, plus:
 
-<auto-type-table cwd path="src/registry/charts/sparkline.tsx" name="AreaSparklineProps" />
+<auto-type-table cwd path="src/registry/charts/sparkline/sparkline.tsx" name="AreaSparklineProps" />
 
 ### BarSparkline
 
 Shares the base props (no `curve`, `strokeWidth` or `endDot`; `padding` defaults to `2`). Bars always include zero and support negative values.
 
-<auto-type-table cwd path="src/registry/charts/sparkline.tsx" name="BarSparklineProps" />
+<auto-type-table cwd path="src/registry/charts/sparkline/sparkline.tsx" name="BarSparklineProps" />
 
 ### useSparklineHover
 

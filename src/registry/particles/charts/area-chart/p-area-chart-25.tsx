@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import { Area } from "@/registry/charts/area";
-import { AreaChart } from "@/registry/charts/area-chart";
-import { Grid } from "@/registry/charts/grid";
+import { Area } from "@/registry/charts/area-chart/area";
+import { AreaChart } from "@/registry/charts/area-chart/area-chart";
+import { Grid } from "@/registry/charts/chart-grid/grid";
 import { Button } from "@/registry/ui/button";
 
 const DATA_KEY = "value";

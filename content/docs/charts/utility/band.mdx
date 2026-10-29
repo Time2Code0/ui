@@ -19,12 +19,12 @@ description: Shaded range between per-row upper and lower values on a line chart
 - `null` / non-numeric edge values break the band into separate segments.
 
 ```tsx
-import { Band } from "@/components/charts/band"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
-import { Grid } from "@/components/charts/grid"
-import { Line } from "@/components/charts/line"
-import { LineChart } from "@/components/charts/line-chart"
-import { XAxis } from "@/components/charts/x-axis"
+import { Band } from "@/components/charts/chart-band/band"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { Line } from "@/components/charts/line-chart/line"
+import { LineChart } from "@/components/charts/line-chart/line-chart"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
 
 const data = [
   {
@@ -73,7 +73,7 @@ To draw the SMA as a dashed middle line, use a second, zero-height `Band` with t
 
 <ComponentPreview name="p-chart-band-4" className="**:data-[slot=preview]:w-full" />
 
-<auto-type-table cwd path="src/registry/charts/bollinger.ts" name="BollingerBandsOptions" />
+<auto-type-table cwd path="src/registry/charts/candlestick-chart/bollinger.ts" name="BollingerBandsOptions" />
 
 `withBollingerBands` returns new rows and leaves the input array untouched. It uses the population standard deviation. Non-numeric values are skipped, and a row yields `null` when its window has fewer than `minPeriods` valid values — by default the full window must be numeric. With `minPeriods: 1` the first row's spread is zero, so the band starts pinched onto the line and widens as the window fills.
 
@@ -99,13 +99,13 @@ Both edges share `stroke`, `strokeWidth`, `strokeDasharray`, and `strokeOpacity`
 
 ## Band props
 
-<auto-type-table cwd path="src/registry/charts/band.tsx" name="BandProps" />
+<auto-type-table cwd path="src/registry/charts/chart-band/band.tsx" name="BandProps" />
 
 ### BandStrokeProps
 
 Every field falls back to the matching shared `Band` prop.
 
-<auto-type-table cwd path="src/registry/charts/band.tsx" name="BandStrokeProps" />
+<auto-type-table cwd path="src/registry/charts/chart-band/band.tsx" name="BandStrokeProps" />
 
 ### BandFadeEdges
 

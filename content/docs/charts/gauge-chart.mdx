@@ -24,10 +24,10 @@ description: Notch-based radial or linear gauge with optional center label, them
 - **Corner radius:** `notchCornerRadius` is the fillet in **pixels** at each notch corner (**0** = sharp). Large values are clamped by edge length and radial depth so shapes can approach a **capsule** / near-circular look.
 
 ```tsx
-import { Gauge } from "@/components/charts/gauge"
-import { PatternLines } from "@/components/charts/visx-pattern"
+import { Gauge } from "@/components/charts/gauge-chart/gauge"
+import { PatternLines } from "@/components/charts/chart-patterns/visx-pattern"
 
-export default function RevenueGauge() {
+export function RevenueGauge() {
   return (
     <Gauge
       value={66}
@@ -83,7 +83,7 @@ With label below center:
 
 ### Gauge
 
-<auto-type-table cwd path="src/registry/charts/gauge.tsx" name="GaugeProps" />
+<auto-type-table cwd path="src/registry/charts/gauge-chart/gauge.tsx" name="GaugeProps" />
 
 ## Theming
 

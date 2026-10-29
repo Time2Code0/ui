@@ -1,12 +1,12 @@
 "use client";
 
-import { Area } from "@/registry/charts/area";
-import { AreaChart } from "@/registry/charts/area-chart";
-import { ChartBrush } from "@/registry/charts/chart-brush";
-import { ChartBrushLayout } from "@/registry/charts/chart-brush-layout";
-import { Grid } from "@/registry/charts/grid";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { XAxis } from "@/registry/charts/x-axis";
+import { Area } from "@/registry/charts/area-chart/area";
+import { AreaChart } from "@/registry/charts/area-chart/area-chart";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { ChartBrush } from "@/registry/charts/chart-brush/chart-brush";
+import { ChartBrushLayout } from "@/registry/charts/chart-brush/chart-brush-layout";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
 
 const DATA_KEY = "value";
 

@@ -1,10 +1,10 @@
 "use client";
 
-import { Band } from "@/registry/charts/band";
-import { Grid } from "@/registry/charts/grid";
-import { LineChart } from "@/registry/charts/line-chart";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { XAxis } from "@/registry/charts/x-axis";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { Band } from "@/registry/charts/chart-band/band";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { LineChart } from "@/registry/charts/line-chart/line-chart";
 
 const RANGE_AREA_DEMO_DAY_COUNT = 30;
 

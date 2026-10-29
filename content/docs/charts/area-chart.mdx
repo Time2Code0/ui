@@ -14,11 +14,11 @@ description: A composable area chart with gradient fills, tooltips, and hover in
 The Area Chart uses the same composable API as the Line Chart. See the [charts gallery](/charts/area-chart) for interactive examples.
 
 ```tsx
-import { AreaChart } from "@/components/charts/area-chart"
-import { Area } from "@/components/charts/area"
-import { Grid } from "@/components/charts/grid"
-import { XAxis } from "@/components/charts/x-axis"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { AreaChart } from "@/components/charts/area-chart/area-chart"
+import { Area } from "@/components/charts/area-chart/area"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
 
 const data = [
   { date: new Date("2025-01-01"), revenue: 12000, costs: 8500 },
@@ -26,7 +26,7 @@ const data = [
   // ... more data
 ]
 
-export default function RevenueChart() {
+export function RevenueChart() {
   return (
     <AreaChart data={data}>
       <Grid horizontal />
@@ -45,25 +45,25 @@ export default function RevenueChart() {
 
 The root component that provides context to all children. It shares the same props as `LineChart`.
 
-<auto-type-table cwd path="src/registry/charts/area-chart.tsx" name="AreaChartProps" />
+<auto-type-table cwd path="src/registry/charts/area-chart/area-chart.tsx" name="AreaChartProps" />
 
 ### Area
 
 Renders a filled area on the chart with a gradient fill.
 
-<auto-type-table cwd path="src/registry/charts/area.tsx" name="AreaProps" />
+<auto-type-table cwd path="src/registry/charts/area-chart/area.tsx" name="AreaProps" />
 
 ### PatternArea
 
 Renders a filled area using an SVG pattern (`url(#id)`). Define the pattern (e.g. `PatternLines`) as a child of `AreaChart`, then pair `PatternArea` with an `Area` that has `fillOpacity={0}` for the stroke line.
 
-<auto-type-table cwd path="src/registry/charts/pattern-area.tsx" name="PatternAreaProps" />
+<auto-type-table cwd path="src/registry/charts/area-chart/pattern-area.tsx" name="PatternAreaProps" />
 
 ### Grid
 
 Renders grid lines.
 
-<auto-type-table cwd path="src/registry/charts/grid.tsx" name="GridProps" />
+<auto-type-table cwd path="src/registry/charts/chart-grid/grid.tsx" name="GridProps" />
 
 ### Background
 
@@ -86,13 +86,13 @@ Value labels on the left or right. See [Y Axis](/docs/charts/utility/axis/y-axis
 
 Renders x-axis labels that fade when the crosshair passes.
 
-<auto-type-table cwd path="src/registry/charts/x-axis.tsx" name="XAxisProps" />
+<auto-type-table cwd path="src/registry/charts/chart-axis/x-axis.tsx" name="XAxisProps" />
 
 ### ChartTooltip
 
 Renders the tooltip with crosshair, dots, and content box.
 
-<auto-type-table cwd path="src/registry/charts/tooltip/chart-tooltip.tsx" name="ChartTooltipProps" />
+<auto-type-table cwd path="src/registry/charts/chart-tooltip/chart-tooltip.tsx" name="ChartTooltipProps" />
 
 ## Weekends and deadlines
 
@@ -144,7 +144,7 @@ Set `dashFromIndex` on `Area` to draw a solid stroke through one data point, the
 
 `dashFromIndex` is **inclusive** â€” dashing starts at that row and continues through the last point. The dashed segment follows the same curved path as the solid stroke and respects the stroke gradient fade from `fadeEdges`.
 
-<auto-type-table cwd path="src/registry/charts/area.tsx" name="AreaDashedTailProps" type="Pick<AreaProps, 'dashFromIndex' | 'dashArray'>" />
+<auto-type-table cwd path="src/registry/charts/area-chart/area.tsx" name="AreaDashedTailProps" type="Pick<AreaProps, 'dashFromIndex' | 'dashArray'>" />
 
 ```tsx
 <Area
@@ -161,15 +161,17 @@ Set `dashFromIndex` on `Area` to draw a solid stroke through one data point, the
 Add markers to annotate specific dates on the chart:
 
 ```tsx
-import { AreaChart } from "@/components/charts/area-chart"
-import { Area } from "@/components/charts/area"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { AreaChart } from "@/components/charts/area-chart/area-chart"
+import { Area } from "@/components/charts/area-chart/area"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
 import {
   ChartMarkers,
   MarkerTooltipContent,
   useActiveMarkers,
-} from "@/components/charts/markers/chart-markers"
-import type { ChartMarker } from "@/components/charts/markers/marker-group"
+} from "@/components/charts/chart-markers/chart-markers"
+import type {
+  ChartMarker,
+} from "@/components/charts/chart-markers/marker-group"
 
 const markers: ChartMarker[] = [
   {
@@ -217,7 +219,7 @@ interface ChartMarker {
 
 ### ChartMarkers Props
 
-<auto-type-table cwd path="src/registry/charts/markers/chart-markers.tsx" name="ChartMarkersProps" />
+<auto-type-table cwd path="src/registry/charts/chart-markers/chart-markers.tsx" name="ChartMarkersProps" />
 
 ## Segment Selection
 
@@ -226,16 +228,16 @@ Add click-drag and touch segment selection with composable components. The area 
 ### Basic Usage
 
 ```tsx
-import { AreaChart } from "@/components/charts/area-chart"
-import { Area } from "@/components/charts/area"
-import { Grid } from "@/components/charts/grid"
-import { XAxis } from "@/components/charts/x-axis"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { AreaChart } from "@/components/charts/area-chart/area-chart"
+import { Area } from "@/components/charts/area-chart/area"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
 import {
   SegmentBackground,
   SegmentLineFrom,
   SegmentLineTo,
-} from "@/components/charts/segment"
+} from "@/components/charts/chart-segment/segment"
 
 ;<AreaChart data={data}>
   <Grid horizontal />
@@ -255,7 +257,7 @@ Use `SegmentBackground`, `SegmentLineFrom`, and `SegmentLineTo` independently â€
 Use the `useChart` hook inside a child component to read the active selection:
 
 ```tsx
-import { useChart } from "@/components/charts/chart-context"
+import { useChart } from "@/components/charts/chart-core/chart-context"
 
 function SelectionStats({ onSelectionChange }) {
   const { selection, data, xAccessor } = useChart()
@@ -277,11 +279,11 @@ function SelectionStats({ onSelectionChange }) {
 
 ### SegmentBackground
 
-<auto-type-table cwd path="src/registry/charts/segment.tsx" name="SegmentBackgroundProps" />
+<auto-type-table cwd path="src/registry/charts/chart-segment/segment.tsx" name="SegmentBackgroundProps" />
 
 ### SegmentLineFrom / SegmentLineTo
 
-<auto-type-table cwd path="src/registry/charts/segment.tsx" name="SegmentLineProps" />
+<auto-type-table cwd path="src/registry/charts/chart-segment/segment.tsx" name="SegmentLineProps" />
 
 ## Value labels
 
@@ -307,7 +309,7 @@ series use the same final label count so comparisons stay aligned.
 </AreaChart>
 ```
 
-<auto-type-table cwd path="src/registry/charts/area.tsx" name="AreaValueLabelProps" type="Pick<AreaProps, 'showValue' | 'valueLabelMinCount' | 'valueLabelMaxCount' | 'valueLabelFormatter' | 'valueLabelColor' | 'fadeValueLabels'>" />
+<auto-type-table cwd path="src/registry/charts/area-chart/area.tsx" name="AreaValueLabelProps" type="Pick<AreaProps, 'showValue' | 'valueLabelMinCount' | 'valueLabelMaxCount' | 'valueLabelFormatter' | 'valueLabelColor' | 'fadeValueLabels'>" />
 
 Labels are opt-in, so charts without `showValue` keep their existing rendering.
 Value labels are drawn by `AreaChart`; `showValue` on an `Area` inside

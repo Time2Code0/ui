@@ -18,13 +18,15 @@ import {
   ChartMarkers,
   MarkerTooltipContent,
   useActiveMarkers,
-} from "@/components/charts/markers/chart-markers"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
-import { Grid } from "@/components/charts/grid"
-import { Line } from "@/components/charts/line"
-import { LineChart } from "@/components/charts/line-chart"
-import type { ChartMarker } from "@/components/charts/markers/marker-group"
-import { XAxis } from "@/components/charts/x-axis"
+} from "@/components/charts/chart-markers/chart-markers"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { Line } from "@/components/charts/line-chart/line"
+import { LineChart } from "@/components/charts/line-chart/line-chart"
+import type {
+  ChartMarker,
+} from "@/components/charts/chart-markers/marker-group"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
 
 const markers: ChartMarker[] = [
   {
@@ -79,11 +81,11 @@ interface ChartMarker {
 
 ### ChartMarkers
 
-<auto-type-table cwd path="src/registry/charts/markers/chart-markers.tsx" name="ChartMarkersProps" />
+<auto-type-table cwd path="src/registry/charts/chart-markers/chart-markers.tsx" name="ChartMarkersProps" />
 
 ### MarkerTooltipContent
 
-<auto-type-table cwd path="src/registry/charts/markers/chart-markers.tsx" name="MarkerTooltipContentProps" />
+<auto-type-table cwd path="src/registry/charts/chart-markers/chart-markers.tsx" name="MarkerTooltipContentProps" />
 
 ### useActiveMarkers
 

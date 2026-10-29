@@ -1,11 +1,11 @@
 "use client";
 
-import { Grid } from "@/registry/charts/grid";
-import { Line } from "@/registry/charts/line";
-import { LineChart } from "@/registry/charts/line-chart";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { TrendLine } from "@/registry/charts/trend-line";
-import { XAxis } from "@/registry/charts/x-axis";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { TrendLine } from "@/registry/charts/chart-trend-line/trend-line";
+import { Line } from "@/registry/charts/line-chart/line";
+import { LineChart } from "@/registry/charts/line-chart/line-chart";
 
 const LINE_DEMO_POINT_COUNT = 10;
 

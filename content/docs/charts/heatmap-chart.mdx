@@ -14,16 +14,18 @@ description: A contribution heatmap with animated cells, configurable level colo
 The Heatmap Chart uses a composable API. Wrap the chart and legend in `HeatmapInteractionProvider` so hover dimming and tooltips stay in sync:
 
 ```tsx
-import { HeatmapCells } from "@/components/charts/heatmap/heatmap-cells"
-import { HeatmapChart } from "@/components/charts/heatmap/heatmap-chart"
+import { HeatmapCells } from "@/components/charts/heatmap-chart/heatmap-cells"
+import { HeatmapChart } from "@/components/charts/heatmap-chart/heatmap-chart"
 import {
   HeatmapInteractionBoundary,
   HeatmapInteractionProvider,
-} from "@/components/charts/heatmap/heatmap-context"
-import { HeatmapLegend } from "@/components/charts/heatmap/heatmap-legend"
-import { HeatmapTooltip } from "@/components/charts/heatmap/heatmap-tooltip"
-import { HeatmapXAxis } from "@/components/charts/heatmap/heatmap-x-axis"
-import { HeatmapYAxis } from "@/components/charts/heatmap/heatmap-y-axis"
+} from "@/components/charts/heatmap-chart/heatmap-context"
+import { HeatmapLegend } from "@/components/charts/heatmap-chart/heatmap-legend"
+import {
+  HeatmapTooltip,
+} from "@/components/charts/heatmap-chart/heatmap-tooltip"
+import { HeatmapXAxis } from "@/components/charts/heatmap-chart/heatmap-x-axis"
+import { HeatmapYAxis } from "@/components/charts/heatmap-chart/heatmap-y-axis"
 
 const data = [
   {
@@ -37,7 +39,7 @@ const data = [
   // …one column per week
 ]
 
-export default function ContributionHeatmap() {
+export function ContributionHeatmap() {
   return (
     <HeatmapInteractionProvider>
       <HeatmapInteractionBoundary>
@@ -60,13 +62,13 @@ export default function ContributionHeatmap() {
 
 The root component that sizes the grid, builds color scales, and provides context to children.
 
-<auto-type-table cwd path="src/registry/charts/heatmap/heatmap-chart.tsx" name="HeatmapChartProps" />
+<auto-type-table cwd path="src/registry/charts/heatmap-chart/heatmap-chart.tsx" name="HeatmapChartProps" />
 
 ### HeatmapCells
 
 Renders the grid of cells with enter animation and hover dimming.
 
-<auto-type-table cwd path="src/registry/charts/heatmap/heatmap-cells.tsx" name="HeatmapCellsProps" />
+<auto-type-table cwd path="src/registry/charts/heatmap-chart/heatmap-cells.tsx" name="HeatmapCellsProps" />
 
 When `inactiveOpacity`, `inactiveScale`, and `activeScale` are all `1`, hover dimming is disabled.
 
@@ -76,17 +78,17 @@ Month labels along the top and weekday labels along the left. Y-axis labels foll
 
 `HeatmapXAxis`:
 
-<auto-type-table cwd path="src/registry/charts/heatmap/heatmap-x-axis.tsx" name="HeatmapXAxisProps" />
+<auto-type-table cwd path="src/registry/charts/heatmap-chart/heatmap-x-axis.tsx" name="HeatmapXAxisProps" />
 
 `HeatmapYAxis`:
 
-<auto-type-table cwd path="src/registry/charts/heatmap/heatmap-y-axis.tsx" name="HeatmapYAxisProps" />
+<auto-type-table cwd path="src/registry/charts/heatmap-chart/heatmap-y-axis.tsx" name="HeatmapYAxisProps" />
 
 ### HeatmapLegend
 
 Less → More scale swatches that share `levelStyles` with the chart.
 
-<auto-type-table cwd path="src/registry/charts/heatmap/heatmap-legend.tsx" name="HeatmapLegendProps" />
+<auto-type-table cwd path="src/registry/charts/heatmap-chart/heatmap-legend.tsx" name="HeatmapLegendProps" />
 
 Gradient mode uses solid colors only (patterns are ignored).
 
@@ -94,7 +96,7 @@ Gradient mode uses solid colors only (patterns are ignored).
 
 Vertical column separators with optional quarter labels.
 
-<auto-type-table cwd path="src/registry/charts/heatmap/heatmap-separator.tsx" name="HeatmapSeparatorProps" />
+<auto-type-table cwd path="src/registry/charts/heatmap-chart/heatmap-separator.tsx" name="HeatmapSeparatorProps" />
 
 **Solid stroke** — no `gradient` prop:
 
@@ -130,14 +132,14 @@ Vertical column separators with optional quarter labels.
 
 Shows the contribution count and date for the hovered cell. Fades in on first hover, springs between cells, and fades out on leave (position jumps and scale is skipped under `prefers-reduced-motion`).
 
-<auto-type-table cwd path="src/registry/charts/heatmap/heatmap-tooltip.tsx" name="HeatmapTooltipProps" />
+<auto-type-table cwd path="src/registry/charts/heatmap-chart/heatmap-tooltip.tsx" name="HeatmapTooltipProps" />
 
 ## Level styles and patterns
 
 Pass `levelStyles` (five entries: empty + levels 1–4) to control both cell fills and legend swatches. Each level can be solid or use a pattern preset. Omit `patternColor` to derive stripe color from the level color, or set `patternColor` explicitly:
 
 ```tsx
-import { CHART_SCALE_VARS } from "@/components/charts/chart-scale"
+import { CHART_SCALE_VARS } from "@/components/charts/chart-utils/color-scale"
 
 const levelStyles = [
   { color: CHART_SCALE_VARS[0], fillMode: "solid" },
@@ -168,7 +170,7 @@ interface HeatmapColumn {
 }
 ```
 
-Counts map to five visual levels (0 = empty, 1–4 = increasing activity). Use `getHeatmapContributionLevel(count)` from `@/components/charts/heatmap/heatmap-utils` to derive the level from a raw count.
+Counts map to five visual levels (0 = empty, 1–4 = increasing activity). Use `getHeatmapContributionLevel(count)` from `@/components/charts/heatmap-chart/heatmap-utils` to derive the level from a raw count.
 
 ### Row opacity
 
@@ -194,10 +196,12 @@ Pass the **same** value to `HeatmapCells` and `HeatmapYAxis` so faded rows and t
 const rowOpacity = [1, 1, 1, 1, 1, 0.35, 0.35] // fade Sat + Sun (Mon-first)
 ```
 
-**Helper** — `buildHeatmapRowOpacity` from `@/components/charts/heatmap/heatmap-utils`:
+**Helper** — `buildHeatmapRowOpacity` from `@/components/charts/heatmap-chart/heatmap-utils`:
 
 ```tsx
-import { buildHeatmapRowOpacity } from "@/components/charts/heatmap/heatmap-utils"
+import {
+  buildHeatmapRowOpacity,
+} from "@/components/charts/heatmap-chart/heatmap-utils"
 
 // Fade rows 5 and 6 (Sat + Sun when weekStartDay={1})
 const weekendOpacity = buildHeatmapRowOpacity([5, 6], 0.35)
@@ -224,7 +228,9 @@ buildHeatmapRowOpacity((row) => row < 2, 0.5) // first two rows
 Source data can stay Sunday-first; `weekStartDay` rotates display rows without reshaping your data:
 
 ```tsx
-import { buildHeatmapRowOpacity } from "@/components/charts/heatmap/heatmap-utils"
+import {
+  buildHeatmapRowOpacity,
+} from "@/components/charts/heatmap-chart/heatmap-utils"
 
 const weekendOpacity = buildHeatmapRowOpacity((row) => row >= 5, 0.35)
 
@@ -238,7 +244,7 @@ const weekendOpacity = buildHeatmapRowOpacity((row) => row >= 5, 0.35)
 </HeatmapChart>
 ```
 
-Default level colors come from `CHART_SCALE_VARS` (from `@/components/charts/chart-scale`): a neutral empty tone, then `--color-chart-1` mixed into the background at increasing strength.
+Default level colors come from `CHART_SCALE_VARS` (from `@/components/charts/chart-utils/color-scale`): a neutral empty tone, then `--color-chart-1` mixed into the background at increasing strength.
 
 ## Gallery
 

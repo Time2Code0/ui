@@ -1,19 +1,21 @@
 "use client";
 
-import type { LegendItemData } from "@/registry/charts/legend/legend-context";
-import type { RingData } from "@/registry/charts/ring-context";
+import type { LegendItemData } from "@/registry/charts/chart-legend/legend";
+import type { RingData } from "@/registry/charts/ring-chart/ring-context";
 
 import { useState } from "react";
 
-import { Legend } from "@/registry/charts/legend/legend";
-import { LegendItem as LegendItemComponent } from "@/registry/charts/legend/legend-item";
-import { LegendLabel } from "@/registry/charts/legend/legend-label";
-import { LegendMarker } from "@/registry/charts/legend/legend-marker";
-import { LegendProgress } from "@/registry/charts/legend/legend-progress";
-import { LegendValue } from "@/registry/charts/legend/legend-value";
-import { Ring } from "@/registry/charts/ring";
-import { RingCenter } from "@/registry/charts/ring-center";
-import { RingChart } from "@/registry/charts/ring-chart";
+import {
+  Legend,
+  LegendItem as LegendItemComponent,
+  LegendLabel,
+  LegendMarker,
+  LegendProgress,
+  LegendValue,
+} from "@/registry/charts/chart-legend/legend";
+import { Ring } from "@/registry/charts/ring-chart/ring";
+import { RingCenter } from "@/registry/charts/ring-chart/ring-center";
+import { RingChart } from "@/registry/charts/ring-chart/ring-chart";
 
 // Sample session data
 const sessionsData: RingData[] = [

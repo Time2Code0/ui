@@ -8,7 +8,7 @@ import {
   AreaSparkline,
   BarSparkline,
   LineSparkline,
-} from "@/registry/charts/sparkline";
+} from "@/registry/charts/sparkline/sparkline";
 
 function GalleryShell({
   children,

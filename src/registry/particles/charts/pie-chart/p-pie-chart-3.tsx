@@ -1,16 +1,18 @@
 "use client";
 
-import type { PieData } from "@/registry/charts/pie-context";
+import type { PieData } from "@/registry/charts/pie-chart/pie-context";
 
 import { useState } from "react";
 
-import { Legend } from "@/registry/charts/legend/legend";
-import { LegendItem as LegendItemComponent } from "@/registry/charts/legend/legend-item";
-import { LegendLabel } from "@/registry/charts/legend/legend-label";
-import { LegendMarker } from "@/registry/charts/legend/legend-marker";
-import { PieCenter } from "@/registry/charts/pie-center";
-import { PieChart } from "@/registry/charts/pie-chart";
-import { PieSlice } from "@/registry/charts/pie-slice";
+import {
+  Legend,
+  LegendItem as LegendItemComponent,
+  LegendLabel,
+  LegendMarker,
+} from "@/registry/charts/chart-legend/legend";
+import { PieCenter } from "@/registry/charts/pie-chart/pie-center";
+import { PieChart } from "@/registry/charts/pie-chart/pie-chart";
+import { PieSlice } from "@/registry/charts/pie-chart/pie-slice";
 
 const pieData: PieData[] = [
   { color: "var(--color-chart-1)", label: "Chrome", value: 275 },

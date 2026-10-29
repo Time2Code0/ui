@@ -1,17 +1,19 @@
 "use client";
 
-import type { LegendItemData } from "@/registry/charts/legend/legend-context";
-import type { PieData } from "@/registry/charts/pie-context";
+import type { LegendItemData } from "@/registry/charts/chart-legend/legend";
+import type { PieData } from "@/registry/charts/pie-chart/pie-context";
 
 import { useState } from "react";
 
-import { Legend } from "@/registry/charts/legend/legend";
-import { LegendItem as LegendItemComponent } from "@/registry/charts/legend/legend-item";
-import { LegendLabel } from "@/registry/charts/legend/legend-label";
-import { LegendMarker } from "@/registry/charts/legend/legend-marker";
-import { LegendValue } from "@/registry/charts/legend/legend-value";
-import { PieChart } from "@/registry/charts/pie-chart";
-import { PieSlice } from "@/registry/charts/pie-slice";
+import {
+  Legend,
+  LegendItem as LegendItemComponent,
+  LegendLabel,
+  LegendMarker,
+  LegendValue,
+} from "@/registry/charts/chart-legend/legend";
+import { PieChart } from "@/registry/charts/pie-chart/pie-chart";
+import { PieSlice } from "@/registry/charts/pie-chart/pie-slice";
 
 // Convert pie data to legend items
 function toLegendItems(data: PieData[]): LegendItemData[] {

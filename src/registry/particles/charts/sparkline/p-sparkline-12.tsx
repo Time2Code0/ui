@@ -4,7 +4,10 @@ import type { ReactNode } from "react";
 
 import { cn } from "cn";
 
-import { LineSparkline, useSparklineHover } from "@/registry/charts/sparkline";
+import {
+  LineSparkline,
+  useSparklineHover,
+} from "@/registry/charts/sparkline/sparkline";
 
 interface SparklineGalleryPoint {
   day: string;

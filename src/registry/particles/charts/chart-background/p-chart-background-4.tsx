@@ -1,10 +1,10 @@
 "use client";
 
-import { Background } from "@/registry/charts/background";
-import { Line } from "@/registry/charts/line";
-import { LineChart } from "@/registry/charts/line-chart";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { XAxis } from "@/registry/charts/x-axis";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { Background } from "@/registry/charts/chart-background/background";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { Line } from "@/registry/charts/line-chart/line";
+import { LineChart } from "@/registry/charts/line-chart/line-chart";
 
 const chartData = [
   { date: new Date(Date.now() - 29 * 24 * 60 * 60 * 1000), value: 1200 },

@@ -1,20 +1,25 @@
 "use client";
 
-import type { LegendItemData } from "@/registry/charts/legend/legend-context";
-import type { RadarData, RadarMetric } from "@/registry/charts/radar-context";
+import type { LegendItemData } from "@/registry/charts/chart-legend/legend";
+import type {
+  RadarData,
+  RadarMetric,
+} from "@/registry/charts/radar-chart/radar-context";
 
 import { useState } from "react";
 
-import { Legend } from "@/registry/charts/legend/legend";
-import { LegendItem as LegendItemComponent } from "@/registry/charts/legend/legend-item";
-import { LegendLabel } from "@/registry/charts/legend/legend-label";
-import { LegendMarker } from "@/registry/charts/legend/legend-marker";
-import { LegendValue } from "@/registry/charts/legend/legend-value";
-import { RadarArea } from "@/registry/charts/radar-area";
-import { RadarAxis } from "@/registry/charts/radar-axis";
-import { RadarChart } from "@/registry/charts/radar-chart";
-import { RadarGrid } from "@/registry/charts/radar-grid";
-import { RadarLabels } from "@/registry/charts/radar-labels";
+import {
+  Legend,
+  LegendItem as LegendItemComponent,
+  LegendLabel,
+  LegendMarker,
+  LegendValue,
+} from "@/registry/charts/chart-legend/legend";
+import { RadarArea } from "@/registry/charts/radar-chart/radar-area";
+import { RadarAxis } from "@/registry/charts/radar-chart/radar-axis";
+import { RadarChart } from "@/registry/charts/radar-chart/radar-chart";
+import { RadarGrid } from "@/registry/charts/radar-chart/radar-grid";
+import { RadarLabels } from "@/registry/charts/radar-chart/radar-labels";
 
 // Campaign data with normalized values (0-100)
 const campaignData: RadarData[] = [

@@ -14,11 +14,11 @@ description: A composable line chart with tooltips, markers, and hover interacti
 Build charts by composing components. See the [charts gallery](/charts/line-chart) for interactive examples.
 
 ```tsx
-import { LineChart } from "@/components/charts/line-chart"
-import { Line } from "@/components/charts/line"
-import { Grid } from "@/components/charts/grid"
-import { XAxis } from "@/components/charts/x-axis"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { LineChart } from "@/components/charts/line-chart/line-chart"
+import { Line } from "@/components/charts/line-chart/line"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
 
 const data = [
   { date: new Date("2025-01-01"), users: 1200 },
@@ -26,7 +26,7 @@ const data = [
   // ...
 ]
 
-export default function SimpleChart() {
+export function SimpleChart() {
   return (
     <LineChart data={data}>
       <Grid horizontal />
@@ -54,19 +54,19 @@ Click the date range buttons — the line and y-axis morph smoothly without rein
 
 The root component that provides context to all children.
 
-<auto-type-table cwd path="src/registry/charts/line-chart.tsx" name="LineChartProps" />
+<auto-type-table cwd path="src/registry/charts/line-chart/line-chart.tsx" name="LineChartProps" />
 
 ### Line
 
 Renders a line on the chart.
 
-<auto-type-table cwd path="src/registry/charts/line.tsx" name="LineProps" />
+<auto-type-table cwd path="src/registry/charts/line-chart/line.tsx" name="LineProps" />
 
 ### Grid
 
 Renders grid lines.
 
-<auto-type-table cwd path="src/registry/charts/grid.tsx" name="GridProps" />
+<auto-type-table cwd path="src/registry/charts/chart-grid/grid.tsx" name="GridProps" />
 
 ### Background
 
@@ -85,13 +85,13 @@ Least-squares regression line over one series. Place it after the `Line` so it d
 
 Renders x-axis labels that fade when the crosshair passes.
 
-<auto-type-table cwd path="src/registry/charts/x-axis.tsx" name="XAxisProps" />
+<auto-type-table cwd path="src/registry/charts/chart-axis/x-axis.tsx" name="XAxisProps" />
 
 ### ChartTooltip
 
 Renders the tooltip with crosshair, dots, and content box.
 
-<auto-type-table cwd path="src/registry/charts/tooltip/chart-tooltip.tsx" name="ChartTooltipProps" />
+<auto-type-table cwd path="src/registry/charts/chart-tooltip/chart-tooltip.tsx" name="ChartTooltipProps" />
 
 ## Dual Y axes (biaxial)
 
@@ -180,7 +180,7 @@ Set `dashFromIndex` on `Line` to draw a solid stroke through one data point, the
 
 `dashFromIndex` is **inclusive** — dashing starts at that row and continues through the last point. The dashed segment follows the same curved path as the solid stroke and respects `fadeEdges`.
 
-<auto-type-table cwd path="src/registry/charts/line.tsx" name="LineDashedTailProps" type="Pick<LineProps, 'dashFromIndex' | 'dashArray'>" />
+<auto-type-table cwd path="src/registry/charts/line-chart/line.tsx" name="LineDashedTailProps" type="Pick<LineProps, 'dashFromIndex' | 'dashArray'>" />
 
 ```tsx
 <Line
@@ -196,15 +196,17 @@ Set `dashFromIndex` on `Line` to draw a solid stroke through one data point, the
 Add markers to annotate specific dates on the chart:
 
 ```tsx
-import { LineChart } from "@/components/charts/line-chart"
-import { Line } from "@/components/charts/line"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { LineChart } from "@/components/charts/line-chart/line-chart"
+import { Line } from "@/components/charts/line-chart/line"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
 import {
   ChartMarkers,
   MarkerTooltipContent,
   useActiveMarkers,
-} from "@/components/charts/markers/chart-markers"
-import type { ChartMarker } from "@/components/charts/markers/marker-group"
+} from "@/components/charts/chart-markers/chart-markers"
+import type {
+  ChartMarker,
+} from "@/components/charts/chart-markers/marker-group"
 
 const markers: ChartMarker[] = [
   {
@@ -259,7 +261,7 @@ interface ChartMarker {
 
 ### ChartMarkers Props
 
-<auto-type-table cwd path="src/registry/charts/markers/chart-markers.tsx" name="ChartMarkersProps" />
+<auto-type-table cwd path="src/registry/charts/chart-markers/chart-markers.tsx" name="ChartMarkersProps" />
 
 ## Segment Selection
 
@@ -270,16 +272,16 @@ Add click-drag and touch segment selection with composable components. The line 
 Click and drag (or two-finger touch on mobile) to select a range:
 
 ```tsx
-import { LineChart } from "@/components/charts/line-chart"
-import { Line } from "@/components/charts/line"
-import { Grid } from "@/components/charts/grid"
-import { XAxis } from "@/components/charts/x-axis"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { LineChart } from "@/components/charts/line-chart/line-chart"
+import { Line } from "@/components/charts/line-chart/line"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
 import {
   SegmentBackground,
   SegmentLineFrom,
   SegmentLineTo,
-} from "@/components/charts/segment"
+} from "@/components/charts/chart-segment/segment"
 
 ;<LineChart data={data}>
   <Grid horizontal />
@@ -299,7 +301,7 @@ Use `SegmentBackground`, `SegmentLineFrom`, and `SegmentLineTo` independently �
 Use the `useChart` hook inside a child component to read the active selection:
 
 ```tsx
-import { useChart } from "@/components/charts/chart-context"
+import { useChart } from "@/components/charts/chart-core/chart-context"
 
 function SelectionStats({ onSelectionChange }) {
   const { selection, data, xAccessor } = useChart()
@@ -322,8 +324,8 @@ function SelectionStats({ onSelectionChange }) {
 
 ### SegmentBackground
 
-<auto-type-table cwd path="src/registry/charts/segment.tsx" name="SegmentBackgroundProps" />
+<auto-type-table cwd path="src/registry/charts/chart-segment/segment.tsx" name="SegmentBackgroundProps" />
 
 ### SegmentLineFrom / SegmentLineTo
 
-<auto-type-table cwd path="src/registry/charts/segment.tsx" name="SegmentLineProps" />
+<auto-type-table cwd path="src/registry/charts/chart-segment/segment.tsx" name="SegmentLineProps" />

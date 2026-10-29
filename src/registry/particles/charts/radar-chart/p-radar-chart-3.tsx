@@ -1,11 +1,14 @@
 "use client";
 
-import type { RadarData, RadarMetric } from "@/registry/charts/radar-context";
+import type {
+  RadarData,
+  RadarMetric,
+} from "@/registry/charts/radar-chart/radar-context";
 
-import { RadarArea } from "@/registry/charts/radar-area";
-import { RadarChart } from "@/registry/charts/radar-chart";
-import { RadarGrid } from "@/registry/charts/radar-grid";
-import { RadarLabels } from "@/registry/charts/radar-labels";
+import { RadarArea } from "@/registry/charts/radar-chart/radar-area";
+import { RadarChart } from "@/registry/charts/radar-chart/radar-chart";
+import { RadarGrid } from "@/registry/charts/radar-chart/radar-grid";
+import { RadarLabels } from "@/registry/charts/radar-chart/radar-labels";
 
 const radarDataSkills: RadarData[] = [
   {

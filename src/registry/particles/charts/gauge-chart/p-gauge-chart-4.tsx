@@ -1,7 +1,7 @@
 "use client";
 
-import { Gauge } from "@/registry/charts/gauge";
-import { PatternLines } from "@/registry/charts/visx-pattern";
+import { PatternLines } from "@/registry/charts/chart-patterns/visx-pattern";
+import { Gauge } from "@/registry/charts/gauge-chart/gauge";
 
 export function Particle() {
   return (

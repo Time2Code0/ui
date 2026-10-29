@@ -1,12 +1,12 @@
 "use client";
 
-import type { ChartMarker } from "@/registry/charts/markers/marker-group";
+import type { ChartMarker } from "@/registry/charts/chart-markers/marker-group";
 
-import { Grid } from "@/registry/charts/grid";
-import { Line } from "@/registry/charts/line";
-import { LineChart } from "@/registry/charts/line-chart";
-import { ChartMarkers } from "@/registry/charts/markers/chart-markers";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartMarkers } from "@/registry/charts/chart-markers/chart-markers";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { Line } from "@/registry/charts/line-chart/line";
+import { LineChart } from "@/registry/charts/line-chart/line-chart";
 
 const lineData = [
   { date: new Date(2024, 0, 1), desktop: 186 },

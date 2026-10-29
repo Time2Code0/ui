@@ -1,15 +1,15 @@
 "use client";
 
-import type { HeatmapColumn } from "@/registry/charts/heatmap/heatmap-context";
+import type { HeatmapColumn } from "@/registry/charts/heatmap-chart/heatmap-context";
 
-import { HeatmapChartLoading } from "@/registry/charts/heatmap/heatmap-chart-loading";
+import { HeatmapChartLoading } from "@/registry/charts/heatmap-chart/heatmap-chart-loading";
 import {
   getHeatmapCalendarRangeStart,
   getHeatmapWeekCount,
   getHeatmapWeekStartAlignedToRange,
   HEATMAP_MONTHS_ONE_YEAR,
   HEATMAP_MONTHS_SIX,
-} from "@/registry/charts/heatmap/heatmap-utils";
+} from "@/registry/charts/heatmap-chart/heatmap-utils";
 
 const HEATMAP_DAYS = 7;
 

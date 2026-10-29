@@ -1,6 +1,9 @@
 "use client";
 
-import { FunnelChart, type FunnelStage } from "@/registry/charts/funnel-chart";
+import {
+  FunnelChart,
+  type FunnelStage,
+} from "@/registry/charts/funnel-chart/funnel-chart";
 
 const funnelDataColored: FunnelStage[] = [
   { color: "var(--color-chart-1)", label: "Awareness", value: 4100 },

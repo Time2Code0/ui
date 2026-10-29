@@ -14,17 +14,25 @@ description: A composable geographic map chart for visualizing data across regio
 The Choropleth Chart uses a composable API similar to other charts. Build maps by combining components:
 
 ```tsx
-import { ChoroplethChart } from "@/components/charts/choropleth/choropleth-chart"
-import { ChoroplethFeature as ChoroplethFeatureComponent } from "@/components/charts/choropleth/choropleth-feature"
-import { CHART_SCALE_VARS } from "@/components/charts/chart-scale"
-import { ChoroplethGraticule } from "@/components/charts/choropleth/choropleth-graticule"
-import { ChoroplethTooltip } from "@/components/charts/choropleth/choropleth-tooltip"
+import {
+  ChoroplethChart,
+} from "@/components/charts/choropleth-chart/choropleth-chart"
+import {
+  ChoroplethFeature as ChoroplethFeatureComponent,
+} from "@/components/charts/choropleth-chart/choropleth-feature"
+import { CHART_SCALE_VARS } from "@/components/charts/chart-utils/color-scale"
+import {
+  ChoroplethGraticule,
+} from "@/components/charts/choropleth-chart/choropleth-graticule"
+import {
+  ChoroplethTooltip,
+} from "@/components/charts/choropleth-chart/choropleth-tooltip"
 import * as topojson from "topojson-client"
 
 // Load your GeoJSON data (from TopoJSON or direct GeoJSON)
 const geojson = topojson.feature(topology, topology.objects.countries)
 
-export default function WorldMap() {
+export function WorldMap() {
   return (
     <ChoroplethChart data={geojson} aspectRatio="16 / 9">
       <ChoroplethGraticule />
@@ -41,25 +49,25 @@ export default function WorldMap() {
 
 The root component that sets up the Mercator projection and provides context to children.
 
-<auto-type-table cwd path="src/registry/charts/choropleth/choropleth-chart.tsx" name="ChoroplethChartProps" />
+<auto-type-table cwd path="src/registry/charts/choropleth-chart/choropleth-chart.tsx" name="ChoroplethChartProps" />
 
 ### ChoroplethFeatureComponent
 
 Renders the geographic feature paths with hover states and optional patterns.
 
-<auto-type-table cwd path="src/registry/charts/choropleth/choropleth-feature.tsx" name="ChoroplethFeatureProps" />
+<auto-type-table cwd path="src/registry/charts/choropleth-chart/choropleth-feature.tsx" name="ChoroplethFeatureProps" />
 
 ### ChoroplethGraticule
 
 Renders optional graticule (latitude/longitude grid lines).
 
-<auto-type-table cwd path="src/registry/charts/choropleth/choropleth-graticule.tsx" name="ChoroplethGraticuleProps" />
+<auto-type-table cwd path="src/registry/charts/choropleth-chart/choropleth-graticule.tsx" name="ChoroplethGraticuleProps" />
 
 ### ChoroplethTooltip
 
 Displays tooltips for features on hover, following the mouse position.
 
-<auto-type-table cwd path="src/registry/charts/choropleth/choropleth-tooltip.tsx" name="ChoroplethTooltipProps" />
+<auto-type-table cwd path="src/registry/charts/choropleth-chart/choropleth-tooltip.tsx" name="ChoroplethTooltipProps" />
 
 ## Data Format
 
@@ -92,4 +100,4 @@ See the [charts gallery](/charts/choropleth-chart) for analytics color scales, z
 
 ## Theming
 
-For categorical maps, `defaultChoroplethColors` cycles through `CHART_SCALE_VARS` (from `@/components/charts/chart-scale`): a neutral empty tone (`var(--color-accent)`) followed by `--color-chart-1` mixed into the background at increasing strength. Pass `getFeatureColor` for custom bins. Use `CHART_SCALE_VARS[0]` for zero / no-data regions so they stay visible in light and dark.
+For categorical maps, `defaultChoroplethColors` cycles through `CHART_SCALE_VARS` (from `@/components/charts/chart-utils/color-scale`): a neutral empty tone (`var(--color-accent)`) followed by `--color-chart-1` mixed into the background at increasing strength. Pass `getFeatureColor` for custom bins. Use `CHART_SCALE_VARS[0]` for zero / no-data regions so they stay visible in light and dark.

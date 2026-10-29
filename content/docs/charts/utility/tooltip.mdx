@@ -14,10 +14,10 @@ description: An interactive tooltip component for charts with crosshair, dots, d
 The ChartTooltip component provides hover interactions for charts. It must be used inside a chart component (`LineChart`, `AreaChart`, `BarChart`).
 
 ```tsx
-import { LineChart } from "@/components/charts/line-chart"
-import { Line } from "@/components/charts/line"
-import { Grid } from "@/components/charts/grid"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { LineChart } from "@/components/charts/line-chart/line-chart"
+import { Line } from "@/components/charts/line-chart/line"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
 
 ;<LineChart data={data}>
   <Grid horizontal />
@@ -28,7 +28,7 @@ import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
 
 ## API Reference
 
-<auto-type-table cwd path="src/registry/charts/tooltip/chart-tooltip.tsx" name="ChartTooltipProps" />
+<auto-type-table cwd path="src/registry/charts/chart-tooltip/chart-tooltip.tsx" name="ChartTooltipProps" />
 
 ### TooltipRow Interface
 

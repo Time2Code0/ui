@@ -1,0 +1,379 @@
+"use client";
+
+import type { CurveFactory } from "d3-shape";
+
+import { type ReactNode, useId, useMemo } from "react";
+
+import { curveLinear, curveNatural } from "@visx/curve";
+
+import {
+  chartCssVars,
+  useChartStable,
+  useYScale,
+} from "../chart-core/chart-context";
+import {
+  type PatternPresetId,
+  renderPatternPreset,
+} from "../chart-patterns/pattern-preset";
+import {
+  type BandFadeEdges,
+  type BandFadeStop,
+  bandAreaPath,
+  bandEdgePath,
+  bandFadeStops,
+  bandPixelExtent,
+  resolveBandFadeSides,
+} from "./band-geometry";
+import { useAnimatedBand } from "./use-animated-band";
+
+export type BandFillType = "solid" | "gradient" | "pattern";
+
+export interface BandStrokeProps {
+  /** Edge stroke colour. @default Band stroke ?? fill */
+  stroke?: string;
+  /** Edge dash pattern. @default Band strokeDasharray */
+  strokeDasharray?: string;
+  /** Edge stroke opacity. @default Band strokeOpacity */
+  strokeOpacity?: number;
+  /** Edge stroke width. @default Band strokeWidth */
+  strokeWidth?: number;
+}
+
+export interface BandProps {
+  /** Class on the band's `<g>` @default "chart-band" */
+  className?: string;
+  /** Curve function (same default as `Line`). @default curveNatural */
+  curve?: CurveFactory;
+  /**
+   * Fade fill and strokes to transparent at the given sides. Horizontal fades
+   * span the plot width; vertical fades span the band's own pixel extent.
+   * @default false
+   */
+  fadeEdges?: BandFadeEdges;
+  /** Fraction (0–0.5) of the width / height each fade covers. @default 0.15 */
+  fadeSize?: number;
+  /** Band colour. @default var(--color-chart-1) */
+  fill?: string;
+  /** Solid opacity, or gradient opacity at the upper edge. @default 0.15 */
+  fillOpacity?: number;
+  /** Fill style @default "solid" */
+  fillType?: BandFillType;
+  /** Gradient opacity at the lower edge. @default 0 */
+  gradientToOpacity?: number;
+  /**
+   * Tooltip row label. Falls back to the key when both edges share one key.
+   * @default "lowerKey – upperKey"
+   */
+  label?: string;
+  /** Data key for the band's lower edge. */
+  lowerKey: string;
+  /** `false` hides the bottom edge; an object overrides the shared stroke. */
+  lowerStroke?: BandStrokeProps | false;
+  /** Pattern preset when `fillType` is `"pattern"`. @default "diagonal" */
+  pattern?: PatternPresetId;
+  /** Pattern stroke or tile color @default fill */
+  patternColor?: string;
+  /** Opacity applied to the pattern fill. @default 1 */
+  patternOpacity?: number;
+  /** Pattern tile scale */
+  patternScale?: number;
+  /** Line stroke width for line-based patterns */
+  patternStrokeWidth?: number;
+  /**
+   * Add a `low – high` row (and dots on both edges) to `ChartTooltip`.
+   * @default true
+   */
+  showInTooltip?: boolean;
+  /** Shared edge stroke colour. @default fill */
+  stroke?: string;
+  /** Edge dash pattern. Omit for a solid line. */
+  strokeDasharray?: string;
+  /** Shared edge stroke opacity @default 1 */
+  strokeOpacity?: number;
+  /** Shared edge stroke width (`0` hides both edges) @default 1 */
+  strokeWidth?: number;
+  /** Data key for the band's upper edge. */
+  upperKey: string;
+  /** `false` hides the top edge; an object overrides the shared stroke. */
+  upperStroke?: BandStrokeProps | false;
+  /** Y-scale group id. @default "left" */
+  yAxisId?: string;
+}
+
+interface ResolvedBandStroke {
+  stroke: string;
+  strokeDasharray?: string;
+  strokeOpacity: number;
+  strokeWidth: number;
+}
+
+function resolveEdgeStroke(
+  override: BandStrokeProps | false | undefined,
+  base: ResolvedBandStroke
+): ResolvedBandStroke | null {
+  if (override === false) {
+    return null;
+  }
+  const resolved: ResolvedBandStroke = {
+    stroke: override?.stroke ?? base.stroke,
+    strokeDasharray: override?.strokeDasharray ?? base.strokeDasharray,
+    strokeOpacity: override?.strokeOpacity ?? base.strokeOpacity,
+    strokeWidth: override?.strokeWidth ?? base.strokeWidth,
+  };
+  return resolved.strokeWidth > 0 ? resolved : null;
+}
+
+function FadeMaskStops({ stops }: { stops: BandFadeStop[] }) {
+  return stops.map((stop, index) => (
+    <stop
+      key={index}
+      offset={stop.offset}
+      style={{ stopColor: "white", stopOpacity: stop.opacity }}
+    />
+  ));
+}
+
+/** Phases where series strokes are drawn (matches `<Line>`). */
+function isBandVisiblePhase(phase: string): boolean {
+  return phase === "revealing" || phase === "ready" || phase === "exitingReady";
+}
+
+export function Band({
+  upperKey,
+  lowerKey,
+  yAxisId,
+  // `label` / `showInTooltip` are read from props by the chart shell
+  // (`extractBandConfigs`) for tooltip rows.
+  curve = curveNatural,
+  fill = chartCssVars.linePrimary,
+  fillType = "solid",
+  fillOpacity = 0.15,
+  gradientToOpacity = 0,
+  pattern = "diagonal",
+  patternColor,
+  patternScale,
+  patternStrokeWidth,
+  patternOpacity = 1,
+  stroke,
+  strokeWidth = 1,
+  strokeDasharray,
+  strokeOpacity = 1,
+  upperStroke,
+  lowerStroke,
+  fadeEdges = false,
+  fadeSize = 0.15,
+  className,
+}: BandProps) {
+  const {
+    renderData,
+    xScale,
+    innerWidth,
+    innerHeight,
+    xAccessor,
+    chartPhase,
+    yDomainTweenDuration,
+  } = useChartStable();
+  const yScale = useYScale(yAxisId);
+
+  // Same tween inputs as `<Line>` (animate + ready phase, yDomainTweenDuration)
+  // so band edges morph in lockstep with lines on data changes.
+  const displayed = useAnimatedBand({
+    chartPhase,
+    curve,
+    durationMs: yDomainTweenDuration,
+    enabled: chartPhase === "ready",
+    innerWidth,
+    lowerKey,
+    renderData,
+    upperKey,
+    xAccessor,
+    xScale,
+    yScale,
+  });
+  const { segments, polyline } = displayed;
+
+  const paths = useMemo(() => {
+    const pathCurve = polyline ? curveLinear : curve;
+    return {
+      area: bandAreaPath(segments, pathCurve),
+      extent: bandPixelExtent(segments),
+      lower: bandEdgePath(segments, "lower", pathCurve),
+      upper: bandEdgePath(segments, "upper", pathCurve),
+    };
+  }, [segments, polyline, curve]);
+
+  const uniqueId = useId().replace(/:/g, "");
+  const gradientId = `chart-band-gradient-${uniqueId}`;
+  const patternId = `chart-band-fill-${uniqueId}`;
+  const hMaskId = `chart-band-fade-x-${uniqueId}`;
+  const vMaskId = `chart-band-fade-y-${uniqueId}`;
+
+  const usesPattern = fillType === "pattern" && pattern !== "none";
+  const patternNode = useMemo<ReactNode>(() => {
+    if (!usesPattern) {
+      return null;
+    }
+    return renderPatternPreset(pattern, patternId, {
+      color: patternColor ?? fill,
+      scale: patternScale,
+      strokeWidth: patternStrokeWidth,
+    });
+  }, [
+    usesPattern,
+    pattern,
+    patternId,
+    patternColor,
+    fill,
+    patternScale,
+    patternStrokeWidth,
+  ]);
+
+  if (!isBandVisiblePhase(chartPhase) || paths.area === "") {
+    return null;
+  }
+
+  const { extent } = paths;
+  const hasExtent = extent != null && extent.bottom - extent.top > 0;
+  const fadeSides = resolveBandFadeSides(fadeEdges);
+  const fadeX = fadeSides.horizontal && innerWidth > 0;
+  const fadeY = fadeSides.vertical && hasExtent;
+  const usesGradient = fillType === "gradient" && hasExtent;
+
+  let areaFill = fill;
+  let areaOpacity = fillOpacity;
+  if (patternNode) {
+    areaFill = `url(#${patternId})`;
+    areaOpacity = patternOpacity;
+  } else if (usesGradient) {
+    areaFill = `url(#${gradientId})`;
+    areaOpacity = 1;
+  }
+
+  const baseStroke: ResolvedBandStroke = {
+    stroke: stroke ?? fill,
+    strokeDasharray,
+    strokeOpacity,
+    strokeWidth,
+  };
+  const upperEdge = resolveEdgeStroke(upperStroke, baseStroke);
+  const lowerEdge = resolveEdgeStroke(lowerStroke, baseStroke);
+
+  // Generous user-space mask region: series extend past the plot while an
+  // `xDomain` viewport pans; the gradients pad their end stops beyond it.
+  const maskRegion = {
+    height: innerHeight * 3,
+    maskUnits: "userSpaceOnUse" as const,
+    width: innerWidth * 3,
+    x: -innerWidth,
+    y: -innerHeight,
+  };
+  const maskRect = {
+    height: maskRegion.height,
+    width: maskRegion.width,
+    x: maskRegion.x,
+    y: maskRegion.y,
+  };
+
+  const content = (
+    <>
+      <path d={paths.area} fill={areaFill} fillOpacity={areaOpacity} />
+      {lowerEdge ? (
+        <path
+          d={paths.lower}
+          fill="none"
+          stroke={lowerEdge.stroke}
+          strokeDasharray={lowerEdge.strokeDasharray}
+          strokeLinecap="round"
+          strokeOpacity={lowerEdge.strokeOpacity}
+          strokeWidth={lowerEdge.strokeWidth}
+        />
+      ) : null}
+      {upperEdge ? (
+        <path
+          d={paths.upper}
+          fill="none"
+          stroke={upperEdge.stroke}
+          strokeDasharray={upperEdge.strokeDasharray}
+          strokeLinecap="round"
+          strokeOpacity={upperEdge.strokeOpacity}
+          strokeWidth={upperEdge.strokeWidth}
+        />
+      ) : null}
+    </>
+  );
+
+  return (
+    // biome-ignore lint/a11y/noAriaHiddenOnFocusable: decorative band
+    <g
+      aria-hidden="true"
+      className={className ?? "chart-band"}
+      pointerEvents="none"
+    >
+      <defs>
+        {usesGradient && extent ? (
+          <linearGradient
+            gradientUnits="userSpaceOnUse"
+            id={gradientId}
+            x1={0}
+            x2={0}
+            y1={extent.top}
+            y2={extent.bottom}
+          >
+            <stop
+              offset={0}
+              style={{ stopColor: fill, stopOpacity: fillOpacity }}
+            />
+            <stop
+              offset={1}
+              style={{ stopColor: fill, stopOpacity: gradientToOpacity }}
+            />
+          </linearGradient>
+        ) : null}
+        {patternNode}
+        {fadeX ? (
+          <>
+            <linearGradient
+              gradientUnits="userSpaceOnUse"
+              id={`${hMaskId}-gradient`}
+              x1={0}
+              x2={innerWidth}
+              y1={0}
+              y2={0}
+            >
+              <FadeMaskStops
+                stops={bandFadeStops(fadeSides.left, fadeSides.right, fadeSize)}
+              />
+            </linearGradient>
+            <mask id={hMaskId} {...maskRegion}>
+              <rect fill={`url(#${hMaskId}-gradient)`} {...maskRect} />
+            </mask>
+          </>
+        ) : null}
+        {fadeY && extent ? (
+          <>
+            <linearGradient
+              gradientUnits="userSpaceOnUse"
+              id={`${vMaskId}-gradient`}
+              x1={0}
+              x2={0}
+              y1={extent.top}
+              y2={extent.bottom}
+            >
+              <FadeMaskStops
+                stops={bandFadeStops(fadeSides.top, fadeSides.bottom, fadeSize)}
+              />
+            </linearGradient>
+            <mask id={vMaskId} {...maskRegion}>
+              <rect fill={`url(#${vMaskId}-gradient)`} {...maskRect} />
+            </mask>
+          </>
+        ) : null}
+      </defs>
+      <g mask={fadeX ? `url(#${hMaskId})` : undefined}>
+        <g mask={fadeY ? `url(#${vMaskId})` : undefined}>{content}</g>
+      </g>
+    </g>
+  );
+}
+
+Band.displayName = "Band";

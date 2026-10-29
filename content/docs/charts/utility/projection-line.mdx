@@ -16,14 +16,18 @@ description: Forecast segment extending a line series past the last data point â
 Build the path with `buildProjectionPath`, or pass manual `{ date, value }[]` points. Pair with [`LineSeriesTerminalMarker`](/docs/charts/utility/projection-line#terminal-marker) at the anchor when you want a ring at the hand-off.
 
 ```tsx
-import { buildProjectionPath } from "@/components/charts/projection-utils"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
-import { Grid } from "@/components/charts/grid"
-import { Line } from "@/components/charts/line"
-import { LineChart } from "@/components/charts/line-chart"
-import { LineSeriesTerminalMarker } from "@/components/charts/line-series-terminal-marker"
-import { ProjectionLine } from "@/components/charts/projection-line"
-import { XAxis } from "@/components/charts/x-axis"
+import {
+  buildProjectionPath,
+} from "@/components/charts/time-series-chart/projection-utils"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { Line } from "@/components/charts/line-chart/line"
+import { LineChart } from "@/components/charts/line-chart/line-chart"
+import {
+  LineSeriesTerminalMarker,
+} from "@/components/charts/line-chart/line-series-terminal-marker"
+import { ProjectionLine } from "@/components/charts/line-chart/projection-line"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
 
 const projectionPath = buildProjectionPath({
   sourceData: chartData,
@@ -56,17 +60,17 @@ The chart extends its x-domain to fit the projection horizon. Projections are in
 
 ## ProjectionLine props
 
-<auto-type-table cwd path="src/registry/charts/projection-line.tsx" name="ProjectionLineProps" />
+<auto-type-table cwd path="src/registry/charts/line-chart/projection-line.tsx" name="ProjectionLineProps" />
 
 ## buildProjectionPath
 
-<auto-type-table cwd path="src/registry/charts/projection-utils.ts" name="BuildProjectionPathOptions" />
+<auto-type-table cwd path="src/registry/charts/time-series-chart/projection-utils.ts" name="BuildProjectionPathOptions" />
 
 ## Terminal marker
 
 `LineSeriesTerminalMarker` renders a hollow ring at the last data point for the given `dataKey`. It fades in after the clip reveal completes.
 
-<auto-type-table cwd path="src/registry/charts/line-series-terminal-marker.tsx" name="LineSeriesTerminalMarkerProps" />
+<auto-type-table cwd path="src/registry/charts/line-chart/line-series-terminal-marker.tsx" name="LineSeriesTerminalMarkerProps" />
 
 ## Examples
 

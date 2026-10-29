@@ -2,17 +2,17 @@
 
 import { useEffect, useState } from "react";
 
-import { useChart } from "@/registry/charts/chart-context";
-import { Grid } from "@/registry/charts/grid";
-import { Line } from "@/registry/charts/line";
-import { LineChart } from "@/registry/charts/line-chart";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { useChart } from "@/registry/charts/chart-core/chart-context";
+import { Grid } from "@/registry/charts/chart-grid/grid";
 import {
   SegmentBackground,
   SegmentLineFrom,
   SegmentLineTo,
-} from "@/registry/charts/segment";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { XAxis } from "@/registry/charts/x-axis";
+} from "@/registry/charts/chart-segment/segment";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { Line } from "@/registry/charts/line-chart/line";
+import { LineChart } from "@/registry/charts/line-chart/line-chart";
 
 interface SegmentStats {
   change: number;

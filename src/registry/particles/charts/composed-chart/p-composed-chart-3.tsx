@@ -1,12 +1,12 @@
 "use client";
 
-import { Area } from "@/registry/charts/area";
-import { ComposedChart } from "@/registry/charts/composed-chart";
-import { Grid } from "@/registry/charts/grid";
-import { Line } from "@/registry/charts/line";
-import { SeriesBar } from "@/registry/charts/series-bar";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { XAxis } from "@/registry/charts/x-axis";
+import { Area } from "@/registry/charts/area-chart/area";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { ComposedChart } from "@/registry/charts/composed-chart/composed-chart";
+import { SeriesBar } from "@/registry/charts/composed-chart/series-bar";
+import { Line } from "@/registry/charts/line-chart/line";
 
 const COMPOSED_DEMO_DAY_COUNT = 30;
 

@@ -1,13 +1,13 @@
 "use client";
 
-import { Candlestick } from "@/registry/charts/candlestick";
+import { Candlestick } from "@/registry/charts/candlestick-chart/candlestick";
 import {
   CandlestickChart,
   type OHLCDataPoint,
-} from "@/registry/charts/candlestick-chart";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { PatternLines } from "@/registry/charts/visx-pattern";
-import { XAxis } from "@/registry/charts/x-axis";
+} from "@/registry/charts/candlestick-chart/candlestick-chart";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { PatternLines } from "@/registry/charts/chart-patterns/visx-pattern";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
 
 // Candlestick OHLC data (~30 days)
 const candlestickOhlcData: OHLCDataPoint[] = (() => {

@@ -1,11 +1,11 @@
 "use client";
 
-import { Area } from "@/registry/charts/area";
-import { AreaChart } from "@/registry/charts/area-chart";
-import { Grid } from "@/registry/charts/grid";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { TrendLine } from "@/registry/charts/trend-line";
-import { XAxis } from "@/registry/charts/x-axis";
+import { Area } from "@/registry/charts/area-chart/area";
+import { AreaChart } from "@/registry/charts/area-chart/area-chart";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { TrendLine } from "@/registry/charts/chart-trend-line/trend-line";
 
 const areaData = [
   { date: new Date("2024-01-01"), desktop: 186 },

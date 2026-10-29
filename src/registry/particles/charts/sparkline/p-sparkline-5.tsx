@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 import { cn } from "cn";
 
-import { BarSparkline } from "@/registry/charts/sparkline";
+import { BarSparkline } from "@/registry/charts/sparkline/sparkline";
 
 function GalleryShell({
   children,

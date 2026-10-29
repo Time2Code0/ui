@@ -1,14 +1,14 @@
 "use client";
 
-import type { SunburstNode } from "@/registry/charts/sunburst-data";
+import type { SunburstNode } from "@/registry/charts/sunburst-chart/sunburst";
 
 import { useMemo } from "react";
 
-import { buildArcs } from "@/registry/charts/sunburst";
-import { SunburstCenter } from "@/registry/charts/sunburst-center";
-import { SunburstChart } from "@/registry/charts/sunburst-chart";
-import { SunburstSegment } from "@/registry/charts/sunburst-segment";
-import { PatternLines } from "@/registry/charts/visx-pattern";
+import { PatternLines } from "@/registry/charts/chart-patterns/visx-pattern";
+import { buildArcs } from "@/registry/charts/sunburst-chart/sunburst";
+import { SunburstCenter } from "@/registry/charts/sunburst-chart/sunburst-center";
+import { SunburstChart } from "@/registry/charts/sunburst-chart/sunburst-chart";
+import { SunburstSegment } from "@/registry/charts/sunburst-chart/sunburst-segment";
 
 const sunburstDemoData: SunburstNode = {
   children: [

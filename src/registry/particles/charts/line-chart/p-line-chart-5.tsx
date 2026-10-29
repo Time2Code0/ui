@@ -1,14 +1,14 @@
 "use client";
 
-import { Grid } from "@/registry/charts/grid";
-import { Line } from "@/registry/charts/line";
-import { LineChart } from "@/registry/charts/line-chart";
+import { Grid } from "@/registry/charts/chart-grid/grid";
 import {
   SegmentBackground,
   SegmentLineFrom,
   SegmentLineTo,
-} from "@/registry/charts/segment";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
+} from "@/registry/charts/chart-segment/segment";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { Line } from "@/registry/charts/line-chart/line";
+import { LineChart } from "@/registry/charts/line-chart/line-chart";
 
 const lineData = [
   { date: new Date(2024, 0, 1), desktop: 186 },

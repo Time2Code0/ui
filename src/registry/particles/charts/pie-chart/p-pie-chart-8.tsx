@@ -1,11 +1,11 @@
 "use client";
 
-import type { PieData } from "@/registry/charts/pie-context";
+import type { PieData } from "@/registry/charts/pie-chart/pie-context";
 
-import { PieCenter } from "@/registry/charts/pie-center";
-import { PieChart } from "@/registry/charts/pie-chart";
-import { PieSlice } from "@/registry/charts/pie-slice";
-import { PatternLines } from "@/registry/charts/visx-pattern";
+import { PatternLines } from "@/registry/charts/chart-patterns/visx-pattern";
+import { PieCenter } from "@/registry/charts/pie-chart/pie-center";
+import { PieChart } from "@/registry/charts/pie-chart/pie-chart";
+import { PieSlice } from "@/registry/charts/pie-chart/pie-slice";
 
 const piePatternData: PieData[] = [
   { label: "Category A", value: 35 },

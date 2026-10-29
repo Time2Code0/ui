@@ -14,10 +14,10 @@ description: A composable sankey diagram for visualizing flow between nodes with
 The Sankey Chart uses a composable API similar to other charts. Build diagrams by combining components:
 
 ```tsx
-import { SankeyChart } from "@/components/charts/sankey/sankey-chart"
-import { SankeyNode } from "@/components/charts/sankey/sankey-node"
-import { SankeyLink } from "@/components/charts/sankey/sankey-link"
-import { SankeyTooltip } from "@/components/charts/sankey/sankey-tooltip"
+import { SankeyChart } from "@/components/charts/sankey-chart/sankey-chart"
+import { SankeyNode } from "@/components/charts/sankey-chart/sankey-node"
+import { SankeyLink } from "@/components/charts/sankey-chart/sankey-link"
+import { SankeyTooltip } from "@/components/charts/sankey-chart/sankey-tooltip"
 
 const data = {
   nodes: [
@@ -31,7 +31,7 @@ const data = {
   ],
 }
 
-export default function FlowDiagram() {
+export function FlowDiagram() {
   return (
     <SankeyChart data={data}>
       <SankeyLink />
@@ -48,25 +48,25 @@ export default function FlowDiagram() {
 
 The root component that computes the layout and provides context to children.
 
-<auto-type-table cwd path="src/registry/charts/sankey/sankey-chart.tsx" name="SankeyChartProps" />
+<auto-type-table cwd path="src/registry/charts/sankey-chart/sankey-chart.tsx" name="SankeyChartProps" />
 
 ### SankeyNode
 
 Renders the nodes (bars) in the diagram with animated initialization and internal labels.
 
-<auto-type-table cwd path="src/registry/charts/sankey/sankey-node.tsx" name="SankeyNodeProps" />
+<auto-type-table cwd path="src/registry/charts/sankey-chart/sankey-node.tsx" name="SankeyNodeProps" />
 
 ### SankeyLink
 
 Renders the links (flows) between nodes with animated path reveal and gradient colors.
 
-<auto-type-table cwd path="src/registry/charts/sankey/sankey-link.tsx" name="SankeyLinkProps" />
+<auto-type-table cwd path="src/registry/charts/sankey-chart/sankey-link.tsx" name="SankeyLinkProps" />
 
 ### SankeyTooltip
 
 Displays tooltips for nodes and links on hover.
 
-<auto-type-table cwd path="src/registry/charts/sankey/sankey-tooltip.tsx" name="SankeyTooltipProps" />
+<auto-type-table cwd path="src/registry/charts/sankey-chart/sankey-tooltip.tsx" name="SankeyTooltipProps" />
 
 ## Data Format
 

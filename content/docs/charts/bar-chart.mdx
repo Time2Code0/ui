@@ -14,11 +14,11 @@ description: A composable bar chart with spring animations, stacked bars, horizo
 The Bar Chart uses the same composable API as the Line and Area charts. Build charts by combining components:
 
 ```tsx
-import { BarChart } from "@/components/charts/bar-chart"
-import { Bar } from "@/components/charts/bar"
-import { BarXAxis } from "@/components/charts/bar-x-axis"
-import { Grid } from "@/components/charts/grid"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { BarChart } from "@/components/charts/bar-chart/bar-chart"
+import { Bar } from "@/components/charts/bar-chart/bar"
+import { BarXAxis } from "@/components/charts/bar-chart/bar-x-axis"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
 
 const data = [
   { month: "Jan", revenue: 12000, profit: 4500 },
@@ -26,7 +26,7 @@ const data = [
   // ... more data
 ]
 
-export default function RevenueChart() {
+export function RevenueChart() {
   return (
     <BarChart data={data} xDataKey="month">
       <Grid horizontal />
@@ -47,13 +47,13 @@ See the [charts gallery](/charts/bar-chart) for stacked bars, horizontal layouts
 
 The root component that provides context to all children.
 
-<auto-type-table cwd path="src/registry/charts/bar-chart.tsx" name="BarChartProps" />
+<auto-type-table cwd path="src/registry/charts/bar-chart/bar-chart.tsx" name="BarChartProps" />
 
 ### Bar
 
 Renders a bar for each data point with configurable styling and animations.
 
-<auto-type-table cwd path="src/registry/charts/bar.tsx" name="BarProps" />
+<auto-type-table cwd path="src/registry/charts/bar-chart/bar.tsx" name="BarProps" />
 
 ### Value labels
 
@@ -92,7 +92,7 @@ with dense data.
 
 Renders a **Shape** bar as a vertical stack of discrete squares instead of a continuous `<Bar>`. Use one `<BarSquares>` per series (grouped, vertical charts only). Squares cascade upward on enter; supports solid fills, bar-spanning gradients, and pattern presets.
 
-<auto-type-table cwd path="src/registry/charts/bar-squares.tsx" name="BarSquaresProps" />
+<auto-type-table cwd path="src/registry/charts/bar-chart/bar-squares.tsx" name="BarSquaresProps" />
 
 Pass **`squareSnap`** on `<BarChart>` with the same `squareGap`, `groupGap`, and `squareFit` so tooltip ring indicators align with square columns:
 
@@ -135,7 +135,7 @@ See the **Shape & Gradient** and **Shape Squircle Ring** examples on the [bar ch
 
 Optional underlay for Shape bars: patterned or solid fill in the **empty space above** each square column (not behind the bars). Place before `<BarSquares>`.
 
-<auto-type-table cwd path="src/registry/charts/bar-squares.tsx" name="BarColumnTrackProps" />
+<auto-type-table cwd path="src/registry/charts/bar-chart/bar-squares.tsx" name="BarColumnTrackProps" />
 
 Tracks animate from full column height on enter and shrink in sync as squares stack upward.
 
@@ -143,25 +143,25 @@ Tracks animate from full column height on enter and shrink in sync as squares st
 
 Displays categorical labels along the x-axis (for vertical bar charts).
 
-<auto-type-table cwd path="src/registry/charts/bar-x-axis.tsx" name="BarXAxisProps" />
+<auto-type-table cwd path="src/registry/charts/bar-chart/bar-x-axis.tsx" name="BarXAxisProps" />
 
 ### BarYAxis
 
 Displays categorical labels along the y-axis (for horizontal bar charts).
 
-<auto-type-table cwd path="src/registry/charts/bar-y-axis.tsx" name="BarYAxisProps" />
+<auto-type-table cwd path="src/registry/charts/bar-chart/bar-y-axis.tsx" name="BarYAxisProps" />
 
 ### Grid
 
 The Grid component now supports `fadeVertical` for vertical grid lines.
 
-<auto-type-table cwd path="src/registry/charts/grid.tsx" name="GridProps" />
+<auto-type-table cwd path="src/registry/charts/chart-grid/grid.tsx" name="GridProps" />
 
 ### ChartTooltip
 
 Inside `BarChart` the tooltip shows the hover dots and panel but **no crosshair line** by default (vertical and horizontal orientation). Opt in with `showCrosshair`. See the [Tooltip utility](/docs/charts/utility/tooltip) for all props.
 
-<auto-type-table cwd path="src/registry/charts/tooltip/chart-tooltip.tsx" name="ChartTooltipProps" />
+<auto-type-table cwd path="src/registry/charts/chart-tooltip/chart-tooltip.tsx" name="ChartTooltipProps" />
 
 ```tsx
 <ChartTooltip showCrosshair />
@@ -190,25 +190,25 @@ With daily rows whose x value is a `Date` (or a `"YYYY-MM-DD"` string), [`Weeken
 
 Renders the 3D side + top faces. Place **before** `<Bar>` so the bar's front face occludes depth that would extend into the next column.
 
-<auto-type-table cwd path="src/registry/charts/bar-depth.tsx" name="BarDepthBackProps" />
+<auto-type-table cwd path="src/registry/charts/bar-chart/bar-depth.tsx" name="BarDepthBackProps" />
 
 ### BarDepthFront
 
 Renders the glossy glass sheen over the bar's fill. Place **after** `<Bar>`.
 
-<auto-type-table cwd path="src/registry/charts/bar-depth.tsx" name="BarDepthFrontProps" />
+<auto-type-table cwd path="src/registry/charts/bar-chart/bar-depth.tsx" name="BarDepthFrontProps" />
 
 ### BarPulse
 
 Optional looping vertical sweep over a single active bar (e.g. a live value). Place **after** `<BarDepthFront>`.
 
-<auto-type-table cwd path="src/registry/charts/bar-depth.tsx" name="BarPulseProps" />
+<auto-type-table cwd path="src/registry/charts/bar-chart/bar-depth.tsx" name="BarPulseProps" />
 
 ### BarDepthProvider
 
 Optional wrapper supplying shared depth config to every layer beneath it. Wrap it **around** `<BarChart>`, not inside it. Use it to split **stacked** bars (`segmentsAccessor`) and/or tune the baseline contact shadow (`groundShadow`).
 
-<auto-type-table cwd path="src/registry/charts/bar-depth.tsx" name="BarDepthProviderProps" />
+<auto-type-table cwd path="src/registry/charts/bar-chart/bar-depth.tsx" name="BarDepthProviderProps" />
 
 ## 3D Depth & Glass Surfaces
 
@@ -217,12 +217,15 @@ Give bars a head-on 3D perspective and a glass-block sheen by layering `BarDepth
 Add **`perspective`** to the `Bar` and you're done — it shrinks the front face's top so the lid sits flush on the bar (instead of floating above it) and forces a flat top so the lid meets it with no gap. **Always pass it when using the depth layers.**
 
 ```tsx
-import { BarChart } from "@/components/charts/bar-chart"
-import { Bar } from "@/components/charts/bar"
-import { BarDepthBack, BarDepthFront } from "@/components/charts/bar-depth"
-import { BarXAxis } from "@/components/charts/bar-x-axis"
-import { Grid } from "@/components/charts/grid"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { BarChart } from "@/components/charts/bar-chart/bar-chart"
+import { Bar } from "@/components/charts/bar-chart/bar"
+import {
+  BarDepthBack,
+  BarDepthFront,
+} from "@/components/charts/bar-chart/bar-depth"
+import { BarXAxis } from "@/components/charts/bar-chart/bar-x-axis"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
 
 ;<BarChart data={data} xDataKey="month">
   <Grid horizontal />
@@ -343,9 +346,9 @@ Negative values in **stacked** charts (diverging stacks) are not supported yet.
 Toggle **Loading** / **Ready** in the preview to swap the shimmer skeleton for the real bars.
 
 ```tsx
-import { BarChart } from "@/components/charts/bar-chart"
-import { Bar } from "@/components/charts/bar"
-import { BarXAxis } from "@/components/charts/bar-x-axis"
+import { BarChart } from "@/components/charts/bar-chart/bar-chart"
+import { Bar } from "@/components/charts/bar-chart/bar"
+import { BarXAxis } from "@/components/charts/bar-chart/bar-x-axis"
 
 function RevenueChart({ data, isLoading }) {
   return (
@@ -364,12 +367,14 @@ function RevenueChart({ data, isLoading }) {
 For the common "render a placeholder until data arrives" case, `BarChartLoading` is a turnkey shortcut for `<BarChart status="loading" />`:
 
 ```tsx
-import { BarChartLoading } from "@/components/charts/bar-chart-loading"
+import {
+  BarChartLoading,
+} from "@/components/charts/bar-chart/bar-chart-loading"
 
 ;<BarChartLoading />
 ```
 
-<auto-type-table cwd path="src/registry/charts/bar-chart-loading.tsx" name="BarChartLoadingProps" />
+<auto-type-table cwd path="src/registry/charts/bar-chart/bar-chart-loading.tsx" name="BarChartLoadingProps" />
 
 ## Animation
 

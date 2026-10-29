@@ -14,16 +14,16 @@ description: Sign-colored line segments for profit and loss on a shared zero bas
 Use `ProfitLossLine` inside `LineChart` for a single series that crosses zero. Pair it with a hidden `Line` (same `dataKey`) so the chart registers the series for the y-domain and tooltip. Highlight the zero baseline with `Grid highlightRowValues`.
 
 ```tsx
-import { LineChart } from "@/components/charts/line-chart"
-import { Line } from "@/components/charts/line"
-import { Grid } from "@/components/charts/grid"
-import { XAxis } from "@/components/charts/x-axis"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { LineChart } from "@/components/charts/line-chart/line-chart"
+import { Line } from "@/components/charts/line-chart/line"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
 import {
   ProfitLossLine,
   profitLossColor,
   resolveProfitLossTooltipLabel,
-} from "@/components/charts/profit-loss-line"
+} from "@/components/charts/line-chart/profit-loss-line"
 import { curveLinear } from "@visx/curve"
 
 const data = [
@@ -32,7 +32,7 @@ const data = [
   // ...
 ]
 
-export default function ProfitLossChart() {
+export function ProfitLossChart() {
   return (
     <LineChart data={data}>
       <Grid highlightRowValues={[0]} horizontal />
@@ -70,13 +70,13 @@ export default function ProfitLossChart() {
 
 Renders linear segments colored by sign. Values ≥ 0 use `--color-success-foreground`; values &lt; 0 use `--color-destructive-foreground`.
 
-<auto-type-table cwd path="src/registry/charts/profit-loss-line.tsx" name="ProfitLossLineProps" />
+<auto-type-table cwd path="src/registry/charts/line-chart/profit-loss-line.tsx" name="ProfitLossLineProps" />
 
 ### ProfitLossLegend
 
 Optional legend with Profit/Loss items. Hover dims the opposite segment when wrapped with `ProfitLossLegendHoverProvider`.
 
-<auto-type-table cwd path="src/registry/charts/profit-loss-legend.tsx" name="ProfitLossLegendProps" />
+<auto-type-table cwd path="src/registry/charts/line-chart/profit-loss-legend.tsx" name="ProfitLossLegendProps" />
 
 ### Grid zero line
 

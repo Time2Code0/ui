@@ -2,11 +2,11 @@
 
 import { ZoomInAreaIcon, ZoomOutAreaIcon } from "@hugeicons/core-free-icons";
 
-import { ChoroplethChart } from "@/registry/charts/choropleth/choropleth-chart";
-import { useChoroplethZoom } from "@/registry/charts/choropleth/choropleth-context";
-import { ChoroplethFeature as ChoroplethFeatureComponent } from "@/registry/charts/choropleth/choropleth-feature";
-import { ChoroplethTooltip } from "@/registry/charts/choropleth/choropleth-tooltip";
-import { useWorldDataStandalone } from "@/registry/charts/choropleth/use-world-data";
+import { ChoroplethChart } from "@/registry/charts/choropleth-chart/choropleth-chart";
+import { useChoroplethZoom } from "@/registry/charts/choropleth-chart/choropleth-context";
+import { ChoroplethFeature as ChoroplethFeatureComponent } from "@/registry/charts/choropleth-chart/choropleth-feature";
+import { ChoroplethTooltip } from "@/registry/charts/choropleth-chart/choropleth-tooltip";
+import { useWorldDataStandalone } from "@/registry/charts/choropleth-chart/use-world-data";
 import { Button } from "@/registry/ui/button";
 import { Icon } from "@/registry/ui/icon";
 

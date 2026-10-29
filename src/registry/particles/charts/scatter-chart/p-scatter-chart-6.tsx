@@ -1,10 +1,10 @@
 "use client";
 
-import { Grid } from "@/registry/charts/grid";
-import { Scatter } from "@/registry/charts/scatter";
-import { ScatterChart } from "@/registry/charts/scatter-chart";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { XAxis } from "@/registry/charts/x-axis";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { Scatter } from "@/registry/charts/scatter-chart/scatter";
+import { ScatterChart } from "@/registry/charts/scatter-chart/scatter-chart";
 
 const multiLineData = [
   { date: new Date(2024, 0, 1), desktop: 186, mobile: 80 },

@@ -28,19 +28,21 @@ description: Mix SeriesBar, Line, and Area on one shared time axis (Recharts Com
 ### Basic example
 
 ```tsx
-import { Area } from "@/components/charts/area"
-import { ComposedChart } from "@/components/charts/composed-chart"
-import { Grid } from "@/components/charts/grid"
-import { Line } from "@/components/charts/line"
-import { SeriesBar } from "@/components/charts/series-bar"
-import { XAxis } from "@/components/charts/x-axis"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { Area } from "@/components/charts/area-chart/area"
+import {
+  ComposedChart,
+} from "@/components/charts/composed-chart/composed-chart"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { Line } from "@/components/charts/line-chart/line"
+import { SeriesBar } from "@/components/charts/composed-chart/series-bar"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
 import { curveCatmullRom } from "@visx/curve"
 import { composedDemoData } from "@/lib/composed-demo-data"
 
 const smooth = curveCatmullRom.alpha(0.42)
 
-export default function Example() {
+export function Example() {
   return (
     <ComposedChart
       aspectRatio="2 / 1"

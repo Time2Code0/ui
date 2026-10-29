@@ -14,13 +14,23 @@ description: A composable hierarchical sunburst chart with drill-down zoom, anim
 The Sunburst Chart uses a composable API. Map one `SunburstSegment` per arc in the layout, then add optional chrome for navigation and labels:
 
 ```tsx
-import { buildArcs } from "@/components/charts/sunburst"
-import { SunburstBreadcrumb } from "@/components/charts/sunburst-breadcrumb"
-import { SunburstCenter } from "@/components/charts/sunburst-center"
-import { SunburstChart } from "@/components/charts/sunburst-chart"
-import { SunburstHint } from "@/components/charts/sunburst-hint"
-import { SunburstLabels } from "@/components/charts/sunburst-labels"
-import { SunburstSegment } from "@/components/charts/sunburst-segment"
+import { buildArcs } from "@/components/charts/sunburst-chart/sunburst"
+import {
+  SunburstBreadcrumb,
+} from "@/components/charts/sunburst-chart/sunburst-breadcrumb"
+import {
+  SunburstCenter,
+} from "@/components/charts/sunburst-chart/sunburst-center"
+import {
+  SunburstChart,
+} from "@/components/charts/sunburst-chart/sunburst-chart"
+import { SunburstHint } from "@/components/charts/sunburst-chart/sunburst-hint"
+import {
+  SunburstLabels,
+} from "@/components/charts/sunburst-chart/sunburst-labels"
+import {
+  SunburstSegment,
+} from "@/components/charts/sunburst-chart/sunburst-segment"
 
 const data = {
   name: "Revenue",
@@ -42,7 +52,7 @@ const data = {
   ],
 }
 
-export default function RevenueSunburst() {
+export function RevenueSunburst() {
   const { arcs } = buildArcs(data)
 
   return (
@@ -71,7 +81,7 @@ Click a segment with children to zoom in. Click the center hub or a breadcrumb c
 import {
   SunburstBreadcrumb,
   useSunburstBreadcrumbItems,
-} from "@/components/charts/sunburst-breadcrumb"
+} from "@/components/charts/sunburst-chart/sunburst-breadcrumb"
 import {
   BreadcrumbItem,
   BreadcrumbLink,
@@ -114,25 +124,25 @@ function DrillBreadcrumb() {
 
 The root component that computes the layout and provides context to children.
 
-<auto-type-table cwd path="src/registry/charts/sunburst-chart.tsx" name="SunburstChartProps" />
+<auto-type-table cwd path="src/registry/charts/sunburst-chart/sunburst-chart.tsx" name="SunburstChartProps" />
 
 ### SunburstSegment
 
 Renders one arc with enter animation, drill-down click handling, and hover grow along the ancestor path.
 
-<auto-type-table cwd path="src/registry/charts/sunburst-segment.tsx" name="SunburstSegmentProps" />
+<auto-type-table cwd path="src/registry/charts/sunburst-chart/sunburst-segment.tsx" name="SunburstSegmentProps" />
 
 ### SunburstCenter
 
 Navigation hub rendered after drill-down. Click to zoom out to the parent focus.
 
-<auto-type-table cwd path="src/registry/charts/sunburst-center.tsx" name="SunburstCenterProps" />
+<auto-type-table cwd path="src/registry/charts/sunburst-chart/sunburst-center.tsx" name="SunburstCenterProps" />
 
 ### SunburstBreadcrumb
 
 Chrome slot above the chart for drill-down navigation. Pass your breadcrumb UI as `children`. Use `useSunburstBreadcrumbItems()` inside children to read the trail and `zoomTo`.
 
-<auto-type-table cwd path="src/registry/charts/sunburst-breadcrumb.tsx" name="SunburstBreadcrumbProps" />
+<auto-type-table cwd path="src/registry/charts/sunburst-chart/sunburst-breadcrumb.tsx" name="SunburstBreadcrumbProps" />
 
 ### useSunburstBreadcrumbItems
 
@@ -147,13 +157,13 @@ const { items, zoomTo } = useSunburstBreadcrumbItems()
 
 Segment name labels positioned at arc centroids. Each label fades in after its segment finishes the enter animation.
 
-<auto-type-table cwd path="src/registry/charts/sunburst-labels.tsx" name="SunburstLabelsProps" />
+<auto-type-table cwd path="src/registry/charts/sunburst-chart/sunburst-labels.tsx" name="SunburstLabelsProps" />
 
 ### SunburstHint
 
 Contextual hint text below the chart (hover trail or zoom instructions). Rendered outside the SVG.
 
-<auto-type-table cwd path="src/registry/charts/sunburst-hint.tsx" name="SunburstHintProps" />
+<auto-type-table cwd path="src/registry/charts/sunburst-chart/sunburst-hint.tsx" name="SunburstHintProps" />
 
 Custom hint example:
 
@@ -203,4 +213,4 @@ Category colors default to [`--color-chart-1` … `--color-chart-5`](/docs/styli
 
 All animations respect `prefers-reduced-motion`.
 
-For `PatternLines` or other pattern fills, import them from `@/components/charts/visx-pattern`. They are vendored from `@visx/pattern` and installed with every chart, so no extra package is needed.
+For `PatternLines` or other pattern fills, import them from `@/components/charts/chart-patterns/visx-pattern`. They are vendored from `@visx/pattern` and installed with every chart, so no extra package is needed.

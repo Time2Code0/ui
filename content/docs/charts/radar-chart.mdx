@@ -14,11 +14,11 @@ description: A composable multi-series radar chart with animated polygons, hover
 The Radar Chart uses a composable API. Define your metrics and data, then combine components:
 
 ```tsx
-import { RadarChart } from "@/components/charts/radar-chart"
-import { RadarGrid } from "@/components/charts/radar-grid"
-import { RadarAxis } from "@/components/charts/radar-axis"
-import { RadarLabels } from "@/components/charts/radar-labels"
-import { RadarArea } from "@/components/charts/radar-area"
+import { RadarChart } from "@/components/charts/radar-chart/radar-chart"
+import { RadarGrid } from "@/components/charts/radar-chart/radar-grid"
+import { RadarAxis } from "@/components/charts/radar-chart/radar-axis"
+import { RadarLabels } from "@/components/charts/radar-chart/radar-labels"
+import { RadarArea } from "@/components/charts/radar-chart/radar-area"
 
 const metrics = [
   { key: "speed", label: "Speed" },
@@ -39,7 +39,7 @@ const data = [
   },
 ]
 
-export default function PerformanceRadar() {
+export function PerformanceRadar() {
   return (
     <RadarChart data={data} metrics={metrics} size={400}>
       <RadarGrid />
@@ -59,31 +59,31 @@ export default function PerformanceRadar() {
 
 The root container that provides context to all children.
 
-<auto-type-table cwd path="src/registry/charts/radar-chart.tsx" name="RadarChartProps" />
+<auto-type-table cwd path="src/registry/charts/radar-chart/radar-chart.tsx" name="RadarChartProps" />
 
 ### RadarGrid
 
 Renders the circular grid lines (spider web pattern).
 
-<auto-type-table cwd path="src/registry/charts/radar-grid.tsx" name="RadarGridProps" />
+<auto-type-table cwd path="src/registry/charts/radar-chart/radar-grid.tsx" name="RadarGridProps" />
 
 ### RadarAxis
 
 Renders axis lines from center to each metric.
 
-<auto-type-table cwd path="src/registry/charts/radar-axis.tsx" name="RadarAxisProps" />
+<auto-type-table cwd path="src/registry/charts/radar-chart/radar-axis.tsx" name="RadarAxisProps" />
 
 ### RadarLabels
 
 Renders metric labels around the perimeter.
 
-<auto-type-table cwd path="src/registry/charts/radar-labels.tsx" name="RadarLabelsProps" />
+<auto-type-table cwd path="src/registry/charts/radar-chart/radar-labels.tsx" name="RadarLabelsProps" />
 
 ### RadarArea
 
 Renders a single data polygon with hover effects.
 
-<auto-type-table cwd path="src/registry/charts/radar-area.tsx" name="RadarAreaProps" />
+<auto-type-table cwd path="src/registry/charts/radar-chart/radar-area.tsx" name="RadarAreaProps" />
 
 ## Data Shape
 
@@ -115,7 +115,7 @@ Series fill colors default to [`--color-chart-1` … `--color-chart-5`](/docs/st
 Access the radar context from any child component:
 
 ```tsx
-import { useRadar } from "@/components/charts/radar-context"
+import { useRadar } from "@/components/charts/radar-chart/radar-context"
 
 function CustomComponent() {
   const {

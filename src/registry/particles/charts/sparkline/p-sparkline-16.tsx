@@ -3,7 +3,7 @@
 import {
   LineSparkline,
   type SparklineCrosshair,
-} from "@/registry/charts/sparkline";
+} from "@/registry/charts/sparkline/sparkline";
 
 const crosshairs: Exclude<SparklineCrosshair, false>[] = [
   "dashed",

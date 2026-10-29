@@ -1,10 +1,10 @@
 "use client";
 
-import { Grid } from "@/registry/charts/grid";
-import { Scatter } from "@/registry/charts/scatter";
-import { ScatterChart } from "@/registry/charts/scatter-chart";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { XAxis } from "@/registry/charts/x-axis";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { Scatter } from "@/registry/charts/scatter-chart/scatter";
+import { ScatterChart } from "@/registry/charts/scatter-chart/scatter-chart";
 
 /** 24 months — desktop vs mobile for scatter hero and gallery examples */
 const scatterMultiSeriesData = Array.from({ length: 24 }, (_, i) => ({

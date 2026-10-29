@@ -14,8 +14,8 @@ description: A composable pie and donut chart with animated slices, hover intera
 The Pie Chart uses a composable API similar to other charts in the library. Build charts by combining components:
 
 ```tsx
-import { PieChart } from "@/components/charts/pie-chart"
-import { PieSlice } from "@/components/charts/pie-slice"
+import { PieChart } from "@/components/charts/pie-chart/pie-chart"
+import { PieSlice } from "@/components/charts/pie-chart/pie-slice"
 
 const data = [
   { label: "Electronics", value: 4250, color: "#0ea5e9" },
@@ -23,7 +23,7 @@ const data = [
   { label: "Food", value: 2100, color: "#f59e0b" },
 ]
 
-export default function SalesChart() {
+export function SalesChart() {
   return (
     <PieChart data={data} size={280}>
       {data.map((_, index) => (
@@ -40,19 +40,19 @@ export default function SalesChart() {
 
 The root component that provides context to all children.
 
-<auto-type-table cwd path="src/registry/charts/pie-chart.tsx" name="PieChartProps" />
+<auto-type-table cwd path="src/registry/charts/pie-chart/pie-chart.tsx" name="PieChartProps" />
 
 ### PieSlice
 
 Renders an individual slice with animated arc and hover effects.
 
-<auto-type-table cwd path="src/registry/charts/pie-slice.tsx" name="PieSliceProps" />
+<auto-type-table cwd path="src/registry/charts/pie-chart/pie-slice.tsx" name="PieSliceProps" />
 
 ### PieCenter
 
 Displays content in the center of a donut chart. Only renders when `innerRadius > 0`.
 
-<auto-type-table cwd path="src/registry/charts/pie-center.tsx" name="PieCenterProps" />
+<auto-type-table cwd path="src/registry/charts/pie-chart/pie-center.tsx" name="PieCenterProps" />
 
 ### Legend
 

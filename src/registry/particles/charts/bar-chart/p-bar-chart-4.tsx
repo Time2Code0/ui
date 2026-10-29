@@ -1,6 +1,6 @@
 "use client";
 
-import { BarChartLoading } from "@/registry/charts/bar-chart-loading";
+import { BarChartLoading } from "@/registry/charts/bar-chart/bar-chart-loading";
 
 export function Particle() {
   return (

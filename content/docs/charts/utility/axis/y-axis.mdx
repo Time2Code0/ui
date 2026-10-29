@@ -14,11 +14,11 @@ description: Value labels for the vertical axis in line and area charts
 The YAxis component displays value labels along the left or right side of time-series charts (`LineChart`, `AreaChart`, `ComposedChart`, `ScatterChart`, and vertical `BarChart`). It must be used inside the chart shell. Ensure your chart has sufficient margin for the labels.
 
 ```tsx
-import { LineChart } from "@/components/charts/line-chart"
-import { Line } from "@/components/charts/line"
-import { XAxis } from "@/components/charts/x-axis"
-import { YAxis } from "@/components/charts/y-axis"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { LineChart } from "@/components/charts/line-chart/line-chart"
+import { Line } from "@/components/charts/line-chart/line"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
+import { YAxis } from "@/components/charts/chart-axis/y-axis"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
 
 ;<LineChart data={data} margin={{ left: 50 }}>
   <Line dataKey="value" />
@@ -30,7 +30,7 @@ import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
 
 ## API Reference
 
-<auto-type-table cwd path="src/registry/charts/y-axis.tsx" name="YAxisProps" />
+<auto-type-table cwd path="src/registry/charts/chart-axis/y-axis.tsx" name="YAxisProps" />
 
 ## Multiple Y axes (biaxial)
 

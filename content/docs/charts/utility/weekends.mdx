@@ -14,12 +14,12 @@ description: Shade weekend days behind the series on date x axes — diagonal st
 `Weekends` draws a band over every weekend span on a date x axis. Place it as a child of `LineChart`, `AreaChart`, `ComposedChart`, `CandlestickChart`, or `BarChart` (with date rows). It renders in the underlay layer — above grid and background, behind series.
 
 ```tsx
-import { LineChart } from "@/components/charts/line-chart"
-import { Line } from "@/components/charts/line"
-import { Grid } from "@/components/charts/grid"
-import { Weekends } from "@/components/charts/weekends"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
-import { XAxis } from "@/components/charts/x-axis"
+import { LineChart } from "@/components/charts/line-chart/line-chart"
+import { Line } from "@/components/charts/line-chart/line"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { Weekends } from "@/components/charts/chart-date-highlights/weekends"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
 
 ;<LineChart data={data}>
   <Grid horizontal />
@@ -38,7 +38,7 @@ import { XAxis } from "@/components/charts/x-axis"
 
 ## API Reference
 
-<auto-type-table cwd path="src/registry/charts/weekends.tsx" name="WeekendsProps" />
+<auto-type-table cwd path="src/registry/charts/chart-date-highlights/weekends.tsx" name="WeekendsProps" />
 
 The date math is exported as `computeWeekendRanges(start, end, options)` (time domains) and `computeWeekendIndexRuns(dates, options)` (row runs) if you need the spans elsewhere — for example to skip weekends in a tooltip.
 

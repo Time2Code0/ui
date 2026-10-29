@@ -1,12 +1,12 @@
 "use client";
 
-import { Candlestick } from "@/registry/charts/candlestick";
+import { Candlestick } from "@/registry/charts/candlestick-chart/candlestick";
 import {
   CandlestickChart,
   type OHLCDataPoint,
-} from "@/registry/charts/candlestick-chart";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { XAxis } from "@/registry/charts/x-axis";
+} from "@/registry/charts/candlestick-chart/candlestick-chart";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
 
 const chartData: OHLCDataPoint[] = [
   { close: 104, date: new Date(2024, 0, 1), high: 108, low: 96, open: 100 },

@@ -18,11 +18,13 @@ Data is an array of `{ time: number, value: number }` where `time` is Unix secon
 ### Basic Example
 
 ```tsx
-import { LiveLineChart } from "@/components/charts/live-line-chart"
-import { LiveLine } from "@/components/charts/live-line"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
-import { LiveXAxis } from "@/components/charts/live-x-axis"
-import { LiveYAxis } from "@/components/charts/live-y-axis"
+import {
+  LiveLineChart,
+} from "@/components/charts/live-line-chart/live-line-chart"
+import { LiveLine } from "@/components/charts/live-line-chart/live-line"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
+import { LiveXAxis } from "@/components/charts/live-line-chart/live-x-axis"
+import { LiveYAxis } from "@/components/charts/live-line-chart/live-y-axis"
 
 const [data, setData] = useState([])
 const [value, setValue] = useState(100)
@@ -53,7 +55,7 @@ useEffect(() => {
 
 Each point must have:
 
-<auto-type-table cwd path="src/registry/charts/live-line-chart.tsx" name="LiveLinePoint" />
+<auto-type-table cwd path="src/registry/charts/live-line-chart/live-line-chart.tsx" name="LiveLinePoint" />
 
 Use `dataKey` on `LiveLineChart` if your value field has a different name (default is `"value"`).
 
@@ -101,11 +103,11 @@ const momentumColors = {
 
 ### Live Line Props
 
-<auto-type-table cwd path="src/registry/charts/live-line.tsx" name="LiveLineProps" />
+<auto-type-table cwd path="src/registry/charts/live-line-chart/live-line.tsx" name="LiveLineProps" />
 
 ### LiveLineChart Props
 
-<auto-type-table cwd path="src/registry/charts/live-line-chart.tsx" name="LiveLineChartProps" />
+<auto-type-table cwd path="src/registry/charts/live-line-chart/live-line-chart.tsx" name="LiveLineChartProps" />
 
 ### LiveXAxis / LiveYAxis
 
@@ -129,8 +131,12 @@ Use [`Background`](/docs/charts/utility/background) instead of `Grid` for a patt
 `LiveLineChart` has no loading status of its own. A live chart's loading state is just a line, so render a [`LineChartLoading`](/docs/charts/line-chart) while the stream connects, then swap in `LiveLineChart` once data starts arriving:
 
 ```tsx
-import { LineChartLoading } from "@/components/charts/line-chart-loading"
-import { LiveLineChart } from "@/components/charts/live-line-chart"
+import {
+  LineChartLoading,
+} from "@/components/charts/line-chart/line-chart-loading"
+import {
+  LiveLineChart,
+} from "@/components/charts/live-line-chart/live-line-chart"
 
 function LiveRevenue({ connected, points }) {
   if (!connected) {

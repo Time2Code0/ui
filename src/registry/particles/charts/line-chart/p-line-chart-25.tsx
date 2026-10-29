@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import { Grid } from "@/registry/charts/grid";
-import { Line } from "@/registry/charts/line";
-import { LineChart } from "@/registry/charts/line-chart";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { Line } from "@/registry/charts/line-chart/line";
+import { LineChart } from "@/registry/charts/line-chart/line-chart";
 import { Button } from "@/registry/ui/button";
 
 const DATA_KEY = "value";

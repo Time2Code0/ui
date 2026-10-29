@@ -1,6 +1,9 @@
 "use client";
 
-import { FunnelChart, type FunnelStage } from "@/registry/charts/funnel-chart";
+import {
+  FunnelChart,
+  type FunnelStage,
+} from "@/registry/charts/funnel-chart/funnel-chart";
 
 const funnelDataGradient: FunnelStage[] = [
   {

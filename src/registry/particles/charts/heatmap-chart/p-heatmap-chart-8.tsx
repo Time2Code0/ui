@@ -2,15 +2,15 @@
 
 import { type ReactNode, useEffect, useRef, useState } from "react";
 
-import { HeatmapCells } from "@/registry/charts/heatmap/heatmap-cells";
-import { HeatmapChart } from "@/registry/charts/heatmap/heatmap-chart";
+import { HeatmapCells } from "@/registry/charts/heatmap-chart/heatmap-cells";
+import { HeatmapChart } from "@/registry/charts/heatmap-chart/heatmap-chart";
 import {
   type HeatmapColumn,
   HeatmapInteractionBoundary,
   HeatmapInteractionProvider,
-} from "@/registry/charts/heatmap/heatmap-context";
-import { HeatmapLegend } from "@/registry/charts/heatmap/heatmap-legend";
-import { HeatmapTooltip } from "@/registry/charts/heatmap/heatmap-tooltip";
+} from "@/registry/charts/heatmap-chart/heatmap-context";
+import { HeatmapLegend } from "@/registry/charts/heatmap-chart/heatmap-legend";
+import { HeatmapTooltip } from "@/registry/charts/heatmap-chart/heatmap-tooltip";
 import {
   getHeatmapCalendarRangeStart,
   getHeatmapWeekCount,
@@ -18,8 +18,8 @@ import {
   HEATMAP_MONTHS_ONE_YEAR,
   HEATMAP_MONTHS_SIX,
   HEATMAP_WEEKS_ONE_YEAR,
-} from "@/registry/charts/heatmap/heatmap-utils";
-import { HeatmapXAxis } from "@/registry/charts/heatmap/heatmap-x-axis";
+} from "@/registry/charts/heatmap-chart/heatmap-utils";
+import { HeatmapXAxis } from "@/registry/charts/heatmap-chart/heatmap-x-axis";
 
 const HEATMAP_DAYS = 7;
 

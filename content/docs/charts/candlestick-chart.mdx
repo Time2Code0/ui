@@ -16,11 +16,13 @@ The Candlestick Chart uses the same composable API as the Line and Area charts. 
 ### Basic Example
 
 ```tsx
-import { CandlestickChart } from "@/components/charts/candlestick-chart"
-import { Candlestick } from "@/components/charts/candlestick"
-import { Grid } from "@/components/charts/grid"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
-import { XAxis } from "@/components/charts/x-axis"
+import {
+  CandlestickChart,
+} from "@/components/charts/candlestick-chart/candlestick-chart"
+import { Candlestick } from "@/components/charts/candlestick-chart/candlestick"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
 
 const ohlcData = [
   { date: new Date("2025-01-01"), open: 100, high: 108, low: 96, close: 104 },

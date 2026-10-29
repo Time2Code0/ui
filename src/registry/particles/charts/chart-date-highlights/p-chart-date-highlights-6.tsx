@@ -2,13 +2,13 @@
 
 import { curveCatmullRom } from "@visx/curve";
 
-import { Area } from "@/registry/charts/area";
-import { AreaChart } from "@/registry/charts/area-chart";
-import { Deadline } from "@/registry/charts/deadline";
-import { Grid } from "@/registry/charts/grid";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { Weekends } from "@/registry/charts/weekends";
-import { XAxis } from "@/registry/charts/x-axis";
+import { Area } from "@/registry/charts/area-chart/area";
+import { AreaChart } from "@/registry/charts/area-chart/area-chart";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { Deadline } from "@/registry/charts/chart-date-highlights/deadline";
+import { Weekends } from "@/registry/charts/chart-date-highlights/weekends";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
 
 const DAY_COUNT = 22;
 

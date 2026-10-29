@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 
-import { Bar } from "@/registry/charts/bar";
-import { BarChart } from "@/registry/charts/bar-chart";
-import { BarXAxis } from "@/registry/charts/bar-x-axis";
-import { Grid } from "@/registry/charts/grid";
+import { Bar } from "@/registry/charts/bar-chart/bar";
+import { BarChart } from "@/registry/charts/bar-chart/bar-chart";
+import { BarXAxis } from "@/registry/charts/bar-chart/bar-x-axis";
+import { Grid } from "@/registry/charts/chart-grid/grid";
 import { Button } from "@/registry/ui/button";
 
 const DATA_KEY = "revenue";

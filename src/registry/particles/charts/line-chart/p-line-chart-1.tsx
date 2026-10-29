@@ -4,15 +4,15 @@ import { useMemo, useState } from "react";
 
 import { curveCatmullRom } from "@visx/curve";
 
-import { Background } from "@/registry/charts/background";
-import { ChartBrush } from "@/registry/charts/chart-brush";
-import { ChartBrushLayout } from "@/registry/charts/chart-brush-layout";
-import { ChartLegend } from "@/registry/charts/chart-legend";
-import { ChartLegendHoverProvider } from "@/registry/charts/chart-legend-hover";
-import { Line } from "@/registry/charts/line";
-import { LineChart } from "@/registry/charts/line-chart";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { XAxis } from "@/registry/charts/x-axis";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { Background } from "@/registry/charts/chart-background/background";
+import { ChartBrush } from "@/registry/charts/chart-brush/chart-brush";
+import { ChartBrushLayout } from "@/registry/charts/chart-brush/chart-brush-layout";
+import { ChartLegendHoverProvider } from "@/registry/charts/chart-core/legend-hover";
+import { ChartLegend } from "@/registry/charts/chart-legend/chart-legend";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { Line } from "@/registry/charts/line-chart/line";
+import { LineChart } from "@/registry/charts/line-chart/line-chart";
 
 const trioData = Array.from({ length: 30 }, (_, index) => {
   const date = new Date(2025, 0, 1 + index);

@@ -1,10 +1,10 @@
 "use client";
 
-import { SankeyChart } from "@/registry/charts/sankey/sankey-chart";
-import { SankeyLink } from "@/registry/charts/sankey/sankey-link";
-import { SankeyNode } from "@/registry/charts/sankey/sankey-node";
-import { SankeyTooltip } from "@/registry/charts/sankey/sankey-tooltip";
-import { PatternLines } from "@/registry/charts/visx-pattern";
+import { PatternLines } from "@/registry/charts/chart-patterns/visx-pattern";
+import { SankeyChart } from "@/registry/charts/sankey-chart/sankey-chart";
+import { SankeyLink } from "@/registry/charts/sankey-chart/sankey-link";
+import { SankeyNode } from "@/registry/charts/sankey-chart/sankey-node";
+import { SankeyTooltip } from "@/registry/charts/sankey-chart/sankey-tooltip";
 
 const analyticsData = {
   links: [

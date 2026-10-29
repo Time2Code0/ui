@@ -1,10 +1,10 @@
 "use client";
 
-import { ChoroplethChart } from "@/registry/charts/choropleth/choropleth-chart";
-import { ChoroplethFeature as ChoroplethFeatureComponent } from "@/registry/charts/choropleth/choropleth-feature";
-import { ChoroplethTooltip } from "@/registry/charts/choropleth/choropleth-tooltip";
-import { useWorldDataStandalone } from "@/registry/charts/choropleth/use-world-data";
-import { PatternLines } from "@/registry/charts/visx-pattern";
+import { PatternLines } from "@/registry/charts/chart-patterns/visx-pattern";
+import { ChoroplethChart } from "@/registry/charts/choropleth-chart/choropleth-chart";
+import { ChoroplethFeature as ChoroplethFeatureComponent } from "@/registry/charts/choropleth-chart/choropleth-feature";
+import { ChoroplethTooltip } from "@/registry/charts/choropleth-chart/choropleth-tooltip";
+import { useWorldDataStandalone } from "@/registry/charts/choropleth-chart/use-world-data";
 
 function ChoroplethLoading() {
   return (

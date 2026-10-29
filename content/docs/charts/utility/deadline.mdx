@@ -14,12 +14,12 @@ description: Due-date marker for date x axes — a vertical line with a striped,
 `Deadline` marks a due date or point of no return: a vertical line at `date`, plus a region that extends right — to `endDate` or the plot edge — and fades out. Place it as a child of `LineChart`, `AreaChart`, `ComposedChart`, `CandlestickChart`, or a vertical `BarChart` with date rows. It renders in the underlay layer, behind series.
 
 ```tsx
-import { LineChart } from "@/components/charts/line-chart"
-import { Line } from "@/components/charts/line"
-import { Grid } from "@/components/charts/grid"
-import { Deadline } from "@/components/charts/deadline"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
-import { XAxis } from "@/components/charts/x-axis"
+import { LineChart } from "@/components/charts/line-chart/line-chart"
+import { Line } from "@/components/charts/line-chart/line"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { Deadline } from "@/components/charts/chart-date-highlights/deadline"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
 
 ;<LineChart data={data}>
   <Grid horizontal />
@@ -35,7 +35,7 @@ The colour defaults to `var(--color-destructive-foreground)`. The fade gradient 
 
 ## API Reference
 
-<auto-type-table cwd path="src/registry/charts/deadline.tsx" name="DeadlineProps" />
+<auto-type-table cwd path="src/registry/charts/chart-date-highlights/deadline.tsx" name="DeadlineProps" />
 
 ## Examples
 

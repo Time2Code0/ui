@@ -1,18 +1,23 @@
 "use client";
 
-import type { SunburstNode } from "@/registry/charts/sunburst-data";
+import type { SunburstNode } from "@/registry/charts/sunburst-chart/sunburst";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { Legend } from "@/registry/charts/legend/legend";
-import { LegendItem as LegendItemComponent } from "@/registry/charts/legend/legend-item";
-import { LegendLabel } from "@/registry/charts/legend/legend-label";
-import { LegendMarker } from "@/registry/charts/legend/legend-marker";
-import { LegendValue } from "@/registry/charts/legend/legend-value";
-import { buildArcs, sumValues } from "@/registry/charts/sunburst";
-import { SunburstCenter } from "@/registry/charts/sunburst-center";
-import { SunburstChart } from "@/registry/charts/sunburst-chart";
-import { SunburstSegment } from "@/registry/charts/sunburst-segment";
+import {
+  Legend,
+  LegendItem as LegendItemComponent,
+  LegendLabel,
+  LegendMarker,
+  LegendValue,
+} from "@/registry/charts/chart-legend/legend";
+import {
+  buildArcs,
+  sumValues,
+} from "@/registry/charts/sunburst-chart/sunburst";
+import { SunburstCenter } from "@/registry/charts/sunburst-chart/sunburst-center";
+import { SunburstChart } from "@/registry/charts/sunburst-chart/sunburst-chart";
+import { SunburstSegment } from "@/registry/charts/sunburst-chart/sunburst-segment";
 
 const sunburstDemoData: SunburstNode = {
   children: [

@@ -1,6 +1,9 @@
 "use client";
 
-import { BarSparkline, LineSparkline } from "@/registry/charts/sparkline";
+import {
+  BarSparkline,
+  LineSparkline,
+} from "@/registry/charts/sparkline/sparkline";
 
 const hoverFeels = [
   { label: "Spring (default)", props: {} },

@@ -8,7 +8,7 @@ description: Access chart state and context for building custom chart components
 The `useChart` hook provides access to the chart's internal state, scales, dimensions, and tooltip data. Use it to build custom components that integrate with the chart system.
 
 ```tsx
-import { useChart } from "@/components/charts/chart-context"
+import { useChart } from "@/components/charts/chart-core/chart-context"
 
 function MyCustomComponent() {
   const { tooltipData, hoveredBarIndex, yScale, innerHeight } = useChart()
@@ -34,15 +34,15 @@ The hook must be used within a chart component (`LineChart`, `AreaChart`, or `Ba
 
 ### Dimensions
 
-<auto-type-table cwd path="src/registry/charts/chart-context.tsx" name="ChartDimensions" type="Pick<ChartContextValue, 'width' | 'height' | 'innerWidth' | 'innerHeight' | 'margin' | 'columnWidth'>" />
+<auto-type-table cwd path="src/registry/charts/chart-core/chart-context.tsx" name="ChartDimensions" type="Pick<ChartContextValue, 'width' | 'height' | 'innerWidth' | 'innerHeight' | 'margin' | 'columnWidth'>" />
 
 ### Scales
 
-<auto-type-table cwd path="src/registry/charts/chart-context.tsx" name="ChartScales" type="Pick<ChartContextValue, 'xScale' | 'yScale' | 'barScale' | 'bandWidth'>" />
+<auto-type-table cwd path="src/registry/charts/chart-core/chart-context.tsx" name="ChartScales" type="Pick<ChartContextValue, 'xScale' | 'yScale' | 'barScale' | 'bandWidth'>" />
 
 ### Tooltip State
 
-<auto-type-table cwd path="src/registry/charts/chart-context.tsx" name="ChartTooltipState" type="Pick<ChartContextValue, 'tooltipData' | 'setTooltipData' | 'hoveredBarIndex' | 'setHoveredBarIndex'>" />
+<auto-type-table cwd path="src/registry/charts/chart-core/chart-context.tsx" name="ChartTooltipState" type="Pick<ChartContextValue, 'tooltipData' | 'setTooltipData' | 'hoveredBarIndex' | 'setHoveredBarIndex'>" />
 
 ### TooltipData Structure
 
@@ -58,15 +58,15 @@ interface TooltipData {
 
 ### Container & Animation
 
-<auto-type-table cwd path="src/registry/charts/chart-context.tsx" name="ChartContainerState" type="Pick<ChartContextValue, 'containerRef' | 'isLoaded' | 'animationDuration'>" />
+<auto-type-table cwd path="src/registry/charts/chart-core/chart-context.tsx" name="ChartContainerState" type="Pick<ChartContextValue, 'containerRef' | 'isLoaded' | 'animationDuration'>" />
 
 ### Data & Configuration
 
-<auto-type-table cwd path="src/registry/charts/chart-context.tsx" name="ChartDataConfig" type="Pick<ChartContextValue, 'data' | 'lines' | 'xAccessor' | 'barXAccessor' | 'dateLabels'>" />
+<auto-type-table cwd path="src/registry/charts/chart-core/chart-context.tsx" name="ChartDataConfig" type="Pick<ChartContextValue, 'data' | 'lines' | 'xAccessor' | 'barXAccessor' | 'dateLabels'>" />
 
 ### Bar Chart Specific
 
-<auto-type-table cwd path="src/registry/charts/chart-context.tsx" name="ChartBarState" type="Pick<ChartContextValue, 'orientation' | 'stacked' | 'stackOffsets'>" />
+<auto-type-table cwd path="src/registry/charts/chart-core/chart-context.tsx" name="ChartBarState" type="Pick<ChartContextValue, 'orientation' | 'stacked' | 'stackOffsets'>" />
 
 ## Common Use Cases
 

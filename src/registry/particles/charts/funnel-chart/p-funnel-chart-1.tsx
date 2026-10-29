@@ -2,11 +2,16 @@
 
 import { useState } from "react";
 
-import { FunnelChart, type FunnelStage } from "@/registry/charts/funnel-chart";
-import { Legend } from "@/registry/charts/legend/legend";
-import { LegendItem as LegendItemComponent } from "@/registry/charts/legend/legend-item";
-import { LegendLabel } from "@/registry/charts/legend/legend-label";
-import { LegendMarker } from "@/registry/charts/legend/legend-marker";
+import {
+  Legend,
+  LegendItem as LegendItemComponent,
+  LegendLabel,
+  LegendMarker,
+} from "@/registry/charts/chart-legend/legend";
+import {
+  FunnelChart,
+  type FunnelStage,
+} from "@/registry/charts/funnel-chart/funnel-chart";
 
 const funnelData: FunnelStage[] = [
   { displayValue: "12.4k", label: "Visitors", value: 12_400 },

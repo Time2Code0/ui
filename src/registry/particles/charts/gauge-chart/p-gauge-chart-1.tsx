@@ -1,8 +1,8 @@
 "use client";
 
-import type { ChartStatFlowFormat } from "@/registry/charts/chart-stat-flow";
+import type { ChartStatFlowFormat } from "@/registry/charts/chart-center/chart-stat-flow";
 
-import { Gauge } from "@/registry/charts/gauge";
+import { Gauge } from "@/registry/charts/gauge-chart/gauge";
 
 const gaugeGalleryUsdFormat: ChartStatFlowFormat = {
   currency: "USD",

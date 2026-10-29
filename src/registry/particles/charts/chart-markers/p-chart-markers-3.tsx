@@ -1,11 +1,14 @@
 "use client";
 
-import { Area } from "@/registry/charts/area";
-import { AreaChart } from "@/registry/charts/area-chart";
-import { chartCssVars, useChart } from "@/registry/charts/chart-context";
-import { Grid } from "@/registry/charts/grid";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { XAxis } from "@/registry/charts/x-axis";
+import { Area } from "@/registry/charts/area-chart/area";
+import { AreaChart } from "@/registry/charts/area-chart/area-chart";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import {
+  chartCssVars,
+  useChart,
+} from "@/registry/charts/chart-core/chart-context";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
 
 const START = new Date(2024, 0, 1).getTime();
 

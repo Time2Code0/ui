@@ -4,18 +4,18 @@ import { useState } from "react";
 
 import { curveLinear } from "@visx/curve";
 
-import { Grid } from "@/registry/charts/grid";
-import { Line } from "@/registry/charts/line";
-import { LineChart } from "@/registry/charts/line-chart";
-import { ProfitLossLegend } from "@/registry/charts/profit-loss-legend";
-import { ProfitLossLegendHoverProvider } from "@/registry/charts/profit-loss-legend-hover";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { Line } from "@/registry/charts/line-chart/line";
+import { LineChart } from "@/registry/charts/line-chart/line-chart";
+import { ProfitLossLegend } from "@/registry/charts/line-chart/profit-loss-legend";
 import {
+  ProfitLossLegendHoverProvider,
   ProfitLossLine,
   profitLossColor,
   resolveProfitLossTooltipLabel,
-} from "@/registry/charts/profit-loss-line";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { XAxis } from "@/registry/charts/x-axis";
+} from "@/registry/charts/line-chart/profit-loss-line";
 
 const PROFIT_LOSS_DATA_KEY = "pnl";
 

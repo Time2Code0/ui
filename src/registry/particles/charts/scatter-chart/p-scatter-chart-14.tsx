@@ -1,12 +1,12 @@
 "use client";
 
-import { Grid } from "@/registry/charts/grid";
-import { Scatter } from "@/registry/charts/scatter";
-import { ScatterChart } from "@/registry/charts/scatter-chart";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { TooltipContent } from "@/registry/charts/tooltip/tooltip-content";
-import { XAxis } from "@/registry/charts/x-axis";
-import { YAxis } from "@/registry/charts/y-axis";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { YAxis } from "@/registry/charts/chart-axis/y-axis";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { TooltipContent } from "@/registry/charts/chart-tooltip/tooltip-content";
+import { Scatter } from "@/registry/charts/scatter-chart/scatter";
+import { ScatterChart } from "@/registry/charts/scatter-chart/scatter-chart";
 
 interface PrLocRow {
   date: Date;

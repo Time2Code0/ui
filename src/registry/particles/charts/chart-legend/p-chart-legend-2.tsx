@@ -1,11 +1,13 @@
 "use client";
 
-import { Legend } from "@/registry/charts/legend/legend";
-import { LegendItem as LegendItemComponent } from "@/registry/charts/legend/legend-item";
-import { LegendLabel } from "@/registry/charts/legend/legend-label";
-import { LegendMarker } from "@/registry/charts/legend/legend-marker";
-import { LegendProgress } from "@/registry/charts/legend/legend-progress";
-import { LegendValue } from "@/registry/charts/legend/legend-value";
+import {
+  Legend,
+  LegendItem as LegendItemComponent,
+  LegendLabel,
+  LegendMarker,
+  LegendProgress,
+  LegendValue,
+} from "@/registry/charts/chart-legend/legend";
 
 const sampleData = [
   { color: "#0ea5e9", label: "Organic", maxValue: 5000, value: 4250 },

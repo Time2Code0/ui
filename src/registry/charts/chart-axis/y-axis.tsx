@@ -1,0 +1,195 @@
+"use client";
+
+import type { YAxisOrientation } from "../chart-core/y-axis-scales";
+
+import { memo, useMemo } from "react";
+import { createPortal } from "react-dom";
+
+import {
+  useChartPortalContainer,
+  useChartStable,
+  useYScale,
+} from "../chart-core/chart-context";
+import {
+  DEFAULT_Y_DOMAIN_TWEEN_MS,
+  LINE_LOADING_PULSE_EASE,
+} from "../chart-core/chart-phase";
+import { normalizeYAxisId } from "../chart-core/y-axis-scales";
+import { resolveReferenceDataRange } from "../chart-reference-area/reference-area";
+
+const Y_AXIS_POSITION_TWEEN_MS = DEFAULT_Y_DOMAIN_TWEEN_MS;
+
+export interface YAxisProps {
+  /** Format large numbers (e.g. 1000 as "1k"). @default true */
+  formatLargeNumbers?: boolean;
+  /** Custom formatter for tick labels (e.g. USD). Overrides formatLargeNumbers when set. */
+  formatValue?: (value: number) => string;
+  /**
+   * Approximate tick count hint for `scale.ticks()` (d3). Actual label count may differ.
+   * Clamped to {@link Y_AXIS_MIN_TICK_COUNT}–{@link Y_AXIS_MAX_TICK_COUNT}.
+   * @default 5
+   */
+  numTicks?: number;
+  /** Which side of the chart to render labels. @default "left" */
+  orientation?: YAxisOrientation;
+  /** Scale group id (Recharts `yAxisId`). @default "left" */
+  yAxisId?: string | number;
+}
+
+function formatLabel(
+  value: number,
+  formatLargeNumbers: boolean,
+  formatValue?: (value: number) => string
+): string {
+  if (formatValue) {
+    return formatValue(value);
+  }
+  if (formatLargeNumbers && value >= 1000) {
+    return `${(value / 1000).toFixed(0)}k`;
+  }
+  return String(value);
+}
+
+function resolveTickLabelColor(
+  tickY: number,
+  axisId: string,
+  yScale: ReturnType<typeof useYScale>,
+  referenceAreas: ReturnType<typeof useChartStable>["referenceAreas"]
+): string | undefined {
+  for (const area of referenceAreas) {
+    if (!area.axisLabelColor) {
+      continue;
+    }
+    if (normalizeYAxisId(area.yAxisId) !== axisId) {
+      continue;
+    }
+    const [low, high] = resolveReferenceDataRange(
+      area.y1,
+      area.y2,
+      yScale.domain() as [number, number]
+    );
+    const topPixel = yScale(high) ?? 0;
+    const bottomPixel = yScale(low) ?? 0;
+    const bandTop = Math.min(topPixel, bottomPixel);
+    const bandBottom = Math.max(topPixel, bottomPixel);
+    if (tickY >= bandTop && tickY <= bandBottom) {
+      return area.axisLabelColor;
+    }
+  }
+  return undefined;
+}
+
+export function YAxis(props: YAxisProps) {
+  const { containerRef } = useChartStable();
+
+  const container = useChartPortalContainer(containerRef);
+  if (!container) {
+    return null;
+  }
+
+  return <YAxisInner {...props} container={container} />;
+}
+
+const YAxisInner = memo(function YAxisInner({
+  yAxisId,
+  orientation = "left",
+  numTicks = Y_AXIS_DEFAULT_TICK_COUNT,
+  formatLargeNumbers = true,
+  formatValue,
+  container,
+}: YAxisProps & { container: HTMLDivElement }) {
+  const { margin, referenceAreas } = useChartStable();
+  const yScale = useYScale(yAxisId);
+  const isLeft = orientation === "left";
+  const axisId = normalizeYAxisId(yAxisId);
+
+  const ticks = useMemo(() => {
+    const tickValues = yScale.ticks(resolveYAxisTickCount(numTicks));
+    return tickValues.map((value) => {
+      const y = (yScale(value) ?? 0) + margin.top;
+      return {
+        label: formatLabel(value, formatLargeNumbers, formatValue),
+        labelColor: resolveTickLabelColor(
+          y - margin.top,
+          axisId,
+          yScale,
+          referenceAreas
+        ),
+        value,
+        y,
+      };
+    });
+  }, [
+    yScale,
+    margin.top,
+    numTicks,
+    formatLargeNumbers,
+    formatValue,
+    axisId,
+    referenceAreas,
+  ]);
+
+  return createPortal(
+    <div className="pointer-events-none absolute inset-0">
+      <div
+        className="absolute top-0 bottom-0"
+        style={
+          isLeft
+            ? { left: 0, width: margin.left }
+            : { right: 0, width: margin.right }
+        }
+      >
+        {ticks.map((tick) => (
+          <div
+            className="absolute flex items-center"
+            key={tick.value}
+            style={{
+              top: tick.y,
+              transform: "translateY(-50%)",
+              transition: `top ${Y_AXIS_POSITION_TWEEN_MS}ms cubic-bezier(${LINE_LOADING_PULSE_EASE.join(", ")})`,
+              ...(isLeft
+                ? { justifyContent: "flex-end", paddingRight: 8, right: 0 }
+                : { justifyContent: "flex-start", left: 0, paddingLeft: 8 }),
+            }}
+          >
+            <span
+              className="text-foreground-muted text-xs"
+              style={tick.labelColor ? { color: tick.labelColor } : undefined}
+            >
+              {tick.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>,
+    container
+  );
+});
+
+YAxis.displayName = "YAxis";
+
+const Y_AXIS_DEFAULT_TICK_COUNT = 5;
+
+/** Minimum valid `numTicks` for `scale.ticks()` — values ≤ 0 yield no ticks. */
+const Y_AXIS_MIN_TICK_COUNT = 1;
+
+/**
+ * Upper bound for the tick count hint. D3 may return more "nice" ticks above ~10;
+ * keeping the hint in a modest range avoids overcrowded axes.
+ */
+const Y_AXIS_MAX_TICK_COUNT = 10;
+
+/** Clamps a user `numTicks` value to a valid d3 tick-count hint. */
+function resolveYAxisTickCount(numTicks?: number): number {
+  if (numTicks == null || !Number.isFinite(numTicks)) {
+    return Y_AXIS_DEFAULT_TICK_COUNT;
+  }
+  const rounded = Math.round(numTicks);
+  if (rounded < Y_AXIS_MIN_TICK_COUNT) {
+    return Y_AXIS_MIN_TICK_COUNT;
+  }
+  if (rounded > Y_AXIS_MAX_TICK_COUNT) {
+    return Y_AXIS_MAX_TICK_COUNT;
+  }
+  return rounded;
+}

@@ -1,14 +1,14 @@
 "use client";
 
-import type { PieData } from "@/registry/charts/pie-context";
+import type { PieData } from "@/registry/charts/pie-chart/pie-context";
 
 import { useState } from "react";
 
-import { PieChart } from "@/registry/charts/pie-chart";
+import { PieChart } from "@/registry/charts/pie-chart/pie-chart";
 import {
   PieSlice,
   type PieSliceHoverEffect,
-} from "@/registry/charts/pie-slice";
+} from "@/registry/charts/pie-chart/pie-slice";
 import {
   Select,
   SelectItem,

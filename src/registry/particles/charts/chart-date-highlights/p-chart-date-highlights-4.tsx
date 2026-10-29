@@ -2,10 +2,10 @@
 
 import { curveCatmullRom } from "@visx/curve";
 
-import { Deadline } from "@/registry/charts/deadline";
-import { Line } from "@/registry/charts/line";
-import { LineChart } from "@/registry/charts/line-chart";
-import { XAxis } from "@/registry/charts/x-axis";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { Deadline } from "@/registry/charts/chart-date-highlights/deadline";
+import { Line } from "@/registry/charts/line-chart/line";
+import { LineChart } from "@/registry/charts/line-chart/line-chart";
 
 const fillTypes = ["pattern", "gradient", "solid"] as const;
 

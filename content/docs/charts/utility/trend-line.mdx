@@ -14,12 +14,12 @@ description: Least-squares regression line over a series on line, area, bar, and
 `TrendLine` fits a straight line through one series (`dataKey`) using linear least squares and draws it across the full data range. Place it as a child of `LineChart`, `AreaChart`, `BarChart` (vertical or horizontal), or `ComposedChart` — **after** the series so it draws on top.
 
 ```tsx
-import { LineChart } from "@/components/charts/line-chart"
-import { Line } from "@/components/charts/line"
-import { Grid } from "@/components/charts/grid"
-import { TrendLine } from "@/components/charts/trend-line"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
-import { XAxis } from "@/components/charts/x-axis"
+import { LineChart } from "@/components/charts/line-chart/line-chart"
+import { Line } from "@/components/charts/line-chart/line"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { TrendLine } from "@/components/charts/chart-trend-line/trend-line"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
 
 ;<LineChart data={data}>
   <Grid horizontal />
@@ -34,7 +34,7 @@ On time-series charts the fit uses the date as x. On `BarChart` it uses the cate
 
 ## API Reference
 
-<auto-type-table cwd path="src/registry/charts/trend-line.tsx" name="TrendLineProps" />
+<auto-type-table cwd path="src/registry/charts/chart-trend-line/trend-line.tsx" name="TrendLineProps" />
 
 ## Examples
 

@@ -1,15 +1,15 @@
 "use client";
 
-import { Bar } from "@/registry/charts/bar";
-import { BarChart } from "@/registry/charts/bar-chart";
+import { Bar } from "@/registry/charts/bar-chart/bar";
+import { BarChart } from "@/registry/charts/bar-chart/bar-chart";
 import {
   BarDepthBack,
   BarDepthFront,
   BarDepthProvider,
-} from "@/registry/charts/bar-depth";
-import { BarXAxis } from "@/registry/charts/bar-x-axis";
-import { Grid } from "@/registry/charts/grid";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
+} from "@/registry/charts/bar-chart/bar-depth";
+import { BarXAxis } from "@/registry/charts/bar-chart/bar-x-axis";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
 
 const barStackedData = [
   { desktop: 4000, mobile: 2400, month: "Jan" },

@@ -8,7 +8,7 @@ import {
   AreaSparkline,
   BarSparkline,
   useSparklineHover,
-} from "@/registry/charts/sparkline";
+} from "@/registry/charts/sparkline/sparkline";
 
 interface SparklineGalleryPoint {
   day: string;

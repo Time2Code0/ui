@@ -1,11 +1,11 @@
 "use client";
 
-import type { PieData } from "@/registry/charts/pie-context";
+import type { PieData } from "@/registry/charts/pie-chart/pie-context";
 
 import { RadialGradient } from "@visx/gradient";
 
-import { PieChart } from "@/registry/charts/pie-chart";
-import { PieSlice } from "@/registry/charts/pie-slice";
+import { PieChart } from "@/registry/charts/pie-chart/pie-chart";
+import { PieSlice } from "@/registry/charts/pie-chart/pie-slice";
 
 const pieGradientData: PieData[] = [
   { label: "Segment A", value: 40 },

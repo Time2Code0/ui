@@ -16,11 +16,11 @@ Build scatter charts by composing `ScatterChart` with one or more `Scatter` seri
 ### Basic Example
 
 ```tsx
-import { ScatterChart } from "@/components/charts/scatter-chart"
-import { Scatter } from "@/components/charts/scatter"
-import { Grid } from "@/components/charts/grid"
-import { XAxis } from "@/components/charts/x-axis"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { ScatterChart } from "@/components/charts/scatter-chart/scatter-chart"
+import { Scatter } from "@/components/charts/scatter-chart/scatter"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
 
 const data = [
   { date: new Date("2025-01-01"), users: 1200 },
@@ -28,7 +28,7 @@ const data = [
   { date: new Date("2025-03-01"), users: 1100 },
 ]
 
-export default function SimpleScatter() {
+export function SimpleScatter() {
   return (
     <ScatterChart data={data}>
       <Grid horizontal />
@@ -86,13 +86,15 @@ The example below plots lines changed per merged PR, month by month: **Fastlane*
 <ComponentPreview name="p-scatter-chart-14" className="**:data-[slot=preview]:w-full" />
 
 ```tsx
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
-import { Grid } from "@/components/charts/grid"
-import { Scatter } from "@/components/charts/scatter"
-import { ScatterChart } from "@/components/charts/scatter-chart"
-import { TooltipContent } from "@/components/charts/tooltip/tooltip-content"
-import { XAxis } from "@/components/charts/x-axis"
-import { YAxis } from "@/components/charts/y-axis"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import { Scatter } from "@/components/charts/scatter-chart/scatter"
+import { ScatterChart } from "@/components/charts/scatter-chart/scatter-chart"
+import {
+  TooltipContent,
+} from "@/components/charts/chart-tooltip/tooltip-content"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
+import { YAxis } from "@/components/charts/chart-axis/y-axis"
 
 // Seeded Park–Miller PRNG — identical on server and client (no Math.random)
 function seededRandom(seed: number) {
@@ -209,11 +211,11 @@ Color dots by vertical position with a chart-space gradient — lower values tow
 
 ### ScatterChart
 
-<auto-type-table cwd path="src/registry/charts/scatter-chart.tsx" name="ScatterChartProps" />
+<auto-type-table cwd path="src/registry/charts/scatter-chart/scatter-chart.tsx" name="ScatterChartProps" />
 
 ### Scatter
 
-<auto-type-table cwd path="src/registry/charts/scatter.tsx" name="ScatterProps" />
+<auto-type-table cwd path="src/registry/charts/scatter-chart/scatter.tsx" name="ScatterProps" />
 
 ## Shared Components
 

@@ -1,14 +1,16 @@
 "use client";
 
-import { Bar } from "@/registry/charts/bar";
-import { BarChart } from "@/registry/charts/bar-chart";
-import { BarXAxis } from "@/registry/charts/bar-x-axis";
-import { Grid } from "@/registry/charts/grid";
-import { Legend } from "@/registry/charts/legend/legend";
-import { LegendItem as LegendItemComponent } from "@/registry/charts/legend/legend-item";
-import { LegendLabel } from "@/registry/charts/legend/legend-label";
-import { LegendMarker } from "@/registry/charts/legend/legend-marker";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
+import { Bar } from "@/registry/charts/bar-chart/bar";
+import { BarChart } from "@/registry/charts/bar-chart/bar-chart";
+import { BarXAxis } from "@/registry/charts/bar-chart/bar-x-axis";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import {
+  Legend,
+  LegendItem as LegendItemComponent,
+  LegendLabel,
+  LegendMarker,
+} from "@/registry/charts/chart-legend/legend";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
 
 const stackedData = [
   { desktop: 4000, mobile: 2400, month: "Jan" },

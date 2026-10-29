@@ -73,17 +73,17 @@ Works the same with `LineChart` and `Line` in the brush strip and main chart. Se
 
 Orchestrates the main chart and optional brush strip. Owns brush selection state and derives `xDomain` for the main chart.
 
-<auto-type-table cwd path="src/registry/charts/chart-brush-layout.tsx" name="ChartBrushLayoutProps" />
+<auto-type-table cwd path="src/registry/charts/chart-brush/chart-brush-layout.tsx" name="ChartBrushLayoutProps" />
 
 The `layout` argument provides:
 
-<auto-type-table cwd path="src/registry/charts/chart-brush-layout.tsx" name="ChartBrushLayoutState" />
+<auto-type-table cwd path="src/registry/charts/chart-brush/chart-brush-layout.tsx" name="ChartBrushLayoutState" />
 
 ## ChartBrush
 
 Renders inside a time-series chart (typically the brush strip). Drag handles to pan and resize; the main chart zooms via `ChartBrushLayout`.
 
-<auto-type-table cwd path="src/registry/charts/chart-brush.tsx" name="ChartBrushProps" />
+<auto-type-table cwd path="src/registry/charts/chart-brush/chart-brush.tsx" name="ChartBrushProps" />
 
 ### Selection pattern presets
 
@@ -93,5 +93,5 @@ Renders inside a time-series chart (typically the brush strip). Drag handles to 
 
 When brush zoom is active, pass these to `AreaChart` or `LineChart`:
 
-<auto-type-table cwd path="src/registry/charts/area-chart.tsx" name="BrushMainChartProps" type="Pick<AreaChartProps, 'xDomain' | 'xDomainSlotCount' | 'tweenYDomainOnXDomainChange'>" />
+<auto-type-table cwd path="src/registry/charts/area-chart/area-chart.tsx" name="BrushMainChartProps" type="Pick<AreaChartProps, 'xDomain' | 'xDomainSlotCount' | 'tweenYDomainOnXDomainChange'>" />
 

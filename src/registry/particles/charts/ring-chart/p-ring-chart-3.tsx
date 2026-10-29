@@ -1,10 +1,10 @@
 "use client";
 
-import type { RingData } from "@/registry/charts/ring-context";
+import type { RingData } from "@/registry/charts/ring-chart/ring-context";
 
-import { Ring } from "@/registry/charts/ring";
-import { RingCenter } from "@/registry/charts/ring-center";
-import { RingChart } from "@/registry/charts/ring-chart";
+import { Ring } from "@/registry/charts/ring-chart/ring";
+import { RingCenter } from "@/registry/charts/ring-chart/ring-center";
+import { RingChart } from "@/registry/charts/ring-chart/ring-chart";
 
 const ringFinanceData: RingData[] = [
   {

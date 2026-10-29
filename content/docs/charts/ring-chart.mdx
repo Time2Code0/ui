@@ -14,9 +14,9 @@ description: A composable multi-ring progress chart with animated arcs, hover in
 The Ring Chart uses a composable API similar to other charts in the library. Build charts by combining components:
 
 ```tsx
-import { RingChart } from "@/components/charts/ring-chart"
-import { Ring } from "@/components/charts/ring"
-import { RingCenter } from "@/components/charts/ring-center"
+import { RingChart } from "@/components/charts/ring-chart/ring-chart"
+import { Ring } from "@/components/charts/ring-chart/ring"
+import { RingCenter } from "@/components/charts/ring-chart/ring-center"
 
 const data = [
   { label: "Organic", value: 4250, maxValue: 5000, color: "#0ea5e9" },
@@ -24,7 +24,7 @@ const data = [
   { label: "Email", value: 2100, maxValue: 5000, color: "#f59e0b" },
 ]
 
-export default function SessionsChart() {
+export function SessionsChart() {
   return (
     <RingChart data={data} size={300}>
       {data.map((item, index) => (
@@ -42,19 +42,19 @@ export default function SessionsChart() {
 
 The root component that provides context to all children.
 
-<auto-type-table cwd path="src/registry/charts/ring-chart.tsx" name="RingChartProps" />
+<auto-type-table cwd path="src/registry/charts/ring-chart/ring-chart.tsx" name="RingChartProps" />
 
 ### Ring
 
 Renders an individual ring with background track and animated progress arc.
 
-<auto-type-table cwd path="src/registry/charts/ring.tsx" name="RingProps" />
+<auto-type-table cwd path="src/registry/charts/ring-chart/ring.tsx" name="RingProps" />
 
 ### RingCenter
 
 Displays the total or hovered value in the center of the chart.
 
-<auto-type-table cwd path="src/registry/charts/ring-center.tsx" name="RingCenterProps" />
+<auto-type-table cwd path="src/registry/charts/ring-chart/ring-center.tsx" name="RingCenterProps" />
 
 ### Legend
 

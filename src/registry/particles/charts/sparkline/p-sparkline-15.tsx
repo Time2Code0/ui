@@ -7,7 +7,7 @@ import {
   BarSparkline,
   LineSparkline,
   useSparklineHover,
-} from "@/registry/charts/sparkline";
+} from "@/registry/charts/sparkline/sparkline";
 
 interface SparkPoint {
   day: string;

@@ -2,14 +2,17 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { LiveLine, type MomentumColors } from "@/registry/charts/live-line";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import {
+  LiveLine,
+  type MomentumColors,
+} from "@/registry/charts/live-line-chart/live-line";
 import {
   LiveLineChart,
   type LiveLinePoint,
-} from "@/registry/charts/live-line-chart";
-import { LiveXAxis } from "@/registry/charts/live-x-axis";
-import { LiveYAxis } from "@/registry/charts/live-y-axis";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
+} from "@/registry/charts/live-line-chart/live-line-chart";
+import { LiveXAxis } from "@/registry/charts/live-line-chart/live-x-axis";
+import { LiveYAxis } from "@/registry/charts/live-line-chart/live-y-axis";
 
 // Live line chart: minimal hook for streaming demo data
 function useLiveData(

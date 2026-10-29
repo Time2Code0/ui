@@ -14,12 +14,14 @@ description: Shaded Y band for target ranges and thresholds on cartesian charts 
 `ReferenceArea` draws a horizontal band between two Y data values. Place it as a child of any cartesian chart (`LineChart`, `AreaChart`, `BarChart`, `ScatterChart`, `CandlestickChart`, `ComposedChart`, `LiveLineChart`). It renders in the underlay layer — above grid and background, behind series.
 
 ```tsx
-import { LineChart } from "@/components/charts/line-chart"
-import { Line } from "@/components/charts/line"
-import { Grid } from "@/components/charts/grid"
-import { ReferenceArea } from "@/components/charts/reference-area"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
-import { XAxis } from "@/components/charts/x-axis"
+import { LineChart } from "@/components/charts/line-chart/line-chart"
+import { Line } from "@/components/charts/line-chart/line"
+import { Grid } from "@/components/charts/chart-grid/grid"
+import {
+  ReferenceArea,
+} from "@/components/charts/chart-reference-area/reference-area"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
 
 ;<LineChart data={data}>
   <Grid horizontal />
@@ -34,7 +36,7 @@ Omit `y1` or `y2` to extend the band to the top or bottom of the plot. Use `axis
 
 ## API Reference
 
-<auto-type-table cwd path="src/registry/charts/reference-area.tsx" name="ReferenceAreaProps" />
+<auto-type-table cwd path="src/registry/charts/chart-reference-area/reference-area.tsx" name="ReferenceAreaProps" />
 
 Pattern presets match [`Background`](/docs/charts/utility/background) (`diagonal`, `dots`, `cross`, …).
 

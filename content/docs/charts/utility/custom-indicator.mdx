@@ -77,7 +77,7 @@ function AnimatedBarLine({
 The `useChart` hook provides all the data needed to position your indicator:
 
 ```tsx
-import { useChart } from "@/components/charts/chart-context"
+import { useChart } from "@/components/charts/chart-core/chart-context"
 
 function BarHorizontalLineIndicator({ data, dataKeys }) {
   const {
@@ -171,7 +171,7 @@ function BarHorizontalLineIndicator({ data, dataKeys }) {
 Add the custom indicator as a child of your chart component. You can use gradients and patterns for different series:
 
 ```tsx
-import { PatternLines } from "@/components/charts/visx-pattern"
+import { PatternLines } from "@/components/charts/chart-patterns/visx-pattern"
 
 ;<BarChart data={data} xDataKey="month" barGap={0}>
   <LinearGradient id="gradient" from="var(--color-chart-3)" to="transparent" />
@@ -198,7 +198,7 @@ import { PatternLines } from "@/components/charts/visx-pattern"
 
 ## Key useChart Values for Indicators
 
-<auto-type-table cwd path="src/registry/charts/chart-context.tsx" name="IndicatorChartValues" type="Pick<ChartContextValue, 'hoveredBarIndex' | 'barScale' | 'bandWidth' | 'yScale' | 'innerHeight' | 'margin' | 'containerRef' | 'tooltipData'>" />
+<auto-type-table cwd path="src/registry/charts/chart-core/chart-context.tsx" name="IndicatorChartValues" type="Pick<ChartContextValue, 'hoveredBarIndex' | 'barScale' | 'bandWidth' | 'yScale' | 'innerHeight' | 'margin' | 'containerRef' | 'tooltipData'>" />
 
 ## Theming
 
@@ -208,4 +208,4 @@ Use the color tokens directly so indicators work in light and dark mode:
 <motion.rect fill="var(--color-foreground)" />
 ```
 
-`chartCssVars` (from `@/components/charts/chart-context`) exposes the defaults the built-in layers use, e.g. `chartCssVars.indicatorColor` and `chartCssVars.crosshair`.
+`chartCssVars` (from `@/components/charts/chart-core/chart-context`) exposes the defaults the built-in layers use, e.g. `chartCssVars.indicatorColor` and `chartCssVars.crosshair`.

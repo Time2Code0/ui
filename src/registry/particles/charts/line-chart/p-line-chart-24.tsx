@@ -1,6 +1,6 @@
 "use client";
 
-import { LineChartLoading } from "@/registry/charts/line-chart-loading";
+import { LineChartLoading } from "@/registry/charts/line-chart/line-chart-loading";
 
 export function Particle() {
   return (

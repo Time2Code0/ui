@@ -1,19 +1,19 @@
 "use client";
 
-import type { SunburstNode } from "@/registry/charts/sunburst-data";
+import type { SunburstNode } from "@/registry/charts/sunburst-chart/sunburst";
 
 import { useEffect, useMemo, useState } from "react";
 
-import { buildArcs } from "@/registry/charts/sunburst";
+import { buildArcs } from "@/registry/charts/sunburst-chart/sunburst";
 import {
   SunburstBreadcrumb,
   useSunburstBreadcrumbItems,
-} from "@/registry/charts/sunburst-breadcrumb";
-import { SunburstCenter } from "@/registry/charts/sunburst-center";
-import { SunburstChart } from "@/registry/charts/sunburst-chart";
-import { SunburstHint } from "@/registry/charts/sunburst-hint";
-import { SunburstLabels } from "@/registry/charts/sunburst-labels";
-import { SunburstSegment } from "@/registry/charts/sunburst-segment";
+} from "@/registry/charts/sunburst-chart/sunburst-breadcrumb";
+import { SunburstCenter } from "@/registry/charts/sunburst-chart/sunburst-center";
+import { SunburstChart } from "@/registry/charts/sunburst-chart/sunburst-chart";
+import { SunburstHint } from "@/registry/charts/sunburst-chart/sunburst-hint";
+import { SunburstLabels } from "@/registry/charts/sunburst-chart/sunburst-labels";
+import { SunburstSegment } from "@/registry/charts/sunburst-chart/sunburst-segment";
 import {
   BreadcrumbItem,
   BreadcrumbLink,

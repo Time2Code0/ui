@@ -14,10 +14,10 @@ description: Date labels for the horizontal axis in line and area charts
 The XAxis component displays date labels along the bottom of line and area charts. It must be used inside a chart component (`LineChart` or `AreaChart`).
 
 ```tsx
-import { LineChart } from "@/components/charts/line-chart"
-import { Line } from "@/components/charts/line"
-import { XAxis } from "@/components/charts/x-axis"
-import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
+import { LineChart } from "@/components/charts/line-chart/line-chart"
+import { Line } from "@/components/charts/line-chart/line"
+import { XAxis } from "@/components/charts/chart-axis/x-axis"
+import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
 
 ;<LineChart data={data}>
   <Line dataKey="value" />
@@ -28,7 +28,7 @@ import { ChartTooltip } from "@/components/charts/tooltip/chart-tooltip"
 
 ## API Reference
 
-<auto-type-table cwd path="src/registry/charts/x-axis.tsx" name="XAxisProps" />
+<auto-type-table cwd path="src/registry/charts/chart-axis/x-axis.tsx" name="XAxisProps" />
 
 ## Behavior
 

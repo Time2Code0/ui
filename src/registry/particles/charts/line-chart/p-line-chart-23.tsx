@@ -4,11 +4,11 @@ import { useMemo, useState } from "react";
 
 import { RefreshIcon } from "@hugeicons/core-free-icons";
 
-import { Grid } from "@/registry/charts/grid";
-import { Line } from "@/registry/charts/line";
-import { LineChart } from "@/registry/charts/line-chart";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
-import { XAxis } from "@/registry/charts/x-axis";
+import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
+import { Line } from "@/registry/charts/line-chart/line";
+import { LineChart } from "@/registry/charts/line-chart/line-chart";
 import { Button } from "@/registry/ui/button";
 import { Icon } from "@/registry/ui/icon";
 import { RadioGroupPrimitive, RadioPrimitive } from "@/registry/ui/radio-group";

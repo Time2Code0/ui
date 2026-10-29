@@ -1,6 +1,6 @@
 "use client";
 
-import { Gauge } from "@/registry/charts/gauge";
+import { Gauge } from "@/registry/charts/gauge-chart/gauge";
 
 export function Particle() {
   return (

@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import { LinearGradient } from "@visx/gradient";
 import { motion, useSpring } from "motion/react";
 
-import { Bar } from "@/registry/charts/bar";
-import { BarChart } from "@/registry/charts/bar-chart";
-import { BarXAxis } from "@/registry/charts/bar-x-axis";
-import { useChart } from "@/registry/charts/chart-context";
-import { Grid } from "@/registry/charts/grid";
-import { ChartTooltip } from "@/registry/charts/tooltip/chart-tooltip";
+import { Bar } from "@/registry/charts/bar-chart/bar";
+import { BarChart } from "@/registry/charts/bar-chart/bar-chart";
+import { BarXAxis } from "@/registry/charts/bar-chart/bar-x-axis";
+import { useChart } from "@/registry/charts/chart-core/chart-context";
+import { Grid } from "@/registry/charts/chart-grid/grid";
+import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
 
 const barRevenueData = [
   { month: "Jan", revenue: 12_000 },

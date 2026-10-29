@@ -34,37 +34,37 @@ const data = [
 
 The root container that provides context and maps items.
 
-<auto-type-table cwd path="src/registry/charts/legend/legend.tsx" name="LegendProps" />
+<auto-type-table cwd path="src/registry/charts/chart-legend/legend.tsx" name="LegendProps" />
 
 ### LegendItem
 
 Wrapper for each legend item. Handles hover interactions and animations.
 
-<auto-type-table cwd path="src/registry/charts/legend/legend-item.tsx" name="LegendItemProps" />
+<auto-type-table cwd path="src/registry/charts/chart-legend/legend.tsx" name="LegendItemProps" />
 
 ### LegendMarker
 
 Color indicator dot.
 
-<auto-type-table cwd path="src/registry/charts/legend/legend-marker.tsx" name="LegendMarkerProps" />
+<auto-type-table cwd path="src/registry/charts/chart-legend/legend.tsx" name="LegendMarkerProps" />
 
 ### LegendLabel
 
 Displays the item label.
 
-<auto-type-table cwd path="src/registry/charts/legend/legend-label.tsx" name="LegendLabelProps" />
+<auto-type-table cwd path="src/registry/charts/chart-legend/legend.tsx" name="LegendLabelProps" />
 
 ### LegendValue
 
 Displays the item value with optional percentage.
 
-<auto-type-table cwd path="src/registry/charts/legend/legend-value.tsx" name="LegendValueProps" />
+<auto-type-table cwd path="src/registry/charts/chart-legend/legend.tsx" name="LegendValueProps" />
 
 ### LegendProgress
 
 Progress bar using base-ui Progress component.
 
-<auto-type-table cwd path="src/registry/charts/legend/legend-progress.tsx" name="LegendProgressProps" />
+<auto-type-table cwd path="src/registry/charts/chart-legend/legend.tsx" name="LegendProgressProps" />
 
 ## Data Shape
 
@@ -113,14 +113,16 @@ Connect the legend to a chart for bidirectional hover interactions:
 
 ```tsx
 import { useState } from "react"
-import { RingChart } from "@/components/charts/ring-chart"
-import { Ring } from "@/components/charts/ring"
-import { RingCenter } from "@/components/charts/ring-center"
-import { Legend } from "@/components/charts/legend/legend"
-import { LegendItem } from "@/components/charts/legend/legend-item"
-import { LegendMarker } from "@/components/charts/legend/legend-marker"
-import { LegendLabel } from "@/components/charts/legend/legend-label"
-import { LegendValue } from "@/components/charts/legend/legend-value"
+import { RingChart } from "@/components/charts/ring-chart/ring-chart"
+import { Ring } from "@/components/charts/ring-chart/ring"
+import { RingCenter } from "@/components/charts/ring-chart/ring-center"
+import {
+  Legend,
+  LegendItem,
+  LegendMarker,
+  LegendLabel,
+  LegendValue,
+} from "@/components/charts/chart-legend/legend"
 
 function SyncedChart() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
@@ -161,7 +163,7 @@ function SyncedChart() {
 Access the legend context from any child component:
 
 ```tsx
-import { useLegend } from "@/components/charts/legend/legend-context"
+import { useLegend } from "@/components/charts/chart-legend/legend"
 
 function CustomComponent() {
   const { items, hoveredIndex, setHoveredIndex } = useLegend()
@@ -174,7 +176,7 @@ function CustomComponent() {
 Access the current item data from within a LegendItem:
 
 ```tsx
-import { useLegendItem } from "@/components/charts/legend/legend-context"
+import { useLegendItem } from "@/components/charts/chart-legend/legend"
 
 function CustomItemContent() {
   const { item, index, isHovered, isFaded, percentage } = useLegendItem()

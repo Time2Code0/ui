@@ -7,7 +7,7 @@ import { cn } from "cn";
 import {
   LineSparkline,
   type SparklineCrosshair,
-} from "@/registry/charts/sparkline";
+} from "@/registry/charts/sparkline/sparkline";
 
 function GalleryShell({
   children,

@@ -2,10 +2,10 @@
 
 import type { ComponentProps } from "react";
 
-import { SankeyChart } from "@/registry/charts/sankey/sankey-chart";
-import { SankeyLink } from "@/registry/charts/sankey/sankey-link";
-import { SankeyNode } from "@/registry/charts/sankey/sankey-node";
-import { SankeyTooltip } from "@/registry/charts/sankey/sankey-tooltip";
+import { SankeyChart } from "@/registry/charts/sankey-chart/sankey-chart";
+import { SankeyLink } from "@/registry/charts/sankey-chart/sankey-link";
+import { SankeyNode } from "@/registry/charts/sankey-chart/sankey-node";
+import { SankeyTooltip } from "@/registry/charts/sankey-chart/sankey-tooltip";
 
 const SANKEY_LABELED_EXAMPLE_MARGIN = {
   bottom: 40,

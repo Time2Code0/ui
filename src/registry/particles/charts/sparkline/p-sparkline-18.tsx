@@ -1,6 +1,9 @@
 "use client";
 
-import { LineSparkline, useSparklineHover } from "@/registry/charts/sparkline";
+import {
+  LineSparkline,
+  useSparklineHover,
+} from "@/registry/charts/sparkline/sparkline";
 
 interface SparkPoint {
   day: string;

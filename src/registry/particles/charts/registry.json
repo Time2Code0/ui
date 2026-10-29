@@ -208,7 +208,6 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/area-chart.json",
         "https://design.time2code.dev/r/chart-axis.json",
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/chart-grid.json",
         "https://design.time2code.dev/r/chart-tooltip.json"
       ],
@@ -428,7 +427,6 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/area-chart.json",
         "https://design.time2code.dev/r/chart-axis.json",
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/chart-grid.json",
         "https://design.time2code.dev/r/chart-tooltip.json"
       ],
@@ -677,7 +675,6 @@
       "categories": ["bar-chart"],
       "registryDependencies": [
         "https://design.time2code.dev/r/bar-chart.json",
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/chart-tooltip.json"
       ],
       "files": [
@@ -696,7 +693,6 @@
       "categories": ["bar-chart"],
       "registryDependencies": [
         "https://design.time2code.dev/r/bar-chart.json",
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/chart-tooltip.json"
       ],
       "files": [
@@ -712,7 +708,6 @@
       "categories": ["bar-chart"],
       "registryDependencies": [
         "https://design.time2code.dev/r/bar-chart.json",
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/chart-grid.json",
         "https://design.time2code.dev/r/chart-tooltip.json"
       ],
@@ -989,7 +984,6 @@
       "categories": ["bar-chart"],
       "registryDependencies": [
         "https://design.time2code.dev/r/bar-chart.json",
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/chart-grid.json",
         "https://design.time2code.dev/r/chart-tooltip.json"
       ],
@@ -1203,7 +1197,6 @@
       "registryDependencies": [
         "https://design.time2code.dev/r/candlestick-chart.json",
         "https://design.time2code.dev/r/chart-axis.json",
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/chart-tooltip.json"
       ],
       "files": [
@@ -1413,7 +1406,7 @@
       "description": "Diagonal line patterns colored by region",
       "categories": ["choropleth-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
+        "https://design.time2code.dev/r/chart-patterns.json",
         "https://design.time2code.dev/r/choropleth-chart.json"
       ],
       "files": [
@@ -1471,7 +1464,7 @@
       "description": "Demo component `ChoroplethLinesPatternDemo`",
       "categories": ["choropleth-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
+        "https://design.time2code.dev/r/chart-patterns.json",
         "https://design.time2code.dev/r/choropleth-chart.json"
       ],
       "files": [
@@ -1626,7 +1619,6 @@
       "categories": ["composed-chart"],
       "registryDependencies": [
         "https://design.time2code.dev/r/chart-axis.json",
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/chart-grid.json",
         "https://design.time2code.dev/r/chart-tooltip.json",
         "https://design.time2code.dev/r/composed-chart.json",
@@ -1975,7 +1967,7 @@
       "description": "Diagonal line pattern on the innermost ring via renderPattern",
       "categories": ["funnel-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
+        "https://design.time2code.dev/r/chart-patterns.json",
         "https://design.time2code.dev/r/funnel-chart.json"
       ],
       "files": [
@@ -2027,7 +2019,6 @@
       "description": "Notch arc with PieCenter-style NumberFlow, theme fills, optional patterns in defs, and separate active / inactive arc gradients when enabled.",
       "categories": ["gauge-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/gauge-chart.json"
       ],
       "files": [
@@ -2042,7 +2033,6 @@
       "description": "No spacing between notches, 7px corner radius, custom sweep from 140° to 400°.",
       "categories": ["gauge-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/gauge-chart.json"
       ],
       "files": [
@@ -2057,7 +2047,6 @@
       "description": "Foreground and background notches each get their own hex ramp along the arc (requires useGradient).",
       "categories": ["gauge-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/gauge-chart.json"
       ],
       "files": [
@@ -2072,7 +2061,7 @@
       "description": "Diagonal PatternLines on active notches; inactive track uses `chart-1` at 0.4 fill opacity.",
       "categories": ["gauge-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
+        "https://design.time2code.dev/r/chart-patterns.json",
         "https://design.time2code.dev/r/gauge-chart.json"
       ],
       "files": [
@@ -2129,7 +2118,6 @@
       "description": "Default notch length with an 8px corner radius — smooth joints without going fully pill-shaped.",
       "categories": ["gauge-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/gauge-chart.json"
       ],
       "files": [
@@ -2144,7 +2132,6 @@
       "description": "Radial depth at 38% with a 12px fillet — stubbier ticks that still read soft at the tips.",
       "categories": ["gauge-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/gauge-chart.json"
       ],
       "files": [
@@ -2159,7 +2146,6 @@
       "description": "Full default depth with a 22px corner radius (geometry-clamped) for a capsule / almost-round look.",
       "categories": ["gauge-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/gauge-chart.json"
       ],
       "files": [
@@ -2188,7 +2174,6 @@
       "description": "Optional centerValue and labelPlacement for linear gauges — same placement model as chart legend.",
       "categories": ["gauge-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
         "https://design.time2code.dev/r/gauge-chart.json"
       ],
       "files": [
@@ -3139,7 +3124,7 @@
       "description": "Diagonal line patterns for each slice",
       "categories": ["pie-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
+        "https://design.time2code.dev/r/chart-patterns.json",
         "https://design.time2code.dev/r/pie-chart.json"
       ],
       "files": [
@@ -3191,7 +3176,7 @@
       "description": "Donut with patterned slices and center label",
       "categories": ["pie-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
+        "https://design.time2code.dev/r/chart-patterns.json",
         "https://design.time2code.dev/r/pie-chart.json"
       ],
       "files": [
@@ -3272,7 +3257,7 @@
       "description": "Pie chart with patterns",
       "categories": ["pie-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
+        "https://design.time2code.dev/r/chart-patterns.json",
         "https://design.time2code.dev/r/pie-chart.json"
       ],
       "files": [
@@ -3940,7 +3925,7 @@
       "description": "Demo component `SankeyPatternDemo`",
       "categories": ["sankey-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
+        "https://design.time2code.dev/r/chart-patterns.json",
         "https://design.time2code.dev/r/sankey-chart.json"
       ],
       "files": [
@@ -4239,7 +4224,7 @@
       "description": "Diagonal stripes on alternating inner-ring segments (Product & Partners)",
       "categories": ["sunburst-chart"],
       "registryDependencies": [
-        "https://design.time2code.dev/r/chart-core.json",
+        "https://design.time2code.dev/r/chart-patterns.json",
         "https://design.time2code.dev/r/sunburst-chart.json"
       ],
       "files": [

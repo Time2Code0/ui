@@ -1,6 +1,6 @@
 "use client";
 
-import { AreaChartLoading } from "@/registry/charts/area-chart-loading";
+import { AreaChartLoading } from "@/registry/charts/area-chart/area-chart-loading";
 
 export function Particle() {
   return (

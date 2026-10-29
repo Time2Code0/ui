@@ -2,14 +2,14 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { LiveLine } from "@/registry/charts/live-line";
+import { ReferenceArea } from "@/registry/charts/chart-reference-area/reference-area";
+import { LiveLine } from "@/registry/charts/live-line-chart/live-line";
 import {
   LiveLineChart,
   type LiveLinePoint,
-} from "@/registry/charts/live-line-chart";
-import { LiveXAxis } from "@/registry/charts/live-x-axis";
-import { LiveYAxis } from "@/registry/charts/live-y-axis";
-import { ReferenceArea } from "@/registry/charts/reference-area";
+} from "@/registry/charts/live-line-chart/live-line-chart";
+import { LiveXAxis } from "@/registry/charts/live-line-chart/live-x-axis";
+import { LiveYAxis } from "@/registry/charts/live-line-chart/live-y-axis";
 
 // Live line chart: minimal hook for streaming demo data
 function useLiveData(
