@@ -5,6 +5,7 @@ import {
   LegendItem as LegendItemComponent,
   LegendLabel,
   LegendMarker,
+  LegendProgress,
   LegendValue,
 } from "@/registry/charts/chart-legend/legend";
 
@@ -17,12 +18,15 @@ const sampleData = [
 
 export function Particle() {
   return (
-    <div className="w-full max-w-xs">
-      <Legend items={sampleData}>
-        <LegendItemComponent className="flex items-center gap-3">
+    <div className="w-full max-w-sm">
+      <Legend items={sampleData} title="Sessions by Channel">
+        <LegendItemComponent className="grid grid-cols-[auto_1fr_auto] items-center gap-x-3 gap-y-1">
           <LegendMarker />
-          <LegendLabel className="flex-1" />
-          <LegendValue />
+          <LegendLabel />
+          <LegendValue showPercentage />
+          <div className="col-span-full">
+            <LegendProgress />
+          </div>
         </LegendItemComponent>
       </Legend>
     </div>

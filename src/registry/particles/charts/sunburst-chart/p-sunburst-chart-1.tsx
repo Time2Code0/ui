@@ -132,23 +132,22 @@ export function Particle() {
   }, [rootId]);
 
   return (
-    <div className="mx-auto aspect-square w-full max-w-[min(100%,480px)] sm:max-w-[440px]">
-      <SunburstChart
-        data={sunburstDemoData}
-        focusId={focusId}
-        onFocusChange={setFocusId}
-        size={460}
-      >
-        <SunburstBreadcrumb>
-          <SunburstDrillBreadcrumb />
-        </SunburstBreadcrumb>
-        {arcs.map((arc) => (
-          <SunburstSegment index={arc.arcIndex} key={arc.id} />
-        ))}
-        <SunburstCenter />
-        <SunburstLabels />
-        <SunburstHint />
-      </SunburstChart>
-    </div>
+    <SunburstChart
+      className="mx-auto"
+      data={sunburstDemoData}
+      focusId={focusId}
+      onFocusChange={setFocusId}
+      size={440}
+    >
+      <SunburstBreadcrumb>
+        <SunburstDrillBreadcrumb />
+      </SunburstBreadcrumb>
+      {arcs.map((arc) => (
+        <SunburstSegment index={arc.arcIndex} key={arc.id} />
+      ))}
+      <SunburstCenter />
+      <SunburstLabels />
+      <SunburstHint />
+    </SunburstChart>
   );
 }

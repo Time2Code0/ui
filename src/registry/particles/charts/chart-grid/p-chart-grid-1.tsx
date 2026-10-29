@@ -21,7 +21,7 @@ export function Particle() {
   return (
     <div className="w-full">
       <LineChart data={chartData}>
-        <Grid horizontal />
+        <Grid fadeHorizontal={false} horizontal vertical />
         <Line dataKey="value" />
         <XAxis />
         <ChartTooltip />

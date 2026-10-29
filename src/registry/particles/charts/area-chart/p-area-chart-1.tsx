@@ -1,129 +1,70 @@
 "use client";
 
-import { useMemo, useState } from "react";
-
-import {
-  curveBasis,
-  curveCatmullRom,
-  curveLinear,
-  curveMonotoneX,
-  curveNatural,
-  curveStep,
-} from "@visx/curve";
-
 import { Area } from "@/registry/charts/area-chart/area";
 import { AreaChart } from "@/registry/charts/area-chart/area-chart";
 import { XAxis } from "@/registry/charts/chart-axis/x-axis";
 import { Grid } from "@/registry/charts/chart-grid/grid";
-import {
-  SegmentBackground,
-  SegmentLineFrom,
-  SegmentLineTo,
-} from "@/registry/charts/chart-segment/segment";
 import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
-import {
-  Select,
-  SelectItem,
-  SelectPopup,
-  SelectTrigger,
-  SelectValue,
-} from "@/registry/ui/select";
 
-/** Smoother path through dense daily points (hero + docs preview revenue / runRate). */
-const composedHeroSmoothCurve = curveCatmullRom.alpha(0.42);
+const revenue = [
+  12_000, 13_500, 11_000, 14_500, 13_800, 15_200, 16_000, 14_800, 15_500,
+  14_200, 16_800, 17_500, 16_200, 15_800, 17_200, 18_500, 17_800, 16_500,
+  19_200, 18_800, 17_500, 19_800, 20_500, 19_200, 21_000, 21_800, 20_500,
+  22_500, 23_200, 24_000,
+];
 
-const HERO_CURVE_OPTIONS = [
-  { curve: curveNatural, label: "Natural", value: "natural" },
-  { curve: curveMonotoneX, label: "Monotone X", value: "monotoneX" },
-  { curve: curveLinear, label: "Linear", value: "linear" },
-  { curve: curveStep, label: "Step", value: "step" },
-  { curve: curveBasis, label: "Basis", value: "basis" },
-  {
-    curve: composedHeroSmoothCurve,
-    label: "Catmull–Rom",
-    value: "catmullRom",
-  },
-] as const;
+const costs = [
+  8500, 9200, 7800, 10_100, 9400, 10_800, 11_200, 10_500, 10_900, 9800, 11_800,
+  12_400, 11_500, 11_200, 12_100, 13_200, 12_600, 11_700, 13_800, 13_400,
+  12_400, 14_200, 14_800, 13_600, 15_200, 15_800, 14_600, 16_200, 16_800,
+  17_400,
+];
 
-function ChartHeroCurveToolbar({
-  value,
-  onValueChange,
-}: {
-  value: string;
-  onValueChange: (v: string) => void;
-}) {
+const chartData = revenue.map((value, index) => ({
+  costs: costs[index] ?? 0,
+  date: new Date(2025, 0, 1 + index),
+  revenue: value,
+}));
+
+function AreaTooltipDemo() {
   return (
-    // Right inset clears the frame's top-right Replay overlay.
-    <div className="flex flex-wrap items-center justify-end gap-2 pr-6 sm:pr-4">
-      <span className="text-foreground-muted text-xs">Curve</span>
-      <Select
-        onValueChange={(v) => {
-          if (v != null) {
-            onValueChange(v);
-          }
-        }}
-        value={value}
-      >
-        <SelectTrigger
-          aria-label="Chart curve"
-          className="w-[min(100%,11rem)] text-xs"
-          size="sm"
-        >
-          <SelectValue placeholder="Curve" />
-        </SelectTrigger>
-        <SelectPopup alignItemWithTrigger={false}>
-          {HERO_CURVE_OPTIONS.map((opt) => (
-            <SelectItem key={opt.value} value={opt.value}>
-              {opt.label}
-            </SelectItem>
-          ))}
-        </SelectPopup>
-      </Select>
-    </div>
+    <ChartTooltip
+      rows={(point) => [
+        {
+          color: "var(--color-chart-1)",
+          label: "Revenue",
+          value: `$${(point.revenue as number)?.toLocaleString() ?? 0}`,
+        },
+        {
+          color: "var(--color-chart-2)",
+          label: "Costs",
+          value: `$${(point.costs as number)?.toLocaleString() ?? 0}`,
+        },
+      ]}
+    />
   );
 }
 
-const areaHeroData = Array.from({ length: 30 }, (_, i) => ({
-  costs: Math.floor(5000 + Math.cos(i / 4) * 2000 + ((i * 7) % 1500)),
-  date: new Date(2024, 0, i + 1),
-  revenue: Math.floor(8000 + Math.sin(i / 5) * 4000 + ((i * 11) % 2000)),
-}));
-
+/** `AreaTooltipDemo` inside the area chart it was written for (docs page hero). */
 export function Particle() {
-  const [curveId, setCurveId] = useState("monotoneX");
-  const curve = useMemo(() => {
-    const hit = HERO_CURVE_OPTIONS.find((o) => o.value === curveId);
-    return hit?.curve ?? curveMonotoneX;
-  }, [curveId]);
-
   return (
-    <div className="space-y-3">
-      <ChartHeroCurveToolbar onValueChange={setCurveId} value={curveId} />
-      <AreaChart
-        aspectRatio="4 / 1"
-        data={areaHeroData}
-        margin={{ bottom: 40, left: 8, right: 8, top: 20 }}
-      >
+    <div className="w-full">
+      <AreaChart data={chartData}>
         <Grid horizontal />
         <Area
-          curve={curve}
           dataKey="revenue"
+          fadeEdges
           fill="var(--color-chart-1)"
           fillOpacity={0.3}
-          strokeWidth={2}
         />
         <Area
-          curve={curve}
           dataKey="costs"
+          fadeEdges
           fill="var(--color-chart-2)"
-          fillOpacity={0.2}
-          strokeWidth={1.5}
+          fillOpacity={0.3}
         />
-        <SegmentBackground />
-        <SegmentLineFrom />
-        <SegmentLineTo />
         <XAxis />
-        <ChartTooltip />
+        <AreaTooltipDemo />
       </AreaChart>
     </div>
   );

@@ -5,36 +5,25 @@ import type { ReactNode } from "react";
 import { HeatmapCells } from "@/registry/charts/heatmap-chart/heatmap-cells";
 import { HeatmapChart } from "@/registry/charts/heatmap-chart/heatmap-chart";
 import {
+  HEATMAP_DEFAULT_LEVEL_STYLES,
+  type HeatmapLevelStyles,
+} from "@/registry/charts/heatmap-chart/heatmap-colors";
+import {
   type HeatmapColumn,
   HeatmapInteractionBoundary,
   HeatmapInteractionProvider,
 } from "@/registry/charts/heatmap-chart/heatmap-context";
 import { HeatmapLegend } from "@/registry/charts/heatmap-chart/heatmap-legend";
-import { HeatmapSeparator } from "@/registry/charts/heatmap-chart/heatmap-separator";
 import { HeatmapTooltip } from "@/registry/charts/heatmap-chart/heatmap-tooltip";
 import {
   getHeatmapCalendarRangeStart,
   getHeatmapWeekCount,
   getHeatmapWeekStartAlignedToRange,
   HEATMAP_MONTHS_ONE_YEAR,
+  HEATMAP_MONTHS_SIX,
 } from "@/registry/charts/heatmap-chart/heatmap-utils";
 import { HeatmapXAxis } from "@/registry/charts/heatmap-chart/heatmap-x-axis";
 import { HeatmapYAxis } from "@/registry/charts/heatmap-chart/heatmap-y-axis";
-
-function HeatmapExampleShell({ children }: { children: ReactNode }) {
-  return (
-    <HeatmapInteractionProvider>
-      <HeatmapInteractionBoundary>{children}</HeatmapInteractionBoundary>
-    </HeatmapInteractionProvider>
-  );
-}
-
-/**
- * Quarter separator labels paint above the plot (outside the chart box), so
- * reserve that space on top to keep the chart + legend vertically centered.
- */
-const HEATMAP_SEPARATOR_LABELS_WRAPPER_CLASS =
-  "flex w-full max-w-full flex-col items-stretch gap-2 pt-5";
 
 const HEATMAP_DAYS = 7;
 
@@ -124,9 +113,20 @@ function getHeatmapDemoData(
   return columns;
 }
 
-const heatmapContributionData = getHeatmapDemoData();
+const heatmapContributionDataSixMonths = getHeatmapDemoData(
+  0,
+  HEATMAP_MONTHS_SIX
+);
 
 const HEATMAP_GALLERY_GAP = 3;
+
+function HeatmapExampleShell({ children }: { children: ReactNode }) {
+  return (
+    <HeatmapInteractionProvider>
+      <HeatmapInteractionBoundary>{children}</HeatmapInteractionBoundary>
+    </HeatmapInteractionProvider>
+  );
+}
 
 const HEATMAP_GALLERY_MARGIN = {
   bottom: 0,
@@ -135,67 +135,64 @@ const HEATMAP_GALLERY_MARGIN = {
   top: 28,
 } as const;
 
-const HEATMAP_CIRCULAR_CORNER_RADIUS = 999;
-
-const HEATMAP_HERO_INACTIVE_OPACITY = 0.8;
-
-const HEATMAP_HERO_INACTIVE_SCALE = 0.8;
-
-const HEATMAP_HERO_SEPARATOR_GRADIENT = {
-  from: "var(--color-background-muted)",
-  fromOpacity: 0,
-  to: "var(--color-background-muted)",
-  toOpacity: 0,
-  via: "var(--color-background-muted)",
-  viaOpacity: 1,
-} as const;
-
-const HEATMAP_HERO_SEPARATOR_LABEL_CLASS = "text-[var(--color-chart-3)]";
-
-const HEATMAP_SEPARATOR_SPACING = 20;
-
-/** Aligns separator tops with x-axis month labels (`text-xs` at container top). */
-const HEATMAP_SEPARATOR_START_OFFSET = -20;
-
-export function Particle() {
+function HeatmapGalleryExample({
+  data = heatmapContributionDataSixMonths,
+  levelStyles = HEATMAP_DEFAULT_LEVEL_STYLES,
+  gap = HEATMAP_GALLERY_GAP,
+  cornerRadius = 2,
+  inactiveOpacity,
+  inactiveScale,
+  activeScale,
+}: {
+  data?: HeatmapColumn[];
+  levelStyles?: HeatmapLevelStyles;
+  gap?: number;
+  cornerRadius?: number;
+  inactiveOpacity?: number;
+  inactiveScale?: number;
+  activeScale?: number;
+}) {
   return (
     <HeatmapExampleShell>
-      <div className={HEATMAP_SEPARATOR_LABELS_WRAPPER_CLASS}>
+      <div className="flex w-full max-w-full flex-col items-stretch gap-2">
         <HeatmapChart
           className="w-full min-w-0"
-          data={heatmapContributionData}
-          gap={HEATMAP_GALLERY_GAP}
+          data={data}
+          gap={gap}
           layout="fluid"
+          levelStyles={levelStyles}
           margin={HEATMAP_GALLERY_MARGIN}
         >
           <HeatmapCells
-            cornerRadius={HEATMAP_CIRCULAR_CORNER_RADIUS}
-            inactiveOpacity={HEATMAP_HERO_INACTIVE_OPACITY}
-            inactiveScale={HEATMAP_HERO_INACTIVE_SCALE}
-          />
-          <HeatmapSeparator
-            gradient={HEATMAP_HERO_SEPARATOR_GRADIENT}
-            groupBy="quarter"
-            labelClassName={HEATMAP_HERO_SEPARATOR_LABEL_CLASS}
-            showLabels
-            spacing={HEATMAP_SEPARATOR_SPACING}
-            startOffset={HEATMAP_SEPARATOR_START_OFFSET}
-            stroke="var(--color-background-muted)"
-            strokeOpacity={1}
-            strokeStyle="solid"
+            activeScale={activeScale}
+            cornerRadius={cornerRadius}
+            inactiveOpacity={inactiveOpacity}
+            inactiveScale={inactiveScale}
           />
           <HeatmapXAxis />
-          <HeatmapYAxis labelFormat="initial" tickFilter="all" />
+          <HeatmapYAxis />
           <HeatmapTooltip />
         </HeatmapChart>
         <HeatmapLegend
+          activeScale={activeScale}
           align="center"
-          cornerRadius={HEATMAP_CIRCULAR_CORNER_RADIUS}
-          gap={HEATMAP_GALLERY_GAP}
-          inactiveOpacity={HEATMAP_HERO_INACTIVE_OPACITY}
-          inactiveScale={HEATMAP_HERO_INACTIVE_SCALE}
+          cornerRadius={cornerRadius}
+          gap={gap}
+          inactiveOpacity={inactiveOpacity}
+          inactiveScale={inactiveScale}
+          levelStyles={levelStyles}
         />
       </div>
     </HeatmapExampleShell>
+  );
+}
+
+export function Particle() {
+  return (
+    <HeatmapGalleryExample
+      activeScale={1}
+      inactiveOpacity={1}
+      inactiveScale={1}
+    />
   );
 }

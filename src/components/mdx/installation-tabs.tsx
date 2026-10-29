@@ -10,8 +10,12 @@ import { Heading } from "./heading";
 
 export async function InstallationTabs({ name }: { name: string }) {
   const items = await getRegistryTree(name);
-  const dependencies = [...new Set(items.flatMap((item) => item.dependencies ?? []))];
-  const devDependencies = [...new Set(items.flatMap((item) => item.devDependencies ?? []))]
+  const dependencies = [
+    ...new Set(items.flatMap((item) => item.dependencies ?? [])),
+  ];
+  const devDependencies = [
+    ...new Set(items.flatMap((item) => item.devDependencies ?? [])),
+  ];
   const css = getCss(items);
 
   return (
@@ -110,7 +114,12 @@ async function getRegistryTree(
     items.set(item.name, item);
   }
 
-  const subItems = registryItems.flatMap((item) => (item.registryDependencies ?? []).map((dependency) => dependency.match(REGISTRY_ITEM_URL_REGEX)?.[1] ?? dependency))
+  const subItems = registryItems.flatMap((item) =>
+    (item.registryDependencies ?? []).map(
+      (dependency) =>
+        dependency.match(REGISTRY_ITEM_URL_REGEX)?.[1] ?? dependency
+    )
+  );
 
   return getRegistryTree(name, items, subItems);
 }

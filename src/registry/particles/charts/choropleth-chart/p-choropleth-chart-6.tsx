@@ -1,75 +1,89 @@
 "use client";
 
-import { MinusSignIcon, PlusSignIcon } from "@hugeicons/core-free-icons";
-
 import { ChoroplethChart } from "@/registry/charts/choropleth-chart/choropleth-chart";
 import {
+  type ChoroplethFeature,
   choroplethCssVars,
-  useChoroplethZoom,
 } from "@/registry/charts/choropleth-chart/choropleth-context";
 import { ChoroplethFeature as ChoroplethFeatureComponent } from "@/registry/charts/choropleth-chart/choropleth-feature";
+import { ChoroplethGraticule } from "@/registry/charts/choropleth-chart/choropleth-graticule";
 import { ChoroplethTooltip } from "@/registry/charts/choropleth-chart/choropleth-tooltip";
 import { useWorldDataStandalone } from "@/registry/charts/choropleth-chart/use-world-data";
-import { Button } from "@/registry/ui/button";
-import { Icon } from "@/registry/ui/icon";
 
-function PreviewZoomControls() {
-  const { zoom } = useChoroplethZoom();
-
-  if (!zoom) {
-    return null;
-  }
-
+function ChoroplethLoading() {
   return (
-    <div className="absolute right-4 bottom-4 flex flex-col gap-1">
-      <Button
-        className="size-10 rounded-lg shadow-md"
-        onClick={() => zoom.scale({ scaleX: 1.2, scaleY: 1.2 })}
-        size="icon"
-        variant="secondary"
-      >
-        <Icon className="size-5" icon={PlusSignIcon} />
-      </Button>
-      <Button
-        className="size-10 rounded-lg shadow-md"
-        onClick={() => zoom.scale({ scaleX: 0.8, scaleY: 0.8 })}
-        size="icon"
-        variant="secondary"
-      >
-        <Icon className="size-5" icon={MinusSignIcon} />
-      </Button>
+    <div className="flex h-[200px] items-center justify-center">
+      <div className="animate-pulse text-foreground-muted text-sm">
+        Loading map...
+      </div>
     </div>
   );
 }
 
+const visitorsByCountry: Record<string, number> = {
+  Argentina: 3,
+  Australia: 6,
+  Brazil: 7,
+  Canada: 8,
+  France: 9,
+  Germany: 17,
+  India: 11,
+  Indonesia: 2,
+  Italy: 6,
+  Japan: 4,
+  Mexico: 5,
+  Netherlands: 5,
+  Philippines: 3,
+  Poland: 4,
+  "South Africa": 4,
+  Spain: 3,
+  Sweden: 3,
+  Thailand: 2,
+  "United Kingdom": 12,
+  "United States": 18,
+};
+
+function getVisitorColor(feat: ChoroplethFeature): string {
+  const visitors = visitorsByCountry[feat.properties?.name as string];
+  if (!visitors) {
+    return choroplethCssVars.scale01;
+  }
+  if (visitors >= 17) {
+    return "var(--color-chart-1)";
+  }
+  if (visitors >= 13) {
+    return "var(--color-chart-2)";
+  }
+  if (visitors >= 9) {
+    return "var(--color-chart-3)";
+  }
+  if (visitors >= 5) {
+    return "var(--color-chart-4)";
+  }
+  return "var(--color-chart-5)";
+}
+
+function getVisitorValue(feat: ChoroplethFeature): number | undefined {
+  return visitorsByCountry[feat.properties?.name as string];
+}
+
 export function Particle() {
   const { worldData, isLoading } = useWorldDataStandalone();
-
-  if (isLoading) {
-    return (
-      <div className="flex h-full min-h-[300px] items-center justify-center">
-        <div className="animate-pulse text-foreground-muted">
-          Loading map data...
-        </div>
-      </div>
-    );
+  if (isLoading || !worldData) {
+    return <ChoroplethLoading />;
   }
-
-  if (!worldData) {
-    return (
-      <div className="flex h-full min-h-[300px] items-center justify-center">
-        <div className="text-destructive-foreground">
-          Failed to load map data
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <ChoroplethChart aspectRatio="16 / 9" data={worldData} zoomEnabled>
-      <ChoroplethFeatureComponent fill={choroplethCssVars.scale03} />
-      <ChoroplethTooltip />
-      <PreviewZoomControls />
+    <ChoroplethChart
+      aspectRatio="2 / 1"
+      data={worldData}
+      margin={{ bottom: 40, left: 8, right: 8, top: 20 }}
+    >
+      <ChoroplethGraticule />
+      <ChoroplethFeatureComponent getFeatureColor={getVisitorColor} />
+      <ChoroplethTooltip
+        getFeatureValue={getVisitorValue}
+        valueLabel="Visitors"
+      />
     </ChoroplethChart>
   );
 }

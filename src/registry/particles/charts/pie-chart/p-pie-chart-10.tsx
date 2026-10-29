@@ -1,73 +1,26 @@
 "use client";
 
-import type { LegendItemData } from "@/registry/charts/chart-legend/legend";
 import type { PieData } from "@/registry/charts/pie-chart/pie-context";
 
-import { useState } from "react";
-
-import {
-  Legend,
-  LegendItem as LegendItemComponent,
-  LegendLabel,
-  LegendMarker,
-  LegendValue,
-} from "@/registry/charts/chart-legend/legend";
 import { PieChart } from "@/registry/charts/pie-chart/pie-chart";
 import { PieSlice } from "@/registry/charts/pie-chart/pie-slice";
 
-// Convert pie data to legend items
-function toLegendItems(data: PieData[]): LegendItemData[] {
-  return data.map((d) => ({
-    color: d.color || "",
-    label: d.label,
-    value: d.value,
-  }));
-}
-
-// Sample data for pie charts
-const salesData: PieData[] = [
-  { color: "#0ea5e9", label: "Electronics", value: 4250 },
-  { color: "#a855f7", label: "Clothing", value: 3120 },
-  { color: "#f59e0b", label: "Food", value: 2100 },
-  { color: "#10b981", label: "Home", value: 1580 },
-  { color: "#ef4444", label: "Other", value: 1050 },
+const pieData: PieData[] = [
+  { color: "var(--color-chart-1)", label: "Chrome", value: 275 },
+  { color: "var(--color-chart-2)", label: "Safari", value: 200 },
+  { color: "var(--color-chart-3)", label: "Firefox", value: 187 },
+  { color: "var(--color-chart-4)", label: "Edge", value: 173 },
+  { color: "var(--color-chart-5)", label: "Other", value: 90 },
 ];
 
-/**
- * Main demo with interactive legend
- */
 export function Particle() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  const legendItems = toLegendItems(salesData);
-
   return (
-    <div className="flex w-full min-w-0 max-w-full flex-col items-center justify-center gap-8 lg:w-auto lg:flex-row lg:gap-12">
-      {/* Pie Chart */}
-      <PieChart
-        data={salesData}
-        hoveredIndex={hoveredIndex}
-        onHoverChange={setHoveredIndex}
-        size={280}
-      >
-        {salesData.map((item, index) => (
+    <div className="mx-auto aspect-square w-full max-w-[min(100%,300px)] sm:max-w-[260px]">
+      <PieChart data={pieData}>
+        {pieData.map((item, index) => (
           <PieSlice index={index} key={item.label} />
         ))}
       </PieChart>
-
-      {/* Legend */}
-      <Legend
-        hoveredIndex={hoveredIndex}
-        items={legendItems}
-        onHoverChange={setHoveredIndex}
-        title="Sales by Category"
-      >
-        <LegendItemComponent className="flex items-center gap-3">
-          <LegendMarker />
-          <LegendLabel className="flex-1" />
-          <LegendValue showPercentage />
-        </LegendItemComponent>
-      </Legend>
     </div>
   );
 }

@@ -13,7 +13,7 @@ const links = [
   { href: "#settings", label: "Settings" },
 ];
 
-export default function Particle() {
+export function Particle() {
   const [current, setCurrent] = useState("#overview");
 
   const handleClick = useCallback((event: MouseEvent<HTMLAnchorElement>) => {

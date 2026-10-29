@@ -55,13 +55,8 @@ export function Particle() {
       <LineChart data={chartData}>
         <Grid horizontal />
         <ReferenceArea
-          axisLabelColor={REFERENCE_AREA_DEMO.axisLabelColor}
-          pattern={REFERENCE_AREA_DEMO.pattern}
-          patternColor={REFERENCE_AREA_DEMO.patternColor}
-          patternScale={REFERENCE_AREA_DEMO.patternScale}
-          patternStrokeWidth={REFERENCE_AREA_DEMO.patternStrokeWidth}
-          showMarkers={REFERENCE_AREA_DEMO.showMarkers}
-          stroke={REFERENCE_AREA_DEMO.stroke}
+          showMarkers
+          strokeStyle="dashed"
           y1={REFERENCE_AREA_DEMO.y1}
           y2={REFERENCE_AREA_DEMO.y2}
         />

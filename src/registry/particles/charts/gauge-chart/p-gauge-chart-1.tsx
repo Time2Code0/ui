@@ -1,26 +1,19 @@
 "use client";
 
-import type { ChartStatFlowFormat } from "@/registry/charts/chart-center/chart-stat-flow";
-
 import { Gauge } from "@/registry/charts/gauge-chart/gauge";
-
-const gaugeGalleryUsdFormat: ChartStatFlowFormat = {
-  currency: "USD",
-  maximumFractionDigits: 0,
-  minimumFractionDigits: 0,
-  style: "currency",
-};
 
 export function Particle() {
   return (
-    <div className="w-full min-w-0 sm:mx-auto sm:max-w-md">
+    <div className="mx-auto w-full min-w-[300px] max-w-lg py-4">
       <Gauge
         centerValue={428_000}
-        className="min-w-0 [&>div]:aspect-[5/4] [&>div]:sm:aspect-[21/16]"
         defaultLabel="ARR run rate"
-        formatOptions={gaugeGalleryUsdFormat}
+        formatOptions={{
+          currency: "USD",
+          maximumFractionDigits: 0,
+          style: "currency",
+        }}
         inactiveFillOpacity={0.4}
-        minWidth={0}
         spacing={25}
         value={66}
       />
