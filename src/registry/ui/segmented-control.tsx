@@ -75,7 +75,7 @@ export function SegmentedControlItem({
 
   const defaultProps = {
     className: cn(
-      "relative inline-flex shrink-0 cursor-pointer select-none items-center justify-center whitespace-nowrap rounded-md border border-transparent font-medium text-foreground-muted text-sm outline-2 outline-transparent transition-[color,outline-color] hover:bg-transparent hover:text-muted-foreground focus-visible:outline-foreground",
+      "relative inline-flex shrink-0 cursor-pointer select-none items-center justify-center whitespace-nowrap rounded-md border border-transparent font-medium text-foreground-muted text-sm outline-2 outline-transparent transition-[color,outline-color] hover:bg-transparent hover:text-foreground-muted focus-visible:outline-foreground",
       "disabled:pointer-events-none disabled:opacity-50 data-disabled:pointer-events-none data-disabled:opacity-50",
       "data-checked:bg-background data-checked:text-foreground",
       "aria-[current=page]:bg-background aria-[current=page]:text-foreground",

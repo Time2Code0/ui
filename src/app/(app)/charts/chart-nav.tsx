@@ -24,7 +24,10 @@ export function ChartNav() {
   }, []);
 
   return (
-    <ScrollArea className="mt-6 snap-x snap-mandatory scroll-px-4 pb-2.5">
+    <ScrollArea
+      className="mt-6 snap-x snap-mandatory scroll-px-4 pb-2.5"
+      scrollFade
+    >
       <SegmentedControl className="p-1 *:data-[slot=segmented-control-indicator]:border">
         {chartTypes.map((chart, index) => {
           const href = `/charts/${chart.slug}`;

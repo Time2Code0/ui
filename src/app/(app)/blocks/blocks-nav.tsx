@@ -25,7 +25,10 @@ export function BlocksNav({
   }, []);
 
   return (
-    <ScrollArea className="mt-6 snap-x snap-mandatory scroll-px-4 pb-2.5">
+    <ScrollArea
+      className="mt-6 snap-x snap-mandatory scroll-px-4 pb-2.5"
+      scrollFade
+    >
       <SegmentedControl className="p-1 *:data-[slot=segmented-control-indicator]:border">
         {items.map((item) => {
           const isActive = pathname === item.href;

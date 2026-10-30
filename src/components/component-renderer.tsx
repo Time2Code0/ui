@@ -10,6 +10,8 @@ import {
 } from "@/registry/ui/empty";
 import { Icon } from "@/registry/ui/icon";
 
+import { ColorThemeScope } from "./color-theme-selector";
+
 export function ComponentRenderer({
   name,
   metaClassName,
@@ -40,8 +42,8 @@ export function ComponentRenderer({
   }
 
   return (
-    <div className={metaClassName} data-slot="preview">
+    <ColorThemeScope className={metaClassName} data-slot="preview">
       <Component />
-    </div>
+    </ColorThemeScope>
   );
 }
