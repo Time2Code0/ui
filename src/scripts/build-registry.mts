@@ -1,11 +1,16 @@
 import { exec } from "node:child_process";
 import { writeFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
 
 import { loadRegistry } from "shadcn/registry";
 
-async function buildRegistry() {
+const indexFile = fileURLToPath(
+  new URL("../registry/__index__.tsx", import.meta.url)
+);
+
+async function run(command: string) {
   return await new Promise((resolve, reject) => {
-    const process = exec("pnpm dlx shadcn build");
+    const process = exec(command);
 
     process.on("exit", (code) => {
       if (code === 0) {
@@ -79,21 +84,18 @@ ${indexEntries}
 >;
 `;
 
-  await writeFile(
-    new URL("../registry/__index__.tsx", import.meta.url),
-    source,
-    "utf8"
-  );
+  await writeFile(indexFile, source, "utf8");
 
   console.log(`#️⃣ ${entries.length} registry entries generated.`);
 }
 
 try {
   console.log("💅 Building registry...");
-  await buildRegistry();
+  await run("pnpm dlx shadcn build");
 
   console.log("🏗️ Building registry/__index__.tsx...");
   await buildRegistryIndex();
+  await run(`pnpm fix ${JSON.stringify(indexFile)}`);
 
   console.log("✅ Registry build completed successfully!");
 } catch (error) {
