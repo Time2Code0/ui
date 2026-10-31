@@ -12,7 +12,7 @@ export const docsLlms = llms(source, {
     page
   ) => `# ${page.data.title} ${page.data.description ? `- ${page.data.description}` : ""}
 URL: ${page.url}
-Source: https://raw.githubusercontent.com/time2code0/design-system/refs/heads/main/content/docs/${page.path}
+Source: https://raw.githubusercontent.com/time2code0/ui/refs/heads/main/content/docs/${page.path}
 
 ${await page.data.getText("processed", { components: { CodeBlockTabs: MarkdownCodeBlockTabs, ComponentSource } })}`,
 });

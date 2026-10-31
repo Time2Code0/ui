@@ -34,7 +34,7 @@ export const siteConfig = {
     },
   ],
   socials: {
-    github: "https://github.com/time2code0/design-system",
+    github: "https://github.com/time2code0/ui",
   },
   title: "time2code/ui — React components for apps and marketing sites",
   url: "https://design.time2code.dev",

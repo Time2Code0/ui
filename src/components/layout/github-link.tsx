@@ -31,7 +31,7 @@ async function getStarsCount() {
 
   try {
     const res = await fetch(
-      "https://api.github.com/repos/time2code0/design-system"
+      "https://api.github.com/repos/time2code0/ui"
     );
 
     if (!res.ok) {

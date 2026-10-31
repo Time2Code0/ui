@@ -187,7 +187,7 @@ async function DocsPage(props: Pick<PageProps<"/docs/[[...slug]]">, "params">) {
                   <MenuItem
                     render={
                       <Link
-                        href={`https://github.com/time2code0/design-system/blob/main/content/docs/${page.path}`}
+                        href={`https://github.com/time2code0/ui/blob/main/content/docs/${page.path}`}
                       />
                     }
                   >

@@ -8,7 +8,7 @@ export function Particle() {
       </Link>
       <Link
         className="underline underline-offset-4"
-        href="https://github.com/time2code0/design-system"
+        href="https://github.com/time2code0/ui"
       >
         External link (opens in a new tab)
       </Link>
