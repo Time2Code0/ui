@@ -79,7 +79,7 @@ export async function Introduction() {
               We’re huge fans of the shadcn/ui approach and are proud to build
               upon its foundation.
             </p>
-            <p>Every Akari component installs with the shadcn/ui CLI.</p>
+            <p>Every time2code/ui component installs with the shadcn/ui CLI.</p>
           </div>
         </div>
 

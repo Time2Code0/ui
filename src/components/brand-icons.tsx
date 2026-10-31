@@ -98,7 +98,7 @@ export function GeminiIcon(props: React.SVGProps<SVGSVGElement>) {
     <svg aria-hidden="true" viewBox="0 0 24 24" {...props}>
       <defs>
         <linearGradient
-          id="akari-gemini-fill"
+          id="gemini-fill"
           x1="0%"
           x2="68.73%"
           y1="100%"
@@ -111,7 +111,7 @@ export function GeminiIcon(props: React.SVGProps<SVGSVGElement>) {
       </defs>
       <path
         d="M12 24A14.304 14.304 0 000 12 14.304 14.304 0 0012 0a14.305 14.305 0 0012 12 14.305 14.305 0 00-12 12"
-        fill="url(#akari-gemini-fill)"
+        fill="url(#gemini-fill)"
       />
     </svg>
   );
@@ -151,19 +151,19 @@ const windsurfShadow = (
 export function WindsurfIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg aria-hidden="true" fill="none" viewBox="0 0 166 263" {...props}>
-      <g filter="url(#akari-windsurf-a)">
+      <g filter="url(#windsurf-a)">
         <path
           d="M42.086 128.474 28.427 90.089c-2.383-6.696 2.436-13.802 9.291-13.48 76.537 3.589 115.804 31.534 112.144 112.12-13.311-56.28-77.153-60.255-107.776-60.255Z"
           fill="#58E5BB"
         />
       </g>
-      <g filter="url(#akari-windsurf-b)">
+      <g filter="url(#windsurf-b)">
         <path
           d="M21.453 57.833 7.236 20.639C4.662 13.908 9.478 6.6 16.44 6.683c78.163.938 132.738 6.243 132.738 110.722-13.311-56.28-97.101-59.572-127.725-59.572Z"
           fill="#58E5BB"
         />
       </g>
-      <g filter="url(#akari-windsurf-c)">
+      <g filter="url(#windsurf-c)">
         <path
           d="m63.245 201.377-14.653-41.075c-2.376-6.661 2.376-13.751 9.196-13.388 62.444 3.327 93.677 30.587 90.06 110.239-13.311-56.28-53.76-55.776-84.604-55.776Z"
           fill="#58E5BB"
@@ -174,7 +174,7 @@ export function WindsurfIcon(props: React.SVGProps<SVGSVGElement>) {
           colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height={116.131}
-          id="akari-windsurf-a"
+          id="windsurf-a"
           width={122.286}
           x={27.81}
           y={76.598}
@@ -185,7 +185,7 @@ export function WindsurfIcon(props: React.SVGProps<SVGSVGElement>) {
           colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height={114.724}
-          id="akari-windsurf-b"
+          id="windsurf-b"
           width={142.645}
           x={6.533}
           y={6.682}
@@ -196,7 +196,7 @@ export function WindsurfIcon(props: React.SVGProps<SVGSVGElement>) {
           colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height={114.252}
-          id="akari-windsurf-c"
+          id="windsurf-c"
           width={100.158}
           x={47.972}
           y={146.9}
@@ -228,7 +228,7 @@ export function VSCodeIcon(props: React.SVGProps<SVGSVGElement>) {
     <svg aria-hidden="true" fill="none" viewBox="0 0 100 100" {...props}>
       <mask
         height={100}
-        id="akari-vscode-mask"
+        id="vscode-mask"
         maskUnits="userSpaceOnUse"
         width={100}
         x={0}
@@ -241,18 +241,18 @@ export function VSCodeIcon(props: React.SVGProps<SVGSVGElement>) {
           fillRule="evenodd"
         />
       </mask>
-      <g mask="url(#akari-vscode-mask)">
+      <g mask="url(#vscode-mask)">
         <path
           d="M96.461 10.796 75.857.876a6.23 6.23 0 0 0-7.107 1.207l-67.451 61.5a4.167 4.167 0 0 0 .004 6.162l5.51 5.009a4.167 4.167 0 0 0 5.32.236l81.228-61.62c2.725-2.067 6.639-.124 6.639 3.297v-.24a6.25 6.25 0 0 0-3.539-5.63Z"
           fill="#0065A9"
         />
-        <g filter="url(#akari-vscode-b)">
+        <g filter="url(#vscode-b)">
           <path
             d="m96.461 89.204-20.604 9.92a6.229 6.229 0 0 1-7.107-1.207l-67.451-61.5a4.167 4.167 0 0 1 .004-6.162l5.51-5.009a4.167 4.167 0 0 1 5.32-.236l81.228 61.62c2.725 2.067 6.639.124 6.639-3.297v.24a6.25 6.25 0 0 1-3.539 5.63Z"
             fill="#007ACC"
           />
         </g>
-        <g filter="url(#akari-vscode-c)">
+        <g filter="url(#vscode-c)">
           <path
             d="M75.858 99.126a6.232 6.232 0 0 1-7.108-1.21c2.306 2.307 6.25.674 6.25-2.588V4.672c0-3.262-3.944-4.895-6.25-2.589a6.232 6.232 0 0 1 7.108-1.21l20.6 9.908A6.25 6.25 0 0 1 100 16.413v67.174a6.25 6.25 0 0 1-3.541 5.633l-20.601 9.906Z"
             fill="#1F9CF0"
@@ -261,7 +261,7 @@ export function VSCodeIcon(props: React.SVGProps<SVGSVGElement>) {
         <path
           clipRule="evenodd"
           d="M70.851 99.317a6.224 6.224 0 0 0 4.96-.19L96.4 89.22a6.25 6.25 0 0 0 3.54-5.633V16.413a6.25 6.25 0 0 0-3.54-5.632L75.812.874a6.226 6.226 0 0 0-7.104 1.21L29.294 38.040 12.126 25.010a4.162 4.162 0 0 0-5.317.236l-5.507 5.009a4.168 4.168 0 0 0-.004 6.162L16.186 50 1.298 63.583a4.168 4.168 0 0 0 .004 6.162l5.507 5.009a4.162 4.162 0 0 0 5.317.236L29.294 61.960l39.414 35.958a6.218 6.218 0 0 0 2.143 1.4ZM74.954 27.3 45.048 50l29.906 22.701V27.3Z"
-          fill="url(#akari-vscode-d)"
+          fill="url(#vscode-d)"
           fillRule="evenodd"
           opacity={0.25}
           style={{ mixBlendMode: "overlay" }}
@@ -272,7 +272,7 @@ export function VSCodeIcon(props: React.SVGProps<SVGSVGElement>) {
           colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height={92.246}
-          id="akari-vscode-b"
+          id="vscode-b"
           width={116.727}
           x={-8.394}
           y={15.829}
@@ -283,7 +283,7 @@ export function VSCodeIcon(props: React.SVGProps<SVGSVGElement>) {
           colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
           height={116.151}
-          id="akari-vscode-c"
+          id="vscode-c"
           width={47.917}
           x={60.417}
           y={-8.076}
@@ -292,7 +292,7 @@ export function VSCodeIcon(props: React.SVGProps<SVGSVGElement>) {
         </filter>
         <linearGradient
           gradientUnits="userSpaceOnUse"
-          id="akari-vscode-d"
+          id="vscode-d"
           x1={49.939}
           x2={49.939}
           y1={0.258}

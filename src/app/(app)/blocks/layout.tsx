@@ -20,9 +20,9 @@ export default function Layout({ children }: LayoutProps<"/blocks">) {
           Blocks
         </h1>
         <p className="mt-3 max-w-2xl text-pretty text-foreground-muted lg:text-lg">
-          Ready-made pages and sections built from Akari components. Preview
-          them at any screen size, read the source and add them to your project
-          with a single command.
+          Ready-made pages and sections built from time2code/ui components.
+          Preview them at any screen size, read the source and add them to your
+          project with a single command.
         </p>
 
         <Suspense>

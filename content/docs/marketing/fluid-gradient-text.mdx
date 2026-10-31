@@ -18,14 +18,14 @@ import { FluidGradientText } from "@/components/marketing/fluid-gradient-text"
 ```
 
 ```tsx
-<FluidGradientText text="Akari" />
+<FluidGradientText svgViewBoxHeight={220} text="Time2Code" />
 ```
 
 The text fills the width of its container and inherits the font and color from it. Set them on the component or a parent:
 
 ```tsx
-<footer className="font-bold text-foreground-muted uppercase">
-  <FluidGradientText text="Akari" />
+<footer className="font-bold text-foreground-muted">
+  <FluidGradientText svgViewBoxHeight={220} text="Time2Code" />
 </footer>
 ```
 
@@ -42,8 +42,8 @@ The text is drawn inside an SVG with a viewBox of `svgViewBoxWidth` × `svgViewB
 The SVG is shifted down by 37.5% of its height, so the bottom of the text is cut off and the space above it stays empty. To close that gap, pull the component up with a negative top margin. A percentage margin is relative to the container width, so convert the shift with the viewBox ratio:
 
 ```tsx
-<div style={{ marginTop: `-${((0.375 * 300) / 1200) * 100}%` }}>
-  <FluidGradientText svgViewBoxHeight={300} svgViewBoxWidth={1200} text="Akari" />
+<div style={{ marginTop: `-${((0.375 * 220) / 1200) * 100}%` }}>
+  <FluidGradientText svgViewBoxHeight={220} svgViewBoxWidth={1200} text="Time2Code" />
 </div>
 ```
 

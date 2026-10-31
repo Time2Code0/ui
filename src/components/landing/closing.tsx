@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/config";
 import { FluidGradientText } from "@/registry/marketing/fluid-gradient-text";
 import { Link } from "@/registry/ui/link";
 
-const wordmarkViewBox = { height: 330, width: 1200 };
+const wordmarkViewBox = { height: 220, width: 1200 };
 
 export function Closing() {
   const columns = [
@@ -53,10 +53,10 @@ export function Closing() {
           className="grid grid-cols-3 gap-x-6 gap-y-8 lg:grid-cols-12"
         >
           <div className="col-span-3 flex flex-col gap-3 lg:col-span-5">
-            <p className="font-redaction text-2xl uppercase">Akari</p>
+            <p className="font-redaction text-2xl">{siteConfig.name}</p>
             <p className="max-w-[22rem] text-pretty text-foreground-muted text-sm leading-relaxed">
-              <span lang="ja">灯り</span>, Japanese for lamplight. Components
-              that make the next screen easier to see.
+              React components for production apps and the marketing sites that
+              sell them.
             </p>
           </div>
           {columns.map((column) => (
@@ -84,7 +84,6 @@ export function Closing() {
 
       <div
         aria-hidden="true"
-        className="uppercase"
         style={{
           marginTop: `-${((0.375 * wordmarkViewBox.height) / wordmarkViewBox.width) * 100}%`,
         }}
@@ -93,7 +92,7 @@ export function Closing() {
           className="font-redaction"
           svgViewBoxHeight={wordmarkViewBox.height}
           svgViewBoxWidth={wordmarkViewBox.width}
-          text="Akari"
+          text="Time2Code"
         />
       </div>
     </section>

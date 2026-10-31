@@ -20,7 +20,7 @@ export async function generateMetadata({
     categories.find((item) => item.name === category)?.label ?? category;
 
   return createMetadata({
-    description: `${label} blocks built from Akari components, ready to add to your project.`,
+    description: `${label} blocks built from time2code/ui components, ready to add to your project.`,
     openGraph: { url: `/blocks/${category}` },
     title: `${label} Blocks`,
   });

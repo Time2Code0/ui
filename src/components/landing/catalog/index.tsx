@@ -36,7 +36,7 @@ export function Catalog() {
           React components with every state built in.
         </h2>
         <p className="max-w-xl text-balance text-foreground-muted text-lg leading-snug">
-          Each of Akari&apos;s ui primitives handles focus, keyboard and screen
+          Every time2code/ui primitive handles focus, keyboard and screen
           readers, and ships with hover, loading, disabled and invalid states.
           Copy one in as source and it fits any project, whatever its size.
         </p>

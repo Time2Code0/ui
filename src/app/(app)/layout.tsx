@@ -56,7 +56,7 @@ export default function Layout({ children }: LayoutProps<"/">) {
                   className="select-none font-redaction text-xl uppercase"
                   href="/"
                 >
-                  {siteConfig.name}
+                  UI
                 </Link>
               </div>
 

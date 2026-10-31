@@ -4,7 +4,7 @@ import { BlocksList } from "./blocks-list";
 
 export const metadata = createMetadata({
   description:
-    "Ready-made pages and sections built from Akari components, ready to add to your project.",
+    "Ready-made pages and sections built from time2code/ui components, ready to add to your project.",
   openGraph: { url: "/blocks" },
   title: "Blocks",
 });

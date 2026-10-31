@@ -16,7 +16,7 @@ import { useCopyToClipboard } from "@/registry/hooks/use-copy-to-clipboard";
 import { Button } from "@/registry/ui/button";
 import { Icon } from "@/registry/ui/icon";
 
-const prompt = `Build with Akari: ${siteConfig.url.replace(/^https?:\/\//, "")}/llms.txt`;
+const prompt = `Build with time2code/ui: ${siteConfig.url.replace(/^https?:\/\//, "")}/llms.txt`;
 
 const lightBubble =
   "shadow-[inset_0_0.5px_0_0_rgb(255_255_255/0.7),0_0_0_0.5px_rgb(0_0_0/0.22),0_1px_2px_-1px_rgb(0_0_0/0.45)]";

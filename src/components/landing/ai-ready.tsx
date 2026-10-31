@@ -49,7 +49,7 @@ const features = [
   {
     badge: "Soon",
     description:
-      "AI-powered component generation with a local agent, drawing on the full Akari library.",
+      "AI-powered component generation with a local agent, drawing on the full time2code/ui library.",
     icons: [
       { icon: CursorIcon, name: "Cursor" },
       { icon: WindsurfIcon, name: "Windsurf" },

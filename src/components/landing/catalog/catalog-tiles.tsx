@@ -184,15 +184,15 @@ function FieldTile() {
     <Tile className="flex flex-col gap-4">
       <div className="grid gap-1.5">
         <span className="font-medium text-sm">Workspace URL</span>
-        <Input defaultValue="akari.dev/northwind" />
+        <Input defaultValue="time2code.dev/northwind" />
       </div>
       <div className="grid gap-1.5">
         <span className="font-medium text-sm">Workspace URL</span>
-        <Input className={fieldFocus} defaultValue="akari.dev/north" />
+        <Input className={fieldFocus} defaultValue="time2code.dev/north" />
       </div>
       <div className="grid gap-1.5">
         <span className="font-medium text-sm">Workspace URL</span>
-        <Input aria-invalid defaultValue="akari.dev/north wind" />
+        <Input aria-invalid defaultValue="time2code.dev/north wind" />
         <span className="text-destructive-foreground text-xs">
           Use letters, numbers and dashes only.
         </span>
