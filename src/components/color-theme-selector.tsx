@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import {
   ChevronLeftIcon,
@@ -36,6 +36,16 @@ import {
   ColorPickerPanel,
   ColorPickerSlider,
 } from "@/registry/ui/color-picker";
+import {
+  Dialog,
+  DialogCreateHandle,
+  DialogDescription,
+  DialogHeader,
+  DialogPanel,
+  DialogPopup,
+  DialogTitle,
+  DialogTrigger,
+} from "@/registry/ui/dialog";
 import { Icon } from "@/registry/ui/icon";
 import { Popover, PopoverPopup, PopoverTrigger } from "@/registry/ui/popover";
 import {
@@ -46,6 +56,7 @@ import {
 } from "@/registry/ui/tooltip";
 
 import { useColorTheme } from "./color-theme-provider";
+import { DynamicCodeBlock } from "./dynamic-codeblock.client";
 
 type ViewMode = "list" | "customize";
 
@@ -123,113 +134,135 @@ export function ColorThemeSelector() {
   const colors = stripColors(theme, editMode);
 
   return (
-    <Popover>
-      <PopoverTrigger
-        render={
-          <Button variant="ghost">
-            <span aria-hidden className="inline-flex shrink-0 items-center">
-              {colors.slice(0, 3).map((color, index) => (
-                <span
-                  className={cn(
-                    "relative size-2.5 rounded-full",
-                    index > 0 &&
-                      "mask-[radial-gradient(circle_at_1px_50%,transparent_6.75px,#000_7.25px)] -ml-1.5"
-                  )}
-                  key={color}
-                  style={{
-                    backgroundColor: color,
-                    zIndex: colors.length - index,
-                  }}
-                />
-              ))}
-            </span>
-          </Button>
-        }
-      />
-      <PopoverPopup className="w-64">
-        <AnimatedSizeContainer>
-          <AnimatePresence custom={custom} initial={false} mode="popLayout">
-            <motion.div
-              animate="center"
-              custom={custom}
-              exit="exit"
-              initial="enter"
-              key={view}
-              variants={viewVariants}
-            >
-              {view === "list" ? (
-                <div className="flex flex-col gap-2">
-                  <fieldset className="flex flex-col gap-0.5">
-                    <legend className="px-2 pt-1 pb-1 font-medium text-[11px] text-foreground-muted uppercase tracking-wide">
-                      Chart palette
-                    </legend>
+    <>
+      <Popover>
+        <PopoverTrigger
+          render={
+            <Button variant="ghost">
+              <span aria-hidden className="inline-flex shrink-0 items-center">
+                {colors.slice(0, 3).map((color, index) => (
+                  <span
+                    className={cn(
+                      "relative size-2.5 rounded-full",
+                      index > 0 &&
+                        "mask-[radial-gradient(circle_at_1px_50%,transparent_6.75px,#000_7.25px)] -ml-1.5"
+                    )}
+                    key={color}
+                    style={{
+                      backgroundColor: color,
+                      zIndex: colors.length - index,
+                    }}
+                  />
+                ))}
+              </span>
+            </Button>
+          }
+        />
+        <PopoverPopup className="w-64">
+          <AnimatedSizeContainer
+            height
+            transition={
+              reduce ? { duration: 0 } : { duration: 0.2, ease: "easeOut" }
+            }
+          >
+            <AnimatePresence custom={custom} initial={false} mode="popLayout">
+              <motion.div
+                animate="center"
+                custom={custom}
+                exit="exit"
+                initial="enter"
+                key={view}
+                variants={viewVariants}
+              >
+                {view === "list" ? (
+                  <div className="flex flex-col gap-2">
+                    <fieldset className="flex flex-col gap-0.5">
+                      <legend className="px-2 pt-1 pb-1 font-medium text-[11px] text-foreground-muted uppercase tracking-wide">
+                        Chart palette
+                      </legend>
 
-                    {options.map((palette) => (
-                      <PaletteOption
-                        key={palette.id}
-                        mode={editMode}
-                        onSelect={setThemeId}
-                        palette={palette}
-                        selected={palette.id === themeId}
+                      {options.map((palette) => (
+                        <PaletteOption
+                          key={palette.id}
+                          mode={editMode}
+                          onSelect={setThemeId}
+                          palette={palette}
+                          selected={palette.id === themeId}
+                        />
+                      ))}
+                    </fieldset>
+
+                    <div className="grid grid-cols-2 gap-1 border-t pt-2">
+                      <Button onClick={showCustomize} size="xs" variant="ghost">
+                        <Icon icon={DashboardSquareEditIcon} />
+                        <span>Edit</span>
+                      </Button>
+
+                      <DialogTrigger
+                        handle={exportDialogHandle}
+                        render={
+                          <Button size="xs" variant="ghost">
+                            <Icon icon={SourceCodeSquareIcon} />
+                            <span>Export</span>
+                          </Button>
+                        }
                       />
-                    ))}
-                  </fieldset>
-
-                  <div className="grid grid-cols-2 gap-1 border-t pt-2">
-                    <Button onClick={showCustomize} size="xs" variant="ghost">
-                      <Icon icon={DashboardSquareEditIcon} />
-                      <span>Edit</span>
-                    </Button>
-
-                    <Button size="xs" variant="ghost">
-                      <Icon icon={SourceCodeSquareIcon} />
-                      <span>Export</span>
-                    </Button>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="flex flex-col gap-3 px-1">
-                  <div className="flex items-center gap-1">
-                    <Button onClick={showList} size="icon-xs" variant="ghost">
-                      <Icon icon={ChevronLeftIcon} />
-                    </Button>
+                ) : (
+                  <div className="flex flex-col gap-3 px-1">
+                    <div className="flex items-center gap-1">
+                      <Button onClick={showList} size="icon-xs" variant="ghost">
+                        <Icon icon={ChevronLeftIcon} />
+                      </Button>
 
-                    <p className="flex-1 font-medium text-foreground text-xs">
-                      {theme.id === CUSTOM_COLOR_PALETTE_ID
-                        ? "Custom palette"
-                        : `Customize ${theme.name}`}
+                      <p className="flex-1 font-medium text-foreground text-xs">
+                        {theme.id === CUSTOM_COLOR_PALETTE_ID
+                          ? "Custom palette"
+                          : `Customize ${theme.name}`}
+                      </p>
+
+                      {customTheme ? (
+                        <Button size="icon-xs" variant="ghost">
+                          <Icon
+                            icon={Refresh01Icon}
+                            onClick={resetCustomTheme}
+                          />
+                        </Button>
+                      ) : null}
+                    </div>
+
+                    <p className="text-[11px] text-foreground-muted leading-snug">
+                      Editing {editMode} mode colors. Switch the site theme to
+                      edit the {editMode === "dark" ? "light" : "dark"} mode
+                      values.
                     </p>
 
-                    {customTheme ? (
-                      <Button size="icon-xs" variant="ghost">
-                        <Icon icon={Refresh01Icon} onClick={resetCustomTheme} />
-                      </Button>
-                    ) : null}
+                    <ColorPaletteEditor
+                      colors={theme[editMode]}
+                      onChange={setColor}
+                      onPreview={previewColor}
+                    />
+
+                    <DialogTrigger
+                      handle={exportDialogHandle}
+                      render={
+                        <Button size="xs" variant="secondary">
+                          <Icon icon={SourceCodeSquareIcon} />
+                          Export CSS
+                        </Button>
+                      }
+                    />
                   </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </AnimatedSizeContainer>
+        </PopoverPopup>
+      </Popover>
 
-                  <p className="text-[11px] text-foreground-muted leading-snug">
-                    Editing {editMode} mode colors. Switch the site theme to
-                    edit the {editMode === "dark" ? "light" : "dark"} mode
-                    values.
-                  </p>
-
-                  <ColorPaletteEditor
-                    colors={theme[editMode]}
-                    onChange={setColor}
-                    onPreview={previewColor}
-                  />
-
-                  <Button size="xs" variant="secondary">
-                    <Icon icon={SourceCodeSquareIcon} />
-                    Export CSS
-                  </Button>
-                </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
-        </AnimatedSizeContainer>
-      </PopoverPopup>
-    </Popover>
+      <ColorThemeExportDialog />
+    </>
   );
 }
 
@@ -413,4 +446,49 @@ function ColorPaletteSwatch({
       <TooltipPopup>{COLOR_PALETTE_VAR_LABELS[name]}</TooltipPopup>
     </Tooltip>
   );
+}
+
+const exportDialogHandle = DialogCreateHandle();
+
+function ColorThemeExportDialog() {
+  const { theme } = useColorTheme();
+
+  const css = useMemo(() => colorPaletteToCss(theme), [theme]);
+
+  return (
+    <Dialog handle={exportDialogHandle}>
+      <DialogPopup className="max-w-xl">
+        <DialogHeader>
+          <DialogTitle>Export {theme.name} palette</DialogTitle>
+          <DialogDescription className="[&_code]:font-mono [&_code]:text-foreground">
+            Paste into your global CSS. Charts read <code>--chart-1</code> …{" "}
+            <code>--chart-5</code> for series and <code>--chart-positive</code>{" "}
+            / <code>--chart-negative</code> for up / down values.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogPanel>
+          <DynamicCodeBlock
+            code={css}
+            codeblock={{
+              className: "rounded-lg border",
+              "data-line-numbers": true,
+            }}
+            lang="css"
+          />
+        </DialogPanel>
+      </DialogPopup>
+    </Dialog>
+  );
+}
+
+function cssBlock(selector: string, colors: ColorPaletteColors): string {
+  const lines = COLOR_PALETTE_VAR_NAMES.map(
+    (name) => `  --color-${name}: ${colors[name]};`
+  );
+
+  return `${selector} {\n${lines.join("\n")}\n}`;
+}
+
+function colorPaletteToCss(palette: ColorPalette): string {
+  return `${cssBlock("@theme", palette.light)}\n\n${cssBlock(".dark", palette.dark)}\n`;
 }
