@@ -1,238 +1,218 @@
 ---
 title: Styling
-description: A guide to styling components with our color system.
+description: The color tokens, dark mode and fonts that time2code/ui components are styled with.
 ---
 
 ## Overview
 
-This UI library is optimized to work with specific color tokens that provide crisp, contrasted borders and enhanced visual depth. Our styling system builds upon [shadcn/ui's CSS variables approach](https://ui.shadcn.com/docs/theming) to ensure consistency and maintainability.
+The components are styled with a small set of color tokens. Each token is a Tailwind CSS theme variable, defined in an `@theme` block for light mode and overridden in a `.dark` block for dark mode.
 
-Our components use opaque borders instead of solid ones to ensure crisp, contrasted borders even when backgrounds lack sufficient contrast. These opaque borders mix with bottom shadows to create enhanced contrast and visual depth.
+Because the tokens live directly in the Tailwind theme, every token works as a utility class and as a CSS variable:
 
-While this color system is optional, it's designed to provide optimal visual results. Using conventional color tokens may result in inconsistent borders and shadows that don't achieve the intended design quality.
+```tsx
+<p className="text-foreground-muted">Changes are saved automatically.</p>
+<div className="border bg-background-muted" />
+<div style={{ color: "var(--color-foreground)" }} />
+```
+
+This differs from shadcn/ui, which defines variables like `--background` on `:root` and maps them into Tailwind with `@theme inline`. time2code/ui has no such mapping layer and uses fewer tokens. See [Coming From shadcn/ui](#coming-from-shadcnui) for the differences.
+
+## Color Tokens
+
+### Base
+
+| Token | Used for |
+| --- | --- |
+| `background` | The page and raised surfaces, such as cards, popovers and dialogs |
+| `background-muted` | Recessed surfaces, such as dialog footers and input group addons |
+| `foreground` | Text and icons, and at low opacity, borders, rings and subtle fills |
+| `foreground-muted` | Secondary text, such as descriptions, placeholders and labels |
+| `accent` | Hover, highlighted and pressed states of menu items, buttons and options |
+| `primary` | Your brand color, used sparingly, mostly by marketing components |
+| `secondary` | A second brand color, used alongside `primary` |
+
+UI components stay neutral: they're built from `background`, `foreground` and `accent`, and don't use `primary` or `secondary`. Instead of a separate border token, borders are `foreground` at 10% opacity. The stylesheet below sets that as the default border color for every element, so borders adapt to any surface in both modes.
+
+### Status
+
+Each status color comes in four tokens:
+
+| Token | Used for |
+| --- | --- |
+| `destructive`, `info`, `success`, `warning` | Solid fills and icons |
+| `*-foreground` | Text on a tinted surface, such as alert and badge text |
+| `*-background` | Tinted surfaces, such as alerts and destructive menu items |
+| `*-subtel` | Stronger tints, such as badges, alert frames and the focus ring of invalid fields |
+
+For example, a destructive badge uses `bg-destructive-subtel text-destructive-foreground`.
+
+### Charts
+
+Charts read their series colors from `chart-1` to `chart-5`. Adding a chart adds these tokens to your stylesheet. See [Charts](/docs/charts).
 
 ## Installation
 
-See [Get Started](/ui/docs/get-started) for installing with the CLI. If you prefer to add the theme manually, paste the following into your `globals.css`:
+New projects created with `npx time2code create` already include the tokens. In an existing project, replace your global stylesheet, such as `app/globals.css`, with the following. If it already contains shadcn/ui variables, remove them, since the token names overlap.
 
 ```css title="app/globals.css"
-@theme inline {
-  --font-sans: var(--font-sans);
-  --font-heading: var(--font-sans);
-  --font-mono: var(--font-mono);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-info: var(--info);
-  --color-info-foreground: var(--info-foreground);
-  --color-success: var(--success);
-  --color-success-foreground: var(--success-foreground);
-  --color-warning: var(--warning);
-  --color-warning-foreground: var(--warning-foreground);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --animate-skeleton: skeleton 2s -1s infinite linear;
-  @keyframes skeleton {
-    to {
-      background-position: -200% 0;
-    }
-  }
-}
+@import "tailwindcss";
 
-:root {
-  --radius: 0.625rem;
-  --background: var(--color-white);
-  --foreground: var(--color-neutral-800);
-  --card: var(--color-white);
-  --card-foreground: var(--color-neutral-800);
-  --popover: var(--color-white);
-  --popover-foreground: var(--color-neutral-800);
-  --primary: var(--color-neutral-800);
-  --primary-foreground: var(--color-neutral-50);
-  --secondary: --alpha(var(--color-black) / 4%);
-  --secondary-foreground: var(--color-neutral-800);
-  --muted: --alpha(var(--color-black) / 4%);
-  --muted-foreground: color-mix(
-    in srgb,
-    var(--color-neutral-500) 90%,
-    var(--color-black)
-  );
-  --accent: --alpha(var(--color-black) / 4%);
-  --accent-foreground: var(--color-neutral-800);
-  --destructive: var(--color-red-500);
-  --destructive-foreground: var(--color-red-700);
-  --info: var(--color-blue-500);
-  --info-foreground: var(--color-blue-700);
-  --success: var(--color-emerald-500);
-  --success-foreground: var(--color-emerald-700);
-  --warning: var(--color-amber-500);
-  --warning-foreground: var(--color-amber-700);
-  --border: --alpha(var(--color-black) / 8%);
-  --input: --alpha(var(--color-black) / 10%);
-  --ring: var(--color-neutral-400);
-  --sidebar: var(--color-neutral-50);
-  --sidebar-foreground: color-mix(
-    in srgb,
-    var(--color-neutral-800) 64%,
-    var(--sidebar)
-  );
-  --sidebar-primary: var(--color-neutral-800);
-  --sidebar-primary-foreground: var(--color-neutral-50);
-  --sidebar-accent: --alpha(var(--color-black) / 4%);
-  --sidebar-accent-foreground: var(--color-neutral-800);
-  --sidebar-border: --alpha(var(--color-black) / 6%);
-  --sidebar-ring: var(--color-neutral-400);
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-transparent: transparent;
+
+  --color-background: oklch(0.99 0.003 295);
+  --color-background-muted: oklch(0.98 0.003 295);
+
+  --color-accent: oklch(0.94 0.003 295);
+
+  --color-foreground: oklch(0.22 0.014 295);
+  --color-foreground-muted: oklch(0.54 0.014 295);
+
+  --color-primary: oklch(0.739 0.104 258);
+  --color-secondary: oklch(0.7 0.17 297);
+
+  --color-destructive: oklch(0.58 0.22 25);
+  --color-destructive-foreground: oklch(0.48 0.18 25);
+  --color-destructive-background: oklch(0.96 0.018 25);
+  --color-destructive-subtel: oklch(0.91 0.042 25);
+
+  --color-info: oklch(0.58 0.16 250);
+  --color-info-foreground: oklch(0.48 0.13 250);
+  --color-info-background: oklch(0.96 0.018 250);
+  --color-info-subtel: oklch(0.91 0.04 250);
+
+  --color-success: oklch(0.58 0.16 145);
+  --color-success-foreground: oklch(0.48 0.13 145);
+  --color-success-background: oklch(0.96 0.028 145);
+  --color-success-subtel: oklch(0.91 0.06 145);
+
+  --color-warning: oklch(0.58 0.12 75);
+  --color-warning-foreground: oklch(0.48 0.09 75);
+  --color-warning-background: oklch(0.96 0.03 75);
+  --color-warning-subtel: oklch(0.91 0.065 75);
 }
 
 .dark {
-  --background: color-mix(
-    in srgb,
-    var(--color-neutral-950) 95%,
-    var(--color-white)
-  );
-  --foreground: var(--color-neutral-100);
-  --card: color-mix(in srgb, var(--background) 98%, var(--color-white));
-  --card-foreground: var(--color-neutral-100);
-  --popover: color-mix(in srgb, var(--background) 98%, var(--color-white));
-  --popover-foreground: var(--color-neutral-100);
-  --primary: var(--color-neutral-100);
-  --primary-foreground: var(--color-neutral-800);
-  --secondary: --alpha(var(--color-white) / 4%);
-  --secondary-foreground: var(--color-neutral-100);
-  --muted: --alpha(var(--color-white) / 4%);
-  --muted-foreground: color-mix(
-    in srgb,
-    var(--color-neutral-500) 90%,
-    var(--color-white)
-  );
-  --accent: --alpha(var(--color-white) / 4%);
-  --accent-foreground: var(--color-neutral-100);
-  --destructive: color-mix(
-    in srgb,
-    var(--color-red-500) 90%,
-    var(--color-white)
-  );
-  --destructive-foreground: var(--color-red-400);
-  --info: var(--color-blue-500);
-  --info-foreground: var(--color-blue-400);
-  --success: var(--color-emerald-500);
-  --success-foreground: var(--color-emerald-400);
-  --warning: var(--color-amber-500);
-  --warning-foreground: var(--color-amber-400);
-  --border: --alpha(var(--color-white) / 6%);
-  --input: --alpha(var(--color-white) / 8%);
-  --ring: var(--color-neutral-500);
-  --sidebar: color-mix(
-    in srgb,
-    var(--color-neutral-950) 97%,
-    var(--color-white)
-  );
-  --sidebar-foreground: color-mix(
-    in srgb,
-    var(--color-neutral-100) 64%,
-    var(--sidebar)
-  );
-  --sidebar-primary: var(--color-neutral-100);
-  --sidebar-primary-foreground: var(--color-neutral-800);
-  --sidebar-accent: --alpha(var(--color-white) / 4%);
-  --sidebar-accent-foreground: var(--color-neutral-100);
-  --sidebar-border: --alpha(var(--color-white) / 5%);
-  --sidebar-ring: var(--color-neutral-400);
+  --color-background: oklch(0.191 0 0);
+  --color-background-muted: oklch(0.218 0 0);
+
+  --color-accent: oklch(0.248 0 0);
+
+  --color-foreground: oklch(0.96 0.004 295);
+  --color-foreground-muted: oklch(0.64 0.004 295);
+
+  --color-destructive: oklch(0.58 0.22 25);
+  --color-destructive-foreground: oklch(0.7 0.19 25);
+  --color-destructive-background: oklch(0.23 0.045 25);
+  --color-destructive-subtel: oklch(0.32 0.085 25);
+
+  --color-info: oklch(0.58 0.16 250);
+  --color-info-foreground: oklch(0.78 0.115 250);
+  --color-info-background: oklch(0.23 0.04 250);
+  --color-info-subtel: oklch(0.32 0.075 250);
+
+  --color-success: oklch(0.58 0.16 145);
+  --color-success-foreground: oklch(0.78 0.115 145);
+  --color-success-background: oklch(0.23 0.04 145);
+  --color-success-subtel: oklch(0.32 0.075 145);
+
+  --color-warning: oklch(0.58 0.12 75);
+  --color-warning-foreground: oklch(0.78 0.105 75);
+  --color-warning-background: oklch(0.23 0.035 75);
+  --color-warning-subtel: oklch(0.32 0.06 75);
+}
+
+@theme inline {
+  --font-sans:
+    var(--font-geist-sans), "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+
+  --font-mono:
+    var(--font-geist-mono), "ui-monospace", "SFMono-Regular", "Menlo", "Monaco",
+    "Consolas", "Liberation Mono", "Courier New", "monospace";
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    @apply border-foreground/10;
+  }
+
+  html {
+    @apply scrollbar-thin scrollbar-thumb-accent scrollbar-track-background;
+  }
 }
 ```
 
-## Font Variables
+The `@layer base` block sets the default border color and a thin scrollbar that matches the tokens.
 
-Components like Dialog, AlertDialog, Sheet, and Empty use the `font-heading` class for titles. The coss style preset defines `--font-sans`, `--font-heading`, and `--font-mono` with system font fallbacks.
+## Customizing Colors
 
-When you install `https://design.time2code.dev/r/style` via the CLI, Inter is used for `--font-sans` and `--font-heading`, with Geist Mono for `--font-mono`. coss.com uses **Cal Sans 2.0** variable from `https://design.time2code.dev/r/ui/fonts` for both body and headings.
+To change a color, edit its value in both the `@theme` block and the `.dark` block. Keep the lightness relationships between tokens, so that `foreground-muted` stays readable on `background` and the `*-subtel` tints stay visible next to their `*-background` tints.
 
-By default, `--font-heading` is aliased to `--font-sans` in the theme. Pair `font-heading` with a weight utility such as `font-bold` or `font-semibold` where needed.
+To try palettes on this site, open the palette menu in the header, shown as colored dots next to the theme toggle. **Edit** changes the base and chart colors, and **Export** shows the CSS to paste into your stylesheet. It contains only the base and chart tokens, so your status colors stay as they are.
 
-### Custom fonts
+## Dark Mode
 
-To use your own fonts, define the variables in your layout with `next/font`:
+Dark mode is class-based. The line `@custom-variant dark (&:is(.dark *));` makes the `dark:` variant and the `.dark` overrides apply whenever an ancestor has the `dark` class. In Next.js, the `ThemeProvider` from the [root layout](/docs/get-started#set-up-the-root-layout) sets that class on `<html>`.
 
-```tsx title="app/layout.tsx"
-import { fontMono, fontSans } from "https://design.time2code.dev/r/ui/fonts";
+Most components need no `dark:` classes, because the tokens change with the mode. `primary` and `secondary` keep the same value in both modes unless you add them to the `.dark` block.
 
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body className={`${fontSans.variable} ${fontMono.variable} font-sans`}>
-        {children}
-      </body>
-    </html>
-  );
-}
-```
+## Fonts
 
-When sans and heading share one family, only `--font-sans` needs to be set — the theme aliases `--font-heading` to it.
+The components use two font variables:
 
-For a separate heading font, wire `--font-heading` in your layout and point the theme token at it:
+- `--font-sans` for body text, buttons, labels and most UI elements, through the `font-sans` utility.
+- `--font-mono` for code and other monospace text, through the `font-mono` utility.
+
+The stylesheet above points them at `--font-geist-sans` and `--font-geist-mono`, the variables that `next/font` sets in the [root layout](/docs/get-started#set-up-the-root-layout), with system fallbacks.
+
+### Custom Fonts
+
+To use different fonts, load them with `next/font` and keep the variable names:
 
 ```tsx title="app/layout.tsx"
-import { fontHeading, fontMono, fontSans } from "https://design.time2code.dev/r/ui/fonts";
+import { Inter, JetBrains_Mono } from "next/font/google";
 
-<body className={`${fontSans.variable} ${fontHeading.variable} ${fontMono.variable} font-sans`}>
+const fontSans = Inter({
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+});
+
+const fontMono = JetBrains_Mono({
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+});
 ```
+
+To use your own variable names instead, update the `@theme inline` block to match. For example, with `variable: "--font-inter"`:
 
 ```css title="app/globals.css"
 @theme inline {
-  --font-heading: var(--font-heading);
+  --font-sans: var(--font-inter), "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
 }
 ```
 
-Apply the variables to `html` or `body` so they cascade. The `font-sans` class sets the default body font.
+Apply the font variables to `<html>` and the `font-sans` class to `<body>`, so both cascade to every element, including portaled popups.
 
-## Base UI Setup
+## Coming From shadcn/ui
 
-Since this library is built on Base UI, you need to configure CSS isolation to ensure portaled components (Dialogs, Popovers, Selects, etc.) render correctly above page content.
+If you've used shadcn/ui, these are the equivalents of its tokens:
 
-### Application Root Isolation
+| shadcn/ui | time2code/ui |
+| --- | --- |
+| `bg-card`, `bg-popover` | `bg-background` |
+| `bg-muted` | `bg-background-muted` |
+| `text-muted-foreground` | `text-foreground-muted` |
+| `bg-primary`, `text-primary-foreground` | `bg-foreground`, `text-background` |
+| `border-border`, `border-input` | `border-foreground/10` |
+| `ring-ring` | `ring-foreground` |
+| `var(--foreground)` | `var(--color-foreground)` |
 
-Add `isolation: isolate` to your application's root wrapper div. This creates a separate stacking context so portaled components always appear above page contents without z-index conflicts.
-
-```tsx title="app/layout.tsx"
-<body>
-  <div className="isolate relative flex min-h-svh flex-col">
-    {children}
-  </div>
-</body>
-```
-
-### iOS Safari Compatibility
-
-For iOS Safari 26+ compatibility, add `position: relative` to the body element. This ensures backdrops properly cover the visual viewport after page scrolling.
-
-```tsx title="app/layout.tsx"
-<body className="relative">
-  <div className="isolate relative flex min-h-svh flex-col">
-    {children}
-  </div>
-</body>
-```
-
-These styles ensure Base UI components maintain proper rendering hierarchy and visual layering throughout your application. Without isolation, you may experience z-index conflicts where page content appears above modal dialogs or popovers.
+shadcn/ui's `primary` is the dark, neutral color of default buttons. In time2code/ui, that role is `foreground`, and `primary` is free for your brand color.

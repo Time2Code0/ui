@@ -1,12 +1,13 @@
 {
-  "title": "Get started",
-  "description": "What coss.com is, your first email, and the keys every product shares.",
+  "title": "Get Started",
+  "description": "Install time2code/ui, set up the color tokens and connect your AI tools.",
   "root": true,
   "icon": "Rocket",
   "pages": [
     "index",
     "get-started",
     "styling",
+    "skills",
     "---Resources---",
     "[llms.txt](/llms.txt)",
     "[llms-full.txt](/llms-full.txt)"

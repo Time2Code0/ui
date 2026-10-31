@@ -1,0 +1,59 @@
+---
+title: Skills
+description: Planned Agent Skills that teach your AI assistant time2code/ui's components, patterns and conventions.
+---
+
+<Alert variant="info">
+  <AlertTitle>Skills are planned</AlertTitle>
+  <AlertDescription>
+    The time2code/ui skill isn't available yet. Until it is, connect your assistant to the [MCP server](#available-today) to give it access to the components.
+  </AlertDescription>
+</Alert>
+
+Skills give AI coding assistants structured knowledge about **time2code/ui**: component APIs, composition patterns, styling conventions and common pitfalls. With the skill installed, your assistant uses the components correctly instead of guessing from shadcn/ui or Radix UI habits.
+
+For example, you'll be able to ask your assistant to:
+
+- _"Add a settings dialog with a form and save and cancel buttons."_
+- _"Add a select with grouped options and a search field."_
+- _"Migrate this shadcn/ui dropdown menu to time2code/ui."_
+- _"Show a toast when the form fails to submit."_
+
+## Planned Coverage
+
+### Components
+
+Reference guides for the UI components: imports, minimal examples, composition rules and common pitfalls. The assistant will know when to use Dialog, Sheet or Drawer, how to compose triggers with the `render` prop and how to structure forms with Field.
+
+### Styling Conventions
+
+The [color tokens](/docs/styling#color-tokens) and how they map from shadcn/ui, the default border color, dark mode and the font variables.
+
+### Migration Patterns
+
+Rules for moving from shadcn/ui and Radix UI to Base UI, such as `asChild` to `render` and `*Content` to `*Popup`. They will follow the migration guide, which is also planned.
+
+### CLI and Registry
+
+How to add components with the `time2code` CLI or the shadcn CLI, and how to set up the color tokens and root layout in a new project.
+
+### Particle Examples
+
+Links to the [particles](/particles), so the assistant can base its code on complete, realistic examples instead of minimal stubs.
+
+## How It Will Work
+
+1. **Activation:** Your assistant detects the installed skill in your project.
+2. **Progressive loading:** A root `SKILL.md` holds the core rules and an index of the components. Detailed guides load only when a task needs them.
+3. **Pattern enforcement:** The assistant follows the composition rules, such as the `render` prop for triggers and the `DialogHeader`, `DialogPanel` and `DialogFooter` structure.
+4. **Example-driven output:** Before writing code, the assistant checks the particles for a matching pattern.
+
+The skill will follow the [Agent Skills](https://skills.sh) format, so it works with Claude Code, Cursor, Codex, GitHub Copilot and other assistants that support it.
+
+## Available Today
+
+These tools work now:
+
+- **MCP server:** Run `npx time2code mcp init` to connect the `time2code` MCP server to Claude Code, Cursor, VS Code, OpenCode or Codex. It lets your assistant list, search and view components, get usage examples and get the add command.
+- **llms.txt:** Point your assistant at [llms.txt](/llms.txt) for a map of the documentation, or [llms-full.txt](/llms-full.txt) for all of it.
+- **Markdown pages:** Use the **Copy Markdown** button on any page to paste its content into a chat.
