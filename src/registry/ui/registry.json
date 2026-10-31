@@ -163,6 +163,22 @@
       "files": [{ "path": "collapsible.tsx", "type": "registry:ui" }]
     },
     {
+      "name": "color-picker",
+      "type": "registry:ui",
+      "title": "Color Picker",
+      "description": "A composable color picker with area, sliders, fields and swatches.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/button.json",
+        "https://design.time2code.dev/r/icon.json",
+        "https://design.time2code.dev/r/input-group.json",
+        "https://design.time2code.dev/r/menu.json",
+        "https://design.time2code.dev/r/popover.json",
+        "https://design.time2code.dev/r/separator.json"
+      ],
+      "files": [{ "path": "color-picker.tsx", "type": "registry:ui" }]
+    },
+    {
       "name": "combobox",
       "type": "registry:ui",
       "title": "Combobox",

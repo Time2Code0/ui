@@ -362,6 +362,14 @@ export const Index = {
       ) || "collapsible";
     return { default: mod.default || mod[exportName] };
   }),
+  "color-picker": lazy(async () => {
+    const mod = await import("@/registry/ui/color-picker");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "color-picker";
+    return { default: mod.default || mod[exportName] };
+  }),
   combobox: lazy(async () => {
     const mod = await import("@/registry/ui/combobox");
     const exportName =
@@ -3138,6 +3146,106 @@ export const Index = {
       Object.keys(mod).find(
         (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
       ) || "p-collapsible-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-color-picker-1": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/color-picker/p-color-picker-1"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-color-picker-1";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-color-picker-2": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/color-picker/p-color-picker-2"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-color-picker-2";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-color-picker-3": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/color-picker/p-color-picker-3"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-color-picker-3";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-color-picker-4": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/color-picker/p-color-picker-4"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-color-picker-4";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-color-picker-5": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/color-picker/p-color-picker-5"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-color-picker-5";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-color-picker-6": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/color-picker/p-color-picker-6"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-color-picker-6";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-color-picker-7": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/color-picker/p-color-picker-7"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-color-picker-7";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-color-picker-8": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/color-picker/p-color-picker-8"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-color-picker-8";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-color-picker-9": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/color-picker/p-color-picker-9"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-color-picker-9";
+    return { default: mod.default || mod[exportName] };
+  }),
+  "p-color-picker-10": lazy(async () => {
+    const mod = await import(
+      "@/registry/particles/color-picker/p-color-picker-10"
+    );
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "p-color-picker-10";
     return { default: mod.default || mod[exportName] };
   }),
   "p-combobox-1": lazy(async () => {

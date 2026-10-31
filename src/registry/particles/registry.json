@@ -1244,6 +1244,194 @@
       ]
     },
     {
+      "name": "p-color-picker-1",
+      "type": "registry:block",
+      "description": "Inline color picker with opacity and swatches",
+      "categories": ["color picker", "card"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/card.json",
+        "https://design.time2code.dev/r/color-picker.json"
+      ],
+      "files": [
+        {
+          "path": "color-picker/p-color-picker-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "className": "w-full max-w-96" }
+    },
+    {
+      "name": "p-color-picker-2",
+      "type": "registry:block",
+      "description": "Color picker in a popover",
+      "categories": ["color picker", "field", "popover"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/color-picker.json",
+        "https://design.time2code.dev/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "color-picker/p-color-picker-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "className": "w-full max-w-xs" }
+    },
+    {
+      "name": "p-color-picker-3",
+      "type": "registry:block",
+      "description": "Color input",
+      "categories": ["color picker", "field", "input group"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/color-picker.json",
+        "https://design.time2code.dev/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "color-picker/p-color-picker-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "className": "w-full max-w-xs" }
+    },
+    {
+      "name": "p-color-picker-4",
+      "type": "registry:block",
+      "description": "Color picker with opacity",
+      "categories": ["color picker", "card", "field"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/card.json",
+        "https://design.time2code.dev/r/color-picker.json",
+        "https://design.time2code.dev/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "color-picker/p-color-picker-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "className": "w-full max-w-sm" }
+    },
+    {
+      "name": "p-color-picker-5",
+      "type": "registry:block",
+      "description": "Preset swatches with a custom color",
+      "categories": ["color picker", "badge", "card", "field", "input"],
+      "dependencies": ["@hugeicons/core-free-icons"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/badge.json",
+        "https://design.time2code.dev/r/card.json",
+        "https://design.time2code.dev/r/color-picker.json",
+        "https://design.time2code.dev/r/field.json",
+        "https://design.time2code.dev/r/icon.json",
+        "https://design.time2code.dev/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "color-picker/p-color-picker-5.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "className": "w-full max-w-sm" }
+    },
+    {
+      "name": "p-color-picker-6",
+      "type": "registry:block",
+      "description": "OKLCH theme token",
+      "categories": [
+        "color picker",
+        "badge",
+        "button",
+        "card",
+        "checkbox",
+        "input group"
+      ],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/badge.json",
+        "https://design.time2code.dev/r/button.json",
+        "https://design.time2code.dev/r/card.json",
+        "https://design.time2code.dev/r/checkbox.json",
+        "https://design.time2code.dev/r/color-picker.json",
+        "https://design.time2code.dev/r/input-group.json",
+        "https://design.time2code.dev/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "color-picker/p-color-picker-6.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "className": "w-full max-w-md" }
+    },
+    {
+      "name": "p-color-picker-7",
+      "type": "registry:block",
+      "description": "Hue wheel with area",
+      "categories": ["color picker"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/color-picker.json"
+      ],
+      "files": [
+        {
+          "path": "color-picker/p-color-picker-7.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-color-picker-8",
+      "type": "registry:block",
+      "description": "RGB channel sliders",
+      "categories": ["color picker", "input group"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/color-picker.json",
+        "https://design.time2code.dev/r/input-group.json"
+      ],
+      "files": [
+        {
+          "path": "color-picker/p-color-picker-8.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "className": "w-full max-w-72" }
+    },
+    {
+      "name": "p-color-picker-9",
+      "type": "registry:block",
+      "description": "Color picker in a form",
+      "categories": ["color picker", "button", "field", "form"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/button.json",
+        "https://design.time2code.dev/r/color-picker.json",
+        "https://design.time2code.dev/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "color-picker/p-color-picker-9.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "className": "w-full max-w-xs" }
+    },
+    {
+      "name": "p-color-picker-10",
+      "type": "registry:block",
+      "description": "Contrast checker",
+      "categories": ["color picker", "badge", "field"],
+      "registryDependencies": [
+        "https://design.time2code.dev/r/badge.json",
+        "https://design.time2code.dev/r/color-picker.json",
+        "https://design.time2code.dev/r/field.json"
+      ],
+      "files": [
+        {
+          "path": "color-picker/p-color-picker-10.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "className": "w-full max-w-sm" }
+    },
+    {
       "name": "p-combobox-1",
       "type": "registry:block",
       "description": "Basic combobox",

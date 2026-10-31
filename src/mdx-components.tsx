@@ -33,6 +33,7 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/registry/ui/alert";
+import { Kbd } from "@/registry/ui/kbd";
 import { Tabs, TabsList, TabsPanel, TabsTab } from "@/registry/ui/tabs";
 
 export const mdxComponents = {
@@ -99,6 +100,7 @@ export const mdxComponents = {
     <Heading as="h6" {...props} />
   ),
   InstallationTabs,
+  Kbd,
   MediaQueryDemo,
   ol: ({ className, ...props }: React.ComponentProps<"ol">) => (
     <ol

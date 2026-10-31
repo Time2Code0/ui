@@ -29,6 +29,13 @@ import {
 } from "@/lib/color-theme";
 import { AnimatedSizeContainer } from "@/registry/marketing/animated-size-container";
 import { Button } from "@/registry/ui/button";
+import {
+  ColorPicker,
+  ColorPickerArea,
+  ColorPickerFields,
+  ColorPickerPanel,
+  ColorPickerSlider,
+} from "@/registry/ui/color-picker";
 import { Icon } from "@/registry/ui/icon";
 import { Popover, PopoverPopup, PopoverTrigger } from "@/registry/ui/popover";
 import {
@@ -38,7 +45,6 @@ import {
   TooltipTrigger,
 } from "@/registry/ui/tooltip";
 
-import { ThemeColorPicker } from "./color-theme-color-picker";
 import { useColorTheme } from "./color-theme-provider";
 
 type ViewMode = "list" | "customize";
@@ -304,19 +310,33 @@ function ColorPaletteEditor({
   className?: string;
 }) {
   const [selected, setSelected] = useState<ColorPaletteVarName>("chart-1");
+  // A preview only restyles the page, so the picker shows the live value
+  // until it is committed back into `colors`.
+  const [draft, setDraft] = useState<string | null>(null);
 
-  const handleChange = useCallback(
-    (value: string) => {
+  const handleSelect = useCallback((name: ColorPaletteVarName) => {
+    setDraft(null);
+    setSelected(name);
+  }, []);
+
+  const handleValueChange = useCallback(
+    (value: string | null) => {
+      if (value) {
+        setDraft(value);
+        onPreview(selected, value);
+      }
+    },
+    [onPreview, selected]
+  );
+
+  const handleValueCommit = useCallback(
+    (value: string | null) => {
+      setDraft(null);
       if (value) {
         onChange(selected, value);
       }
     },
     [onChange, selected]
-  );
-
-  const handlePreview = useCallback(
-    (value: string) => onPreview(selected, value),
-    [onPreview, selected]
   );
 
   return (
@@ -330,7 +350,7 @@ function ColorPaletteEditor({
               color={colors[name]}
               key={name}
               name={name}
-              onSelect={setSelected}
+              onSelect={handleSelect}
               selected={name === selected}
             />
           ))}
@@ -342,11 +362,21 @@ function ColorPaletteEditor({
         <span>{COLOR_PALETTE_VAR_LABELS[selected]}</span>
       </p>
 
-      <ThemeColorPicker
-        color={colors[selected]}
-        onChange={handleChange}
-        onPreview={handlePreview}
-      />
+      <ColorPicker
+        alpha
+        aria-label={COLOR_PALETTE_VAR_LABELS[selected]}
+        format="oklch"
+        onValueChange={handleValueChange}
+        onValueCommit={handleValueCommit}
+        value={draft ?? colors[selected]}
+      >
+        <ColorPickerPanel>
+          <ColorPickerArea className="h-32" />
+          <ColorPickerSlider channel="hue" />
+          <ColorPickerSlider channel="alpha" />
+          <ColorPickerFields formats={["oklch"]} />
+        </ColorPickerPanel>
+      </ColorPicker>
     </div>
   );
 }
