@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "login-01",
+      "type": "registry:block",
+      "title": "Split Screen Login",
+      "description": "A responsive split-screen login page with email and social sign-in options.",
+      "categories": ["featured", "authentication", "login"],
+      "dependencies": ["@hugeicons/core-free-icons", "cn"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/field",
+        "@time2code/fieldset",
+        "@time2code/icon",
+        "@time2code/input",
+        "@time2code/link"
+      ],
+      "files": [
+        {
+          "path": "login-01/page.tsx",
+          "type": "registry:page",
+          "target": "app/login/page.tsx"
+        },
+        {
+          "path": "login-01/components/login-form.tsx",
+          "type": "registry:component",
+          "target": "@components/login-01/login-form.tsx"
+        }
+      ]
+    }
+  ]
+}

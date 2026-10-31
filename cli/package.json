@@ -1,0 +1,49 @@
+{
+  "name": "time2code",
+  "version": "0.1.0",
+  "description": "Add time2code/ui components to your project and scaffold new apps.",
+  "keywords": [
+    "components",
+    "registry",
+    "shadcn",
+    "tailwindcss"
+  ],
+  "homepage": "https://design.time2code.dev",
+  "license": "MIT",
+  "author": "Time2Code",
+  "type": "module",
+  "bin": {
+    "time2code": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.8.1",
+    "@modelcontextprotocol/server": "^2.4.0",
+    "@shadcn/registry": "0.2.1",
+    "commander": "^15.0.0",
+    "get-tsconfig": "^4.14.3",
+    "picocolors": "^1.1.1",
+    "tinyexec": "^1.3.1",
+    "tinyglobby": "^0.2.17",
+    "zod": "^4.2.0"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "^2.4.0",
+    "@types/node": "^24.19.2",
+    "tsdown": "^0.23.4",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  },
+  "engines": {
+    "node": ">=20.18.1"
+  }
+}

@@ -1,0 +1,5107 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "items": [
+    {
+      "name": "p-area-chart-26",
+      "type": "registry:block",
+      "title": "Area Chart - Interactive",
+      "description": "Revenue vs costs over 30 days with segment selection. Use the curve menu to compare @visx/curve on both areas.",
+      "categories": ["area-chart"],
+      "dependencies": ["@visx/curve"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-segment",
+        "@time2code/chart-tooltip",
+        "@time2code/select"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-26.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "hero": true,
+        "previewLayout": "time-series",
+        "footer": "Click and drag to select a range. Hero curve menu uses the same Area `curve` prop for revenue and costs."
+      }
+    },
+    {
+      "name": "p-area-chart-2",
+      "type": "registry:block",
+      "title": "Area Chart - Value Labels",
+      "description": "Dense 24-month, two-series area with shared, collision-aware value labels",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-2.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Both series share one label count. Resize to see labels adapt to the width and skip collisions."
+      }
+    },
+    {
+      "name": "p-area-chart-3",
+      "type": "registry:block",
+      "title": "Area Chart",
+      "description": "Default area with gradient fill and smooth curve",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-3.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-4",
+      "type": "registry:block",
+      "title": "Area Chart - Step",
+      "description": "Discrete step interpolation between points",
+      "categories": ["area-chart"],
+      "dependencies": ["@visx/curve"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-4.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-5",
+      "type": "registry:block",
+      "title": "Area Chart - Stacked",
+      "description": "Layered areas comparing desktop and mobile",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-5.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-6",
+      "type": "registry:block",
+      "title": "Area Chart - Gradient",
+      "description": "Solid fill with gradientToOpacity control",
+      "categories": ["area-chart"],
+      "registryDependencies": ["@time2code/area-chart", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "area-chart/p-area-chart-6.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-7",
+      "type": "registry:block",
+      "title": "Area Chart - No Stroke",
+      "description": "Softer look with the stroke line hidden",
+      "categories": ["area-chart"],
+      "registryDependencies": ["@time2code/area-chart", "@time2code/chart-axis", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "area-chart/p-area-chart-7.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-8",
+      "type": "registry:block",
+      "title": "Area Chart - Fade Edges",
+      "description": "Area fill fades at the left and right edges",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-8.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-9",
+      "type": "registry:block",
+      "title": "Area Chart - Loading",
+      "description": "Shimmering grid, pulsing foreground segment, and shimmer label while data loads",
+      "categories": ["area-chart"],
+      "registryDependencies": ["@time2code/area-chart"],
+      "files": [
+        { "path": "area-chart/p-area-chart-9.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series"
+      }
+    },
+    {
+      "name": "p-area-chart-10",
+      "type": "registry:block",
+      "title": "Area Chart - Loading (Sweep)",
+      "description": "Diagonal shimmer sweeping across the skeleton area while data loads",
+      "categories": ["area-chart"],
+      "registryDependencies": ["@time2code/area-chart"],
+      "files": [
+        { "path": "area-chart/p-area-chart-10.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Set loadingStyle=\"sweep\" on Area or AreaChartLoading; defaults to the traveling pulse."
+      }
+    },
+    {
+      "name": "p-area-chart-11",
+      "type": "registry:block",
+      "title": "Area Chart - Segment Selection",
+      "description": "Click and drag to select a range",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-segment",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-11.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Click and drag on the chart to select a segment"
+      }
+    },
+    {
+      "name": "p-area-chart-12",
+      "type": "registry:block",
+      "title": "Area Chart - Pattern",
+      "description": "Diagonal line pattern fill instead of gradient",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-12.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-13",
+      "type": "registry:block",
+      "title": "Area Chart - Series Markers",
+      "description": "Scatter-style ring markers at each point — same styling as Scatter",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-13.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-14",
+      "type": "registry:block",
+      "title": "Area Chart - Dashed Tail",
+      "description": "Solid stroke through yesterday, dashed projection for the in-progress day",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-14.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "dashFromIndex is inclusive — the stroke dashes from that data row through the end"
+      }
+    },
+    {
+      "name": "p-area-chart-15",
+      "type": "registry:block",
+      "title": "Area Chart - Left Y axis",
+      "description": "Both series share the left scale with explicit Y-axis labels",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-15.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-16",
+      "type": "registry:block",
+      "title": "Area Chart - Left and right Y axes",
+      "description": "Independent left and right scales (biaxial)",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-16.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-17",
+      "type": "registry:block",
+      "title": "Area Chart - Pattern Background",
+      "description": "Diagonal pattern fill instead of grid lines",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-17.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Use Background instead of Grid — see /docs/utility/background"
+      }
+    },
+    {
+      "name": "p-area-chart-18",
+      "type": "registry:block",
+      "title": "Area Chart - Dot Grid Background",
+      "description": "Dot grid texture with edge fade",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-18.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-19",
+      "type": "registry:block",
+      "title": "Area Chart - Reference Band",
+      "description": "Horizontal Y band behind the series with dashed edges and bracket markers",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-19.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "See /docs/utility/reference-area — tune bounds, fill, and markers in Studio"
+      }
+    },
+    {
+      "name": "p-area-chart-20",
+      "type": "registry:block",
+      "title": "Area Chart - Pattern Reference Band",
+      "description": "Pattern fill inside the band with colored Y-axis tick labels",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-20.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-21",
+      "type": "registry:block",
+      "title": "Area Chart - Trend Line",
+      "description": "Dashed least-squares trend line drawn over the series",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-21.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "See /docs/utility/trend-line — place TrendLine after the series so it draws on top"
+      }
+    },
+    {
+      "name": "p-area-chart-22",
+      "type": "registry:block",
+      "title": "Area Chart - Gradient Trend Line",
+      "description": "Gradient stroke along the fit with faded ends",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-22.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-23",
+      "type": "registry:block",
+      "title": "Area Chart - Brush zoom",
+      "description": "See the Brush utility docs for `ChartBrushLayout` and `ChartBrush` props.",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-brush",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-23.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-24",
+      "type": "registry:block",
+      "title": "Area Chart - Pattern",
+      "description": "Demo component `AreaChartPatternDemo`",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-24.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-25",
+      "type": "registry:block",
+      "title": "Area Chart - Loading state",
+      "description": "Drive loading and ready from your data layer with a single `AreaChart` — one `Grid`, one `Area`, no component swap. Set `status=\"loading\"` while fetching; switch to `\"ready\"` when data resolves.",
+      "categories": ["area-chart"],
+      "registryDependencies": ["@time2code/area-chart", "@time2code/chart-grid", "@time2code/button"],
+      "files": [
+        { "path": "area-chart/p-area-chart-25.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-area-chart-1",
+      "type": "registry:block",
+      "title": "Area Chart - Tooltip rows",
+      "description": "Custom tooltip rows for revenue and costs via the `ChartTooltip` `rows` prop.",
+      "categories": ["area-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "area-chart/p-area-chart-1.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-7",
+      "type": "registry:block",
+      "title": "Bar Chart - Interactive",
+      "description": "Daily activity over the last 90 days",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-7.tsx", "type": "registry:block" }
+      ],
+      "meta": { "hero": true, "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-2",
+      "type": "registry:block",
+      "title": "Bar Chart - Value Labels",
+      "description": "Order totals with automatic in-bar value labels",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-2.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Auto orientation keeps labels horizontal when they fit, rotates them in narrow bars and hides values that fit neither way."
+      }
+    },
+    {
+      "name": "p-bar-chart-3",
+      "type": "registry:block",
+      "title": "Bar Chart",
+      "description": "Default vertical bar chart with rounded caps",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-3.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-4",
+      "type": "registry:block",
+      "title": "Bar Chart - Loading",
+      "description": "Diagonal shimmer sweeping across placeholder bars while data loads",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-4.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Set status=\"loading\" on BarChart, or use the BarChartLoading shortcut."
+      }
+    },
+    {
+      "name": "p-bar-chart-5",
+      "type": "registry:block",
+      "title": "Bar Chart - 3D Depth",
+      "description": "Glass-block bars with perspective side + top faces and a custom line indicator",
+      "categories": ["bar-chart"],
+      "dependencies": ["motion"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-core",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-5.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Hover over bars to see the animated line indicator"
+      }
+    },
+    {
+      "name": "p-bar-chart-6",
+      "type": "registry:block",
+      "title": "Bar Chart - 3D Stacked",
+      "description": "Stacked depth bars split into per-segment side faces",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-6.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-1",
+      "type": "registry:block",
+      "title": "Bar Chart - Multiple Series",
+      "description": "Grouped bars comparing two metrics",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-1.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-8",
+      "type": "registry:block",
+      "title": "Bar Chart - Stacked",
+      "description": "Stacked bars with gap between segments",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-8.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-9",
+      "type": "registry:block",
+      "title": "Bar Chart - Horizontal",
+      "description": "Horizontal orientation with y-axis labels",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-9.tsx", "type": "registry:block" }
+      ]
+    },
+    {
+      "name": "p-bar-chart-10",
+      "type": "registry:block",
+      "title": "Bar Chart - Positive & Negative",
+      "description": "Monthly profit and loss — bars grow up or down from a highlighted zero line",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-10.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-11",
+      "type": "registry:block",
+      "title": "Bar Chart - Dense Data",
+      "description": "60 days of data with narrow gaps",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-11.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-12",
+      "type": "registry:block",
+      "title": "Bar Chart - Gradient",
+      "description": "Linear gradient fill from blue to purple",
+      "categories": ["bar-chart"],
+      "dependencies": ["@visx/gradient"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-12.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-13",
+      "type": "registry:block",
+      "title": "Bar Chart - Shape & Gradient",
+      "description": "Discrete square columns with per-series gradient, diagonal column tracks, and ring crosshair indicators",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-13.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Use squareSnap on BarChart so ring indicators align with square columns."
+      }
+    },
+    {
+      "name": "p-bar-chart-14",
+      "type": "registry:block",
+      "title": "Bar Chart - Shape Squircle Ring",
+      "description": "Fully rounded square columns with a squircle ring indicator snapped to each bar",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-14.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-15",
+      "type": "registry:block",
+      "title": "Bar Chart - Pattern",
+      "description": "Diagonal line pattern fill",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-15.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-16",
+      "type": "registry:block",
+      "title": "Bar Chart - No Gap",
+      "description": "Zero gap with gradient and animated line indicator",
+      "categories": ["bar-chart"],
+      "dependencies": ["@visx/gradient", "motion"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-core",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-16.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Hover over bars to see the animated line indicator"
+      }
+    },
+    {
+      "name": "p-bar-chart-17",
+      "type": "registry:block",
+      "title": "Bar Chart - Custom Tooltip",
+      "description": "Formatted currency values in tooltip",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-17.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-18",
+      "type": "registry:block",
+      "title": "Bar Chart - Left Y axis",
+      "description": "Grouped vertical bars with a single left value scale and Y-axis labels",
+      "categories": ["bar-chart"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-18.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-19",
+      "type": "registry:block",
+      "title": "Bar Chart - Left and right Y axes",
+      "description": "Independent left and right value scales (biaxial)",
+      "categories": ["bar-chart"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-19.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-20",
+      "type": "registry:block",
+      "title": "Bar Chart - Pattern Background",
+      "description": "Diagonal pattern fill instead of grid lines",
+      "categories": ["bar-chart"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-20.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Use Background instead of Grid — see /docs/utility/background"
+      }
+    },
+    {
+      "name": "p-bar-chart-21",
+      "type": "registry:block",
+      "title": "Bar Chart - Dot Grid Background",
+      "description": "Dot grid texture with edge fade",
+      "categories": ["bar-chart"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-21.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-22",
+      "type": "registry:block",
+      "title": "Bar Chart - Reference Band",
+      "description": "Horizontal Y band behind the series with dashed edges and bracket markers",
+      "categories": ["bar-chart"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-22.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "See /docs/utility/reference-area — tune bounds, fill, and markers in Studio"
+      }
+    },
+    {
+      "name": "p-bar-chart-23",
+      "type": "registry:block",
+      "title": "Bar Chart - Pattern Reference Band",
+      "description": "Pattern fill inside the band with colored Y-axis tick labels",
+      "categories": ["bar-chart"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-23.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-24",
+      "type": "registry:block",
+      "title": "Bar Chart - Trend Line",
+      "description": "Dashed least-squares trend line drawn over the series",
+      "categories": ["bar-chart"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line"
+      ],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-24.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "See /docs/utility/trend-line — place TrendLine after the series so it draws on top"
+      }
+    },
+    {
+      "name": "p-bar-chart-25",
+      "type": "registry:block",
+      "title": "Bar Chart - Gradient Trend Line",
+      "description": "Gradient stroke along the fit with faded ends",
+      "categories": ["bar-chart"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line"
+      ],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-25.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-26",
+      "type": "registry:block",
+      "title": "Bar Chart - Horizontal Trend Line",
+      "description": "Trend line through horizontal bar centers",
+      "categories": ["bar-chart"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line"
+      ],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-26.tsx", "type": "registry:block" }
+      ],
+      "meta": { "footer": "See /docs/utility/trend-line" }
+    },
+    {
+      "name": "p-bar-chart-27",
+      "type": "registry:block",
+      "title": "Bar Chart - Stacked",
+      "description": "Demo component `BarChartStackedDemo`",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-27.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-28",
+      "type": "registry:block",
+      "title": "Bar Chart - Horizontal",
+      "description": "Demo component `BarChartHorizontalDemo`",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-28.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-29",
+      "type": "registry:block",
+      "title": "Bar Chart - 90 days",
+      "description": "Demo component `BarChart90DaysDemo`",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-29.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-30",
+      "type": "registry:block",
+      "title": "Bar Chart - Gradient",
+      "description": "Demo component `BarChartGradientDemo`",
+      "categories": ["bar-chart"],
+      "dependencies": ["@visx/gradient"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-30.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-31",
+      "type": "registry:block",
+      "title": "Bar Chart - Pattern",
+      "description": "Demo component `BarChartPatternDemo`",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-31.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-32",
+      "type": "registry:block",
+      "title": "Bar Chart - Stacked with legend",
+      "description": "Demo component `BarChartStackedWithLegendDemo`",
+      "categories": ["bar-chart"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-legend",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-32.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-33",
+      "type": "registry:block",
+      "title": "Bar Chart - Narrow gaps",
+      "description": "Demo component `BarChartNarrowGapsDemo`",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-33.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-34",
+      "type": "registry:block",
+      "title": "Bar Chart - Custom tooltip",
+      "description": "Demo component `BarChartCustomTooltipDemo`",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-34.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-35",
+      "type": "registry:block",
+      "title": "Bar Chart - No gap gradient",
+      "description": "Demo component `BarChartNoGapGradientDemo`",
+      "categories": ["bar-chart"],
+      "dependencies": ["@visx/gradient", "motion"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-core",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-35.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-36",
+      "type": "registry:block",
+      "title": "Bar Chart - Loading state",
+      "description": "Local preview for the bar chart loading skeleton (status=\"loading\").",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/button"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-36.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-bar-chart-37",
+      "type": "registry:block",
+      "title": "Bar Chart - Negative values",
+      "description": "`BarChart` handles positive and negative values. While every value is zero or above, the value axis starts at `0`; once any value is negative, the domain stretches to include it and bars grow up or down from the zero line (or left / right for `orientation=\"horizontal\"`). Use `Grid highlightRowValues={[0]}` to draw a visible zero line.",
+      "categories": ["bar-chart"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        { "path": "bar-chart/p-bar-chart-37.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-candlestick-chart-12",
+      "type": "registry:block",
+      "title": "Candlestick Chart – Tooltip line matches candle",
+      "description": "Default palette (--color-chart-1 and --color-chart-5). The crosshair color follows the focused candle; no dot.",
+      "categories": ["candlestick-chart"],
+      "registryDependencies": [
+        "@time2code/candlestick-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "candlestick-chart/p-candlestick-chart-12.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "hero": true, "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-candlestick-chart-2",
+      "type": "registry:block",
+      "title": "Candlestick – Tooltip line matches candle",
+      "description": "Lime–emerald and yellow–red gradients. Crosshair color matches the focused candle (green/red); no dot.",
+      "categories": ["candlestick-chart"],
+      "dependencies": ["@visx/gradient"],
+      "registryDependencies": [
+        "@time2code/candlestick-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "candlestick-chart/p-candlestick-chart-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-candlestick-chart-3",
+      "type": "registry:block",
+      "title": "Candlestick – Chart 1 & 3",
+      "description": "Using --color-chart-1 and --color-chart-3 for a stronger contrast",
+      "categories": ["candlestick-chart"],
+      "registryDependencies": [
+        "@time2code/candlestick-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "candlestick-chart/p-candlestick-chart-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-candlestick-chart-4",
+      "type": "registry:block",
+      "title": "Candlestick – Lime to emerald, yellow to red",
+      "description": "Custom gradients: lime–emerald for up, yellow–red for down",
+      "categories": ["candlestick-chart"],
+      "dependencies": ["@visx/gradient"],
+      "registryDependencies": [
+        "@time2code/candlestick-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "candlestick-chart/p-candlestick-chart-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-candlestick-chart-5",
+      "type": "registry:block",
+      "title": "Candlestick – Solid colors",
+      "description": "Solid emerald/red fills instead of gradients",
+      "categories": ["candlestick-chart"],
+      "registryDependencies": [
+        "@time2code/candlestick-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "candlestick-chart/p-candlestick-chart-5.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-candlestick-chart-6",
+      "type": "registry:block",
+      "title": "Candlestick – Pattern",
+      "description": "Diagonal pattern overlay on candle bodies",
+      "categories": ["candlestick-chart"],
+      "registryDependencies": [
+        "@time2code/candlestick-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "candlestick-chart/p-candlestick-chart-6.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-candlestick-chart-7",
+      "type": "registry:block",
+      "title": "Candlestick – Tooltip only",
+      "description": "Tooltip box without crosshair or dots",
+      "categories": ["candlestick-chart"],
+      "registryDependencies": [
+        "@time2code/candlestick-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "candlestick-chart/p-candlestick-chart-7.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-candlestick-chart-8",
+      "type": "registry:block",
+      "title": "Candlestick - Pattern Background",
+      "description": "Diagonal pattern fill instead of grid lines",
+      "categories": ["candlestick-chart"],
+      "registryDependencies": [
+        "@time2code/candlestick-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "candlestick-chart/p-candlestick-chart-8.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Use Background instead of Grid — see /docs/utility/background"
+      }
+    },
+    {
+      "name": "p-candlestick-chart-9",
+      "type": "registry:block",
+      "title": "Candlestick - Dot Grid Background",
+      "description": "Dot grid texture with edge fade",
+      "categories": ["candlestick-chart"],
+      "registryDependencies": [
+        "@time2code/candlestick-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "candlestick-chart/p-candlestick-chart-9.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-candlestick-chart-10",
+      "type": "registry:block",
+      "title": "Candlestick - Reference Band",
+      "description": "Horizontal Y band behind the series with dashed edges and bracket markers",
+      "categories": ["candlestick-chart"],
+      "registryDependencies": [
+        "@time2code/candlestick-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "candlestick-chart/p-candlestick-chart-10.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "See /docs/utility/reference-area — tune bounds, fill, and markers in Studio"
+      }
+    },
+    {
+      "name": "p-candlestick-chart-11",
+      "type": "registry:block",
+      "title": "Candlestick - Pattern Reference Band",
+      "description": "Pattern fill inside the band with colored Y-axis tick labels",
+      "categories": ["candlestick-chart"],
+      "registryDependencies": [
+        "@time2code/candlestick-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "candlestick-chart/p-candlestick-chart-11.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-candlestick-chart-1",
+      "type": "registry:block",
+      "title": "Candlestick Chart - Overview",
+      "description": "A composable OHLC candlestick chart with gradients, patterns, tooltips, and hover interactions",
+      "categories": ["candlestick-chart"],
+      "registryDependencies": [
+        "@time2code/candlestick-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "candlestick-chart/p-candlestick-chart-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-choropleth-chart-6",
+      "type": "registry:block",
+      "title": "Choropleth Chart - Interactive",
+      "description": "Visitor traffic by country",
+      "categories": ["choropleth-chart"],
+      "registryDependencies": ["@time2code/choropleth-chart"],
+      "files": [
+        {
+          "path": "choropleth-chart/p-choropleth-chart-6.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "hero": true, "previewLayout": "wide" }
+    },
+    {
+      "name": "p-choropleth-chart-2",
+      "type": "registry:block",
+      "title": "Choropleth Chart",
+      "description": "World map with single fill color and graticule",
+      "categories": ["choropleth-chart"],
+      "registryDependencies": ["@time2code/choropleth-chart"],
+      "files": [
+        {
+          "path": "choropleth-chart/p-choropleth-chart-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "wide" }
+    },
+    {
+      "name": "p-choropleth-chart-3",
+      "type": "registry:block",
+      "title": "Choropleth Chart - Analytics",
+      "description": "Color scale based on visitor traffic by country",
+      "categories": ["choropleth-chart"],
+      "registryDependencies": ["@time2code/choropleth-chart"],
+      "files": [
+        {
+          "path": "choropleth-chart/p-choropleth-chart-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "wide" }
+    },
+    {
+      "name": "p-choropleth-chart-4",
+      "type": "registry:block",
+      "title": "Choropleth Chart - Graticule",
+      "description": "Visible latitude and longitude grid lines",
+      "categories": ["choropleth-chart"],
+      "registryDependencies": ["@time2code/choropleth-chart"],
+      "files": [
+        {
+          "path": "choropleth-chart/p-choropleth-chart-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "wide" }
+    },
+    {
+      "name": "p-choropleth-chart-5",
+      "type": "registry:block",
+      "title": "Choropleth Chart - Patterns",
+      "description": "Diagonal line patterns colored by region",
+      "categories": ["choropleth-chart"],
+      "registryDependencies": ["@time2code/chart-patterns", "@time2code/choropleth-chart"],
+      "files": [
+        {
+          "path": "choropleth-chart/p-choropleth-chart-5.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "wide" }
+    },
+    {
+      "name": "p-choropleth-chart-1",
+      "type": "registry:block",
+      "title": "Choropleth Chart - Overview",
+      "description": "A composable geographic map chart for visualizing data across regions with interactive tooltips, zoom controls, and pattern support",
+      "categories": ["choropleth-chart"],
+      "dependencies": ["@hugeicons/core-free-icons"],
+      "registryDependencies": ["@time2code/choropleth-chart", "@time2code/button", "@time2code/icon"],
+      "files": [
+        {
+          "path": "choropleth-chart/p-choropleth-chart-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "wide" }
+    },
+    {
+      "name": "p-choropleth-chart-7",
+      "type": "registry:block",
+      "title": "Choropleth Chart - Analytics",
+      "description": "Demo component `ChoroplethAnalyticsDemo`",
+      "categories": ["choropleth-chart"],
+      "dependencies": ["@hugeicons/core-free-icons"],
+      "registryDependencies": ["@time2code/choropleth-chart", "@time2code/button", "@time2code/icon"],
+      "files": [
+        {
+          "path": "choropleth-chart/p-choropleth-chart-7.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "wide" }
+    },
+    {
+      "name": "p-choropleth-chart-8",
+      "type": "registry:block",
+      "title": "Choropleth Chart - Lines pattern",
+      "description": "Demo component `ChoroplethLinesPatternDemo`",
+      "categories": ["choropleth-chart"],
+      "registryDependencies": ["@time2code/chart-patterns", "@time2code/choropleth-chart"],
+      "files": [
+        {
+          "path": "choropleth-chart/p-choropleth-chart-8.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "wide" }
+    },
+    {
+      "name": "p-choropleth-chart-9",
+      "type": "registry:block",
+      "title": "Choropleth Chart - Zoom",
+      "description": "Demo component `ChoroplethZoomDemo`",
+      "categories": ["choropleth-chart"],
+      "dependencies": ["@hugeicons/core-free-icons"],
+      "registryDependencies": ["@time2code/choropleth-chart", "@time2code/button", "@time2code/icon"],
+      "files": [
+        {
+          "path": "choropleth-chart/p-choropleth-chart-9.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "wide" }
+    },
+    {
+      "name": "p-composed-chart-1",
+      "type": "registry:block",
+      "title": "Composed Chart",
+      "description": "One time axis, one Y scale: combine SeriesBar, Line, and Area. Use the curve menu to swap the shared Line and Area interpolation.",
+      "categories": ["composed-chart"],
+      "dependencies": ["@visx/curve"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart",
+        "@time2code/select"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "hero": true,
+        "previewLayout": "time-series",
+        "footer": "Hero uses a Radix Select for the Line and Area `curve` prop (SeriesBar shape is unchanged). See https://visx.airbnb.tech/docs/curve."
+      }
+    },
+    {
+      "name": "p-composed-chart-2",
+      "type": "registry:block",
+      "title": "Composed Chart — Bar + line",
+      "description": "30 daily points with rounded SeriesBar tops (`radius`) and a smoothed revenue line",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Dense time series: use numTicks on XAxis so labels stay readable. Ticks snap to data rows by default so crosshair and tooltip align."
+      }
+    },
+    {
+      "name": "p-composed-chart-3",
+      "type": "registry:block",
+      "title": "Composed Chart — Lime / amber / red",
+      "description": "Fixed hex accents (tailwind lime-300, amber-300, red-500) with rounded bars",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-composed-chart-4",
+      "type": "registry:block",
+      "title": "Composed Chart — Stacked SeriesBar + line",
+      "description": "Two stack segments per day with the same 30-day timeline; stackGap={0} for flush stacks",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-composed-chart-5",
+      "type": "registry:block",
+      "title": "Composed Chart — Grouped bars, no gap",
+      "description": "Two SeriesBar series per day with barGap={0}; rounded tops on both bar series",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-5.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-composed-chart-6",
+      "type": "registry:block",
+      "title": "Composed Chart — Pattern fills",
+      "description": "One SeriesBar with a fuchsia-400 diagonal pattern, one solid bar on theme colors; revenue line unchanged",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-6.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-composed-chart-7",
+      "type": "registry:block",
+      "title": "Composed Chart — Bar + two lines",
+      "description": "Installs as daily columns (rounded) with desktop and mobile lines (30-day variation)",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-7.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-composed-chart-8",
+      "type": "registry:block",
+      "title": "Composed Chart — Markers & dashed tail",
+      "description": "Ring markers and a dashed projection on the run-rate line and area stroke",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-8.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Use dashFromIndex on Line and Area when projecting an incomplete final period"
+      }
+    },
+    {
+      "name": "p-composed-chart-9",
+      "type": "registry:block",
+      "title": "Composed Chart — Left Y axis",
+      "description": "Bars and line share one left value scale with Y-axis labels",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-9.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-composed-chart-10",
+      "type": "registry:block",
+      "title": "Composed Chart — Left and right Y axes",
+      "description": "Units on the left scale, revenue line on the right (biaxial)",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-10.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-composed-chart-11",
+      "type": "registry:block",
+      "title": "Composed Chart - Pattern Background",
+      "description": "Diagonal pattern fill instead of grid lines",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-11.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Use Background instead of Grid — see /docs/utility/background"
+      }
+    },
+    {
+      "name": "p-composed-chart-12",
+      "type": "registry:block",
+      "title": "Composed Chart - Dot Grid Background",
+      "description": "Dot grid texture with edge fade",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-12.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-composed-chart-13",
+      "type": "registry:block",
+      "title": "Composed Chart - Reference Band",
+      "description": "Horizontal Y band behind the series with dashed edges and bracket markers",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-13.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "See /docs/utility/reference-area — tune bounds, fill, and markers in Studio"
+      }
+    },
+    {
+      "name": "p-composed-chart-14",
+      "type": "registry:block",
+      "title": "Composed Chart - Pattern Reference Band",
+      "description": "Pattern fill inside the band with colored Y-axis tick labels",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-14.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-composed-chart-15",
+      "type": "registry:block",
+      "title": "Composed Chart - Trend Line",
+      "description": "Dashed least-squares trend line drawn over the series",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-15.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "See /docs/utility/trend-line — place TrendLine after the series so it draws on top"
+      }
+    },
+    {
+      "name": "p-composed-chart-16",
+      "type": "registry:block",
+      "title": "Composed Chart - Gradient Trend Line",
+      "description": "Gradient stroke along the fit with faded ends",
+      "categories": ["composed-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "composed-chart/p-composed-chart-16.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-funnel-chart-1",
+      "type": "registry:block",
+      "title": "Funnel Chart",
+      "description": "Animated funnel chart with multi-layer halo rings, hover interactions, and an interactive legend.",
+      "categories": ["funnel-chart"],
+      "registryDependencies": ["@time2code/chart-legend", "@time2code/funnel-chart"],
+      "files": [
+        {
+          "path": "funnel-chart/p-funnel-chart-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "hero": true, "previewLayout": "funnel" }
+    },
+    {
+      "name": "p-funnel-chart-2",
+      "type": "registry:block",
+      "title": "Vertical",
+      "description": "Vertical orientation with top-to-bottom flow",
+      "categories": ["funnel-chart"],
+      "registryDependencies": ["@time2code/funnel-chart"],
+      "files": [
+        {
+          "path": "funnel-chart/p-funnel-chart-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "funnel" }
+    },
+    {
+      "name": "p-funnel-chart-3",
+      "type": "registry:block",
+      "title": "Vertical Straight with Grid",
+      "description": "Combining vertical orientation, straight edges, and grid",
+      "categories": ["funnel-chart"],
+      "registryDependencies": ["@time2code/funnel-chart"],
+      "files": [
+        {
+          "path": "funnel-chart/p-funnel-chart-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "funnel" }
+    },
+    {
+      "name": "p-funnel-chart-4",
+      "type": "registry:block",
+      "title": "Straight Edges",
+      "description": "Sharp geometric edges instead of smooth curves",
+      "categories": ["funnel-chart"],
+      "registryDependencies": ["@time2code/funnel-chart"],
+      "files": [
+        {
+          "path": "funnel-chart/p-funnel-chart-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "funnel" }
+    },
+    {
+      "name": "p-funnel-chart-5",
+      "type": "registry:block",
+      "title": "Per-Segment Colors",
+      "description": "Each segment with its own color from the chart palette",
+      "categories": ["funnel-chart"],
+      "registryDependencies": ["@time2code/funnel-chart"],
+      "files": [
+        {
+          "path": "funnel-chart/p-funnel-chart-5.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "funnel" }
+    },
+    {
+      "name": "p-funnel-chart-6",
+      "type": "registry:block",
+      "title": "Gradient Segments",
+      "description": "Linear gradients flowing between chart palette colors",
+      "categories": ["funnel-chart"],
+      "registryDependencies": ["@time2code/funnel-chart"],
+      "files": [
+        {
+          "path": "funnel-chart/p-funnel-chart-6.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "funnel" }
+    },
+    {
+      "name": "p-funnel-chart-7",
+      "type": "registry:block",
+      "title": "Pattern Fill",
+      "description": "Diagonal line pattern on the innermost ring via renderPattern",
+      "categories": ["funnel-chart"],
+      "registryDependencies": ["@time2code/chart-patterns", "@time2code/funnel-chart"],
+      "files": [
+        {
+          "path": "funnel-chart/p-funnel-chart-7.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "funnel" }
+    },
+    {
+      "name": "p-funnel-chart-8",
+      "type": "registry:block",
+      "title": "Grouped Labels",
+      "description": "Labels stacked together in a compact group",
+      "categories": ["funnel-chart"],
+      "registryDependencies": ["@time2code/funnel-chart"],
+      "files": [
+        {
+          "path": "funnel-chart/p-funnel-chart-8.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "funnel" }
+    },
+    {
+      "name": "p-funnel-chart-9",
+      "type": "registry:block",
+      "title": "Grid Background",
+      "description": "Alternating bands and grid lines for easier comparison",
+      "categories": ["funnel-chart"],
+      "registryDependencies": ["@time2code/funnel-chart"],
+      "files": [
+        {
+          "path": "funnel-chart/p-funnel-chart-9.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "funnel" }
+    },
+    {
+      "name": "p-gauge-chart-14",
+      "type": "registry:block",
+      "title": "Gauge",
+      "description": "Notch arc with PieCenter-style NumberFlow, theme fills, optional patterns in defs, and separate active / inactive arc gradients when enabled.",
+      "categories": ["gauge-chart"],
+      "registryDependencies": ["@time2code/gauge-chart"],
+      "files": [
+        { "path": "gauge-chart/p-gauge-chart-14.tsx", "type": "registry:block" }
+      ],
+      "meta": { "hero": true, "previewLayout": "compact" }
+    },
+    {
+      "name": "p-gauge-chart-2",
+      "type": "registry:block",
+      "title": "Gauge — tight arc, filleted corners",
+      "description": "No spacing between notches, 7px corner radius, custom sweep from 140° to 400°.",
+      "categories": ["gauge-chart"],
+      "registryDependencies": ["@time2code/gauge-chart"],
+      "files": [
+        { "path": "gauge-chart/p-gauge-chart-2.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-gauge-chart-3",
+      "type": "registry:block",
+      "title": "Gauge — dual arc gradients",
+      "description": "Foreground and background notches each get their own hex ramp along the arc (requires useGradient).",
+      "categories": ["gauge-chart"],
+      "registryDependencies": ["@time2code/gauge-chart"],
+      "files": [
+        { "path": "gauge-chart/p-gauge-chart-3.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-gauge-chart-4",
+      "type": "registry:block",
+      "title": "Gauge — pattern foreground, dim solid track",
+      "description": "Diagonal PatternLines on active notches; inactive track uses `chart-1` at 0.4 fill opacity.",
+      "categories": ["gauge-chart"],
+      "registryDependencies": ["@time2code/chart-patterns", "@time2code/gauge-chart"],
+      "files": [
+        { "path": "gauge-chart/p-gauge-chart-4.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-gauge-chart-5",
+      "type": "registry:block",
+      "title": "Gauge — sparse ring, quarter sweep",
+      "description": "Fewer notches, wide spacing, sharp corners, 90° → 270° sweep — reads like a progress ring segment.",
+      "categories": ["gauge-chart"],
+      "registryDependencies": ["@time2code/gauge-chart"],
+      "files": [
+        { "path": "gauge-chart/p-gauge-chart-5.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-gauge-chart-6",
+      "type": "registry:block",
+      "title": "Gauge — same density, bottom half sweep",
+      "description": "Same notch layout as the sparse ring example, but the arc runs 180° → 360° (lower semicircle emphasis).",
+      "categories": ["gauge-chart"],
+      "registryDependencies": ["@time2code/gauge-chart"],
+      "files": [
+        { "path": "gauge-chart/p-gauge-chart-6.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-gauge-chart-7",
+      "type": "registry:block",
+      "title": "Gauge — flipped sweep (270° → 450°)",
+      "description": "Same spacing and notch count as the quarter sweep, rotated so the gap sits on the opposite side of the ring.",
+      "categories": ["gauge-chart"],
+      "registryDependencies": ["@time2code/gauge-chart"],
+      "files": [
+        { "path": "gauge-chart/p-gauge-chart-7.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-gauge-chart-8",
+      "type": "registry:block",
+      "title": "Gauge — soft fillets, full depth",
+      "description": "Default notch length with an 8px corner radius — smooth joints without going fully pill-shaped.",
+      "categories": ["gauge-chart"],
+      "registryDependencies": ["@time2code/gauge-chart"],
+      "files": [
+        { "path": "gauge-chart/p-gauge-chart-8.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-gauge-chart-9",
+      "type": "registry:block",
+      "title": "Gauge — short notches, bold corners",
+      "description": "Radial depth at 38% with a 12px fillet — stubbier ticks that still read soft at the tips.",
+      "categories": ["gauge-chart"],
+      "registryDependencies": ["@time2code/gauge-chart"],
+      "files": [
+        { "path": "gauge-chart/p-gauge-chart-9.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-gauge-chart-10",
+      "type": "registry:block",
+      "title": "Gauge — near-circular notches",
+      "description": "Full default depth with a 22px corner radius (geometry-clamped) for a capsule / almost-round look.",
+      "categories": ["gauge-chart"],
+      "registryDependencies": ["@time2code/gauge-chart"],
+      "files": [
+        { "path": "gauge-chart/p-gauge-chart-10.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-gauge-chart-11",
+      "type": "registry:block",
+      "title": "Gauge — linear notch track",
+      "description": "Horizontal notch bar via orientation=\"linear\" — same fill model as the arc gauge, responsive parent width.",
+      "categories": ["gauge-chart"],
+      "registryDependencies": ["@time2code/gauge-chart"],
+      "files": [
+        { "path": "gauge-chart/p-gauge-chart-11.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-gauge-chart-12",
+      "type": "registry:block",
+      "title": "Gauge — linear with label below",
+      "description": "Optional centerValue and labelPlacement for linear gauges — same placement model as chart legend.",
+      "categories": ["gauge-chart"],
+      "registryDependencies": ["@time2code/gauge-chart"],
+      "files": [
+        { "path": "gauge-chart/p-gauge-chart-12.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-gauge-chart-13",
+      "type": "registry:block",
+      "title": "Gauge — linear dual gradients",
+      "description": "Active and inactive notches each interpolate along their own hex ramp when useGradient is enabled.",
+      "categories": ["gauge-chart"],
+      "registryDependencies": ["@time2code/gauge-chart"],
+      "files": [
+        { "path": "gauge-chart/p-gauge-chart-13.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-gauge-chart-1",
+      "type": "registry:block",
+      "title": "Gauge - Overview",
+      "description": "Notch-based radial or linear gauge with optional center label, theme fills, patterns, arc gradients, and responsive sizing",
+      "categories": ["gauge-chart"],
+      "registryDependencies": ["@time2code/gauge-chart"],
+      "files": [
+        { "path": "gauge-chart/p-gauge-chart-1.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-heatmap-chart-2",
+      "type": "registry:block",
+      "title": "Heatmap Chart - Contributions",
+      "description": "Activity grid with circular cells, calendar quarter separators, compact day labels, and synced legend hover",
+      "categories": ["heatmap-chart"],
+      "registryDependencies": ["@time2code/heatmap-chart"],
+      "files": [
+        {
+          "path": "heatmap-chart/p-heatmap-chart-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "hero": true, "previewLayout": "heatmap" }
+    },
+    {
+      "name": "p-heatmap-chart-1",
+      "type": "registry:block",
+      "title": "Heatmap Chart",
+      "description": "GitHub-style contribution grid with axes and tooltip (six months)",
+      "categories": ["heatmap-chart"],
+      "registryDependencies": ["@time2code/heatmap-chart"],
+      "files": [
+        {
+          "path": "heatmap-chart/p-heatmap-chart-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "heatmap" }
+    },
+    {
+      "name": "p-heatmap-chart-3",
+      "type": "registry:block",
+      "title": "Heatmap Chart - Pattern Levels",
+      "description": "Per-level pattern fills shared between chart and legend (six months)",
+      "categories": ["heatmap-chart"],
+      "registryDependencies": ["@time2code/heatmap-chart"],
+      "files": [
+        {
+          "path": "heatmap-chart/p-heatmap-chart-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "heatmap" }
+    },
+    {
+      "name": "p-heatmap-chart-4",
+      "type": "registry:block",
+      "title": "Heatmap Chart - Solid Separators",
+      "description": "Calendar quarter separators with a flat solid stroke (six months)",
+      "categories": ["heatmap-chart"],
+      "registryDependencies": ["@time2code/heatmap-chart"],
+      "files": [
+        {
+          "path": "heatmap-chart/p-heatmap-chart-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "heatmap" }
+    },
+    {
+      "name": "p-heatmap-chart-5",
+      "type": "registry:block",
+      "title": "Heatmap Chart - Compact Y Axis & Quarter Separators",
+      "description": "Mon / Wed / Fri labels, quarter separators with a vertical fade gradient (six months)",
+      "categories": ["heatmap-chart"],
+      "registryDependencies": ["@time2code/heatmap-chart"],
+      "files": [
+        {
+          "path": "heatmap-chart/p-heatmap-chart-5.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "heatmap" }
+    },
+    {
+      "name": "p-heatmap-chart-6",
+      "type": "registry:block",
+      "title": "Heatmap Chart - Dashed Separators",
+      "description": "Quarter separators without a Y axis — dashed lines with vertical fade (six months)",
+      "categories": ["heatmap-chart"],
+      "registryDependencies": ["@time2code/heatmap-chart"],
+      "files": [
+        {
+          "path": "heatmap-chart/p-heatmap-chart-6.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "heatmap" }
+    },
+    {
+      "name": "p-heatmap-chart-7",
+      "type": "registry:block",
+      "title": "Heatmap Chart - Loading",
+      "description": "Skeleton grid with cell shimmer while data loads (six months)",
+      "categories": ["heatmap-chart"],
+      "registryDependencies": ["@time2code/heatmap-chart"],
+      "files": [
+        {
+          "path": "heatmap-chart/p-heatmap-chart-7.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "heatmap" }
+    },
+    {
+      "name": "p-heatmap-chart-8",
+      "type": "registry:block",
+      "title": "Heatmap Chart - Horizontal Scroll",
+      "description": "Scroll a full year of contributions with a viewport sized to six months",
+      "categories": ["heatmap-chart"],
+      "registryDependencies": ["@time2code/heatmap-chart"],
+      "files": [
+        {
+          "path": "heatmap-chart/p-heatmap-chart-8.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "heatmap" }
+    },
+    {
+      "name": "p-heatmap-chart-9",
+      "type": "registry:block",
+      "title": "Heatmap Chart - Gradient Legend",
+      "description": "Continuous gradient bar legend with custom endpoint labels (six months)",
+      "categories": ["heatmap-chart"],
+      "registryDependencies": ["@time2code/heatmap-chart"],
+      "files": [
+        {
+          "path": "heatmap-chart/p-heatmap-chart-9.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "heatmap" }
+    },
+    {
+      "name": "p-heatmap-chart-10",
+      "type": "registry:block",
+      "title": "Heatmap Chart - Monday Start",
+      "description": "Week starts on Monday with M–S labels and faded weekend rows (six months)",
+      "categories": ["heatmap-chart"],
+      "registryDependencies": ["@time2code/heatmap-chart"],
+      "files": [
+        {
+          "path": "heatmap-chart/p-heatmap-chart-10.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "heatmap" }
+    },
+    {
+      "name": "p-heatmap-chart-11",
+      "type": "registry:block",
+      "title": "Heatmap Chart - Active Scale Hover",
+      "description": "Enlarge the hovered cell with a slightly larger gap (six months)",
+      "categories": ["heatmap-chart"],
+      "registryDependencies": ["@time2code/heatmap-chart"],
+      "files": [
+        {
+          "path": "heatmap-chart/p-heatmap-chart-11.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "heatmap" }
+    },
+    {
+      "name": "p-line-chart-4",
+      "type": "registry:block",
+      "title": "Line Chart - Trio with Brush",
+      "description": "Three Catmull–Rom series on a dot background with a top legend and brush zoom — matches the Studio trio preset.",
+      "categories": ["line-chart"],
+      "dependencies": ["@visx/curve"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-brush",
+        "@time2code/chart-legend",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-4.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "hero": true,
+        "previewLayout": "time-series",
+        "footer": "Open the same preset in Studio from the Background docs or paste the share URL from /charts/line-chart."
+      }
+    },
+    {
+      "name": "p-line-chart-2",
+      "type": "registry:block",
+      "title": "Line Chart - Projection",
+      "description": "Target and auto forecasts with gradient dashed beziers and a terminal marker",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-2.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "See the [Projection Line utility](/docs/utility/projection-line). Projections and brush zoom are not supported together."
+      }
+    },
+    {
+      "name": "p-line-chart-3",
+      "type": "registry:block",
+      "title": "Line Chart - Linear",
+      "description": "Straight lines between data points",
+      "categories": ["line-chart"],
+      "dependencies": ["@visx/curve"],
+      "registryDependencies": ["@time2code/chart-grid", "@time2code/chart-tooltip", "@time2code/line-chart"],
+      "files": [
+        { "path": "line-chart/p-line-chart-3.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-1",
+      "type": "registry:block",
+      "title": "Line Chart - Markers",
+      "description": "Custom markers to annotate key events",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-grid",
+        "@time2code/chart-markers",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-1.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-5",
+      "type": "registry:block",
+      "title": "Line Chart - Segment Selection",
+      "description": "Click and drag to select a range",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-grid",
+        "@time2code/chart-segment",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-5.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Click and drag on the chart to select a segment"
+      }
+    },
+    {
+      "name": "p-line-chart-6",
+      "type": "registry:block",
+      "title": "Line Chart - Multiple Lines",
+      "description": "Desktop vs mobile visitors over time",
+      "categories": ["line-chart"],
+      "registryDependencies": ["@time2code/chart-grid", "@time2code/chart-tooltip", "@time2code/line-chart"],
+      "files": [
+        { "path": "line-chart/p-line-chart-6.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-7",
+      "type": "registry:block",
+      "title": "Line Chart - X Axis",
+      "description": "With labeled x-axis dates",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-7.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-8",
+      "type": "registry:block",
+      "title": "Line Chart - X & Y Axis",
+      "description": "With both horizontal grid and x-axis labels",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-8.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Horizontal grid lines serve as the y-axis reference"
+      }
+    },
+    {
+      "name": "p-line-chart-9",
+      "type": "registry:block",
+      "title": "Line Chart - Series Markers",
+      "description": "Ring markers at each data point with the same config as Scatter",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-9.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-10",
+      "type": "registry:block",
+      "title": "Line Chart - Loading",
+      "description": "Shimmering grid, pulsing foreground segment, and shimmer label while data loads",
+      "categories": ["line-chart"],
+      "registryDependencies": ["@time2code/line-chart"],
+      "files": [
+        { "path": "line-chart/p-line-chart-10.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series"
+      }
+    },
+    {
+      "name": "p-line-chart-11",
+      "type": "registry:block",
+      "title": "Line Chart - Loading (Sweep)",
+      "description": "Diagonal shimmer sweeping across the skeleton line while data loads",
+      "categories": ["line-chart"],
+      "registryDependencies": ["@time2code/line-chart"],
+      "files": [
+        { "path": "line-chart/p-line-chart-11.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Set loadingStyle=\"sweep\" on Line or LineChartLoading; defaults to the traveling pulse."
+      }
+    },
+    {
+      "name": "p-line-chart-12",
+      "type": "registry:block",
+      "title": "Line Chart - Dashed Tail",
+      "description": "Curved dashed segment from a chosen index — useful for incomplete periods",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-12.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "The dashed tail follows the same curve and edge fade as the solid stroke"
+      }
+    },
+    {
+      "name": "p-line-chart-13",
+      "type": "registry:block",
+      "title": "Line Chart - Left Y axis",
+      "description": "Both series on the left scale with explicit Y-axis tick labels",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-13.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-14",
+      "type": "registry:block",
+      "title": "Line Chart - Left and right Y axes",
+      "description": "Independent left and right scales (biaxial)",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-14.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-15",
+      "type": "registry:block",
+      "title": "Line Chart - Profit/Loss",
+      "description": "Sign-colored segments with a highlighted zero baseline and optional legend hover",
+      "categories": ["line-chart"],
+      "dependencies": ["@visx/curve"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-15.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Legend below the chart, centered"
+      }
+    },
+    {
+      "name": "p-line-chart-16",
+      "type": "registry:block",
+      "title": "Line Chart - Pattern Background",
+      "description": "Diagonal pattern fill instead of grid lines",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-16.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "Use Background instead of Grid — see /docs/utility/background"
+      }
+    },
+    {
+      "name": "p-line-chart-17",
+      "type": "registry:block",
+      "title": "Line Chart - Dot Grid Background",
+      "description": "Dot grid texture with edge fade",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-17.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-18",
+      "type": "registry:block",
+      "title": "Line Chart - Reference Band",
+      "description": "Horizontal Y band behind the series with dashed edges and bracket markers",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-18.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "See /docs/utility/reference-area — tune bounds, fill, and markers in Studio"
+      }
+    },
+    {
+      "name": "p-line-chart-19",
+      "type": "registry:block",
+      "title": "Line Chart - Pattern Reference Band",
+      "description": "Pattern fill inside the band with colored Y-axis tick labels",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-19.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-20",
+      "type": "registry:block",
+      "title": "Line Chart - Trend Line",
+      "description": "Dashed least-squares trend line drawn over the series",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-20.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "See /docs/utility/trend-line — place TrendLine after the series so it draws on top"
+      }
+    },
+    {
+      "name": "p-line-chart-21",
+      "type": "registry:block",
+      "title": "Line Chart - Gradient Trend Line",
+      "description": "Gradient stroke along the fit with faded ends",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-21.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-22",
+      "type": "registry:block",
+      "title": "Line Chart - Brush zoom",
+      "description": "Use `ChartBrushLayout` and `ChartBrush` the same way as on `AreaChart`. See the Brush utility docs for full API reference. The brush strip typically shows simplified `Line` series; the main chart receives `xDomain`, `xDomainSlotCount`, and `tweenYDomainOnXDomainChange` for live zoom and y-domain tweening.",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-brush",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-22.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-23",
+      "type": "registry:block",
+      "title": "Line Chart - Updating data smoothly",
+      "description": "When your data changes (e.g. filtering by date range, refreshing from an API), the chart automatically updates smoothly without replaying the enter animation. The y-domain tweens to the new scale via `yDomainTween` (enabled by default).",
+      "categories": ["line-chart"],
+      "dependencies": ["@hugeicons/core-free-icons"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart",
+        "@time2code/button",
+        "@time2code/icon",
+        "@time2code/radio-group",
+        "@time2code/segmented-control",
+        "@time2code/tooltip"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-23.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-24",
+      "type": "registry:block",
+      "title": "Line Chart - Loading",
+      "description": "Demo component `LineChartLoadingDemo`",
+      "categories": ["line-chart"],
+      "registryDependencies": ["@time2code/line-chart"],
+      "files": [
+        { "path": "line-chart/p-line-chart-24.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-25",
+      "type": "registry:block",
+      "title": "Line Chart - Loading state",
+      "description": "Drive loading and ready from your data layer with a single `LineChart` — one `Grid`, one `Line`, no component swap. Set `status=\"loading\"` while fetching; switch to `\"ready\"` when data resolves.",
+      "categories": ["line-chart"],
+      "registryDependencies": ["@time2code/chart-grid", "@time2code/line-chart", "@time2code/button"],
+      "files": [
+        { "path": "line-chart/p-line-chart-25.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-26",
+      "type": "registry:block",
+      "title": "Line Chart - Profit/Loss line",
+      "description": "Sign-colored line segments for profit and loss on a shared zero baseline",
+      "categories": ["line-chart"],
+      "dependencies": ["@visx/curve"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-26.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-line-chart-27",
+      "type": "registry:block",
+      "title": "Line Chart - Gradient stroke",
+      "description": "Projection line with a gradient stroke.",
+      "categories": ["line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "line-chart/p-line-chart-27.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-live-line-chart-10",
+      "type": "registry:block",
+      "title": "Live Line Chart - Interactive",
+      "description": "Real-time streaming with crosshair and animated axes",
+      "categories": ["live-line-chart"],
+      "registryDependencies": ["@time2code/chart-tooltip", "@time2code/live-line-chart"],
+      "files": [
+        {
+          "path": "live-line-chart/p-live-line-chart-10.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "hero": true,
+        "previewLayout": "time-series",
+        "footer": "Data streams in real time; hover to scrub the crosshair"
+      }
+    },
+    {
+      "name": "p-live-line-chart-2",
+      "type": "registry:block",
+      "title": "Live Line Chart",
+      "description": "Streaming data with smooth scroll, live dot, and crosshair",
+      "categories": ["live-line-chart"],
+      "registryDependencies": ["@time2code/chart-tooltip", "@time2code/live-line-chart"],
+      "files": [
+        {
+          "path": "live-line-chart/p-live-line-chart-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-live-line-chart-3",
+      "type": "registry:block",
+      "title": "Live Line - Now Offset",
+      "description": "Leading gap so the line fades at the right edge",
+      "categories": ["live-line-chart"],
+      "registryDependencies": ["@time2code/chart-tooltip", "@time2code/live-line-chart"],
+      "files": [
+        {
+          "path": "live-line-chart/p-live-line-chart-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-live-line-chart-4",
+      "type": "registry:block",
+      "title": "Live Line - Momentum Colors",
+      "description": "Green for increase, red for decrease",
+      "categories": ["live-line-chart"],
+      "registryDependencies": ["@time2code/chart-tooltip", "@time2code/live-line-chart"],
+      "files": [
+        {
+          "path": "live-line-chart/p-live-line-chart-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-live-line-chart-5",
+      "type": "registry:block",
+      "title": "Live Line - Line Only",
+      "description": "No area fill — simple line and live dot",
+      "categories": ["live-line-chart"],
+      "registryDependencies": ["@time2code/chart-tooltip", "@time2code/live-line-chart"],
+      "files": [
+        {
+          "path": "live-line-chart/p-live-line-chart-5.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-live-line-chart-6",
+      "type": "registry:block",
+      "title": "Live Line - Pattern Background",
+      "description": "Diagonal pattern fill instead of grid lines",
+      "categories": ["live-line-chart"],
+      "registryDependencies": ["@time2code/chart-background", "@time2code/live-line-chart"],
+      "files": [
+        {
+          "path": "live-line-chart/p-live-line-chart-6.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-live-line-chart-7",
+      "type": "registry:block",
+      "title": "Live Line - Dot Grid Background",
+      "description": "Dot grid texture with edge fade",
+      "categories": ["live-line-chart"],
+      "registryDependencies": ["@time2code/chart-background", "@time2code/live-line-chart"],
+      "files": [
+        {
+          "path": "live-line-chart/p-live-line-chart-7.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-live-line-chart-8",
+      "type": "registry:block",
+      "title": "Live Line - Reference Band",
+      "description": "Target price band with dashed edges and bracket markers",
+      "categories": ["live-line-chart"],
+      "registryDependencies": ["@time2code/chart-reference-area", "@time2code/live-line-chart"],
+      "files": [
+        {
+          "path": "live-line-chart/p-live-line-chart-8.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "previewLayout": "time-series",
+        "footer": "See /docs/utility/reference-area"
+      }
+    },
+    {
+      "name": "p-live-line-chart-9",
+      "type": "registry:block",
+      "title": "Live Line - Pattern Reference Band",
+      "description": "Pattern fill inside the band with colored Y-axis ticks",
+      "categories": ["live-line-chart"],
+      "registryDependencies": ["@time2code/chart-reference-area", "@time2code/live-line-chart"],
+      "files": [
+        {
+          "path": "live-line-chart/p-live-line-chart-9.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-live-line-chart-1",
+      "type": "registry:block",
+      "title": "Live Line Chart - Overview",
+      "description": "Real-time streaming line chart with smooth scrolling, crosshair, and animated axes",
+      "categories": ["live-line-chart"],
+      "registryDependencies": ["@time2code/chart-tooltip", "@time2code/live-line-chart"],
+      "files": [
+        {
+          "path": "live-line-chart/p-live-line-chart-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-pie-chart-10",
+      "type": "registry:block",
+      "title": "Pie Chart",
+      "description": "Basic pie chart with colored slices",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-10.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-2",
+      "type": "registry:block",
+      "title": "Pie Chart - Donut",
+      "description": "Hollow center with animated value display",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-2.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-3",
+      "type": "registry:block",
+      "title": "Pie Chart - Legend",
+      "description": "Interactive legend synced with chart hover",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/chart-legend", "@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-3.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-4",
+      "type": "registry:block",
+      "title": "Pie Chart - Patterns",
+      "description": "Diagonal line patterns for each slice",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/chart-patterns", "@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-4.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-5",
+      "type": "registry:block",
+      "title": "Pie Chart - Gradients",
+      "description": "Radial gradient fills on each slice",
+      "categories": ["pie-chart"],
+      "dependencies": ["@visx/gradient"],
+      "registryDependencies": ["@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-5.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-6",
+      "type": "registry:block",
+      "title": "Pie Chart - Grow Hover",
+      "description": "Slices extend outward on hover instead of translating",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-6.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-7",
+      "type": "registry:block",
+      "title": "Pie Chart - Custom Center",
+      "description": "Render prop for full control over center content",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-7.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-8",
+      "type": "registry:block",
+      "title": "Donut Chart - Patterns",
+      "description": "Donut with patterned slices and center label",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/chart-patterns", "@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-8.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-9",
+      "type": "registry:block",
+      "title": "Donut Chart - Grow Hover",
+      "description": "Donut with grow effect and center value",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-9.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-1",
+      "type": "registry:block",
+      "title": "Pie Chart - Overview",
+      "description": "Main demo with interactive legend",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/chart-legend", "@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-1.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-11",
+      "type": "registry:block",
+      "title": "Pie Chart - Basic",
+      "description": "Basic pie chart without legend",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-11.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-12",
+      "type": "registry:block",
+      "title": "Pie Chart - Donut",
+      "description": "Donut chart with center content",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-12.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-13",
+      "type": "registry:block",
+      "title": "Pie Chart - Donut legend",
+      "description": "Donut chart with interactive legend",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/chart-legend", "@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-13.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-14",
+      "type": "registry:block",
+      "title": "Pie Chart - Patterns",
+      "description": "Pie chart with patterns",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/chart-patterns", "@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-14.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-15",
+      "type": "registry:block",
+      "title": "Pie Chart - Gradients",
+      "description": "Pie chart with gradients",
+      "categories": ["pie-chart"],
+      "dependencies": ["@visx/gradient"],
+      "registryDependencies": ["@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-15.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-16",
+      "type": "registry:block",
+      "title": "Pie Chart - Hover effect",
+      "description": "Hover effect demo with selector",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/pie-chart", "@time2code/select"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-16.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-pie-chart-17",
+      "type": "registry:block",
+      "title": "Pie Chart - Custom center",
+      "description": "Donut with custom center content",
+      "categories": ["pie-chart"],
+      "registryDependencies": ["@time2code/pie-chart"],
+      "files": [
+        { "path": "pie-chart/p-pie-chart-17.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-radar-chart-7",
+      "type": "registry:block",
+      "title": "Radar Chart",
+      "description": "Two models compared across five metrics",
+      "categories": ["radar-chart"],
+      "registryDependencies": ["@time2code/radar-chart"],
+      "files": [
+        { "path": "radar-chart/p-radar-chart-7.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-radar-chart-2",
+      "type": "registry:block",
+      "title": "Radar Chart - Triangle",
+      "description": "Three metrics with two contrasting profiles",
+      "categories": ["radar-chart"],
+      "registryDependencies": ["@time2code/radar-chart"],
+      "files": [
+        { "path": "radar-chart/p-radar-chart-2.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-radar-chart-3",
+      "type": "registry:block",
+      "title": "Radar Chart - Hexagon",
+      "description": "Six metrics, fill only without stroke or dots",
+      "categories": ["radar-chart"],
+      "registryDependencies": ["@time2code/radar-chart"],
+      "files": [
+        { "path": "radar-chart/p-radar-chart-3.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-radar-chart-4",
+      "type": "registry:block",
+      "title": "Radar Chart - Single Series",
+      "description": "One asymmetric profile without corner dots",
+      "categories": ["radar-chart"],
+      "registryDependencies": ["@time2code/radar-chart"],
+      "files": [
+        { "path": "radar-chart/p-radar-chart-4.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-radar-chart-5",
+      "type": "registry:block",
+      "title": "Radar Chart - Minimal",
+      "description": "No grid labels, fewer levels, clean look",
+      "categories": ["radar-chart"],
+      "registryDependencies": ["@time2code/radar-chart"],
+      "files": [
+        { "path": "radar-chart/p-radar-chart-5.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-radar-chart-6",
+      "type": "registry:block",
+      "title": "Radar Chart - Grid Only",
+      "description": "No axis lines for a softer appearance",
+      "categories": ["radar-chart"],
+      "registryDependencies": ["@time2code/radar-chart"],
+      "files": [
+        { "path": "radar-chart/p-radar-chart-6.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-radar-chart-1",
+      "type": "registry:block",
+      "title": "Radar Chart - Overview",
+      "description": "A composable multi-series radar chart with animated polygons, hover interactions, and customizable metrics",
+      "categories": ["radar-chart"],
+      "registryDependencies": ["@time2code/chart-legend", "@time2code/radar-chart"],
+      "files": [
+        { "path": "radar-chart/p-radar-chart-1.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-radar-chart-8",
+      "type": "registry:block",
+      "title": "Radar Chart - Basic",
+      "description": "Demo component `RadarChartBasicDemo`",
+      "categories": ["radar-chart"],
+      "registryDependencies": ["@time2code/radar-chart"],
+      "files": [
+        { "path": "radar-chart/p-radar-chart-8.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-radar-chart-9",
+      "type": "registry:block",
+      "title": "Radar Chart - Minimal",
+      "description": "Demo component `RadarChartMinimalDemo`",
+      "categories": ["radar-chart"],
+      "registryDependencies": ["@time2code/radar-chart"],
+      "files": [
+        { "path": "radar-chart/p-radar-chart-9.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-ring-chart-7",
+      "type": "registry:block",
+      "title": "Ring Chart",
+      "description": "Multi-ring progress with center value",
+      "categories": ["ring-chart"],
+      "registryDependencies": ["@time2code/ring-chart"],
+      "files": [
+        { "path": "ring-chart/p-ring-chart-7.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-ring-chart-2",
+      "type": "registry:block",
+      "title": "Ring Chart - Flat Caps",
+      "description": "Square ring ends instead of rounded",
+      "categories": ["ring-chart"],
+      "registryDependencies": ["@time2code/ring-chart"],
+      "files": [
+        { "path": "ring-chart/p-ring-chart-2.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-ring-chart-3",
+      "type": "registry:block",
+      "title": "Ring Chart - Thick Rings",
+      "description": "Wider stroke with larger gap between rings",
+      "categories": ["ring-chart"],
+      "registryDependencies": ["@time2code/ring-chart"],
+      "files": [
+        { "path": "ring-chart/p-ring-chart-3.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-ring-chart-4",
+      "type": "registry:block",
+      "title": "Ring Chart - Three Quarter",
+      "description": "270-degree arc from top-left to bottom-left",
+      "categories": ["ring-chart"],
+      "registryDependencies": ["@time2code/ring-chart"],
+      "files": [
+        { "path": "ring-chart/p-ring-chart-4.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-ring-chart-5",
+      "type": "registry:block",
+      "title": "Ring Chart - Half Circle",
+      "description": "180-degree arc across the top",
+      "categories": ["ring-chart"],
+      "registryDependencies": ["@time2code/ring-chart"],
+      "files": [
+        { "path": "ring-chart/p-ring-chart-5.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-ring-chart-6",
+      "type": "registry:block",
+      "title": "Ring Chart - Legend",
+      "description": "Interactive legend with progress bars",
+      "categories": ["ring-chart"],
+      "registryDependencies": ["@time2code/chart-legend", "@time2code/ring-chart"],
+      "files": [
+        { "path": "ring-chart/p-ring-chart-6.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-ring-chart-1",
+      "type": "registry:block",
+      "title": "Ring Chart - Overview",
+      "description": "A composable multi-ring progress chart with animated arcs, hover interactions, and a reusable legend component",
+      "categories": ["ring-chart"],
+      "registryDependencies": ["@time2code/chart-legend", "@time2code/ring-chart"],
+      "files": [
+        { "path": "ring-chart/p-ring-chart-1.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-ring-chart-8",
+      "type": "registry:block",
+      "title": "Ring Chart - Basic",
+      "description": "Demo component `RingChartBasicDemo`",
+      "categories": ["ring-chart"],
+      "registryDependencies": ["@time2code/ring-chart"],
+      "files": [
+        { "path": "ring-chart/p-ring-chart-8.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-ring-chart-9",
+      "type": "registry:block",
+      "title": "Ring Chart - Custom colors",
+      "description": "Demo component `RingChartCustomColorsDemo`",
+      "categories": ["ring-chart"],
+      "registryDependencies": ["@time2code/ring-chart"],
+      "files": [
+        { "path": "ring-chart/p-ring-chart-9.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-scatter-chart-13",
+      "type": "registry:block",
+      "title": "Scatter Chart",
+      "description": "Desktop vs mobile over 24 months with hover dimming and crosshair tooltip",
+      "categories": ["scatter-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/scatter-chart"
+      ],
+      "files": [
+        {
+          "path": "scatter-chart/p-scatter-chart-13.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "hero": true }
+    },
+    {
+      "name": "p-scatter-chart-2",
+      "type": "registry:block",
+      "title": "Scatter Chart - With Jitter",
+      "description": "Lines changed per merged PR by month — `jitter` spreads overlapping PRs with a deterministic offset. Fastlane auto-merges stay under 500 LOC; human-reviewed PRs spread wider. No crosshair by default; tooltips keep the original values",
+      "categories": ["scatter-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/scatter-chart"
+      ],
+      "files": [
+        {
+          "path": "scatter-chart/p-scatter-chart-2.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-scatter-chart-3",
+      "type": "registry:block",
+      "title": "Scatter Chart - Rings",
+      "description": "Offset rings are opt-in — set `strokeWidth` (and optionally `ringGap`) to draw one",
+      "categories": ["scatter-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/scatter-chart"
+      ],
+      "files": [
+        {
+          "path": "scatter-chart/p-scatter-chart-3.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-scatter-chart-4",
+      "type": "registry:block",
+      "title": "Scatter Chart - Blur Inactive",
+      "description": "Opt into blur on non-active points while hovering with `inactiveMode=\"blur\"`",
+      "categories": ["scatter-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/scatter-chart"
+      ],
+      "files": [
+        {
+          "path": "scatter-chart/p-scatter-chart-4.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-scatter-chart-5",
+      "type": "registry:block",
+      "title": "Scatter Chart - Small Dots",
+      "description": "Compact markers with a 2px radius and thin 1px rings",
+      "categories": ["scatter-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/scatter-chart"
+      ],
+      "files": [
+        {
+          "path": "scatter-chart/p-scatter-chart-5.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-scatter-chart-6",
+      "type": "registry:block",
+      "title": "Scatter Chart - Wide Ring Gap",
+      "description": "1px ring, 3px dot, 5px gap between fill and ring (`outlineWidth={0}`)",
+      "categories": ["scatter-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/scatter-chart"
+      ],
+      "files": [
+        {
+          "path": "scatter-chart/p-scatter-chart-6.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-scatter-chart-7",
+      "type": "registry:block",
+      "title": "Scatter Chart - Left Y axis",
+      "description": "Both series share the left scale with Y-axis value labels",
+      "categories": ["scatter-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/scatter-chart"
+      ],
+      "files": [
+        {
+          "path": "scatter-chart/p-scatter-chart-7.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-scatter-chart-8",
+      "type": "registry:block",
+      "title": "Scatter Chart - Left and right Y axes",
+      "description": "Independent left and right scales (biaxial)",
+      "categories": ["scatter-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/scatter-chart"
+      ],
+      "files": [
+        {
+          "path": "scatter-chart/p-scatter-chart-8.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-scatter-chart-9",
+      "type": "registry:block",
+      "title": "Scatter Chart - Pattern Background",
+      "description": "Diagonal pattern fill instead of grid lines",
+      "categories": ["scatter-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip",
+        "@time2code/scatter-chart"
+      ],
+      "files": [
+        {
+          "path": "scatter-chart/p-scatter-chart-9.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "footer": "Use Background instead of Grid — see /docs/utility/background"
+      }
+    },
+    {
+      "name": "p-scatter-chart-10",
+      "type": "registry:block",
+      "title": "Scatter Chart - Dot Grid Background",
+      "description": "Dot grid texture with edge fade",
+      "categories": ["scatter-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip",
+        "@time2code/scatter-chart"
+      ],
+      "files": [
+        {
+          "path": "scatter-chart/p-scatter-chart-10.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-scatter-chart-11",
+      "type": "registry:block",
+      "title": "Scatter Chart - Reference Band",
+      "description": "Horizontal Y band behind the series with dashed edges and bracket markers",
+      "categories": ["scatter-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip",
+        "@time2code/scatter-chart"
+      ],
+      "files": [
+        {
+          "path": "scatter-chart/p-scatter-chart-11.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": {
+        "footer": "See /docs/utility/reference-area — tune bounds, fill, and markers in Studio"
+      }
+    },
+    {
+      "name": "p-scatter-chart-12",
+      "type": "registry:block",
+      "title": "Scatter Chart - Pattern Reference Band",
+      "description": "Pattern fill inside the band with colored Y-axis tick labels",
+      "categories": ["scatter-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip",
+        "@time2code/scatter-chart"
+      ],
+      "files": [
+        {
+          "path": "scatter-chart/p-scatter-chart-12.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-scatter-chart-1",
+      "type": "registry:block",
+      "title": "Scatter Chart - Overview",
+      "description": "A composable time-series scatter chart with hover dimming, optional offset rings, jitter, and animated enter",
+      "categories": ["scatter-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/scatter-chart"
+      ],
+      "files": [
+        {
+          "path": "scatter-chart/p-scatter-chart-1.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-scatter-chart-14",
+      "type": "registry:block",
+      "title": "Scatter Chart - Scatter with Jitter",
+      "description": "When many rows share the same date (a strip plot), points stack on top of each other. Pass `jitter` to `ScatterChart` to spread them horizontally (and optionally vertically). Offsets are seeded and deterministic — no `Math.random` — so points never jump between renders or SSR/hydration. Hover snaps to the nearest jittered point, the tooltip shows the original values, and `ChartTooltip` hides its crosshair line by default (it would mark a date, not the hovered point — pass `showCrosshair` to opt back in).",
+      "categories": ["scatter-chart"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/scatter-chart"
+      ],
+      "files": [
+        {
+          "path": "scatter-chart/p-scatter-chart-14.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-sankey-chart-1",
+      "type": "registry:block",
+      "title": "Sankey Chart - Interactive",
+      "description": "User flow from source to outcome",
+      "categories": ["sankey-chart"],
+      "registryDependencies": ["@time2code/sankey-chart"],
+      "files": [
+        {
+          "path": "sankey-chart/p-sankey-chart-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "hero": true, "previewLayout": "wide" }
+    },
+    {
+      "name": "p-sankey-chart-2",
+      "type": "registry:block",
+      "title": "Sankey Chart",
+      "description": "User flow with labels and tooltip",
+      "categories": ["sankey-chart"],
+      "registryDependencies": ["@time2code/sankey-chart"],
+      "files": [
+        {
+          "path": "sankey-chart/p-sankey-chart-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "wide" }
+    },
+    {
+      "name": "p-sankey-chart-3",
+      "type": "registry:block",
+      "title": "Sankey Chart - No Labels",
+      "description": "Compact diagram without node labels",
+      "categories": ["sankey-chart"],
+      "registryDependencies": ["@time2code/sankey-chart"],
+      "files": [
+        {
+          "path": "sankey-chart/p-sankey-chart-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "wide" }
+    },
+    {
+      "name": "p-sankey-chart-4",
+      "type": "registry:block",
+      "title": "Sankey Chart - Simple",
+      "description": "Minimal flow with fewer nodes",
+      "categories": ["sankey-chart"],
+      "registryDependencies": ["@time2code/sankey-chart"],
+      "files": [
+        {
+          "path": "sankey-chart/p-sankey-chart-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "wide" }
+    },
+    {
+      "name": "p-sankey-chart-5",
+      "type": "registry:block",
+      "title": "Sankey Chart - Solid Links",
+      "description": "Single-color links instead of gradients",
+      "categories": ["sankey-chart"],
+      "registryDependencies": ["@time2code/sankey-chart"],
+      "files": [
+        {
+          "path": "sankey-chart/p-sankey-chart-5.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "wide" }
+    },
+    {
+      "name": "p-sankey-chart-6",
+      "type": "registry:block",
+      "title": "Sankey Chart - Pattern",
+      "description": "Demo component `SankeyPatternDemo`",
+      "categories": ["sankey-chart"],
+      "registryDependencies": ["@time2code/chart-patterns", "@time2code/sankey-chart"],
+      "files": [
+        {
+          "path": "sankey-chart/p-sankey-chart-6.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "wide" }
+    },
+    {
+      "name": "p-sankey-chart-7",
+      "type": "registry:block",
+      "title": "Sankey Chart - No labels",
+      "description": "Demo component `SankeyNoLabelsDemo`",
+      "categories": ["sankey-chart"],
+      "registryDependencies": ["@time2code/sankey-chart"],
+      "files": [
+        {
+          "path": "sankey-chart/p-sankey-chart-7.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "wide" }
+    },
+    {
+      "name": "p-sparkline-15",
+      "type": "registry:block",
+      "title": "Sparkline - KPI cards",
+      "description": "useSparklineHover drives the headline number: hover a sparkline to read any point, leave to fall back to the latest value.",
+      "categories": ["sparkline"],
+      "dependencies": ["cn"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-15.tsx", "type": "registry:block" }
+      ],
+      "meta": {
+        "hero": true,
+        "previewLayout": "inline",
+        "footer": "Line, area, and bar sparklines with a shared hover hook"
+      }
+    },
+    {
+      "name": "p-sparkline-2",
+      "type": "registry:block",
+      "title": "Sparkline - Line",
+      "description": "Fills its parent width; hover shows a dashed crosshair and dot.",
+      "categories": ["sparkline"],
+      "dependencies": ["cn"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-2.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-3",
+      "type": "registry:block",
+      "title": "Sparkline - Area gradient",
+      "description": "Area fill fades from the line to the baseline.",
+      "categories": ["sparkline"],
+      "dependencies": ["cn"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-3.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-4",
+      "type": "registry:block",
+      "title": "Sparkline - Area solid",
+      "description": "Flat fill at a custom opacity.",
+      "categories": ["sparkline"],
+      "dependencies": ["cn"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-4.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-5",
+      "type": "registry:block",
+      "title": "Sparkline - Bar",
+      "description": "Rounded bars with a gap; non-hovered bars dim while hovering.",
+      "categories": ["sparkline"],
+      "dependencies": ["cn"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-5.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-6",
+      "type": "registry:block",
+      "title": "Sparkline - Negative bars",
+      "description": "Bars grow from zero, so profit and loss read above and below the baseline.",
+      "categories": ["sparkline"],
+      "dependencies": ["cn"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-6.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-7",
+      "type": "registry:block",
+      "title": "Sparkline - Crosshair styles",
+      "description": "Dashed (default), solid, and gradient hover guides.",
+      "categories": ["sparkline"],
+      "dependencies": ["cn"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-7.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-8",
+      "type": "registry:block",
+      "title": "Sparkline - Hover feel",
+      "description": "The crosshair and dot spring between points by default. Tune it with springConfig, or set hoverTransition={false} to snap.",
+      "categories": ["sparkline"],
+      "dependencies": ["cn"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-8.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-9",
+      "type": "registry:block",
+      "title": "Sparkline - No spring",
+      "description": "Synced area and bars with hoverTransition={false}: the crosshair and dot jump straight to each point, while the series fade and bar focus still animate.",
+      "categories": ["sparkline"],
+      "dependencies": ["cn"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-9.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-10",
+      "type": "registry:block",
+      "title": "Sparkline - End dot",
+      "description": "Static trend next to a stat: endDot marks the latest value and interactive={false} skips pointer tracking.",
+      "categories": ["sparkline"],
+      "dependencies": ["cn"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-10.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-11",
+      "type": "registry:block",
+      "title": "Sparkline - Step",
+      "description": "Step curve for discrete levels (seats, plan tiers), anchored at zero with yDomain.",
+      "categories": ["sparkline"],
+      "dependencies": ["cn"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-11.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-12",
+      "type": "registry:block",
+      "title": "Sparkline - Synced hover",
+      "description": "One useSparklineHover shared by every row: hovering any sparkline moves them all.",
+      "categories": ["sparkline"],
+      "dependencies": ["cn"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-12.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-13",
+      "type": "registry:block",
+      "title": "Sparkline - Table",
+      "description": "Fixed-width sparklines inline in a table, coloured by direction.",
+      "categories": ["sparkline"],
+      "dependencies": ["cn"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-13.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-14",
+      "type": "registry:block",
+      "title": "Sparkline - Dense grid",
+      "description": "64 sparklines sharing a single ResizeObserver, with no per-instance animation runtime.",
+      "categories": ["sparkline"],
+      "dependencies": ["cn"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-14.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-1",
+      "type": "registry:block",
+      "title": "Sparkline - Overview",
+      "description": "Tiny line, area and bar charts built for density — one path per chart, a shared resize observer, lightweight enter animations and a minimal hover crosshair",
+      "categories": ["sparkline"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-1.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-16",
+      "type": "registry:block",
+      "title": "Sparkline - Crosshair styles",
+      "description": "Demo component `SparklineCrosshairDemo`",
+      "categories": ["sparkline"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-16.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-17",
+      "type": "registry:block",
+      "title": "Sparkline - Hover feel",
+      "description": "The crosshair and dot spring between points with the same spring as the main charts' tooltip. Pass only the values you want to change to `springConfig` — higher `stiffness` feels snappier, lower `damping` bouncier — or set `hoverTransition={false}` to snap straight to each point. The series fade and highlight still animate either way. Reduced motion always snaps.",
+      "categories": ["sparkline"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-17.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-18",
+      "type": "registry:block",
+      "title": "Sparkline - Hovered values",
+      "description": "`useSparklineHover` lifts hover state out of the chart. Spread `sparklineProps` onto a sparkline and read `datum` or `index`:",
+      "categories": ["sparkline"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-18.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sparkline-19",
+      "type": "registry:block",
+      "title": "Sparkline - Many on one page",
+      "description": "Each sparkline renders a single `<path>` (bars included), animates with the Web Animations API, and only the hovered instance re-renders. 200 instances:",
+      "categories": ["sparkline"],
+      "registryDependencies": ["@time2code/sparkline"],
+      "files": [
+        { "path": "sparkline/p-sparkline-19.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "inline" }
+    },
+    {
+      "name": "p-sunburst-chart-4",
+      "type": "registry:block",
+      "title": "Sunburst Chart - Interactive",
+      "description": "Hierarchical revenue breakdown with drill-down zoom",
+      "categories": ["sunburst-chart"],
+      "registryDependencies": ["@time2code/sunburst-chart", "@time2code/breadcrumb"],
+      "files": [
+        {
+          "path": "sunburst-chart/p-sunburst-chart-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "hero": true, "previewLayout": "compact" }
+    },
+    {
+      "name": "p-sunburst-chart-2",
+      "type": "registry:block",
+      "title": "Sunburst Chart - Patterns",
+      "description": "Diagonal stripes on alternating inner-ring segments (Product & Partners)",
+      "categories": ["sunburst-chart"],
+      "registryDependencies": ["@time2code/chart-patterns", "@time2code/sunburst-chart"],
+      "files": [
+        {
+          "path": "sunburst-chart/p-sunburst-chart-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-sunburst-chart-3",
+      "type": "registry:block",
+      "title": "Sunburst Chart - Legend",
+      "description": "Legend synced to the current focus level and chart hover",
+      "categories": ["sunburst-chart"],
+      "registryDependencies": ["@time2code/chart-legend", "@time2code/sunburst-chart"],
+      "files": [
+        {
+          "path": "sunburst-chart/p-sunburst-chart-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-sunburst-chart-1",
+      "type": "registry:block",
+      "title": "Sunburst Chart - Overview",
+      "description": "A composable hierarchical sunburst chart with drill-down zoom, animated segments, breadcrumb navigation, and legend sync",
+      "categories": ["sunburst-chart"],
+      "registryDependencies": ["@time2code/sunburst-chart", "@time2code/breadcrumb"],
+      "files": [
+        {
+          "path": "sunburst-chart/p-sunburst-chart-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "compact" }
+    },
+    {
+      "name": "p-chart-axis-1",
+      "type": "registry:block",
+      "title": "Axis - Both",
+      "description": "Value labels for the vertical axis in line and area charts",
+      "categories": ["chart-axis"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-axis/p-chart-axis-1.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-axis-2",
+      "type": "registry:block",
+      "title": "Axis - X only",
+      "description": "Date labels for the horizontal axis in line and area charts",
+      "categories": ["chart-axis"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-axis/p-chart-axis-2.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-axis-3",
+      "type": "registry:block",
+      "title": "Axis - Y only",
+      "description": "Demo component `AxisYOnlyDemo`",
+      "categories": ["chart-axis"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-axis/p-chart-axis-3.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-background-1",
+      "type": "registry:block",
+      "title": "Background - Diagonal (default)",
+      "description": "Pattern fill for the plot area when grid lines are hidden — presets, edge fade, and enter animation",
+      "categories": ["chart-background"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-background/p-chart-background-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-background-2",
+      "type": "registry:block",
+      "title": "Background - Dot grid",
+      "description": "Demo component `BackgroundDotsDemo`",
+      "categories": ["chart-background"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-background/p-chart-background-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-background-3",
+      "type": "registry:block",
+      "title": "Background - Cross",
+      "description": "Demo component `BackgroundCrossDemo`",
+      "categories": ["chart-background"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-background/p-chart-background-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-background-4",
+      "type": "registry:block",
+      "title": "Background - No edge fade",
+      "description": "Demo component `BackgroundNoFadeDemo`",
+      "categories": ["chart-background"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-background",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-background/p-chart-background-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-band-3",
+      "type": "registry:block",
+      "title": "Band - Range area",
+      "description": "A `Band` on its own is a range area chart: a filled area between a per-row low and high, with no centre line. The y-axis scales to the band, and the tooltip shows the range for the hovered date.",
+      "categories": ["chart-band"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-band",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-band/p-chart-band-3.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-band-2",
+      "type": "registry:block",
+      "title": "Band - Range area + line combo",
+      "description": "Use one `Band` per series and give each the same colour as its `Line` — for example each team's min / max around its average. The tooltip lists every line value and every band range for the hovered date. `strokeWidth={0}` drops the band edges so only the lines are stroked.",
+      "categories": ["chart-band"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-band",
+        "@time2code/chart-grid",
+        "@time2code/chart-legend",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-band/p-chart-band-2.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-band-1",
+      "type": "registry:block",
+      "title": "Band - Band",
+      "description": "Shade a range between two per-row values — min/max, a confidence interval, or Bollinger bands — with `Band`. Place it before your `Line`s; it reveals and morphs with them and extends the y-domain to fit both edges. Use `withBollingerBands` to derive the edges from a series.",
+      "categories": ["chart-band"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-band",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-band/p-chart-band-1.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-band-4",
+      "type": "registry:block",
+      "title": "Band - Bollinger bands",
+      "description": "`withBollingerBands` adds a rolling simple moving average (SMA) ± `multiplier` standard deviations to each row. Rows before the window fills get `null` for all three keys, which `Band` renders as a gap (pass `minPeriods: 1` to start at the first row instead).",
+      "categories": ["chart-band"],
+      "registryDependencies": [
+        "@time2code/candlestick-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-band",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-band/p-chart-band-4.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-band-5",
+      "type": "registry:block",
+      "title": "Band - Fill types",
+      "description": "`fillType` switches between a flat `\"solid\"` fill, a vertical `\"gradient\"` (from `fillOpacity` at the upper edge to `gradientToOpacity` at the lower edge), and a `\"pattern\"` fill using the `Background` presets.",
+      "categories": ["chart-band"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-band",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart",
+        "@time2code/radio-group",
+        "@time2code/segmented-control"
+      ],
+      "files": [
+        { "path": "chart-band/p-chart-band-5.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-band-6",
+      "type": "registry:block",
+      "title": "Band - Faded edges",
+      "description": "`fadeEdges` fades the fill and strokes to transparent. Horizontal fades span the plot width; vertical fades span the band's own pixel height. `fadeSize` sets how much of that width or height each fade covers.",
+      "categories": ["chart-band"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-band",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-band/p-chart-band-6.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-band-7",
+      "type": "registry:block",
+      "title": "Band - Edge strokes",
+      "description": "Both edges share `stroke`, `strokeWidth`, `strokeDasharray`, and `strokeOpacity`. Override one edge with `upperStroke` / `lowerStroke`, or pass `false` to hide it.",
+      "categories": ["chart-band"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-band",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-band/p-chart-band-7.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-custom-indicator-1",
+      "type": "registry:block",
+      "title": "Custom Indicator - Overview",
+      "description": "Demo component `CustomIndicatorDemo`",
+      "categories": ["chart-custom-indicator"],
+      "dependencies": ["@visx/gradient", "motion"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-core",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "chart-custom-indicator/p-chart-custom-indicator-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-date-highlights-1",
+      "type": "registry:block",
+      "title": "Date Highlights - Weekends line",
+      "description": "Shade weekend days behind the series on date x axes — diagonal stripes or a solid fill, configurable weekend days, and zoom-aware rendering",
+      "categories": ["chart-date-highlights"],
+      "dependencies": ["@visx/curve"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-date-highlights",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-date-highlights/p-chart-date-highlights-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-date-highlights-2",
+      "type": "registry:block",
+      "title": "Date Highlights - Deadline line",
+      "description": "Due-date marker for date x axes — a vertical line with a striped, gradient, or solid region to its right that fades out",
+      "categories": ["chart-date-highlights"],
+      "dependencies": ["@visx/curve"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-date-highlights",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-date-highlights/p-chart-date-highlights-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-date-highlights-3",
+      "type": "registry:block",
+      "title": "Date Highlights - Line",
+      "description": "Shade weekends with `Weekends` and mark a due date with `Deadline` — a line at the date plus a striped region that fades out to the right. Both render behind the series and only draw what is inside the visible x-domain, so they work with brush zoom.",
+      "categories": ["chart-date-highlights"],
+      "dependencies": ["@visx/curve"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-date-highlights",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-date-highlights/p-chart-date-highlights-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-date-highlights-4",
+      "type": "registry:block",
+      "title": "Date Highlights - Deadline fill types",
+      "description": "Demo component `DeadlineFillTypesDemo`",
+      "categories": ["chart-date-highlights"],
+      "dependencies": ["@visx/curve"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-date-highlights",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-date-highlights/p-chart-date-highlights-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-date-highlights-5",
+      "type": "registry:block",
+      "title": "Date Highlights - Brush",
+      "description": "Bands are recomputed from the visible domain, so zooming in reveals weekends that were too narrow to draw at full range.",
+      "categories": ["chart-date-highlights"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-brush",
+        "@time2code/chart-date-highlights",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-date-highlights/p-chart-date-highlights-5.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-date-highlights-6",
+      "type": "registry:block",
+      "title": "Date Highlights - Area",
+      "description": "Add `Weekends` to shade Saturday and Sunday, and `Deadline` to mark a due date with a fading region. Both sit behind the areas and follow brush zoom.",
+      "categories": ["chart-date-highlights"],
+      "dependencies": ["@visx/curve"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-date-highlights",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "chart-date-highlights/p-chart-date-highlights-6.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-date-highlights-7",
+      "type": "registry:block",
+      "title": "Date Highlights - Composed",
+      "description": "`Weekends` shades the weekend columns and `Deadline` marks a due date. With `SeriesBar` columns at midnight, `Weekends` centres each band on its column automatically; pass `utc` when your dates are UTC-anchored (like `composedDemoData`).",
+      "categories": ["chart-date-highlights"],
+      "dependencies": ["@visx/curve"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-date-highlights",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-date-highlights/p-chart-date-highlights-7.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-date-highlights-8",
+      "type": "registry:block",
+      "title": "Date Highlights - Bar",
+      "description": "With daily rows whose x value is a `Date` (or a `\"YYYY-MM-DD\"` string), `Weekends` shades the weekend columns and `Deadline` marks a due date at the left edge of its column. Pass `dateKey` if the date lives in a different field than the x key.",
+      "categories": ["chart-date-highlights"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-date-highlights",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "chart-date-highlights/p-chart-date-highlights-8.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-grid-3",
+      "type": "registry:block",
+      "title": "Grid - Horizontal Only (Default)",
+      "description": "The most common configuration with horizontal reference lines.",
+      "categories": ["chart-grid"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-grid/p-chart-grid-3.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-grid-2",
+      "type": "registry:block",
+      "title": "Grid - Vertical Only",
+      "description": "Use vertical grid lines to emphasize time intervals.",
+      "categories": ["chart-grid"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-grid/p-chart-grid-2.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-grid-1",
+      "type": "registry:block",
+      "title": "Grid - Both Horizontal and Vertical",
+      "description": "Display a full grid for detailed reference. Turn off `fadeHorizontal` so the rows run edge to edge like the columns (vertical lines don't fade by default).",
+      "categories": ["chart-grid"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-grid/p-chart-grid-1.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-grid-4",
+      "type": "registry:block",
+      "title": "Grid - Solid Lines",
+      "description": "Remove the dash pattern for solid grid lines.",
+      "categories": ["chart-grid"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-grid/p-chart-grid-4.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-grid-5",
+      "type": "registry:block",
+      "title": "Grid - Without Edge Fade",
+      "description": "Disable the edge fade effect for sharp line endings.",
+      "categories": ["chart-grid"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-grid/p-chart-grid-5.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-grid-6",
+      "type": "registry:block",
+      "title": "Grid - Hide edge lines",
+      "description": "Omit the outermost horizontal or vertical grid lines — useful when the chart border already provides a frame.",
+      "categories": ["chart-grid"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-grid/p-chart-grid-6.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-grid-7",
+      "type": "registry:block",
+      "title": "Grid - Dense Grid",
+      "description": "Increase the number of grid lines for more granular reference.",
+      "categories": ["chart-grid"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        { "path": "chart-grid/p-chart-grid-7.tsx", "type": "registry:block" }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-legend-2",
+      "type": "registry:block",
+      "title": "Legend - Simple Legend",
+      "description": "Demo component `LegendSimpleDemo`",
+      "categories": ["chart-legend"],
+      "registryDependencies": ["@time2code/chart-legend"],
+      "files": [
+        {
+          "path": "chart-legend/p-chart-legend-2.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-chart-legend-1",
+      "type": "registry:block",
+      "title": "Legend - With Progress Bars",
+      "description": "A composable legend component for charts with progress bars, markers, and customizable layouts",
+      "categories": ["chart-legend"],
+      "registryDependencies": ["@time2code/chart-legend"],
+      "files": [
+        {
+          "path": "chart-legend/p-chart-legend-1.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-chart-legend-3",
+      "type": "registry:block",
+      "title": "Legend - Horizontal Layout",
+      "description": "Demo component `LegendHorizontalDemo`",
+      "categories": ["chart-legend"],
+      "registryDependencies": ["@time2code/chart-legend"],
+      "files": [
+        {
+          "path": "chart-legend/p-chart-legend-3.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "p-chart-markers-1",
+      "type": "registry:block",
+      "title": "Markers - Rich markers with radial menu",
+      "description": "Three markers share a date, so the middle badge shows a count and fans out on hover. The first marker links out, and the last uses a custom `color`.",
+      "categories": ["chart-markers"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-markers",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-markers/p-chart-markers-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-markers-2",
+      "type": "registry:block",
+      "title": "Markers - Compact badges without guide lines",
+      "description": "Demo component `MarkersCompactDemo`",
+      "categories": ["chart-markers"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-markers",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-markers/p-chart-markers-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-markers-3",
+      "type": "registry:block",
+      "title": "Markers - Simple custom marker",
+      "description": "`ChartMarkers` always draws a circular badge. For a minimal annotation — a small diamond above the plot with a dashed guide — write your own layer with `useChart`. `xScale` maps the marker date to a pixel, and `innerHeight` is the plot height. Any SVG you return renders in the chart's plot space, so negative `y` sits in the top margin. Set the static `__isPostOverlay` flag on the component (the same flag `LineSeriesTerminalMarker` uses) so the layer renders outside the series reveal clip; otherwise the glyph above the plot top is clipped.",
+      "categories": ["chart-markers"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-core",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
+      "files": [
+        {
+          "path": "chart-markers/p-chart-markers-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-reference-area-2",
+      "type": "registry:block",
+      "title": "Reference Area - Dashed band with markers",
+      "description": "Demo component `ReferenceAreaBandDemo`",
+      "categories": ["chart-reference-area"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-reference-area/p-chart-reference-area-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-reference-area-1",
+      "type": "registry:block",
+      "title": "Reference Area - Pattern fill with axis labels",
+      "description": "Shaded Y band for target ranges and thresholds on cartesian charts — solid or pattern fill, dashed edges, and Y-axis tick coloring",
+      "categories": ["chart-reference-area"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-reference-area/p-chart-reference-area-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-reference-area-3",
+      "type": "registry:block",
+      "title": "Reference Area - Colored markers",
+      "description": "Demo component `ReferenceAreaMarkersDemo`",
+      "categories": ["chart-reference-area"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-reference-area",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-reference-area/p-chart-reference-area-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-segment-1",
+      "type": "registry:block",
+      "title": "Segment - Overview",
+      "description": "Demo component `SegmentDemo`",
+      "categories": ["chart-segment"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-core",
+        "@time2code/chart-grid",
+        "@time2code/chart-segment",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-segment/p-chart-segment-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-tooltip-1",
+      "type": "registry:block",
+      "title": "Tooltip - Default Tooltip",
+      "description": "Full-featured tooltip with crosshair, dots, and date pill.",
+      "categories": ["chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-tooltip/p-chart-tooltip-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-tooltip-2",
+      "type": "registry:block",
+      "title": "Tooltip - Crosshair Only",
+      "description": "Minimal tooltip with just the crosshair line and tooltip box.",
+      "categories": ["chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-tooltip/p-chart-tooltip-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-tooltip-3",
+      "type": "registry:block",
+      "title": "Tooltip - Minimal (Box Only)",
+      "description": "Just the tooltip content box, no visual indicators.",
+      "categories": ["chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-tooltip/p-chart-tooltip-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-tooltip-4",
+      "type": "registry:block",
+      "title": "Tooltip - Custom Row Labels",
+      "description": "Use the `rows` prop to customize row labels and value formatting.",
+      "categories": ["chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-tooltip/p-chart-tooltip-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-tooltip-5",
+      "type": "registry:block",
+      "title": "Tooltip - With Bar Chart",
+      "description": "The tooltip adapts to bar charts, showing category names instead of dates. Inside `BarChart` the crosshair line is hidden by default (only the hover dots and panel show); pass `showCrosshair` to bring it back.",
+      "categories": ["chart-tooltip"],
+      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "files": [
+        {
+          "path": "chart-tooltip/p-chart-tooltip-5.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-tooltip-6",
+      "type": "registry:block",
+      "title": "Tooltip - Solid crosshair",
+      "description": "Remove vertical fade with `indicatorFadeEdges=\"none\"` for a flat crosshair line.",
+      "categories": ["chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-tooltip/p-chart-tooltip-6.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-tooltip-7",
+      "type": "registry:block",
+      "title": "Tooltip - Crosshair fade",
+      "description": "Fade the crosshair from the top, bottom, both ends, or not at all. Use `indicatorFadeLength` to control how far the fade extends (percentage of chart height).",
+      "categories": ["chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-tooltip/p-chart-tooltip-7.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-tooltip-8",
+      "type": "registry:block",
+      "title": "Tooltip - Dashed crosshair",
+      "description": "Pass an SVG dash pattern to `indicatorDasharray`.",
+      "categories": ["chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-tooltip/p-chart-tooltip-8.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-tooltip-9",
+      "type": "registry:block",
+      "title": "Tooltip - Match crosshair",
+      "description": "By default the tooltip panel eases independently with `damping={20}`. Set `matchCrosshair` to lock the panel to the crosshair spring.",
+      "categories": ["chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-tooltip/p-chart-tooltip-9.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-tooltip-10",
+      "type": "registry:block",
+      "title": "Tooltip - Panel damping",
+      "description": "The default panel uses `damping={20}` without any props. Increase `damping` for heavier lag, or set `damping={0}` for instant follow.",
+      "categories": ["chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-tooltip/p-chart-tooltip-10.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-tooltip-11",
+      "type": "registry:block",
+      "title": "Tooltip - Fully Custom Content",
+      "description": "Use the `content` prop for complete control over the tooltip layout.",
+      "categories": ["chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-tooltip/p-chart-tooltip-11.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-trend-line-1",
+      "type": "registry:block",
+      "title": "Trend Line - Overview",
+      "description": "Primary preview: switch between dashed, solid, and gradient strokes.",
+      "categories": ["chart-trend-line"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line",
+        "@time2code/line-chart",
+        "@time2code/radio-group",
+        "@time2code/segmented-control"
+      ],
+      "files": [
+        {
+          "path": "chart-trend-line/p-chart-trend-line-1.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-trend-line-2",
+      "type": "registry:block",
+      "title": "Trend Line - Dashed (default)",
+      "description": "Demo component `TrendLineDashedDemo`",
+      "categories": ["chart-trend-line"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-trend-line/p-chart-trend-line-2.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-trend-line-3",
+      "type": "registry:block",
+      "title": "Trend Line - Solid",
+      "description": "Demo component `TrendLineSolidDemo`",
+      "categories": ["chart-trend-line"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-trend-line/p-chart-trend-line-3.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-trend-line-4",
+      "type": "registry:block",
+      "title": "Trend Line - Gradient",
+      "description": "The gradient runs along the line from `gradientStart` to `gradientEnd`.",
+      "categories": ["chart-trend-line"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-trend-line/p-chart-trend-line-4.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-trend-line-5",
+      "type": "registry:block",
+      "title": "Trend Line - Fade edges",
+      "description": "Fade one or both ends with `fadeEdges` (`true`, `\"left\"`, or `\"right\"`). The fade follows the line direction and composes with dashed and gradient strokes.",
+      "categories": ["chart-trend-line"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-trend-line/p-chart-trend-line-5.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-trend-line-6",
+      "type": "registry:block",
+      "title": "Trend Line - Area chart",
+      "description": "Demo component `TrendLineAreaDemo`",
+      "categories": ["chart-trend-line"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line"
+      ],
+      "files": [
+        {
+          "path": "chart-trend-line/p-chart-trend-line-6.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-trend-line-7",
+      "type": "registry:block",
+      "title": "Trend Line - Bar chart",
+      "description": "Demo component `TrendLineBarDemo`",
+      "categories": ["chart-trend-line"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line"
+      ],
+      "files": [
+        {
+          "path": "chart-trend-line/p-chart-trend-line-7.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-trend-line-8",
+      "type": "registry:block",
+      "title": "Trend Line - Horizontal bar chart",
+      "description": "Demo component `TrendLineHorizontalBarDemo`",
+      "categories": ["chart-trend-line"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line"
+      ],
+      "files": [
+        {
+          "path": "chart-trend-line/p-chart-trend-line-8.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    },
+    {
+      "name": "p-chart-trend-line-9",
+      "type": "registry:block",
+      "title": "Trend Line - Composed chart",
+      "description": "Add one `TrendLine` per series you want to fit.",
+      "categories": ["chart-trend-line"],
+      "registryDependencies": [
+        "@time2code/chart-axis",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/chart-trend-line",
+        "@time2code/composed-chart",
+        "@time2code/line-chart"
+      ],
+      "files": [
+        {
+          "path": "chart-trend-line/p-chart-trend-line-9.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "meta": { "previewLayout": "time-series" }
+    }
+  ]
+}
