@@ -1,17 +1,6 @@
 "use client";
 
-import type { scaleBand, scaleLinear, scaleTime } from "@visx/scale";
-
-type ScaleLinear<Output, _Input = number> = ReturnType<
-  typeof scaleLinear<Output>
->;
-type ScaleTime<Output, _Input = Date | number> = ReturnType<
-  typeof scaleTime<Output>
->;
-type ScaleBand<Domain extends { toString(): string }> = ReturnType<
-  typeof scaleBand<Domain>
->;
-
+import type { ScaleBand, ScaleLinear, ScaleTime } from "d3-scale";
 import type { Transition } from "motion/react";
 import type { ChartPhase, ChartStatus } from "./chart-phase";
 import type { ReferenceAreaConfig } from "./reference-area-config";

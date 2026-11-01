@@ -1,6 +1,6 @@
 "use client";
 
-import type { scaleBand } from "@visx/scale";
+import type { ScaleBand } from "d3-scale";
 import type { Transition } from "motion/react";
 
 import { memo, useId, useMemo } from "react";
@@ -19,10 +19,6 @@ import {
   renderPatternPreset,
 } from "../chart-patterns/pattern-preset";
 import { transitionWithDelay } from "../chart-utils/animation";
-
-type ScaleBand<Domain extends { toString(): string }> = ReturnType<
-  typeof scaleBand<Domain>
->;
 
 export interface GradientStop {
   color: string;

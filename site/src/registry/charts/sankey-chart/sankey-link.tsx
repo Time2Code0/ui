@@ -69,7 +69,7 @@ export interface SankeyLinkProps {
     node: SankeyNodeType<SankeyNodeDatum, SankeyLinkDatum>,
     index: number
   ) => string;
-  /** Pattern definitions to render in defs. Use @visx/pattern components (PatternLines, PatternCircles, etc.) */
+  /** Pattern definitions to render in defs. Use the chart pattern components (PatternLines, PatternCircles, etc.) */
   patterns?: React.ReactNode;
   /** Stroke color for links (overrides the default gradient). */
   stroke?: string;

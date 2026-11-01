@@ -1,10 +1,9 @@
 "use client";
 
-import { LinearGradient } from "@visx/gradient";
-
 import { Bar } from "@/registry/charts/bar-chart/bar";
 import { BarChart } from "@/registry/charts/bar-chart/bar-chart";
 import { BarXAxis } from "@/registry/charts/bar-chart/bar-x-axis";
+import { LinearGradient } from "@/registry/charts/chart-gradients/gradients";
 import { Grid } from "@/registry/charts/chart-grid/grid";
 import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
 

@@ -1,6 +1,5 @@
 "use client";
 
-import type { BrushHandleRenderProps } from "@visx/brush";
 import type { CSSProperties, RefObject } from "react";
 import type { Margin } from "../chart-core/chart-context";
 
@@ -149,36 +148,6 @@ export function ChartBrushTrackOverlay(props: ChartBrushTrackOverlayProps) {
 /** Matches shadcn `ResizableHandle` withHandle pill (`h-6 w-1 rounded-lg`). */
 const HANDLE_HEIGHT_PX = 24;
 const HANDLE_WIDTH_PX = 4;
-
-/**
- * Invisible hit target for visx `BrushHandle` drag interaction.
- * Visible pills render in `ChartBrushHandleOverlay` above the blur layer.
- */
-function brushHandleCursor(className: string) {
-  return className.includes("left") || className.includes("right")
-    ? "ew-resize"
-    : "ns-resize";
-}
-
-export function renderChartBrushHandle({
-  x,
-  y,
-  width,
-  height,
-  className,
-}: BrushHandleRenderProps) {
-  return (
-    <rect
-      className={className}
-      fill="transparent"
-      height={height}
-      style={{ cursor: brushHandleCursor(className) }}
-      width={width}
-      x={x}
-      y={y}
-    />
-  );
-}
 
 export interface ChartBrushHandleOverlayProps {
   innerHeight: number;

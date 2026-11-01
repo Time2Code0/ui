@@ -1,13 +1,12 @@
 "use client";
 
-import { LinearGradient } from "@visx/gradient";
-
 import { Candlestick } from "@/registry/charts/candlestick-chart/candlestick";
 import {
   CandlestickChart,
   type OHLCDataPoint,
 } from "@/registry/charts/candlestick-chart/candlestick-chart";
 import { XAxis } from "@/registry/charts/chart-axis/x-axis";
+import { LinearGradient } from "@/registry/charts/chart-gradients/gradients";
 import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";
 
 // Candlestick OHLC data (~30 days)

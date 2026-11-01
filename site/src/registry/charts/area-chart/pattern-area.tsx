@@ -1,11 +1,9 @@
 "use client";
 
-import type { CurveFactory } from "d3-shape";
-
-import { curveMonotoneX } from "@visx/curve";
-import { AreaClosed } from "@visx/shape";
+import { type CurveFactory, curveMonotoneX } from "d3-shape";
 
 import { useChartStable } from "../chart-core/chart-context";
+import { areaPath } from "../chart-core/line-path";
 
 export interface PatternAreaProps {
   /** Curve function. @default curveMonotoneX */
@@ -28,16 +26,17 @@ export function PatternArea({
   const { renderData, xScale, yScale, xAccessor } = useChartStable();
 
   return (
-    <AreaClosed
-      curve={curve}
-      data={renderData}
+    <path
+      d={areaPath(renderData, {
+        curve,
+        x: (d) => xScale(xAccessor(d)) ?? 0,
+        y: (d) => {
+          const v = d[dataKey];
+          return typeof v === "number" ? (yScale(v) ?? 0) : 0;
+        },
+        yScale,
+      })}
       fill={fill}
-      x={(d) => xScale(xAccessor(d)) ?? 0}
-      y={(d) => {
-        const v = d[dataKey];
-        return typeof v === "number" ? (yScale(v) ?? 0) : 0;
-      }}
-      yScale={yScale}
     />
   );
 }

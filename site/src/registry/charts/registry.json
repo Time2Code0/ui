@@ -33,7 +33,8 @@
       "type": "registry:component",
       "title": "Chart Utils",
       "description": "Animation presets, formatters, and helpers shared by every chart.",
-      "dependencies": ["@visx/responsive", "motion"],
+      "dependencies": ["d3-shape", "motion"],
+      "devDependencies": ["@types/d3-shape"],
       "registryDependencies": ["@time2code/chart-theme"],
       "files": [
         {
@@ -85,6 +86,16 @@
           "path": "chart-utils/use-reveal-replay.ts",
           "type": "registry:component",
           "target": "@components/charts/chart-utils/use-reveal-replay.ts"
+        },
+        {
+          "path": "chart-utils/local-point.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-utils/local-point.ts"
+        },
+        {
+          "path": "chart-utils/arc-path.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-utils/arc-path.ts"
         }
       ]
     },
@@ -93,8 +104,12 @@
       "type": "registry:component",
       "title": "Chart Core",
       "description": "Shared chart context, hooks, and helpers used by every chart.",
-      "dependencies": ["@visx/event", "@visx/scale", "d3-array", "motion"],
-      "devDependencies": ["@types/d3-array"],
+      "dependencies": ["d3-array", "d3-scale", "d3-shape", "motion"],
+      "devDependencies": [
+        "@types/d3-array",
+        "@types/d3-scale",
+        "@types/d3-shape"
+      ],
       "registryDependencies": ["@time2code/chart-utils"],
       "files": [
         {
@@ -146,6 +161,11 @@
           "path": "chart-core/legend-hover.tsx",
           "type": "registry:component",
           "target": "@components/charts/chart-core/legend-hover.tsx"
+        },
+        {
+          "path": "chart-core/line-path.ts",
+          "type": "registry:component",
+          "target": "@components/charts/chart-core/line-path.ts"
         }
       ]
     },
@@ -205,6 +225,19 @@
       ]
     },
     {
+      "name": "chart-gradients",
+      "type": "registry:component",
+      "title": "Chart Gradients",
+      "description": "Linear and radial gradient definitions to use as chart fills and strokes.",
+      "files": [
+        {
+          "path": "chart-gradients/gradients.tsx",
+          "type": "registry:component",
+          "target": "@components/charts/chart-gradients/gradients.tsx"
+        }
+      ]
+    },
+    {
       "name": "chart-center",
       "type": "registry:component",
       "title": "Chart Center",
@@ -224,7 +257,8 @@
       "type": "registry:component",
       "title": "Chart Loading",
       "description": "Loading label and skeleton sweep for chart loading states.",
-      "dependencies": ["@visx/scale", "@visx/shape", "cn", "motion"],
+      "dependencies": ["cn", "d3-scale", "d3-shape", "motion"],
+      "devDependencies": ["@types/d3-scale", "@types/d3-shape"],
       "registryDependencies": ["@time2code/chart-core"],
       "files": [
         {
@@ -272,8 +306,8 @@
       "type": "registry:component",
       "title": "Time Series Chart",
       "description": "Shared shell behind the area, line, and composed charts.",
-      "dependencies": ["@visx/scale", "cn", "d3-array", "motion"],
-      "devDependencies": ["@types/d3-array"],
+      "dependencies": ["cn", "d3-array", "d3-scale", "motion"],
+      "devDependencies": ["@types/d3-array", "@types/d3-scale"],
       "registryDependencies": [
         "@time2code/chart-core",
         "@time2code/chart-loading",
@@ -380,7 +414,7 @@
       "type": "registry:component",
       "title": "Area Chart",
       "description": "Time-series area chart with gradient fills, value labels, and loading states.",
-      "dependencies": ["@visx/curve", "@visx/shape", "d3-shape"],
+      "dependencies": ["d3-shape"],
       "devDependencies": ["@types/d3-shape"],
       "registryDependencies": [
         "@time2code/chart-core",
@@ -418,7 +452,8 @@
       "type": "registry:component",
       "title": "Bar Chart",
       "description": "Vertical and horizontal bar chart with stacking, 3D depth, and square columns.",
-      "dependencies": ["@visx/event", "@visx/scale", "cn", "motion"],
+      "dependencies": ["cn", "d3-scale", "motion"],
+      "devDependencies": ["@types/d3-scale"],
       "registryDependencies": [
         "@time2code/chart-axis",
         "@time2code/chart-core",
@@ -470,7 +505,8 @@
       "type": "registry:component",
       "title": "Candlestick Chart",
       "description": "OHLC candlestick chart with optional Bollinger bands.",
-      "dependencies": ["@visx/scale", "cn", "motion"],
+      "dependencies": ["cn", "d3-scale", "motion"],
+      "devDependencies": ["@types/d3-scale"],
       "registryDependencies": ["@time2code/chart-core", "@time2code/chart-utils", "@time2code/time-series-data"],
       "files": [
         {
@@ -495,14 +531,7 @@
       "type": "registry:component",
       "title": "Choropleth Chart",
       "description": "Zoomable world map that colors countries by value.",
-      "dependencies": [
-        "@visx/geo",
-        "@visx/zoom",
-        "cn",
-        "d3-geo",
-        "motion",
-        "topojson-client"
-      ],
+      "dependencies": ["cn", "d3-geo", "motion", "topojson-client"],
       "devDependencies": [
         "@types/d3-geo",
         "@types/geojson",
@@ -540,6 +569,11 @@
           "path": "choropleth-chart/use-world-data.tsx",
           "type": "registry:component",
           "target": "@components/charts/choropleth-chart/use-world-data.tsx"
+        },
+        {
+          "path": "choropleth-chart/use-choropleth-zoom-state.ts",
+          "type": "registry:component",
+          "target": "@components/charts/choropleth-chart/use-choropleth-zoom-state.ts"
         }
       ]
     },
@@ -621,14 +655,8 @@
       "type": "registry:component",
       "title": "Heatmap Chart",
       "description": "Calendar heatmap for contribution-style activity data.",
-      "dependencies": [
-        "@visx/group",
-        "@visx/heatmap",
-        "@visx/responsive",
-        "@visx/scale",
-        "cn",
-        "motion"
-      ],
+      "dependencies": ["cn", "d3-scale", "motion"],
+      "devDependencies": ["@types/d3-scale"],
       "registryDependencies": [
         "@time2code/chart-core",
         "@time2code/chart-loading",
@@ -704,13 +732,7 @@
       "type": "registry:component",
       "title": "Line Chart",
       "description": "Time-series line chart with profit/loss and projection lines.",
-      "dependencies": [
-        "@visx/curve",
-        "@visx/shape",
-        "cn",
-        "d3-shape",
-        "motion"
-      ],
+      "dependencies": ["cn", "d3-shape", "motion"],
       "devDependencies": ["@types/d3-shape"],
       "registryDependencies": [
         "@time2code/chart-core",
@@ -769,16 +791,12 @@
       "type": "registry:component",
       "title": "Live Line Chart",
       "description": "Real-time streaming line chart.",
-      "dependencies": [
-        "@visx/curve",
-        "@visx/event",
-        "@visx/scale",
-        "@visx/shape",
-        "cn",
-        "d3-array",
-        "motion"
+      "dependencies": ["cn", "d3-array", "d3-scale", "d3-shape", "motion"],
+      "devDependencies": [
+        "@types/d3-array",
+        "@types/d3-scale",
+        "@types/d3-shape"
       ],
-      "devDependencies": ["@types/d3-array"],
       "registryDependencies": ["@time2code/chart-core", "@time2code/chart-utils"],
       "files": [
         {
@@ -808,13 +826,7 @@
       "type": "registry:component",
       "title": "Pie Chart",
       "description": "Pie and donut chart with an optional center label.",
-      "dependencies": [
-        "@visx/group",
-        "@visx/shape",
-        "cn",
-        "d3-shape",
-        "motion"
-      ],
+      "dependencies": ["cn", "d3-shape", "motion"],
       "devDependencies": ["@types/d3-shape"],
       "registryDependencies": ["@time2code/chart-center", "@time2code/chart-utils"],
       "files": [
@@ -845,13 +857,8 @@
       "type": "registry:component",
       "title": "Radar Chart",
       "description": "Radar chart comparing series across several metrics.",
-      "dependencies": [
-        "@visx/group",
-        "@visx/scale",
-        "@visx/shape",
-        "cn",
-        "motion"
-      ],
+      "dependencies": ["cn", "d3-scale", "d3-shape", "motion"],
+      "devDependencies": ["@types/d3-scale", "@types/d3-shape"],
       "registryDependencies": ["@time2code/chart-utils"],
       "files": [
         {
@@ -891,7 +898,7 @@
       "type": "registry:component",
       "title": "Ring Chart",
       "description": "Concentric progress rings with a center label.",
-      "dependencies": ["@visx/group", "@visx/shape", "cn", "motion"],
+      "dependencies": ["cn", "motion"],
       "registryDependencies": ["@time2code/chart-center", "@time2code/chart-utils"],
       "files": [
         {
@@ -921,13 +928,7 @@
       "type": "registry:component",
       "title": "Sankey Chart",
       "description": "Flow diagram linking sources to targets.",
-      "dependencies": [
-        "@visx/event",
-        "@visx/sankey",
-        "cn",
-        "d3-sankey",
-        "motion"
-      ],
+      "dependencies": ["cn", "d3-sankey", "motion"],
       "devDependencies": ["@types/d3-sankey"],
       "registryDependencies": ["@time2code/chart-tooltip", "@time2code/chart-utils"],
       "files": [
@@ -963,7 +964,7 @@
       "type": "registry:component",
       "title": "Scatter Chart",
       "description": "Scatter plot with jitter and multi-series support.",
-      "dependencies": ["cn", "d3-scale", "motion", "react-use-measure"],
+      "dependencies": ["cn", "d3-scale", "motion"],
       "devDependencies": ["@types/d3-scale"],
       "registryDependencies": [
         "@time2code/chart-core",
@@ -1098,7 +1099,7 @@
       "type": "registry:component",
       "title": "Chart Band",
       "description": "Shaded band between two series or values.",
-      "dependencies": ["@visx/curve", "d3-shape", "motion"],
+      "dependencies": ["d3-shape", "d3-shape", "motion"],
       "devDependencies": ["@types/d3-shape"],
       "registryDependencies": ["@time2code/chart-core", "@time2code/chart-patterns", "@time2code/chart-series"],
       "files": [
@@ -1124,7 +1125,7 @@
       "type": "registry:component",
       "title": "Chart Brush",
       "description": "Brush strip for zooming time-series charts.",
-      "dependencies": ["@visx/brush", "cn"],
+      "dependencies": ["cn"],
       "registryDependencies": [
         "@time2code/chart-core",
         "@time2code/chart-patterns",
@@ -1183,7 +1184,7 @@
       "type": "registry:component",
       "title": "Chart Grid",
       "description": "Horizontal and vertical grid lines.",
-      "dependencies": ["@visx/grid", "motion"],
+      "dependencies": ["motion"],
       "registryDependencies": ["@time2code/chart-core"],
       "files": [
         {

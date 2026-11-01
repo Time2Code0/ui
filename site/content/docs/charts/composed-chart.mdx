@@ -17,7 +17,7 @@ description: Mix SeriesBar, Line, and Area on one shared time axis (Recharts Com
 - **`barSize`**, **`maxBarSize`**, **`barGap`** — parent-level layout for `SeriesBar` groups (similar to Recharts `ComposedChart` props). Use **`barGap={0}`** and a higher **`maxBarSize`** for dense daily data so columns read like the [90 days of data](/docs/charts/bar-chart#90-days-of-data) bar example.
 - **`stacked`** / **`stackGap`** — stack `SeriesBar` segments in child order at each x (lines and areas are not stacked).
 - **`SeriesBar`** — default **`radius` is 0** (square tops). Pass **`radius={4}`** (or similar) for rounded corners.
-- **`Line`** / **`Area`** — pass a **`curve`** from `@visx/curve` (e.g. **`curveCatmullRom.alpha(0.42)`**) to soften paths when you have many daily points (preview + hero use the same curve for `revenue` and `runRate`).
+- **`Line`** / **`Area`** — pass a **`curve`** from `d3-shape` (e.g. **`curveCatmullRom.alpha(0.42)`**) to soften paths when you have many daily points (preview + hero use the same curve for `revenue` and `runRate`).
 - **`Line`** / **`Area`** — use **`showMarkers`** for scatter-style ring markers at each point; pass **`markers={{ radius, ringGap, strokeWidth }}`** to tune styling.
 - **`Line`** / **`Area`** — use **`dashFromIndex`** and **`dashArray`** for a dashed tail on incomplete periods (the dashed segment follows the same curve and edge fade).
 - **`XAxis`** — default ticks snap to data rows so the crosshair aligns. Tune **`numTicks`** for dense series (e.g. daily). Use **`tickMode="domain"`** only when you want calendar-even spacing instead of data alignment.
@@ -37,7 +37,7 @@ import { Line } from "@/components/charts/line-chart/line"
 import { SeriesBar } from "@/components/charts/composed-chart/series-bar"
 import { XAxis } from "@/components/charts/chart-axis/x-axis"
 import { ChartTooltip } from "@/components/charts/chart-tooltip/chart-tooltip"
-import { curveCatmullRom } from "@visx/curve"
+import { curveCatmullRom } from "d3-shape"
 import { composedDemoData } from "@/lib/composed-demo-data"
 
 const smooth = curveCatmullRom.alpha(0.42)

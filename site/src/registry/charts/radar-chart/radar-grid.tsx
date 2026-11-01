@@ -1,7 +1,7 @@
 "use client";
 
-import { scaleLinear } from "@visx/scale";
-import { LineRadial } from "@visx/shape";
+import { scaleLinear } from "d3-scale";
+import { lineRadial } from "d3-shape";
 import { motion } from "motion/react";
 
 import { transitionWithDelay } from "../chart-utils/animation";
@@ -45,10 +45,9 @@ export function RadarGrid({
   }));
 
   // Radial scale for converting degrees to radians
-  const radialScale = scaleLinear<number>({
-    domain: [degrees, 0],
-    range: [0, Math.PI * 2],
-  });
+  const radialScale = scaleLinear<number>()
+    .domain([degrees, 0])
+    .range([0, Math.PI * 2]);
 
   const labelDelay = levels * gridStagger * 0.5;
 
@@ -77,11 +76,13 @@ export function RadarGrid({
                 : undefined
             }
           >
-            <LineRadial
-              angle={(d) => radialScale(d.angle) ?? 0}
-              data={angles}
+            <path
+              d={
+                lineRadial<{ angle: number }>()
+                  .angle((d) => radialScale(d.angle))
+                  .radius(targetRadius)(angles) ?? ""
+              }
               fill="none"
-              radius={targetRadius}
               stroke={stroke}
               strokeLinecap="round"
               strokeOpacity={strokeOpacity}

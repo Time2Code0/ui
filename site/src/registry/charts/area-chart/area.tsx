@@ -1,13 +1,11 @@
 "use client";
 
-import type { CurveFactory } from "d3-shape";
 import type { LoadingStyle } from "../chart-core/chart-phase";
 import type { SeriesPointMarkerStyle } from "../chart-series-markers/series-point-marker";
 
 import { useCallback, useId, useMemo, useRef } from "react";
 
-import { curveMonotoneX } from "@visx/curve";
-import { AreaClosed, LinePath } from "@visx/shape";
+import { type CurveFactory, curveMonotoneX } from "d3-shape";
 
 import {
   chartCssVars,
@@ -15,6 +13,7 @@ import {
   useYScale,
 } from "../chart-core/chart-context";
 import { isSeriesContentPhase } from "../chart-core/chart-phase";
+import { areaPath, linePath } from "../chart-core/line-path";
 import {
   resolveDashTailBounds,
   SeriesDashTailOverlay,
@@ -204,6 +203,7 @@ export function Area({
   const resolvedStroke =
     stroke || (isPatternFill ? chartCssVars.linePrimary : fill);
 
+  const getX = (d: Record<string, unknown>) => xScale(xAccessor(d)) ?? 0;
   const getY = useCallback(
     (d: Record<string, unknown>) => {
       const value = d[dataKey];
@@ -233,27 +233,21 @@ export function Area({
   const seriesLayers = (
     <>
       {showSeriesContent && showAreaFill ? (
-        <AreaClosed
-          curve={curve}
-          data={renderData}
+        <path
+          d={areaPath(renderData, { curve, x: getX, y: getY, yScale })}
           fill={areaFill}
-          x={(d) => xScale(xAccessor(d)) ?? 0}
-          y={getY}
-          yScale={yScale}
         />
       ) : null}
 
       {shouldMeasurePath ? (
         <>
-          <LinePath
-            curve={curve}
-            data={renderData}
-            innerRef={pathRef}
+          <path
+            d={linePath(renderData, { curve, x: getX, y: getY })}
+            fill="none"
+            ref={pathRef}
             stroke={visibleStroke}
             strokeLinecap="round"
             strokeWidth={strokeWidth}
-            x={(d) => xScale(xAccessor(d)) ?? 0}
-            y={getY}
           />
           {showSeriesStroke ? (
             <SeriesDashTailOverlay

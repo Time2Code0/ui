@@ -1,5 +1,7 @@
 "use client";
 
+import type { CurveFactory } from "d3-shape";
+
 import {
   useCallback,
   useEffect,
@@ -9,8 +11,7 @@ import {
   useState,
 } from "react";
 
-import { scaleLinear } from "@visx/scale";
-import { AreaClosed, type AreaClosedProps, LinePath } from "@visx/shape";
+import { scaleLinear } from "d3-scale";
 import { motion, useReducedMotion } from "motion/react";
 
 import { chartCssVars, useChartStable } from "../chart-core/chart-context";
@@ -18,6 +19,7 @@ import {
   LINE_LOADING_PULSE_EASE,
   LOADING_LABEL_EXIT_S,
 } from "../chart-core/chart-phase";
+import { areaPath, linePath } from "../chart-core/line-path";
 
 /**
  * Shared "sweep" loading visuals. A soft diagonal shimmer band travels across a
@@ -28,10 +30,6 @@ import {
  * the traveling pulse on `<Line>` and `<Area>`, and as the skeleton for
  * `<BarChart status="loading">`.
  */
-
-// Curve factory type via @visx/shape (already a dependency) rather than
-// importing from d3-shape, which this registry item does not install.
-type CurveFactory = NonNullable<AreaClosedProps<unknown>["curve"]>;
 
 /** One shimmer sweep, in seconds. */
 const DEFAULT_SWEEP_DURATION_S = 2;
@@ -246,11 +244,10 @@ export function LineLoadingSweep({
     return null;
   }
 
-  const xScale = scaleLinear({
-    domain: [0, heights.length - 1],
-    range: [0, innerWidth],
-  });
-  const yScale = scaleLinear({ domain: [0, 100], range: [innerHeight, 0] });
+  const xScale = scaleLinear()
+    .domain([0, heights.length - 1])
+    .range([0, innerWidth]);
+  const yScale = scaleLinear().domain([0, 100]).range([innerHeight, 0]);
   const points = heights.map((value, index) => ({ index, value }));
   const getX = (d: { index: number }) => xScale(d.index);
   const getY = (d: { value: number }) => yScale(d.value);
@@ -258,25 +255,18 @@ export function LineLoadingSweep({
   const silhouette = (
     <>
       {withArea ? (
-        <AreaClosed
-          curve={curve}
-          data={points}
+        <path
+          d={areaPath(points, { curve, x: getX, y: getY, yScale })}
           fill={`url(#${chartId}-area)`}
-          x={getX}
-          y={getY}
-          yScale={yScale}
         />
       ) : null}
-      <LinePath
-        curve={curve}
-        data={points}
+      <path
+        d={linePath(points, { curve, x: getX, y: getY })}
         fill="none"
         stroke={stroke}
         strokeLinecap="round"
         strokeOpacity={strokeOpacity}
         strokeWidth={strokeWidth}
-        x={getX}
-        y={getY}
       />
     </>
   );

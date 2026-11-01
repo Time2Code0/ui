@@ -14,7 +14,6 @@ import {
 
 import { cn } from "cn";
 import { scaleLinear, scaleTime } from "d3-scale";
-import useMeasure from "react-use-measure";
 
 import {
   type ChartContextValue,
@@ -51,6 +50,7 @@ import {
   partitionChartChildren,
 } from "../chart-utils/chart-children";
 import { shortDateFmt } from "../chart-utils/formatters";
+import { useElementSize } from "../chart-utils/parent-size";
 import { useRevealReplay } from "../chart-utils/use-reveal-replay";
 import { Scatter, type ScatterProps } from "./scatter";
 
@@ -206,7 +206,10 @@ export function ScatterChart({
 }: ScatterChartProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const margin = { ...DEFAULT_MARGIN, ...marginProp };
-  const [measureRef, bounds] = useMeasure({ debounce: 10 });
+  const { width, height } = useElementSize(containerRef, {
+    debounceTime: 10,
+    leading: false,
+  });
   // Memo on primitives so inline `jitter={{ ... }}` objects stay stable.
   const resolvedJitter = resolveScatterJitterConfig(jitterProp);
   const hasJitter = resolvedJitter !== null;
@@ -218,18 +221,10 @@ export function ScatterChart({
     [hasJitter, jitterX, jitterY, jitterSeed]
   );
 
-  const setContainerRef = (node: HTMLDivElement | null) => {
-    containerRef.current = node;
-    measureRef(node);
-  };
-
-  const width = bounds.width ?? 0;
-  const height = bounds.height ?? 0;
-
   return (
     <div
       className={cn("relative w-full", className)}
-      ref={setContainerRef}
+      ref={containerRef}
       style={{ aspectRatio, touchAction: "none" }}
     >
       {width > 0 && height > 0 ? (

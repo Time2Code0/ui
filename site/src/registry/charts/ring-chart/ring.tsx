@@ -2,9 +2,9 @@
 
 import { memo, useCallback } from "react";
 
-import { arc as arcGenerator } from "@visx/shape";
 import { type MotionValue, motion, useTransform } from "motion/react";
 
+import { arcPath } from "../chart-utils/arc-path";
 import { useEnterComplete } from "../chart-utils/use-enter-complete";
 import { useMountProgress } from "../chart-utils/use-mount-progress";
 import {
@@ -13,21 +13,6 @@ import {
   useRingHover,
   useRingStable,
 } from "./ring-context";
-
-function generateArcPath(
-  innerRadius: number,
-  outerRadius: number,
-  startAngle: number,
-  endAngle: number,
-  cornerRadius: number
-): string {
-  const generator = arcGenerator<unknown>({
-    cornerRadius,
-    innerRadius,
-    outerRadius,
-  });
-  return generator({ endAngle, startAngle } as unknown as null) || "";
-}
 
 export type RingLineCap = "round" | "butt";
 
@@ -127,7 +112,7 @@ export const Ring = memo(function Ring({
     const radii = getRingRadii(index);
     const corner =
       lineCap === "round" ? (radii.outerRadius - radii.innerRadius) / 2 : 0;
-    return generateArcPath(
+    return arcPath(
       radii.innerRadius,
       radii.outerRadius,
       startAngle,
@@ -160,7 +145,7 @@ export const Ring = memo(function Ring({
 
   const cornerRadius =
     lineCap === "round" ? (outerRadius - innerRadius) / 2 : 0;
-  const bgPath = generateArcPath(
+  const bgPath = arcPath(
     innerRadius,
     outerRadius,
     startAngle,
@@ -171,7 +156,7 @@ export const Ring = memo(function Ring({
   const progressPath =
     progressEndAngle <= startAngle + 0.01
       ? ""
-      : generateArcPath(
+      : arcPath(
           innerRadius,
           outerRadius,
           startAngle,
@@ -196,7 +181,7 @@ export const Ring = memo(function Ring({
     strokeWidth,
     ringGap
   );
-  const hitboxPath = generateArcPath(
+  const hitboxPath = arcPath(
     hitRadii.innerRadius,
     hitRadii.outerRadius,
     startAngle,

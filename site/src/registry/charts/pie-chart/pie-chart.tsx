@@ -14,11 +14,10 @@ import {
   useState,
 } from "react";
 
-import { Group } from "@visx/group";
-import { arc as arcGenerator } from "@visx/shape";
 import { cn } from "cn";
 import { pie as d3Pie } from "d3-shape";
 
+import { arcPath } from "../chart-utils/arc-path";
 import {
   getChartChildName,
   isChartDefComponent,
@@ -95,23 +94,6 @@ interface PieChartInnerProps {
   padAngle: number;
   startAngle: number;
   width: number;
-}
-
-function generatePieArcPath(
-  innerRadius: number,
-  outerRadius: number,
-  startAngle: number,
-  endAngle: number,
-  cornerRadius: number,
-  padAngle: number
-): string {
-  const generator = arcGenerator<unknown>({
-    cornerRadius,
-    innerRadius,
-    outerRadius,
-    padAngle,
-  });
-  return generator({ endAngle, startAngle } as unknown as null) || "";
 }
 
 // Helper to check if a child is a PieCenter component
@@ -243,7 +225,7 @@ const PieChartCore = memo(function PieChartCore({
       return null;
     }
     return arcs.map((arc) =>
-      generatePieArcPath(
+      arcPath(
         innerRadius,
         outerRadius,
         arc.startAngle,
@@ -344,7 +326,7 @@ const PieChartCore = memo(function PieChartCore({
           {/* Defs for patterns and gradients */}
           {defsChildren.length > 0 && <defs>{defsChildren}</defs>}
 
-          <Group left={center} top={center}>
+          <g transform={`translate(${center}, ${center})`}>
             {scrubSlicePaths && scrubSliceFills
               ? scrubSlicePaths.map((d, index) =>
                   d ? (
@@ -358,7 +340,7 @@ const PieChartCore = memo(function PieChartCore({
                 )
               : null}
             {svgChildren}
-          </Group>
+          </g>
         </svg>
 
         {/* HTML layer with center content - stacked on top via grid */}

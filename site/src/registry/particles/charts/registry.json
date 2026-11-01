@@ -5,9 +5,9 @@
       "name": "p-area-chart-26",
       "type": "registry:block",
       "title": "Area Chart - Interactive",
-      "description": "Revenue vs costs over 30 days with segment selection. Use the curve menu to compare @visx/curve on both areas.",
+      "description": "Revenue vs costs over 30 days with segment selection. Use the curve menu to compare d3-shape curves on both areas.",
       "categories": ["area-chart"],
-      "dependencies": ["@visx/curve"],
+      "dependencies": ["d3-shape"],
       "registryDependencies": [
         "@time2code/area-chart",
         "@time2code/chart-axis",
@@ -68,7 +68,7 @@
       "title": "Area Chart - Step",
       "description": "Discrete step interpolation between points",
       "categories": ["area-chart"],
-      "dependencies": ["@visx/curve"],
+      "dependencies": ["d3-shape"],
       "registryDependencies": [
         "@time2code/area-chart",
         "@time2code/chart-axis",
@@ -605,8 +605,12 @@
       "title": "Bar Chart - Gradient",
       "description": "Linear gradient fill from blue to purple",
       "categories": ["bar-chart"],
-      "dependencies": ["@visx/gradient"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-gradients",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-12.tsx", "type": "registry:block" }
       ],
@@ -657,10 +661,11 @@
       "title": "Bar Chart - No Gap",
       "description": "Zero gap with gradient and animated line indicator",
       "categories": ["bar-chart"],
-      "dependencies": ["@visx/gradient", "motion"],
+      "dependencies": ["motion"],
       "registryDependencies": [
         "@time2code/bar-chart",
         "@time2code/chart-core",
+        "@time2code/chart-gradients",
         "@time2code/chart-grid",
         "@time2code/chart-tooltip"
       ],
@@ -884,8 +889,12 @@
       "title": "Bar Chart - Gradient",
       "description": "Demo component `BarChartGradientDemo`",
       "categories": ["bar-chart"],
-      "dependencies": ["@visx/gradient"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-gradients",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-30.tsx", "type": "registry:block" }
       ],
@@ -950,10 +959,11 @@
       "title": "Bar Chart - No gap gradient",
       "description": "Demo component `BarChartNoGapGradientDemo`",
       "categories": ["bar-chart"],
-      "dependencies": ["@visx/gradient", "motion"],
+      "dependencies": ["motion"],
       "registryDependencies": [
         "@time2code/bar-chart",
         "@time2code/chart-core",
+        "@time2code/chart-gradients",
         "@time2code/chart-grid",
         "@time2code/chart-tooltip"
       ],
@@ -1011,10 +1021,10 @@
       "title": "Candlestick – Tooltip line matches candle",
       "description": "Lime–emerald and yellow–red gradients. Crosshair color matches the focused candle (green/red); no dot.",
       "categories": ["candlestick-chart"],
-      "dependencies": ["@visx/gradient"],
       "registryDependencies": [
         "@time2code/candlestick-chart",
         "@time2code/chart-axis",
+        "@time2code/chart-gradients",
         "@time2code/chart-tooltip"
       ],
       "files": [
@@ -1050,10 +1060,10 @@
       "title": "Candlestick – Lime to emerald, yellow to red",
       "description": "Custom gradients: lime–emerald for up, yellow–red for down",
       "categories": ["candlestick-chart"],
-      "dependencies": ["@visx/gradient"],
       "registryDependencies": [
         "@time2code/candlestick-chart",
         "@time2code/chart-axis",
+        "@time2code/chart-gradients",
         "@time2code/chart-tooltip"
       ],
       "files": [
@@ -1370,7 +1380,7 @@
       "title": "Composed Chart",
       "description": "One time axis, one Y scale: combine SeriesBar, Line, and Area. Use the curve menu to swap the shared Line and Area interpolation.",
       "categories": ["composed-chart"],
-      "dependencies": ["@visx/curve"],
+      "dependencies": ["d3-shape"],
       "registryDependencies": [
         "@time2code/area-chart",
         "@time2code/chart-axis",
@@ -1389,7 +1399,7 @@
       "meta": {
         "hero": true,
         "previewLayout": "time-series",
-        "footer": "Hero uses a Radix Select for the Line and Area `curve` prop (SeriesBar shape is unchanged). See https://visx.airbnb.tech/docs/curve."
+        "footer": "Hero uses a Radix Select for the Line and Area `curve` prop (SeriesBar shape is unchanged). See https://d3js.org/d3-shape/curve."
       }
     },
     {
@@ -2200,7 +2210,7 @@
       "title": "Line Chart - Trio with Brush",
       "description": "Three Catmull–Rom series on a dot background with a top legend and brush zoom — matches the Studio trio preset.",
       "categories": ["line-chart"],
-      "dependencies": ["@visx/curve"],
+      "dependencies": ["d3-shape"],
       "registryDependencies": [
         "@time2code/chart-axis",
         "@time2code/chart-background",
@@ -2244,7 +2254,7 @@
       "title": "Line Chart - Linear",
       "description": "Straight lines between data points",
       "categories": ["line-chart"],
-      "dependencies": ["@visx/curve"],
+      "dependencies": ["d3-shape"],
       "registryDependencies": ["@time2code/chart-grid", "@time2code/chart-tooltip", "@time2code/line-chart"],
       "files": [
         { "path": "line-chart/p-line-chart-3.tsx", "type": "registry:block" }
@@ -2443,7 +2453,7 @@
       "title": "Line Chart - Profit/Loss",
       "description": "Sign-colored segments with a highlighted zero baseline and optional legend hover",
       "categories": ["line-chart"],
-      "dependencies": ["@visx/curve"],
+      "dependencies": ["d3-shape"],
       "registryDependencies": [
         "@time2code/chart-axis",
         "@time2code/chart-grid",
@@ -2642,7 +2652,7 @@
       "title": "Line Chart - Profit/Loss line",
       "description": "Sign-colored line segments for profit and loss on a shared zero baseline",
       "categories": ["line-chart"],
-      "dependencies": ["@visx/curve"],
+      "dependencies": ["d3-shape"],
       "registryDependencies": [
         "@time2code/chart-axis",
         "@time2code/chart-grid",
@@ -2882,8 +2892,10 @@
       "title": "Pie Chart - Gradients",
       "description": "Radial gradient fills on each slice",
       "categories": ["pie-chart"],
-      "dependencies": ["@visx/gradient"],
-      "registryDependencies": ["@time2code/pie-chart"],
+      "registryDependencies": [
+        "@time2code/chart-gradients",
+        "@time2code/pie-chart"
+      ],
       "files": [
         { "path": "pie-chart/p-pie-chart-5.tsx", "type": "registry:block" }
       ],
@@ -3003,8 +3015,10 @@
       "title": "Pie Chart - Gradients",
       "description": "Pie chart with gradients",
       "categories": ["pie-chart"],
-      "dependencies": ["@visx/gradient"],
-      "registryDependencies": ["@time2code/pie-chart"],
+      "registryDependencies": [
+        "@time2code/chart-gradients",
+        "@time2code/pie-chart"
+      ],
       "files": [
         { "path": "pie-chart/p-pie-chart-15.tsx", "type": "registry:block" }
       ],
@@ -4201,10 +4215,11 @@
       "title": "Custom Indicator - Overview",
       "description": "Demo component `CustomIndicatorDemo`",
       "categories": ["chart-custom-indicator"],
-      "dependencies": ["@visx/gradient", "motion"],
+      "dependencies": ["motion"],
       "registryDependencies": [
         "@time2code/bar-chart",
         "@time2code/chart-core",
+        "@time2code/chart-gradients",
         "@time2code/chart-grid",
         "@time2code/chart-tooltip"
       ],
@@ -4222,7 +4237,7 @@
       "title": "Date Highlights - Weekends line",
       "description": "Shade weekend days behind the series on date x axes — diagonal stripes or a solid fill, configurable weekend days, and zoom-aware rendering",
       "categories": ["chart-date-highlights"],
-      "dependencies": ["@visx/curve"],
+      "dependencies": ["d3-shape"],
       "registryDependencies": [
         "@time2code/chart-axis",
         "@time2code/chart-date-highlights",
@@ -4244,7 +4259,7 @@
       "title": "Date Highlights - Deadline line",
       "description": "Due-date marker for date x axes — a vertical line with a striped, gradient, or solid region to its right that fades out",
       "categories": ["chart-date-highlights"],
-      "dependencies": ["@visx/curve"],
+      "dependencies": ["d3-shape"],
       "registryDependencies": [
         "@time2code/chart-axis",
         "@time2code/chart-date-highlights",
@@ -4266,7 +4281,7 @@
       "title": "Date Highlights - Line",
       "description": "Shade weekends with `Weekends` and mark a due date with `Deadline` — a line at the date plus a striped region that fades out to the right. Both render behind the series and only draw what is inside the visible x-domain, so they work with brush zoom.",
       "categories": ["chart-date-highlights"],
-      "dependencies": ["@visx/curve"],
+      "dependencies": ["d3-shape"],
       "registryDependencies": [
         "@time2code/chart-axis",
         "@time2code/chart-date-highlights",
@@ -4288,7 +4303,7 @@
       "title": "Date Highlights - Deadline fill types",
       "description": "Demo component `DeadlineFillTypesDemo`",
       "categories": ["chart-date-highlights"],
-      "dependencies": ["@visx/curve"],
+      "dependencies": ["d3-shape"],
       "registryDependencies": [
         "@time2code/chart-axis",
         "@time2code/chart-date-highlights",
@@ -4330,7 +4345,7 @@
       "title": "Date Highlights - Area",
       "description": "Add `Weekends` to shade Saturday and Sunday, and `Deadline` to mark a due date with a fading region. Both sit behind the areas and follow brush zoom.",
       "categories": ["chart-date-highlights"],
-      "dependencies": ["@visx/curve"],
+      "dependencies": ["d3-shape"],
       "registryDependencies": [
         "@time2code/area-chart",
         "@time2code/chart-axis",
@@ -4352,7 +4367,7 @@
       "title": "Date Highlights - Composed",
       "description": "`Weekends` shades the weekend columns and `Deadline` marks a due date. With `SeriesBar` columns at midnight, `Weekends` centres each band on its column automatically; pass `utc` when your dates are UTC-anchored (like `composedDemoData`).",
       "categories": ["chart-date-highlights"],
-      "dependencies": ["@visx/curve"],
+      "dependencies": ["d3-shape"],
       "registryDependencies": [
         "@time2code/chart-axis",
         "@time2code/chart-date-highlights",

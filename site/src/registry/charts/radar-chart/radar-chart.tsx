@@ -4,9 +4,8 @@ import type { Transition } from "motion/react";
 
 import { type ReactNode, useCallback, useState } from "react";
 
-import { Group } from "@visx/group";
-import { scaleLinear } from "@visx/scale";
 import { cn } from "cn";
+import { scaleLinear } from "d3-scale";
 
 import { ParentSize } from "../chart-utils/parent-size";
 import {
@@ -106,10 +105,7 @@ function RadarChartInner({
   // Scale for converting values (0-100) to radius
   const yScale = useCallback(
     (value: number) => {
-      const scale = scaleLinear<number>({
-        domain: [0, 100],
-        range: [0, radius],
-      });
+      const scale = scaleLinear<number>().domain([0, 100]).range([0, radius]);
       return scale(value) ?? 0;
     },
     [radius]
@@ -182,9 +178,7 @@ function RadarChartInner({
         style={{ overflow: "visible" }}
         width={size}
       >
-        <Group left={size / 2} top={size / 2}>
-          {children}
-        </Group>
+        <g transform={`translate(${size / 2}, ${size / 2})`}>{children}</g>
       </svg>
     </RadarProvider>
   );

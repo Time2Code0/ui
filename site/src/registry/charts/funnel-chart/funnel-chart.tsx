@@ -111,8 +111,8 @@ export interface FunnelChartProps {
   /** Layout direction @default "horizontal" */
   orientation?: "horizontal" | "vertical";
   /**
-   * Render a visx pattern definition. Receives a unique `id` string per segment
-   * and the resolved `color`. Return a `<PatternLines>` (or any visx pattern)
+   * Render a pattern definition. Receives a unique `id` string per segment
+   * and the resolved `color`. Return a `<PatternLines>` (or any chart pattern)
    * inside an SVG `<defs>`. The component will use `fill="url(#id)"` on the
    * innermost ring while keeping outer halo rings as solid color.
    */

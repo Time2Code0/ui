@@ -1,7 +1,5 @@
 "use client";
 
-import type { CurveFactory } from "d3-shape";
-
 import {
   createContext,
   type ReactNode,
@@ -11,10 +9,10 @@ import {
   useMemo,
 } from "react";
 
-import { curveLinear } from "@visx/curve";
-import { LinePath } from "@visx/shape";
+import { type CurveFactory, curveLinear } from "d3-shape";
 
 import { useChart, useChartStable } from "../chart-core/chart-context";
+import { linePath } from "../chart-core/line-path";
 import {
   type FadeEdges,
   fadeGradientStops,
@@ -181,15 +179,13 @@ export function ProfitLossLine({
             opacity={isDimmed ? LEGEND_DIM_OPACITY : 1}
             style={{ transition: "opacity 0.2s ease-in-out" }}
           >
-            <LinePath
-              curve={curve}
-              data={segment.data}
+            <path
+              d={linePath(segment.data, { curve, x: getX, y: getY })}
+              fill="none"
               stroke={segmentStroke}
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={strokeWidth}
-              x={getX}
-              y={getY}
             />
           </g>
         );

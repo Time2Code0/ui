@@ -1,6 +1,5 @@
 "use client";
 
-import type { TransformMatrix } from "@visx/zoom";
 import type { FeatureCollection, GeoJSON, Geometry } from "geojson";
 import type { Transition } from "motion/react";
 
@@ -12,9 +11,8 @@ import React, {
   useRef,
 } from "react";
 
-import { Mercator } from "@visx/geo";
-import { Zoom } from "@visx/zoom";
 import { cn } from "cn";
+import { geoMercator, geoPath } from "d3-geo";
 
 import { ParentSize } from "../chart-utils/parent-size";
 import { useRevealReplay } from "../chart-utils/use-reveal-replay";
@@ -26,11 +24,16 @@ import {
   ChoroplethZoomContext,
   type Margin,
   useChoroplethInteraction,
-  type ZoomInstance,
 } from "./choropleth-context";
 import { ChoroplethFeature as ChoroplethFeatureLayer } from "./choropleth-feature";
 import { ChoroplethGraticule as ChoroplethGraticuleLayer } from "./choropleth-graticule";
 import { ChoroplethTooltip as ChoroplethTooltipLayer } from "./choropleth-tooltip";
+import {
+  type ChoroplethZoomInstance,
+  type ChoroplethZoomOptions,
+  type TransformMatrix,
+  useChoroplethZoomState,
+} from "./use-choropleth-zoom-state";
 
 export interface ChoroplethChartProps {
   /** Animation duration in milliseconds. @default 800 */
@@ -174,6 +177,20 @@ interface MercatorRenderProps {
   projection: (coords: [number, number]) => [number, number] | null | undefined;
 }
 
+/** Wheel step: zoom out 5% per notch down, in 5% per notch up. */
+function wheelZoomFactor(event: WheelEvent) {
+  return event.deltaY > 0 ? 0.95 : 1.05;
+}
+
+function ChoroplethZoom({
+  children,
+  ...options
+}: ChoroplethZoomOptions & {
+  children: (zoom: ChoroplethZoomInstance) => ReactNode;
+}) {
+  return children(useChoroplethZoomState(options));
+}
+
 interface ChoroplethMercatorContentProps {
   animationDuration: number;
   containerRef: React.RefObject<HTMLDivElement | null>;
@@ -189,7 +206,7 @@ interface ChoroplethMercatorContentProps {
   revealEpoch: number;
   svgChildren: React.ReactNode[];
   width: number;
-  zoom?: ZoomInstance<SVGSVGElement>;
+  zoom?: ChoroplethZoomInstance;
 }
 
 const ChoroplethSvg = memo(function ChoroplethSvg({
@@ -201,7 +218,7 @@ const ChoroplethSvg = memo(function ChoroplethSvg({
   height: number;
   width: number;
   svgChildren: React.ReactNode[];
-  zoom?: ZoomInstance<SVGSVGElement>;
+  zoom?: ChoroplethZoomInstance;
 }) {
   const { setHoveredFeatureIndex, setTooltipData } = useChoroplethInteraction();
 
@@ -388,6 +405,16 @@ function ChoroplethChartInner({
     [children]
   );
 
+  const [translateX, translateY] = translate;
+  const [centerLon, centerLat] = center;
+  const mercator = useMemo<MercatorRenderProps>(() => {
+    const projection = geoMercator()
+      .translate([translateX, translateY])
+      .scale(scale)
+      .center([centerLon, centerLat]);
+    return { path: geoPath(projection), projection };
+  }, [centerLat, centerLon, scale, translateX, translateY]);
+
   if (width < 10 || height < 10) {
     return null;
   }
@@ -408,45 +435,29 @@ function ChoroplethChartInner({
     width,
   };
 
+  const content = (zoom?: ChoroplethZoomInstance) => (
+    <ChoroplethMercatorContent
+      {...mercatorContentProps}
+      mercator={mercator}
+      zoom={zoom}
+    />
+  );
+
+  if (!zoomEnabled) {
+    return content();
+  }
+
   return (
-    <Mercator
-      center={center}
-      data={data.features}
-      scale={scale}
-      translate={translate as [number, number]}
+    <ChoroplethZoom
+      height={height}
+      initialTransformMatrix={initialZoom}
+      scaleMax={zoomMax}
+      scaleMin={zoomMin}
+      wheelDelta={wheelZoomFactor}
+      width={width}
     >
-      {(mercator) => {
-        const content = (zoom?: ZoomInstance<SVGSVGElement>) => (
-          <ChoroplethMercatorContent
-            {...mercatorContentProps}
-            mercator={mercator}
-            zoom={zoom}
-          />
-        );
-
-        if (zoomEnabled) {
-          return (
-            <Zoom<SVGSVGElement>
-              height={height}
-              initialTransformMatrix={initialZoom}
-              scaleXMax={zoomMax}
-              scaleXMin={zoomMin}
-              scaleYMax={zoomMax}
-              scaleYMin={zoomMin}
-              wheelDelta={(event) => {
-                const zoomScale = event.deltaY > 0 ? 0.95 : 1.05;
-                return { scaleX: zoomScale, scaleY: zoomScale };
-              }}
-              width={width}
-            >
-              {(zoom) => content(zoom)}
-            </Zoom>
-          );
-        }
-
-        return content();
-      }}
-    </Mercator>
+      {content}
+    </ChoroplethZoom>
   );
 }
 

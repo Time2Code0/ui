@@ -4,8 +4,6 @@ import type { ChartStatus } from "../chart-core/chart-phase";
 
 import { memo, useCallback, useEffect, useMemo, useRef } from "react";
 
-import { Group } from "@visx/group";
-import { HeatmapRect } from "@visx/heatmap";
 import {
   animate,
   type MotionValue,
@@ -27,7 +25,6 @@ import {
 import { heatmapLevelCellFillOpacity } from "./heatmap-colors";
 import {
   type HeatmapBin,
-  type HeatmapColumn,
   useHeatmap,
   useHeatmapInteraction,
 } from "./heatmap-context";
@@ -155,8 +152,6 @@ function syncHeatmapCellLayerOpacities(params: SyncCellLayerParams) {
 export interface HeatmapCellsProps {
   /** Scale for the highlighted cell while hovering. @default 1 */
   activeScale?: number;
-  /** Override the default GitHub-style green color scale. */
-  colorScale?: (count: number | null | undefined) => string;
   /** Corner radius for each cell. @default 2 */
   cornerRadius?: number;
   /** Hide out-of-range bins (GitHub-style ghost cells). @default true */
@@ -181,8 +176,6 @@ interface HeatmapCellRectProps {
     y: number;
     width: number;
     height: number;
-    color?: string;
-    opacity?: number;
   };
   cornerRadius: number;
   hoverState: { isHighlighted: boolean; isDimmed: boolean };
@@ -384,7 +377,6 @@ const HeatmapMotionCell = memo(function HeatmapMotionCell({
   ]);
 
   const cellProps = {
-    className: "visx-heatmap-rect",
     height: cell.height,
     rx: cornerRadius,
     ry: cornerRadius,
@@ -402,9 +394,7 @@ const HeatmapMotionCell = memo(function HeatmapMotionCell({
       <motion.rect
         {...cellProps}
         fill={targetFill}
-        fillOpacity={
-          (cell.opacity ?? 1) * patternFillOpacity * rowOpacityMultiplier
-        }
+        fillOpacity={patternFillOpacity * rowOpacityMultiplier}
         onPointerEnter={() =>
           onEnter(cell.column, cell.row, bin, cell.x, cell.y)
         }
@@ -428,7 +418,6 @@ const HeatmapMotionCell = memo(function HeatmapMotionCell({
 
 export const HeatmapCells = memo(function HeatmapCells({
   cornerRadius = 2,
-  colorScale: colorScaleProp,
   inactiveOpacity = HEATMAP_INACTIVE_OPACITY,
   inactiveScale = 1,
   activeScale = 1,
@@ -445,11 +434,8 @@ export const HeatmapCells = memo(function HeatmapCells({
     xScale,
     yScale,
     chartStatus,
-    colorScale: contextColorScale,
-    fillScale: contextFillScale,
+    fillScale,
   } = useHeatmap();
-  const colorScale = colorScaleProp ?? contextColorScale;
-  const fillScale = contextFillScale;
   const cellsInteractive = interactive && chartStatus !== "loading";
   const {
     hoveredCell,
@@ -513,63 +499,53 @@ export const HeatmapCells = memo(function HeatmapCells({
   );
 
   return (
-    <HeatmapRect<HeatmapColumn, HeatmapBin>
-      binHeight={binHeight}
-      bins={(column) => column.bins}
-      binWidth={binWidth}
-      colorScale={(count) =>
-        colorScale(typeof count === "number" ? count : count?.valueOf())
-      }
-      count={(bin) => bin.count}
-      data={data}
-      gap={gap}
-      xScale={xScale}
-      yScale={yScale}
-    >
-      {(cells) => (
-        <Group className="visx-heatmap-rects">
-          {cells.flatMap((column) =>
-            column.map((cell) => {
-              const bin = data[cell.column]?.bins[cell.row];
-              if (!bin) {
-                return null;
-              }
+    <g>
+      {data.flatMap((datum, column) => {
+        const x = xScale(column);
+        return datum.bins.map((bin, row) => {
+          if (displayRange && isHeatmapGhostBin(bin, displayRange)) {
+            return null;
+          }
 
-              if (displayRange && isHeatmapGhostBin(bin, displayRange)) {
-                return null;
-              }
+          // Cells are a bin minus the gap; the gap sits above and right of each.
+          const cell = {
+            column,
+            height: binHeight - gap,
+            row,
+            width: binWidth - gap,
+            x,
+            y: yScale(row) + gap,
+          };
 
-              const hoverState = computeHeatmapCellFaded(
-                isCellHovering,
-                isLevelHovering,
-                hoveredCell,
-                hoveredLegendLevel,
-                cell,
-                bin.count
-              );
+          const hoverState = computeHeatmapCellFaded(
+            isCellHovering,
+            isLevelHovering,
+            hoveredCell,
+            hoveredLegendLevel,
+            cell,
+            bin.count
+          );
 
-              return (
-                <HeatmapMotionCell
-                  activeScale={activeScale}
-                  bin={bin}
-                  cell={cell}
-                  cornerRadius={cornerRadius}
-                  fillScale={fillScale}
-                  hoverState={hoverState}
-                  inactiveOpacity={inactiveOpacity}
-                  inactiveScale={inactiveScale}
-                  interactive={cellsInteractive}
-                  key={`heatmap-cell-${cell.column}-${cell.row}`}
-                  onEnter={handleCellEnter}
-                  onLeave={handleCellLeave}
-                  rowOpacity={rowOpacity}
-                />
-              );
-            })
-          )}
-        </Group>
-      )}
-    </HeatmapRect>
+          return (
+            <HeatmapMotionCell
+              activeScale={activeScale}
+              bin={bin}
+              cell={cell}
+              cornerRadius={cornerRadius}
+              fillScale={fillScale}
+              hoverState={hoverState}
+              inactiveOpacity={inactiveOpacity}
+              inactiveScale={inactiveScale}
+              interactive={cellsInteractive}
+              key={`heatmap-cell-${cell.column}-${cell.row}`}
+              onEnter={handleCellEnter}
+              onLeave={handleCellLeave}
+              rowOpacity={rowOpacity}
+            />
+          );
+        });
+      })}
+    </g>
   );
 });
 

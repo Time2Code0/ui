@@ -1,6 +1,6 @@
 "use client";
 
-import { curveStep } from "@visx/curve";
+import { curveStep } from "d3-shape";
 
 import { Area } from "@/registry/charts/area-chart/area";
 import { AreaChart } from "@/registry/charts/area-chart/area-chart";

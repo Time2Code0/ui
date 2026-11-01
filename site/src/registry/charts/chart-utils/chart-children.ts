@@ -220,7 +220,7 @@ export interface ChartChildLayers {
   defs: ReactElement[];
   /** Markers and brush — drawn last so they stay interactive. */
   postOverlay: ReactElement[];
-  /** Series, pattern defs (visx patterns wrap their own `<defs>`) and everything else. */
+  /** Series, pattern defs (patterns wrap their own `<defs>`) and everything else. */
   series: ReactElement[];
   /** Reference areas, weekends, deadlines, column tracks. */
   underlay: ReactElement[];

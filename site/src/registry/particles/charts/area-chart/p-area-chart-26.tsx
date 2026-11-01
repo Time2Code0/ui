@@ -9,7 +9,7 @@ import {
   curveMonotoneX,
   curveNatural,
   curveStep,
-} from "@visx/curve";
+} from "d3-shape";
 
 import { Area } from "@/registry/charts/area-chart/area";
 import { AreaChart } from "@/registry/charts/area-chart/area-chart";

@@ -2,7 +2,6 @@
 
 import { useEffect, useId } from "react";
 
-import { GridColumns, GridRows } from "@visx/grid";
 import {
   animate,
   motion,
@@ -90,31 +89,24 @@ export interface GridProps {
   yAxisId?: string | number;
 }
 
-function hideEdgeTicks<T>(ticks: T[], hideEdgeLines: boolean): T[] {
-  if (!hideEdgeLines || ticks.length <= 2) {
-    return ticks;
-  }
-  return ticks.slice(1, -1);
+/**
+ * Pixel position of each grid line: `scale(tick)` for `ticks`, without the
+ * first and last when `hideEdgeLines`. Falls back to `defaultTicks` when
+ * nothing is left.
+ */
+function gridLinePositions<T>(
+  scale: (tick: T) => number | undefined,
+  ticks: T[],
+  defaultTicks: () => T[],
+  hideEdgeLines: boolean
+): number[] {
+  const visible =
+    hideEdgeLines && ticks.length > 2 ? ticks.slice(1, -1) : ticks;
+  return (visible.length > 0 ? visible : defaultTicks()).map(
+    (tick) => scale(tick) ?? 0
+  );
 }
 
-function resolveRowTickValues(options: {
-  hideHorizontalEdgeLines: boolean;
-  numTicksRows: number;
-  rowTickValues?: number[];
-  yScale: { ticks?: (count: number) => number[] };
-}): number[] | undefined {
-  const { hideHorizontalEdgeLines, numTicksRows, rowTickValues, yScale } =
-    options;
-  const ticks =
-    rowTickValues ?? (yScale.ticks ? yScale.ticks(numTicksRows) : []);
-  const filtered = hideEdgeTicks(ticks, hideHorizontalEdgeLines);
-  if (filtered === ticks && !rowTickValues && !hideHorizontalEdgeLines) {
-    return undefined;
-  }
-  return filtered.length > 0 ? filtered : undefined;
-}
-
-// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: grid fade masks and shimmer share one layer tree
 export function Grid({
   horizontal = true,
   vertical = false,
@@ -167,23 +159,22 @@ export function Grid({
   // For vertical grid lines in horizontal bar charts, use yScale (the value scale)
   // For time-based charts, use xScale
   const columnScale = isHorizontalBarChart ? yScale : xScale;
-  const rowTickValuesResolved = resolveRowTickValues({
-    hideHorizontalEdgeLines,
-    numTicksRows,
-    rowTickValues,
+  const rowPositions = gridLinePositions(
     yScale,
-  });
-  const columnTickValuesResolved =
-    vertical &&
-    columnScale &&
-    typeof columnScale === "function" &&
-    hideVerticalEdgeLines
-      ? (() => {
-          const ticks = columnScale.ticks?.(numTicksColumns) ?? [];
-          const filtered = hideEdgeTicks<number | Date>(ticks, true);
-          return filtered.length > 0 ? filtered : undefined;
-        })()
-      : undefined;
+    rowTickValues ?? yScale.ticks(numTicksRows),
+    () => yScale.ticks(numTicksRows),
+    hideHorizontalEdgeLines
+  );
+  // Bar charts publish a plain-object stand-in for `xScale`; no columns then.
+  const hasColumnScale = typeof columnScale === "function";
+  const columnPositions = hasColumnScale
+    ? gridLinePositions<number | Date>(
+        columnScale,
+        columnScale.ticks(numTicksColumns),
+        () => columnScale.ticks(numTicksColumns),
+        hideVerticalEdgeLines
+      )
+    : [];
   const uniqueId = useId();
 
   // Horizontal fade mask (for grid rows - fades left/right)
@@ -268,26 +259,24 @@ export function Grid({
 
       {horizontal && (
         <g mask={horizontalFadeMask}>
-          <GridRows
-            numTicks={rowTickValuesResolved ? undefined : numTicksRows}
-            scale={yScale}
+          <GridLines
+            length={innerWidth}
+            orientation="horizontal"
+            positions={rowPositions}
             stroke={gridStroke}
             strokeDasharray={strokeDasharray}
             strokeOpacity={strokeOpacity}
             strokeWidth={strokeWidth}
-            tickValues={rowTickValuesResolved}
-            width={innerWidth}
           />
           {shimmerEnabled ? (
-            <GridRows
-              numTicks={rowTickValuesResolved ? undefined : numTicksRows}
-              scale={yScale}
+            <GridLines
+              length={innerWidth}
+              orientation="horizontal"
+              positions={rowPositions}
               stroke={`url(#${shimmerGradientId})`}
               strokeDasharray={strokeDasharray}
               strokeOpacity={1}
               strokeWidth={strokeWidth}
-              tickValues={rowTickValuesResolved}
-              width={innerWidth}
             />
           ) : null}
         </g>
@@ -316,25 +305,57 @@ export function Grid({
           })}
         </g>
       ) : null}
-      {vertical && columnScale && typeof columnScale === "function" && (
+      {vertical && hasColumnScale ? (
         <g mask={fadeVertical ? `url(#${vMaskId})` : undefined}>
-          <GridColumns
-            height={innerHeight}
-            numTicks={columnTickValuesResolved ? undefined : numTicksColumns}
-            scale={columnScale}
+          <GridLines
+            length={innerHeight}
+            orientation="vertical"
+            positions={columnPositions}
             stroke={stroke}
             strokeDasharray={strokeDasharray}
             strokeOpacity={strokeOpacity}
             strokeWidth={strokeWidth}
-            tickValues={columnTickValuesResolved}
           />
         </g>
-      )}
+      ) : null}
     </g>
   );
 }
 
 Grid.displayName = "Grid";
+
+function GridLines({
+  length,
+  orientation,
+  positions,
+  ...lineProps
+}: {
+  length: number;
+  orientation: "horizontal" | "vertical";
+  positions: number[];
+  stroke: string;
+  strokeDasharray: string;
+  strokeOpacity: number;
+  strokeWidth: number;
+}) {
+  const horizontal = orientation === "horizontal";
+  return (
+    <g>
+      {positions.map((position, index) => (
+        <line
+          // biome-ignore lint/suspicious/noArrayIndexKey: positions follow tick order
+          key={index}
+          shapeRendering="crispEdges"
+          x1={horizontal ? 0 : position}
+          x2={horizontal ? length : position}
+          y1={horizontal ? position : 0}
+          y2={horizontal ? position : length}
+          {...lineProps}
+        />
+      ))}
+    </g>
+  );
+}
 
 interface UseGridShimmerOptions {
   /** When false, shimmer animation is paused (e.g. during exit transition). */

@@ -2,8 +2,7 @@
 
 import type { PieData } from "@/registry/charts/pie-chart/pie-context";
 
-import { RadialGradient } from "@visx/gradient";
-
+import { RadialGradient } from "@/registry/charts/chart-gradients/gradients";
 import { PieChart } from "@/registry/charts/pie-chart/pie-chart";
 import { PieSlice } from "@/registry/charts/pie-chart/pie-slice";
 

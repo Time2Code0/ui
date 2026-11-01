@@ -1,6 +1,5 @@
 "use client";
 
-import type { SankeyLink } from "d3-sankey";
 import type { Transition } from "motion/react";
 
 import {
@@ -12,10 +11,15 @@ import {
   useState,
 } from "react";
 
-import { localPoint } from "@visx/event";
-import { sankey, sankeyCenter, sankeyLinkHorizontal } from "@visx/sankey";
 import { cn } from "cn";
+import {
+  type SankeyLink,
+  sankey,
+  sankeyCenter,
+  sankeyLinkHorizontal,
+} from "d3-sankey";
 
+import { localPoint } from "../chart-utils/local-point";
 import { ParentSize } from "../chart-utils/parent-size";
 import { useRevealReplay } from "../chart-utils/use-reveal-replay";
 import {

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { curveLinear } from "@visx/curve";
+import { curveLinear } from "d3-shape";
 
 import { XAxis } from "@/registry/charts/chart-axis/x-axis";
 import { Grid } from "@/registry/charts/chart-grid/grid";

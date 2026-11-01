@@ -2,30 +2,12 @@
 
 import { memo, useEffect } from "react";
 
-import { arc as arcGenerator } from "@visx/shape";
 import { motion, useSpring, useTransform } from "motion/react";
 
+import { arcPath } from "../chart-utils/arc-path";
 import { useEnterComplete } from "../chart-utils/use-enter-complete";
 import { useMountProgress } from "../chart-utils/use-mount-progress";
 import { usePieHover, usePieStable } from "./pie-context";
-
-// Helper to generate arc path using d3 arc generator
-function generateArcPath(
-  innerRadius: number,
-  outerRadius: number,
-  startAngle: number,
-  endAngle: number,
-  cornerRadius: number,
-  padAngle: number
-): string {
-  const generator = arcGenerator<unknown>({
-    cornerRadius,
-    innerRadius,
-    outerRadius,
-    padAngle,
-  });
-  return generator({ endAngle, startAngle } as unknown as null) || "";
-}
 
 // Calculate the translation offset for a slice to "pop out" along its radial axis
 function getSliceOffset(
@@ -128,7 +110,7 @@ function AnimatedSliceTranslate({
     if (currentEndAngle <= startAngle + 0.01) {
       return "";
     }
-    return generateArcPath(
+    return arcPath(
       innerRadius,
       outerRadius,
       startAngle,
@@ -140,7 +122,7 @@ function AnimatedSliceTranslate({
 
   const offset = getSliceOffset(startAngle, endAngle, hoverOffset);
   const glowColor = color;
-  const hitboxPath = generateArcPath(
+  const hitboxPath = arcPath(
     innerRadius,
     outerRadius,
     startAngle,
@@ -265,7 +247,7 @@ function AnimatedSliceGrow({
       if (currentEndAngle <= startAngle + 0.01) {
         return "";
       }
-      return generateArcPath(
+      return arcPath(
         innerRadius,
         currentOuterRadius as number,
         startAngle,
@@ -278,7 +260,7 @@ function AnimatedSliceGrow({
 
   const glowColor = color;
   const grownOuterRadius = isHovered ? outerRadius + hoverOffset : outerRadius;
-  const grownPath = generateArcPath(
+  const grownPath = arcPath(
     innerRadius,
     grownOuterRadius,
     startAngle,
@@ -386,7 +368,7 @@ export const PieSlice = memo(function PieSlice({
   );
 
   // Generate the static hitbox path (always uses base outer radius)
-  const hitboxPath = generateArcPath(
+  const hitboxPath = arcPath(
     innerRadius,
     outerRadius,
     arcData.startAngle,
@@ -397,7 +379,7 @@ export const PieSlice = memo(function PieSlice({
 
   // Generate the visible path for grow effect
   const grownOuterRadius = isHovered ? outerRadius + hoverOffset : outerRadius;
-  const grownPath = generateArcPath(
+  const grownPath = arcPath(
     innerRadius,
     grownOuterRadius,
     arcData.startAngle,

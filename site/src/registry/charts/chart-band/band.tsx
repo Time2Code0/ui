@@ -4,7 +4,7 @@ import type { CurveFactory } from "d3-shape";
 
 import { type ReactNode, useId, useMemo } from "react";
 
-import { curveLinear, curveNatural } from "@visx/curve";
+import { curveLinear, curveNatural } from "d3-shape";
 
 import {
   chartCssVars,

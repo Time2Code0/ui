@@ -1,6 +1,6 @@
 "use client";
 
-import type { scaleLinear, scaleTime } from "@visx/scale";
+import type { ScaleLinear, ScaleTime } from "d3-scale";
 import type {
   BandConfig,
   LineConfig,
@@ -10,9 +10,9 @@ import type {
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { localPoint } from "@visx/event";
 import { bisector } from "d3-array";
 
+import { localPoint } from "../chart-utils/local-point";
 import {
   type ScatterJitterOffsets,
   scatterJitterOffset,
@@ -20,8 +20,6 @@ import {
 import { useScheduledTooltip } from "./use-scheduled-tooltip";
 import { normalizeYAxisId } from "./y-axis-scales";
 
-type ScaleTime = ReturnType<typeof scaleTime<number>>;
-type ScaleLinear = ReturnType<typeof scaleLinear<number>>;
 type Datum = Record<string, unknown>;
 type ChartPointerEvent =
   | React.MouseEvent<SVGGElement>
@@ -48,9 +46,9 @@ interface UseChartInteractionParams {
   lines: LineConfig[];
   margin: Margin;
   xAccessor: (d: Datum) => Date;
-  xScale: ScaleTime;
-  yScale: ScaleLinear;
-  yScales: Record<string, ScaleLinear>;
+  xScale: ScaleTime<number, number>;
+  yScale: ScaleLinear<number, number>;
+  yScales: Record<string, ScaleLinear<number, number>>;
 }
 
 interface ChartInteractionResult {
@@ -85,8 +83,8 @@ function resolveYPositions(
   d: Datum,
   lines: LineConfig[],
   bands: BandConfig[] | undefined,
-  yScales: Record<string, ScaleLinear>,
-  yScale: ScaleLinear
+  yScales: Record<string, ScaleLinear<number, number>>,
+  yScale: ScaleLinear<number, number>
 ): Record<string, number> {
   const yPositions: Record<string, number> = {};
   const place = (key: string, yAxisId: string | number | undefined) => {
@@ -272,7 +270,7 @@ export function useChartInteraction({
         if (!(touch && svg)) {
           return null;
         }
-        point = localPoint(svg, touch as unknown as MouseEvent);
+        point = localPoint(svg, touch);
       } else {
         point = localPoint(event);
       }

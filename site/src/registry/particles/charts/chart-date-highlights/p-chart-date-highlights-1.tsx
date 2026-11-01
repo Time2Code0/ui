@@ -1,6 +1,6 @@
 "use client";
 
-import { curveCatmullRom } from "@visx/curve";
+import { curveCatmullRom } from "d3-shape";
 
 import { XAxis } from "@/registry/charts/chart-axis/x-axis";
 import { Weekends } from "@/registry/charts/chart-date-highlights/weekends";

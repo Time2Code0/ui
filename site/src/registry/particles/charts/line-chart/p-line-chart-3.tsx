@@ -1,6 +1,6 @@
 "use client";
 
-import { curveLinear } from "@visx/curve";
+import { curveLinear } from "d3-shape";
 
 import { Grid } from "@/registry/charts/chart-grid/grid";
 import { ChartTooltip } from "@/registry/charts/chart-tooltip/chart-tooltip";

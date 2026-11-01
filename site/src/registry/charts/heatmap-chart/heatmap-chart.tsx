@@ -15,9 +15,8 @@ import {
   useState,
 } from "react";
 
-import { useParentSize } from "@visx/responsive";
-import { scaleLinear, scaleTime } from "@visx/scale";
 import { cn } from "cn";
+import { scaleLinear, scaleTime } from "d3-scale";
 import { useReducedMotion } from "motion/react";
 
 import {
@@ -28,6 +27,7 @@ import {
 } from "../chart-core/chart-phase";
 import { ChartLoadingLabel } from "../chart-loading/chart-loading-label";
 import { renderPatternPreset } from "../chart-patterns/pattern-preset";
+import { useElementSize } from "../chart-utils/parent-size";
 import {
   HEATMAP_DEFAULT_ENTER_DURATION_MS,
   HEATMAP_DEFAULT_ENTER_TRANSITION,
@@ -351,18 +351,11 @@ function HeatmapChartInner({
 
   const timeXScale = useMemo(() => {
     const domain = timeExtent ?? [new Date(), new Date()];
-    return scaleTime({
-      domain,
-      range: [0, innerWidth],
-    });
+    return scaleTime().domain(domain).range([0, innerWidth]);
   }, [innerWidth, timeExtent]);
 
   const brushYScale = useMemo(
-    () =>
-      scaleLinear({
-        domain: [0, 1],
-        range: [innerHeight, 0],
-      }),
+    () => scaleLinear().domain([0, 1]).range([innerHeight, 0]),
     [innerHeight]
   );
 
@@ -682,10 +675,11 @@ export function HeatmapChart({
       (chartPhase === "loading" || chartPhase === "exitingReady")
   );
 
-  // Measure this container directly: visx 4's <ParentSize> renders children in
-  // an absolutely positioned box, which collapses the content-sized fluid
-  // layout to zero height.
-  const { parentRef, width, height: parentHeight } = useParentSize();
+  // Measure this container directly: <ParentSize> renders children in an
+  // absolutely positioned box, which collapses the content-sized fluid layout
+  // to zero height.
+  const parentRef = useRef<HTMLDivElement>(null);
+  const { width, height: parentHeight } = useElementSize(parentRef);
 
   return (
     <div

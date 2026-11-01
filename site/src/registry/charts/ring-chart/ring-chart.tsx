@@ -13,10 +13,9 @@ import {
   useState,
 } from "react";
 
-import { Group } from "@visx/group";
-import { arc as arcGenerator } from "@visx/shape";
 import { cn } from "cn";
 
+import { arcPath } from "../chart-utils/arc-path";
 import { ParentSize } from "../chart-utils/parent-size";
 import { useRevealReplay } from "../chart-utils/use-reveal-replay";
 import {
@@ -26,21 +25,6 @@ import {
   RingProvider,
   ringCssVars,
 } from "./ring-context";
-
-function generateRingArcPath(
-  innerRadius: number,
-  outerRadius: number,
-  startAngle: number,
-  endAngle: number,
-  cornerRadius: number
-): string {
-  const generator = arcGenerator<unknown>({
-    cornerRadius,
-    innerRadius,
-    outerRadius,
-  });
-  return generator({ endAngle, startAngle } as unknown as null) || "";
-}
 
 export interface RingChartProps {
   /** Animation duration in milliseconds. @default 1100 */
@@ -237,7 +221,7 @@ const RingChartCore = memo(function RingChartCore({
       const progress = ringData.value / ringData.maxValue;
       const progressEndAngle = startAngle + arcRange * progress;
       return {
-        bgPath: generateRingArcPath(
+        bgPath: arcPath(
           innerRadius,
           outerRadius,
           startAngle,
@@ -248,7 +232,7 @@ const RingChartCore = memo(function RingChartCore({
         progressPath:
           progressEndAngle <= startAngle + 0.01
             ? ""
-            : generateRingArcPath(
+            : arcPath(
                 innerRadius,
                 outerRadius,
                 startAngle,
@@ -335,7 +319,7 @@ const RingChartCore = memo(function RingChartCore({
           }}
           width={size}
         >
-          <Group left={center} top={center}>
+          <g transform={`translate(${center}, ${center})`}>
             {scrubRingLayers
               ? scrubRingLayers.map((layer, index) => (
                   <g key={data[index]?.label ?? index}>
@@ -347,7 +331,7 @@ const RingChartCore = memo(function RingChartCore({
                 ))
               : null}
             {svgChildren}
-          </Group>
+          </g>
         </svg>
 
         {/* HTML layer with center content - stacked on top via grid */}

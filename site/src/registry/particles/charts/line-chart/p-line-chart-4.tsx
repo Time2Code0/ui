@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-import { curveCatmullRom } from "@visx/curve";
+import { curveCatmullRom } from "d3-shape";
 
 import { XAxis } from "@/registry/charts/chart-axis/x-axis";
 import { Background } from "@/registry/charts/chart-background/background";

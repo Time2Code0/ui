@@ -1,6 +1,6 @@
 "use client";
 
-import type { scaleBand } from "@visx/scale";
+import type { ScaleBand } from "d3-scale";
 import type { Transition } from "motion/react";
 
 import { memo, useId, useMemo } from "react";
@@ -17,10 +17,6 @@ import { useChartLegendHover } from "../chart-core/legend-hover";
 import { transitionWithDelay } from "../chart-utils/animation";
 import { valueLabelFmt } from "../chart-utils/formatters";
 import { barDepthAndRise, barDepthMaxDepth } from "./bar-depth";
-
-type ScaleBand<Domain extends { toString(): string }> = ReturnType<
-  typeof scaleBand<Domain>
->;
 
 export type BarLineCap = "round" | "butt" | number;
 export type BarAnimationType = "grow" | "fade";

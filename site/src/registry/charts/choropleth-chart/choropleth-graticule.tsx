@@ -2,7 +2,7 @@
 
 import { memo } from "react";
 
-import { Graticule } from "@visx/geo";
+import { geoGraticule } from "d3-geo";
 
 import { useChoroplethStable } from "./choropleth-context";
 
@@ -15,6 +15,11 @@ export interface ChoroplethGraticuleProps {
   strokeWidth?: number;
 }
 
+function graticule(step?: [number, number]) {
+  const generator = geoGraticule();
+  return step ? generator.step(step) : generator;
+}
+
 export const ChoroplethGraticule = memo(function ChoroplethGraticule({
   stroke = "rgba(255,255,255,0.1)",
   strokeWidth = 0.5,
@@ -23,9 +28,9 @@ export const ChoroplethGraticule = memo(function ChoroplethGraticule({
   const { rawPathGenerator } = useChoroplethStable();
 
   return (
-    <Graticule
-      graticule={(g) => rawPathGenerator(g) || ""}
-      step={step}
+    <path
+      d={rawPathGenerator(graticule(step)()) ?? ""}
+      fill="none"
       stroke={stroke}
       strokeWidth={strokeWidth}
     />

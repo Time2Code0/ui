@@ -5,7 +5,7 @@ import type { LoadingStyle } from "../chart-core/chart-phase";
 
 import { useMemo } from "react";
 
-import { curveNatural } from "@visx/curve";
+import { curveNatural } from "d3-shape";
 
 import { Grid } from "../chart-grid/grid";
 import {

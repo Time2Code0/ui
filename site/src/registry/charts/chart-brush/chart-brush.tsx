@@ -1,11 +1,8 @@
 "use client";
 
-import type { Bounds } from "@visx/brush";
 import type React from "react";
 
-import { memo, useCallback, useMemo, useState } from "react";
-
-import { Brush } from "@visx/brush";
+import { memo, useCallback, useMemo, useRef, useState } from "react";
 
 import { chartCssVars, useChartStable } from "../chart-core/chart-context";
 import {
@@ -14,37 +11,7 @@ import {
   type ChartBrushSelectionPattern,
   ChartBrushTrackOverlay,
   type ChartBrushTrackOverlayStyle,
-  renderChartBrushHandle,
 } from "./chart-brush-overlays";
-
-interface BrushProps {
-  brushDirection?: "horizontal" | "vertical" | "both";
-  handleSize?: number;
-  height: number;
-  initialBrushPosition?: {
-    start?: { x?: number; y?: number };
-    end?: { x?: number; y?: number };
-  };
-  margin?: { top: number; left: number; right: number; bottom: number };
-  onBrushEnd?: (bounds: Bounds | null) => void;
-  onChange?: (bounds: Bounds | null) => void;
-  renderBrushHandle?: (props: {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    className: string;
-    isBrushActive: boolean;
-  }) => React.ReactNode;
-  selectedBoxStyle?: React.SVGProps<SVGRectElement>;
-  useWindowMoveEvents?: boolean;
-  width: number;
-  xScale: unknown;
-  yScale: unknown;
-}
-
-const BrushComponent = (() =>
-  Brush)() as unknown as React.ComponentType<BrushProps>;
 
 export interface ChartBrushSelection {
   end: Date;
@@ -54,13 +21,11 @@ export interface ChartBrushSelection {
 export interface ChartBrushProps {
   /** Backdrop blur on dimmed track (0–5 px). @default 1.5 */
   blurPx?: number;
-  /** Brush direction. @default "horizontal" */
-  brushDirection?: "horizontal" | "vertical" | "both";
   /** Fade dimmed regions at the outer track edges. @default true */
   fadeOuterEdges?: boolean;
   /** Initial selection so the brush overlay is visible on load (e.g. first 50% of range). */
   initialSelection?: ChartBrushSelection | null;
-  /** Callback when brush selection ends. Domain is the selected time range. */
+  /** Callback while the selection changes and when it ends. Domain is the selected time range. */
   onSelectionChange?: (domain: ChartBrushSelection | null) => void;
   /** Fill style for the selected region. Defaults to the chart segment style. */
   selectedBoxStyle?: React.SVGProps<SVGRectElement>;
@@ -68,156 +33,255 @@ export interface ChartBrushProps {
   selection?: ChartBrushSelection | null;
   /** Optional pattern overlay inside the brush selection window. */
   selectionPattern?: ChartBrushSelectionPattern;
-  /**
-   * Use window move events for brush (can fix coordinate offset when SVG is in transformed container).
-   * @default true
-   */
-  useWindowMoveEvents?: boolean;
+}
+
+type XScale = ReturnType<typeof useChartStable>["xScale"];
+
+/** Selection in plot pixels (`x0 <= x1`). */
+interface PixelExtent {
+  x0: number;
+  x1: number;
+}
+
+/** What a drag does: draw a new selection, move it, or resize one edge. */
+type BrushDragMode = "select" | "move" | "left" | "right";
+
+interface BrushDrag {
+  mode: BrushDragMode;
+  /** Client x at pointer down; moves are measured from here. */
+  originClientX: number;
+  /** Pointer x (plot px) at pointer down. */
+  originX: number;
+  /** Selection at pointer down (`null` while drawing a new one). */
+  start: PixelExtent | null;
+}
+
+/** Width of the invisible resize hit areas on each selection edge. */
+const HANDLE_SIZE = 8;
+/** The selection is widened by this many px on each side before inverting. */
+const SAFE_PIXEL = 2;
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
+/** Selected time range for a pixel extent; `null` when it has no width. */
+function extentToSelection(
+  extent: PixelExtent | null,
+  xScale: XScale
+): ChartBrushSelection | null {
+  if (!extent || extent.x1 <= extent.x0) {
+    return null;
+  }
+  return {
+    end: xScale.invert(extent.x1 + SAFE_PIXEL),
+    start: xScale.invert(extent.x0 - SAFE_PIXEL),
+  };
+}
+
+/** Pixel extent of a selection, clamped to the plot; `null` when empty. */
+function selectionToExtent(
+  selection: ChartBrushSelection | null | undefined,
+  xScale: XScale,
+  innerWidth: number
+): PixelExtent | null {
+  if (!selection) {
+    return null;
+  }
+  const x0 = Math.max(0, xScale(selection.start) ?? 0);
+  const x1 = Math.min(innerWidth, xScale(selection.end) ?? innerWidth);
+  return x1 > x0 ? { x0, x1 } : null;
+}
+
+/** Selection after the pointer moved `dx` px since pointer down. */
+function dragExtent(
+  { mode, originX, start }: BrushDrag,
+  dx: number,
+  width: number
+): PixelExtent | null {
+  if (mode === "select" || !start) {
+    const end = clamp(originX + dx, 0, width);
+    return { x0: Math.min(originX, end), x1: Math.max(originX, end) };
+  }
+  if (mode === "move") {
+    const offset = clamp(dx, -start.x0, width - start.x1);
+    return { x0: start.x0 + offset, x1: start.x1 + offset };
+  }
+  const edge = clamp((mode === "left" ? start.x0 : start.x1) + dx, 0, width);
+  const other = mode === "left" ? start.x1 : start.x0;
+  return { x0: Math.min(edge, other), x1: Math.max(edge, other) };
+}
+
+interface BrushInteractionProps {
+  height: number;
+  initialExtent: PixelExtent | null;
+  onChange: (extent: PixelExtent | null) => void;
+  selectedBoxStyle: React.SVGProps<SVGRectElement>;
+  width: number;
+}
+
+/**
+ * Pointer handling for the brush track: drag the empty track to draw a
+ * selection, drag the selection to move it, drag its edges to resize it, and
+ * click the track to clear it. Reports every change in plot pixels; the
+ * visible chrome comes from the overlays.
+ */
+function BrushInteraction({
+  height,
+  initialExtent,
+  onChange,
+  selectedBoxStyle,
+  width,
+}: BrushInteractionProps) {
+  const [extent, setExtent] = useState(initialExtent);
+  const extentRef = useRef(initialExtent);
+  const dragRef = useRef<BrushDrag | null>(null);
+
+  const update = useCallback(
+    (next: PixelExtent | null) => {
+      extentRef.current = next;
+      setExtent(next);
+      onChange(next);
+    },
+    [onChange]
+  );
+
+  const startDrag =
+    (mode: BrushDragMode) => (event: React.PointerEvent<SVGRectElement>) => {
+      if (event.button !== 0) {
+        return;
+      }
+      const target = event.currentTarget;
+      target.setPointerCapture(event.pointerId);
+      const isSelect = mode === "select";
+      dragRef.current = {
+        mode,
+        originClientX: event.clientX,
+        // Only the track rect spans the plot, so only it maps to plot px.
+        originX: isSelect
+          ? event.clientX - target.getBoundingClientRect().left
+          : 0,
+        start: isSelect ? null : extentRef.current,
+      };
+      if (isSelect) {
+        update(null);
+      }
+    };
+
+  const handlePointerMove = useCallback(
+    (event: React.PointerEvent<SVGGElement>) => {
+      const drag = dragRef.current;
+      if (drag) {
+        update(dragExtent(drag, event.clientX - drag.originClientX, width));
+      }
+    },
+    [update, width]
+  );
+
+  const endDrag = useCallback(() => {
+    if (dragRef.current) {
+      dragRef.current = null;
+      // Commit: a click on the track without a drag clears the selection.
+      onChange(extentRef.current);
+    }
+  }, [onChange]);
+
+  return (
+    <g
+      onLostPointerCapture={endDrag}
+      onPointerMove={handlePointerMove}
+      onPointerUp={endDrag}
+    >
+      <rect
+        fill="transparent"
+        height={height}
+        onPointerDown={startDrag("select")}
+        style={{ cursor: "crosshair" }}
+        width={width}
+      />
+      {extent ? (
+        <>
+          <rect
+            fill="transparent"
+            height={height}
+            onPointerDown={startDrag("move")}
+            width={extent.x1 - extent.x0}
+            x={extent.x0}
+            {...selectedBoxStyle}
+            style={{ cursor: "move", ...selectedBoxStyle.style }}
+          />
+          {(["right", "left"] as const).map((edge) => (
+            <rect
+              fill="transparent"
+              height={height}
+              key={edge}
+              onPointerDown={startDrag(edge)}
+              style={{ cursor: "ew-resize" }}
+              width={HANDLE_SIZE}
+              x={(edge === "left" ? extent.x0 : extent.x1) - HANDLE_SIZE / 2}
+              y={-HANDLE_SIZE / 2}
+            />
+          ))}
+        </>
+      ) : null}
+    </g>
+  );
 }
 
 interface ChartBrushInnerProps extends ChartBrushTrackOverlayStyle {
-  brushDirection?: ChartBrushProps["brushDirection"];
   initialSelection?: ChartBrushProps["initialSelection"];
   innerHeight: number;
   innerWidth: number;
-  margin: ReturnType<typeof useChartStable>["margin"];
-  onBrushCommit: (bounds: Bounds | null) => void;
-  onBrushPreview?: (bounds: Bounds | null) => void;
+  onSelectionChange?: ChartBrushProps["onSelectionChange"];
   selectedBoxStyle?: ChartBrushProps["selectedBoxStyle"];
   selectionPattern?: ChartBrushSelectionPattern;
-  useWindowMoveEvents?: ChartBrushProps["useWindowMoveEvents"];
-  xScale: ReturnType<typeof useChartStable>["xScale"];
-  yScale: ReturnType<typeof useChartStable>["yScale"];
-}
-
-function toDate(value: number | Date | unknown): Date {
-  if (value instanceof Date) {
-    return value;
-  }
-  if (typeof value === "number") {
-    return new Date(value);
-  }
-  return new Date(Number(value));
-}
-
-function boundsToPixelExtent(
-  bounds: Bounds | null,
-  xScale: ReturnType<typeof useChartStable>["xScale"],
-  innerWidth: number
-): { x0: number; x1: number } | null {
-  if (
-    !bounds ||
-    typeof bounds.x0 === "undefined" ||
-    typeof bounds.x1 === "undefined"
-  ) {
-    return null;
-  }
-
-  const start = toDate(bounds.x0);
-  const end = toDate(bounds.x1);
-  const xScaleFn = xScale as (d: Date) => number;
-  const x0 = Math.max(0, xScaleFn(start < end ? start : end) ?? 0);
-  const x1 = Math.min(
-    innerWidth,
-    xScaleFn(end > start ? end : start) ?? innerWidth
-  );
-
-  if (x1 <= x0) {
-    return null;
-  }
-
-  return { x0, x1 };
+  xScale: XScale;
 }
 
 const ChartBrushInner = memo(function ChartBrushInner({
-  brushDirection = "horizontal",
   selectedBoxStyle,
   initialSelection,
-  useWindowMoveEvents = true,
   xScale,
-  yScale,
   innerWidth,
   innerHeight,
-  margin,
-  onBrushPreview,
-  onBrushCommit,
+  onSelectionChange,
   blurPx,
   fadeOuterEdges,
   selectionPattern,
 }: ChartBrushInnerProps) {
-  const initialBrushPosition = useMemo(() => {
-    if (!initialSelection || innerWidth <= 0 || innerHeight <= 0) {
-      return;
-    }
-    const xScaleFn = xScale as (d: Date) => number;
-    const x0 = Math.max(0, xScaleFn(initialSelection.start) ?? 0);
-    const x1 = Math.min(
-      innerWidth,
-      xScaleFn(initialSelection.end) ?? innerWidth
-    );
-    if (x1 <= x0) {
-      return;
-    }
-    return {
-      end: { x: x1, y: innerHeight },
-      start: { x: x0, y: 0 },
-    };
-  }, [initialSelection, xScale, innerWidth, innerHeight]);
+  const initialExtent = useMemo(
+    () => selectionToExtent(initialSelection, xScale, innerWidth),
+    [initialSelection, xScale, innerWidth]
+  );
+  const fullExtent = { x0: 0, x1: innerWidth };
 
-  const [pixelExtent, setPixelExtent] = useState(() => ({
-    x0: initialBrushPosition?.start.x ?? 0,
-    x1: initialBrushPosition?.end.x ?? innerWidth,
-  }));
+  const [pixelExtent, setPixelExtent] = useState(initialExtent ?? fullExtent);
 
   // Reset the extent when the initial selection / width change — adjusted
   // during render ("store previous props in state"), not setState in an effect.
   const [extentSource, setExtentSource] = useState({
-    initialBrushPosition,
+    initialExtent,
     innerWidth,
   });
   if (
-    extentSource.initialBrushPosition !== initialBrushPosition ||
+    extentSource.initialExtent !== initialExtent ||
     extentSource.innerWidth !== innerWidth
   ) {
-    setExtentSource({ initialBrushPosition, innerWidth });
-    setPixelExtent({
-      x0: initialBrushPosition?.start.x ?? 0,
-      x1: initialBrushPosition?.end.x ?? innerWidth,
-    });
+    setExtentSource({ initialExtent, innerWidth });
+    setPixelExtent(initialExtent ?? fullExtent);
   }
 
-  const updatePixelExtent = useCallback(
-    (bounds: Bounds | null) => {
-      const pixels = boundsToPixelExtent(bounds, xScale, innerWidth);
+  const handleChange = useCallback(
+    (extent: PixelExtent | null) => {
+      const selection = extentToSelection(extent, xScale);
+      const pixels = selectionToExtent(selection, xScale, innerWidth);
       if (pixels) {
         setPixelExtent(pixels);
       }
+      onSelectionChange?.(selection);
     },
-    [innerWidth, xScale]
+    [innerWidth, onSelectionChange, xScale]
   );
-
-  const handleBrushPreview = useCallback(
-    (bounds: Bounds | null) => {
-      updatePixelExtent(bounds);
-      onBrushPreview?.(bounds);
-    },
-    [onBrushPreview, updatePixelExtent]
-  );
-
-  const handleBrushCommit = useCallback(
-    (bounds: Bounds | null) => {
-      updatePixelExtent(bounds);
-      onBrushCommit(bounds);
-    },
-    [onBrushCommit, updatePixelExtent]
-  );
-
-  const defaultStyle = {
-    fill: "transparent",
-    fillOpacity: 0,
-    stroke: chartCssVars.brushBorder,
-    strokeWidth: 1,
-  };
 
   return (
     <g className="chart-brush">
@@ -242,25 +306,19 @@ const ChartBrushInner = memo(function ChartBrushInner({
         selectionX0={pixelExtent.x0}
         selectionX1={pixelExtent.x1}
       />
-      <BrushComponent
-        brushDirection={brushDirection}
-        handleSize={8}
+      <BrushInteraction
         height={innerHeight}
-        initialBrushPosition={initialBrushPosition}
+        initialExtent={initialExtent}
         key={`brush-${innerWidth}-${innerHeight}`}
-        margin={
-          useWindowMoveEvents
-            ? margin
-            : { bottom: 0, left: 0, right: 0, top: 0 }
+        onChange={handleChange}
+        selectedBoxStyle={
+          selectedBoxStyle ?? {
+            fillOpacity: 0,
+            stroke: chartCssVars.brushBorder,
+            strokeWidth: 1,
+          }
         }
-        onBrushEnd={handleBrushCommit}
-        onChange={handleBrushPreview}
-        renderBrushHandle={renderChartBrushHandle}
-        selectedBoxStyle={selectedBoxStyle ?? defaultStyle}
-        useWindowMoveEvents={useWindowMoveEvents}
         width={innerWidth}
-        xScale={xScale}
-        yScale={yScale}
       />
     </g>
   );
@@ -268,63 +326,14 @@ const ChartBrushInner = memo(function ChartBrushInner({
 
 export function ChartBrush({
   onSelectionChange,
-  brushDirection = "horizontal",
   selectedBoxStyle,
   initialSelection,
   selection: _selection,
-  useWindowMoveEvents = true,
   blurPx,
   fadeOuterEdges,
   selectionPattern,
 }: ChartBrushProps) {
-  const { xScale, yScale, innerWidth, innerHeight, margin, isLoaded } =
-    useChartStable();
-
-  const boundsToSelection = useCallback(
-    (bounds: Bounds | null): ChartBrushSelection | null => {
-      if (
-        !bounds ||
-        typeof bounds.x0 === "undefined" ||
-        typeof bounds.x1 === "undefined"
-      ) {
-        return null;
-      }
-      const start = toDate(bounds.x0);
-      const end = toDate(bounds.x1);
-      if (start.getTime() === end.getTime()) {
-        return null;
-      }
-      return {
-        end: end > start ? end : start,
-        start: start < end ? start : end,
-      };
-    },
-    []
-  );
-
-  const notifySelectionChange = useCallback(
-    (bounds: Bounds | null) => {
-      if (!onSelectionChange) {
-        return;
-      }
-      onSelectionChange(boundsToSelection(bounds));
-    },
-    [onSelectionChange, boundsToSelection]
-  );
-
-  const handleBrushPreview = useCallback(
-    (bounds: Bounds | null) => {
-      notifySelectionChange(bounds);
-    },
-    [notifySelectionChange]
-  );
-
-  const handleBrushCommit = useCallback(
-    (bounds: Bounds | null) => {
-      notifySelectionChange(bounds);
-    },
-    [notifySelectionChange]
-  );
+  const { xScale, innerWidth, innerHeight, isLoaded } = useChartStable();
 
   if (!isLoaded || innerWidth <= 0 || innerHeight <= 0) {
     return null;
@@ -333,19 +342,14 @@ export function ChartBrush({
   return (
     <ChartBrushInner
       blurPx={blurPx}
-      brushDirection={brushDirection}
       fadeOuterEdges={fadeOuterEdges}
       initialSelection={initialSelection}
       innerHeight={innerHeight}
       innerWidth={innerWidth}
-      margin={margin}
-      onBrushCommit={handleBrushCommit}
-      onBrushPreview={handleBrushPreview}
+      onSelectionChange={onSelectionChange}
       selectedBoxStyle={selectedBoxStyle}
       selectionPattern={selectionPattern}
-      useWindowMoveEvents={useWindowMoveEvents}
       xScale={xScale}
-      yScale={yScale}
     />
   );
 }

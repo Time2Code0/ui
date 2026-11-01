@@ -733,7 +733,7 @@ export function Gauge({
 
     return (
       <div className={cn("relative w-full min-w-0 max-w-full", className)}>
-        {/* Explicit height: visx 4's <ParentSize> renders children absolutely,
+        {/* Explicit height: <ParentSize> renders children absolutely,
             so a content-sized wrapper would collapse to zero height. */}
         <div
           className="w-full min-w-0"

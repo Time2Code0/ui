@@ -171,6 +171,7 @@ function BarHorizontalLineIndicator({ data, dataKeys }) {
 Add the custom indicator as a child of your chart component. You can use gradients and patterns for different series:
 
 ```tsx
+import { LinearGradient } from "@/components/charts/chart-gradients/gradients"
 import { PatternLines } from "@/components/charts/chart-patterns/visx-pattern"
 
 ;<BarChart data={data} xDataKey="month" barGap={0}>

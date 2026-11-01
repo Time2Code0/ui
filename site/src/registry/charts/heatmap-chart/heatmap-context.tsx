@@ -1,6 +1,6 @@
 "use client";
 
-import type { scaleLinear, scaleTime } from "@visx/scale";
+import type { ScaleLinear, ScaleTime } from "d3-scale";
 import type { Transition } from "motion/react";
 import type { Margin } from "../chart-core/chart-context";
 import type { ChartPhase, ChartStatus } from "../chart-core/chart-phase";
@@ -24,8 +24,8 @@ import {
 
 import { cn } from "cn";
 
-type HeatmapTimeScale = ReturnType<typeof scaleTime<number>>;
-type HeatmapLinearScale = ReturnType<typeof scaleLinear<number>>;
+type HeatmapTimeScale = ScaleTime<number, number>;
+type HeatmapLinearScale = ScaleLinear<number, number>;
 
 export interface HeatmapBin {
   bin: number;

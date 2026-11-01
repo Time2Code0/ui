@@ -14,9 +14,9 @@ import {
   useState,
 } from "react";
 
-import { scaleLinear, scaleTime } from "@visx/scale";
 import { cn } from "cn";
 import { extent } from "d3-array";
+import { scaleLinear, scaleTime } from "d3-scale";
 
 import {
   type BandConfig,
@@ -269,10 +269,7 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
       maxTime = mergeProjectionXDomainMax(maxTime, projectionConfigs);
     }
 
-    return scaleTime({
-      domain: [minTime, maxTime],
-      range: [0, innerWidth],
-    });
+    return scaleTime().domain([minTime, maxTime]).range([0, innerWidth]);
   }, [innerWidth, plotData, projectionConfigs, xAccessor, xDomain]);
 
   // When brushing, keep the full series for path rendering so edge fades stay
@@ -379,7 +376,7 @@ const TimeSeriesChartCore = memo(function TimeSeriesChartCore({
 
   const yScale = getPrimaryYScale(
     yScales,
-    scaleLinear({ domain: [0, 100], nice: true, range: [innerHeight, 0] })
+    scaleLinear().domain([0, 100]).nice().range([innerHeight, 0])
   );
 
   const dateLabels = useMemo(

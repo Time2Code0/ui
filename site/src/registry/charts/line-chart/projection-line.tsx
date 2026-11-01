@@ -1,13 +1,11 @@
 "use client";
 
-import type { CurveFactory } from "d3-shape";
-
 import { useCallback, useId, useMemo } from "react";
 
-import { curveLinear } from "@visx/curve";
-import { LinePath } from "@visx/shape";
+import { type CurveFactory, curveLinear } from "d3-shape";
 
 import { useChartStable, useYScale } from "../chart-core/chart-context";
+import { linePath } from "../chart-core/line-path";
 import {
   buildHorizontalTangentBezierPath,
   type ProjectionCurveKind,
@@ -82,21 +80,15 @@ function renderProjectionStroke({
     strokeWidth: number;
   };
 }) {
+  let d: string;
   if (curveKind === "bezier" && bezierPath) {
-    return <path d={bezierPath} fill="none" {...strokeProps} />;
+    d = bezierPath;
+  } else if (curveKind === "linear" && linearPath) {
+    d = linearPath;
+  } else {
+    d = linePath(data, { curve: curve ?? curveLinear, x: getX, y: getY });
   }
-  if (curveKind === "linear" && linearPath) {
-    return <path d={linearPath} fill="none" {...strokeProps} />;
-  }
-  return (
-    <LinePath
-      curve={curve ?? curveLinear}
-      data={data}
-      {...strokeProps}
-      x={getX}
-      y={getY}
-    />
-  );
+  return <path d={d} fill="none" {...strokeProps} />;
 }
 
 export function ProjectionLine({

@@ -1,13 +1,11 @@
 "use client";
 
-import type { CurveFactory } from "d3-shape";
 import type { LoadingStyle } from "../chart-core/chart-phase";
 import type { SeriesPointMarkerStyle } from "../chart-series-markers/series-point-marker";
 
 import { type RefObject, useCallback, useId, useMemo, useRef } from "react";
 
-import { curveNatural } from "@visx/curve";
-import { LinePath } from "@visx/shape";
+import { type CurveFactory, curveNatural } from "d3-shape";
 
 import {
   chartCssVars,
@@ -15,6 +13,7 @@ import {
   useYScale,
 } from "../chart-core/chart-context";
 import { isSeriesContentPhase } from "../chart-core/chart-phase";
+import { linePath } from "../chart-core/line-path";
 import {
   resolveDashTailBounds,
   SeriesDashTailOverlay,
@@ -114,29 +113,23 @@ function LineSeriesStroke({
   xAccessor: (datum: Record<string, unknown>) => Date;
   xScale: (value: Date) => number | undefined;
 }) {
-  if (useDataTransitionPath && animatedPathD) {
-    return (
-      <path
-        d={animatedPathD}
-        fill="none"
-        ref={pathRef}
-        stroke={visibleStroke}
-        strokeLinecap="round"
-        strokeWidth={strokeWidth}
-      />
-    );
-  }
+  const d =
+    useDataTransitionPath && animatedPathD
+      ? animatedPathD
+      : linePath(renderData, {
+          curve,
+          x: (datum) => xScale(xAccessor(datum)) ?? 0,
+          y: getY,
+        });
 
   return (
-    <LinePath
-      curve={curve}
-      data={renderData}
-      innerRef={pathRef}
+    <path
+      d={d}
+      fill="none"
+      ref={pathRef}
       stroke={visibleStroke}
       strokeLinecap="round"
       strokeWidth={strokeWidth}
-      x={(d) => xScale(xAccessor(d)) ?? 0}
-      y={getY}
     />
   );
 }

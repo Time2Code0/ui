@@ -226,6 +226,14 @@ export const Index = {
       ) || "chart-date-highlights";
     return { default: mod.default || mod[exportName] };
   }),
+  "chart-gradients": lazy(async () => {
+    const mod = await import("@/registry/charts/chart-gradients/gradients");
+    const exportName =
+      Object.keys(mod).find(
+        (key) => typeof mod[key] === "function" || typeof mod[key] === "object"
+      ) || "chart-gradients";
+    return { default: mod.default || mod[exportName] };
+  }),
   "chart-grid": lazy(async () => {
     const mod = await import("@/registry/charts/chart-grid/grid");
     const exportName =

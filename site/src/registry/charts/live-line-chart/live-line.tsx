@@ -1,17 +1,12 @@
 "use client";
 
-import { curveMonotoneX } from "@visx/curve";
-import { AreaClosed, type AreaClosedProps, LinePath } from "@visx/shape";
-
-// Curve factory type via @visx/shape (already a dependency) rather than
-// importing from d3-shape, which this registry item does not install.
-type CurveFactory = NonNullable<AreaClosedProps<unknown>["curve"]>;
-
 import { useCallback, useId, useMemo } from "react";
 
+import { type CurveFactory, curveMonotoneX } from "d3-shape";
 import { motion } from "motion/react";
 
 import { chartCssVars, useChart } from "../chart-core/chart-context";
+import { areaPath, linePath } from "../chart-core/line-path";
 
 export type Momentum = "up" | "down" | "flat";
 
@@ -203,14 +198,10 @@ export function LiveLine({
       {/* Area fill */}
       {fill && data.length > 1 && (
         <g mask={`url(#${fadeMaskId})`}>
-          <AreaClosed
-            curve={curve}
-            data={data}
+          <path
+            d={areaPath(data, { curve, x: getX, y: getY, yScale })}
             fill={`url(#${areaGradientId})`}
             strokeWidth={0}
-            x={getX}
-            y={getY}
-            yScale={yScale}
           />
         </g>
       )}
@@ -218,15 +209,13 @@ export function LiveLine({
       {/* Line */}
       {data.length > 1 && (
         <g mask={`url(#${fadeMaskId})`}>
-          <LinePath
-            curve={curve}
-            data={data}
+          <path
+            d={linePath(data, { curve, x: getX, y: getY })}
+            fill="none"
             stroke={`url(#${gradientId})`}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={strokeWidth}
-            x={getX}
-            y={getY}
           />
         </g>
       )}
