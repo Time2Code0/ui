@@ -208,7 +208,10 @@
       "title": "Highlight Dots",
       "description": "A pointer-reactive field of highlighted dots.",
       "dependencies": ["cn", "motion"],
-      "registryDependencies": ["@time2code/pattern", "@time2code/use-mouse-position"],
+      "registryDependencies": [
+        "@time2code/pattern",
+        "@time2code/use-mouse-position"
+      ],
       "files": [
         {
           "path": "highlight-dots.tsx",
@@ -256,7 +259,10 @@
         "cn",
         "motion"
       ],
-      "registryDependencies": ["@time2code/portal", "@time2code/use-event-listener"],
+      "registryDependencies": [
+        "@time2code/portal",
+        "@time2code/use-event-listener"
+      ],
       "files": [
         {
           "path": "image-zoom.tsx",

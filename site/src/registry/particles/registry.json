@@ -70,7 +70,11 @@
       "description": "Alert with icon and action buttons",
       "categories": ["alert"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/alert", "@time2code/button", "@time2code/icon"],
+      "registryDependencies": [
+        "@time2code/alert",
+        "@time2code/button",
+        "@time2code/icon"
+      ],
       "files": [{ "path": "alert/p-alert-3.tsx", "type": "registry:block" }],
       "meta": { "className": "w-full" }
     },
@@ -120,7 +124,11 @@
       "description": "Alert frame with footer and action",
       "categories": ["alert"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/alert", "@time2code/button", "@time2code/icon"],
+      "registryDependencies": [
+        "@time2code/alert",
+        "@time2code/button",
+        "@time2code/icon"
+      ],
       "files": [{ "path": "alert/p-alert-8.tsx", "type": "registry:block" }],
       "meta": { "className": "w-full max-w-xl" }
     },
@@ -176,7 +184,10 @@
       "type": "registry:block",
       "description": "Container animating height between tabs",
       "categories": ["animated-size-container"],
-      "registryDependencies": ["@time2code/animated-size-container", "@time2code/tabs"],
+      "registryDependencies": [
+        "@time2code/animated-size-container",
+        "@time2code/tabs"
+      ],
       "files": [
         {
           "path": "animated-size-container/p-animated-size-container-1.tsx",
@@ -694,7 +705,11 @@
       "type": "registry:block",
       "description": "Breadcrumb with menu example",
       "categories": ["breadcrumb", "dropdown", "menu"],
-      "registryDependencies": ["@time2code/breadcrumb", "@time2code/button", "@time2code/menu"],
+      "registryDependencies": [
+        "@time2code/breadcrumb",
+        "@time2code/button",
+        "@time2code/menu"
+      ],
       "files": [
         { "path": "breadcrumb/p-breadcrumb-1.tsx", "type": "registry:block" }
       ]
@@ -999,7 +1014,12 @@
       "type": "registry:block",
       "description": "Checkbox form",
       "categories": ["checkbox", "form"],
-      "registryDependencies": ["@time2code/button", "@time2code/checkbox", "@time2code/field", "@time2code/form-baseui"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/checkbox",
+        "@time2code/field",
+        "@time2code/form-baseui"
+      ],
       "files": [
         { "path": "checkbox/p-checkbox-5.tsx", "type": "registry:block" }
       ]
@@ -1009,7 +1029,11 @@
       "type": "registry:block",
       "description": "Basic checkbox group",
       "categories": ["checkbox", "checkbox group"],
-      "registryDependencies": ["@time2code/checkbox", "@time2code/checkbox-group", "@time2code/label"],
+      "registryDependencies": [
+        "@time2code/checkbox",
+        "@time2code/checkbox-group",
+        "@time2code/label"
+      ],
       "files": [
         {
           "path": "checkbox-group/p-checkbox-group-1.tsx",
@@ -1022,7 +1046,11 @@
       "type": "registry:block",
       "description": "Checkbox group with disabled items",
       "categories": ["checkbox", "checkbox group", "disabled"],
-      "registryDependencies": ["@time2code/checkbox", "@time2code/checkbox-group", "@time2code/label"],
+      "registryDependencies": [
+        "@time2code/checkbox",
+        "@time2code/checkbox-group",
+        "@time2code/label"
+      ],
       "files": [
         {
           "path": "checkbox-group/p-checkbox-group-2.tsx",
@@ -1035,7 +1063,11 @@
       "type": "registry:block",
       "description": "Checkbox group with parent checkbox",
       "categories": ["checkbox", "checkbox group"],
-      "registryDependencies": ["@time2code/checkbox", "@time2code/checkbox-group", "@time2code/label"],
+      "registryDependencies": [
+        "@time2code/checkbox",
+        "@time2code/checkbox-group",
+        "@time2code/label"
+      ],
       "files": [
         {
           "path": "checkbox-group/p-checkbox-group-3.tsx",
@@ -1048,7 +1080,11 @@
       "type": "registry:block",
       "description": "Nested checkbox group with parent",
       "categories": ["checkbox", "checkbox group"],
-      "registryDependencies": ["@time2code/checkbox", "@time2code/checkbox-group", "@time2code/label"],
+      "registryDependencies": [
+        "@time2code/checkbox",
+        "@time2code/checkbox-group",
+        "@time2code/label"
+      ],
       "files": [
         {
           "path": "checkbox-group/p-checkbox-group-4.tsx",
@@ -1134,7 +1170,11 @@
       "type": "registry:block",
       "description": "Color picker with opacity",
       "categories": ["color picker", "card", "field"],
-      "registryDependencies": ["@time2code/card", "@time2code/color-picker", "@time2code/field"],
+      "registryDependencies": [
+        "@time2code/card",
+        "@time2code/color-picker",
+        "@time2code/field"
+      ],
       "files": [
         {
           "path": "color-picker/p-color-picker-4.tsx",
@@ -1212,7 +1252,10 @@
       "type": "registry:block",
       "description": "RGB channel sliders",
       "categories": ["color picker", "input group"],
-      "registryDependencies": ["@time2code/color-picker", "@time2code/input-group"],
+      "registryDependencies": [
+        "@time2code/color-picker",
+        "@time2code/input-group"
+      ],
       "files": [
         {
           "path": "color-picker/p-color-picker-8.tsx",
@@ -1226,7 +1269,11 @@
       "type": "registry:block",
       "description": "Color picker in a form",
       "categories": ["color picker", "button", "field", "form"],
-      "registryDependencies": ["@time2code/button", "@time2code/color-picker", "@time2code/field"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/color-picker",
+        "@time2code/field"
+      ],
       "files": [
         {
           "path": "color-picker/p-color-picker-9.tsx",
@@ -1240,7 +1287,11 @@
       "type": "registry:block",
       "description": "Contrast checker",
       "categories": ["color picker", "badge", "field"],
-      "registryDependencies": ["@time2code/badge", "@time2code/color-picker", "@time2code/field"],
+      "registryDependencies": [
+        "@time2code/badge",
+        "@time2code/color-picker",
+        "@time2code/field"
+      ],
       "files": [
         {
           "path": "color-picker/p-color-picker-10.tsx",
@@ -1354,7 +1405,11 @@
       "description": "Combobox with input inside popup",
       "categories": ["combobox", "input"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/combobox", "@time2code/icon"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/combobox",
+        "@time2code/icon"
+      ],
       "files": [
         { "path": "combobox/p-combobox-10.tsx", "type": "registry:block" }
       ],
@@ -1365,7 +1420,12 @@
       "type": "registry:block",
       "description": "Combobox form",
       "categories": ["combobox", "form", "input"],
-      "registryDependencies": ["@time2code/button", "@time2code/combobox", "@time2code/field", "@time2code/form-baseui"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/combobox",
+        "@time2code/field",
+        "@time2code/form-baseui"
+      ],
       "files": [
         { "path": "combobox/p-combobox-11.tsx", "type": "registry:block" }
       ],
@@ -1376,7 +1436,12 @@
       "type": "registry:block",
       "description": "Combobox multiple form",
       "categories": ["combobox", "form", "input"],
-      "registryDependencies": ["@time2code/button", "@time2code/combobox", "@time2code/field", "@time2code/form-baseui"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/combobox",
+        "@time2code/field",
+        "@time2code/form-baseui"
+      ],
       "files": [
         { "path": "combobox/p-combobox-12.tsx", "type": "registry:block" }
       ],
@@ -1412,7 +1477,11 @@
       "description": "Combobox with select trigger",
       "categories": ["combobox", "select"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/combobox", "@time2code/icon", "@time2code/select"],
+      "registryDependencies": [
+        "@time2code/combobox",
+        "@time2code/icon",
+        "@time2code/select"
+      ],
       "files": [
         { "path": "combobox/p-combobox-18.tsx", "type": "registry:block" }
       ],
@@ -1424,7 +1493,12 @@
       "description": "Command palette with dialog",
       "categories": ["command", "dialog"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/command", "@time2code/icon", "@time2code/kbd"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/command",
+        "@time2code/icon",
+        "@time2code/kbd"
+      ],
       "files": [{ "path": "command/p-command-1.tsx", "type": "registry:block" }]
     },
     {
@@ -1565,7 +1639,12 @@
       "description": "Basic date picker",
       "categories": ["date picker", "calendar", "popover", "button"],
       "dependencies": ["@hugeicons/core-free-icons", "date-fns"],
-      "registryDependencies": ["@time2code/button", "@time2code/calendar", "@time2code/icon", "@time2code/popover"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/calendar",
+        "@time2code/icon",
+        "@time2code/popover"
+      ],
       "files": [
         { "path": "date-picker/p-date-picker-1.tsx", "type": "registry:block" }
       ],
@@ -1581,7 +1660,12 @@
         "@hugeicons/core-free-icons",
         "date-fns"
       ],
-      "registryDependencies": ["@time2code/button", "@time2code/calendar", "@time2code/icon", "@time2code/popover"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/calendar",
+        "@time2code/icon",
+        "@time2code/popover"
+      ],
       "files": [
         { "path": "date-picker/p-date-picker-2.tsx", "type": "registry:block" }
       ],
@@ -1623,7 +1707,12 @@
       "description": "Date picker with presets",
       "categories": ["date picker", "calendar", "popover", "button"],
       "dependencies": ["@hugeicons/core-free-icons", "date-fns"],
-      "registryDependencies": ["@time2code/button", "@time2code/calendar", "@time2code/icon", "@time2code/popover"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/calendar",
+        "@time2code/icon",
+        "@time2code/popover"
+      ],
       "files": [
         { "path": "date-picker/p-date-picker-4.tsx", "type": "registry:block" }
       ],
@@ -1653,7 +1742,12 @@
       "description": "Date picker that closes on select",
       "categories": ["date picker", "calendar", "popover", "button"],
       "dependencies": ["@hugeicons/core-free-icons", "date-fns"],
-      "registryDependencies": ["@time2code/button", "@time2code/calendar", "@time2code/icon", "@time2code/popover"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/calendar",
+        "@time2code/icon",
+        "@time2code/popover"
+      ],
       "files": [
         { "path": "date-picker/p-date-picker-6.tsx", "type": "registry:block" }
       ],
@@ -1678,7 +1772,11 @@
       "type": "registry:block",
       "description": "Dialog opened from menu",
       "categories": ["dialog", "dropdown", "menu"],
-      "registryDependencies": ["@time2code/button", "@time2code/dialog", "@time2code/menu"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/dialog",
+        "@time2code/menu"
+      ],
       "files": [{ "path": "dialog/p-dialog-2.tsx", "type": "registry:block" }]
     },
     {
@@ -1686,7 +1784,12 @@
       "type": "registry:block",
       "description": "Nested dialogs",
       "categories": ["dialog"],
-      "registryDependencies": ["@time2code/button", "@time2code/dialog", "@time2code/field", "@time2code/input"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/dialog",
+        "@time2code/field",
+        "@time2code/input"
+      ],
       "files": [{ "path": "dialog/p-dialog-3.tsx", "type": "registry:block" }]
     },
     {
@@ -1779,7 +1882,11 @@
       "type": "registry:block",
       "description": "Mobile menu drawer from the left",
       "categories": ["drawer"],
-      "registryDependencies": ["@time2code/button", "@time2code/drawer", "@time2code/link"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/drawer",
+        "@time2code/link"
+      ],
       "files": [{ "path": "drawer/p-drawer-11.tsx", "type": "registry:block" }]
     },
     {
@@ -1819,7 +1926,11 @@
       "description": "Empty state with icon and actions",
       "categories": ["empty state"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/empty", "@time2code/icon"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/empty",
+        "@time2code/icon"
+      ],
       "files": [{ "path": "empty/p-empty-1.tsx", "type": "registry:block" }]
     },
     {
@@ -1873,7 +1984,12 @@
       "description": "Input group with field",
       "categories": ["button", "field", "input", "input group"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/field", "@time2code/icon", "@time2code/input-group"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/field",
+        "@time2code/icon",
+        "@time2code/input-group"
+      ],
       "files": [{ "path": "field/p-field-6.tsx", "type": "registry:block" }],
       "meta": { "className": "w-full max-w-64" }
     },
@@ -1955,7 +2071,11 @@
       "type": "registry:block",
       "description": "Field with radio group",
       "categories": ["field", "fieldset", "label", "radio group"],
-      "registryDependencies": ["@time2code/field", "@time2code/fieldset", "@time2code/radio-group"],
+      "registryDependencies": [
+        "@time2code/field",
+        "@time2code/fieldset",
+        "@time2code/radio-group"
+      ],
       "files": [{ "path": "field/p-field-14.tsx", "type": "registry:block" }],
       "meta": { "className": "w-full max-w-64" }
     },
@@ -2014,7 +2134,11 @@
       "type": "registry:block",
       "description": "Fieldset with multiple fields",
       "categories": ["fieldset", "input"],
-      "registryDependencies": ["@time2code/field", "@time2code/fieldset", "@time2code/input"],
+      "registryDependencies": [
+        "@time2code/field",
+        "@time2code/fieldset",
+        "@time2code/input"
+      ],
       "files": [
         { "path": "fieldset/p-fieldset-1.tsx", "type": "registry:block" }
       ],
@@ -2025,7 +2149,12 @@
       "type": "registry:block",
       "description": "Fieldset with labeled separator",
       "categories": ["fieldset"],
-      "registryDependencies": ["@time2code/button", "@time2code/field", "@time2code/fieldset", "@time2code/input"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/field",
+        "@time2code/fieldset",
+        "@time2code/input"
+      ],
       "files": [
         { "path": "fieldset/p-fieldset-2.tsx", "type": "registry:block" }
       ],
@@ -2036,7 +2165,12 @@
       "type": "registry:block",
       "description": "Input in a form",
       "categories": ["button", "field", "form", "input"],
-      "registryDependencies": ["@time2code/button", "@time2code/field", "@time2code/form-baseui", "@time2code/input"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/field",
+        "@time2code/form-baseui",
+        "@time2code/input"
+      ],
       "files": [{ "path": "form/p-form-1.tsx", "type": "registry:block" }],
       "meta": { "className": "w-full max-w-64" }
     },
@@ -2046,7 +2180,12 @@
       "description": "Form with zod validation",
       "categories": ["button", "field", "form", "label", "validation", "zod"],
       "dependencies": ["zod"],
-      "registryDependencies": ["@time2code/button", "@time2code/field", "@time2code/form-baseui", "@time2code/input"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/field",
+        "@time2code/form-baseui",
+        "@time2code/input"
+      ],
       "files": [{ "path": "form/p-form-2.tsx", "type": "registry:block" }],
       "meta": { "className": "w-full max-w-64" }
     },
@@ -2092,7 +2231,11 @@
       "type": "registry:block",
       "description": "Grid with debug mode",
       "categories": ["grid"],
-      "registryDependencies": ["@time2code/grid", "@time2code/label", "@time2code/switch"],
+      "registryDependencies": [
+        "@time2code/grid",
+        "@time2code/label",
+        "@time2code/switch"
+      ],
       "files": [{ "path": "grid/p-grid-1.tsx", "type": "registry:block" }],
       "meta": { "className": "w-full max-w-3xl", "colSpan": 2 }
     },
@@ -2165,7 +2308,12 @@
       "description": "Basic group",
       "categories": ["group"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/group", "@time2code/icon", "@time2code/menu"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/group",
+        "@time2code/icon",
+        "@time2code/menu"
+      ],
       "files": [{ "path": "group/p-group-1.tsx", "type": "registry:block" }]
     },
     {
@@ -2190,7 +2338,12 @@
       "description": "Small group",
       "categories": ["group"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/group", "@time2code/icon", "@time2code/menu"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/group",
+        "@time2code/icon",
+        "@time2code/menu"
+      ],
       "files": [{ "path": "group/p-group-3.tsx", "type": "registry:block" }]
     },
     {
@@ -2199,7 +2352,12 @@
       "description": "Large group",
       "categories": ["group"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/group", "@time2code/icon", "@time2code/menu"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/group",
+        "@time2code/icon",
+        "@time2code/menu"
+      ],
       "files": [{ "path": "group/p-group-4.tsx", "type": "registry:block" }]
     },
     {
@@ -2208,7 +2366,12 @@
       "description": "Group with disabled button",
       "categories": ["button", "group"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/group", "@time2code/icon", "@time2code/menu"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/group",
+        "@time2code/icon",
+        "@time2code/menu"
+      ],
       "files": [{ "path": "group/p-group-5.tsx", "type": "registry:block" }]
     },
     {
@@ -2217,7 +2380,12 @@
       "description": "Group with default button",
       "categories": ["button", "group"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/group", "@time2code/icon", "@time2code/menu"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/group",
+        "@time2code/icon",
+        "@time2code/menu"
+      ],
       "files": [{ "path": "group/p-group-6.tsx", "type": "registry:block" }]
     },
     {
@@ -2225,7 +2393,11 @@
       "type": "registry:block",
       "description": "Group with start text",
       "categories": ["group"],
-      "registryDependencies": ["@time2code/group", "@time2code/input", "@time2code/label"],
+      "registryDependencies": [
+        "@time2code/group",
+        "@time2code/input",
+        "@time2code/label"
+      ],
       "files": [{ "path": "group/p-group-7.tsx", "type": "registry:block" }]
     },
     {
@@ -2233,7 +2405,11 @@
       "type": "registry:block",
       "description": "Group with end text",
       "categories": ["group"],
-      "registryDependencies": ["@time2code/group", "@time2code/input", "@time2code/label"],
+      "registryDependencies": [
+        "@time2code/group",
+        "@time2code/input",
+        "@time2code/label"
+      ],
       "files": [{ "path": "group/p-group-8.tsx", "type": "registry:block" }]
     },
     {
@@ -2242,7 +2418,11 @@
       "description": "Vertical group",
       "categories": ["group"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/group", "@time2code/icon"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/group",
+        "@time2code/icon"
+      ],
       "files": [{ "path": "group/p-group-9.tsx", "type": "registry:block" }]
     },
     {
@@ -2251,7 +2431,11 @@
       "description": "Nested groups",
       "categories": ["group"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/group", "@time2code/icon"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/group",
+        "@time2code/icon"
+      ],
       "files": [{ "path": "group/p-group-10.tsx", "type": "registry:block" }]
     },
     {
@@ -2260,7 +2444,13 @@
       "description": "Group with popup",
       "categories": ["group"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/badge", "@time2code/button", "@time2code/group", "@time2code/icon", "@time2code/popover"],
+      "registryDependencies": [
+        "@time2code/badge",
+        "@time2code/button",
+        "@time2code/group",
+        "@time2code/icon",
+        "@time2code/popover"
+      ],
       "files": [{ "path": "group/p-group-11.tsx", "type": "registry:block" }]
     },
     {
@@ -2284,7 +2474,12 @@
       "description": "Group with menu",
       "categories": ["dropdown", "group", "menu"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/group", "@time2code/icon", "@time2code/menu"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/group",
+        "@time2code/icon",
+        "@time2code/menu"
+      ],
       "files": [{ "path": "group/p-group-13.tsx", "type": "registry:block" }]
     },
     {
@@ -2437,7 +2632,11 @@
       "type": "registry:block",
       "description": "Input with button using Group",
       "categories": ["button", "group", "input"],
-      "registryDependencies": ["@time2code/button", "@time2code/group", "@time2code/input"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/group",
+        "@time2code/input"
+      ],
       "files": [{ "path": "input/p-input-7.tsx", "type": "registry:block" }],
       "meta": { "className": "w-full max-w-64" }
     },
@@ -2512,7 +2711,10 @@
       "type": "registry:block",
       "description": "Input group with number field",
       "categories": ["input group", "number field"],
-      "registryDependencies": ["@time2code/input-group", "@time2code/number-field"],
+      "registryDependencies": [
+        "@time2code/input-group",
+        "@time2code/number-field"
+      ],
       "files": [
         { "path": "input-group/p-input-group-6.tsx", "type": "registry:block" }
       ],
@@ -2524,7 +2726,12 @@
       "description": "Input group with end tooltip",
       "categories": ["input group", "tooltip"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/icon", "@time2code/input-group", "@time2code/popover"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/icon",
+        "@time2code/input-group",
+        "@time2code/popover"
+      ],
       "files": [
         { "path": "input-group/p-input-group-7.tsx", "type": "registry:block" }
       ],
@@ -2629,7 +2836,11 @@
       "description": "Disabled input group",
       "categories": ["input group"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/icon", "@time2code/input-group"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/icon",
+        "@time2code/input-group"
+      ],
       "files": [
         { "path": "input-group/p-input-group-15.tsx", "type": "registry:block" }
       ],
@@ -2671,7 +2882,12 @@
       "description": "A password input group with a tooltip-enabled visibility toggle.",
       "categories": ["input", "password"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/icon", "@time2code/input-group", "@time2code/tooltip"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/icon",
+        "@time2code/input-group",
+        "@time2code/tooltip"
+      ],
       "files": [
         { "path": "input-group/p-input-group-29.tsx", "type": "registry:block" }
       ]
@@ -2806,7 +3022,11 @@
       "description": "Basic menu",
       "categories": ["dropdown", "menu"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/icon", "@time2code/menu"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/icon",
+        "@time2code/menu"
+      ],
       "files": [{ "path": "menu/p-menu-1.tsx", "type": "registry:block" }]
     },
     {
@@ -3294,7 +3514,11 @@
       "description": "Popover with close button",
       "categories": ["button", "popover"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/icon", "@time2code/popover"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/icon",
+        "@time2code/popover"
+      ],
       "files": [{ "path": "popover/p-popover-2.tsx", "type": "registry:block" }]
     },
     {
@@ -3303,7 +3527,12 @@
       "description": "Animated popovers",
       "categories": ["avatar", "button", "popover"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/avatar", "@time2code/button", "@time2code/icon", "@time2code/popover"],
+      "registryDependencies": [
+        "@time2code/avatar",
+        "@time2code/button",
+        "@time2code/icon",
+        "@time2code/popover"
+      ],
       "files": [{ "path": "popover/p-popover-3.tsx", "type": "registry:block" }]
     },
     {
@@ -3329,7 +3558,11 @@
       "description": "Preview card with popup",
       "categories": ["preview card"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/icon", "@time2code/preview-card"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/icon",
+        "@time2code/preview-card"
+      ],
       "files": [
         {
           "path": "preview-card/p-preview-card-1.tsx",
@@ -3445,7 +3678,11 @@
       "type": "registry:block",
       "description": "Theme selector with image cards",
       "categories": ["radio group", "form"],
-      "registryDependencies": ["@time2code/field", "@time2code/fieldset", "@time2code/radio-group"],
+      "registryDependencies": [
+        "@time2code/field",
+        "@time2code/fieldset",
+        "@time2code/radio-group"
+      ],
       "files": [
         { "path": "radio-group/p-radio-group-6.tsx", "type": "registry:block" }
       ],
@@ -3456,7 +3693,10 @@
       "type": "registry:block",
       "description": "Small segmented control built with a radio group",
       "categories": ["radio group", "segmented control"],
-      "registryDependencies": ["@time2code/radio-group", "@time2code/segmented-control"],
+      "registryDependencies": [
+        "@time2code/radio-group",
+        "@time2code/segmented-control"
+      ],
       "files": [
         { "path": "radio-group/p-radio-group-7.tsx", "type": "registry:block" }
       ]
@@ -3466,7 +3706,10 @@
       "type": "registry:block",
       "description": "Segmented control built with a radio group",
       "categories": ["radio group", "segmented control"],
-      "registryDependencies": ["@time2code/radio-group", "@time2code/segmented-control"],
+      "registryDependencies": [
+        "@time2code/radio-group",
+        "@time2code/segmented-control"
+      ],
       "files": [
         { "path": "radio-group/p-radio-group-8.tsx", "type": "registry:block" }
       ]
@@ -3476,7 +3719,10 @@
       "type": "registry:block",
       "description": "Large segmented control built with a radio group",
       "categories": ["radio group", "segmented control"],
-      "registryDependencies": ["@time2code/radio-group", "@time2code/segmented-control"],
+      "registryDependencies": [
+        "@time2code/radio-group",
+        "@time2code/segmented-control"
+      ],
       "files": [
         { "path": "radio-group/p-radio-group-9.tsx", "type": "registry:block" }
       ]
@@ -3737,7 +3983,12 @@
       "type": "registry:block",
       "description": "Select in form",
       "categories": ["select"],
-      "registryDependencies": ["@time2code/button", "@time2code/field", "@time2code/form-baseui", "@time2code/select"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/field",
+        "@time2code/form-baseui",
+        "@time2code/select"
+      ],
       "files": [{ "path": "select/p-select-11.tsx", "type": "registry:block" }],
       "meta": { "className": "w-full max-w-64" }
     },
@@ -3859,7 +4110,12 @@
       "description": "Basic skeleton",
       "categories": ["skeleton"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/avatar", "@time2code/button", "@time2code/icon", "@time2code/skeleton"],
+      "registryDependencies": [
+        "@time2code/avatar",
+        "@time2code/button",
+        "@time2code/icon",
+        "@time2code/skeleton"
+      ],
       "files": [
         { "path": "skeleton/p-skeleton-1.tsx", "type": "registry:block" }
       ],
@@ -3998,7 +4254,12 @@
       "type": "registry:block",
       "description": "Switch in form",
       "categories": ["switch"],
-      "registryDependencies": ["@time2code/button", "@time2code/field", "@time2code/form-baseui", "@time2code/switch"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/field",
+        "@time2code/form-baseui",
+        "@time2code/switch"
+      ],
       "files": [{ "path": "switch/p-switch-5.tsx", "type": "registry:block" }]
     },
     {
@@ -4033,7 +4294,12 @@
       "description": "CardFrame with TanStack Table and checkboxes",
       "categories": ["card", "checkbox", "table", "tanstack"],
       "dependencies": ["@tanstack/react-table"],
-      "registryDependencies": ["@time2code/badge", "@time2code/card", "@time2code/checkbox", "@time2code/table"],
+      "registryDependencies": [
+        "@time2code/badge",
+        "@time2code/card",
+        "@time2code/checkbox",
+        "@time2code/table"
+      ],
       "files": [{ "path": "table/p-table-6.tsx", "type": "registry:block" }],
       "meta": { "className": "w-full sm:max-w-4xl", "colSpan": 2 }
     },
@@ -4042,7 +4308,11 @@
       "type": "registry:block",
       "description": "CardFrame with card-style table",
       "categories": ["card", "table"],
-      "registryDependencies": ["@time2code/badge", "@time2code/card", "@time2code/table"],
+      "registryDependencies": [
+        "@time2code/badge",
+        "@time2code/card",
+        "@time2code/table"
+      ],
       "files": [{ "path": "table/p-table-7.tsx", "type": "registry:block" }],
       "meta": { "className": "w-full sm:max-w-4xl", "colSpan": 2 }
     },
@@ -4164,7 +4434,12 @@
       "type": "registry:block",
       "description": "Textarea in form",
       "categories": ["textarea"],
-      "registryDependencies": ["@time2code/button", "@time2code/field", "@time2code/form-baseui", "@time2code/textarea"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/field",
+        "@time2code/form-baseui",
+        "@time2code/textarea"
+      ],
       "files": [
         { "path": "textarea/p-textarea-6.tsx", "type": "registry:block" }
       ],
@@ -4256,7 +4531,11 @@
       "type": "registry:block",
       "description": "Anchored error toast after async failure",
       "categories": ["toast"],
-      "registryDependencies": ["@time2code/button", "@time2code/loading", "@time2code/toast"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/loading",
+        "@time2code/toast"
+      ],
       "files": [{ "path": "toast/p-toast-8.tsx", "type": "registry:block" }]
     },
     {
@@ -4273,7 +4552,12 @@
       "description": "Anchored deduplicated success toast",
       "categories": ["toast", "button"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/button", "@time2code/icon", "@time2code/toast", "@time2code/tooltip"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/icon",
+        "@time2code/toast",
+        "@time2code/tooltip"
+      ],
       "files": [{ "path": "toast/p-toast-12.tsx", "type": "registry:block" }]
     },
     {
@@ -4452,7 +4736,11 @@
       "description": "Toggle group with tooltips",
       "categories": ["toggle", "toggle group"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/icon", "@time2code/toggle-group", "@time2code/tooltip"],
+      "registryDependencies": [
+        "@time2code/icon",
+        "@time2code/toggle-group",
+        "@time2code/tooltip"
+      ],
       "files": [
         {
           "path": "toggle-group/p-toggle-group-9.tsx",
@@ -4474,7 +4762,11 @@
       "description": "Grouped tooltips",
       "categories": ["tooltip"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/icon", "@time2code/toggle-group", "@time2code/tooltip"],
+      "registryDependencies": [
+        "@time2code/icon",
+        "@time2code/toggle-group",
+        "@time2code/tooltip"
+      ],
       "files": [{ "path": "tooltip/p-tooltip-2.tsx", "type": "registry:block" }]
     },
     {
@@ -4483,7 +4775,11 @@
       "description": "Toggle group animated tooltip",
       "categories": ["tooltip"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/icon", "@time2code/toggle-group", "@time2code/tooltip"],
+      "registryDependencies": [
+        "@time2code/icon",
+        "@time2code/toggle-group",
+        "@time2code/tooltip"
+      ],
       "files": [{ "path": "tooltip/p-tooltip-3.tsx", "type": "registry:block" }]
     },
     {
@@ -4513,7 +4809,10 @@
       "description": "Progress bar accepting numbers or motion values",
       "categories": ["use-coerce-to-motion-value"],
       "dependencies": ["motion"],
-      "registryDependencies": ["@time2code/use-clock", "@time2code/use-coerce-to-motion-value"],
+      "registryDependencies": [
+        "@time2code/use-clock",
+        "@time2code/use-coerce-to-motion-value"
+      ],
       "files": [
         {
           "path": "use-coerce-to-motion-value/p-use-coerce-to-motion-value-1.tsx",
@@ -4527,7 +4826,10 @@
       "type": "registry:block",
       "description": "Last pressed key",
       "categories": ["use-event-listener"],
-      "registryDependencies": ["@time2code/kbd", "@time2code/use-event-listener"],
+      "registryDependencies": [
+        "@time2code/kbd",
+        "@time2code/use-event-listener"
+      ],
       "files": [
         {
           "path": "use-event-listener/p-use-event-listener-1.tsx",
@@ -4599,7 +4901,10 @@
       "description": "Rotation sped up by scrolling",
       "categories": ["use-scroll-accelerated-clock"],
       "dependencies": ["motion"],
-      "registryDependencies": ["@time2code/scroll", "@time2code/use-scroll-accelerated-clock"],
+      "registryDependencies": [
+        "@time2code/scroll",
+        "@time2code/use-scroll-accelerated-clock"
+      ],
       "files": [
         {
           "path": "use-scroll-accelerated-clock/p-use-scroll-accelerated-clock-1.tsx",

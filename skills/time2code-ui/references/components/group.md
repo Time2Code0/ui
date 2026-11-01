@@ -1,0 +1,91 @@
+# Group
+
+## When to use
+
+- Connected controls with shared visual boundary.
+- Composed action clusters using buttons, toggles, and menu triggers.
+
+## Install
+
+```bash
+npx time2code add group
+```
+
+## Canonical imports
+
+```tsx
+import { Button } from "@/components/ui/button"
+import { Group, GroupSeparator, GroupText } from "@/components/ui/group"
+```
+
+## Minimal pattern
+
+```tsx
+<Group>
+  <Button>Button</Button>
+  <GroupSeparator />
+  <Button>Button</Button>
+</Group>
+```
+
+## Patterns from particles
+
+### Key patterns
+
+Button group with separator:
+
+```tsx
+<Group>
+  <Button variant="outline">Copy</Button>
+  <GroupSeparator />
+  <Button variant="outline">Paste</Button>
+  <GroupSeparator />
+  <Button variant="outline">Cut</Button>
+</Group>
+```
+
+Group with input and button:
+
+```tsx
+<Group>
+  <Input type="text" placeholder="Enter URL..." />
+  <GroupSeparator />
+  <Button>Go</Button>
+</Group>
+```
+
+Text prefix or suffix with `GroupText`:
+
+```tsx
+<Group>
+  <GroupText>https://</GroupText>
+  <GroupSeparator />
+  <Input placeholder="example.com" type="text" />
+</Group>
+```
+
+`Group` has no `size` prop. Size the controls inside it (`<Button size="sm">`, `<Input size="sm">`) and keep them consistent. Orientation: vertical via `orientation="vertical"`. In a vertical group, set each `GroupSeparator` to `orientation="horizontal"`. Label button groups with `aria-label`.
+
+### More examples
+
+See `p-group-1` through `p-group-14` for input, sizes, disabled, vertical, labeled text, nested groups, popups, input groups, menus and selects.
+
+## Common pitfalls
+
+- Forgetting `GroupSeparator` between adjacent controls in connected groups or leaving it vertical inside a vertical group.
+- Mixing control sizes/variants that break shared group silhouette.
+- Using standalone controls where a grouped action model is expected.
+
+## Useful particle references
+
+- with input: `p-group-2`
+- small size: `p-group-3`
+- large size: `p-group-4`
+- with disabled button: `p-group-5`
+- with default buttons: `p-group-6`
+- with start labeled text: `p-group-7`
+- with end text: `p-group-8`
+- vertical: `p-group-9`
+- nested groups: `p-group-10`
+- with popup / menu / select: `p-group-11`, `p-group-13`, `p-group-14`
+- with input group: `p-group-12`

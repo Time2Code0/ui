@@ -2,7 +2,6 @@ import { cn } from "cn";
 
 import { Line } from "@/registry/marketing/pattern";
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar";
-import { Badge } from "@/registry/ui/badge";
 
 import {
   ClaudeIcon,
@@ -47,7 +46,6 @@ const features = [
     title: "Power up your AI agent",
   },
   {
-    badge: "Soon",
     description:
       "AI-powered component generation with a local agent, drawing on the full time2code/ui library.",
     icons: [
@@ -128,11 +126,6 @@ export function AiReady() {
             <div className="px-4 py-10 sm:px-8">
               <h3 className="flex items-center gap-2 font-medium text-2xl tracking-[-0.02em]">
                 {feature.title}
-                {feature.badge ? (
-                  <Badge size="sm" variant="secondary">
-                    {feature.badge}
-                  </Badge>
-                ) : null}
               </h3>
               <p className="mt-3 max-w-xl text-pretty text-foreground-muted leading-snug">
                 {feature.description}

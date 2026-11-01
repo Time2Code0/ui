@@ -56,7 +56,11 @@
       "title": "Autocomplete",
       "description": "An accessible text autocomplete primitive.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
-      "registryDependencies": ["@time2code/icon", "@time2code/input", "@time2code/scroll-area"],
+      "registryDependencies": [
+        "@time2code/icon",
+        "@time2code/input",
+        "@time2code/scroll-area"
+      ],
       "files": [{ "path": "autocomplete.tsx", "type": "registry:ui" }]
     },
     {
@@ -177,7 +181,11 @@
       "title": "Combobox",
       "description": "An accessible searchable selection primitive.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
-      "registryDependencies": ["@time2code/icon", "@time2code/input", "@time2code/scroll-area"],
+      "registryDependencies": [
+        "@time2code/icon",
+        "@time2code/input",
+        "@time2code/scroll-area"
+      ],
       "files": [{ "path": "combobox.tsx", "type": "registry:ui" }]
     },
     {
@@ -204,7 +212,11 @@
       "title": "Dialog",
       "description": "An accessible modal dialog primitive.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
-      "registryDependencies": ["@time2code/button", "@time2code/icon", "@time2code/scroll-area"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/icon",
+        "@time2code/scroll-area"
+      ],
       "files": [{ "path": "dialog.tsx", "type": "registry:ui" }]
     },
     {
@@ -213,7 +225,11 @@
       "title": "Drawer",
       "description": "An accessible edge-aligned drawer primitive.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
-      "registryDependencies": ["@time2code/button", "@time2code/icon", "@time2code/scroll-area"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/icon",
+        "@time2code/scroll-area"
+      ],
       "files": [{ "path": "drawer.tsx", "type": "registry:ui" }]
     },
     {
@@ -487,7 +503,11 @@
       "title": "Sheet",
       "description": "An accessible edge-aligned dialog sheet.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "cn"],
-      "registryDependencies": ["@time2code/button", "@time2code/icon", "@time2code/scroll-area"],
+      "registryDependencies": [
+        "@time2code/button",
+        "@time2code/icon",
+        "@time2code/scroll-area"
+      ],
       "files": [{ "path": "sheet.tsx", "type": "registry:ui" }]
     },
     {

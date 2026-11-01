@@ -360,7 +360,11 @@
       "description": "Series highlight, hover dim, dash tail, and path morphing.",
       "dependencies": ["d3-shape", "motion"],
       "devDependencies": ["@types/d3-shape"],
-      "registryDependencies": ["@time2code/chart-core", "@time2code/chart-loading", "@time2code/chart-utils"],
+      "registryDependencies": [
+        "@time2code/chart-core",
+        "@time2code/chart-loading",
+        "@time2code/chart-utils"
+      ],
       "files": [
         {
           "path": "chart-series/series-highlight.tsx",
@@ -395,7 +399,10 @@
       "title": "Chart Series Markers",
       "description": "Point markers for line, area, and scatter series.",
       "dependencies": ["motion"],
-      "registryDependencies": ["@time2code/chart-core", "@time2code/chart-utils"],
+      "registryDependencies": [
+        "@time2code/chart-core",
+        "@time2code/chart-utils"
+      ],
       "files": [
         {
           "path": "chart-series-markers/series-markers.tsx",
@@ -507,7 +514,11 @@
       "description": "OHLC candlestick chart with optional Bollinger bands.",
       "dependencies": ["cn", "d3-scale", "motion"],
       "devDependencies": ["@types/d3-scale"],
-      "registryDependencies": ["@time2code/chart-core", "@time2code/chart-utils", "@time2code/time-series-data"],
+      "registryDependencies": [
+        "@time2code/chart-core",
+        "@time2code/chart-utils",
+        "@time2code/time-series-data"
+      ],
       "files": [
         {
           "path": "candlestick-chart/candlestick-chart.tsx",
@@ -538,7 +549,10 @@
         "@types/topojson-client",
         "@types/topojson-specification"
       ],
-      "registryDependencies": ["@time2code/chart-tooltip", "@time2code/chart-utils"],
+      "registryDependencies": [
+        "@time2code/chart-tooltip",
+        "@time2code/chart-utils"
+      ],
       "files": [
         {
           "path": "choropleth-chart/choropleth-chart.tsx",
@@ -626,7 +640,11 @@
       "description": "Arc and linear gauges with animated values.",
       "dependencies": ["cn", "d3-shape", "motion"],
       "devDependencies": ["@types/d3-shape"],
-      "registryDependencies": ["@time2code/chart-center", "@time2code/chart-utils", "@time2code/pie-chart"],
+      "registryDependencies": [
+        "@time2code/chart-center",
+        "@time2code/chart-utils",
+        "@time2code/pie-chart"
+      ],
       "files": [
         {
           "path": "gauge-chart/gauge.tsx",
@@ -797,7 +815,10 @@
         "@types/d3-scale",
         "@types/d3-shape"
       ],
-      "registryDependencies": ["@time2code/chart-core", "@time2code/chart-utils"],
+      "registryDependencies": [
+        "@time2code/chart-core",
+        "@time2code/chart-utils"
+      ],
       "files": [
         {
           "path": "live-line-chart/live-line-chart.tsx",
@@ -828,7 +849,10 @@
       "description": "Pie and donut chart with an optional center label.",
       "dependencies": ["cn", "d3-shape", "motion"],
       "devDependencies": ["@types/d3-shape"],
-      "registryDependencies": ["@time2code/chart-center", "@time2code/chart-utils"],
+      "registryDependencies": [
+        "@time2code/chart-center",
+        "@time2code/chart-utils"
+      ],
       "files": [
         {
           "path": "pie-chart/pie-chart.tsx",
@@ -899,7 +923,10 @@
       "title": "Ring Chart",
       "description": "Concentric progress rings with a center label.",
       "dependencies": ["cn", "motion"],
-      "registryDependencies": ["@time2code/chart-center", "@time2code/chart-utils"],
+      "registryDependencies": [
+        "@time2code/chart-center",
+        "@time2code/chart-utils"
+      ],
       "files": [
         {
           "path": "ring-chart/ring-chart.tsx",
@@ -930,7 +957,10 @@
       "description": "Flow diagram linking sources to targets.",
       "dependencies": ["cn", "d3-sankey", "motion"],
       "devDependencies": ["@types/d3-sankey"],
-      "registryDependencies": ["@time2code/chart-tooltip", "@time2code/chart-utils"],
+      "registryDependencies": [
+        "@time2code/chart-tooltip",
+        "@time2code/chart-utils"
+      ],
       "files": [
         {
           "path": "sankey-chart/sankey-chart.tsx",
@@ -991,7 +1021,10 @@
       "description": "Compact inline line, area, and bar sparklines.",
       "dependencies": ["cn", "d3-shape", "motion"],
       "devDependencies": ["@types/d3-shape"],
-      "registryDependencies": ["@time2code/chart-core", "@time2code/chart-utils"],
+      "registryDependencies": [
+        "@time2code/chart-core",
+        "@time2code/chart-utils"
+      ],
       "files": [
         {
           "path": "sparkline/sparkline.tsx",
@@ -1085,7 +1118,10 @@
       "title": "Chart Background",
       "description": "Pattern fill for the plot area.",
       "dependencies": ["motion"],
-      "registryDependencies": ["@time2code/chart-core", "@time2code/chart-patterns"],
+      "registryDependencies": [
+        "@time2code/chart-core",
+        "@time2code/chart-patterns"
+      ],
       "files": [
         {
           "path": "chart-background/background.tsx",
@@ -1101,7 +1137,11 @@
       "description": "Shaded band between two series or values.",
       "dependencies": ["d3-shape", "d3-shape", "motion"],
       "devDependencies": ["@types/d3-shape"],
-      "registryDependencies": ["@time2code/chart-core", "@time2code/chart-patterns", "@time2code/chart-series"],
+      "registryDependencies": [
+        "@time2code/chart-core",
+        "@time2code/chart-patterns",
+        "@time2code/chart-series"
+      ],
       "files": [
         {
           "path": "chart-band/band.tsx",
@@ -1155,7 +1195,10 @@
       "title": "Chart Date Highlights",
       "description": "Weekend shading and deadline markers.",
       "dependencies": ["motion"],
-      "registryDependencies": ["@time2code/chart-core", "@time2code/chart-patterns"],
+      "registryDependencies": [
+        "@time2code/chart-core",
+        "@time2code/chart-patterns"
+      ],
       "files": [
         {
           "path": "chart-date-highlights/deadline.tsx",
@@ -1240,7 +1283,10 @@
       "title": "Chart Reference Area",
       "description": "Highlighted Y range behind the series.",
       "dependencies": ["motion"],
-      "registryDependencies": ["@time2code/chart-core", "@time2code/chart-patterns"],
+      "registryDependencies": [
+        "@time2code/chart-core",
+        "@time2code/chart-patterns"
+      ],
       "files": [
         {
           "path": "chart-reference-area/reference-area.tsx",
@@ -1270,7 +1316,10 @@
       "title": "Chart Tooltip",
       "description": "Crosshair tooltip for time-series charts.",
       "dependencies": ["cn", "motion"],
-      "registryDependencies": ["@time2code/chart-core", "@time2code/chart-utils"],
+      "registryDependencies": [
+        "@time2code/chart-core",
+        "@time2code/chart-utils"
+      ],
       "files": [
         {
           "path": "chart-tooltip/chart-tooltip.tsx",
@@ -1315,7 +1364,10 @@
       "title": "Chart Trend Line",
       "description": "Least-squares trend line.",
       "dependencies": ["motion"],
-      "registryDependencies": ["@time2code/chart-core", "@time2code/chart-utils"],
+      "registryDependencies": [
+        "@time2code/chart-core",
+        "@time2code/chart-utils"
+      ],
       "files": [
         {
           "path": "chart-trend-line/trend-line.tsx",

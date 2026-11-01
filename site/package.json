@@ -5,6 +5,7 @@
   "scripts": {
     "build": "pnpm build:registry && next build",
     "build:registry": "node ./src/scripts/build-registry.mts",
+    "build:skills": "node ./src/scripts/build-skills.mts",
     "dev": "next dev",
     "start": "next start"
   },

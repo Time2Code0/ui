@@ -103,7 +103,10 @@
       "title": "Area Chart - Gradient",
       "description": "Solid fill with gradientToOpacity control",
       "categories": ["area-chart"],
-      "registryDependencies": ["@time2code/area-chart", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "area-chart/p-area-chart-6.tsx", "type": "registry:block" }
       ],
@@ -115,7 +118,11 @@
       "title": "Area Chart - No Stroke",
       "description": "Softer look with the stroke line hidden",
       "categories": ["area-chart"],
-      "registryDependencies": ["@time2code/area-chart", "@time2code/chart-axis", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-axis",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "area-chart/p-area-chart-7.tsx", "type": "registry:block" }
       ],
@@ -430,7 +437,11 @@
       "title": "Area Chart - Loading state",
       "description": "Drive loading and ready from your data layer with a single `AreaChart` — one `Grid`, one `Area`, no component swap. Set `status=\"loading\"` while fetching; switch to `\"ready\"` when data resolves.",
       "categories": ["area-chart"],
-      "registryDependencies": ["@time2code/area-chart", "@time2code/chart-grid", "@time2code/button"],
+      "registryDependencies": [
+        "@time2code/area-chart",
+        "@time2code/chart-grid",
+        "@time2code/button"
+      ],
       "files": [
         { "path": "area-chart/p-area-chart-25.tsx", "type": "registry:block" }
       ],
@@ -459,7 +470,11 @@
       "title": "Bar Chart - Interactive",
       "description": "Daily activity over the last 90 days",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-7.tsx", "type": "registry:block" }
       ],
@@ -471,7 +486,11 @@
       "title": "Bar Chart - Value Labels",
       "description": "Order totals with automatic in-bar value labels",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-2.tsx", "type": "registry:block" }
       ],
@@ -486,7 +505,11 @@
       "title": "Bar Chart",
       "description": "Default vertical bar chart with rounded caps",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-3.tsx", "type": "registry:block" }
       ],
@@ -534,7 +557,11 @@
       "title": "Bar Chart - 3D Stacked",
       "description": "Stacked depth bars split into per-segment side faces",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-6.tsx", "type": "registry:block" }
       ],
@@ -546,7 +573,11 @@
       "title": "Bar Chart - Multiple Series",
       "description": "Grouped bars comparing two metrics",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-1.tsx", "type": "registry:block" }
       ],
@@ -558,7 +589,11 @@
       "title": "Bar Chart - Stacked",
       "description": "Stacked bars with gap between segments",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-8.tsx", "type": "registry:block" }
       ],
@@ -570,7 +605,11 @@
       "title": "Bar Chart - Horizontal",
       "description": "Horizontal orientation with y-axis labels",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-9.tsx", "type": "registry:block" }
       ]
@@ -581,7 +620,11 @@
       "title": "Bar Chart - Positive & Negative",
       "description": "Monthly profit and loss — bars grow up or down from a highlighted zero line",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-10.tsx", "type": "registry:block" }
       ],
@@ -593,7 +636,11 @@
       "title": "Bar Chart - Dense Data",
       "description": "60 days of data with narrow gaps",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-11.tsx", "type": "registry:block" }
       ],
@@ -622,7 +669,10 @@
       "title": "Bar Chart - Shape & Gradient",
       "description": "Discrete square columns with per-series gradient, diagonal column tracks, and ring crosshair indicators",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-13.tsx", "type": "registry:block" }
       ],
@@ -637,7 +687,10 @@
       "title": "Bar Chart - Shape Squircle Ring",
       "description": "Fully rounded square columns with a squircle ring indicator snapped to each bar",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-14.tsx", "type": "registry:block" }
       ],
@@ -649,7 +702,11 @@
       "title": "Bar Chart - Pattern",
       "description": "Diagonal line pattern fill",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-15.tsx", "type": "registry:block" }
       ],
@@ -683,7 +740,11 @@
       "title": "Bar Chart - Custom Tooltip",
       "description": "Formatted currency values in tooltip",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-17.tsx", "type": "registry:block" }
       ],
@@ -853,7 +914,11 @@
       "title": "Bar Chart - Stacked",
       "description": "Demo component `BarChartStackedDemo`",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-27.tsx", "type": "registry:block" }
       ],
@@ -865,7 +930,11 @@
       "title": "Bar Chart - Horizontal",
       "description": "Demo component `BarChartHorizontalDemo`",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-28.tsx", "type": "registry:block" }
       ],
@@ -877,7 +946,11 @@
       "title": "Bar Chart - 90 days",
       "description": "Demo component `BarChart90DaysDemo`",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-29.tsx", "type": "registry:block" }
       ],
@@ -906,7 +979,11 @@
       "title": "Bar Chart - Pattern",
       "description": "Demo component `BarChartPatternDemo`",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-31.tsx", "type": "registry:block" }
       ],
@@ -935,7 +1012,11 @@
       "title": "Bar Chart - Narrow gaps",
       "description": "Demo component `BarChartNarrowGapsDemo`",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-33.tsx", "type": "registry:block" }
       ],
@@ -947,7 +1028,11 @@
       "title": "Bar Chart - Custom tooltip",
       "description": "Demo component `BarChartCustomTooltipDemo`",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-34.tsx", "type": "registry:block" }
       ],
@@ -978,7 +1063,11 @@
       "title": "Bar Chart - Loading state",
       "description": "Local preview for the bar chart loading skeleton (status=\"loading\").",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/button"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/button"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-36.tsx", "type": "registry:block" }
       ],
@@ -990,7 +1079,11 @@
       "title": "Bar Chart - Negative values",
       "description": "`BarChart` handles positive and negative values. While every value is zero or above, the value axis starts at `0`; once any value is negative, the domain stretches to include it and bars grow up or down from the zero line (or left / right for `orientation=\"horizontal\"`). Use `Grid highlightRowValues={[0]}` to draw a visible zero line.",
       "categories": ["bar-chart"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         { "path": "bar-chart/p-bar-chart-37.tsx", "type": "registry:block" }
       ],
@@ -1302,7 +1395,10 @@
       "title": "Choropleth Chart - Patterns",
       "description": "Diagonal line patterns colored by region",
       "categories": ["choropleth-chart"],
-      "registryDependencies": ["@time2code/chart-patterns", "@time2code/choropleth-chart"],
+      "registryDependencies": [
+        "@time2code/chart-patterns",
+        "@time2code/choropleth-chart"
+      ],
       "files": [
         {
           "path": "choropleth-chart/p-choropleth-chart-5.tsx",
@@ -1318,7 +1414,11 @@
       "description": "A composable geographic map chart for visualizing data across regions with interactive tooltips, zoom controls, and pattern support",
       "categories": ["choropleth-chart"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/choropleth-chart", "@time2code/button", "@time2code/icon"],
+      "registryDependencies": [
+        "@time2code/choropleth-chart",
+        "@time2code/button",
+        "@time2code/icon"
+      ],
       "files": [
         {
           "path": "choropleth-chart/p-choropleth-chart-1.tsx",
@@ -1334,7 +1434,11 @@
       "description": "Demo component `ChoroplethAnalyticsDemo`",
       "categories": ["choropleth-chart"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/choropleth-chart", "@time2code/button", "@time2code/icon"],
+      "registryDependencies": [
+        "@time2code/choropleth-chart",
+        "@time2code/button",
+        "@time2code/icon"
+      ],
       "files": [
         {
           "path": "choropleth-chart/p-choropleth-chart-7.tsx",
@@ -1349,7 +1453,10 @@
       "title": "Choropleth Chart - Lines pattern",
       "description": "Demo component `ChoroplethLinesPatternDemo`",
       "categories": ["choropleth-chart"],
-      "registryDependencies": ["@time2code/chart-patterns", "@time2code/choropleth-chart"],
+      "registryDependencies": [
+        "@time2code/chart-patterns",
+        "@time2code/choropleth-chart"
+      ],
       "files": [
         {
           "path": "choropleth-chart/p-choropleth-chart-8.tsx",
@@ -1365,7 +1472,11 @@
       "description": "Demo component `ChoroplethZoomDemo`",
       "categories": ["choropleth-chart"],
       "dependencies": ["@hugeicons/core-free-icons"],
-      "registryDependencies": ["@time2code/choropleth-chart", "@time2code/button", "@time2code/icon"],
+      "registryDependencies": [
+        "@time2code/choropleth-chart",
+        "@time2code/button",
+        "@time2code/icon"
+      ],
       "files": [
         {
           "path": "choropleth-chart/p-choropleth-chart-9.tsx",
@@ -1742,7 +1853,10 @@
       "title": "Funnel Chart",
       "description": "Animated funnel chart with multi-layer halo rings, hover interactions, and an interactive legend.",
       "categories": ["funnel-chart"],
-      "registryDependencies": ["@time2code/chart-legend", "@time2code/funnel-chart"],
+      "registryDependencies": [
+        "@time2code/chart-legend",
+        "@time2code/funnel-chart"
+      ],
       "files": [
         {
           "path": "funnel-chart/p-funnel-chart-1.tsx",
@@ -1832,7 +1946,10 @@
       "title": "Pattern Fill",
       "description": "Diagonal line pattern on the innermost ring via renderPattern",
       "categories": ["funnel-chart"],
-      "registryDependencies": ["@time2code/chart-patterns", "@time2code/funnel-chart"],
+      "registryDependencies": [
+        "@time2code/chart-patterns",
+        "@time2code/funnel-chart"
+      ],
       "files": [
         {
           "path": "funnel-chart/p-funnel-chart-7.tsx",
@@ -1913,7 +2030,10 @@
       "title": "Gauge — pattern foreground, dim solid track",
       "description": "Diagonal PatternLines on active notches; inactive track uses `chart-1` at 0.4 fill opacity.",
       "categories": ["gauge-chart"],
-      "registryDependencies": ["@time2code/chart-patterns", "@time2code/gauge-chart"],
+      "registryDependencies": [
+        "@time2code/chart-patterns",
+        "@time2code/gauge-chart"
+      ],
       "files": [
         { "path": "gauge-chart/p-gauge-chart-4.tsx", "type": "registry:block" }
       ],
@@ -2255,7 +2375,11 @@
       "description": "Straight lines between data points",
       "categories": ["line-chart"],
       "dependencies": ["d3-shape"],
-      "registryDependencies": ["@time2code/chart-grid", "@time2code/chart-tooltip", "@time2code/line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
       "files": [
         { "path": "line-chart/p-line-chart-3.tsx", "type": "registry:block" }
       ],
@@ -2304,7 +2428,11 @@
       "title": "Line Chart - Multiple Lines",
       "description": "Desktop vs mobile visitors over time",
       "categories": ["line-chart"],
-      "registryDependencies": ["@time2code/chart-grid", "@time2code/chart-tooltip", "@time2code/line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip",
+        "@time2code/line-chart"
+      ],
       "files": [
         { "path": "line-chart/p-line-chart-6.tsx", "type": "registry:block" }
       ],
@@ -2640,7 +2768,11 @@
       "title": "Line Chart - Loading state",
       "description": "Drive loading and ready from your data layer with a single `LineChart` — one `Grid`, one `Line`, no component swap. Set `status=\"loading\"` while fetching; switch to `\"ready\"` when data resolves.",
       "categories": ["line-chart"],
-      "registryDependencies": ["@time2code/chart-grid", "@time2code/line-chart", "@time2code/button"],
+      "registryDependencies": [
+        "@time2code/chart-grid",
+        "@time2code/line-chart",
+        "@time2code/button"
+      ],
       "files": [
         { "path": "line-chart/p-line-chart-25.tsx", "type": "registry:block" }
       ],
@@ -2687,7 +2819,10 @@
       "title": "Live Line Chart - Interactive",
       "description": "Real-time streaming with crosshair and animated axes",
       "categories": ["live-line-chart"],
-      "registryDependencies": ["@time2code/chart-tooltip", "@time2code/live-line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-tooltip",
+        "@time2code/live-line-chart"
+      ],
       "files": [
         {
           "path": "live-line-chart/p-live-line-chart-10.tsx",
@@ -2706,7 +2841,10 @@
       "title": "Live Line Chart",
       "description": "Streaming data with smooth scroll, live dot, and crosshair",
       "categories": ["live-line-chart"],
-      "registryDependencies": ["@time2code/chart-tooltip", "@time2code/live-line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-tooltip",
+        "@time2code/live-line-chart"
+      ],
       "files": [
         {
           "path": "live-line-chart/p-live-line-chart-2.tsx",
@@ -2721,7 +2859,10 @@
       "title": "Live Line - Now Offset",
       "description": "Leading gap so the line fades at the right edge",
       "categories": ["live-line-chart"],
-      "registryDependencies": ["@time2code/chart-tooltip", "@time2code/live-line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-tooltip",
+        "@time2code/live-line-chart"
+      ],
       "files": [
         {
           "path": "live-line-chart/p-live-line-chart-3.tsx",
@@ -2736,7 +2877,10 @@
       "title": "Live Line - Momentum Colors",
       "description": "Green for increase, red for decrease",
       "categories": ["live-line-chart"],
-      "registryDependencies": ["@time2code/chart-tooltip", "@time2code/live-line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-tooltip",
+        "@time2code/live-line-chart"
+      ],
       "files": [
         {
           "path": "live-line-chart/p-live-line-chart-4.tsx",
@@ -2751,7 +2895,10 @@
       "title": "Live Line - Line Only",
       "description": "No area fill — simple line and live dot",
       "categories": ["live-line-chart"],
-      "registryDependencies": ["@time2code/chart-tooltip", "@time2code/live-line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-tooltip",
+        "@time2code/live-line-chart"
+      ],
       "files": [
         {
           "path": "live-line-chart/p-live-line-chart-5.tsx",
@@ -2766,7 +2913,10 @@
       "title": "Live Line - Pattern Background",
       "description": "Diagonal pattern fill instead of grid lines",
       "categories": ["live-line-chart"],
-      "registryDependencies": ["@time2code/chart-background", "@time2code/live-line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-background",
+        "@time2code/live-line-chart"
+      ],
       "files": [
         {
           "path": "live-line-chart/p-live-line-chart-6.tsx",
@@ -2781,7 +2931,10 @@
       "title": "Live Line - Dot Grid Background",
       "description": "Dot grid texture with edge fade",
       "categories": ["live-line-chart"],
-      "registryDependencies": ["@time2code/chart-background", "@time2code/live-line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-background",
+        "@time2code/live-line-chart"
+      ],
       "files": [
         {
           "path": "live-line-chart/p-live-line-chart-7.tsx",
@@ -2796,7 +2949,10 @@
       "title": "Live Line - Reference Band",
       "description": "Target price band with dashed edges and bracket markers",
       "categories": ["live-line-chart"],
-      "registryDependencies": ["@time2code/chart-reference-area", "@time2code/live-line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-reference-area",
+        "@time2code/live-line-chart"
+      ],
       "files": [
         {
           "path": "live-line-chart/p-live-line-chart-8.tsx",
@@ -2814,7 +2970,10 @@
       "title": "Live Line - Pattern Reference Band",
       "description": "Pattern fill inside the band with colored Y-axis ticks",
       "categories": ["live-line-chart"],
-      "registryDependencies": ["@time2code/chart-reference-area", "@time2code/live-line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-reference-area",
+        "@time2code/live-line-chart"
+      ],
       "files": [
         {
           "path": "live-line-chart/p-live-line-chart-9.tsx",
@@ -2829,7 +2988,10 @@
       "title": "Live Line Chart - Overview",
       "description": "Real-time streaming line chart with smooth scrolling, crosshair, and animated axes",
       "categories": ["live-line-chart"],
-      "registryDependencies": ["@time2code/chart-tooltip", "@time2code/live-line-chart"],
+      "registryDependencies": [
+        "@time2code/chart-tooltip",
+        "@time2code/live-line-chart"
+      ],
       "files": [
         {
           "path": "live-line-chart/p-live-line-chart-1.tsx",
@@ -2868,7 +3030,10 @@
       "title": "Pie Chart - Legend",
       "description": "Interactive legend synced with chart hover",
       "categories": ["pie-chart"],
-      "registryDependencies": ["@time2code/chart-legend", "@time2code/pie-chart"],
+      "registryDependencies": [
+        "@time2code/chart-legend",
+        "@time2code/pie-chart"
+      ],
       "files": [
         { "path": "pie-chart/p-pie-chart-3.tsx", "type": "registry:block" }
       ],
@@ -2880,7 +3045,10 @@
       "title": "Pie Chart - Patterns",
       "description": "Diagonal line patterns for each slice",
       "categories": ["pie-chart"],
-      "registryDependencies": ["@time2code/chart-patterns", "@time2code/pie-chart"],
+      "registryDependencies": [
+        "@time2code/chart-patterns",
+        "@time2code/pie-chart"
+      ],
       "files": [
         { "path": "pie-chart/p-pie-chart-4.tsx", "type": "registry:block" }
       ],
@@ -2931,7 +3099,10 @@
       "title": "Donut Chart - Patterns",
       "description": "Donut with patterned slices and center label",
       "categories": ["pie-chart"],
-      "registryDependencies": ["@time2code/chart-patterns", "@time2code/pie-chart"],
+      "registryDependencies": [
+        "@time2code/chart-patterns",
+        "@time2code/pie-chart"
+      ],
       "files": [
         { "path": "pie-chart/p-pie-chart-8.tsx", "type": "registry:block" }
       ],
@@ -2955,7 +3126,10 @@
       "title": "Pie Chart - Overview",
       "description": "Main demo with interactive legend",
       "categories": ["pie-chart"],
-      "registryDependencies": ["@time2code/chart-legend", "@time2code/pie-chart"],
+      "registryDependencies": [
+        "@time2code/chart-legend",
+        "@time2code/pie-chart"
+      ],
       "files": [
         { "path": "pie-chart/p-pie-chart-1.tsx", "type": "registry:block" }
       ],
@@ -2991,7 +3165,10 @@
       "title": "Pie Chart - Donut legend",
       "description": "Donut chart with interactive legend",
       "categories": ["pie-chart"],
-      "registryDependencies": ["@time2code/chart-legend", "@time2code/pie-chart"],
+      "registryDependencies": [
+        "@time2code/chart-legend",
+        "@time2code/pie-chart"
+      ],
       "files": [
         { "path": "pie-chart/p-pie-chart-13.tsx", "type": "registry:block" }
       ],
@@ -3003,7 +3180,10 @@
       "title": "Pie Chart - Patterns",
       "description": "Pie chart with patterns",
       "categories": ["pie-chart"],
-      "registryDependencies": ["@time2code/chart-patterns", "@time2code/pie-chart"],
+      "registryDependencies": [
+        "@time2code/chart-patterns",
+        "@time2code/pie-chart"
+      ],
       "files": [
         { "path": "pie-chart/p-pie-chart-14.tsx", "type": "registry:block" }
       ],
@@ -3126,7 +3306,10 @@
       "title": "Radar Chart - Overview",
       "description": "A composable multi-series radar chart with animated polygons, hover interactions, and customizable metrics",
       "categories": ["radar-chart"],
-      "registryDependencies": ["@time2code/chart-legend", "@time2code/radar-chart"],
+      "registryDependencies": [
+        "@time2code/chart-legend",
+        "@time2code/radar-chart"
+      ],
       "files": [
         { "path": "radar-chart/p-radar-chart-1.tsx", "type": "registry:block" }
       ],
@@ -3222,7 +3405,10 @@
       "title": "Ring Chart - Legend",
       "description": "Interactive legend with progress bars",
       "categories": ["ring-chart"],
-      "registryDependencies": ["@time2code/chart-legend", "@time2code/ring-chart"],
+      "registryDependencies": [
+        "@time2code/chart-legend",
+        "@time2code/ring-chart"
+      ],
       "files": [
         { "path": "ring-chart/p-ring-chart-6.tsx", "type": "registry:block" }
       ],
@@ -3234,7 +3420,10 @@
       "title": "Ring Chart - Overview",
       "description": "A composable multi-ring progress chart with animated arcs, hover interactions, and a reusable legend component",
       "categories": ["ring-chart"],
-      "registryDependencies": ["@time2code/chart-legend", "@time2code/ring-chart"],
+      "registryDependencies": [
+        "@time2code/chart-legend",
+        "@time2code/ring-chart"
+      ],
       "files": [
         { "path": "ring-chart/p-ring-chart-1.tsx", "type": "registry:block" }
       ],
@@ -3618,7 +3807,10 @@
       "title": "Sankey Chart - Pattern",
       "description": "Demo component `SankeyPatternDemo`",
       "categories": ["sankey-chart"],
-      "registryDependencies": ["@time2code/chart-patterns", "@time2code/sankey-chart"],
+      "registryDependencies": [
+        "@time2code/chart-patterns",
+        "@time2code/sankey-chart"
+      ],
       "files": [
         {
           "path": "sankey-chart/p-sankey-chart-6.tsx",
@@ -3894,7 +4086,10 @@
       "title": "Sunburst Chart - Interactive",
       "description": "Hierarchical revenue breakdown with drill-down zoom",
       "categories": ["sunburst-chart"],
-      "registryDependencies": ["@time2code/sunburst-chart", "@time2code/breadcrumb"],
+      "registryDependencies": [
+        "@time2code/sunburst-chart",
+        "@time2code/breadcrumb"
+      ],
       "files": [
         {
           "path": "sunburst-chart/p-sunburst-chart-4.tsx",
@@ -3909,7 +4104,10 @@
       "title": "Sunburst Chart - Patterns",
       "description": "Diagonal stripes on alternating inner-ring segments (Product & Partners)",
       "categories": ["sunburst-chart"],
-      "registryDependencies": ["@time2code/chart-patterns", "@time2code/sunburst-chart"],
+      "registryDependencies": [
+        "@time2code/chart-patterns",
+        "@time2code/sunburst-chart"
+      ],
       "files": [
         {
           "path": "sunburst-chart/p-sunburst-chart-2.tsx",
@@ -3924,7 +4122,10 @@
       "title": "Sunburst Chart - Legend",
       "description": "Legend synced to the current focus level and chart hover",
       "categories": ["sunburst-chart"],
-      "registryDependencies": ["@time2code/chart-legend", "@time2code/sunburst-chart"],
+      "registryDependencies": [
+        "@time2code/chart-legend",
+        "@time2code/sunburst-chart"
+      ],
       "files": [
         {
           "path": "sunburst-chart/p-sunburst-chart-3.tsx",
@@ -3939,7 +4140,10 @@
       "title": "Sunburst Chart - Overview",
       "description": "A composable hierarchical sunburst chart with drill-down zoom, animated segments, breadcrumb navigation, and legend sync",
       "categories": ["sunburst-chart"],
-      "registryDependencies": ["@time2code/sunburst-chart", "@time2code/breadcrumb"],
+      "registryDependencies": [
+        "@time2code/sunburst-chart",
+        "@time2code/breadcrumb"
+      ],
       "files": [
         {
           "path": "sunburst-chart/p-sunburst-chart-1.tsx",
@@ -4799,7 +5003,11 @@
       "title": "Tooltip - With Bar Chart",
       "description": "The tooltip adapts to bar charts, showing category names instead of dates. Inside `BarChart` the crosshair line is hidden by default (only the hover dots and panel show); pass `showCrosshair` to bring it back.",
       "categories": ["chart-tooltip"],
-      "registryDependencies": ["@time2code/bar-chart", "@time2code/chart-grid", "@time2code/chart-tooltip"],
+      "registryDependencies": [
+        "@time2code/bar-chart",
+        "@time2code/chart-grid",
+        "@time2code/chart-tooltip"
+      ],
       "files": [
         {
           "path": "chart-tooltip/p-chart-tooltip-5.tsx",
