@@ -58,7 +58,7 @@ describe("getRegistryTemplate", () => {
     vi.stubEnv("REGISTRY_URL", undefined);
 
     expect(getRegistryTemplate()).toBe(
-      "https://design.time2code.dev/r/{name}.json"
+      "https://ui.time2code.dev/r/{name}.json"
     );
   });
 

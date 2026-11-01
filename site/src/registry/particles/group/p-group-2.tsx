@@ -19,7 +19,7 @@ export function Particle() {
     <Group aria-label="Url input">
       <Input
         aria-label="Url"
-        defaultValue="https://design.time2code.dev"
+        defaultValue="https://ui.time2code.dev"
         ref={inputRef}
         type="text"
       />

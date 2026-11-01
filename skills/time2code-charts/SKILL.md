@@ -113,9 +113,9 @@ import { XAxis } from "@/components/charts/chart-axis/x-axis";
 
 Install with `npx time2code add <item>`. For any chart:
 
-- Docs: `https://design.time2code.dev/docs/charts/<item>` (add-ons under `/docs/charts/utility/…`); append `.md` for Markdown.
-- Gallery: `https://design.time2code.dev/charts/<item>`.
-- Registry JSON: `https://design.time2code.dev/r/<item>.json`.
+- Docs: `https://ui.time2code.dev/docs/charts/<item>` (add-ons under `/docs/charts/utility/…`); append `.md` for Markdown.
+- Gallery: `https://ui.time2code.dev/charts/<item>`.
+- Registry JSON: `https://ui.time2code.dev/r/<item>.json`.
 - Examples: the `p-<item>-<n>` particles in [time2code-particles](../time2code-particles/references/charts.md).
 
 ### Charts

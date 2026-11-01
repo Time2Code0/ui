@@ -110,4 +110,4 @@ Every rendered string comes from the `i18n` prop, merged over the English defaul
 - form: `p-color-picker-9`
 - contrast checker: `p-color-picker-10`
 
-Full API: https://design.time2code.dev/docs/ui/color-picker.md
+Full API: https://ui.time2code.dev/docs/ui/color-picker.md

@@ -172,7 +172,7 @@ Before returning code:
 
 ## More information
 
-- Documentation: https://design.time2code.dev/docs
-- Any docs page as Markdown: append `.md`, as in https://design.time2code.dev/docs/ui/dialog.md
-- All documentation as Markdown: https://design.time2code.dev/llms-full.txt
+- Documentation: https://ui.time2code.dev/docs
+- Any docs page as Markdown: append `.md`, as in https://ui.time2code.dev/docs/ui/dialog.md
+- All documentation as Markdown: https://ui.time2code.dev/llms-full.txt
 - MCP server for listing, searching and viewing components and examples: `npx time2code mcp init`

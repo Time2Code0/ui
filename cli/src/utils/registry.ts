@@ -4,7 +4,7 @@ import { registryItemSchema, registrySchema } from "@shadcn/registry/schema";
 
 import { CliError } from "./errors";
 
-const DEFAULT_REGISTRY_URL = "https://design.time2code.dev/r";
+const DEFAULT_REGISTRY_URL = "https://ui.time2code.dev/r";
 
 /** The namespace of the registry, e.g. `@time2code/button`. */
 export const REGISTRY_NAMESPACE = "@time2code";
@@ -34,7 +34,7 @@ export const ITEM_KINDS: ItemKind[] = [
 
 /**
  * The URL template of the registry items, e.g.
- * `https://design.time2code.dev/r/{name}.json`. `REGISTRY_URL` overrides the
+ * `https://ui.time2code.dev/r/{name}.json`. `REGISTRY_URL` overrides the
  * default with a base URL (`http://localhost:3000/r`, a trailing `/*` is
  * fine) or a template with `{name}`.
  */

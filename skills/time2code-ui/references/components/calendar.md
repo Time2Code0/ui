@@ -51,7 +51,7 @@ Cell size: set `--cell-size` on the calendar (default `--spacing(9)`):
 <Calendar className="[--cell-size:--spacing(11)]" mode="single" />
 ```
 
-Date picker: there is no date picker component. Compose `Calendar` inside a `Popover` with a `Button` trigger (see the `p-date-picker-*` particles and https://design.time2code.dev/docs/ui/date-picker.md).
+Date picker: there is no date picker component. Compose `Calendar` inside a `Popover` with a `Button` trigger (see the `p-date-picker-*` particles and https://ui.time2code.dev/docs/ui/date-picker.md).
 
 ### More examples
 

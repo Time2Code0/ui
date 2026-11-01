@@ -8,7 +8,7 @@
     "shadcn",
     "tailwindcss"
   ],
-  "homepage": "https://design.time2code.dev",
+  "homepage": "https://ui.time2code.dev",
   "license": "MIT",
   "author": "Time2Code",
   "type": "module",

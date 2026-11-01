@@ -12,12 +12,12 @@ export function Particle() {
   return (
     <PreviewCard>
       <PreviewCardTrigger
-        render={<Button variant="ghost">design.time2code.dev</Button>}
+        render={<Button variant="ghost">ui.time2code.dev</Button>}
       />
       <PreviewCardPopup>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-1">
-            <h4 className="font-medium text-sm">design.time2code.dev</h4>
+            <h4 className="font-medium text-sm">ui.time2code.dev</h4>
             <p className="text-foreground-muted text-sm">
               Beautifully designed components that you can copy and paste into
               your apps.

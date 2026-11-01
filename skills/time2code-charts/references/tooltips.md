@@ -111,4 +111,4 @@ function CustomIndicator() {
 
 `tooltipData` is `{ point, index, x, yPositions, xPositions? } | null`. Check the installed `chart-core/chart-context.tsx` for the full context value.
 
-Docs: https://design.time2code.dev/docs/charts/utility/tooltip · https://design.time2code.dev/docs/charts/utility/custom-indicator · https://design.time2code.dev/docs/charts/utility/use-chart
+Docs: https://ui.time2code.dev/docs/charts/utility/tooltip · https://ui.time2code.dev/docs/charts/utility/custom-indicator · https://ui.time2code.dev/docs/charts/utility/use-chart

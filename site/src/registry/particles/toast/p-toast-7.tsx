@@ -18,7 +18,7 @@ export function Particle() {
     useCopyToClipboard(toastTimeout);
 
   async function handleCopy() {
-    await copyToClipboard("https://design.time2code.dev");
+    await copyToClipboard("https://ui.time2code.dev");
     if (copyButtonRef.current) {
       anchoredToastManager.add({
         data: {

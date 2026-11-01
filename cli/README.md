@@ -1,6 +1,6 @@
 # time2code
 
-Add [time2code/ui](https://design.time2code.dev) components to your project, start new apps, and give AI agents access to the registry.
+Add [time2code/ui](https://ui.time2code.dev) components to your project, start new apps, and give AI agents access to the registry.
 
 ```bash
 npx time2code add button
@@ -63,6 +63,6 @@ pnpm --filter time2code test
 
 | Environment variable | |
 | --- | --- |
-| `REGISTRY_URL` | registry URL, e.g. `http://localhost:3000/r` or `http://localhost:3000/r/{name}.json`. Defaults to `https://design.time2code.dev/r` |
+| `REGISTRY_URL` | registry URL, e.g. `http://localhost:3000/r` or `http://localhost:3000/r/{name}.json`. Defaults to `https://ui.time2code.dev/r` |
 | `TIME2CODE_TEMPLATE_DIR` | copy a local template checkout instead, e.g. `~/dev/next-starter-template` |
 | `TIME2CODE_TEMPLATE_REPO` | clone this git repository instead of the template's |

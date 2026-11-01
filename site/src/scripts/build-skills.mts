@@ -13,7 +13,7 @@ interface RegistryItem {
 
 type Kind = "charts" | "hooks" | "marketing" | "ui";
 
-const REGISTRY_URL = "https://design.time2code.dev/r";
+const REGISTRY_URL = "https://ui.time2code.dev/r";
 
 const registryDir = new URL("../registry/", import.meta.url);
 const skillDir = new URL(

@@ -5,9 +5,9 @@ description: Index of every time2code/ui particle, the working examples for its 
 
 # time2code/ui particles
 
-Particles are small, complete examples of time2code/ui components: one file each, named `p-<item>-<n>` (`p-dialog-1`, `p-bar-chart-12`). Browse them visually at https://design.time2code.dev/particles.
+Particles are small, complete examples of time2code/ui components: one file each, named `p-<item>-<n>` (`p-dialog-1`, `p-bar-chart-12`). Browse them visually at https://ui.time2code.dev/particles.
 
-This skill is an index. For how to install, compose and style the components, use the `time2code-ui` skill (and `time2code-charts` for charts). If those skills aren't installed, the same rules are in the docs: https://design.time2code.dev/llms.txt.
+This skill is an index. For how to install, compose and style the components, use the `time2code-ui` skill (and `time2code-charts` for charts). If those skills aren't installed, the same rules are in the docs: https://ui.time2code.dev/llms.txt.
 
 ## How to use this index
 

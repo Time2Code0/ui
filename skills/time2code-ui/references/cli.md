@@ -50,7 +50,7 @@ Projects that already use the shadcn CLI can map the namespace in `components.js
 ```json
 {
   "registries": {
-    "@time2code": "https://design.time2code.dev/r/{name}.json"
+    "@time2code": "https://ui.time2code.dev/r/{name}.json"
   }
 }
 ```
@@ -64,7 +64,7 @@ npx shadcn@latest add @time2code/button
 Particles (`p-<component>-<n>`) are working examples of each component. The `time2code-particles` skill indexes all of them with descriptions. To read one:
 
 - MCP: `get_item_examples` with the component name.
-- Registry JSON: `https://design.time2code.dev/r/p-dialog-1.json` (the code is in `files[].content`).
-- Docs as Markdown, with every example on the page: `https://design.time2code.dev/docs/ui/dialog.md`.
+- Registry JSON: `https://ui.time2code.dev/r/p-dialog-1.json` (the code is in `files[].content`).
+- Docs as Markdown, with every example on the page: `https://ui.time2code.dev/docs/ui/dialog.md`.
 
 Particles import from `@/registry/ui/*`. In a project those files live at `@/components/ui/*`.

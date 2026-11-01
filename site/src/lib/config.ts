@@ -38,7 +38,7 @@ export const siteConfig = {
     github: "https://github.com/time2code0/ui",
   },
   title: "time2code/ui — React components for apps and marketing sites",
-  url: "https://design.time2code.dev",
+  url: "https://ui.time2code.dev",
 };
 
 export type SiteConfig = typeof siteConfig;

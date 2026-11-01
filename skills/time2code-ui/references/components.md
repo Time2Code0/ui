@@ -90,4 +90,4 @@ For optional `portalProps` on popups and toast providers, see [portal-props.md](
 ## Not covered here
 
 - Charts (`@/components/charts`): use the `time2code-charts` skill.
-- Marketing components (`@/components/marketing`) and hooks (`@/hooks`): no guides yet. Start from their particles in the `time2code-particles` skill (`references/marketing.md`, `references/hooks.md`) and the docs (https://design.time2code.dev/llms.txt).
+- Marketing components (`@/components/marketing`) and hooks (`@/hooks`): no guides yet. Start from their particles in the `time2code-particles` skill (`references/marketing.md`, `references/hooks.md`) and the docs (https://ui.time2code.dev/llms.txt).

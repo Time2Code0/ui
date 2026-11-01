@@ -8,32 +8,32 @@ Particles that demonstrate the hooks in `@/hooks`.
 
 ## use-clock
 
-- `p-use-clock-1`: Clock with adjustable rate ([JSON](https://design.time2code.dev/r/p-use-clock-1.json))
+- `p-use-clock-1`: Clock with adjustable rate ([JSON](https://ui.time2code.dev/r/p-use-clock-1.json))
 
 ## use-coerce-to-motion-value
 
-- `p-use-coerce-to-motion-value-1`: Progress bar accepting numbers or motion values ([JSON](https://design.time2code.dev/r/p-use-coerce-to-motion-value-1.json))
+- `p-use-coerce-to-motion-value-1`: Progress bar accepting numbers or motion values ([JSON](https://ui.time2code.dev/r/p-use-coerce-to-motion-value-1.json))
 
 ## use-event-listener
 
-- `p-use-event-listener-1`: Last pressed key ([JSON](https://design.time2code.dev/r/p-use-event-listener-1.json))
+- `p-use-event-listener-1`: Last pressed key ([JSON](https://ui.time2code.dev/r/p-use-event-listener-1.json))
 
 ## use-interval
 
-- `p-use-interval-1`: Pausable interval counter ([JSON](https://design.time2code.dev/r/p-use-interval-1.json))
+- `p-use-interval-1`: Pausable interval counter ([JSON](https://ui.time2code.dev/r/p-use-interval-1.json))
 
 ## use-mouse-position
 
-- `p-use-mouse-position-1`: Dot following the cursor ([JSON](https://design.time2code.dev/r/p-use-mouse-position-1.json))
+- `p-use-mouse-position-1`: Dot following the cursor ([JSON](https://ui.time2code.dev/r/p-use-mouse-position-1.json))
 
 ## use-normalize-motion-value
 
-- `p-use-normalize-motion-value-1`: Mouse position rendered as React state ([JSON](https://design.time2code.dev/r/p-use-normalize-motion-value-1.json))
+- `p-use-normalize-motion-value-1`: Mouse position rendered as React state ([JSON](https://ui.time2code.dev/r/p-use-normalize-motion-value-1.json))
 
 ## use-resize-observer
 
-- `p-use-resize-observer-1`: Resizable box reporting its size ([JSON](https://design.time2code.dev/r/p-use-resize-observer-1.json))
+- `p-use-resize-observer-1`: Resizable box reporting its size ([JSON](https://ui.time2code.dev/r/p-use-resize-observer-1.json))
 
 ## use-scroll-accelerated-clock
 
-- `p-use-scroll-accelerated-clock-1`: Rotation sped up by scrolling ([JSON](https://design.time2code.dev/r/p-use-scroll-accelerated-clock-1.json))
+- `p-use-scroll-accelerated-clock-1`: Rotation sped up by scrolling ([JSON](https://ui.time2code.dev/r/p-use-scroll-accelerated-clock-1.json))

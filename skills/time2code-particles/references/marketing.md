@@ -8,185 +8,185 @@ Particles for the marketing components in `@/components/marketing` (text effects
 
 ## animate
 
-- `p-animate-1`: Fade, zoom and slide-in animations ([JSON](https://design.time2code.dev/r/p-animate-1.json))
+- `p-animate-1`: Fade, zoom and slide-in animations ([JSON](https://ui.time2code.dev/r/p-animate-1.json))
 
 ## animated-border
 
-- `p-animated-border-1`: Beam, shiny and full animated borders ([JSON](https://design.time2code.dev/r/p-animated-border-1.json))
+- `p-animated-border-1`: Beam, shiny and full animated borders ([JSON](https://ui.time2code.dev/r/p-animated-border-1.json))
 
 ## animated-size-container
 
-- `p-animated-size-container-1`: Container animating height between tabs ([JSON](https://design.time2code.dev/r/p-animated-size-container-1.json))
+- `p-animated-size-container-1`: Container animating height between tabs ([JSON](https://ui.time2code.dev/r/p-animated-size-container-1.json))
 
 ## arc-text
 
-- `p-arc-text-1`: Text laid out along a circle ([JSON](https://design.time2code.dev/r/p-arc-text-1.json))
+- `p-arc-text-1`: Text laid out along a circle ([JSON](https://ui.time2code.dev/r/p-arc-text-1.json))
 
 ## beam
 
-- `p-beam-1`: Animated beams connecting integrations to a hub ([JSON](https://design.time2code.dev/r/p-beam-1.json))
+- `p-beam-1`: Animated beams connecting integrations to a hub ([JSON](https://ui.time2code.dev/r/p-beam-1.json))
 
 ## confetti
 
-- `p-confetti-1`: Confetti fired from a button ([JSON](https://design.time2code.dev/r/p-confetti-1.json))
+- `p-confetti-1`: Confetti fired from a button ([JSON](https://ui.time2code.dev/r/p-confetti-1.json))
 
 ## counter
 
-- `p-counter-1`: Counter animating between values ([JSON](https://design.time2code.dev/r/p-counter-1.json))
+- `p-counter-1`: Counter animating between values ([JSON](https://ui.time2code.dev/r/p-counter-1.json))
 
 ## fluid-gradient-text
 
-- `p-fluid-gradient-text-1`: Wordmark with a pointer-following gradient ([JSON](https://design.time2code.dev/r/p-fluid-gradient-text-1.json))
+- `p-fluid-gradient-text-1`: Wordmark with a pointer-following gradient ([JSON](https://ui.time2code.dev/r/p-fluid-gradient-text-1.json))
 
 ## globe
 
-- `p-globe-1`: Interactive globe with markers ([JSON](https://design.time2code.dev/r/p-globe-1.json))
+- `p-globe-1`: Interactive globe with markers ([JSON](https://ui.time2code.dev/r/p-globe-1.json))
 
 ## gradient-text
 
-- `p-gradient-text-1`: Static and animated gradient text ([JSON](https://design.time2code.dev/r/p-gradient-text-1.json))
+- `p-gradient-text-1`: Static and animated gradient text ([JSON](https://ui.time2code.dev/r/p-gradient-text-1.json))
 
 ## hero-image
 
-- `p-hero-image-1`: Framed hero image ([JSON](https://design.time2code.dev/r/p-hero-image-1.json))
+- `p-hero-image-1`: Framed hero image ([JSON](https://ui.time2code.dev/r/p-hero-image-1.json))
 
 ## highlight-card
 
-- `p-highlight-card-1`: Card with a shine on hover ([JSON](https://design.time2code.dev/r/p-highlight-card-1.json))
+- `p-highlight-card-1`: Card with a shine on hover ([JSON](https://ui.time2code.dev/r/p-highlight-card-1.json))
 
 ## highlight-dots
 
-- `p-highlight-dots-1`: Dot pattern highlighted around the cursor ([JSON](https://design.time2code.dev/r/p-highlight-dots-1.json))
+- `p-highlight-dots-1`: Dot pattern highlighted around the cursor ([JSON](https://ui.time2code.dev/r/p-highlight-dots-1.json))
 
 ## hover-rotate-text
 
-- `p-hover-rotate-text-1`: Text rolling over on hover ([JSON](https://design.time2code.dev/r/p-hover-rotate-text-1.json))
+- `p-hover-rotate-text-1`: Text rolling over on hover ([JSON](https://ui.time2code.dev/r/p-hover-rotate-text-1.json))
 
 ## image-comparison
 
-- `p-image-comparison-1`: Before and after image slider ([JSON](https://design.time2code.dev/r/p-image-comparison-1.json))
+- `p-image-comparison-1`: Before and after image slider ([JSON](https://ui.time2code.dev/r/p-image-comparison-1.json))
 
 ## image-zoom
 
-- `p-image-zoom-1`: Image that zooms to fill the viewport on click ([JSON](https://design.time2code.dev/r/p-image-zoom-1.json))
+- `p-image-zoom-1`: Image that zooms to fill the viewport on click ([JSON](https://ui.time2code.dev/r/p-image-zoom-1.json))
 
 ## led-matrix
 
-- `p-led-matrix-1`: Animated LED dot matrix background ([JSON](https://design.time2code.dev/r/p-led-matrix-1.json))
+- `p-led-matrix-1`: Animated LED dot matrix background ([JSON](https://ui.time2code.dev/r/p-led-matrix-1.json))
 
 ## magic-button
 
-- `p-magic-button-1`: Button with rotating light border ([JSON](https://design.time2code.dev/r/p-magic-button-1.json))
+- `p-magic-button-1`: Button with rotating light border ([JSON](https://ui.time2code.dev/r/p-magic-button-1.json))
 
 ## magic-text
 
-- `p-magic-text-1`: Gradient text with sparkles on hover ([JSON](https://design.time2code.dev/r/p-magic-text-1.json))
+- `p-magic-text-1`: Gradient text with sparkles on hover ([JSON](https://ui.time2code.dev/r/p-magic-text-1.json))
 
 ## magic-text-reveal-card
 
-- `p-magic-text-reveal-card-1`: Card revealing hidden text under the cursor ([JSON](https://design.time2code.dev/r/p-magic-text-reveal-card-1.json))
+- `p-magic-text-reveal-card-1`: Card revealing hidden text under the cursor ([JSON](https://ui.time2code.dev/r/p-magic-text-reveal-card-1.json))
 
 ## marquee
 
-- `p-marquee-1`: Logo marquee in both directions ([JSON](https://design.time2code.dev/r/p-marquee-1.json))
-- `p-marquee-2`: Vertical marquee ([JSON](https://design.time2code.dev/r/p-marquee-2.json))
+- `p-marquee-1`: Logo marquee in both directions ([JSON](https://ui.time2code.dev/r/p-marquee-1.json))
+- `p-marquee-2`: Vertical marquee ([JSON](https://ui.time2code.dev/r/p-marquee-2.json))
 
 ## mask
 
-- `p-mask-1`: Marquee with faded edges ([JSON](https://design.time2code.dev/r/p-mask-1.json))
+- `p-mask-1`: Marquee with faded edges ([JSON](https://ui.time2code.dev/r/p-mask-1.json))
 
 ## mouse
 
-- `p-mouse-1`: Custom cursor reacting to hover targets ([JSON](https://design.time2code.dev/r/p-mouse-1.json))
+- `p-mouse-1`: Custom cursor reacting to hover targets ([JSON](https://ui.time2code.dev/r/p-mouse-1.json))
 
 ## noise
 
-- `p-noise-1`: Grain overlay on a gradient ([JSON](https://design.time2code.dev/r/p-noise-1.json))
+- `p-noise-1`: Grain overlay on a gradient ([JSON](https://ui.time2code.dev/r/p-noise-1.json))
 
 ## northern-lights
 
-- `p-northern-lights-1`: Animated aurora background ([JSON](https://design.time2code.dev/r/p-northern-lights-1.json))
+- `p-northern-lights-1`: Animated aurora background ([JSON](https://ui.time2code.dev/r/p-northern-lights-1.json))
 
 ## orbit
 
-- `p-orbit-1`: Satellites circling a rounded orbit ([JSON](https://design.time2code.dev/r/p-orbit-1.json))
+- `p-orbit-1`: Satellites circling a rounded orbit ([JSON](https://ui.time2code.dev/r/p-orbit-1.json))
 
 ## outlined-text
 
-- `p-outlined-text-1`: Outlined headline text ([JSON](https://design.time2code.dev/r/p-outlined-text-1.json))
+- `p-outlined-text-1`: Outlined headline text ([JSON](https://ui.time2code.dev/r/p-outlined-text-1.json))
 
 ## particles
 
-- `p-particles-1`: Floating particle background ([JSON](https://design.time2code.dev/r/p-particles-1.json))
+- `p-particles-1`: Floating particle background ([JSON](https://ui.time2code.dev/r/p-particles-1.json))
 
 ## pattern
 
-- `p-pattern-1`: Square, hex, dot and line patterns ([JSON](https://design.time2code.dev/r/p-pattern-1.json))
+- `p-pattern-1`: Square, hex, dot and line patterns ([JSON](https://ui.time2code.dev/r/p-pattern-1.json))
 
 ## pill
 
-- `p-pill-1`: Gradient bordered pills ([JSON](https://design.time2code.dev/r/p-pill-1.json))
+- `p-pill-1`: Gradient bordered pills ([JSON](https://ui.time2code.dev/r/p-pill-1.json))
 
 ## pixelated-text
 
-- `p-pixelated-text-1`: Pixelated headline text ([JSON](https://design.time2code.dev/r/p-pixelated-text-1.json))
+- `p-pixelated-text-1`: Pixelated headline text ([JSON](https://ui.time2code.dev/r/p-pixelated-text-1.json))
 
 ## progressive-blur
 
-- `p-progressive-blur-1`: Image blurring progressively towards the bottom ([JSON](https://design.time2code.dev/r/p-progressive-blur-1.json))
+- `p-progressive-blur-1`: Image blurring progressively towards the bottom ([JSON](https://ui.time2code.dev/r/p-progressive-blur-1.json))
 
 ## retro-grid
 
-- `p-retro-grid-1`: Animated perspective grid ([JSON](https://design.time2code.dev/r/p-retro-grid-1.json))
+- `p-retro-grid-1`: Animated perspective grid ([JSON](https://ui.time2code.dev/r/p-retro-grid-1.json))
 
 ## reveal
 
-- `p-reveal-1`: Text, slide, box and fade reveals ([JSON](https://design.time2code.dev/r/p-reveal-1.json))
+- `p-reveal-1`: Text, slide, box and fade reveals ([JSON](https://ui.time2code.dev/r/p-reveal-1.json))
 
 ## rotate-interval
 
-- `p-rotate-interval-1`: Rotating words in a headline ([JSON](https://design.time2code.dev/r/p-rotate-interval-1.json))
+- `p-rotate-interval-1`: Rotating words in a headline ([JSON](https://ui.time2code.dev/r/p-rotate-interval-1.json))
 
 ## scroll
 
-- `p-scroll-1`: Scroll progress bar and direction ([JSON](https://design.time2code.dev/r/p-scroll-1.json))
+- `p-scroll-1`: Scroll progress bar and direction ([JSON](https://ui.time2code.dev/r/p-scroll-1.json))
 
 ## scroll-reveal
 
-- `p-scroll-reveal-1`: Cards revealed as they scroll into view ([JSON](https://design.time2code.dev/r/p-scroll-reveal-1.json))
+- `p-scroll-reveal-1`: Cards revealed as they scroll into view ([JSON](https://ui.time2code.dev/r/p-scroll-reveal-1.json))
 
 ## shiny-text
 
-- `p-shiny-text-1`: Shimmering text ([JSON](https://design.time2code.dev/r/p-shiny-text-1.json))
+- `p-shiny-text-1`: Shimmering text ([JSON](https://ui.time2code.dev/r/p-shiny-text-1.json))
 
 ## spotlight
 
-- `p-spotlight-1`: Spotlights shining onto a headline ([JSON](https://design.time2code.dev/r/p-spotlight-1.json))
+- `p-spotlight-1`: Spotlights shining onto a headline ([JSON](https://ui.time2code.dev/r/p-spotlight-1.json))
 
 ## spotlight-card
 
-- `p-spotlight-card-1`: Cards with a cursor-following glow ([JSON](https://design.time2code.dev/r/p-spotlight-card-1.json))
+- `p-spotlight-card-1`: Cards with a cursor-following glow ([JSON](https://ui.time2code.dev/r/p-spotlight-card-1.json))
 
 ## sticky-stacked-card
 
-- `p-sticky-stacked-card-1`: Cards stacking while scrolling ([JSON](https://design.time2code.dev/r/p-sticky-stacked-card-1.json))
+- `p-sticky-stacked-card-1`: Cards stacking while scrolling ([JSON](https://ui.time2code.dev/r/p-sticky-stacked-card-1.json))
 
 ## text-marker
 
-- `p-text-marker-1`: Highlighted words in a headline ([JSON](https://design.time2code.dev/r/p-text-marker-1.json))
+- `p-text-marker-1`: Highlighted words in a headline ([JSON](https://ui.time2code.dev/r/p-text-marker-1.json))
 
 ## text-scroll-reveal
 
-- `p-text-scroll-reveal-1`: Words lighting up while scrolling ([JSON](https://design.time2code.dev/r/p-text-scroll-reveal-1.json))
+- `p-text-scroll-reveal-1`: Words lighting up while scrolling ([JSON](https://ui.time2code.dev/r/p-text-scroll-reveal-1.json))
 
 ## ticker
 
-- `p-ticker-1`: Horizontal and vertical tickers ([JSON](https://design.time2code.dev/r/p-ticker-1.json))
+- `p-ticker-1`: Horizontal and vertical tickers ([JSON](https://ui.time2code.dev/r/p-ticker-1.json))
 
 ## tilt-card
 
-- `p-tilt-card-1`: 3D card tilting with the cursor ([JSON](https://design.time2code.dev/r/p-tilt-card-1.json))
+- `p-tilt-card-1`: 3D card tilting with the cursor ([JSON](https://ui.time2code.dev/r/p-tilt-card-1.json))
 
 ## typewriter
 
-- `p-typewriter-1`: Typewriter cycling through words ([JSON](https://design.time2code.dev/r/p-typewriter-1.json))
+- `p-typewriter-1`: Typewriter cycling through words ([JSON](https://ui.time2code.dev/r/p-typewriter-1.json))
