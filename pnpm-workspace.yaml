@@ -3,8 +3,8 @@ packages:
   - cli
 
 allowBuilds:
-  '@tsparticles/engine': set this to true or false
-  esbuild: set this to true or false
+  '@tsparticles/engine': false
+  esbuild: true
 
 ignoredBuiltDependencies:
   - sharp
